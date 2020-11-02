@@ -1,0 +1,64 @@
+@import '../../style/themes/default.less';
+
+@prefix-cls: ~'@{prefix}-color';
+
+
+.@{prefix-cls} {
+  display: inline-block;
+  vertical-align: middle;
+
+  .text {
+    display: inline-block;
+    margin-left: 5px;
+    line-height: 24px;
+    vertical-align: middle;
+    color: rgba(0, 0, 0, 0.65);
+    font-size: 13px;
+  }
+
+  .color {
+    display: inline-block;
+    line-height: 0;
+    padding: 3px;
+    border-radius: 3px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    vertical-align: middle;
+    background: #fff;
+  }
+
+  .inner {
+    display: inline-block;
+    height: 16px;
+    width: 16px;
+    border-radius: 2px;
+    vertical-align: middle;
+  }
+
+  .select {
+
+    &.active,
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+// :global {
+  .overlay-normalize {
+    padding: 0 !important;
+    background: none;
+
+    & .ant-popover-content>.ant-popover-arrow {
+      display: none;
+    }
+
+    & .ant-popover-inner-content {
+      padding: 0;
+    }
+
+    .sketch-picker input,
+    .compact-picker input {
+      box-sizing: content-box;
+    }
+  }
+// }

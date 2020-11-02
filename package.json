@@ -1,0 +1,79 @@
+{
+  "name": "antd-more",
+  "version": "0.0.0",
+  "description": "基于 antd 的扩展组件",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "start": "npx dumi dev",
+    "doc": "npx dumi build",
+    "build": "father-build",
+    "build:doc": "npm run doc",
+    "lint": "npx eslint src/* --ext .tsx,.ts --ignore-pattern 'src/*/demos/**'",
+    "prettier": "npx prettier --write 'src/**/*.tsx' && npx prettier --write 'src/**/*.ts'",
+    "lint-staged": "lint-staged",
+    "lint-staged:prettier": "prettier --write",
+    "lint-staged:lint": "npx eslint --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/doly-dev/antd-more.git"
+  },
+  "keywords": [
+    "react",
+    "react-components",
+    "ant-design",
+    "antd",
+    "antd-more"
+  ],
+  "files": [
+    "es",
+    "lib"
+  ],
+  "author": "caijf",
+  "license": "MIT",
+  "peerDependencies": {
+    "antd": ">= 4.0.0",
+    "react": ">= 16.9.0",
+    "react-dom": ">= 16.9.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
+    "@types/classnames": "^2.2.11",
+    "@types/react-color": "^3.0.4",
+    "@typescript-eslint/eslint-plugin": "^4.6.0",
+    "@typescript-eslint/parser": "^4.6.0",
+    "antd": "^4.7.3",
+    "commitlint": "^11.0.0",
+    "dumi": "^1.0.34",
+    "eslint": "^5.16.0",
+    "eslint-config-doly-react": "0.0.3-alpha.0",
+    "father-build": "^1.18.5",
+    "husky": "^4.3.0",
+    "lcn": "^2.2.3",
+    "lint-staged": "^10.5.1",
+    "mockjs": "^1.1.0",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
+    "typescript": "^3.9.7"
+  },
+  "dependencies": {
+    "classnames": "^2.2.6",
+    "react-color": "^2.19.3"
+  },
+  "lint-staged": {
+    "src/**/*.{ts,tsx,js,jsx,less}": [
+      "npm run lint-staged:prettier",
+      "git add ."
+    ],
+    "src/**/*.{ts,tsx,js,jsx}": "npm run lint"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  }
+}
