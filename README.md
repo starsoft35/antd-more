@@ -29,7 +29,7 @@ yarn add antd-more
 
 ### 按需加载
 
-如果使用 `doly` 或 `umi` 脚手架，在配置文件中的 `extraBabelPlugins` 添加：
+如果使用 [doly] 或 [umi] 脚手架，在配置文件中的 `extraBabelPlugins` 添加：
 
 ```javascript
 [
@@ -95,6 +95,7 @@ git commit -m 'upd: 更新某组件文本'
 [babel-plugin-import]: https://www.npmjs.com/package/babel-plugin-import
 
 [doly]: https://www.npmjs.com/package/doly-cli
+[umi]: https://umijs.org/zh-CN
 [antd]: https://ant-design.gitee.io
 
 [CaptchaButton]: https://doly-dev.github.io/antd-more/site/index.html#/common/captcha-button
