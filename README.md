@@ -6,6 +6,11 @@
 
 [查看文档和示例][site]
 
+## 特性
+
+- 支持 [antd] 主题定制
+- 针对业务场景封装
+
 <!-- 
 ## 对应版本
 
@@ -91,13 +96,13 @@ git commit -m 'upd: 更新某组件文本'
 [npm]: https://img.shields.io/npm/v/antd-more.svg
 [npm-url]: https://npmjs.com/package/antd-more
 
-[site]: https://doly-dev.github.io/antd-more/site/index.html
+[site]: https://doly-dev.github.io/antd-more/site/v0/index.html
 [babel-plugin-import]: https://www.npmjs.com/package/babel-plugin-import
 
 [doly]: https://www.npmjs.com/package/doly-cli
 [umi]: https://umijs.org/zh-CN
 [antd]: https://ant-design.gitee.io
 
-[CaptchaButton]: https://doly-dev.github.io/antd-more/site/index.html#/common/captcha-button
-[CascaderWithInput]: https://doly-dev.github.io/antd-more/site/index.html#/common/cascader-with-input
-[Color]: https://doly-dev.github.io/antd-more/site/index.html#/common/color
+[CaptchaButton]: https://doly-dev.github.io/antd-more/site/v0/index.html#/common/captcha-button
+[CascaderWithInput]: https://doly-dev.github.io/antd-more/site/v0/index.html#/common/cascader-with-input
+[Color]: https://doly-dev.github.io/antd-more/site/v0/index.html#/common/color
