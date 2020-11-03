@@ -1,7 +1,63 @@
 # antd-more
 
-基于 `antd@4` 扩展的组件
+[![npm][npm]][npm-url]
 
+基于 [antd] 扩展的业务场景组件。
+
+[查看文档和示例][site]
+
+<!-- 
+## 对应版本
+
+antd-more | antd |
+--------- | ---- |
+v1        | v4   | -->
+
+## 使用
+
+### npm 或 yarn 安装
+
+```shell
+npm install antd-more --save
+```
+
+<br />
+
+```shell
+yarn add antd-more
+```
+
+### 按需加载
+
+如果使用 `doly` 或 `umi` 脚手架，在配置文件中的 `extraBabelPlugins` 添加：
+
+```javascript
+[
+  'import', 
+  { 
+    libraryName: 'antd-more', 
+    libraryDirectory:  'es', 
+    style: true, 
+  }, 
+  'antd-more'
+]
+```
+
+如果是自定义配置的 `webpack` 项目，请安装 [babel-plugin-import] ，将上面配置添加到 `babel` 的 `plugins` 中。
+
+### 示例
+
+```javascript
+import { Color } from 'antd-more';
+
+ReactDon.render(<Color value="red" />, mountNode);
+```
+
+## 已有组件
+
+- [CaptchaButton] - 验证码按钮，含倒计时功能
+- [CascaderWithInput] - 级联和输入框结合，常用于填写地址
+- [Color] - 颜色显示、选择器
 
 ## 贡献
 
@@ -27,5 +83,20 @@
 ```shell
 git commit -m 'feat: 增加 xxx 功能'
 git commit -m 'bug: 修复 xxx 功能'
-git commit -m 'upd: 更新版本号'
+git commit -m 'upd: 更新某组件文本'
 ```
+
+
+
+[npm]: https://img.shields.io/npm/v/antd-more.svg
+[npm-url]: https://npmjs.com/package/antd-more
+
+[site]: https://doly-dev.github.io/antd-more/site/index.html
+[babel-plugin-import]: https://www.npmjs.com/package/babel-plugin-import
+
+[doly]: https://www.npmjs.com/package/doly-cli
+[antd]: https://ant-design.gitee.io
+
+[CaptchaButton]: https://doly-dev.github.io/antd-more/site/index.html#/common/captcha-button
+[CascaderWithInput]: https://doly-dev.github.io/antd-more/site/index.html#/common/cascader-with-input
+[Color]: https://doly-dev.github.io/antd-more/site/index.html#/common/color

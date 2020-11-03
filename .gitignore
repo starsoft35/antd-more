@@ -19,6 +19,8 @@ components/**/*.css
 .idea
 
 .umi
+.umi-production
+package-lock.json
 .cache
 public
 .rpt2_cache

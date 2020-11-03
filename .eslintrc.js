@@ -13,6 +13,7 @@ module.exports = {
     "eol-last": 0,
     "object-curly-newline": 0,
     "no-unused-expressions": 0,
+    "no-confusing-arrow": 0,
     "comma-dangle": 0,
     "arrow-parens": 0,
     "no-use-before-define": 0,
