@@ -14,7 +14,7 @@
     "prettier": "npx prettier --write 'src/**/*.tsx' && npx prettier --write 'src/**/*.ts'",
     "lint-staged": "lint-staged",
     "lint-staged:prettier": "prettier --write",
-    "lint-staged:lint": "npx eslint --fix"
+    "lint-staged:lint": "npm run eslint"
   },
   "repository": {
     "type": "git",

@@ -106,3 +106,4 @@ git commit -m 'upd: 更新某组件文本'
 [CaptchaButton]: https://doly-dev.github.io/antd-more/site/v0/index.html#/common/captcha-button
 [CascaderWithInput]: https://doly-dev.github.io/antd-more/site/v0/index.html#/common/cascader-with-input
 [Color]: https://doly-dev.github.io/antd-more/site/v0/index.html#/common/color
+[Dictionary]: https://doly-dev.github.io/antd-more/site/v0/index.html#/common/dictionary

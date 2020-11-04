@@ -60,6 +60,8 @@ legacy: /common/color
 type Renderers = { canvas?: HTMLCanvasElement; }
 ```
 
+<br />
+
 | 参数      | 说明                                                 | 类型     | 默认值 |
 | --------- | ---------------------------------------------------- | -------- | ------ |
 | renderers | 使用 `{canvas: Canvas}` 和 `canvas` 节点来处理 `SSR` | `Renderers` | -      |
@@ -79,7 +81,7 @@ type Renderers = { canvas?: HTMLCanvasElement; }
 ### Color.SketchPicker
 
 ```javascript
-type PresetColor = { color: string; title: string } | string;
+type PresetColor = { color: string; title: string; } | string;
 type Renderers = { canvas?: HTMLCanvasElement; }
 ```
 
