@@ -8,13 +8,13 @@
   "scripts": {
     "start": "npx dumi dev",
     "doc": "npx dumi build",
-    "build": "father-build",
+    "build": "npx father-build",
     "build:doc": "npm run doc",
     "lint": "npx eslint src/* --ext .tsx,.ts --ignore-pattern 'src/*/demos/**'",
     "prettier": "npx prettier --write 'src/**/*.tsx' && npx prettier --write 'src/**/*.ts'",
-    "lint-staged": "lint-staged",
+    "lint-staged": "npx lint-staged",
     "lint-staged:prettier": "prettier --write",
-    "lint-staged:lint": "npm run eslint"
+    "lint-staged:lint": "eslint --ignore-pattern 'src/*/demos/**'"
   },
   "repository": {
     "type": "git",
@@ -69,9 +69,9 @@
   "lint-staged": {
     "src/**/*.{ts,tsx,js,jsx,less}": [
       "npm run lint-staged:prettier",
-      "git add ."
+      "git add"
     ],
-    "src/**/*.{ts,tsx,js,jsx}": "npm run lint"
+    "src/**/*.{ts,tsx,js,jsx}": "npm run lint-staged:lint"
   },
   "husky": {
     "hooks": {

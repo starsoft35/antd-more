@@ -9,7 +9,7 @@ legacy: /common/cascader-with-input
 
 # CascaderWithInput
 
-[`Cascader`](https://ant.design/components/cascader-cn/#API) 和 [`Input`](https://ant.design/components/input-cn/#API) 组件结合，常用于省市区+详细地址，适用于 `antd` 表单中。
+[`Cascader`](https://ant.design/components/cascader-cn/#API) 和 [`Input`](https://ant.design/components/input-cn/#API) 组件结合，常用于省市区+详细地址。
 
 ## 代码演示
 

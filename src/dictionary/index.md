@@ -9,17 +9,9 @@ legacy: /common/dictionary
 
 # Dictionary
 
-用于 `数据字典` 的显示 和 选择，可直接应用于 `antd` 表单中。
+用于 `数据字典` 的显示 和 选择
 
 数据必须含有 `value` `name` 。
-
-**安装依赖**
-
-```
-npm i antd
-```
-
-> - [`antd`](https://ant.design/components/popover-cn/)
 
 ## 代码演示
 
