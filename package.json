@@ -34,7 +34,7 @@
   "author": "caijf",
   "license": "MIT",
   "peerDependencies": {
-    "antd": ">= 4.0.0",
+    "antd": "^4.0.0",
     "react": ">= 16.9.0",
     "react-dom": ">= 16.9.0"
   },

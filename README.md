@@ -60,9 +60,11 @@ ReactDon.render(<Color value="red" />, mountNode);
 
 ## 已有组件
 
-- [CaptchaButton] - 验证码按钮，含倒计时功能
+- [CaptchaButton] - 验证码按钮
 - [CascaderWithInput] - 级联和输入框结合，常用于填写地址
 - [Color] - 颜色显示、选择器
+- [Dictionary] - 数据字典
+- [InputNumber] - 数字输入框
 
 ## 贡献
 
@@ -107,3 +109,4 @@ git commit -m 'upd: 更新某组件文本'
 [CascaderWithInput]: https://doly-dev.github.io/antd-more/site/v0/index.html#/common/cascader-with-input
 [Color]: https://doly-dev.github.io/antd-more/site/v0/index.html#/common/color
 [Dictionary]: https://doly-dev.github.io/antd-more/site/v0/index.html#/common/dictionary
+[InputNumber]: https://doly-dev.github.io/antd-more/site/v0/index.html#/common/input-number

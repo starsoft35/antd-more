@@ -9,7 +9,7 @@ legacy: /common/input-number
 
 # InputNumber
 
-用于获取标准数值
+支持 `before` `after` 的数字输入框。
 
 ## 代码演示
 

@@ -9,7 +9,7 @@ legacy: /common/dictionary
 
 # Dictionary
 
-用于 `数据字典` 的显示 和 选择
+`数据字典` 显示 和 选择
 
 数据必须含有 `value` `name` 。
 
