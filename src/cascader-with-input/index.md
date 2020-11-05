@@ -1,7 +1,7 @@
 ---
 title: CascaderWithInput
 group:
-  title: 通用组件
+  title: 组件
   path: /common
   order: 0
 legacy: /common/cascader-with-input
