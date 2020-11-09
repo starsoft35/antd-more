@@ -17,7 +17,7 @@ const FormItemEmail: React.FC<FormItemEmailProps> = ({
   label = '邮箱',
   name = 'email',
   validateTrigger = 'onBlur',
-  required = true,
+  required = false,
   ...restProps
 }) => {
   const handleNormalize = React.useCallback(
@@ -37,7 +37,6 @@ const FormItemEmail: React.FC<FormItemEmailProps> = ({
       rules={[
         {
           validator(rule, value) {
-            console.log(value);
             let errMsg = '';
             if (!value) {
               errMsg = required ? `请输入${label}` : '';

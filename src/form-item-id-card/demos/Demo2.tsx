@@ -34,7 +34,7 @@ const Demo: React.FC<{}> = () => {
   }, []);
 
   const initialValues = React.useMemo(() => ({
-    idCard: '12****@qq.com'
+    idCard: '130***********2288'
   }), []);
 
   return (
@@ -45,7 +45,7 @@ const Demo: React.FC<{}> = () => {
         onFinish={onFinish}
         {...formLayout}
       >
-        <FormItemIdCard security initialValue={initialValues.idCard} />
+        <FormItemIdCard required security initialValue={initialValues.idCard} />
         <Form.Item {...buttonLayout}>
           <Button type='primary' htmlType='submit'>提交</Button>
         </Form.Item>

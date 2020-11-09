@@ -1,7 +1,7 @@
 /**
  * title: 基础用法
  * desc: |
- *    默认 `label: '用户名', name: 'userName', required: true, validateTrigger: 'onBlur'`
+ *    默认 `label: '用户名', name: 'userName', validateTrigger: 'onBlur'`
  */
 import * as React from 'react';
 import { Form, Button } from 'antd';

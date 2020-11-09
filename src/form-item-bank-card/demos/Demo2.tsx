@@ -34,18 +34,18 @@ const Demo: React.FC<{}> = () => {
   }, []);
 
   const initialValues = React.useMemo(() => ({
-    mobile: '150****2020'
+    bankCard: '563058********277'
   }), []);
 
   return (
     <>
       <Form
-        name='form-item-mobile-demo2'
+        name='form-item-bank-card-demo2'
         initialValues={initialValues}
         onFinish={onFinish}
         {...formLayout}
       >
-        <FormItemBankCard security initialValue={initialValues.mobile} />
+        <FormItemBankCard required security initialValue={initialValues.bankCard} />
         <Form.Item {...buttonLayout}>
           <Button type='primary' htmlType='submit'>提交</Button>
         </Form.Item>

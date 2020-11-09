@@ -17,7 +17,7 @@ const FormItemMobile: React.FC<FormItemMobileProps> = ({
   label = '手机号码',
   name = 'mobile',
   validateTrigger = 'onBlur',
-  required = true,
+  required = false,
   ...restProps
 }) => {
   const handleNormalize = React.useCallback(
@@ -41,7 +41,6 @@ const FormItemMobile: React.FC<FormItemMobileProps> = ({
       rules={[
         {
           validator(rule, value) {
-            console.log(value);
             let errMsg = '';
             if (!value) {
               errMsg = required ? `请输入${label}` : '';

@@ -1,13 +1,11 @@
 /**
- * title: 脱敏校验
+ * title: 基础用法
  * desc: |
- *    允许输入脱敏符号 `*` 。
- * 
- *    从服务获取的脱敏值传入 `initialValue` ，校验时进行比较。如果不一致就进行正常的验证流程。一致就表示没有变动，直接将脱敏数据再提交给服务。服务验证数据含有脱敏信息就不做更新该项，否则正常验证和更新。
+ *    默认 `label: '日期', name: 'date'`
  */
 import * as React from 'react';
 import { Form, Button } from 'antd';
-import { FormItemMobile } from 'antd-more';
+import { FormItemDate } from 'antd-more';
 
 const formLayout = {
   labelCol: {
@@ -33,19 +31,18 @@ const Demo: React.FC<{}> = () => {
     setResult(values);
   }, []);
 
-  const initialValues = React.useMemo(() => ({
-    mobile: '150****2020'
-  }), []);
-
   return (
     <>
       <Form
-        name='form-item-mobile-demo2'
-        initialValues={initialValues}
+        name='form-item-date-demo1'
         onFinish={onFinish}
         {...formLayout}
       >
-        <FormItemMobile required security initialValue={initialValues.mobile} />
+        <FormItemDate />
+        <FormItemDate name="date2" label="周" pickerProps={{ picker: 'week' }} />
+        <FormItemDate name="date3" label="月" pickerProps={{ picker: 'month' }} />
+        <FormItemDate name="date4" label="季" pickerProps={{ picker: 'quarter' }} />
+        <FormItemDate name="date5" label="年" pickerProps={{ picker: 'year' }} />
         <Form.Item {...buttonLayout}>
           <Button type='primary' htmlType='submit'>提交</Button>
         </Form.Item>

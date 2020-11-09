@@ -1,7 +1,7 @@
 /**
  * title: 基础用法
  * desc: |
- *    默认 `label: '身份证号', name: 'idCard', required: true, validateTrigger: 'onBlur'`
+ *    默认 `label: '身份证号', name: 'idCard', validateTrigger: 'onBlur'`
  */
 import * as React from 'react';
 import { Form, Button } from 'antd';

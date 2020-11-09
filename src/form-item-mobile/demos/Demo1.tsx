@@ -1,7 +1,7 @@
 /**
  * title: 基础用法
  * desc: |
- *    默认 `label: '手机号码', name: 'mobile', required: true, validateTrigger: 'onBlur'`
+ *    默认 `label: '手机号码', name: 'mobile', validateTrigger: 'onBlur'`
  */
 import * as React from 'react';
 import { Form, Button } from 'antd';

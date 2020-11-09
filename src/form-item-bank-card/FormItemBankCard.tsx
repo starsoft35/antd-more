@@ -19,7 +19,7 @@ const FormItemBankCard: React.FC<FormItemBankCardProps> = ({
   label = '银行卡号',
   name = 'bankCard',
   validateTrigger = 'onBlur',
-  required = true,
+  required = false,
   ...restProps
 }) => {
   const handleNormalize = React.useCallback(
@@ -43,7 +43,6 @@ const FormItemBankCard: React.FC<FormItemBankCardProps> = ({
       rules={[
         {
           validator(rule, value) {
-            console.log(value);
             let errMsg = '';
             if (!value) {
               errMsg = required ? `请输入${label}` : '';

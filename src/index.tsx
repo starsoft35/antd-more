@@ -9,3 +9,6 @@ export { default as FormItemMobile } from './form-item-mobile';
 export { default as FormItemIdCard } from './form-item-id-card';
 export { default as FormItemUserName } from './form-item-user-name';
 export { default as FormItemEmail } from './form-item-email';
+export { default as FormItemBankCard } from './form-item-bank-card';
+export { default as FormItemPassword } from './form-item-password';
+export { default as FormItemDate } from './form-item-date';

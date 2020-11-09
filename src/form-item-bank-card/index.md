@@ -13,10 +13,15 @@ legacy: /form/form-item-bank-card
 
 **特点**
 
-- 过滤非数字（如果开启脱敏校验允许输入脱敏符号）
+- 自动过滤非数字（如果开启脱敏校验允许输入脱敏符号）
 - 失焦校验
 - 开启脱敏校验后，与 `initialValue` 比较
-- 使用 [util-helpers isBankCard](https://doly-dev.github.io/util-helpers/module-Validator.html#.isBankCard) 验证
+
+**校验顺序**
+
+- 必填时为空，提示：`请输入${label}`
+- 开启脱敏校验后，判断是否与初始值相等，相等即 `验证通过`
+- 使用 [util-helpers isBankCard](https://doly-dev.github.io/util-helpers/module-Validator.html#.isBankCard) 验证，提示：`请输入正确的${label}`
 
 ## 代码演示
 

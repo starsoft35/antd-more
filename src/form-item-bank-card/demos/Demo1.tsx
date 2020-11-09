@@ -1,7 +1,7 @@
 /**
  * title: 基础用法
  * desc: |
- *    默认 `label: '银行卡号', name: 'bankCard', required: true, validateTrigger: 'onBlur'`
+ *    默认 `label: '银行卡号', name: 'bankCard', validateTrigger: 'onBlur'`
  */
 import * as React from 'react';
 import { Form, Button } from 'antd';
@@ -34,7 +34,7 @@ const Demo: React.FC<{}> = () => {
   return (
     <>
       <Form
-        name='form-item-mobile-demo1'
+        name='form-item-bank-card-demo1'
         onFinish={onFinish}
         {...formLayout}
       >

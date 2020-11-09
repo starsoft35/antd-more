@@ -58,13 +58,22 @@ import { Color } from 'antd-more';
 ReactDon.render(<Color value="red" />, mountNode);
 ```
 
-## 已有组件
+## API
 
-- [CaptchaButton] - 验证码按钮
-- [CascaderWithInput] - 级联和输入框结合，常用于填写地址
-- [Color] - 颜色显示、选择器
-- [Dictionary] - 数据字典
-- [InputNumber] - 数字输入框
+- 通用组件
+  - [CaptchaButton] - 验证码按钮
+  - [CascaderWithInput] - 级联和输入框结合，常用于填写地址
+  - [Color] - 颜色显示、选择器
+  - [Dictionary] - 数据字典
+  - [InputNumber] - 数字输入框
+- 表单项
+  - [FormItemBankCard] - 银行卡号
+  - [FormItemDate] - 日期、日期范围
+  - [FormItemEmail] - 邮箱
+  - [FormItemIdCard] - 身份证号
+  - [FormItemMobile] - 手机号码
+  - [FormItemPassword] - 密码
+  - [FormItemUserName] - 用户名
 
 ## 贡献
 
@@ -110,3 +119,11 @@ git commit -m 'upd: 更新某组件文本'
 [Color]: https://doly-dev.github.io/antd-more/site/v0/index.html#/common/color
 [Dictionary]: https://doly-dev.github.io/antd-more/site/v0/index.html#/common/dictionary
 [InputNumber]: https://doly-dev.github.io/antd-more/site/v0/index.html#/common/input-number
+
+[FormItemBankCard]: https://doly-dev.github.io/antd-more/site/v0/index.html#/form/form-item-bank-card
+[FormItemDate]: https://doly-dev.github.io/antd-more/site/v0/index.html#/form/form-item-date
+[FormItemEmail]: https://doly-dev.github.io/antd-more/site/v0/index.html#/form/form-item-email
+[FormItemIdCard]: https://doly-dev.github.io/antd-more/site/v0/index.html#/form/form-item-id-card
+[FormItemMobile]: https://doly-dev.github.io/antd-more/site/v0/index.html#/form/form-item-mobile
+[FormItemPassword]: https://doly-dev.github.io/antd-more/site/v0/index.html#/form/form-item-password
+[FormItemUserName]: https://doly-dev.github.io/antd-more/site/v0/index.html#/form/form-item-user-name

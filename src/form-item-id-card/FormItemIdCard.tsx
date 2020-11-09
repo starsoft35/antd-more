@@ -17,7 +17,7 @@ const FormItemIdCard: React.FC<FormItemIdCardProps> = ({
   label = '身份证号',
   name = 'idCard',
   validateTrigger = 'onBlur',
-  required = true,
+  required = false,
   ...restProps
 }) => {
   const handleNormalize = React.useCallback(
@@ -41,7 +41,6 @@ const FormItemIdCard: React.FC<FormItemIdCardProps> = ({
       rules={[
         {
           validator(rule, value) {
-            console.log(value);
             let errMsg = '';
             if (!value) {
               errMsg = required ? `请输入${label}` : '';

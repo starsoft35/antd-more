@@ -17,7 +17,7 @@ const FormItemUserName: React.FC<FormItemUserNameProps> = ({
   label = '用户名',
   name = 'userName',
   validateTrigger = 'onBlur',
-  required = true,
+  required = false,
   ...restProps
 }) => {
   const handleNormalize = React.useCallback((value: string | undefined) => {
@@ -34,7 +34,6 @@ const FormItemUserName: React.FC<FormItemUserNameProps> = ({
       rules={[
         {
           validator(rule, value) {
-            console.log(value);
             let errMsg = '';
             if (!value) {
               errMsg = required ? `请输入${label}` : '';

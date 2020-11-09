@@ -13,9 +13,15 @@ legacy: /form/form-item-user-name
 
 **特点**
 
-- 过滤空格
+- 自动过滤空格
 - 失焦校验
-- 校验顺序：必填时是否为空 -> 长度 -> 非手机号码 -> 不包含@符号
+
+**校验顺序**
+
+- 必填时为空，提示：`请输入${label}`
+- 验证长度，提示：`${label}为${min}~${max}位`
+- 验证非手机号码，提示：`${label}不能为手机号码`
+- 验证不包含@符号，提示：`${label}不能包含@符号`
 
 ## 代码演示
 
@@ -29,6 +35,6 @@ legacy: /form/form-item-user-name
 
 参数 | 说明 | 类型 | 默认值 |
 ------------- | ------------- | ------------- | ------------- |
-min  | 用户名最小长度 | `number` | `6` |
-max  | 用户名最大长度 | `number` | `32` |
+min  | 最小长度 | `number` | `6` |
+max  | 最大长度 | `number` | `32` |
 inputProps  | 输入框配置参数 | [`InputProps`](https://ant-design.gitee.io/components/input-cn/#Input) | - |

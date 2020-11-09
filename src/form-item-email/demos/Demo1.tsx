@@ -1,7 +1,7 @@
 /**
  * title: 基础用法
  * desc: |
- *    默认 `label: '邮箱', name: 'email', required: true, validateTrigger: 'onBlur'`
+ *    默认 `label: '邮箱', name: 'email', validateTrigger: 'onBlur'`
  */
 import * as React from 'react';
 import { Form, Button } from 'antd';
@@ -38,7 +38,7 @@ const Demo: React.FC<{}> = () => {
         onFinish={onFinish}
         {...formLayout}
       >
-        <FormItemEmail />
+        <FormItemEmail required />
         <Form.Item {...buttonLayout}>
           <Button type='primary' htmlType='submit'>提交</Button>
         </Form.Item>
