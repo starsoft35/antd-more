@@ -67,11 +67,13 @@ ReactDon.render(<Color value="red" />, mountNode);
   - [Dictionary] - 数据字典
   - [InputNumber] - 数字输入框
 - 表单项
+  - [FormItemAddress] - 地址
   - [FormItemBankCard] - 银行卡号
   - [FormItemDate] - 日期、日期范围
   - [FormItemEmail] - 邮箱
   - [FormItemIdCard] - 身份证号
   - [FormItemMobile] - 手机号码
+  - [FormItemNumber] - 数字
   - [FormItemPassword] - 密码
   - [FormItemUserName] - 用户名
 
@@ -120,10 +122,12 @@ git commit -m 'upd: 更新某组件文本'
 [Dictionary]: https://doly-dev.github.io/antd-more/site/v0/index.html#/common/dictionary
 [InputNumber]: https://doly-dev.github.io/antd-more/site/v0/index.html#/common/input-number
 
+[FormItemAddress]: https://doly-dev.github.io/antd-more/site/v0/index.html#/form/form-item-address
 [FormItemBankCard]: https://doly-dev.github.io/antd-more/site/v0/index.html#/form/form-item-bank-card
 [FormItemDate]: https://doly-dev.github.io/antd-more/site/v0/index.html#/form/form-item-date
 [FormItemEmail]: https://doly-dev.github.io/antd-more/site/v0/index.html#/form/form-item-email
 [FormItemIdCard]: https://doly-dev.github.io/antd-more/site/v0/index.html#/form/form-item-id-card
 [FormItemMobile]: https://doly-dev.github.io/antd-more/site/v0/index.html#/form/form-item-mobile
+[FormItemNumber]: https://doly-dev.github.io/antd-more/site/v0/index.html#/form/form-item-number
 [FormItemPassword]: https://doly-dev.github.io/antd-more/site/v0/index.html#/form/form-item-password
 [FormItemUserName]: https://doly-dev.github.io/antd-more/site/v0/index.html#/form/form-item-user-name
