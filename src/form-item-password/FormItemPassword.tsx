@@ -3,6 +3,7 @@ import { Form, Input } from 'antd';
 import { isPassword } from 'util-helpers';
 import { FormItemProps } from 'antd/es/form';
 import { PasswordProps } from 'antd/es/input';
+import getLabel from '../_util/getLabel';
 
 export interface FormItemPasswrodProps extends FormItemProps {
   level?: 1 | 2 | 3;
@@ -65,6 +66,7 @@ const FormItemPasswrod: React.FC<FormItemPasswrodProps> = ({
   required = false,
   ...restProps
 }) => {
+  const labelText = React.useMemo(() => getLabel(label), [label]);
   return (
     <Form.Item
       label={label}
@@ -76,13 +78,13 @@ const FormItemPasswrod: React.FC<FormItemPasswrodProps> = ({
           validator(rule, value) {
             let errMsg = '';
             if (!value) {
-              errMsg = required ? `请输入${label}` : '';
+              errMsg = required ? `请输入${labelText}` : '';
             } else if (value.length < min || value.length > max) {
-              errMsg = `${label}为${min}～${max}位`;
+              errMsg = `${labelText}为${min}～${max}位`;
             } else if (hasDisabledChar(value, special)) {
-              errMsg = `${label}包含无法识别的字符`;
+              errMsg = `${labelText}包含无法识别的字符`;
             } else if (!isPassword(value, { ignoreCase, level, special })) {
-              errMsg = `${label}为大小写字母、数字或符号任意${numMap[level]}者组成`;
+              errMsg = `${labelText}为大小写字母、数字或符号任意${numMap[level]}者组成`;
             }
             if (errMsg) {
               return Promise.reject(errMsg);

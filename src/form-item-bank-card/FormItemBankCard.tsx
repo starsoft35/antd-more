@@ -3,6 +3,7 @@ import { Form, Input } from 'antd';
 import { isBankCard } from 'util-helpers';
 import { FormItemProps } from 'antd/es/form';
 import { InputProps } from 'antd/es/input';
+import getLabel from '../_util/getLabel';
 
 export interface FormItemBankCardProps extends FormItemProps {
   security?: boolean; // 脱敏。 为 true 时，必须传入 initialValue
@@ -22,6 +23,7 @@ const FormItemBankCard: React.FC<FormItemBankCardProps> = ({
   required = false,
   ...restProps
 }) => {
+  const labelText = React.useMemo(() => getLabel(label), [label]);
   const handleNormalize = React.useCallback(
     (value: string | undefined) => {
       if (typeof value === 'string') {
@@ -45,12 +47,12 @@ const FormItemBankCard: React.FC<FormItemBankCardProps> = ({
           validator(rule, value) {
             let errMsg = '';
             if (!value) {
-              errMsg = required ? `请输入${label}` : '';
+              errMsg = required ? `请输入${labelText}` : '';
             } else if (security && restProps && restProps.initialValue === value) {
               // 脱敏校验
               errMsg = '';
             } else if (!isBankCard(value, { loose })) {
-              errMsg = `请输入正确的${label}`;
+              errMsg = `请输入正确的${labelText}`;
             }
             if (errMsg) {
               return Promise.reject(errMsg);

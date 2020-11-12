@@ -3,6 +3,7 @@ import { Form, Cascader, Input, Row, Col } from 'antd';
 import { FormItemProps } from 'antd/es/form';
 import { InputProps } from 'antd/es/input';
 import { CascaderProps, CascaderOptionType } from 'antd/es/cascader';
+import getLabel from '../_util/getLabel';
 
 type InternalNamePath = (string | number)[];
 type NamePath = string | number | InternalNamePath;
@@ -37,6 +38,8 @@ const FormItemAddress: React.FC<FormItemAddressProps> = ({
   required = false,
   ...restProps
 }) => {
+  const labelTexts = React.useMemo(() => labels.map(getLabel), [labels]);
+
   return (
     <Form.Item
       label={label}
@@ -53,7 +56,7 @@ const FormItemAddress: React.FC<FormItemAddressProps> = ({
                 validator(rule, value) {
                   let errMsg = '';
                   if (!value) {
-                    errMsg = required ? `请选择${labels[0]}` : '';
+                    errMsg = required ? `请选择${labelTexts[0]}` : '';
                   }
                   if (errMsg) {
                     return Promise.reject(errMsg);
@@ -64,7 +67,7 @@ const FormItemAddress: React.FC<FormItemAddressProps> = ({
             ]}
             {...formItemProps[0]}
           >
-            <Cascader placeholder={`请选择${labels[0]}`} options={options} {...cascaderProps} />
+            <Cascader placeholder={`请选择${labelTexts[0]}`} options={options} {...cascaderProps} />
           </Form.Item>
         </Col>
         <Col span={24} md={12} lg={17}>
@@ -76,7 +79,7 @@ const FormItemAddress: React.FC<FormItemAddressProps> = ({
                 validator(rule, value) {
                   let errMsg = '';
                   if (!value) {
-                    errMsg = required ? `请输入${labels[1]}` : '';
+                    errMsg = required ? `请输入${labelTexts[1]}` : '';
                   }
                   if (errMsg) {
                     return Promise.reject(errMsg);
@@ -88,7 +91,7 @@ const FormItemAddress: React.FC<FormItemAddressProps> = ({
             {...formItemProps[1]}
           >
             <Input
-              placeholder={`请输入${labels[1]}`}
+              placeholder={`请输入${labelTexts[1]}`}
               allowClear
               autoComplete="off"
               {...inputProps}

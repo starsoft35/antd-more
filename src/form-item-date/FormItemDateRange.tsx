@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { FormItemProps } from 'antd/es/form';
 import { RangePickerProps } from 'antd/es/date-picker';
 import { MomentScale, DateUnit, createDisabledDate } from './util';
+import getLabel from '../_util/getLabel';
 
 export interface FormItemDateRangeProps extends FormItemProps {
   disabledDateBefore?: number;
@@ -25,6 +26,7 @@ const FormItemDateRange: React.FC<FormItemDateRangeProps> = ({
   className,
   ...restProps
 }) => {
+  const labelText = React.useMemo(() => getLabel(label), [label]);
   const currentPicker = React.useMemo(
     () => (pickerProps && pickerProps.picker ? pickerProps.picker : 'date'),
     [pickerProps.picker],
@@ -44,7 +46,7 @@ const FormItemDateRange: React.FC<FormItemDateRangeProps> = ({
           validator(rule, value) {
             let errMsg = '';
             if (!value) {
-              errMsg = required ? `请选择${label}` : '';
+              errMsg = required ? `请选择${labelText}` : '';
             } else if (maxRange > 0) {
               const [t1, t2] = value;
               const range = currentPicker === 'quarter' ? maxRange * 3 : maxRange;

@@ -5,6 +5,7 @@ import { FormItemProps } from 'antd/es/form';
 import { DatePickerProps, MonthPickerProps, WeekPickerProps } from 'antd/es/date-picker';
 import FormItemDateRange from './FormItemDateRange';
 import { createDisabledDate } from './util';
+import getLabel from '../_util/getLabel';
 
 export interface FormItemDateProps extends FormItemProps {
   disabledDateBefore?: number;
@@ -41,6 +42,7 @@ class FormItemDate extends React.Component<FormItemDateProps> {
       required,
       ...restProps
     } = this.props;
+    const labelText = getLabel(label);
 
     return (
       <Form.Item
@@ -52,7 +54,7 @@ class FormItemDate extends React.Component<FormItemDateProps> {
             validator(rule, value) {
               let errMsg = '';
               if (!value) {
-                errMsg = required ? `请选择${label}` : '';
+                errMsg = required ? `请选择${labelText}` : '';
               }
               if (errMsg) {
                 return Promise.reject(errMsg);

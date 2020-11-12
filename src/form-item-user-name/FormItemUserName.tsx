@@ -3,6 +3,7 @@ import { Form, Input } from 'antd';
 import { isMobile } from 'util-helpers';
 import { FormItemProps } from 'antd/es/form';
 import { InputProps } from 'antd/es/input';
+import getLabel from '../_util/getLabel';
 
 export interface FormItemUserNameProps extends FormItemProps {
   min?: number;
@@ -20,6 +21,7 @@ const FormItemUserName: React.FC<FormItemUserNameProps> = ({
   required = false,
   ...restProps
 }) => {
+  const labelText = React.useMemo(() => getLabel(label), [label]);
   const handleNormalize = React.useCallback((value: string | undefined) => {
     return typeof value === 'string' ? value.replace(/\s/g, '') : value;
   }, []);
@@ -36,13 +38,13 @@ const FormItemUserName: React.FC<FormItemUserNameProps> = ({
           validator(rule, value) {
             let errMsg = '';
             if (!value) {
-              errMsg = required ? `请输入${label}` : '';
+              errMsg = required ? `请输入${labelText}` : '';
             } else if (value.length < min || value.length > max) {
-              errMsg = `${label}为${min}~${max}位`;
+              errMsg = `${labelText}为${min}~${max}位`;
             } else if (isMobile(value)) {
-              errMsg = `${label}不能为手机号码`;
+              errMsg = `${labelText}不能为手机号码`;
             } else if (value.indexOf('@') > -1) {
-              errMsg = `${label}不能包含@符号`;
+              errMsg = `${labelText}不能包含@符号`;
             }
             if (errMsg) {
               return Promise.reject(errMsg);

@@ -9,11 +9,7 @@ export interface InputNumberWrapperProps extends InputNumberProps {
   after?: React.ReactNode;
 }
 
-const InputNumberWrapper: React.FC<InputNumberWrapperProps> = ({
-  after = '',
-  before = '',
-  ...restProps
-}) => {
+const InputNumberWrapper: React.FC<InputNumberWrapperProps> = ({ after, before, ...restProps }) => {
   return (
     <div className={prefixCls}>
       {before && <div style={{ margin: '0 8px' }}>{before}</div>}
