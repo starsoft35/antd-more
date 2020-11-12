@@ -12,3 +12,4 @@ export { default as FormItemEmail } from './form-item-email';
 export { default as FormItemBankCard } from './form-item-bank-card';
 export { default as FormItemPassword } from './form-item-password';
 export { default as FormItemDate } from './form-item-date';
+export { default as FormItemAddress } from './form-item-address';

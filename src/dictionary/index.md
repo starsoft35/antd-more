@@ -67,7 +67,10 @@ interface EnumData {
     [key: string]: any;
   };
   text?: {
-    color?: string;
+    style?: {
+      color?: string;
+      [key: string]: any;
+    }
     [key: string]: any;
   };
   [key: string]: any;
