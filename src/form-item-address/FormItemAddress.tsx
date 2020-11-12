@@ -55,7 +55,7 @@ const FormItemAddress: React.FC<FormItemAddressProps> = ({
               {
                 validator(rule, value) {
                   let errMsg = '';
-                  if (!value) {
+                  if (!value || value.length <= 0) {
                     errMsg = required ? `请选择${labelTexts[0]}` : '';
                   }
                   if (errMsg) {
