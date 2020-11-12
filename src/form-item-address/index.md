@@ -49,7 +49,7 @@ interface Option {
 ------------- | ------------- | ------------- | ------------- |
 options | 必填项，可选项数据源。  | `Option[]` | - |
 names  | 字段名 | `[NamePath, NamePath]` | `['location', 'address']` |
-labels  | 标签文本 | `[string, string]` | `['location', 'address']` |
+labels  | 标签文本 | `[string, string]` | `['省/市/区', '详细地址']` |
 inputProps  | 输入框配置参数 | [`InputProps`](https://ant-design.gitee.io/components/input-cn/#Input) | - |
 cascaderProps  | 级联选择框配置参数 | [`CascaderProps`](https://ant-design.gitee.io/components/cascader-cn/#API) | - |
 formItemProps  | 内部 [`Form.Item`](https://ant-design.gitee.io/components/form-cn/#Form.Item) 的配置参数 | `[FormItemProps, FormItemProps]` | - |
