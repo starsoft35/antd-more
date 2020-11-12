@@ -62,7 +62,7 @@ ReactDon.render(<Color value="red" />, mountNode);
 
 - 通用组件
   - [CaptchaButton] - 验证码按钮
-  - [CascaderWithInput] - 级联和输入框结合，常用于填写地址
+  - <del>[CascaderWithInput] - 级联和输入框结合，常用于填写地址</del> **【不推荐使用，即将废弃】**
   - [Color] - 颜色显示、选择器
   - [Dictionary] - 数据字典
   - [InputNumber] - 数字输入框
