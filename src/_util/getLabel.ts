@@ -17,10 +17,12 @@ function getDeepChildrenText(obj: React.ReactElement) {
   return ret;
 }
 
-export default function getLabel(obj: any): any {
+function getLabel(obj: any): any {
   if (React.isValidElement(obj)) {
     return getDeepChildrenText(obj);
   }
 
   return obj;
 }
+
+export default getLabel;

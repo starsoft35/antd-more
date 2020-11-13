@@ -15,8 +15,6 @@ legacy: /common/cascader-with-input
 
 ## 代码演示
 
-<code src="./demos/Demo0.tsx" />
-
 ### 基本用法
 
 <code src="./demos/Demo1.tsx" />

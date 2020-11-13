@@ -17,7 +17,6 @@ const FormItemIdCard: React.FC<FormItemIdCardProps> = ({
   inputProps = {},
   label = '身份证号',
   name = 'idCard',
-  validateTrigger = 'onBlur',
   required = false,
   ...restProps
 }) => {

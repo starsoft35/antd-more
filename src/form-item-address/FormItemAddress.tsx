@@ -4,6 +4,7 @@ import { FormItemProps } from 'antd/es/form';
 import { InputProps } from 'antd/es/input';
 import { CascaderProps, CascaderOptionType } from 'antd/es/cascader';
 import getLabel from '../_util/getLabel';
+import normalizeWhiteSpace from '../_util/normalizeWhiteSpace';
 
 type InternalNamePath = (string | number)[];
 type NamePath = string | number | InternalNamePath;
@@ -15,14 +16,6 @@ export interface FormItemAddressProps extends FormItemProps {
   formItemProps?: [FormItemProps, FormItemProps];
   inputProps?: InputProps;
   cascaderProps?: CascaderProps;
-}
-
-// 处理详细地址输入值
-function normalizeWhiteSpace(val) {
-  if (typeof val === 'string') {
-    return val.trim();
-  }
-  return val;
 }
 
 const FormItemAddress: React.FC<FormItemAddressProps> = ({

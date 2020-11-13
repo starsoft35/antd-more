@@ -1,11 +1,11 @@
 /**
  * title: 基础用法
  * desc: |
- *    默认 `label: '邮箱', name: 'email', validateTrigger: 'onBlur'`
+ *    没有默认的 `label` `name`
  */
 import * as React from 'react';
 import { Form, Button } from 'antd';
-import { FormItemEmail } from 'antd-more';
+import { FormItemInput } from 'antd-more';
 
 const formLayout = {
   labelCol: {
@@ -34,11 +34,13 @@ const Demo: React.FC<{}> = () => {
   return (
     <>
       <Form
-        name='form-item-email-demo1'
+        name='form-item-input-demo1'
         onFinish={onFinish}
         {...formLayout}
       >
-        <FormItemEmail />
+        <FormItemInput label='Input' name='input' />
+        <FormItemInput.Password label='Password' name='password' />
+        <FormItemInput.TextArea label='TextArea' name='textarea' />
         <Form.Item {...buttonLayout}>
           <Button type='primary' htmlType='submit'>提交</Button>
         </Form.Item>

@@ -14,3 +14,4 @@ export { default as FormItemPassword } from './form-item-password';
 export { default as FormItemDate } from './form-item-date';
 export { default as FormItemAddress } from './form-item-address';
 export { default as FormItemNumber } from './form-item-number';
+export { default as FormItemInput } from './form-item-input';

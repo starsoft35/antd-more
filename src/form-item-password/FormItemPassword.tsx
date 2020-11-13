@@ -62,7 +62,6 @@ const FormItemPasswrod: React.FC<FormItemPasswrodProps> = ({
   inputProps = {},
   label = '密码',
   name = 'password',
-  validateTrigger = 'onBlur',
   required = false,
   ...restProps
 }) => {

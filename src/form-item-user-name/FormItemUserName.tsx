@@ -4,6 +4,7 @@ import { isMobile } from 'util-helpers';
 import { FormItemProps } from 'antd/es/form';
 import { InputProps } from 'antd/es/input';
 import getLabel from '../_util/getLabel';
+import normalizeWhiteSpace from '../_util/normalizeWhiteSpace';
 
 export interface FormItemUserNameProps extends FormItemProps {
   min?: number;
@@ -17,20 +18,16 @@ const FormItemUserName: React.FC<FormItemUserNameProps> = ({
   inputProps = {},
   label = '用户名',
   name = 'userName',
-  validateTrigger = 'onBlur',
   required = false,
   ...restProps
 }) => {
   const labelText = React.useMemo(() => getLabel(label), [label]);
-  const handleNormalize = React.useCallback((value: string | undefined) => {
-    return typeof value === 'string' ? value.replace(/\s/g, '') : value;
-  }, []);
 
   return (
     <Form.Item
       label={label}
       name={name}
-      normalize={handleNormalize}
+      normalize={normalizeWhiteSpace}
       validateTrigger="onBlur"
       required={required}
       rules={[

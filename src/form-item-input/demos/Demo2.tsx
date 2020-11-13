@@ -1,11 +1,6 @@
-/**
- * title: 基础用法
- * desc: |
- *    默认 `label: '邮箱', name: 'email', validateTrigger: 'onBlur'`
- */
 import * as React from 'react';
 import { Form, Button } from 'antd';
-import { FormItemEmail } from 'antd-more';
+import { FormItemInput } from 'antd-more';
 
 const formLayout = {
   labelCol: {
@@ -34,11 +29,14 @@ const Demo: React.FC<{}> = () => {
   return (
     <>
       <Form
-        name='form-item-email-demo1'
+        name='form-item-input-demo2'
         onFinish={onFinish}
         {...formLayout}
       >
-        <FormItemEmail />
+        <FormItemInput label='姓名' name='name' required disabledWhiteSpace />
+        <FormItemInput label='编号' name='number' disabledWhiteSpace />
+        <FormItemInput.Password label='密码' name='password' required />
+        <FormItemInput.TextArea label='备注' name='remark' />
         <Form.Item {...buttonLayout}>
           <Button type='primary' htmlType='submit'>提交</Button>
         </Form.Item>

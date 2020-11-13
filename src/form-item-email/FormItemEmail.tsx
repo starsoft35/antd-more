@@ -4,6 +4,7 @@ import { isEmail } from 'util-helpers';
 import { FormItemProps } from 'antd/es/form';
 import { InputProps } from 'antd/es/input';
 import getLabel from '../_util/getLabel';
+import normalizeWhiteSpace from '../_util/normalizeWhiteSpace';
 
 export interface FormItemEmailProps extends FormItemProps {
   security?: boolean; // 脱敏。 为 true 时，必须传入 initialValue
@@ -17,23 +18,16 @@ const FormItemEmail: React.FC<FormItemEmailProps> = ({
   inputProps = {},
   label = '邮箱',
   name = 'email',
-  validateTrigger = 'onBlur',
   required = false,
   ...restProps
 }) => {
   const labelText = React.useMemo(() => getLabel(label), [label]);
-  const handleNormalize = React.useCallback(
-    (value: string | undefined) => {
-      return typeof value === 'string' ? value.replace(/\s/g, '') : value;
-    },
-    [security, symbol],
-  );
 
   return (
     <Form.Item
       label={label}
       name={name}
-      normalize={handleNormalize}
+      normalize={normalizeWhiteSpace}
       validateTrigger="onBlur"
       required={required}
       rules={[

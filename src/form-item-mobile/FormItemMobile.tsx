@@ -17,7 +17,6 @@ const FormItemMobile: React.FC<FormItemMobileProps> = ({
   inputProps = {},
   label = '手机号码',
   name = 'mobile',
-  validateTrigger = 'onBlur',
   required = false,
   ...restProps
 }) => {

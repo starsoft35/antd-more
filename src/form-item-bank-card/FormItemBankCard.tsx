@@ -19,7 +19,6 @@ const FormItemBankCard: React.FC<FormItemBankCardProps> = ({
   inputProps = {},
   label = '银行卡号',
   name = 'bankCard',
-  validateTrigger = 'onBlur',
   required = false,
   ...restProps
 }) => {

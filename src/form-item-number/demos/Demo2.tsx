@@ -49,7 +49,8 @@ const Demo: React.FC<{}> = () => {
             <FormItemNumber
               label="借记卡封顶"
               name="num2"
-              after="元" gt={0}
+              after="元"
+              gt={0}
               required
             />
           </Col>
