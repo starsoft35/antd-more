@@ -8,8 +8,8 @@
 
 ## 特性
 
-- 支持 [antd] 主题定制
-- 针对业务场景封装
+- 🌈 支持 [antd] 主题定制
+- 📦 面向业务场景封装
 
 <!-- 
 ## 对应版本
@@ -34,7 +34,7 @@ yarn add antd-more
 
 ### 按需加载
 
-如果使用 [doly] 或 [umi] 脚手架，在配置文件中的 `extraBabelPlugins` 添加：
+- 使用 [doly] 或 [umi] 脚手架，在配置文件中的 `extraBabelPlugins` 添加：
 
 ```javascript
 [
@@ -48,7 +48,7 @@ yarn add antd-more
 ]
 ```
 
-如果是自定义配置的 `webpack` 项目，请安装 [babel-plugin-import] ，将上面配置添加到 `babel` 的 `plugins` 中。
+- 自定义配置的 `webpack` 项目，请安装 [babel-plugin-import] ，将上面配置添加到 `babel` 的 `plugins` 中。
 
 ### 示例
 
@@ -62,12 +62,14 @@ ReactDon.render(<Color value="red" />, mountNode);
 
 - 通用组件
   - [CaptchaButton] - 验证码按钮
-  - <del>[CascaderWithInput] - 级联和输入框结合，常用于填写地址</del> **【不推荐使用，即将废弃】**
+  - <del>[CascaderWithInput] - 级联和输入框结合，常用于填写地址</del> **【即将废弃，请使用[FormItemAddress]】**
   - [Color] - 颜色显示、选择器
   - [Dictionary] - 数据字典
   - [InputNumber] - 数字输入框
-- 表单项
+- 基础表单项
   - [FormItemInput] - 输入框
+  - [FormItemSelect] - 选择器
+- 业务表单项
   - [FormItemAddress] - 地址
   - [FormItemBankCard] - 银行卡号
   - [FormItemDate] - 日期、日期范围
@@ -97,7 +99,7 @@ ReactDon.render(<Color value="red" />, mountNode);
 - **test** - 增加测试
 - **chore** - 构建过程或辅助工具的变动
 
-示例
+**示例**
 
 ```shell
 git commit -m 'feat: 增加 xxx 功能'
@@ -124,6 +126,8 @@ git commit -m 'upd: 更新某组件文本'
 [InputNumber]: https://doly-dev.github.io/antd-more/site/v0/index.html#/common/input-number
 
 [FormItemInput]: https://doly-dev.github.io/antd-more/site/v0/index.html#/form/form-item-input
+[FormItemSelect]: https://doly-dev.github.io/antd-more/site/v0/index.html#/form/form-item-select
+
 [FormItemAddress]: https://doly-dev.github.io/antd-more/site/v0/index.html#/form/form-item-address
 [FormItemBankCard]: https://doly-dev.github.io/antd-more/site/v0/index.html#/form/form-item-bank-card
 [FormItemDate]: https://doly-dev.github.io/antd-more/site/v0/index.html#/form/form-item-date

@@ -1,7 +1,7 @@
 ---
 title: CaptchaButton
 group:
-  title: 组件
+  title: 通用组件
   path: /common
   order: 0
 legacy: /common/captcha-button

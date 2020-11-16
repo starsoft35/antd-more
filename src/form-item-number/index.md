@@ -1,10 +1,10 @@
 ---
 title: FormItemNumber
 group:
-  title: 表单项
-  path: /form
+  title: 业务表单项
+  path: /business-form-item
   order: 1
-legacy: /form/form-item-number
+legacy: /business-form-item/form-item-number
 ---
 
 # FormItemNumber

@@ -1,10 +1,10 @@
 ---
 title: FormItemBankCard
 group:
-  title: 表单项
-  path: /form
+  title: 业务表单项
+  path: /business-form-item
   order: 1
-legacy: /form/form-item-bank-card
+legacy: /business-form-item/form-item-bank-card
 ---
 
 # FormItemBankCard
