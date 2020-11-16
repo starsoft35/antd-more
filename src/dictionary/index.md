@@ -53,7 +53,7 @@ legacy: /common/dictionary
 
 ## API
 
-```javascript
+```typescript
 interface EnumData {
   name: string;
   value: any;

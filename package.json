@@ -57,6 +57,7 @@
     "lint-staged": "^10.5.1",
     "mockjs": "^1.1.0",
     "rc-hooks": "^0.7.0",
+    "rc-select": "^11.5.0",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "typescript": "^3.9.7"

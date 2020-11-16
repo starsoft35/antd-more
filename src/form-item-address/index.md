@@ -32,7 +32,7 @@ legacy: /business-form-item/form-item-address
 
 ## API
 
-```javascript
+```typescript
 type NamePath = string | number | (string | number)[];
 
 interface Option {
