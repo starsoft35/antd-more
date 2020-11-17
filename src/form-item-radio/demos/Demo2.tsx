@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Form, Button } from 'antd';
-import { FormItemSelect } from 'antd-more';
+import { FormItemRadio } from 'antd-more';
 
 const formLayout = {
   labelCol: {
@@ -36,6 +36,22 @@ const approveStatus = [
   },
 ];
 
+// 周期
+const cycle = [
+  {
+    name: "按日",
+    value: "0"
+  },
+  {
+    name: "按月",
+    value: "1"
+  },
+  {
+    name: '按季度',
+    value: '2'
+  },
+];
+
 const Demo: React.FC<{}> = () => {
   const [result, setResult] = React.useState();
   const onFinish = React.useCallback((values) => {
@@ -55,9 +71,10 @@ const Demo: React.FC<{}> = () => {
         initialValues={initialValues}
         {...formLayout}
       >
-        <FormItemSelect name="approveStatus" label="审核状态" options={approveStatus} />
-        <FormItemSelect name="approveStatus2" label="审核状态2" options={approveStatus} all extra="包含全部" />
-        <FormItemSelect name="approveStatus3" label="审核状态3" options={approveStatus} excludeValues={[1]} all allValue={null} extra="包含全部，并且排除审核中" />
+        <FormItemRadio name="cycle" label="周期" options={cycle} required />
+        <FormItemRadio name="approveStatus" label="审核状态" options={approveStatus} />
+        <FormItemRadio name="approveStatus2" label="审核状态2" options={approveStatus} all extra="包含全部" />
+        <FormItemRadio name="approveStatus3" label="审核状态3" options={approveStatus} excludeValues={[1]} all allValue={null} extra="包含全部，并且排除审核中" />
         <Form.Item {...buttonLayout}>
           <Button type='primary' htmlType='submit'>提交</Button>
         </Form.Item>

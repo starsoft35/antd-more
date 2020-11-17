@@ -2,13 +2,15 @@ import * as React from 'react';
 import { Form, Select } from 'antd';
 import { FormItemProps } from 'antd/es/form';
 import { SelectProps } from 'antd/es/select';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { OptionCoreData, OptionGroupData } from 'rc-select/es/interface';
 import getLabel from '../_util/getLabel';
+import useFilterOptions from '../_util/useFilterOptions';
 
 const { Option, OptGroup } = Select;
 
-interface OptionDataExtend extends Omit<OptionCoreData, 'children'> {
-  name?: string;
+interface OptionDataExtend extends Omit<OptionCoreData, 'children' | 'title' | 'label'> {
+  name: string;
   [x: string]: any;
 }
 
@@ -39,27 +41,7 @@ const FormItemSelect: React.FC<FormItemSelectProps> = ({
   ...restProps
 }) => {
   const labelText = React.useMemo(() => getLabel(label), [label]);
-  const opts = React.useMemo(() => {
-    const ret = [...options];
-    if (all) {
-      ret.unshift({ value: allValue, name: allName });
-    }
-    if (excludeValues && excludeValues.length > 0) {
-      return ret.filter((item) => {
-        const { options: itemOpts, ...restOpts } = item as OptionGroupDataExtend;
-        if (itemOpts) {
-          const subOpts = itemOpts.filter((subItem: OptionDataExtend) => excludeValues.indexOf(subItem.value) === -1);
-          (item as OptionGroupDataExtend).options = subOpts;
-          return subOpts.length > 0;
-        } else {
-          // eslint-disabled-next-line
-          const { value } = restOpts as OptionDataExtend;
-          return excludeValues.indexOf(value) === -1;
-        }
-      });
-    }
-    return ret;
-  }, [options, excludeValues, all, allValue, allName]);
+  const opts = useFilterOptions({ options, excludeValues, all, allValue, allName });
 
   return (
     <Form.Item
@@ -86,24 +68,26 @@ const FormItemSelect: React.FC<FormItemSelectProps> = ({
         // allowClear={!required && !all}
         {...selectProps}
       >
-        {
-          opts.map(({ options: itemOpts, ...restOpts }: OptionGroupDataExtend) => {
-            if (itemOpts) {
-              return (
-                <OptGroup key={restOpts.key || restOpts.label || restOpts.title || restOpts.value} {...restOpts}>
-                  {
-                    itemOpts.map(({ title, name, label, ...restSubOpts }: OptionDataExtend) => (
-                      <Option key={restSubOpts.key || restSubOpts.value || title || name} {...restSubOpts}>{title || name || label}</Option>
-                    ))
-                  }
-                </OptGroup>
-              )
-            } else {
-              const { title, name, label, ...rest } = restOpts as OptionDataExtend;
-              return <Option key={rest.key || rest.value || title || name} {...rest}>{title || name || label}</Option>
-            }
-          })
-        }
+        {opts.map(({ options: itemOpts, ...restOpts }: OptionGroupDataExtend) => {
+          if (itemOpts) {
+            return (
+              <OptGroup key={restOpts.key || restOpts.label || restOpts.value} {...restOpts}>
+                {itemOpts.map(({ name, label, ...restSubOpts }: OptionDataExtend) => (
+                  <Option key={restSubOpts.key || restSubOpts.value || name} {...restSubOpts}>
+                    {name}
+                  </Option>
+                ))}
+              </OptGroup>
+            );
+          } else {
+            const { name, label, ...rest } = restOpts as OptionDataExtend;
+            return (
+              <Option key={rest.key || rest.value || name} {...rest}>
+                {name}
+              </Option>
+            );
+          }
+        })}
       </Select>
     </Form.Item>
   );

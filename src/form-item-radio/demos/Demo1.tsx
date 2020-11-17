@@ -1,6 +1,11 @@
+/**
+ * title: 基础用法
+ * desc: |
+ *    没有默认的 `label` `name` 。
+ */
 import * as React from 'react';
 import { Form, Button } from 'antd';
-import { FormItemSelect } from 'antd-more';
+import { FormItemRadio } from 'antd-more';
 
 const formLayout = {
   labelCol: {
@@ -20,20 +25,15 @@ const buttonLayout = {
   }
 }
 
-// 审核状态
-const approveStatus = [
+const options = [
   {
-    name: "待审核",
-    value: 1
+    name: 'Jack',
+    value: 'jack'
   },
   {
-    name: "审核通过",
-    value: 2
-  },
-  {
-    name: "审核拒绝",
-    value: 3
-  },
+    name: 'Lucy',
+    value: 'lucy'
+  }
 ];
 
 const Demo: React.FC<{}> = () => {
@@ -41,23 +41,16 @@ const Demo: React.FC<{}> = () => {
   const onFinish = React.useCallback((values) => {
     setResult(values);
   }, []);
-  const initialValues = {
-    approveStatus: 1,
-    approveStatus2: '',
-    approveStatus3: null
-  }
 
   return (
     <>
       <Form
         name='form-item-mobile-demo1'
         onFinish={onFinish}
-        initialValues={initialValues}
         {...formLayout}
       >
-        <FormItemSelect name="approveStatus" label="审核状态" options={approveStatus} />
-        <FormItemSelect name="approveStatus2" label="审核状态2" options={approveStatus} all extra="包含全部" />
-        <FormItemSelect name="approveStatus3" label="审核状态3" options={approveStatus} excludeValues={[1]} all allValue={null} extra="包含全部，并且排除审核中" />
+        <FormItemRadio name="radio" label="Radio" options={options} />
+        <FormItemRadio name="required" label="Required" required options={options} />
         <Form.Item {...buttonLayout}>
           <Button type='primary' htmlType='submit'>提交</Button>
         </Form.Item>

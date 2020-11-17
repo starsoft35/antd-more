@@ -84,7 +84,7 @@ interface EnumData {
 data  | 包含 `value` `name` 的 `数据字典` | `EnumData[]` | `[]` |
 value  | 当前字典值 | `any` | `""` |
 defaultName  | 当找不到字典值对应的名称时，显示默认名称 | `string` | `-` |
-type  | 显示方式，支持 `text` `tag` `badge` | `string` | `text` |
+type  | 显示方式 | `text` \| `tag` \| `badge` | `text` |
 
 ### Dictionary.List
 
@@ -92,10 +92,10 @@ type  | 显示方式，支持 `text` `tag` `badge` | `string` | `text` |
 
 参数 | 说明 | 类型 | 默认值 |
 ------------- | ------------- | ------------- | ------------- |
-align  | 对齐方式 `start` `end` `center` `baseline` | `string` | `start` |
+align  | 对齐方式 | `start` \| `end` \| `center` \| `baseline` | `start` |
 direction  | 间距方向 `vertical` `horizontal` | `string` | `horizontal` |
-size  | 间距大小，支持 `small` `middle` `large` 或 数值 | `string` `number` | `small` |
-value  | 字典值数组 | `array` | `[]` |
+size  | 间距大小，支持 `small` `middle` `large` 或 数值 | `string` \| `number` | `small` |
+value  | 字典值数组 | `any[]` | `[]` |
 defaultValue  | 默认值，当 `value` 为非数组或长度小于0时显示 | `string` | `-` |
 
 ### Dictionary.Select
@@ -109,7 +109,7 @@ value  | 当前字典值 | `any` | - |
 all  | 是否显示全部  | `boolean` | `true` |
 allValue | 全部的值 | `string` | `""` |
 allName | 全部的名称 | `string` | `全部` |
-excludeValues | 排除的值 | `array` | `[]` |
+excludeValues | 排除的值 | `any[]` | `[]` |
 
 ### Dictionary.Radio
 
@@ -119,4 +119,4 @@ excludeValues | 排除的值 | `array` | `[]` |
 ------------- | ------------- | ------------- | ------------- |
 data  | 包含 `value` `name` 的 `数据字典` | `EnumData[]` | `[]` |
 value  | 当前字典值 | `any` | - |
-type  | `button` 表现为 `Radio.Button`，其他表示为 `Radio`  | `string` | `defalut` |
+type  | `button` 表现为 `Radio.Button`，其他表示为 `Radio`  | `default` \| `button` | `defalut` |

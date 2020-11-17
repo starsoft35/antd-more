@@ -34,4 +34,4 @@ Input 输入框，必须包裹在 [Form](https://ant-design.gitee.io/components/
 参数 | 说明 | 类型 | 默认值 |
 ------------- | ------------- | ------------- | ------------- |
 disabledWhiteSpace | 禁止输入空白符。`Password` 组件不支持该项。 | `boolean` | `false` |
-inputProps  | 输入框配置参数 | [`InputProps`](https://ant-design.gitee.io/components/input-cn/#Input)、[`Input.Password`](https://ant-design.gitee.io/components/input-cn/#Input.Password)、[`Input.TextArea`](https://ant-design.gitee.io/components/input-cn/#Input.TextArea) | - |
+inputProps  | 输入框配置参数 | [`InputProps`](https://ant-design.gitee.io/components/input-cn/#Input) \| [`Input.Password`](https://ant-design.gitee.io/components/input-cn/#Input.Password) \| [`Input.TextArea`](https://ant-design.gitee.io/components/input-cn/#Input.TextArea) | - |
