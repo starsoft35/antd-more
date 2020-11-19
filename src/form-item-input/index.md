@@ -1,10 +1,10 @@
 ---
 title: FormItemInput
 group:
-  title: 基础表单项
-  path: /base-form-item
+  title: 表单项
+  path: /form-item
   order: 1
-legacy: /base-form-item/form-item-input
+legacy: /form-item/input
 ---
 
 # FormItemInput

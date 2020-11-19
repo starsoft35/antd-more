@@ -15,8 +15,7 @@ const FormItemIdCard: React.FC<FormItemIdCardProps> = ({
   security = false,
   symbol = '*',
   inputProps = {},
-  label = '身份证号',
-  name = 'idCard',
+  label,
   required = false,
   ...restProps
 }) => {
@@ -35,7 +34,6 @@ const FormItemIdCard: React.FC<FormItemIdCardProps> = ({
   return (
     <Form.Item
       label={label}
-      name={name}
       normalize={handleNormalize}
       validateTrigger="onBlur"
       required={required}

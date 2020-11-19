@@ -45,7 +45,13 @@ const Demo: React.FC<{}> = () => {
         onFinish={onFinish}
         {...formLayout}
       >
-        <FormItemBankCard required security initialValue={initialValues.bankCard} />
+        <FormItemBankCard
+          label='银行卡号'
+          name='bankCard'
+          required
+          security
+          initialValue={initialValues.bankCard}
+        />
         <Form.Item {...buttonLayout}>
           <Button type='primary' htmlType='submit'>提交</Button>
         </Form.Item>

@@ -23,8 +23,7 @@ const FormItemNumber: React.FC<FormItemNumberProps> = ({
   lte,
   gte,
   inputProps = {},
-  label = '数字',
-  name = 'number',
+  label,
   required = false,
   ...restProps
 }) => {
@@ -32,7 +31,6 @@ const FormItemNumber: React.FC<FormItemNumberProps> = ({
   return (
     <Form.Item
       label={label}
-      name={name}
       required={required}
       rules={[
         {

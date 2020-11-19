@@ -1,10 +1,10 @@
 ---
 title: FormItemEmail
 group:
-  title: 业务表单项
-  path: /business-form-item
+  title: 表单项
+  path: /form-item
   order: 1
-legacy: /business-form-item/form-item-mobile
+legacy: /form-item/email
 ---
 
 # FormItemEmail

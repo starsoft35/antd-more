@@ -1,8 +1,3 @@
-/**
- * title: 基础用法
- * desc: |
- *    默认 `label: '身份证号', name: 'idCard', validateTrigger: 'onBlur'`
- */
 import * as React from 'react';
 import { Form, Button } from 'antd';
 import { FormItemIdCard } from 'antd-more';
@@ -38,7 +33,7 @@ const Demo: React.FC<{}> = () => {
         onFinish={onFinish}
         {...formLayout}
       >
-        <FormItemIdCard />
+        <FormItemIdCard name='idCard' label='身份证号' />
         <Form.Item {...buttonLayout}>
           <Button type='primary' htmlType='submit'>提交</Button>
         </Form.Item>

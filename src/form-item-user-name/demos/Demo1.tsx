@@ -1,8 +1,3 @@
-/**
- * title: 基础用法
- * desc: |
- *    默认 `label: '用户名', name: 'userName', validateTrigger: 'onBlur'`
- */
 import * as React from 'react';
 import { Form, Button } from 'antd';
 import { FormItemUserName } from 'antd-more';
@@ -38,7 +33,7 @@ const Demo: React.FC<{}> = () => {
         onFinish={onFinish}
         {...formLayout}
       >
-        <FormItemUserName />
+        <FormItemUserName name='userName' label='用户名' />
         <Form.Item {...buttonLayout}>
           <Button type='primary' htmlType='submit'>提交</Button>
         </Form.Item>

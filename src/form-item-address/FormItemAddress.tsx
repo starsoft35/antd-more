@@ -11,23 +11,23 @@ type NamePath = string | number | InternalNamePath;
 
 export interface FormItemAddressProps extends FormItemProps {
   options?: CascaderOptionType[];
-  names?: [NamePath, NamePath];
-  labels?: [string, string];
+  names: [NamePath, NamePath]; // 如 ['location', 'address']
+  labels: [string, string]; // 如 ['省/市/区', '详细地址']
   formItemProps?: [FormItemProps, FormItemProps];
   inputProps?: InputProps;
   cascaderProps?: CascaderProps;
 }
 
 const FormItemAddress: React.FC<FormItemAddressProps> = ({
-  names = ['location', 'address'],
-  labels = ['省/市/区', '详细地址'],
+  names,
+  labels,
   options = [],
   formItemProps = [{}, {}],
   inputProps = {},
   cascaderProps = {},
 
   style = {},
-  label = '地址',
+  label,
   required = false,
   ...restProps
 }) => {

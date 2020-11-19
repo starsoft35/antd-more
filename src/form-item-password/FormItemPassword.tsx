@@ -60,8 +60,7 @@ const FormItemPasswrod: React.FC<FormItemPasswrodProps> = ({
   special = '\\x21-\\x2F\\x3A-\\x40\\x5B-\\x60\\x7B-\\x7E',
 
   inputProps = {},
-  label = '密码',
-  name = 'password',
+  label,
   required = false,
   ...restProps
 }) => {
@@ -69,7 +68,6 @@ const FormItemPasswrod: React.FC<FormItemPasswrodProps> = ({
   return (
     <Form.Item
       label={label}
-      name={name}
       validateTrigger="onBlur"
       required={required}
       rules={[
@@ -94,13 +92,7 @@ const FormItemPasswrod: React.FC<FormItemPasswrodProps> = ({
       ]}
       {...restProps}
     >
-      <Input.Password
-        placeholder="请输入"
-        maxLength={max}
-        autoComplete="off"
-        allowClear
-        {...inputProps}
-      />
+      <Input.Password placeholder="请输入" autoComplete="off" allowClear {...inputProps} />
     </Form.Item>
   );
 };

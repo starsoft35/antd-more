@@ -5,12 +5,10 @@ export { default as CaptchaButton } from './captcha-button';
 export { default as Dictionary } from './dictionary';
 export { default as InputNumber } from './input-number';
 
-// base-form-item
+// form-item
 export { default as FormItemInput } from './form-item-input';
 export { default as FormItemSelect } from './form-item-select';
 export { default as FormItemRadio } from './form-item-radio';
-
-// business-form-item
 export { default as FormItemMobile } from './form-item-mobile';
 export { default as FormItemIdCard } from './form-item-id-card';
 export { default as FormItemUserName } from './form-item-user-name';

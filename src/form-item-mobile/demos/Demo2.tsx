@@ -45,7 +45,7 @@ const Demo: React.FC<{}> = () => {
         onFinish={onFinish}
         {...formLayout}
       >
-        <FormItemMobile required security initialValue={initialValues.mobile} />
+        <FormItemMobile name='mobile' label='手机号码' required security initialValue={initialValues.mobile} />
         <Form.Item {...buttonLayout}>
           <Button type='primary' htmlType='submit'>提交</Button>
         </Form.Item>

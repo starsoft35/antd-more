@@ -33,9 +33,9 @@ const Demo: React.FC<{}> = () => {
         onFinish={onFinish}
         {...formLayout}
       >
-        <FormItemDate label="生日" name="date1" required extra="必填" />
-        <FormItemDate label="交易日期" name="date2" disabledDateAfter={0} extra="当日及以后日期不可选" />
-        <FormItemDate label="订单日期" name="date3" disabledDateBefore={-365} disabledDateAfter={1} extra="一年以前和今天以后日期不可选" />
+        <FormItemDate label='生日' name='date1' required extra='必填' />
+        <FormItemDate label='交易日期' name='date2' disabledDateAfter={0} extra='当日及以后日期不可选' />
+        <FormItemDate label='订单日期' name='date3' disabledDateBefore={-365} disabledDateAfter={1} extra='一年以前和今天以后日期不可选' />
         <Form.Item {...buttonLayout}>
           <Button type='primary' htmlType='submit'>提交</Button>
         </Form.Item>

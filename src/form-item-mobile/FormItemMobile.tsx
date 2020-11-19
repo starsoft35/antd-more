@@ -15,8 +15,7 @@ const FormItemMobile: React.FC<FormItemMobileProps> = ({
   security = false,
   symbol = '*',
   inputProps = {},
-  label = '手机号码',
-  name = 'mobile',
+  label,
   required = false,
   ...restProps
 }) => {
@@ -35,7 +34,6 @@ const FormItemMobile: React.FC<FormItemMobileProps> = ({
   return (
     <Form.Item
       label={label}
-      name={name}
       normalize={handleNormalize}
       validateTrigger="onBlur"
       required={required}

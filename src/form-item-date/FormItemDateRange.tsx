@@ -20,8 +20,7 @@ const FormItemDateRange: React.FC<FormItemDateRangeProps> = ({
   disabledDateAfter,
   maxRange,
   pickerProps = {},
-  label = '日期',
-  name = 'date',
+  label,
   required = false,
   className,
   ...restProps
@@ -39,7 +38,6 @@ const FormItemDateRange: React.FC<FormItemDateRangeProps> = ({
   return (
     <Form.Item
       label={label}
-      name={name}
       required={required}
       rules={[
         {
@@ -51,7 +49,7 @@ const FormItemDateRange: React.FC<FormItemDateRangeProps> = ({
               const [t1, t2] = value;
               const range = currentPicker === 'quarter' ? maxRange * 3 : maxRange;
 
-              if (t2.diff(t1, MomentScale[currentPicker]) >= range) {
+              if (t2.diff(t1, MomentScale[currentPicker]) > range) {
                 errMsg = `时间跨度不能超过${maxRange}${DateUnit[currentPicker]}`;
               }
             }

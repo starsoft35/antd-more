@@ -16,8 +16,7 @@ const FormItemEmail: React.FC<FormItemEmailProps> = ({
   security = false,
   symbol = '*',
   inputProps = {},
-  label = '邮箱',
-  name = 'email',
+  label,
   required = false,
   ...restProps
 }) => {
@@ -26,7 +25,6 @@ const FormItemEmail: React.FC<FormItemEmailProps> = ({
   return (
     <Form.Item
       label={label}
-      name={name}
       normalize={normalizeWhiteSpace}
       validateTrigger="onBlur"
       required={required}

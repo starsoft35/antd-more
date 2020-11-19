@@ -16,8 +16,7 @@ const FormItemUserName: React.FC<FormItemUserNameProps> = ({
   min = 6,
   max = 32,
   inputProps = {},
-  label = '用户名',
-  name = 'userName',
+  label,
   required = false,
   ...restProps
 }) => {
@@ -26,7 +25,6 @@ const FormItemUserName: React.FC<FormItemUserNameProps> = ({
   return (
     <Form.Item
       label={label}
-      name={name}
       normalize={normalizeWhiteSpace}
       validateTrigger="onBlur"
       required={required}

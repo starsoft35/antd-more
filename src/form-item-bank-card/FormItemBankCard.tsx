@@ -17,8 +17,7 @@ const FormItemBankCard: React.FC<FormItemBankCardProps> = ({
   symbol = '*',
   loose = true,
   inputProps = {},
-  label = '银行卡号',
-  name = 'bankCard',
+  label,
   required = false,
   ...restProps
 }) => {
@@ -37,7 +36,6 @@ const FormItemBankCard: React.FC<FormItemBankCardProps> = ({
   return (
     <Form.Item
       label={label}
-      name={name}
       normalize={handleNormalize}
       validateTrigger="onBlur"
       required={required}

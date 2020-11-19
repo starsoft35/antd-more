@@ -43,7 +43,7 @@ const Demo: React.FC<{}> = () => {
         onFinish={onFinish}
         {...formLayout}
       >
-        <FormItemEmail required security initialValue={initialValues.email} />
+        <FormItemEmail name='email' label='邮箱' required security initialValue={initialValues.email} />
         <Form.Item {...buttonLayout}>
           <Button type='primary' htmlType='submit'>提交</Button>
         </Form.Item>

@@ -38,7 +38,7 @@ const Demo: React.FC<{}> = () => {
         onFinish={onFinish}
         {...formLayout}
       >
-        <FormItemPassword required min={4} max={8} special='><?-=' level={3} />
+        <FormItemPassword name='password' label='密码' required min={4} max={8} special='><?-=' level={3} />
         <Form.Item {...buttonLayout}>
           <Button type='primary' htmlType='submit'>提交</Button>
         </Form.Item>

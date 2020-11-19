@@ -1,8 +1,3 @@
-/**
- * title: 基础用法
- * desc: |
- *    没有默认的 `label` `name` 。
- */
 import * as React from 'react';
 import { Form, Button } from 'antd';
 import { FormItemSelect } from 'antd-more';
@@ -70,7 +65,7 @@ const Demo: React.FC<{}> = () => {
   return (
     <>
       <Form
-        name='form-item-mobile-demo1'
+        name='form-item-select-demo1'
         onFinish={onFinish}
         {...formLayout}
       >

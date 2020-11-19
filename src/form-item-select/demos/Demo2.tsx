@@ -50,7 +50,7 @@ const Demo: React.FC<{}> = () => {
   return (
     <>
       <Form
-        name='form-item-mobile-demo1'
+        name='form-item-select-demo2'
         onFinish={onFinish}
         initialValues={initialValues}
         {...formLayout}

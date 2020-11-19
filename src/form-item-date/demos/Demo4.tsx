@@ -38,22 +38,22 @@ const Demo: React.FC<{}> = () => {
         initialValues={initialValues}
         {...formLayout}
       >
-        <FormItemDate.Range maxRange={30} disabledDateAfter={1} extra="今天以后日期不可选，最大区间不能超过30天" />
+        <FormItemDate.Range name='date' label='日期' maxRange={30} disabledDateAfter={1} extra='今天以后日期不可选，最大区间不能超过30天' />
         <FormItemDate.Range
-          label="交易日期"
-          name="date2"
+          label='交易日期'
+          name='date2'
           maxRange={30}
           disabledDateBefore={-365}
           disabledDateAfter={1}
-          extra="一年以前和今天以后日期不可选，最大区间不能超过30天"
+          extra='一年以前和今天以后日期不可选，最大区间不能超过30天'
         />
         <FormItemDate.Range
-          label="交易日期"
-          name="date3"
+          label='交易日期'
+          name='date3'
           maxRange={30}
           disabledDateBefore={-365}
           disabledDateAfter={1}
-          extra="默认值选中近一个月，一年以前和今天以后日期不可选，最大区间不能超过30天"
+          extra='默认值选中近一个月，一年以前和今天以后日期不可选，最大区间不能超过30天'
           pickerProps={{ allowClear: false }}
         />
         <Form.Item {...buttonLayout}>

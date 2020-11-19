@@ -15,61 +15,48 @@ export interface FormItemDateProps extends FormItemProps {
 
 const prefixCls = 'antd-more-form-item-date';
 
-class FormItemDate extends React.Component<FormItemDateProps> {
-  static defaultProps = {
-    pickerProps: {},
-    label: '日期',
-    name: 'date',
-    required: false,
-  };
-
-  static Range: typeof FormItemDateRange;
-
-  disabledDate() {
-    const { disabledDateBefore, disabledDateAfter, pickerProps } = this.props;
+const FormItemDate: React.FC<FormItemDateProps> & {
+  Range: typeof FormItemDateRange;
+} = ({
+  disabledDateBefore,
+  disabledDateAfter,
+  pickerProps = {},
+  label,
+  className,
+  required = false,
+  ...restProps
+}) => {
+  const labelText = React.useMemo(() => getLabel(label), [label]);
+  const disabledDate = React.useCallback(() => {
     const picker = pickerProps && pickerProps.picker ? pickerProps.picker : 'date';
     return createDisabledDate(picker, { disabledDateBefore, disabledDateAfter });
-  }
-
-  render() {
-    const {
-      disabledDateBefore,
-      disabledDateAfter,
-      pickerProps,
-      className,
-      label,
-      name,
-      required,
-      ...restProps
-    } = this.props;
-    const labelText = getLabel(label);
-
-    return (
-      <Form.Item
-        label={label}
-        name={name}
-        required={required}
-        rules={[
-          {
-            validator(rule, value) {
-              let errMsg = '';
-              if (!value) {
-                errMsg = required ? `请选择${labelText}` : '';
-              }
-              if (errMsg) {
-                return Promise.reject(errMsg);
-              }
-              return Promise.resolve();
-            },
+  }, [disabledDateBefore, disabledDateAfter, pickerProps.picker]);
+  return (
+    <Form.Item
+      label={label}
+      required={required}
+      rules={[
+        {
+          validator(rule, value) {
+            let errMsg = '';
+            if (!value) {
+              errMsg = required ? `请选择${labelText}` : '';
+            }
+            if (errMsg) {
+              return Promise.reject(errMsg);
+            }
+            return Promise.resolve();
           },
-        ]}
-        className={classNames(prefixCls, className)}
-        {...restProps}
-      >
-        <DatePicker disabledDate={this.disabledDate()} {...pickerProps} />
-      </Form.Item>
-    );
-  }
-}
+        },
+      ]}
+      className={classNames(prefixCls, className)}
+      {...restProps}
+    >
+      <DatePicker disabledDate={disabledDate} {...pickerProps} />
+    </Form.Item>
+  );
+};
+
+FormItemDate.Range = FormItemDateRange;
 
 export default FormItemDate;

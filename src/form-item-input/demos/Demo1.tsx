@@ -1,8 +1,3 @@
-/**
- * title: 基础用法
- * desc: |
- *    没有默认的 `label` `name`
- */
 import * as React from 'react';
 import { Form, Button } from 'antd';
 import { FormItemInput } from 'antd-more';

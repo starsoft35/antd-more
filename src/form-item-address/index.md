@@ -1,10 +1,10 @@
 ---
 title: FormItemAddress
 group:
-  title: 业务表单项
-  path: /business-form-item
+  title: 表单项
+  path: /form-item
   order: 1
-legacy: /business-form-item/form-item-address
+legacy: /form-item/address
 ---
 
 # FormItemAddress
@@ -48,8 +48,8 @@ interface Option {
 参数 | 说明 | 类型 | 默认值 |
 ------------- | ------------- | ------------- | ------------- |
 options | 必填项，可选项数据源。  | `Option[]` | - |
-names  | 字段名 | `[NamePath, NamePath]` | `['location', 'address']` |
-labels  | 标签文本 | `[string, string]` | `['省/市/区', '详细地址']` |
+names  | 字段名 | `[NamePath, NamePath]` | - |
+labels  | 标签文本 | `[string, string]` | - |
 inputProps  | 输入框配置参数 | [`InputProps`](https://ant-design.gitee.io/components/input-cn/#Input) | - |
 cascaderProps  | 级联选择框配置参数 | [`CascaderProps`](https://ant-design.gitee.io/components/cascader-cn/#API) | - |
 formItemProps  | 内部 [`Form.Item`](https://ant-design.gitee.io/components/form-cn/#Form.Item) 的配置参数 | `[FormItemProps, FormItemProps]` | - |

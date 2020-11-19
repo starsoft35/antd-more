@@ -36,7 +36,7 @@ const Demo: React.FC<{}> = () => {
         onFinish={onFinish}
         {...formLayout}
       >
-        <FormItemDate.Range />
+        <FormItemDate.Range name='date' label='日期' />
         <FormItemDate.Range label='周' name='date1' pickerProps={{picker: 'week'}} />
         <FormItemDate.Range label='月' name='date2' pickerProps={{picker: 'month'}} />
         <FormItemDate.Range label='季' name='date3' pickerProps={{picker: 'quarter'}} />

@@ -1,10 +1,3 @@
-/**
- * title: 基础用法
- * desc: |
- *    和其他组件不同，注意这里是 `labels` `names`。
- * 
- *    默认 `labels: ['省/市/区', '详细地址'], names: ['location', 'address']`
- */
 import * as React from 'react';
 import { Form, Button } from 'antd';
 import { FormItemAddress } from 'antd-more';
@@ -41,7 +34,12 @@ const Demo: React.FC<{}> = () => {
         onFinish={onFinish}
         {...formLayout}
       >
-        <FormItemAddress options={lcnFormInlandData} />
+        <FormItemAddress
+          label="地址"
+          names={['location', 'address']}
+          labels={['省/市/区', '详细地址']}
+          options={lcnFormInlandData}
+        />
         <Form.Item {...buttonLayout}>
           <Button type='primary' htmlType='submit'>提交</Button>
         </Form.Item>

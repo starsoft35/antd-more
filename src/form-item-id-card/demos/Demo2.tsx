@@ -45,7 +45,7 @@ const Demo: React.FC<{}> = () => {
         onFinish={onFinish}
         {...formLayout}
       >
-        <FormItemIdCard required security initialValue={initialValues.idCard} />
+        <FormItemIdCard name='idCard' label='身份证号' required security initialValue={initialValues.idCard} />
         <Form.Item {...buttonLayout}>
           <Button type='primary' htmlType='submit'>提交</Button>
         </Form.Item>

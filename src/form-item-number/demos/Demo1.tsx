@@ -1,8 +1,3 @@
-/**
- * title: 基础用法
- * desc: |
- *    默认 `label: '数字', name: 'number'`
- */
 import * as React from 'react';
 import { Form, Button } from 'antd';
 import { FormItemNumber } from 'antd-more';
@@ -38,7 +33,7 @@ const Demo: React.FC<{}> = () => {
         onFinish={onFinish}
         {...formLayout}
       >
-        <FormItemNumber />
+        <FormItemNumber name='number' label='数字' />
         <Form.Item {...buttonLayout}>
           <Button type='primary' htmlType='submit'>提交</Button>
         </Form.Item>

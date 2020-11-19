@@ -1,8 +1,3 @@
-/**
- * title: 基础用法
- * desc: |
- *    默认 `label: '日期', name: 'date'`
- */
 import * as React from 'react';
 import { Form, Button } from 'antd';
 import { FormItemDate } from 'antd-more';
@@ -38,11 +33,11 @@ const Demo: React.FC<{}> = () => {
         onFinish={onFinish}
         {...formLayout}
       >
-        <FormItemDate />
-        <FormItemDate name="date2" label="周" pickerProps={{ picker: 'week' }} />
-        <FormItemDate name="date3" label="月" pickerProps={{ picker: 'month' }} />
-        <FormItemDate name="date4" label="季" pickerProps={{ picker: 'quarter' }} />
-        <FormItemDate name="date5" label="年" pickerProps={{ picker: 'year' }} />
+        <FormItemDate name='date' label='日期' />
+        <FormItemDate name='date2' label='周' pickerProps={{ picker: 'week' }} />
+        <FormItemDate name='date3' label='月' pickerProps={{ picker: 'month' }} />
+        <FormItemDate name='date4' label='季' pickerProps={{ picker: 'quarter' }} />
+        <FormItemDate name='date5' label='年' pickerProps={{ picker: 'year' }} />
         <Form.Item {...buttonLayout}>
           <Button type='primary' htmlType='submit'>提交</Button>
         </Form.Item>
