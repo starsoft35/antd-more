@@ -27,10 +27,14 @@ const FormItemDate: React.FC<FormItemDateProps> & {
   ...restProps
 }) => {
   const labelText = React.useMemo(() => getLabel(label), [label]);
-  const disabledDate = React.useCallback(() => {
-    const picker = pickerProps && pickerProps.picker ? pickerProps.picker : 'date';
-    return createDisabledDate(picker, { disabledDateBefore, disabledDateAfter });
-  }, [disabledDateBefore, disabledDateAfter, pickerProps.picker]);
+  const currentPicker = React.useMemo(
+    () => (pickerProps && pickerProps.picker ? pickerProps.picker : 'date'),
+    [pickerProps.picker],
+  );
+  const disabledDate = React.useMemo(
+    () => createDisabledDate(currentPicker, { disabledDateBefore, disabledDateAfter }),
+    [disabledDateBefore, disabledDateAfter, currentPicker],
+  );
   return (
     <Form.Item
       label={label}
