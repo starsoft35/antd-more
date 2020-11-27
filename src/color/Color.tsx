@@ -15,32 +15,27 @@ export interface ColorProps {
   showText?: boolean;
 }
 
-class Color extends React.Component<ColorProps> {
-  static defaultProps = {
-    showText: false,
-  };
-
-  static BlockPicker: typeof BlockPicker;
-
-  static ChromePicker: typeof ChromePicker;
-
-  static CompactPicker: typeof CompactPicker;
-
-  static PhotoshopPicker: typeof PhotoshopPicker;
-
-  static SketchPicker: typeof SketchPicker;
-
-  render() {
-    const { className, value, showText } = this.props;
-    return (
-      <span className={classNames(className, prefixCls)}>
-        <span className="color" title={value}>
-          <span className="inner" style={{ backgroundColor: value }} />
-        </span>
-        {showText && <span className="text">{value}</span>}
+const Color: React.FC<ColorProps> & {
+  BlockPicker: typeof BlockPicker;
+  ChromePicker: typeof ChromePicker;
+  CompactPicker: typeof CompactPicker;
+  PhotoshopPicker: typeof PhotoshopPicker;
+  SketchPicker: typeof SketchPicker;
+} = ({ className, value, showText = false, ...restProps }) => {
+  return (
+    <span className={classNames(className, prefixCls)} {...restProps}>
+      <span className={`${prefixCls}-outer`} title={value}>
+        <span className={`${prefixCls}-inner`} style={{ backgroundColor: value }} />
       </span>
-    );
-  }
-}
+      {showText && <span className={`${prefixCls}-text`}>{value}</span>}
+    </span>
+  );
+};
+
+Color.BlockPicker = BlockPicker;
+Color.SketchPicker = SketchPicker;
+Color.PhotoshopPicker = PhotoshopPicker;
+Color.ChromePicker = ChromePicker;
+Color.CompactPicker = CompactPicker;
 
 export default Color;

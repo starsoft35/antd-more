@@ -2,12 +2,11 @@
 
 @prefix-cls: ~'@{prefix}-color';
 
-
 .@{prefix-cls} {
   display: inline-block;
   vertical-align: middle;
 
-  .text {
+  &-text {
     display: inline-block;
     margin-left: 5px;
     line-height: 24px;
@@ -16,7 +15,7 @@
     font-size: 13px;
   }
 
-  .color {
+  &-outer {
     display: inline-block;
     line-height: 0;
     padding: 3px;
@@ -26,7 +25,7 @@
     background: #fff;
   }
 
-  .inner {
+  &-inner {
     display: inline-block;
     height: 16px;
     width: 16px;
@@ -34,21 +33,18 @@
     vertical-align: middle;
   }
 
-  .select {
-
-    &.active,
+  &-select {
+    &-active,
     &:hover {
       cursor: pointer;
     }
   }
-}
 
-// :global {
-  .overlay-normalize {
+  &-overlay-normalize {
     padding: 0 !important;
     background: none;
 
-    & .ant-popover-content>.ant-popover-arrow {
+    & .ant-popover-content > .ant-popover-arrow {
       display: none;
     }
 
@@ -61,4 +57,4 @@
       box-sizing: content-box;
     }
   }
-// }
+}

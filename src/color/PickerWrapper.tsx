@@ -1,6 +1,7 @@
 import React, { useCallback, useState, cloneElement } from 'react';
 import { Popover } from 'antd';
 import { PopoverProps } from 'antd/es/popover';
+import { TooltipPlacement } from 'antd/es/tooltip';
 import classNames from 'classnames';
 import { transformColor, ColorObj } from './utils';
 
@@ -17,19 +18,7 @@ export interface PickerCommonProps {
   trigger?: 'click' | 'hover' | string | string[];
   onChange?: (colorStr: string) => void;
   colorMode?: 'hex' | 'rgb';
-  placement?:
-    | 'top'
-    | 'left'
-    | 'right'
-    | 'bottom'
-    | 'topLeft'
-    | 'topRight'
-    | 'bottomLeft'
-    | 'bottomRight'
-    | 'leftTop'
-    | 'leftBottom'
-    | 'rightTop'
-    | 'rightBottom';
+  placement?: TooltipPlacement;
 }
 
 export interface PickerWrapperProps extends PickerCommonProps, PopoverProps {
@@ -87,14 +76,19 @@ const PickerWrapper: React.FC<PickerWrapperProps> = ({
         onVisibleChange={setVisible}
         autoAdjustOverflow={false}
         placement={placement}
-        overlayClassName="overlay-normalize"
+        overlayClassName={`${prefixCls}-overlay-normalize`}
         {...restProps}
       >
-        <span className={classNames('color', 'select', { active: visible })} title={value}>
-          <span className="inner" style={value ? { backgroundColor: value } : {}} />
+        <span
+          className={classNames(`${prefixCls}-outer`, `${prefixCls}-select`, {
+            [`${prefixCls}-active`]: visible,
+          })}
+          title={value}
+        >
+          <span className={`${prefixCls}-inner`} style={value ? { backgroundColor: value } : {}} />
         </span>
       </Popover>
-      {showText && <span className="text">{value}</span>}
+      {showText && <span className={`${prefixCls}-text`}>{value}</span>}
     </span>
   );
 };

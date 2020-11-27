@@ -1,0 +1,20 @@
+import React from 'react';
+import { NamePath } from 'antd/es/form/interface';
+
+export type TransformFn<T = any> = (value: T) => T | any;
+
+export interface FiledContextProps {
+  setFieldTransform?: (
+    name: NamePath,
+    transform?: TransformFn | undefined,
+    parentList?: NamePath[],
+  ) => void;
+}
+
+const FieldContext = React.createContext<FiledContextProps>({ setFieldTransform: () => {} });
+
+export default FieldContext;
+
+// 挂着标识到 formItem 上，每个 formItem 设置 name 时，获取标识。
+// 如果有多级 List，兼容多层级嵌套
+// 需要在 transform 中，添加一个参数用来记录嵌套List的标识

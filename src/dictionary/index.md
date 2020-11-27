@@ -96,7 +96,6 @@ align  | 对齐方式 | `start` \| `end` \| `center` \| `baseline` | `start` |
 direction  | 间距方向 `vertical` `horizontal` | `string` | `horizontal` |
 size  | 间距大小，支持 `small` `middle` `large` 或 数值 | `string` \| `number` | `small` |
 value  | 字典值数组 | `any[]` | `[]` |
-defaultValue  | 默认值，当 `value` 为非数组或长度小于0时显示 | `string` | `-` |
 
 ### Dictionary.Select
 

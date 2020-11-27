@@ -1,6 +1,6 @@
 import React from 'react';
 import { Badge, Tag } from 'antd';
-import { EnumData } from './common';
+import { EnumData } from './interface';
 
 export interface DictionaryProps {
   data: EnumData[];

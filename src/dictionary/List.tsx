@@ -9,21 +9,13 @@ const tagDefaultStyle = {
 
 export interface DictionaryListProps extends DictionaryProps {
   value?: any[];
-  size?: 'small' | 'middle' | 'large';
-  align?: 'start' | 'end' | 'center' | 'baseline';
-  direction?: 'vertical' | 'horizontal';
-  defaultValue?: any;
 }
 
 const DictionaryList: React.FC<DictionaryListProps> = ({
-  size = 'small',
-  align,
-  direction,
-  defaultValue = '-',
-
   value = [],
   type = 'text',
   style = {},
+  defaultName = '-',
   ...restProps
 }) => {
   const styles = useMemo(() => (type === 'tag' ? { ...tagDefaultStyle, ...style } : { ...style }), [
@@ -31,15 +23,26 @@ const DictionaryList: React.FC<DictionaryListProps> = ({
     style,
   ]);
 
-  return (
-    <Space size={size} align={align} direction={direction}>
-      {!Array.isArray(value) || value.length <= 0
-        ? defaultValue
-        : value.map((itemVal) => (
-            <Dictionary key={itemVal} value={itemVal} style={styles} type={type} {...restProps} />
-          ))}
-    </Space>
-  );
+  if (!Array.isArray(value) || value.length <= 0) {
+    return defaultName;
+  }
+
+  const dom = value.map((itemVal) => (
+    <Dictionary
+      key={itemVal}
+      defaultName=""
+      value={itemVal}
+      style={styles}
+      type={type}
+      {...restProps}
+    />
+  ));
+
+  if (value.length === 1) {
+    return dom;
+  }
+
+  return <Space>{dom}</Space>;
 };
 
 export default DictionaryList;
