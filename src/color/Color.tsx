@@ -13,6 +13,7 @@ export interface ColorProps {
   className?: string;
   value: string;
   showText?: boolean;
+  [x: string]: any;
 }
 
 const Color: React.FC<ColorProps> & {

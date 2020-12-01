@@ -2,6 +2,9 @@
 
 import moment from 'moment';
 
+// 标识日期无效值的value
+const invalidDateRangeNameValue = `date_range_invalid_${Math.random()}`;
+
 // 转换银行卡号
 function transformBankCard(val: string, char = '') {
   if (typeof val !== 'string') {
@@ -32,7 +35,7 @@ function transformDate(date, format) {
 }
 
 // 转换表单值
-function transformFormValues(values: any, transforms: any) {
+function transformFormValues(values: any, transforms: any, currentLevelValues?: any) {
   if (
     (Array.isArray(values) && values.length <= 0) ||
     (Array.isArray(transforms) && transforms.length <= 0) ||
@@ -58,15 +61,18 @@ function transformFormValues(values: any, transforms: any) {
     // eslint-disable-next-line
     for (const key in values) {
       if (typeof values[key] === 'object' || Array.isArray(values[key])) {
-        ret[key] = transformFormValues(values[key], transforms[key]);
+        ret[key] = transformFormValues(values[key], transforms[key], ret);
       } else if (typeof transforms[key] === 'function') {
-        ret[key] = transforms[key](values[key]);
+        ret[key] = transforms[key](values[key], ret);
       } else {
         ret[key] = values[key];
       }
+      if (ret[key] === invalidDateRangeNameValue) {
+        delete ret[key];
+      }
     }
   } else if (typeof transforms === 'function') {
-    ret = transforms(values);
+    ret = transforms(values, currentLevelValues);
   } else {
     ret = values;
   }
@@ -74,4 +80,4 @@ function transformFormValues(values: any, transforms: any) {
   return ret;
 }
 
-export { transformBankCard, transformDate, transformFormValues };
+export { transformBankCard, transformDate, transformFormValues, invalidDateRangeNameValue };

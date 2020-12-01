@@ -1,7 +1,5 @@
 import moment from 'moment';
 
-window.moment = moment;
-
 export enum DateFormat {
   date = 'YYYY-MM-DD',
   dateWeek = 'YYYY-wo',

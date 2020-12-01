@@ -63,7 +63,7 @@ const Demo: React.FC<{}> = () => {
       <BizForm
         name='biz-form-demo1'
         onFinish={(values) => {
-          console.log(values);
+          console.log(JSON.stringify(values));
         }}
         labelCol={{
           flex: '0 0 100px'

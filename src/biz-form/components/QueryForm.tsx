@@ -68,7 +68,7 @@ const QueryForm: React.FC<QueryFormProps> = (props) => {
       submitter={{
         submitText,
         resetText,
-        render: (_, dom) => dom.reverse(),
+        // render: (_, dom) => dom.reverse(),
         ...submitter,
       }}
       layout={layout}

@@ -11,6 +11,7 @@ module.exports = {
   "rules": {
     "quotes": 0,
     "eol-last": 0,
+    "function-paren-newline": 0,
     "implicit-arrow-linebreak": 0,
     "object-curly-newline": 0,
     "no-shadow": 0,

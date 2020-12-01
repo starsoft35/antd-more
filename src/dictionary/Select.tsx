@@ -4,7 +4,7 @@ import { SelectProps, SelectValue } from 'antd/es/select';
 import { EnumData } from './interface';
 
 export interface DictionarySelectProps extends SelectProps<SelectValue> {
-  data: EnumData[];
+  data: EnumData;
   value?: any;
   excludeValues?: any[];
   all?: boolean;

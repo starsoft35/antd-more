@@ -4,7 +4,7 @@ import { isPassword } from 'util-helpers';
 import { PasswordProps } from 'antd/es/input';
 import BizFormItem, { BizFormItemProps } from './Item';
 
-export interface FormItemPasswrodProps extends BizFormItemProps {
+export interface FormItemPasswordProps extends BizFormItemProps {
   level?: 1 | 2 | 3;
   min?: number;
   max?: number;
@@ -51,7 +51,7 @@ function hasDisabledChar(val: string | undefined, chars: string = ''): boolean {
 // 数字
 const numMap = ['零', '一', '两', '三'];
 
-const FormItemPasswrod: React.FC<FormItemPasswrodProps> = ({
+const FormItemPassword: React.FC<FormItemPasswordProps> = ({
   level = 2,
   min = 8,
   max = 16,
@@ -95,4 +95,4 @@ const FormItemPasswrod: React.FC<FormItemPasswrodProps> = ({
   );
 };
 
-export default FormItemPasswrod;
+export default FormItemPassword;

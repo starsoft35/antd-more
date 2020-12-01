@@ -1,49 +1,35 @@
 import React from 'react';
 import { Badge, Tag } from 'antd';
-import { EnumData } from './interface';
+import { DictionaryProps } from './interface';
 
-export interface DictionaryProps {
-  data: EnumData[];
-  value?: any;
-  defaultName?: any;
-  type?: 'text' | 'tag' | 'badge';
-  optionName?: string;
-  [key: string]: any;
-}
+const Dictionary: React.FC<DictionaryProps> = ({
+  data = [],
+  value = '',
+  defaultName = '-',
+  type = 'text',
+  optionName = '',
+  ...restProps
+}) => {
+  const ret = data.find((item) => item.value === value);
 
-class Dictionary extends React.Component<DictionaryProps> {
-  static defaultProps = {
-    data: [],
-    value: '',
-    defaultName: '-',
-    type: 'text',
-    optionName: '',
-  };
-
-  render() {
-    const { data = [], value, defaultName, type, optionName, ...restProps } = this.props;
-
-    const ret = data.find((item) => item.value === value);
-
-    if (!ret) {
-      return defaultName;
-    }
-
-    const options = (optionName ? ret[optionName] : ret[type]) || {};
-    const { alias, ...restOptions } = options;
-    const props = { ...restOptions, ...restProps };
-    const name = alias || ret.name;
-
-    if (type === 'tag') {
-      return <Tag {...props}>{name}</Tag>;
-    }
-
-    if (type === 'badge') {
-      return <Badge text={name} {...props} />;
-    }
-
-    return <span {...props}>{name}</span>;
+  if (!ret) {
+    return defaultName;
   }
-}
+
+  const options = (optionName ? ret[optionName] : ret[type]) || {};
+  const { alias, ...restOptions } = options;
+  const props = { ...restOptions, ...restProps };
+  const name = alias || ret.name;
+
+  if (type === 'tag') {
+    return <Tag {...props}>{name}</Tag>;
+  }
+
+  if (type === 'badge') {
+    return <Badge text={name} {...props} />;
+  }
+
+  return <span {...props}>{name}</span>;
+};
 
 export default Dictionary;

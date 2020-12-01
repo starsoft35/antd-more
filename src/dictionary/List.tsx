@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import { Space } from 'antd';
-import Dictionary, { DictionaryProps } from './Dictionary';
+import Dictionary from './Dictionary';
+import { DictionaryProps } from './interface';
 
 // tag 类型默认样式
 const tagDefaultStyle = {

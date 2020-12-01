@@ -1,6 +1,6 @@
 import React from 'react';
 import { formatMoney } from 'util-helpers';
-import { FieldProps } from './interface';
+import { BizFieldProps } from './interface';
 import FieldProgress from './components/Progress';
 import FieldIndex from './components/Index';
 import Dictionary from '../dictionary';
@@ -24,9 +24,9 @@ const dateType = [
 const indexType = ['index', 'indexBorder'];
 const enumType = ['enum', 'enumTag', 'enumBadge'];
 
-const Field: React.FC<FieldProps> = ({
+const BizField: React.FC<BizFieldProps> = ({
   value,
-  valueType = 'default',
+  valueType = '',
   valueEnum = [],
   ...restProps
 }) => {
@@ -98,4 +98,4 @@ const Field: React.FC<FieldProps> = ({
   return view;
 };
 
-export default Field;
+export default BizField;

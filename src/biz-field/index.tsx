@@ -1,3 +1,6 @@
-import Field from './Field';
+import BizField from './BizField';
+import { ValueType, EnumData, BizFieldProps } from './interface';
 
-export default Field;
+export type { ValueType, EnumData, BizFieldProps };
+
+export default BizField;

@@ -1,7 +1,10 @@
 ---
-title: BizForm - 业务表单
+title: BizForm
 group:
-  title: BizForm - 业务表单
+  title: 业务组件
+  path: /business
+  order: 0
+legacy: /business/biz-form
 ---
 
 # BizForm

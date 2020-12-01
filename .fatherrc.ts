@@ -3,7 +3,10 @@ export default {
     type: 'babel',
     importLibToEs: true
   },
-  cjs: 'babel',
+  cjs: {
+    type: 'babel',
+    lazy: true
+  },
   // 如要开启，需将 https://github.com/umijs/fabric/blob/master/tsconfig.json 存到根目录
   // umi: {
   //   name: 'antdMore',

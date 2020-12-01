@@ -1,10 +1,15 @@
 import * as React from 'react';
 import classnames from 'classnames';
-import { FieldProps } from '../interface';
+import { BizFieldProps } from '../interface';
 
 const prefixCls = 'antd-more-field-index';
 
-const FieldIndex: React.FC<FieldProps> = ({ value, type = 'index', className, ...restProps }) => {
+const FieldIndex: React.FC<BizFieldProps> = ({
+  value,
+  type = 'index',
+  className,
+  ...restProps
+}) => {
   return (
     <span
       className={classnames(prefixCls, className, {

@@ -1,7 +1,10 @@
 ---
-title: BizField - 业务字段
+title: BizField
 group:
-  title: BizField - 业务字段
+  title: 业务组件
+  path: /business
+  order: 0
+legacy: /business/biz-field
 ---
 
 # BizField
@@ -20,7 +23,7 @@ group:
 ------------- | ------------- | ------------- | ------------- |
 value  | 值 | `any` | - |
 valueType  | 类型 | `ValueType` | - |
-valueEnum  | 包含 `value` `name` 的数据字典 | `EnumData[]` | - |
+valueEnum  | 包含 `value` `name` 的数据字典 | `EnumData` | - |
 
 ### ValueType 值
 

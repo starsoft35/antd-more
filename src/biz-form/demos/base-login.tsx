@@ -1,15 +1,14 @@
 /**
  * title: 登录
  * desc: |
- *    该示例中未用到 `ItemUserName` `ItemPassword` 的校验，可使用 ItemInput 自定义。
- * 
- *    当然也可以基于 `ItemUserName` `ItemPassword` 覆盖 `rules` 。
+ *    该示例中未用到 `ItemUserName` `ItemPassword` 的校验，所以使用 `ItemInput` 。但是也可以基于 `ItemUserName` `ItemPassword` 覆盖 `rules` 。
  */
 import * as React from 'react';
+import { message } from 'antd';
 import { BizForm } from 'antd-more';
-import { UserOutlined, LockOutlined, SafetyCertificateOutlined, MobileOutlined } from '@ant-design/icons';
+import { UserOutlined, LockOutlined, SafetyCertificateOutlined, MobileOutlined, MailOutlined } from '@ant-design/icons';
 
-const { ItemInput, ItemCaptcha, ItemMobile } = BizForm;
+const { ItemInput, ItemCaptcha, ItemMobile, ItemEmail } = BizForm;
 
 function sendCaptcha(mobile) {
   return new Promise(resolve => {
@@ -66,6 +65,18 @@ const LoginDemo: React.FC<{}> = () => {
             }
           ]}
         />
+        <ItemEmail
+          name='email'
+          inputProps={{
+            prefix: <MailOutlined />,
+            size: 'large',
+            placeholder: "请输入邮箱"
+          }}
+          validateTrigger="onChange"
+          label='邮箱'
+          labelCol={{ style: { display: 'none' } }}
+          required
+        />
         <ItemMobile
           name='mobile'
           inputProps={{
@@ -79,7 +90,7 @@ const LoginDemo: React.FC<{}> = () => {
           required
         />
         <ItemCaptcha
-          name="code"
+          name="captcha"
           inputProps={{
             prefix: <SafetyCertificateOutlined />,
             size: 'large',
@@ -90,7 +101,10 @@ const LoginDemo: React.FC<{}> = () => {
           }}
           check={() => {
             // 验证手机号码或邮箱是否正确
-            return form.validateFields(['mobile']);
+            return form.validateFields(['mobile']).catch(() => {
+              message.error('请输入正确的手机号码');
+              return Promise.reject();
+            });
           }}
           onGetCaptcha={() => {
             // 发送验证码

@@ -4,7 +4,7 @@ import { RadioGroupProps } from 'antd/es/radio/interface';
 import { EnumData } from './interface';
 
 export interface DictionaryRadioProps extends RadioGroupProps {
-  data: EnumData[];
+  data: EnumData;
   value?: any;
   type?: 'default' | 'button';
 }

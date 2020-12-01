@@ -1,4 +1,4 @@
-export interface EnumData {
+interface EnumItem {
   name: string;
   value: any;
   badge?: {
@@ -17,5 +17,15 @@ export interface EnumData {
     };
     [key: string]: any;
   };
+  [key: string]: any;
+}
+
+export type EnumData = EnumItem[];
+export interface DictionaryProps {
+  data: EnumData;
+  value?: any;
+  defaultName?: any;
+  type?: 'text' | 'tag' | 'badge';
+  optionName?: string;
   [key: string]: any;
 }

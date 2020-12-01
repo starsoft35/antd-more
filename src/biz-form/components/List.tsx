@@ -9,7 +9,7 @@ export interface BizFormListProps extends FormListProps {
   transform?: TransformFn;
 }
 
-const BizFormList: React.FC<FormListProps> = ({ children, name, ...restProps }) => {
+const BizFormList: React.FC<BizFormListProps> = ({ children, name, ...restProps }) => {
   const { parentListName = [] } = React.useContext(ListFieldContext); // FormList嵌套FormList的情况
 
   return (

@@ -1,16 +1,25 @@
-import React from 'react';
-import Dictionary, { DictionaryProps } from './Dictionary';
-import Select from './Select';
-import Radio from './Radio';
-import List from './List';
+import * as React from 'react';
+import Dictionary from './Dictionary';
+import Select, { DictionarySelectProps } from './Select';
+import Radio, { DictionaryRadioProps } from './Radio';
+import List, { DictionaryListProps } from './List';
+import { EnumData, DictionaryProps } from './interface';
 
-type WrapperFC<P> = React.FC<P> & {
+export type {
+  DictionaryProps,
+  DictionaryListProps,
+  DictionaryRadioProps,
+  DictionarySelectProps,
+  EnumData,
+};
+
+const DictionaryWrapper: React.FC<DictionaryProps> & {
   Select: typeof Select;
   Radio: typeof Radio;
   List: typeof List;
+} = (props) => {
+  return <Dictionary {...props} />;
 };
-
-const DictionaryWrapper: WrapperFC<DictionaryProps> = (props) => <Dictionary {...props} />;
 
 DictionaryWrapper.Select = Select;
 DictionaryWrapper.Radio = Radio;

@@ -68,9 +68,12 @@ export default () => {
           <BizField value={40} valueType="progress" />
         </Descriptions.Item>
         <Descriptions.Item label="百分比">
+          <BizField value={10} valueType="percent" />
+        </Descriptions.Item>
+        <Descriptions.Item label="百分比颜色符号">
+          <BizField value={-10} valueType="percent" showSymbol showColor />
           <BizField value={0} valueType="percent" showSymbol showColor />
           <BizField value={10} valueType="percent" showSymbol showColor />
-          <BizField value={-10} valueType="percent" showSymbol showColor />
         </Descriptions.Item>
         <Descriptions.Item label="序列号">
           <BizField value={0} valueType="index" />

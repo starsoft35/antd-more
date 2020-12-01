@@ -3,7 +3,7 @@ title: Color
 group:
   title: 通用组件
   path: /common
-  order: 0
+  order: 2
 legacy: /common/color
 ---
 

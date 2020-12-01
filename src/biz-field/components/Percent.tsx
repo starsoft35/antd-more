@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { FieldProps } from '../interface';
+import { BizFieldProps } from '../interface';
 
 function getColor(value) {
   if (value === 0) {
@@ -15,7 +15,7 @@ function getSymbol(value) {
   return '+';
 }
 
-const Percent: React.FC<FieldProps> = React.memo(
+const Percent: React.FC<BizFieldProps> = React.memo(
   ({ value, style, precision = 2, showColor = false, showSymbol = false, suffix = '%' }) => {
     const realValue =
       typeof value === 'string' && (value as string).includes('%')

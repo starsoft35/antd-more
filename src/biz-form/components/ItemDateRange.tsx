@@ -12,7 +12,7 @@ import {
   Picker,
 } from '../_util/dateUtil';
 import BizFormItem, { BizFormItemProps } from './Item';
-import { transformDate } from '../_util/transform';
+import { transformDate, invalidDateRangeNameValue } from '../_util/transform';
 
 const DateRangePickerWrapper: React.FC<RangePickerProps> = ({ value, ...restProps }) => {
   return <DatePicker.RangePicker value={transformMomentValue(value)} {...restProps} />;
@@ -26,6 +26,7 @@ export interface FormItemDateRangeProps extends BizFormItemProps {
   format?: string;
   picker?: Picker;
   pickerProps?: RangePickerProps;
+  names?: [string, string];
 }
 
 const prefixCls = 'antd-more-form-item-date';
@@ -37,13 +38,16 @@ const FormItemDateRange: React.FC<FormItemDateRangeProps | any> = ({
   showTime = false,
   format,
   picker = 'date',
+  names = [],
   pickerProps = {},
   label,
+  name,
   required = false,
   className,
   transform,
   ...restProps
 }) => {
+  const currentName = React.useMemo(() => name || `${names[0]}_${names[1]}`, [name, names]);
   const currentPicker = React.useMemo(() => pickerProps.picker || picker, [
     pickerProps.picker,
     picker,
@@ -60,18 +64,31 @@ const FormItemDateRange: React.FC<FormItemDateRangeProps | any> = ({
     [disabledDateBefore, disabledDateAfter, currentPicker],
   );
   const handleTransform = React.useCallback(
-    (val) => {
+    (val, currentPathValues) => {
+      let transValue;
       if (typeof transform === 'function') {
-        return transform(val);
+        transValue = transform(val);
+      } else {
+        transValue = transformDate(val, currentFormat);
       }
-      return transformDate(val, currentFormat);
+
+      if (Array.isArray(names) && names.length === 2 && currentPathValues) {
+        // eslint-disable-next-line no-param-reassign
+        currentPathValues[names[0]] = Array.isArray(transValue) ? transValue[0] : undefined;
+        // eslint-disable-next-line no-param-reassign
+        currentPathValues[names[1]] = Array.isArray(transValue) ? transValue[1] : undefined;
+        return invalidDateRangeNameValue;
+      } else {
+        return transValue;
+      }
     },
-    [currentFormat],
+    [currentFormat, currentName],
   );
 
   return (
     <BizFormItem
       label={label}
+      name={currentName}
       required={required}
       rules={[
         {
