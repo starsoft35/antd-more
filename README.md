@@ -17,6 +17,7 @@
  \-      | antd-more | antd |
 ------- | --------- | ---- |
 version | 0.x       | 4.x  |
+version | 1.x       | 4.x  |
 
 ## 使用
 
@@ -60,25 +61,14 @@ ReactDon.render(<Color value="red" />, mountNode);
 
 ## API
 
+- **业务组件**
+  - [BizField] - 字段
+  - [BizForm] - 表单
+  - [BizTable] - 表格
 - **通用组件**
   - [CaptchaButton] - 验证码按钮
-  - <del>[CascaderWithInput] - 级联和输入框结合，常用于填写地址</del> **【请使用[FormItemAddress]】**
   - [Color] - 颜色显示、选择器
   - [Dictionary] - 数据字典
-  - [InputNumber] - 数字输入框
-- **表单项**
-  - [FormItemInput] - 输入框
-  - [FormItemSelect] - 选择器
-  - [FormItemRadio] - 单选框
-  - [FormItemAddress] - 地址
-  - [FormItemBankCard] - 银行卡号
-  - [FormItemDate] - 日期、日期范围
-  - [FormItemEmail] - 邮箱
-  - [FormItemIdCard] - 身份证号
-  - [FormItemMobile] - 手机号码
-  - [FormItemNumber] - 数字
-  - [FormItemPassword] - 密码
-  - [FormItemUserName] - 用户名
 
 ## 贡献
 
@@ -112,28 +102,17 @@ git commit -m 'upd: 更新某组件文本'
 [npm]: https://img.shields.io/npm/v/antd-more.svg
 [npm-url]: https://npmjs.com/package/antd-more
 
-[site]: https://doly-dev.github.io/antd-more/site/v0/index.html
+[site]: https://doly-dev.github.io/antd-more/site/v1/index.html
 [babel-plugin-import]: https://www.npmjs.com/package/babel-plugin-import
 
 [doly]: https://www.npmjs.com/package/doly-cli
 [umi]: https://umijs.org/zh-CN
 [antd]: https://ant-design.gitee.io
 
-[CaptchaButton]: https://doly-dev.github.io/antd-more/site/v0/index.html#/common/captcha-button
-[CascaderWithInput]: https://doly-dev.github.io/antd-more/site/v0/index.html#/common/cascader-with-input
-[Color]: https://doly-dev.github.io/antd-more/site/v0/index.html#/common/color
-[Dictionary]: https://doly-dev.github.io/antd-more/site/v0/index.html#/common/dictionary
-[InputNumber]: https://doly-dev.github.io/antd-more/site/v0/index.html#/common/input-number
+[CaptchaButton]: https://doly-dev.github.io/antd-more/site/v1/index.html#/common/captcha-button
+[Color]: https://doly-dev.github.io/antd-more/site/v1/index.html#/common/color
+[Dictionary]: https://doly-dev.github.io/antd-more/site/v1/index.html#/common/dictionary
 
-[FormItemInput]: https://doly-dev.github.io/antd-more/site/v0/index.html#/form-item/input
-[FormItemSelect]: https://doly-dev.github.io/antd-more/site/v0/index.html#/form-item/select
-[FormItemRadio]: https://doly-dev.github.io/antd-more/site/v0/index.html#/form-item/radio
-[FormItemAddress]: https://doly-dev.github.io/antd-more/site/v0/index.html#/form-item/address
-[FormItemBankCard]: https://doly-dev.github.io/antd-more/site/v0/index.html#/form-item/bank-card
-[FormItemDate]: https://doly-dev.github.io/antd-more/site/v0/index.html#/form-item/date
-[FormItemEmail]: https://doly-dev.github.io/antd-more/site/v0/index.html#/form-item/email
-[FormItemIdCard]: https://doly-dev.github.io/antd-more/site/v0/index.html#/form-item/id-card
-[FormItemMobile]: https://doly-dev.github.io/antd-more/site/v0/index.html#/form-item/mobile
-[FormItemNumber]: https://doly-dev.github.io/antd-more/site/v0/index.html#/form-item/number
-[FormItemPassword]: https://doly-dev.github.io/antd-more/site/v0/index.html#/form-item/password
-[FormItemUserName]: https://doly-dev.github.io/antd-more/site/v0/index.html#/form-item/user-name
+[BizField]: https://doly-dev.github.io/antd-more/site/v1/index.html#/business/biz-field
+[BizForm]: https://doly-dev.github.io/antd-more/site/v1/index.html#/business/biz-form
+[BizTable]: https://doly-dev.github.io/antd-more/site/v1/index.html#/business/biz-table
