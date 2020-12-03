@@ -54,9 +54,9 @@ yarn add antd-more
 ### 示例
 
 ```javascript
-import { Color } from 'antd-more';
+import { BizField } from 'antd-more';
 
-ReactDon.render(<Color value="red" />, mountNode);
+ReactDon.render(<BizField value="red" valueType="color" />, mountNode);
 ```
 
 ## API

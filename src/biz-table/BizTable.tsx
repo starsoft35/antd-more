@@ -13,8 +13,8 @@ import usePagination from './usePagination';
 import BizField from '../biz-field';
 
 export type ActionType = {
-  reload?: () => void;
-  reset?: () => void;
+  reload: () => void;
+  reset: () => void;
 };
 
 type RecordType = {
@@ -45,7 +45,6 @@ export declare interface BizTableInnerProps
     | ((instance: FormInstance<any>) => void);
   ref?: React.MutableRefObject<ActionType | undefined> | ((actionRef: ActionType) => void);
   columns?: BizColumns;
-  runOnMount?: boolean;
   autoRequest?: boolean;
   request?: Request;
   form?: QueryFormProps;

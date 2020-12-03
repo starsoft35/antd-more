@@ -1,7 +1,9 @@
 /**
  * title: 登录
  * desc: |
- *    该示例中未用到 `ItemUserName` `ItemPassword` 的校验，所以使用 `ItemInput` 。但是也可以基于 `ItemUserName` `ItemPassword` 覆盖 `rules` 。
+ *    该示例中未用到 `ItemUserName` `ItemPassword` 的校验，所以使用 `ItemInput` 。但是也可以基于 `ItemUserName` `ItemPassword` 重置 `rules` 。
+ * 
+ *    ItemCaptcha 组件执行顺序： `check` 方法验证手机号码或邮箱成功后，调用 `onGetCaptcha` 并设置按钮 `loading` 状态。当 `onGetCaptcha` 执行成功后，开始倒计时。
  */
 import * as React from 'react';
 import { message } from 'antd';
@@ -19,15 +21,25 @@ function sendCaptcha(mobile) {
 }
 
 const LoginDemo: React.FC<{}> = () => {
+  const [loading, setLoading] = React.useState(false);
   const [form] = BizForm.useForm();
+
+  const onFinish = React.useCallback((values) => {
+    console.log(values);
+    setLoading(true);
+
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  }, []);
+
   return (
     <div style={{ width: '80%', maxWidth: 320, margin: '0 auto' }}>
       <BizForm
-        name='base-login'
+        name='form-login'
         form={form}
-        onFinish={values => {
-          console.log(values);
-        }}
+        loading={loading}
+        onFinish={onFinish}
         submitter={{
           render: (_, dom) => dom[0],
           submitText: '登录',

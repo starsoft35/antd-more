@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Space } from 'antd';
 import { BizForm, BizTable } from 'antd-more';
+import { Request } from 'antd-more/es/biz-table';
 import moment from 'moment';
 import Mock from 'mockjs';
 
@@ -58,7 +58,8 @@ const Demo: React.FC<{}> = () => {
     <BizForm.ItemInput name='approverName' label='审核员' />,
     <BizForm.ItemDateRange name='approveTime' names={['startTime', 'endTime']} label='审核时间' />
   ];
-  const handleRequest = React.useCallback((params, filters, sorter): Promise<{ data: any[]; total: number; }> => {
+
+  const handleRequest:Request = React.useCallback((params, filters, sorter) => {
     const { pageSize, current, ...restParams } = params;
     console.log(params, filters, sorter);
     return getApplyList({

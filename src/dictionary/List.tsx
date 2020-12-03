@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import { Space } from 'antd';
+import { SpaceProps } from 'antd/es/space';
 import Dictionary from './Dictionary';
 import { DictionaryProps } from './interface';
 
@@ -8,7 +9,7 @@ const tagDefaultStyle = {
   margin: 0,
 };
 
-export interface DictionaryListProps extends DictionaryProps {
+export interface DictionaryListProps extends DictionaryProps, SpaceProps {
   value?: any[];
 }
 
@@ -17,6 +18,9 @@ const DictionaryList: React.FC<DictionaryListProps> = ({
   type = 'text',
   style = {},
   defaultName = '-',
+  align = 'start',
+  direction = 'horizontal',
+  size = 'small',
   ...restProps
 }) => {
   const styles = useMemo(() => (type === 'tag' ? { ...tagDefaultStyle, ...style } : { ...style }), [
@@ -43,7 +47,11 @@ const DictionaryList: React.FC<DictionaryListProps> = ({
     return dom;
   }
 
-  return <Space>{dom}</Space>;
+  return (
+    <Space align={align} size={size} direction={direction}>
+      {dom}
+    </Space>
+  );
 };
 
 export default DictionaryList;

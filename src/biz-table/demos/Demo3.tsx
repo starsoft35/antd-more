@@ -53,7 +53,7 @@ const columns = [
 const Demo: React.FC<{}> = () => {
   const handleRequest = React.useCallback((params, filters, sorter): Promise<{ data: any[]; total: number; }> => {
     const { pageSize, current, ...restParams } = params;
-    console.log(params, filters, sorter);
+
     return getApplyList({
       page: {
         pageSize: pageSize,

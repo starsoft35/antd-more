@@ -11,12 +11,16 @@ export declare interface SearchFormProps extends QueryFormProps {
 }
 
 const SearchForm: React.FC<SearchFormProps> = React.forwardRef(
-  ({ formItems, cardProps, ...restProps }, ref) => {
+  ({ formItems, cardProps, name, ...restProps }, ref) => {
     if (!formItems) {
       return null;
     }
 
     const [form] = BizForm.useForm();
+    const formName = React.useMemo(
+      () => name || `query_form_${Math.random().toString().substr(2)}`,
+      [name],
+    );
     React.useImperativeHandle(ref, () => form, [form]);
 
     return (
@@ -25,7 +29,7 @@ const SearchForm: React.FC<SearchFormProps> = React.forwardRef(
         {...cardProps}
         bodyStyle={{ paddingBottom: 0, ...cardProps?.bodyStyle }}
       >
-        <QueryForm form={form} {...restProps}>
+        <QueryForm form={form} name={formName} {...restProps}>
           {React.Children.toArray(formItems).map((item: React.ReactElement) =>
             React.cloneElement(item, {
               key: item.props.key || item.props.name || item.props.label,

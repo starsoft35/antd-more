@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Button, Card, Space } from 'antd';
 import { BizForm, BizTable } from 'antd-more';
+import { Request } from 'antd-more/es/biz-table';
 import moment from 'moment';
 import Mock from 'mockjs';
 import { FormInstance } from 'antd/lib/form';
@@ -81,15 +82,6 @@ const columns = [
     filters: approveResult.map(item => ({ text: item.name, ...item })),
     valueType: 'enumBadge',
     valueEnum: approveResult
-  },
-  {
-    title: "操作",
-    render: (text, record) => (
-      <Space size="middle">
-        <a>查看</a>
-        <a>审核</a>
-      </Space>
-    )
   }
 ];
 
@@ -103,9 +95,9 @@ const Demo: React.FC<{}> = () => {
     <BizForm.ItemDateRange name='approveTime' names={['startTime', 'endTime']} label='审核时间' />,
     <BizForm.ItemSelect name='approveResult' label='审核状态' options={approveResult} all />
   ];
-  const handleRequest = React.useCallback((params, filters, sorter): Promise<{ data: any[]; total: number; }> => {
+  const handleRequest: Request = React.useCallback((params, filters, sorter) => {
     const { pageSize, current, ...restParams } = params;
-    console.log(params, filters, sorter);
+
     return getApplyList({
       page: {
         pageSize: pageSize,
@@ -120,53 +112,60 @@ const Demo: React.FC<{}> = () => {
     });
   }, []);
 
+  const currentColumns = React.useMemo(() => ([
+    ...columns,
+    {
+      title: "操作",
+      render: () => (
+        <Space size="middle">
+          <a onClick={() => { actionRef.current.reload() }}>审核</a>
+        </Space>
+      )
+    }
+  ]), []);
+
   return (
     <BizTable
       formItems={formItems}
       formRef={formRef}
       form={{
-        // submitter: {
-        //   render: (_, dom) => {
-        //     return [
-        //       <Button
-        //         key="search"
-        //         type="primary"
-        //         onClick={() => { formRef.current.submit(); }}
-        //       >
-        //         查询
-        //         </Button>,
-        //       <Button
-        //         key="reset"
-        //         onClick={() => { formRef.current.resetFields(); formRef.current.submit(); }}
-        //       >
-        //         重置
-        //         </Button>,
-        //       <Button
-        //         key="export"
-        //       >
-        //         导出
-        //         </Button>
-        //     ]
-        //   }
-        // },
+        submitter: {
+          render: (_, dom) => {
+            return [
+              <Button
+                key="search"
+                type="primary"
+                onClick={() => { formRef.current.submit(); }}
+              >
+                查询
+                </Button>,
+              <Button
+                key="reset"
+                onClick={() => { formRef.current.resetFields(); formRef.current.submit(); }}
+              >
+                重置
+                </Button>,
+              <Button
+                key="export"
+              >
+                导出
+                </Button>
+            ]
+          }
+        },
         defaultColsNumber: 2,
         initialValues: {
           approveResult: ''
         }
       }}
       actionRef={actionRef}
-      toolbar={(
-        <>
-          <Button type="primary">新增</Button>
-          Toolbar!
-        </>
-      )}
+      toolbar={<Button type="primary">新增</Button>}
       extra={(
-        <Card>
+        <Card bordered={false}>
           Extra Block!
         </Card>
       )}
-      columns={columns}
+      columns={currentColumns}
       rowKey='applyCode'
       request={handleRequest}
     />

@@ -9,7 +9,9 @@ legacy: /business/biz-field
 
 # BizField
 
-用于字段展示。
+业务常见字段显示。
+
+在 BizTable 中使用更方便，只需配置 `valueType` 即可。
 
 ## 代码演示
 
@@ -19,13 +21,25 @@ legacy: /business/biz-field
 
 ## API
 
+```typescript
+import { BizField } from 'antd-more';
+
+<BizField value={value} valueType={valueType} />
+```
+
+### 共同的API
+
 参数 | 说明 | 类型 | 默认值 |
 ------------- | ------------- | ------------- | ------------- |
 value  | 值 | `any` | - |
-valueType  | 类型 | `ValueType` | - |
-valueEnum  | 包含 `value` `name` 的数据字典 | `EnumData` | - |
+valueType  | 值类型 | `ValueType` | - |
+valueEnum  | 包含 `value` `name` 的数据字典，当 `valueType` 为 `enum` `enumTag` `enumBadge` 时生效。 | `EnumData` | - |
 
 ### ValueType 值
+
+<code src="./demos/valueType.tsx" />
+
+值为 `string` 时，支持以下类型：
 
 类型 | 描述 | 示例 |
 ------------- | ------------- | ------------- |
@@ -52,8 +66,30 @@ fromNow  | 相对当前时间，使用 `moment` [`fromNow`](http://momentjs.cn/d
 
 <br/>
 
+```javascript
+<BizField value={40} valueType='percent' showSymbol showColor />
+```
+
+值为 `object` 时，必须包含 `type`，且 `type` 为上述 `string` ，剩下的值将作为 `props` 传入组件。
+
+如下两种写法皆可：
+
+```javascript
+<BizField value={40} valueType={{type: 'percent', showSymbol: true, showColor: true}}  />
+
+<BizField value={40} valueType={{type: 'percent'}} showSymbol showColor  />
+```
+
+值为 `function` 时，必须返回上述 `object` 值。
+
+```javascript
+<BizField value={40} valueType={()=>({type: 'percent', showSymbol: true, showColor: true})}  />
+```
+
+### valueEnum 值
+
 ```typescript
-interface EnumData {
+interface EnumItem {
   name: string;
   value: any;
   // 配置badge
@@ -77,4 +113,28 @@ interface EnumData {
   };
   [key: string]: any;
 }
+type EnumData = EnumItem[];
 ```
+
+### 个别的API
+
+#### percent
+
+参数 | 说明 | 类型 | 默认值 |
+------------- | ------------- | ------------- | ------------- |
+precision  | 精度 | `number` | `2` |
+showColor  | 显示颜色 | `boolean` | `false` |
+showSymbol  | 显示符号 | `boolean` | `false` |
+suffix  | 百分号后缀 | `string` | `%` |
+
+#### progress
+
+同 [`Progress`](https://ant-design.gitee.io/components/progress-cn/#API) 。
+
+#### enum、enumTag、enumBadge
+
+枚举数据改为 `valueEnum` 传入，其余同 [`Dictionary`](https://doly-dev.github.io/antd-more/site/v1/index.html#/common/dictionary?anchor=dictionary-1) 。
+
+#### color
+
+同 [`Color`](https://doly-dev.github.io/antd-more/site/v1/index.html#/common/color?anchor=api) 。

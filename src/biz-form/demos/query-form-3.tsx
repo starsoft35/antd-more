@@ -11,6 +11,7 @@ const Demo: React.FC<{}> = () => {
         console.log(values);
       }}
       defaultColsNumber={2}
+      defaultCollapsed={false}
       layout='vertical'
     >
       <ItemInput label='商品编号' name='goodsNo' />
