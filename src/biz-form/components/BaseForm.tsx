@@ -11,6 +11,7 @@ export interface BaseFormProps extends FormProps {
     items: React.ReactNode[],
     submitter: React.ReactElement<Omit<SubmitterProps, 'form'>> | undefined,
   ) => React.ReactNode;
+  ready?: boolean; // false 时，禁止触发 submit 。 true 时，会对表单初始值重新赋值。
   loading?: boolean;
   submitter?: false | undefined | null | Omit<SubmitterProps, 'form'>;
   onReset?: (event: React.FormEvent<HTMLFormElement>) => void;
@@ -22,11 +23,13 @@ const BaseForm: React.FC<BaseFormProps> = ({
   contentRender,
   form: formProp,
   pressEnterSubmit = true,
+  ready = true,
   loading = false,
   submitter = {},
   onFinish,
   onReset,
   children,
+  initialValues,
   ...restProps
 }) => {
   const [form] = Form.useForm();
@@ -68,10 +71,11 @@ const BaseForm: React.FC<BaseFormProps> = ({
       form={formRef.current}
       submitButtonProps={{
         loading,
+        disabled: !ready,
         ...submitterProps?.submitButtonProps,
       }}
       resetButtonProps={{
-        disabled: loading,
+        disabled: loading || !ready,
         ...submitterProps?.resetButtonProps,
       }}
     />
@@ -80,12 +84,19 @@ const BaseForm: React.FC<BaseFormProps> = ({
   const items = React.Children.toArray(children);
   const content = contentRender ? contentRender(items, submitterDom) : items;
 
+  React.useEffect(() => {
+    // 准备完成后，重新设置初始值
+    if (ready) {
+      formRef.current.setFieldsValue(initialValues);
+    }
+  }, [ready]);
+
   return (
     <FieldContext.Provider value={{ setFieldTransform }}>
       <Form
         onKeyPress={(event) => {
           const buttonHtmlType = submitterProps?.submitButtonProps?.htmlType;
-          if (pressEnterSubmit && buttonHtmlType !== 'submit' && event.key === 'Enter') {
+          if (pressEnterSubmit && buttonHtmlType !== 'submit' && event.key === 'Enter' && ready) {
             formRef.current?.submit();
           }
         }}
@@ -98,6 +109,7 @@ const BaseForm: React.FC<BaseFormProps> = ({
           // console.log(values, transValues);
           onFinish(transValues);
         }}
+        initialValues={initialValues}
         {...restProps}
       >
         {content}

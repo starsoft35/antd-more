@@ -44,6 +44,10 @@ legacy: /business/biz-form
 
 <code src='./demos/security.tsx' />
 
+### 异步初始值
+
+<code src='./demos/async-initial-values.tsx' />
+
 ### 所有表单项
 
 <code src='./demos/Demo1.tsx' />
@@ -75,6 +79,7 @@ import { BizForm } from 'antd-more';
 onReset  | 点击重置按钮的回调 | `(e)=>void` | - |
 submitter  | 提交、重置按钮相关配置 | `false` | `SubmitterProps` | - |
 pressEnterSubmit  | 是否开启回车键提交，注意不要与自定义的 `htmlType='submit'` 的按钮冲突。 | `boolean` | `true` |
+ready  | 为 `false` 时，禁止提交/重置表单。<br/>为 `true` 时，会重新设置表单初始值。 | `boolean` | `true` |
 loading  | 设置提交、重置的加载/禁止状态 | `boolean` | `false` |
 
 #### SubmitterProps
@@ -611,7 +616,7 @@ excludeValues | 排除的值 | `any[]` | `[]` |
 selectProps  | 选择器配置参数 | [`SelectProps`](https://ant-design.gitee.io/components/select-cn/#Select-props) | - |
 
 
-### FormItemUserName
+### ItemUserName
 
 用户名输入框
 

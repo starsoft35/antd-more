@@ -18,7 +18,7 @@ const SearchForm: React.FC<SearchFormProps> = React.forwardRef(
 
     const [form] = BizForm.useForm();
     const formName = React.useMemo(
-      () => name || `query_form_${Math.random().toString().substr(2)}`,
+      () => name || `biz_table_search_form_${Math.random().toString().substr(2)}`,
       [name],
     );
     React.useImperativeHandle(ref, () => form, [form]);

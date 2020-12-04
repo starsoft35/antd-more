@@ -14,10 +14,10 @@
 
 ## 对应版本
 
- \-      | antd-more | antd |
-------- | --------- | ---- |
-version | 0.x       | 4.x  |
-version | 1.x       | 4.x  |
+ antd-more | antd |
+ --------- | ---- |
+ v0.x       | v4.x  |
+ v1.x       | v4.x  |
 
 ## 使用
 

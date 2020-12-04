@@ -16,7 +16,7 @@ const Demo: React.FC<{}> = () => {
     >
       <ItemInput label='商品编号' name='goodsNo' />
       <ItemDate label='交易日期' name='tradeDate' />
-      <ItemMobile label='手机号' name='mobile' />
+      <ItemMobile label='手机号码' name='mobile' />
       <ItemDateRange label='时间' name='time' showTime colProps={{ xs: 24, md: 24, lg: 14 }} />
     </QueryForm>
   );

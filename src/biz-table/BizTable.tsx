@@ -45,6 +45,7 @@ export declare interface BizTableInnerProps
     | ((instance: FormInstance<any>) => void);
   ref?: React.MutableRefObject<ActionType | undefined> | ((actionRef: ActionType) => void);
   columns?: BizColumns;
+  ready?: boolean;
   autoRequest?: boolean;
   request?: Request;
   form?: QueryFormProps;
@@ -70,6 +71,7 @@ const BizTableInner: React.FC<BizTableInnerProps> = React.forwardRef(
       extra,
 
       request,
+      ready = true,
       autoRequest = true,
 
       columns,
@@ -137,14 +139,14 @@ const BizTableInner: React.FC<BizTableInnerProps> = React.forwardRef(
     );
 
     React.useEffect(() => {
-      if (autoRequest) {
+      if (ready && autoRequest) {
         if (formItems) {
           innerFormRef.current?.submit();
         } else {
           run();
         }
       }
-    }, []);
+    }, [ready]);
 
     const tableCardStyle = React.useMemo(
       () => ({ padding: !formItems && !toolbar ? 0 : '16px 24px 0' }),
@@ -164,6 +166,7 @@ const BizTableInner: React.FC<BizTableInnerProps> = React.forwardRef(
           loading={loading}
           onFinish={run}
           onReset={handleReset}
+          ready={ready}
           cardProps={formCardProps}
           {...form}
         />

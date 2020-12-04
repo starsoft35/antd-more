@@ -16,7 +16,7 @@ const RegisterDemo: React.FC<{}> = () => {
       }}
     >
       <ItemUserName label="用户名" name="userName" required />
-      <ItemMobile label="手机号" name="mobile" required />
+      <ItemMobile label="手机号码" name="mobile" required />
       <ItemIdCard label="身份证号" name="idCard" required />
       <ItemEmail label="邮箱" name="email" inputProps={{ placeholder: "请输入（选填）" }} />
       <ItemPassword label="密码" name="password" required />

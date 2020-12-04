@@ -33,6 +33,10 @@ legacy: /business/biz-table
 
 <code src='./demos/Demo3.tsx'  background="#f5f5f5" />
 
+### 异步初始值表格
+
+<code src='./demos/async-initial-values.tsx'  background="#f5f5f5" />
+
 ## API
 
 ### BizTable
@@ -43,6 +47,7 @@ legacy: /business/biz-table
 ------------- | ------------- | ------------- | ------------- |
 request  | 获取 `dataSource` 的方法 | `Request` | - |
 autoRequest  | 初始化时自动触发 `request` | `boolean` | `true` |
+ready  | 为 `false` 时，禁止提交/重置表单，不触发 `request` 。<br/>为 `true` 时，会重新设置表单初始值，如果 `autoRequest=true` 则自动请求。 | `boolean` | `true` |
 formItems  | 表单列 | `React.ReactNode[]` | - |
 toolbar  | 工具栏，表格内的上面区域 | `React.ReactNode` | - |
 extra  | 扩展内容，表格外的上面、查询表单下面的区域 | `React.ReactNode` | - |
