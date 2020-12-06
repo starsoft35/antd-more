@@ -4,6 +4,7 @@ type showTotalFn = (num: number | string) => string;
 
 interface Options extends AsyncParams<any, any[] | undefined> {
   defaultPageSize?: number;
+  actionCacheKey?: string;
 }
 
 interface PaginationParams {

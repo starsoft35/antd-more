@@ -59,9 +59,9 @@ const Demo: React.FC<{}> = () => {
     <BizForm.ItemDateRange name='approveTime' names={['startTime', 'endTime']} label='审核时间' />
   ];
 
-  const handleRequest:Request = React.useCallback((params, filters, sorter) => {
+  const handleRequest: Request = React.useCallback((params, filters, sorter, extra) => {
     const { pageSize, current, ...restParams } = params;
-    console.log(params, filters, sorter);
+    console.log(params, filters, sorter, extra);
     return getApplyList({
       page: {
         pageSize: pageSize,

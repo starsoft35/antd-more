@@ -35,6 +35,8 @@ legacy: /business/biz-table
 
 ### 异步初始值表格
 
+5秒后获取到初始值再发起请求。
+
 <code src='./demos/async-initial-values.tsx'  background="#f5f5f5" />
 
 ## API
@@ -67,17 +69,34 @@ type Request = (
     [key: string]: any;
   },
   filters: Record<string, (string | number)[] | null>,
-  sorter: SorterResult<RecordType> | SorterResult<RecordType>[]
+  sorter: SorterResult<RecordType> | SorterResult<RecordType>[],
+  extra: {
+    currentDataSource,
+    action: "paginate" | "sort" | "filter" | "reload" | "reset" | "submit";
+  }
 ) => Promise<{ data: object[]; total?: number; [x: string]: any }>;
 ```
 
 **参数**
 
-第一个参数是查询表单值和分页，第二个是筛选，第三个是排序。
+第一个参数是查询表单值和分页，第二个是筛选，第三个是排序，第四个扩展数据。
 
 **返回值**
 
 `data` 用于设置 Table 的 dataSource ，`total` 用于设置分页。
+
+**action 触发请求说明**
+
+如果使用 `formRef.current.submit()` 触发表单提交，会导致第四个参数的 `action` 不准确，`formRef` 一般在处理赋值时使用。常用操作推荐使用 `actionRef` 。
+
+值 | 说明 |
+---- | ---- |
+paginate | 点击分页 |
+sort | 点击排序 |
+filter | 点击筛选 |
+reload | 调用 `actionRef.current.reload` |
+reset | 点击重置 或 调用 `actionRef.current.reset` |
+submit | 点击查询 或 调用 `actionRef.current.submit` |
 
 ### Columns 列定义
 
@@ -93,17 +112,21 @@ type Request = (
 type ActionType = {
   reload: () => void;
   reset: () => void;
+  submit: () => void;
 };
 
 const ref = useRef<ActionType>();
 
 <BizTable actionRef={ref} />;
 
-// 刷新
+// 刷新，使用原来的查询表单值、筛选、排序、分页参数重新发起请求
 ref.current.reload();
 
-// 重置查询表单并触发请求，分页也会重置到第一页
+// 重置查询表单并触发请求，分页会重置到第一页，筛选、排序不变
 ref.current.reset();
+
+// 触发查询表单提交，分页会重置到第一页，筛选、排序不变
+ref.current.submit();
 ```
 
 [BizField]: https://doly-dev.github.io/antd-more/site/v1/index.html#/business/biz-field?anchor=api

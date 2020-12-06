@@ -102,7 +102,7 @@ const Demo: React.FC<{}> = () => {
   ];
   const handleRequest: Request = React.useCallback((params, filters, sorter, extra) => {
     const { pageSize, current, ...restParams } = params;
-console.log(restParams);
+    console.log(params, filters, sorter, extra);
     return getApplyList({
       page: {
         pageSize: pageSize,

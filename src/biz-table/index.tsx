@@ -1,4 +1,6 @@
-import BizTable, { ActionType, Request, BizColumns, BizTableProps } from './BizTable';
+import BizTable, { BizColumns, BizTableProps } from './BizTable';
+
+import { ActionType, Request } from './interface';
 
 export type { ActionType, Request, BizColumns, BizTableProps };
 

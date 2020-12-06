@@ -1,11 +1,10 @@
 import * as React from 'react';
 import { Button, Card, Space } from 'antd';
 import { BizForm, BizTable } from 'antd-more';
-import { Request } from 'antd-more/es/biz-table';
 import moment from 'moment';
 import Mock from 'mockjs';
 import { FormInstance } from 'antd/lib/form';
-import { ActionType } from 'antd-more/es/biz-table';
+import { ActionType, Request } from 'antd-more/es/biz-table';
 
 // 审核状态
 const approveResult = [
@@ -64,10 +63,6 @@ const columns = [
     title: "提交时间"
   },
   {
-    dataIndex: "applicantName",
-    title: "经办员"
-  },
-  {
     dataIndex: "approveTime",
     title: "审核时间",
     sorter: true
@@ -91,13 +86,12 @@ const Demo: React.FC<{}> = () => {
   const formItems = [
     <BizForm.ItemInput name='applyCode' label='申请编号' />,
     <BizForm.ItemDate name='createTime' label='提交时间' />,
-    <BizForm.ItemInput name='approverName' label='审核员' />,
     <BizForm.ItemDateRange name='approveTime' names={['startTime', 'endTime']} label='审核时间' />,
     <BizForm.ItemSelect name='approveResult' label='审核状态' options={approveResult} all />
   ];
-  const handleRequest: Request = React.useCallback((params, filters, sorter) => {
+  const handleRequest: Request = React.useCallback((params, filters, sorter, extra) => {
     const { pageSize, current, ...restParams } = params;
-
+    console.log(params, filters, sorter, extra);
     return getApplyList({
       page: {
         pageSize: pageSize,
@@ -118,7 +112,9 @@ const Demo: React.FC<{}> = () => {
       title: "操作",
       render: () => (
         <Space size="middle">
-          <a onClick={() => { actionRef.current.reload() }}>审核</a>
+          <a onClick={() => { actionRef.current.reload() }}>reload</a>
+          <a onClick={() => { actionRef.current.submit() }}>submit</a>
+          <a onClick={() => { actionRef.current.reset() }}>reset</a>
         </Space>
       )
     }
@@ -128,20 +124,23 @@ const Demo: React.FC<{}> = () => {
     <BizTable
       formItems={formItems}
       formRef={formRef}
+      actionRef={actionRef}
       form={{
         submitter: {
-          render: (_, dom) => {
+          render: (submitterProps, dom) => {
             return [
               <Button
                 key="search"
                 type="primary"
-                onClick={() => { formRef.current.submit(); }}
+                onClick={() => { actionRef.current.submit(); }}
+                {...submitterProps.submitButtonProps}
               >
                 查询
                 </Button>,
               <Button
                 key="reset"
-                onClick={() => { formRef.current.resetFields(); formRef.current.submit(); }}
+                onClick={() => { actionRef.current.reset(); }}
+                {...submitterProps.resetButtonProps}
               >
                 重置
                 </Button>,
@@ -153,13 +152,17 @@ const Demo: React.FC<{}> = () => {
             ]
           }
         },
-        defaultColsNumber: 2,
+        defaultColsNumber: 1,
         initialValues: {
           approveResult: ''
         }
       }}
-      actionRef={actionRef}
-      toolbar={<Button type="primary">新增</Button>}
+      toolbar={(
+        <Space>
+          <Button type="primary">新增</Button>
+          <Button onClick={() => { formRef.current.setFieldsValue({ applyCode: '12345' }) }}>赋值</Button>
+        </Space>
+      )}
       extra={(
         <Card bordered={false}>
           Extra Block!

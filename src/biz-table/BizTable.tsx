@@ -2,7 +2,6 @@ import * as React from 'react';
 import { Table, Card, Space } from 'antd';
 import { TableProps, ColumnType, ColumnGroupType } from 'antd/es/table';
 import { SpaceProps } from 'antd/es/space';
-import { SorterResult, TableCurrentDataSource } from 'antd/es/table/interface';
 import { CardProps } from 'antd/es/card';
 import { FormInstance } from 'antd/es/form';
 import { ValueType } from '../biz-field/interface';
@@ -11,26 +10,8 @@ import SearchForm, { SearchFormProps } from './SearchForm';
 import { QueryFormProps } from '../biz-form/components/QueryForm';
 import usePagination from './usePagination';
 import BizField from '../biz-field';
-
-export type ActionType = {
-  reload: () => void;
-  reset: () => void;
-};
-
-type RecordType = {
-  [x: string]: any;
-};
-
-export type Request = (
-  params: {
-    pageSize?: number;
-    current?: number;
-    [key: string]: any;
-  },
-  filters: Record<string, (string | number)[] | null>,
-  sorter: SorterResult<RecordType> | SorterResult<RecordType>[],
-  extra: TableCurrentDataSource<RecordType>,
-) => Promise<{ data: object[]; total?: number; [x: string]: any }>;
+import actionCache, { createActionCacheKey } from './actionCache';
+import { Request, RecordType, ActionType } from './interface';
 
 export declare type BizColumns = ((ColumnGroupType<any> | ColumnType<any>) & {
   valueType?: ValueType;
@@ -81,6 +62,8 @@ const BizTableInner: React.FC<BizTableInnerProps> = React.forwardRef(
     },
     ref,
   ) => {
+    const actionCacheKey = React.useMemo(() => createActionCacheKey(), []);
+
     const innerFormRef =
       (formRef as React.MutableRefObject<FormInstance | undefined>) ||
       React.useRef<FormInstance | undefined>();
@@ -90,6 +73,7 @@ const BizTableInner: React.FC<BizTableInnerProps> = React.forwardRef(
       {
         autoRun: false,
         defaultPageSize: (pagination && pagination?.pageSize) || 10,
+        actionCacheKey,
       },
     );
 
@@ -98,12 +82,37 @@ const BizTableInner: React.FC<BizTableInnerProps> = React.forwardRef(
       typeof onChange === 'function' && onChange(page, filters, sorter, extra);
     }, []);
 
+    const handleReload = React.useCallback(() => {
+      actionCache[actionCacheKey] = 'reload';
+      run();
+    }, []);
+
     const handleReset = React.useCallback(() => {
+      actionCache[actionCacheKey] = 'reset';
       if (formItems) {
-        innerFormRef.current?.resetFields();
+        innerFormRef.current.resetFields();
         innerFormRef.current?.submit();
       } else {
         run({}); // 触发修改分页
+      }
+    }, []);
+
+    const handleSubmit = React.useCallback(() => {
+      actionCache[actionCacheKey] = 'submit';
+      if (formItems) {
+        innerFormRef.current?.submit();
+      } else {
+        run({}); // 触发修改分页
+      }
+    }, []);
+
+    const handleFinish = React.useCallback((values) => {
+      if (actionCache[actionCacheKey] !== 'reset') {
+        actionCache[actionCacheKey] = 'submit';
+      }
+      run(values);
+      if (actionCache[actionCacheKey] !== 'reset') {
+        actionCache[actionCacheKey] = '';
       }
     }, []);
 
@@ -132,8 +141,9 @@ const BizTableInner: React.FC<BizTableInnerProps> = React.forwardRef(
     React.useImperativeHandle(
       ref,
       () => ({
-        reload: run,
+        reload: handleReload,
         reset: handleReset,
+        submit: handleSubmit,
       }),
       [],
     );
@@ -147,6 +157,12 @@ const BizTableInner: React.FC<BizTableInnerProps> = React.forwardRef(
         }
       }
     }, [ready]);
+
+    React.useEffect(() => {
+      return () => {
+        delete actionCache[actionCacheKey];
+      };
+    }, []);
 
     const tableCardStyle = React.useMemo(
       () => ({ padding: !formItems && !toolbar ? 0 : '16px 24px 0' }),
@@ -164,7 +180,7 @@ const BizTableInner: React.FC<BizTableInnerProps> = React.forwardRef(
           formItems={formItems}
           ref={innerFormRef}
           loading={loading}
-          onFinish={run}
+          onFinish={handleFinish}
           onReset={handleReset}
           ready={ready}
           cardProps={formCardProps}
