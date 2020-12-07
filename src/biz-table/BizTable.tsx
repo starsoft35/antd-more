@@ -85,7 +85,7 @@ const BizTableInner: React.FC<BizTableInnerProps> = React.forwardRef(
     const handleReload = React.useCallback(() => {
       actionCache[actionCacheKey] = 'reload';
       run();
-    }, []);
+    }, [run]);
 
     const handleReset = React.useCallback(() => {
       actionCache[actionCacheKey] = 'reset';
@@ -94,8 +94,9 @@ const BizTableInner: React.FC<BizTableInnerProps> = React.forwardRef(
         innerFormRef.current?.submit();
       } else {
         run({}); // 触发修改分页
+        actionCache[actionCacheKey] = '';
       }
-    }, []);
+    }, [run, innerFormRef.current]);
 
     const handleSubmit = React.useCallback(() => {
       actionCache[actionCacheKey] = 'submit';
@@ -104,17 +105,31 @@ const BizTableInner: React.FC<BizTableInnerProps> = React.forwardRef(
       } else {
         run({}); // 触发修改分页
       }
-    }, []);
+    }, [run, innerFormRef.current]);
 
-    const handleFinish = React.useCallback((values) => {
-      if (actionCache[actionCacheKey] !== 'reset') {
-        actionCache[actionCacheKey] = 'submit';
-      }
-      run(values);
-      if (actionCache[actionCacheKey] !== 'reset') {
+    // 默认 onReset 中已经重置表单，这里只需触发请求
+    const handleDefaultReset = React.useCallback(() => {
+      actionCache[actionCacheKey] = 'reset';
+      if (formItems) {
+        innerFormRef.current?.submit();
+      } else {
+        run({}); // 触发修改分页
         actionCache[actionCacheKey] = '';
       }
-    }, []);
+    }, [run, innerFormRef.current]);
+
+    const handleFinish = React.useCallback(
+      (values) => {
+        if (actionCache[actionCacheKey] !== 'reset') {
+          actionCache[actionCacheKey] = 'submit';
+        }
+        run(values);
+        if (actionCache[actionCacheKey] === 'reset') {
+          actionCache[actionCacheKey] = '';
+        }
+      },
+      [run],
+    );
 
     const currentColumns = React.useMemo(
       () =>
@@ -158,6 +173,7 @@ const BizTableInner: React.FC<BizTableInnerProps> = React.forwardRef(
       }
     }, [ready]);
 
+    // 删除缓存 action
     React.useEffect(() => {
       return () => {
         delete actionCache[actionCacheKey];
@@ -181,7 +197,7 @@ const BizTableInner: React.FC<BizTableInnerProps> = React.forwardRef(
           ref={innerFormRef}
           loading={loading}
           onFinish={handleFinish}
-          onReset={handleReset}
+          onReset={handleDefaultReset}
           ready={ready}
           cardProps={formCardProps}
           {...form}
