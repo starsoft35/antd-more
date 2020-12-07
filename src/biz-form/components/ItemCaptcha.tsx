@@ -34,6 +34,7 @@ const VerificateCodeInput: React.FC<VerificateCodeInputProps> = ({
 
   // 验证手机号码/邮箱是否正确
   const checkResult = React.useCallback(() => {
+    setLoading(true);
     return new Promise((resolve, reject) => {
       const ret = check();
       if (typeof ret === 'boolean' && checkResult) {
@@ -41,6 +42,7 @@ const VerificateCodeInput: React.FC<VerificateCodeInputProps> = ({
       } else if (typeof ret === 'object' && ret.then) {
         ret.then(resolve).catch(reject);
       } else {
+        setLoading(false);
         reject();
       }
     });
@@ -97,7 +99,7 @@ const VerificateCodeInput: React.FC<VerificateCodeInputProps> = ({
 
 export interface FormItemCaptchaProps
   extends BizFormItemProps,
-    Omit<VerificateCodeInputProps, 'value' | 'change'>,
+    Pick<VerificateCodeInputProps, 'check' | 'onGetCaptcha' | 'inputProps' | 'buttonProps'>,
     Pick<CaptchaButtonProps, 'initText' | 'runText' | 'resetText' | 'second'> {}
 
 const FormItemCaptcha: React.FC<FormItemCaptchaProps> = ({

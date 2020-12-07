@@ -41,7 +41,9 @@ const BankCardInput: React.FC<BankCardInputProps> = ({
     // 处理格默认值的式化
     if (value && formatting) {
       const realVal = handleNormalize(value);
-      onChange(realVal);
+      setTimeout(() => {
+        onChange(realVal);
+      }, 0);
     }
   }, []);
   return (

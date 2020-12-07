@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { DatePicker } from 'antd';
 import classNames from 'classnames';
+import { Moment } from 'moment';
 import { RangePickerProps } from 'antd/es/date-picker';
-import { TimePickerProps } from 'antd/es/time-picker';
+import { RangePickerDateProps } from 'antd/es/date-picker/generatePicker';
 import {
   MomentScale,
   DateUnit,
@@ -18,20 +19,22 @@ const DateRangePickerWrapper: React.FC<RangePickerProps> = ({ value, ...restProp
   return <DatePicker.RangePicker value={transformMomentValue(value)} {...restProps} />;
 };
 
-export interface FormItemDateRangeProps extends BizFormItemProps {
+export interface FormItemDateRangeProps
+  extends BizFormItemProps,
+    Pick<RangePickerDateProps<Moment>, 'showTime'> {
   disabledDateBefore?: number;
   disabledDateAfter?: number;
   maxRange?: number; // 最大可选范围值，根据当前 picker 为单位。
-  showTime?: TimePickerProps | boolean;
+  // showTime?: Pick<RangePickerDateProps<Moment>, 'showTime'>;
   format?: string;
   picker?: Picker;
-  pickerProps?: RangePickerProps;
+  pickerProps?: RangePickerProps & Pick<RangePickerDateProps<Moment>, 'showTime'>;
   names?: [string, string];
 }
 
 const prefixCls = 'antd-more-form-item-date';
 
-const FormItemDateRange: React.FC<FormItemDateRangeProps | any> = ({
+const FormItemDateRange: React.FC<FormItemDateRangeProps> = ({
   disabledDateBefore,
   disabledDateAfter,
   maxRange,

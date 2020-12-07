@@ -7,14 +7,14 @@ import BizFormItem, { BizFormItemProps } from './Item';
 export enum ColorPicker {
   block = 'BlockPicker',
   chrome = 'ChromePicker',
-  compact = 'CompackPicker',
+  compact = 'CompactPicker',
   photoshop = 'PhotoshopPicker',
   sketch = 'SketchPicker',
 }
 
 export interface FormItemColorProps extends BizFormItemProps {
   showText?: boolean;
-  picker?: keyof ColorPicker;
+  picker?: keyof typeof ColorPicker;
   trigger?: 'hover' | 'click';
   colorMode?: 'rgb' | 'hex';
   placement?: TooltipPlacement;

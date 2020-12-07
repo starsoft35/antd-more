@@ -9,7 +9,7 @@ import ListFieldContext from '../ListFieldContext';
 // 输入->格式化->验证（转换再验证）
 // 提交->验证（转换再验证）->转换后的值
 
-type TransformFn<T = any> = (value: T) => T | any;
+type TransformFn<T = any> = (value: T, currentPathValues?: any) => T | any;
 
 export interface BizFormItemProps extends FormItemProps {
   transform?: TransformFn;

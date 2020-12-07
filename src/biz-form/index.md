@@ -145,6 +145,8 @@ colProps  | 设置该表单项 Col 属性。部分场景下生效，如 QueryFor
 
 地址选择和输入框，该表单项由2个表单项组合而成，所以不要配置 `name`，但必须配置 `names` `labels` 。
 
+默认级联框的 `colProps` 为 `{ md: 12, lg: 8 }` ， 输入框的 `colProps` 为 `{ md: 12, lg: 16 }` 。
+
 **特点**
 
 - 过滤空格
@@ -154,9 +156,11 @@ colProps  | 设置该表单项 Col 属性。部分场景下生效，如 QueryFor
 
 - 必填时为空，提示：`请选择${labels[0]}` `请输入${labels[1]}`
 
-```typescript
-const { ItemAddress } = BizForm;
+<code src="./demos/item-address-1.tsx" />
 
+<br/>
+
+```typescript
 type CascaderValue = string[] | number[];
 type Value = [CascaderValue, string | undefined];
 interface Option {
@@ -195,9 +199,7 @@ cascaderProps  | 级联选项的属性 | [`CascaderProps`](https://ant-design.gi
 - 开启脱敏校验后，判断是否与初始值相等，相等即 `验证通过`
 - 使用 [util-helpers isBankCard](https://doly-dev.github.io/util-helpers/module-Validator.html#.isBankCard) 验证，提示：`请输入正确的${label}`
 
-```typescript
-const { ItemBankCard } = BizForm;
-```
+<code src="./demos/item-bankCard-1.tsx" />
 
 <br/>
 
@@ -223,9 +225,7 @@ inputProps  | 输入框的属性 | [`InputProps`](https://ant-design.gitee.io/co
 
 - 必填时为空，提示：`请输入${label}`
 
-```typescript
-const { ItemCaptcha } = BizForm;
-```
+<code src="./demos/item-captcha-1.tsx" />
 
 <br/>
 
@@ -253,9 +253,7 @@ buttonProps  | 按钮的属性 | [`ButtonProps`](https://ant.design/components/b
 
 - 必填时为空，提示：`请选择${label}`
 
-```typescript
-const { ItemCheckbox } = BizForm;
-```
+<code src="./demos/item-checkbox-1.tsx" />
 
 <br/>
 
@@ -277,9 +275,7 @@ checkboxGroupProps  | 多选框 Group 的属性 | [`CheckboxGroupProps`](https:/
 
 - 必填时为空，提示：`请选择${label}`
 
-```typescript
-const { ItemColor } = BizForm;
-```
+<code src="./demos/item-color-1.tsx" />
 
 <br/>
 
@@ -307,9 +303,7 @@ colorProps  | 其他颜色选择器配置，不同 picker 有不同的配置项�
 
 - 必填时为空，提示：`请选择${label}`
 
-```typescript
-const { ItemDate } = BizForm;
-```
+<code src="./demos/item-date-1.tsx" />
 
 <br/>
 
@@ -340,9 +334,7 @@ pickerProps  | 输入框的属性 | [`DatePickerProps`](https://ant-design.gitee
 - 必填时为空，提示：`请选择${label}`
 - 日期范围判断超过区间，提示：`时间跨度不能超过${maxRange}天/周/月/季/年`
 
-```typescript
-const { ItemDateRange } = BizForm;
-```
+<code src="./demos/item-dateRange-1.tsx" />
 
 <br/>
 
@@ -374,9 +366,7 @@ pickerProps  | 输入框的属性 | [`DatePickerProps`](https://ant-design.gitee
 - 开启脱敏校验后，判断是否与初始值相等，相等即 `验证通过`
 - 使用 [util-helpers isEmail](https://doly-dev.github.io/util-helpers/module-Validator.html#.isEmail) 验证，提示：`请输入正确的${label}`
 
-```typescript
-const { ItemEmail } = BizForm;
-```
+<code src="./demos/item-email-1.tsx" />
 
 <br/>
 
@@ -404,9 +394,7 @@ inputProps  | 输入框的属性 | [`InputProps`](https://ant-design.gitee.io/co
 - 开启脱敏校验后，判断是否与初始值相等，相等即 `验证通过`
 - 使用 [util-helpers isIdCard](https://doly-dev.github.io/util-helpers/module-Validator.html#.isIdCard) 验证，提示：`请输入正确的${label}`
 
-```typescript
-const { ItemIdCard } = BizForm;
-```
+<code src="./demos/item-idCard-1.tsx" />
 
 <br/>
 
@@ -423,18 +411,13 @@ Input 输入框
 
 **特点**
 
-- 一键开启过滤空格
+- 可配置过滤空格
 
 **校验顺序**
 
 - 必填时为空，提示：`请输入${label}`
 
-```typescript
-const { ItemInput } = BizForm;
-
-const ItemInputPassword = ItemInput.Password;
-const ItemInputTextArea = ItemInput.TextArea;
-```
+<code src="./demos/item-input-1.tsx" />
 
 <br/>
 
@@ -460,9 +443,7 @@ inputProps  | 输入框的属性 | [`InputProps`](https://ant-design.gitee.io/co
 - 开启脱敏校验后，判断是否与初始值相等，相等即 `验证通过`
 - 使用 [util-helpers isMobile](https://doly-dev.github.io/util-helpers/module-Validator.html#.isMobile) 验证，提示：`请输入正确的${label}`
 
-```typescript
-const { ItemMobile } = BizForm;
-```
+<code src="./demos/item-mobile-1.tsx" />
 
 <br/>
 
@@ -491,9 +472,7 @@ inputProps  | 输入框的属性 | [`InputProps`](https://ant-design.gitee.io/co
 - 大于 `lte` 时，提示：`不能大于${lte}`
 - 小于 `gte` 时，提示：`不能小于${gt}`
 
-```typescript
-const { ItemNumber } = BizForm;
-```
+<code src="./demos/item-number-1.tsx" />
 
 <br/>
 
@@ -523,9 +502,7 @@ inputProps  | 数字输入框的属性 | [`InputNumberProps`](https://ant-design
 - 使用 [util-helpers validatePassword](https://doly-dev.github.io/util-helpers/module-Validator.html#.validatePassword) 验证非法字符，提示：`${label}包含无法识别的字符`
 - 验证密码强度，提示：`${label}为大小写字母、数字或符号任意${numMap[level]}者组成`
 
-```typescript
-const { ItemPassword } = BizForm;
-```
+<code src="./demos/item-password-1.tsx" />
 
 <br/>
 
@@ -551,9 +528,11 @@ inputProps  | 输入框配置参数 | [`InputProps`](https://ant-design.gitee.io
 
 - 必填时为空，提示：`请选择${label}`
 
-```typescript
-const { ItemRadio } = BizForm;
+<code src="./demos/item-radio-1.tsx" />
 
+<br/>
+
+```typescript
 interface Option {
     name: string;
     value: string | number | boolean;
@@ -590,9 +569,11 @@ radioGroupProps  | 单选框组合配置参数 | [`RadioGroupProps`](https://ant
 
 - 必填时为空，提示：`请选择${label}`
 
-```typescript
-const { ItemSelect } = BizForm;
+<code src="./demos/item-select-1.tsx" />
 
+<br/>
+
+```typescript
 interface Option {
     value: string | number;
     name: string;
@@ -631,6 +612,10 @@ selectProps  | 选择器配置参数 | [`SelectProps`](https://ant-design.gitee.
 - 验证长度，提示：`${label}为${min}~${max}位`
 - 验证非手机号码，提示：`${label}不能为手机号码`
 - 验证不包含@符号，提示：`${label}不能包含@符号`
+
+<code src="./demos/item-useName-1.tsx" />
+
+<br/>
 
 参数 | 说明 | 类型 | 默认值 |
 ------------- | ------------- | ------------- | ------------- |
