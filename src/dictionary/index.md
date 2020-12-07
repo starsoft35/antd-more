@@ -9,6 +9,8 @@ legacy: /common/dictionary
 
 # Dictionary
 
+> 推荐使用 `BizField` 和 `BizForm.ItemSelect` `BizForm.Radio` 。
+
 `数据字典` 显示 和 选择
 
 数据必须含有 `value` `name` 。

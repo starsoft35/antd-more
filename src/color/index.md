@@ -9,6 +9,8 @@ legacy: /common/color
 
 # Color
 
+> 推荐使用 `BizField` 和 `BizForm.ItemColor` 。
+
 用于显示/选择颜色
 
 ## 代码演示

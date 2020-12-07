@@ -77,6 +77,10 @@ export default () => {
         </Descriptions.Item>
         <Descriptions.Item label="序列号">
           <BizField value={0} valueType="index" />
+          <BizField value={1} valueType="index" />
+          <BizField value={2} valueType="index" />
+          <BizField value={3} valueType="index" />
+          <BizField value={9} valueType="index" />
         </Descriptions.Item>
         <Descriptions.Item label="序列号(圆)">
           <BizField value={0} valueType="indexBorder" />
