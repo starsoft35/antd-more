@@ -16,8 +16,8 @@
 
  antd-more | antd |
  --------- | ---- |
- v0.x       | v4.x  |
- v1.x       | v4.x  |
+ v0.x      | v4.x |
+ v1.x      | v4.x |
 
 ## 使用
 
