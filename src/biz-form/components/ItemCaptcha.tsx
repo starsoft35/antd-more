@@ -34,7 +34,6 @@ const VerificateCodeInput: React.FC<VerificateCodeInputProps> = ({
 
   // 验证手机号码/邮箱是否正确
   const checkResult = React.useCallback(() => {
-    setLoading(true);
     return new Promise((resolve, reject) => {
       const ret = check();
       if (typeof ret === 'boolean' && checkResult) {
@@ -42,26 +41,29 @@ const VerificateCodeInput: React.FC<VerificateCodeInputProps> = ({
       } else if (typeof ret === 'object' && ret.then) {
         ret.then(resolve).catch(reject);
       } else {
-        setLoading(false);
         reject();
       }
     });
   }, [check]);
 
   const onButtonClick = async () => {
-    await checkResult();
-
     setLoading(true);
-    // 发送验证码
-    onGetCaptcha()
-      .then(() => {
-        setStart(true);
-        setLoading(false);
-        inputRef.current.focus();
-      })
-      .catch(() => {
-        setLoading(false);
-      });
+    try {
+      await checkResult();
+
+      // 发送验证码
+      onGetCaptcha()
+        .then(() => {
+          setStart(true);
+          setLoading(false);
+          inputRef.current.focus();
+        })
+        .catch(() => {
+          setLoading(false);
+        });
+    } catch (err) {
+      setLoading(false);
+    }
   };
 
   const handleEnd = React.useCallback(() => {
