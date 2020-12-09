@@ -18,7 +18,11 @@ const Dictionary: React.FC<DictionaryProps> = ({
 
   const options = (optionName ? ret[optionName] : ret[type]) || {};
   const { alias, ...restOptions } = options;
-  const props = { ...restOptions, ...restProps };
+  const props = {
+    ...restOptions,
+    ...restProps,
+    style: { ...restOptions?.style, ...restProps?.style },
+  };
   const name = alias || ret.name;
 
   if (type === 'tag') {
