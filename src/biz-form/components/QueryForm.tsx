@@ -46,7 +46,7 @@ const colSpan = {
 const QueryForm: React.FC<QueryFormProps> = (props) => {
   const {
     layout = 'horizontal',
-    labelWidth = 80,
+    labelWidth = 84,
     labelCol,
     submitter,
     submitText = '查询',

@@ -77,7 +77,7 @@ import { BizForm } from 'antd-more';
 参数 | 说明 | 类型 | 默认值 |
 ------------- | ------------- | ------------- | ------------- |
 onReset  | 点击重置按钮的回调 | `(e)=>void` | - |
-submitter  | 提交、重置按钮相关配置 | `false` | `SubmitterProps` | - |
+submitter  | 提交、重置按钮相关配置 | `false` \| `SubmitterProps` | - |
 pressEnterSubmit  | 是否开启回车键提交，注意不要与自定义的 `htmlType='submit'` 的按钮冲突。 | `boolean` | `true` |
 ready  | 为 `false` 时，禁止提交/重置表单。<br/>为 `true` 时，会重新设置表单初始值。 | `boolean` | `true` |
 loading  | 设置提交、重置的加载/禁止状态 | `boolean` | `false` |
@@ -106,7 +106,7 @@ const { QueryForm } = BizForm;
 
 参数 | 说明 | 类型 | 默认值 |
 ------------- | ------------- | ------------- | ------------- |
-labelWidth  | label 宽度 | `number` \| `'auto'` | `80` |
+labelWidth  | label 宽度 | `number` \| `'auto'` | `84` |
 submitText  | 提交按钮文本 | `React.ReactNode` | `查询` |
 resetText  | 重置按钮文本 | `React.ReactNode` | `重置` |
 defaultCollapsed  | 默认状态下是否折叠超出的表单项 | `boolean` | `true` |
@@ -207,7 +207,7 @@ cascaderProps  | 级联选项的属性 | [`CascaderProps`](https://ant-design.gi
 ------------- | ------------- | ------------- | ------------- |
 security  | 开启脱敏校验。为 `ture` 时，必须传入 `initialValue` 。 | `boolean` | `false` |
 symbol  | 脱敏符号 | `string` | `*` |
-loose  | 宽松模式校验银行卡号，参考 [util-helpers isBankCard](https://doly-dev.github.io/util-helpers/module-Validator.html#.isBankCard) | `boolean` | `true` |
+loose  | 宽松模式校验银行卡号，参考 [util-helpers isBankCard](https://doly-dev.github.io/util-helpers/module-Validator.html#.isBankCard)。<br/>正常模式（非0开头，15~19位数字，常用于对私账户）宽松模式（8~30位数字，对公账户）。 | `boolean` | `true` |
 formatting  | 输入显示格式化 | `boolean` | `false` |
 divider  | 格式化的分隔符，需配合 `formatting` 使用。 | `string` | `' '` |
 inputProps  | 输入框的属性 | [`InputProps`](https://ant-design.gitee.io/components/input-cn/#API) | - |
@@ -232,7 +232,7 @@ inputProps  | 输入框的属性 | [`InputProps`](https://ant-design.gitee.io/co
 参数 | 说明 | 类型 | 默认值 |
 ------------- | ------------- | ------------- | ------------- |
 check  | 用于检查手机号码或邮箱是否正确，点击按钮时触发。 | `()=>boolean` \| `()=>Promise<boolean>` | `()=>true` |
-onGetCaptcha  | 用于请求获取验证码，check 返回 true 时触发。 | `()=>Primise<any>` | `()=>Promise.resolve()` |
+onGetCaptcha  | 用于请求获取验证码，`check` 验证成功后触发。 | `()=>Primise<any>` | `()=>Promise.resolve()` |
 initText  | 按钮初始显示文本 | `string` | `获取验证码` |
 runText  | 按钮倒计时显示文本，包含 `%s` 会自动替换为秒数 | `string` | `%s秒后重新获取` |
 resetText  | 按钮倒计时结束显示文本 | `string` | `重新获取验证码` |
