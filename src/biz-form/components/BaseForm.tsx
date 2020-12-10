@@ -13,7 +13,7 @@ export interface BaseFormProps extends FormProps {
   ) => React.ReactNode;
   ready?: boolean; // false 时，禁止触发 submit 。 true 时，会对表单初始值重新赋值。
   loading?: boolean;
-  submitter?: false | undefined | null | Omit<SubmitterProps, 'form'>;
+  submitter?: false | Omit<SubmitterProps, 'form'>;
   onReset?: (event: React.FormEvent<HTMLFormElement>) => void;
   pressEnterSubmit?: boolean;
   children?: React.ReactNode;

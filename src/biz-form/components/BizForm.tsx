@@ -46,16 +46,22 @@ const BizForm: React.FC<BaseFormProps> & {
   ItemSelect: typeof ItemSelect;
   ItemUserName: typeof ItemUserName;
 } = ({ submitter, ...restProps }) => {
+  const submitterProps = typeof submitter === 'boolean' || !submitter ? {} : submitter;
+  const submitterConfig =
+    typeof submitter === 'undefined' || submitter
+      ? {
+          render: (_, dom) => (
+            <Form.Item label=" " colon={false} className={formItemHideLabelClass}>
+              <Space>{dom}</Space>
+            </Form.Item>
+          ),
+          ...submitterProps,
+        }
+      : false;
+
   return (
     <BaseForm
-      submitter={{
-        render: (_, dom) => (
-          <Form.Item label=" " colon={false} className={formItemHideLabelClass}>
-            <Space>{dom}</Space>
-          </Form.Item>
-        ),
-        ...submitter,
-      }}
+      submitter={submitterConfig}
       contentRender={(items, submitter) => (
         <>
           {items}
