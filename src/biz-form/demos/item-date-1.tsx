@@ -18,8 +18,8 @@ const Demo: React.FC<{}> = () => {
       <ItemDate label="日期2" name="date2" required />
       <ItemDate label="日期时间" name="date3" showTime />
       <ItemDate label="月" name="date4" picker="month" />
-      <ItemDate label="交易日期" name="date5" disabledDateAfter={0} extra='当日及以后日期不可选' />
-      <ItemDate label="订单日期" name="date6" disabledDateBefore={-365} disabledDateAfter={1} extra='一年以前和明天以后日期不可选' />
+      <ItemDate label="交易日期" name="date5" disabledDateAfter={0} tooltip='当日及以后日期不可选' />
+      <ItemDate label="订单日期" name="date6" disabledDateBefore={-365} disabledDateAfter={1} tooltip='一年以前和明天以后日期不可选' />
     </BizForm>
   );
 }

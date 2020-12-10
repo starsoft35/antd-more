@@ -111,7 +111,7 @@ interface EnumItem {
 type EnumData = EnumItem[];
 ```
 
-### 个别的API
+### 个别 ValueType 的 API
 
 #### percent
 

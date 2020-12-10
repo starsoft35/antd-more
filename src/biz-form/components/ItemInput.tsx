@@ -6,9 +6,26 @@ import ItemInputTextArea from './ItemInputTextArea';
 import ItemInputPassword from './ItemInputPassword';
 import BizFormItem, { BizFormItemProps } from './Item';
 
+const prefixCls = 'antd-more-input';
+
+interface InputWrapperProps extends InputProps {
+  before?: React.ReactNode;
+  after?: React.ReactNode;
+}
+
+const InputWrapper: React.FC<InputWrapperProps> = ({ after, before, ...restProps }) => {
+  return (
+    <div className={prefixCls}>
+      {before && <div style={{ marginRight: 8 }}>{before}</div>}
+      <Input {...restProps} />
+      {after && <div style={{ marginLeft: 8 }}>{after}</div>}
+    </div>
+  );
+};
+
 export interface FormItemInputProps extends BizFormItemProps {
   disabledWhiteSpace?: boolean;
-  inputProps?: InputProps;
+  inputProps?: InputWrapperProps;
 }
 
 const FormItemInput: React.FC<FormItemInputProps> & {
@@ -46,7 +63,7 @@ const FormItemInput: React.FC<FormItemInputProps> & {
       ]}
       {...restProps}
     >
-      <Input placeholder="请输入" allowClear autoComplete="off" {...inputProps} />
+      <InputWrapper placeholder="请输入" allowClear autoComplete="off" {...inputProps} />
     </BizFormItem>
   );
 };

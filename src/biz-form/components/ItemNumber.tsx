@@ -3,7 +3,7 @@ import { InputNumber } from 'antd';
 import { InputNumberProps } from 'antd/es/input-number';
 import BizFormItem, { BizFormItemProps } from './Item';
 
-const prefixCls = 'antd-more-input-number';
+const prefixCls = 'antd-more-input';
 
 interface InputNumberWrapperProps extends InputNumberProps {
   before?: React.ReactNode;

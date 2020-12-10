@@ -34,7 +34,7 @@ const LoginDemo: React.FC<{}> = () => {
   }, []);
 
   return (
-    <div style={{ width: '80%', maxWidth: 320, margin: '0 auto' }}>
+    <div style={{ width: '80%', maxWidth: 380, margin: '0 auto' }}>
       <BizForm
         name='form-login'
         form={form}
@@ -111,6 +111,9 @@ const LoginDemo: React.FC<{}> = () => {
           buttonProps={{
             size: 'large'
           }}
+          required
+          label="验证码"
+          labelCol={{ style: { display: 'none' } }}
           check={() => {
             // 验证手机号码或邮箱是否正确
             return form.validateFields(['mobile']).catch(() => {
@@ -122,12 +125,18 @@ const LoginDemo: React.FC<{}> = () => {
             // 发送验证码
             return sendCaptcha(form.getFieldValue('mobile'));
           }}
-          rules={[
-            {
-              required: true,
-              message: '请输入验证码'
-            }
-          ]}
+        />
+        <ItemInput
+          name='verifyCode'
+          inputProps={{
+            prefix: <SafetyCertificateOutlined />,
+            size: 'large',
+            placeholder: "请输入图片验证码",
+            after: <img src="http://img3.itboth.com/12/14/qAVNBz.jpg" style={{height: 40, margin: 0}} />
+          }}
+          label='图片验证码'
+          labelCol={{ style: { display: 'none' } }}
+          required
         />
       </BizForm>
     </div>

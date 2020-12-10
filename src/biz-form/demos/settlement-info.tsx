@@ -70,7 +70,7 @@ const SettlementInfo: React.FC<{}> = () => {
     >
       <Row>
         <Col {...oneColSpan}>
-          <ItemRadio label="结算方式" name="settlementCycle" required options={SettlementCycle} extra="T为工作日，D为自然日" />
+          <ItemRadio label="结算方式" name="settlementCycle" required options={SettlementCycle} tooltip="T为工作日，D为自然日" />
         </Col>
         <Col {...oneColSpan}>
           <ItemRadio label="结算类型" name="settlementType" required options={SettlementType} />

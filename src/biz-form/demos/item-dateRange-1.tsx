@@ -24,9 +24,9 @@ const Demo: React.FC<{}> = () => {
       <ItemDateRange label="解构字段" names={["startDate", "endDate"]} required />
       <ItemDateRange label="日期时间" name="date3" showTime />
       <ItemDateRange label="月" name="date4" picker="month" />
-      <ItemDateRange label="交易日期" name="date5" disabledDateAfter={0} maxRange={30} extra='当日及以后日期不可选，最大区间不能超过30天' />
-      <ItemDateRange label="订单日期" name="date6" disabledDateBefore={-365} disabledDateAfter={1} extra='一年以前和明天以后日期不可选' />
-      <ItemDateRange label="订单日期2" name="date7" disabledDateBefore={-365} disabledDateAfter={1} maxRange={30} extra='默认值为最近30天，一年以前和明天以后日期不可选，最大区间不能超过30天' />
+      <ItemDateRange label="交易日期" name="date5" disabledDateAfter={0} maxRange={30} tooltip='当日及以后日期不可选，最大区间不能超过30天' />
+      <ItemDateRange label="订单日期" name="date6" disabledDateBefore={-365} disabledDateAfter={1} tooltip='一年以前和明天以后日期不可选' />
+      <ItemDateRange label="订单日期2" name="date7" disabledDateBefore={-365} disabledDateAfter={1} maxRange={30} tooltip='默认值为最近30天，一年以前和明天以后日期不可选，最大区间不能超过30天' />
     </BizForm>
   );
 }

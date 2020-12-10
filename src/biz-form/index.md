@@ -231,7 +231,7 @@ inputProps  | 输入框的属性 | [`InputProps`](https://ant-design.gitee.io/co
 
 参数 | 说明 | 类型 | 默认值 |
 ------------- | ------------- | ------------- | ------------- |
-check  | 用于检查手机号码或邮箱是否正确，点击按钮时触发。 | `()=>boolean` \| `()=>Promise<boolean>` | `()=>true` |
+check  | 用于检查手机号码或邮箱是否正确，点击按钮时触发。 | `()=>boolean` \| `()=>Promise<any>` | `()=>true` |
 onGetCaptcha  | 用于请求获取验证码，`check` 验证成功后触发。 | `()=>Primise<any>` | `()=>Promise.resolve()` |
 initText  | 按钮初始显示文本 | `string` | `获取验证码` |
 runText  | 按钮倒计时显示文本，包含 `%s` 会自动替换为秒数 | `string` | `%s秒后重新获取` |
@@ -424,6 +424,8 @@ Input 输入框
 参数 | 说明 | 类型 | 默认值 |
 ------------- | ------------- | ------------- | ------------- |
 disabledWhiteSpace  | 禁止输入空白符。 `Password` 组件不支持该项。 | `boolean` | `false` |
+before  | 输入框前面元素 | `React.ReactNode` | - |
+after  | 输入框后面元素 | `React.ReactNode` | - |
 inputProps  | 输入框的属性 | [`InputProps`](https://ant-design.gitee.io/components/input-cn/#API) | - |
 
 
