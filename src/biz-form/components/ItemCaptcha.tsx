@@ -9,7 +9,7 @@ interface VerificateCodeInputProps {
   value?: any;
   onChange?: (value: any) => void;
   // 验证手机号码 或 邮箱
-  check?: () => boolean | Promise<boolean>;
+  check?: () => boolean | Promise<any>;
   // 发送验证码
   onGetCaptcha?: () => Promise<any>;
   inputProps?: InputProps;
