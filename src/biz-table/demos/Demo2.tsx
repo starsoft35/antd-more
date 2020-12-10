@@ -128,28 +128,30 @@ const Demo: React.FC<{}> = () => {
       form={{
         submitter: {
           render: (submitterProps, dom) => {
-            return [
-              <Button
-                key="search"
-                type="primary"
-                onClick={() => { actionRef.current.submit(); }}
-                {...submitterProps.submitButtonProps}
-              >
-                查询
-                </Button>,
-              <Button
-                key="reset"
-                onClick={() => { actionRef.current.reset(); }}
-                {...submitterProps.resetButtonProps}
-              >
-                重置
-                </Button>,
-              <Button
-                key="export"
-              >
-                导出
+            return (
+              <Space>
+                <Button
+                  key="search"
+                  type="primary"
+                  onClick={() => { actionRef.current.submit(); }}
+                  {...submitterProps.submitButtonProps}
+                >
+                  查询
                 </Button>
-            ]
+                <Button
+                  key="reset"
+                  onClick={() => { actionRef.current.reset(); }}
+                  {...submitterProps.resetButtonProps}
+                >
+                  重置
+                </Button>
+                <Button
+                  key="export"
+                >
+                  导出
+                </Button>
+              </Space>
+            )
           }
         },
         defaultColsNumber: 1,

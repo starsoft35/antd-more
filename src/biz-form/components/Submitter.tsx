@@ -65,8 +65,12 @@ const Submitter: React.FC<SubmitterProps> = (props) => {
     if (renderDom?.length < 1) {
       return null;
     }
+    if (renderDom.length === 1) {
+      return renderDom[0];
+    }
     return <Space>{renderDom}</Space>;
   }
+
   return renderDom as React.ReactElement;
 };
 
