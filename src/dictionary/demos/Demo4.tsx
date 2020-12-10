@@ -7,7 +7,7 @@ import React, { useState, useCallback } from "react";
 import { Form, Button } from "antd";
 import { Dictionary } from "antd-more";
 
-const enumStatus = [
+const ApproveStatus = [
   {
     value: 1,
     name: '审核中'
@@ -48,7 +48,7 @@ export default () => {
         name="select_2"
       >
         <Form.Item label="审核状态" name="status">
-          <Dictionary.Select data={enumStatus} all={false} />
+          <Dictionary.Select data={ApproveStatus} all={false} />
         </Form.Item>
         <Form.Item {...buttonItemLayouts}>
           <Button type="primary" htmlType="submit">Submit</Button>

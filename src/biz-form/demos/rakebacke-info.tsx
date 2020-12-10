@@ -22,7 +22,7 @@ const innerLabelCol = {
 }
 
 // 返佣周期
-const enumRakebackeCycle = [
+const RakebackeCycle = [
   {
     value: "0",
     name: "日返"
@@ -66,7 +66,7 @@ const RakebackeInfo: React.FC<{}> = () => {
     >
       <Row>
         <Col {...oneColSpan}>
-          <ItemRadio label="返佣周期" name="rakebackeCycle" required options={enumRakebackeCycle} />
+          <ItemRadio label="返佣周期" name="rakebackeCycle" required options={RakebackeCycle} />
         </Col>
         <Col {...oneColSpan}>
           <BizForm.Item label="普通刷卡" colon={false}>

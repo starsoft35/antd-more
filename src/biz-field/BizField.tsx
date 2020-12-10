@@ -9,7 +9,7 @@ import '../color/style';
 import Percent from './components/Percent';
 import { getDateStr } from './_util/dateUtil';
 
-const dateType = [
+const DateType = [
   'date',
   'dateWeek',
   'dateMonth',
@@ -21,8 +21,8 @@ const dateType = [
   'time',
   'fromNow',
 ];
-const indexType = ['index', 'indexBorder'];
-const enumType = ['enum', 'enumTag', 'enumBadge'];
+const IndexType = ['index', 'indexBorder'];
+const EnumType = ['enum', 'enumTag', 'enumBadge'];
 
 const BizField: React.FC<BizFieldProps> = ({
   value,
@@ -61,10 +61,10 @@ const BizField: React.FC<BizFieldProps> = ({
   } else if (type === 'money') {
     // 金额
     view = <span {...props}>{formatMoney(value)}</span>;
-  } else if (dateType.includes(type)) {
+  } else if (DateType.includes(type)) {
     // 日期类型
     view = <span {...props}>{getDateStr(value, type)}</span>;
-  } else if (indexType.includes(type)) {
+  } else if (IndexType.includes(type)) {
     // 序号
     view = <FieldIndex value={value + 1} type={type} {...props} />;
   } else if (type === 'progress') {
@@ -73,7 +73,7 @@ const BizField: React.FC<BizFieldProps> = ({
   } else if (type === 'percent') {
     // 百分比
     view = <Percent value={value} {...props} />;
-  } else if (enumType.includes(type)) {
+  } else if (EnumType.includes(type)) {
     // 枚举值
     const typeObj = {
       enum: 'text',

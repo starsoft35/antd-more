@@ -14,7 +14,7 @@ const twoColSpan = {
 };
 
 // 结算方式
-export const enumSettlementCycle = [
+export const SettlementCycle = [
   {
     value: "T1",
     name: "T+1"
@@ -26,7 +26,7 @@ export const enumSettlementCycle = [
 ];
 
 // 结算类型
-export const enumBankCardType = [
+export const SettlementType = [
   {
     value: "0",
     name: "对公账户"
@@ -70,10 +70,10 @@ const SettlementInfo: React.FC<{}> = () => {
     >
       <Row>
         <Col {...oneColSpan}>
-          <ItemRadio label="结算方式" name="settlementCycle" required options={enumSettlementCycle} extra="T为工作日，D为自然日" />
+          <ItemRadio label="结算方式" name="settlementCycle" required options={SettlementCycle} extra="T为工作日，D为自然日" />
         </Col>
         <Col {...oneColSpan}>
-          <ItemRadio label="结算类型" name="settlementType" required options={enumBankCardType} />
+          <ItemRadio label="结算类型" name="settlementType" required options={SettlementType} />
         </Col>
         <Col {...oneColSpan}>
           <ItemInput label="账户名称" name="bankCertName" required />

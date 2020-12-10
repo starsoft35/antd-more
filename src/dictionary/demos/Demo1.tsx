@@ -6,7 +6,7 @@
 import React from "react";
 import { Dictionary } from "antd-more";
 
-const enumStatus = [
+const ApproveStatus = [
   {
     value: 1,
     name: '审核中'
@@ -22,5 +22,5 @@ const enumStatus = [
 ];
 
 export default () => {
-  return <Dictionary data={enumStatus} value={1} />
+  return <Dictionary data={ApproveStatus} value={1} />
 }

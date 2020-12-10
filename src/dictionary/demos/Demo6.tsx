@@ -6,7 +6,7 @@
 import React, { useState, useCallback } from "react";
 import { Dictionary } from "antd-more";
 
-const enumOrgType = [
+const OrgType = [
   {
     value: '0',
     name: '小学'
@@ -27,7 +27,7 @@ const enumOrgType = [
 ];
 
 export default () => {
-  const [value, setValue] = useState(enumOrgType[0].value);
+  const [value, setValue] = useState(OrgType[0].value);
 
   const handleChange = useCallback((e) => {
     setValue(e.target.value);
@@ -35,9 +35,9 @@ export default () => {
 
   return (
     <>
-      <Dictionary.Radio data={enumOrgType} value={value} onChange={handleChange} />
+      <Dictionary.Radio data={OrgType} value={value} onChange={handleChange} />
       <br /><br />
-      <Dictionary.Radio data={enumOrgType} value={value} onChange={handleChange} type="button" />
+      <Dictionary.Radio data={OrgType} value={value} onChange={handleChange} type="button" />
     </>
   )
 }

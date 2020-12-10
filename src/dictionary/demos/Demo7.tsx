@@ -6,7 +6,7 @@ import React, { useState, useCallback } from "react";
 import { Form, Button } from "antd";
 import { Dictionary } from "antd-more";
 
-const enumSchool = [
+const OrgType = [
   {
     value: '0',
     name: '小学'
@@ -35,7 +35,7 @@ const buttonItemLayouts = {
   wrapperCol: { span: 16, offset: 6 }
 }
 
-const initialValues = { school: enumSchool[0].value };
+const initialValues = { school: OrgType[0].value };
 
 export default () => {
   const [result, setResult] = useState(initialValues);
@@ -52,7 +52,7 @@ export default () => {
         name="radio_1"
       >
         <Form.Item label="学校" name="school">
-          <Dictionary.Radio data={enumSchool} />
+          <Dictionary.Radio data={OrgType} />
         </Form.Item>
         <Form.Item {...buttonItemLayouts}>
           <Button type="primary" htmlType="submit">Submit</Button>

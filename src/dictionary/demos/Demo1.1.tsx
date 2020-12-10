@@ -13,7 +13,7 @@ import React from "react";
 import { Divider } from "antd";
 import { Dictionary } from "antd-more";
 
-const enumStatus = [
+const ApproveStatus = [
   {
     value: 1,
     name: '审核中',
@@ -64,37 +64,37 @@ export default () => {
   return (
     <>
       <Divider orientation="left">empty or noMatch</Divider>
-      <Dictionary data={enumStatus} value={5} />
+      <Dictionary data={ApproveStatus} value={5} />
       <br />
-      <Dictionary data={enumStatus} value={5} defaultName="noMatch value" />
+      <Dictionary data={ApproveStatus} value={5} defaultName="noMatch value" />
       <br />
       <Divider orientation="left">text</Divider>
-      <Dictionary data={enumStatus} value={1} />
+      <Dictionary data={ApproveStatus} value={1} />
       <br />
-      <Dictionary data={enumStatus} value={2} />
+      <Dictionary data={ApproveStatus} value={2} />
       <br />
-      <Dictionary data={enumStatus} value={3} />
+      <Dictionary data={ApproveStatus} value={3} />
       <br />
       <Divider orientation="left">tag</Divider>
-      <Dictionary data={enumStatus} value={1} type="tag" />
+      <Dictionary data={ApproveStatus} value={1} type="tag" />
       <br />
-      <Dictionary data={enumStatus} value={2} type="tag" />
+      <Dictionary data={ApproveStatus} value={2} type="tag" />
       <br />
-      <Dictionary data={enumStatus} value={3} type="tag" />
+      <Dictionary data={ApproveStatus} value={3} type="tag" />
       <br />
       <Divider orientation="left">badge</Divider>
-      <Dictionary data={enumStatus} value={1} type="badge" />
+      <Dictionary data={ApproveStatus} value={1} type="badge" />
       <br />
-      <Dictionary data={enumStatus} value={2} type="badge" />
+      <Dictionary data={ApproveStatus} value={2} type="badge" />
       <br />
-      <Dictionary data={enumStatus} value={3} type="badge" />
+      <Dictionary data={ApproveStatus} value={3} type="badge" />
       <br />
       <Divider orientation="left">自定义</Divider>
-      <Dictionary data={enumStatus} value={3} optionName="custom" />
+      <Dictionary data={ApproveStatus} value={3} optionName="custom" />
       <br />
-      <Dictionary data={enumStatus} value={3} type="tag" optionName="custom" />
+      <Dictionary data={ApproveStatus} value={3} type="tag" optionName="custom" />
       <br />
-      <Dictionary data={enumStatus} value={3} type="badge" optionName="custom" />
+      <Dictionary data={ApproveStatus} value={3} type="badge" optionName="custom" />
     </>
   )
 }

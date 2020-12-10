@@ -5,7 +5,7 @@
 import React, { useState } from "react";
 import { Dictionary } from "antd-more";
 
-const enumStatus = [
+const ApproveStatus = [
   {
     value: 1,
     name: '审核中'
@@ -25,7 +25,7 @@ export default () => {
 
   return (
     <>
-      <Dictionary.Select data={enumStatus} value={value} onChange={setValue} all={false} style={{ width: 200 }} />
+      <Dictionary.Select data={ApproveStatus} value={value} onChange={setValue} all={false} style={{ width: 200 }} />
       <br /><br />
       <div>current value: {value}</div>
     </>
