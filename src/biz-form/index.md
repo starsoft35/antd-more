@@ -92,6 +92,7 @@ submitText  | 提交按钮文本 | `React.ReactNode` | `提交` |
 resetText  | 重置按钮文本 | `React.ReactNode` | `重置` |
 submitButtonProps  | 提交按钮属性，和 [`antd Button`](https://ant-design.gitee.io/components/button-cn/#API) 一致 | [`ButtonProps`](https://ant-design.gitee.io/components/button-cn/#API) | - |
 resetButtonProps  | 重置按钮属性，和 [`antd Button`](https://ant-design.gitee.io/components/button-cn/#API) 一致 | [`ButtonProps`](https://ant-design.gitee.io/components/button-cn/#API) | - |
+noReset  | 不渲染重置按钮 | `boolean` | `false` |
 render  | 自定义操作的渲染 | `false` \| `(props,dom:JSX[])=>ReactNode[]` | - |
 
 ### QueryForm

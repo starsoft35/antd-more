@@ -10,6 +10,7 @@ export interface SubmitterProps {
   resetText?: React.ReactNode;
   submitButtonProps?: ButtonProps;
   resetButtonProps?: ButtonProps;
+  noReset?: boolean;
   form?: FormInstance;
   render?:
     | ((props: SubmitterProps, dom: JSX.Element[]) => React.ReactNode[] | React.ReactNode | false) // eslint-disable-line
@@ -24,6 +25,7 @@ const Submitter: React.FC<SubmitterProps> = (props) => {
     resetText = '重置',
     submitButtonProps = {},
     resetButtonProps = {},
+    noReset = false,
     form,
     render,
   } = props;
@@ -44,17 +46,20 @@ const Submitter: React.FC<SubmitterProps> = (props) => {
     [submitButtonProps, form, onSubmit],
   );
 
-  const dom = React.useMemo(
-    () => [
+  const dom = React.useMemo(() => {
+    const ret = [
       <Button key="submit" type="primary" {...submitButtonProps} onClick={handleSubmit}>
         {submitText}
       </Button>,
       <Button key="reset" {...resetButtonProps} onClick={handleReset}>
         {resetText}
       </Button>,
-    ],
-    [resetButtonProps, submitButtonProps, form, onSubmit, submitText, resetText],
-  );
+    ];
+    if (noReset) {
+      return ret.slice(0, 1);
+    }
+    return ret;
+  }, [resetButtonProps, submitButtonProps, form, onSubmit, submitText, resetText, noReset]);
 
   const renderDom = render ? render(props, dom) : dom;
 

@@ -20,11 +20,7 @@ const ForgetPassword: React.FC<{}> = () => {
       name="form-forget-password"
       submitter={{
         submitText: '确定',
-        resetButtonProps: {
-          style: {
-            display: 'none'
-          }
-        }
+        noReset: true
       }}
       form={form}
       labelCol={{

@@ -41,7 +41,8 @@ const LoginDemo: React.FC<{}> = () => {
         loading={loading}
         onFinish={onFinish}
         submitter={{
-          render: (_, dom) => dom[0],
+          // render: (_, dom) => dom[0],
+          noReset: true,
           submitText: '登录',
           submitButtonProps: {
             size: 'large',

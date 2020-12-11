@@ -39,11 +39,7 @@ const Demo: React.FC<{}> = () => {
       onFinish={onFinish}
       submitter={{
         submitText: "提交",
-        resetButtonProps: {
-          style: {
-            display: "none"
-          }
-        }
+        noReset: true
       }}
       labelCol={{
         flex: '0 0 96px'

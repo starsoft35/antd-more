@@ -25,11 +25,7 @@ const Demo: React.FC<{}> = () => {
     <BizForm
       submitter={{
         submitText: '确定',
-        resetButtonProps: {
-          style: {
-            display: 'none'
-          }
-        }
+        noReset: true
       }}
       onFinish={onFinish}
       loading={loading}

@@ -61,8 +61,9 @@ const SettlementInfo: React.FC<{}> = () => {
             padding: "0 40px"
           }
         },
+        noReset: true,
         // 提交按钮居中
-        render: (_, dom) => <div style={{ display: "flex", justifyContent: "center" }}>{dom.shift()}</div>,
+        render: (_, dom) => <div style={{ display: "flex", justifyContent: "center" }}>{dom}</div>,
       }}
       labelCol={{
         flex: "0 0 120px"

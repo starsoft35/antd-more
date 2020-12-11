@@ -52,7 +52,7 @@ const BizForm: React.FC<BaseFormProps> & {
       ? {
           render: (_, dom) => (
             <Form.Item label=" " colon={false} className={formItemHideLabelClass}>
-              <Space>{dom}</Space>
+              {Array.isArray(dom) && dom.length > 1 ? <Space>{dom}</Space> : dom}
             </Form.Item>
           ),
           ...submitterProps,
