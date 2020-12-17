@@ -9,11 +9,12 @@
  */
 import * as React from 'react';
 import { BizForm } from 'antd-more';
+import { UploadFile } from 'antd/es/upload/interface';
 
 const { ItemUpload } = BizForm;
 
 // 上传图片
-function uploadImage(file): Promise<{ fssId: string; }> {
+function uploadImage(file: File): Promise<{ fssId: string; }> {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (Math.random() > 0.3) {
@@ -29,15 +30,15 @@ function uploadImage(file): Promise<{ fssId: string; }> {
 
 const Demo: React.FC<{}> = () => {
   // 上传图片
-  const handleUpload = React.useCallback((file) => {
-    return uploadImage(file).then(res => {
+  const handleUpload = React.useCallback((file: UploadFile) => {
+    return uploadImage(file.originFileObj as File).then(res => {
       // 返回值自动添加到 file 中
       return { value: res.fssId }
     });
   }, []);
 
   // 提交时转换上传值
-  const transformUploadValue = React.useCallback((uploadValues) => {
+  const transformUploadValue = React.useCallback((uploadValues: (UploadFile & Record<string, any>)[]) => {
     return uploadValues ? uploadValues.filter(valItem => valItem.status !== 'error' && valItem.value).map(valItem => valItem.value) : undefined;
   }, []);
 

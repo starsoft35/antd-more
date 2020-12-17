@@ -1,8 +1,8 @@
 {
   "umi.css": "https://doly-dev.github.io/antd-more/site/v1/umi.2cae85a2.css",
-  "umi.js": "https://doly-dev.github.io/antd-more/site/v1/umi.b48a25ea.js",
-  "vendors.css": "https://doly-dev.github.io/antd-more/site/v1/vendors.fae7a764.chunk.css",
-  "vendors.js": "https://doly-dev.github.io/antd-more/site/v1/vendors.e7a808db.async.js",
+  "umi.js": "https://doly-dev.github.io/antd-more/site/v1/umi.7a413b39.js",
+  "vendors.css": "https://doly-dev.github.io/antd-more/site/v1/vendors.0d279113.chunk.css",
+  "vendors.js": "https://doly-dev.github.io/antd-more/site/v1/vendors.fa9d04dd.async.js",
   "index.html": "https://doly-dev.github.io/antd-more/site/v1/index.html",
   "static/katex.min.css": "https://doly-dev.github.io/antd-more/site/v1/static/KaTeX_Typewriter-Regular.d3c8e68f.woff"
 }

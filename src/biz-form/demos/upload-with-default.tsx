@@ -5,11 +5,12 @@
  */
 import * as React from 'react';
 import { BizForm } from 'antd-more';
+import { UploadFile } from 'antd/es/upload/interface';
 
 const { ItemUpload } = BizForm;
 
 // 通过fssId获取图片地址
-function getStaticServerPath(fssId): Promise<{ data: string; }> {
+function getStaticServerPath(fssId: string): Promise<{ data: string; }> {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (Math.random() > 0.3) {
@@ -24,7 +25,7 @@ function getStaticServerPath(fssId): Promise<{ data: string; }> {
 }
 
 // 上传图片
-function uploadImage(file): Promise<{ fssId: string; }> {
+function uploadImage(file: File): Promise<{ fssId: string; }> {
   return new Promise((resolve, reject) => {
     // const formData = new FormData();
     // formData.append("file", file);
@@ -44,7 +45,7 @@ function uploadImage(file): Promise<{ fssId: string; }> {
 const defaultFssId = ["jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ", "jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ", "jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ"];
 
 // 将值转换为 UploadFile 对象
-const beforeTransformUploadValues = async (fssIds) => {
+const beforeTransformUploadValues = async (fssIds: string[]) => {
   let ret = [];
   for (let i = 0; i < fssIds.length; i++) {
     let fileProp = {
@@ -85,8 +86,8 @@ const Demo: React.FC<{}> = () => {
   }, []);
 
   // 上传图片
-  const handleUpload = React.useCallback((file) => {
-    return uploadImage(file).then(res => {
+  const handleUpload = React.useCallback((file: UploadFile) => {
+    return uploadImage(file.originFileObj as File).then(res => {
       return { value: res.fssId }
     });
   }, []);
