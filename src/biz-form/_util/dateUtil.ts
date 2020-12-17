@@ -105,3 +105,14 @@ export function transformMomentValue(val) {
   }
   return val;
 }
+
+// 转换time为moment值
+export function transformMomentTime(time, format = 'HH:mm:ss') {
+  if (Array.isArray(time)) {
+    return time.map((timeItem) => transformMomentTime(timeItem, format));
+  }
+  if (typeof time === 'string' && time) {
+    return moment(time, format);
+  }
+  return time;
+}

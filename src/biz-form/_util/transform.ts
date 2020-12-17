@@ -29,7 +29,7 @@ function transformDate(date, format) {
     return date.map((item) => transformDate(item, format));
   }
   if (date && typeof date === 'string') {
-    return moment(date).format(format);
+    return moment(date, format).format(format);
   }
   return date;
 }

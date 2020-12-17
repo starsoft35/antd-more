@@ -18,6 +18,8 @@ import ItemNumber from './ItemNumber';
 import ItemPassword from './ItemPassword';
 import ItemRadio from './ItemRadio';
 import ItemSelect from './ItemSelect';
+import ItemTime from './ItemTime';
+import ItemTimeRange from './ItemTimeRange';
 import ItemUpload from './ItemUpload';
 import ItemUserName from './ItemUserName';
 
@@ -45,6 +47,8 @@ const BizForm: React.FC<BaseFormProps> & {
   ItemPassword: typeof ItemPassword;
   ItemRadio: typeof ItemRadio;
   ItemSelect: typeof ItemSelect;
+  ItemTime: typeof ItemTime;
+  ItemTimeRange: typeof ItemTimeRange;
   ItemUpload: typeof ItemUpload;
   ItemUserName: typeof ItemUserName;
 } = ({ submitter, ...restProps }) => {
@@ -94,6 +98,8 @@ BizForm.ItemNumber = ItemNumber;
 BizForm.ItemPassword = ItemPassword;
 BizForm.ItemRadio = ItemRadio;
 BizForm.ItemSelect = ItemSelect;
+BizForm.ItemTime = ItemTime;
+BizForm.ItemTimeRange = ItemTimeRange;
 BizForm.ItemUpload = ItemUpload;
 BizForm.ItemUserName = ItemUserName;
 

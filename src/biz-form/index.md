@@ -330,10 +330,10 @@ colorProps  | 其他颜色选择器配置，不同 picker 有不同的配置项�
 ------------- | ------------- | ------------- | ------------- |
 disabledDateBefore  | 配置不可选基于当天增加/减少之前的日期。 | `number` | - |
 disabledDateAfter  | 配置不可选基于当天增加/减少之后的日期。 | `number` | - |
-showTime  | 显示时间选择 | `获取验证码` |
+showTime  | 显示时间选择 | `boolean` | `false` |
 format  | 设置日期格式，默认值会根据 `picker` 调整。 | `string` | `YYYY-MM-DD` |
 picker  | 设置选择器类型 | `date` `week` `month` `quarter` `year` | `date` |
-pickerProps  | 输入框的属性 | [`DatePickerProps`](https://ant-design.gitee.io/components/date-picker-cn/#API) | - |
+pickerProps  | 选择器的属性 | [`DatePickerProps`](https://ant-design.gitee.io/components/date-picker-cn/#API) | - |
 
 
 ### ItemDateRange
@@ -363,10 +363,10 @@ maxRange  | 最大可选范围值，用于校验，根据当前 picker 为单位
 names  | 开始和结束的字段名，配置该值后，原来的 `name` 将失效。如 `['startDate', 'endDate']` | `[NamePath, NamePath]` | - |
 disabledDateBefore  | 配置不可选基于当天增加/减少之前的日期。 | `number` | - |
 disabledDateAfter  | 配置不可选基于当天增加/减少之后的日期。 | `number` | - |
-showTime  | 显示时间选择 | `获取验证码` |
+showTime  | 显示时间选择 | `boolean` | `false` |
 format  | 设置日期格式，默认值会根据 `picker` 调整。 | `string` | `YYYY-MM-DD` |
 picker  | 设置选择器类型 | `date` `week` `month` `quarter` `year` | `date` |
-pickerProps  | 输入框的属性 | [`DatePickerProps`](https://ant-design.gitee.io/components/date-picker-cn/#API) | - |
+pickerProps  | 选择器的属性 | [`DateRangePickerProps`](https://ant-design.gitee.io/components/date-picker-cn/#RangePicker) | - |
 
 
 ### ItemEmail
@@ -618,31 +618,52 @@ excludeValues | 排除的值 | `any[]` | `[]` |
 selectProps  | 选择器配置参数 | [`SelectProps`](https://ant-design.gitee.io/components/select-cn/#Select-props) | - |
 
 
-### ItemUserName
+### ItemTime
 
-用户名输入框
+日期选择框
 
 **特点**
 
-- 自动过滤空格
-- 失焦校验
+- 支持字符串格式的时间输入
+- 输出时自动转换为字符串格式
 
 **校验顺序**
 
-- 必填时为空，提示：`请输入${label}`
-- 验证长度，提示：`${label}为${min}~${max}位`
-- 验证非手机号码，提示：`${label}不能为手机号码`
-- 验证不包含@符号，提示：`${label}不能包含@符号`
+- 必填时为空，提示：`请选择${label}`
 
-<code src="./demos/item-useName-1.tsx" />
+<code src="./demos/item-time-1.tsx" />
 
 <br/>
 
 参数 | 说明 | 类型 | 默认值 |
 ------------- | ------------- | ------------- | ------------- |
-min  | 最小长度 | `number` | `6` |
-max  | 最大长度 | `number` | `32` |
-inputProps  | 输入框配置参数 | [`InputProps`](https://ant-design.gitee.io/components/input-cn/#Input) | - |
+format  | 设置时间格式 | `string` | `HH:mm:ss` |
+pickerProps  | 选择器的属性 | [`TimePickerProps`](https://ant-design.gitee.io/components/time-picker-cn/#API) | - |
+
+
+### ItemTimeRange
+
+时间区间选择框
+
+**特点**
+
+- 支持字符串格式的日期输入
+- 输出时自动转换为字符串格式
+- 字段名自动转换拆分
+
+**校验顺序**
+
+- 必填时为空，提示：`请选择${label}`
+
+<code src="./demos/item-timeRange-1.tsx" />
+
+<br/>
+
+参数 | 说明 | 类型 | 默认值 |
+------------- | ------------- | ------------- | ------------- |
+names  | 开始和结束的字段名，配置该值后，原来的 `name` 将失效。如 `['startTime', 'endTime']` | `[NamePath, NamePath]` | - |
+format  | 设置日期格式 | `string` | `HH:mm:ss` |
+pickerProps  | 选择器的属性 | [`TimeRangePickerProps`](https://ant-design.gitee.io/components/time-picker-cn/#RangePicker) | - |
 
 
 ### ItemUpload
@@ -680,6 +701,33 @@ fileTypeMessage  | 文件类型错误时提示 | `string` | `只支持上传 ${a
 fileSizeMessage  | 文件超过最大尺寸时提示，包含 `%s` 会自动替换为 `maxFileSizeStr`。 | `string` | `必须小于 ${maxFileSizeStr}！` |
 disabled  | 是否禁用 | `boolean` | `false` |
 uploadProps  | 上传配置参数 | [`UploadProps`](https://ant-design.gitee.io/components/upload-cn/#API) | - |
+
+
+### ItemUserName
+
+用户名输入框
+
+**特点**
+
+- 自动过滤空格
+- 失焦校验
+
+**校验顺序**
+
+- 必填时为空，提示：`请输入${label}`
+- 验证长度，提示：`${label}为${min}~${max}位`
+- 验证非手机号码，提示：`${label}不能为手机号码`
+- 验证不包含@符号，提示：`${label}不能包含@符号`
+
+<code src="./demos/item-useName-1.tsx" />
+
+<br/>
+
+参数 | 说明 | 类型 | 默认值 |
+------------- | ------------- | ------------- | ------------- |
+min  | 最小长度 | `number` | `6` |
+max  | 最大长度 | `number` | `32` |
+inputProps  | 输入框配置参数 | [`InputProps`](https://ant-design.gitee.io/components/input-cn/#Input) | - |
 
 
 

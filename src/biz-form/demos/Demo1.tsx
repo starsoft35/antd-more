@@ -21,7 +21,9 @@ const {
   ItemColor,
   ItemCaptcha,
   ItemCheckbox,
-  ItemUpload
+  ItemUpload,
+  ItemTime,
+  ItemTimeRange
 } = BizForm;
 
 const colSpan = {
@@ -152,6 +154,12 @@ const Demo: React.FC<{}> = () => {
           </Col>
           <Col {...specialColSpan}>
             <ItemDateRange label='日期时间区间' name='dateTimeRange' showTime required={required} />
+          </Col>
+          <Col {...colSpan}>
+            <ItemTime label='时间' name='time' required={required} />
+          </Col>
+          <Col {...specialColSpan}>
+            <ItemTimeRange label='时间区间' name='timeRange' required={required} />
           </Col>
           <Col {...specialColSpan}>
             <ItemInput label='Input' name='input' required={required} />
