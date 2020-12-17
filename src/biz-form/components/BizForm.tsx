@@ -18,6 +18,7 @@ import ItemNumber from './ItemNumber';
 import ItemPassword from './ItemPassword';
 import ItemRadio from './ItemRadio';
 import ItemSelect from './ItemSelect';
+import ItemUpload from './ItemUpload';
 import ItemUserName from './ItemUserName';
 
 import BaseForm, { BaseFormProps } from './BaseForm';
@@ -44,6 +45,7 @@ const BizForm: React.FC<BaseFormProps> & {
   ItemPassword: typeof ItemPassword;
   ItemRadio: typeof ItemRadio;
   ItemSelect: typeof ItemSelect;
+  ItemUpload: typeof ItemUpload;
   ItemUserName: typeof ItemUserName;
 } = ({ submitter, ...restProps }) => {
   const submitterProps = typeof submitter === 'boolean' || !submitter ? {} : submitter;
@@ -92,6 +94,7 @@ BizForm.ItemNumber = ItemNumber;
 BizForm.ItemPassword = ItemPassword;
 BizForm.ItemRadio = ItemRadio;
 BizForm.ItemSelect = ItemSelect;
+BizForm.ItemUpload = ItemUpload;
 BizForm.ItemUserName = ItemUserName;
 
 export default BizForm;

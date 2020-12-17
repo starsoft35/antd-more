@@ -20,7 +20,8 @@ const {
   ItemUserName,
   ItemColor,
   ItemCaptcha,
-  ItemCheckbox
+  ItemCheckbox,
+  ItemUpload
 } = BizForm;
 
 const colSpan = {
@@ -63,7 +64,7 @@ const Demo: React.FC<{}> = () => {
       <BizForm
         name='biz-form-demo1'
         onFinish={(values) => {
-          console.log(JSON.stringify(values));
+          console.log(values);
         }}
         labelCol={{
           flex: '0 0 100px'
@@ -169,6 +170,9 @@ const Demo: React.FC<{}> = () => {
           </Col>
           <Col {...specialColSpan}>
             <ItemCheckbox label='Checkbox' name='checkbox' options={cycle} all required={required} />
+          </Col>
+          <Col {...specialColSpan}>
+            <ItemUpload label='Upload' name='upload' required={required} />
           </Col>
         </Row>
       </BizForm>

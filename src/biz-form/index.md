@@ -28,6 +28,24 @@ legacy: /business/biz-form
 
 <code src='./demos/change-password.tsx' />
 
+### 实时上传文件图片
+
+添加文件后，立即上传到文件服务器，获取 `fssId`，提交时取出该 `fssId` 。
+
+<code src='./demos/upload-real-time.tsx' />
+
+### 实时上传文件含默认值
+
+修改页面中需要显示已有文件，并且支持实时上传
+
+<code src='./demos/upload-with-default.tsx' />
+
+### 提交时一次性上传所有文件
+
+添加文件后不触发上传，在提交时获取所有文件一次性上传。
+
+<code src='./demos/upload-no-upload.tsx' />
+
 ### 企业信息
 
 <code src='./demos/company-info.tsx' />
@@ -625,3 +643,43 @@ selectProps  | 选择器配置参数 | [`SelectProps`](https://ant-design.gitee.
 min  | 最小长度 | `number` | `6` |
 max  | 最大长度 | `number` | `32` |
 inputProps  | 输入框配置参数 | [`InputProps`](https://ant-design.gitee.io/components/input-cn/#Input) | - |
+
+
+### ItemUpload
+
+上传
+
+**特点**
+
+- 支持添加文件即上传
+- 自动处理上传中和失败状态
+- 适用于多种场景，文件/图片/头像/封面图等等
+
+**校验顺序**
+
+- 必填时为空，提示：`请上传${label}`
+
+```typescript
+type UploadFile = {
+  uid: string;
+  name: string;
+  [key:string]: any;
+}
+```
+
+<br/>
+
+参数 | 说明 | 类型 | 默认值 |
+------------- | ------------- | ------------- | ------------- |
+type  | 上传组件内建类型样式。 | `default` \| `image` \| `avatar` | `default` |
+onUpload  | 上传，添加文件时触发。<br/>内部自动处理上传中和失败状态。<br/>如果返回 `object` 将添加到 `UploadFile` 对象中。 | `(file: UploadFile)=>Promise<object `\|` undefined>` | - |
+maxSize  | 单个文件限制大小，单位 `Byte`。 | `number` | `1024*1024*2` |
+max  | 最大上传文件数量。<br/>如果 `type` 为 `avatar` 该参数将失效。 | `number` | - |
+accept  | 接受上传的文件类型。<br/>如果 `type` 为 `image` 或 `avatar` ，默认为 `.jpg, .jpeg, .png`  | `string` | - |
+fileTypeMessage  | 文件类型错误时提示 | `string` | `只支持上传 ${accept} 文件` |
+fileSizeMessage  | 文件超过最大尺寸时提示，包含 `%s` 会自动替换为 `maxFileSizeStr`。 | `string` | `必须小于 ${maxFileSizeStr}！` |
+disabled  | 是否禁用 | `boolean` | `false` |
+uploadProps  | 上传配置参数 | [`UploadProps`](https://ant-design.gitee.io/components/upload-cn/#API) | - |
+
+
+

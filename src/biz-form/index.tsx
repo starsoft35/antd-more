@@ -17,6 +17,7 @@ import ItemNumber, { FormItemNumberProps } from './components/ItemNumber';
 import ItemPassword, { FormItemPasswordProps } from './components/ItemPassword';
 import ItemRadio, { FormItemRadioProps } from './components/ItemRadio';
 import ItemSelect, { FormItemSelectProps } from './components/ItemSelect';
+import ItemUpload, { FormItemUploadProps } from './components/ItemUpload';
 import ItemUserName, { FormItemUserNameProps } from './components/ItemUserName';
 import { BaseFormProps } from './components/BaseForm';
 
@@ -40,6 +41,7 @@ export type {
   FormItemPasswordProps as ItemPasswordProps,
   FormItemRadioProps as ItemRadioProps,
   FormItemSelectProps as ItemSelectProps,
+  FormItemUploadProps as ItemUploadProps,
   FormItemUserNameProps as ItemUserNameProps,
 };
 
@@ -62,6 +64,7 @@ export {
   ItemPassword,
   ItemRadio,
   ItemSelect,
+  ItemUpload,
   ItemUserName,
 };
 
