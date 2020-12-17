@@ -20,9 +20,9 @@ const InputNumberWrapper: React.FC<InputNumberWrapperProps> = ({ after, before, 
   );
 };
 
-export interface FormItemNumberProps extends BizFormItemProps {
-  before?: React.ReactNode;
-  after?: React.ReactNode;
+export interface FormItemNumberProps
+  extends BizFormItemProps,
+    Pick<InputNumberWrapperProps, 'before' | 'after'> {
   lt?: number;
   gt?: number;
   lte?: number;

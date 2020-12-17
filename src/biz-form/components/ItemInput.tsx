@@ -23,7 +23,9 @@ const InputWrapper: React.FC<InputWrapperProps> = ({ after, before, ...restProps
   );
 };
 
-export interface FormItemInputProps extends BizFormItemProps {
+export interface FormItemInputProps
+  extends BizFormItemProps,
+    Pick<InputWrapperProps, 'before' | 'after'> {
   disabledWhiteSpace?: boolean;
   inputProps?: InputWrapperProps;
 }
@@ -31,7 +33,15 @@ export interface FormItemInputProps extends BizFormItemProps {
 const FormItemInput: React.FC<FormItemInputProps> & {
   TextArea: typeof ItemInputTextArea;
   Password: typeof ItemInputPassword;
-} = ({ disabledWhiteSpace = false, inputProps = {}, required = false, label, ...restProps }) => {
+} = ({
+  before,
+  after,
+  disabledWhiteSpace = false,
+  inputProps = {},
+  required = false,
+  label,
+  ...restProps
+}) => {
   const handleNormalize = React.useCallback(
     (val) => {
       if (disabledWhiteSpace) {
@@ -63,7 +73,14 @@ const FormItemInput: React.FC<FormItemInputProps> & {
       ]}
       {...restProps}
     >
-      <InputWrapper placeholder="请输入" allowClear autoComplete="off" {...inputProps} />
+      <InputWrapper
+        placeholder="请输入"
+        allowClear
+        autoComplete="off"
+        before={before}
+        after={after}
+        {...inputProps}
+      />
     </BizFormItem>
   );
 };

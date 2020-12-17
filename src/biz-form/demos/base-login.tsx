@@ -132,9 +132,9 @@ const LoginDemo: React.FC<{}> = () => {
           inputProps={{
             prefix: <SafetyCertificateOutlined />,
             size: 'large',
-            placeholder: "请输入图片验证码",
-            after: <img src="http://img3.itboth.com/12/14/qAVNBz.jpg" style={{height: 40, margin: 0}} />
+            placeholder: "请输入图片验证码"
           }}
+          after={<img src="http://img3.itboth.com/12/14/qAVNBz.jpg" style={{ height: 40, margin: 0 }} />}
           label='图片验证码'
           labelCol={{ style: { display: 'none' } }}
           required
