@@ -154,6 +154,7 @@ const { Item } = BizForm;
 参数 | 说明 | 类型 | 默认值 |
 ------------- | ------------- | ------------- | ------------- |
 transform  | 转换该字段值，表单提交时执行。 | `(value)=>any` | - |
+extendRules  | 扩展校验规则。如果需要覆盖，请使用 `rules` | `Rule[]` | - |
 colProps  | 设置该表单项 Col 属性。部分场景下生效，如 QueryForm 下。  | [`ColProps`](https://ant-design.gitee.io/components/grid-cn/#Col) | - |
 
 ### 其它Item

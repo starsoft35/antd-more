@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Form } from 'antd';
 import { FormItemProps } from 'antd/es/form';
+import { Rule } from 'rc-field-form/es/interface'; // eslint-disable-line import/no-extraneous-dependencies
 import { ColProps } from 'antd/es/grid';
 import FieldContext from '../FieldContext';
 import ListFieldContext from '../ListFieldContext';
@@ -14,6 +15,7 @@ type TransformFn<T = any> = (value: T, currentPathValues?: any) => T | any;
 export interface BizFormItemProps extends FormItemProps {
   transform?: TransformFn;
   colProps?: ColProps;
+  extendRules?: Rule[];
 }
 
 const BizFormItem: React.FC<BizFormItemProps> = ({
@@ -21,6 +23,8 @@ const BizFormItem: React.FC<BizFormItemProps> = ({
   transform,
   name,
   colProps,
+  rules = [],
+  extendRules = [],
   ...restProps
 }) => {
   const { setFieldTransform } = React.useContext(FieldContext);
@@ -33,7 +37,7 @@ const BizFormItem: React.FC<BizFormItemProps> = ({
   }, []);
 
   return (
-    <Form.Item name={name} validateFirst {...restProps}>
+    <Form.Item name={name} validateFirst rules={[...rules, ...extendRules]} {...restProps}>
       {children}
     </Form.Item>
   );

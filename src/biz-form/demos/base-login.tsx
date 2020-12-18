@@ -57,12 +57,9 @@ const LoginDemo: React.FC<{}> = () => {
             size: 'large',
             placeholder: "请输入用户名"
           }}
-          rules={[
-            {
-              required: true,
-              message: '请输入用户名'
-            }
-          ]}
+          label='用户名'
+          labelCol={{ style: { display: 'none' } }}
+          required
         />
         <ItemInput.Password
           name="password"
@@ -71,12 +68,9 @@ const LoginDemo: React.FC<{}> = () => {
             size: 'large',
             placeholder: "请输入密码"
           }}
-          rules={[
-            {
-              required: true,
-              message: '请输入密码'
-            }
-          ]}
+          label='密码'
+          labelCol={{ style: { display: 'none' } }}
+          required
         />
         <ItemEmail
           name='email'
