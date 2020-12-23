@@ -5,3 +5,4 @@ export { default as Dictionary } from './dictionary';
 export { default as BizForm } from './biz-form';
 export { default as BizField } from './biz-field';
 export { default as BizTable } from './biz-table';
+export { default as BizDescriptions } from './biz-descriptions';

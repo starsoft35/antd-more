@@ -11,7 +11,7 @@ legacy: /business/biz-field
 
 业务常见字段显示。
 
-在 BizTable 中使用更方便，只需配置 `valueType` 即可。
+在 BizTable BizDescriptions 中使用更方便，只需配置 `valueType` 即可。
 
 ## 代码演示
 
@@ -33,7 +33,7 @@ import { BizField } from 'antd-more';
 ------------- | ------------- | ------------- | ------------- |
 value  | 值 | `any` | - |
 valueType  | 值类型 | `ValueType` | - |
-valueEnum  | 包含 `value` `name` 的数据字典，当 `valueType` 为 `enum` `enumTag` `enumBadge` 时生效。 | `EnumData` | - |
+valueEnum  | 包含 `value` `name` 的数据字典。<br/>当 `valueType` 为 `enum` `enumTag` `enumBadge` 时生效。 | `EnumData` | - |
 
 ### ValueType 值
 

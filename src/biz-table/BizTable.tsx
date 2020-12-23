@@ -4,12 +4,10 @@ import { TableProps, ColumnType, ColumnGroupType } from 'antd/es/table';
 import { SpaceProps } from 'antd/es/space';
 import { CardProps } from 'antd/es/card';
 import { FormInstance } from 'antd/es/form';
-import { ValueType } from '../biz-field/interface';
-import { EnumData } from '../dictionary';
 import SearchForm, { SearchFormProps } from './SearchForm';
-import { QueryFormProps } from '../biz-form/components/QueryForm';
+import { QueryFormProps } from '../biz-form';
 import usePagination from './usePagination';
-import BizField from '../biz-field';
+import BizField, { ValueType, EnumData } from '../biz-field';
 import actionCache, { createActionCacheKey } from './actionCache';
 import { Request, RecordType, ActionType } from './interface';
 

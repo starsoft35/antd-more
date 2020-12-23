@@ -18,11 +18,10 @@ export function checkFileType(file: File, accept?: string): boolean {
   let ret = false;
   types.some((type) => {
     // .doc .docx .jpg .png
-    if (type.indexOf('.') === 0) {
-      if (file.name.substr(file.name.length - type.length) === type) {
-        ret = true;
-      }
-    } else if (file.type === type) {
+    if (
+      file.type === type ||
+      (type.indexOf('.') === 0 && file.name.substr(file.name.length - type.length) === type)
+    ) {
       ret = true;
     }
     return ret;

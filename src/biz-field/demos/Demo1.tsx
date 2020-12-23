@@ -7,7 +7,8 @@ import "moment/locale/zh-cn";
 import { Descriptions } from "antd";
 import { BizField } from "antd-more";
 
-const approveStatus = [
+// 枚举数据
+const ApproveStatus = [
   {
     value: 1,
     name: '审核中',
@@ -130,22 +131,22 @@ export default () => {
       </Descriptions>
       <Descriptions title="枚举">
         <Descriptions.Item label="文本">
-          <BizField value={1} valueType="enum" valueEnum={approveStatus} />
+          <BizField value={1} valueType="enum" valueEnum={ApproveStatus} />
         </Descriptions.Item>
         <Descriptions.Item label="标签">
-          <BizField value={1} valueType="enumTag" valueEnum={approveStatus} />
+          <BizField value={1} valueType="enumTag" valueEnum={ApproveStatus} />
         </Descriptions.Item>
         <Descriptions.Item label="徽章">
-          <BizField value={1} valueType="enumBadge" valueEnum={approveStatus} />
+          <BizField value={1} valueType="enumBadge" valueEnum={ApproveStatus} />
         </Descriptions.Item>
         <Descriptions.Item label="多个文本">
-          <BizField value={[1, 2]} valueType="enum" valueEnum={approveStatus} />
+          <BizField value={[1, 2]} valueType="enum" valueEnum={ApproveStatus} />
         </Descriptions.Item>
         <Descriptions.Item label="多个标签">
-          <BizField value={[1, 2]} valueType="enumTag" valueEnum={approveStatus} />
+          <BizField value={[1, 2]} valueType="enumTag" valueEnum={ApproveStatus} />
         </Descriptions.Item>
         <Descriptions.Item label="多个徽章">
-          <BizField value={[1, 2]} valueType="enumBadge" valueEnum={approveStatus} />
+          <BizField value={[1, 2]} valueType="enumBadge" valueEnum={ApproveStatus} />
         </Descriptions.Item>
       </Descriptions>
     </>
