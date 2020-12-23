@@ -30,7 +30,8 @@ function getApplyList(params) {
 const columns = [
   {
     dataIndex: "applyCode",
-    title: "申请编号"
+    title: "申请编号",
+    tooltip: "提示文字"
   },
   {
     dataIndex: "createTime",
@@ -43,6 +44,7 @@ const columns = [
   {
     dataIndex: "approveTime",
     title: "审核时间",
+    tooltip: "提示文字",
     sorter: true
   },
   {

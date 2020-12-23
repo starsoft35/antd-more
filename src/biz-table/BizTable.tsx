@@ -8,12 +8,14 @@ import SearchForm, { SearchFormProps } from './SearchForm';
 import { QueryFormProps } from '../biz-form';
 import usePagination from './usePagination';
 import BizField, { ValueType, EnumData } from '../biz-field';
+import WithTooltip from '../biz-descriptions/WithTooltip';
 import actionCache, { createActionCacheKey } from './actionCache';
 import { Request, RecordType, ActionType } from './interface';
 
 export declare type BizColumns = ((ColumnGroupType<any> | ColumnType<any>) & {
   valueType?: ValueType;
   valueEnum?: EnumData;
+  tooltip?: string;
 })[];
 
 export declare interface BizTableInnerProps
@@ -131,8 +133,9 @@ const BizTableInner: React.FC<BizTableInnerProps> = React.forwardRef(
 
     const currentColumns = React.useMemo(
       () =>
-        columns.map(({ valueType, valueEnum, ...restItem }) => {
+        columns.map(({ valueType, valueEnum, tooltip, title, ...restItem }) => {
           const newItem = {
+            title: title ? <WithTooltip label={title} tooltip={tooltip} /> : title,
             ...restItem,
           };
           if (valueType && !newItem.render) {

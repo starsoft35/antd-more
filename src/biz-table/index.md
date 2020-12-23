@@ -100,7 +100,7 @@ submit | 点击查询 或 调用 `actionRef.current.submit` |
 
 ### Columns 列定义
 
-在原来的基础上扩展了两个配置 `valueType` `valueEnum` ，具体可以参考 [BizField] 。
+在原来的基础上扩展了几个配置 `tooltip` `valueType` `valueEnum` 。 `valueType` `valueEnum` 具体可以参考 [BizField] 。
 
 如果设置 `valueType`，且没有 `render`，将使用 [BizField] 渲染。
 
