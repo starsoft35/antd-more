@@ -62,6 +62,7 @@ ReactDon.render(<BizField value="red" valueType="color" />, mountNode);
 ## API
 
 - **业务组件**
+  - [BizDescriptions] - 描述
   - [BizField] - 字段
   - [BizForm] - 表单
   - [BizTable] - 表格
@@ -113,6 +114,7 @@ git commit -m 'upd: 更新某组件文本'
 [Color]: https://doly-dev.github.io/antd-more/site/v1/index.html#/common/color
 [Dictionary]: https://doly-dev.github.io/antd-more/site/v1/index.html#/common/dictionary
 
+[BizDescriptions]: https://doly-dev.github.io/antd-more/site/v1/index.html#/business/biz-descriptions
 [BizField]: https://doly-dev.github.io/antd-more/site/v1/index.html#/business/biz-field
 [BizForm]: https://doly-dev.github.io/antd-more/site/v1/index.html#/business/biz-form
 [BizTable]: https://doly-dev.github.io/antd-more/site/v1/index.html#/business/biz-table

@@ -17,120 +17,39 @@ const data = {
   other: '其他内容'
 }
 
-const columns = [
-  {
-    dataIndex: "text1",
-    title: "空字符串",
-    tooltip: "空字符串显示 -",
-    valueType: "text"
-  },
-  {
-    dataIndex: "text2",
-    title: "文本",
-    valueType: "text"
-  },
-  {
-    dataIndex: "number1",
-    title: "金额",
-    valueType: "money"
-  },
-  {
-    dataIndex: "text3",
-    title: "长文本",
-    tooltip: "占2列",
-    span: 2,
-    valueType: "text"
-  },
-  {
-    dataIndex: "number2",
-    title: "进度条",
-    valueType: "progress"
-  },
-  {
-    dataIndex: "number3",
-    title: "百分比",
-    valueType: "percent"
-  },
-  {
-    dataIndex: "number3",
-    title: "百分比带颜色符号",
-    valueType: {
-      type: 'percent',
-      showSymbol: true,
-      showColor: true
-    }
-  },
-  {
-    dataIndex: "color",
-    title: "颜色",
-    valueType: "color"
-  },
-  {
-    dataIndex: "color",
-    title: "颜色带文本",
-    valueType: {
-      type: "color",
-      showText: true
-    }
-  },
-  {
-    dataIndex: "date",
-    title: "日期",
-    valueType: "date"
-  },
-  {
-    dataIndex: "date",
-    title: "日期时间",
-    valueType: "dateTime"
-  },
-  {
-    dataIndex: "date",
-    title: "时间",
-    valueType: "time"
-  },
-  {
-    dataIndex: ["startDate", "endDate"],
-    title: "日期时间区间",
-    span: 2,
-    valueType: "dateTimeRange"
-  },
-  {
-    dataIndex: "status",
-    title: "状态",
-    valueType: "enum",
-    valueEnum: ApproveStatus
-  },
-  {
-    dataIndex: "status",
-    title: "状态",
-    valueType: "enumTag",
-    valueEnum: ApproveStatus
-  },
-  {
-    dataIndex: "status",
-    title: "状态",
-    valueType: "enumBadge",
-    valueEnum: ApproveStatus
-  },
-  {
-    dataIndex: "other",
-    title: "自定义render1",
-    render: (val) => <span style={{ color: 'red' }}>{val}</span>
-  },
-  {
-    title: "自定义render2",
-    render: (val, allData) => <span style={{ color: 'red' }}>{allData.other}</span>
-  },
-];
-
 const Demo: React.FC<{}> = () => {
   return (
-    <BizDescriptions
-      title="标题"
-      tooltip="标题提示文字"
-      dataSource={data}
-      columns={columns}
-    />
+    <BizDescriptions title="标题" tooltip="标题提示文字" >
+      <BizDescriptions.Item label="空字符串" valueType="text" tooltip="空字符串显示 -">{data.text1}</BizDescriptions.Item>
+      <BizDescriptions.Item label="空字符串" valueType="text">{data.text2}</BizDescriptions.Item>
+      <BizDescriptions.Item label="金额" valueType="money">{data.number1}</BizDescriptions.Item>
+      <BizDescriptions.Item label="长文本" valueType="text" span={2} tooltip="占2列">{data.text3}</BizDescriptions.Item>
+      <BizDescriptions.Item label="进度条" valueType="progress">{data.number2}</BizDescriptions.Item>
+      <BizDescriptions.Item label="百分比" valueType="percent">{data.number3}</BizDescriptions.Item>
+      <BizDescriptions.Item
+        label="百分比带颜色符号"
+        valueType={{
+          type: 'percent',
+          showSymbol: true,
+          showColor: true
+        }}
+      >{data.number3}</BizDescriptions.Item>
+      <BizDescriptions.Item label="颜色" valueType="color">{data.color}</BizDescriptions.Item>
+      <BizDescriptions.Item
+        label="颜色"
+        valueType={{
+          type: "color",
+          showText: true
+        }}
+      >{data.color}</BizDescriptions.Item>
+      <BizDescriptions.Item label="日期" valueType="date">{data.date}</BizDescriptions.Item>
+      <BizDescriptions.Item label="日期时间" valueType="dateTime">{data.date}</BizDescriptions.Item>
+      <BizDescriptions.Item label="时间" valueType="time">{data.date}</BizDescriptions.Item>
+      <BizDescriptions.Item label="日期时间区间" valueType="dateTimeRange" span={2}>{[data.startDate, data.endDate]}</BizDescriptions.Item>
+      <BizDescriptions.Item label="状态" valueType="enum" valueEnum={ApproveStatus}>{data.status}</BizDescriptions.Item>
+      <BizDescriptions.Item label="状态" valueType="enumTag" valueEnum={ApproveStatus}>{data.status}</BizDescriptions.Item>
+      <BizDescriptions.Item label="状态" valueType="enumBadge" valueEnum={ApproveStatus}>{data.status}</BizDescriptions.Item>
+    </BizDescriptions>
   );
 }
 
