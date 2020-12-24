@@ -24,17 +24,26 @@ export interface UploadWrapperProps extends UploadProps {
   max?: number; // 最大上传文件数量
   beforeTransformValue?: (value: any) => UploadFile[] | Promise<UploadFile[]>; // 初始值转换
   only?: boolean; // 仅支持一个，适用于头像
+  dragger?: boolean; // 支持拖拽
+
+  // icon和title配置仅在 Dragger 和 Button 中生效
+  icon?: React.ReactNode;
+  title?: React.ReactNode;
 }
 
 const UploadWrapper: React.FC<UploadWrapperProps> = ({
-  onUpload = null,
+  onUpload,
   fileTypeMessage,
   fileSizeMessage,
   maxSize = 1024 * 1024 * 2,
   max,
   beforeTransformValue,
   only = false,
+  dragger = false,
+  icon,
+  title,
 
+  multiple = false,
   onChange,
   fileList,
   accept,
@@ -57,7 +66,7 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
   const handleBeforeUpload = React.useCallback(
     (file: RcFile) => {
       // 验证上传文件数量
-      if (max && Array.isArray(fileList) && fileList.length >= max) {
+      if (max && Array.isArray(fileListRef.current) && fileListRef.current.length >= max) {
         message.error(`最多上传${max}个文件`);
         actionRef.current = 'error';
         return false;
@@ -160,17 +169,37 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
   // 处理修改
   const handleChange = React.useCallback(
     ({ file, fileList: currentFileList }: UploadChangeParam) => {
+      // 处理异步初始值情况
+      if (typeof fileListRef.current === 'undefined') {
+        if (Array.isArray(fileList) && fileList.length > 0) {
+          fileListRef.current = [...fileList];
+        } else {
+          fileListRef.current = [];
+        }
+      }
+
       if (actionRef.current === 'error') {
         actionRef.current = 'normal';
         onChange({
           file,
-          fileList: fileList ? [...fileList] : [],
+          fileList: fileListRef.current,
         });
         return;
       }
 
-      fileListRef.current =
-        only && currentFileList.length > 0 ? currentFileList.slice(-1) : currentFileList;
+      if (only && currentFileList.length > 0) {
+        // 单个头像上传
+        fileListRef.current = currentFileList.slice(-1);
+      } else if (multiple && actionRef.current === 'upload') {
+        // 多选文件
+        // 添加 UploadFile
+        fileListRef.current = [
+          ...fileListRef.current,
+          currentFileList.find((item) => item.uid === file.uid),
+        ];
+      } else {
+        fileListRef.current = currentFileList;
+      }
 
       if (actionRef.current === 'upload') {
         actionRef.current = 'normal';
@@ -280,9 +309,11 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
     }
   }, []);
 
+  const Comp = React.useMemo(() => (dragger ? Upload.Dragger : Upload), [dragger]);
+
   return (
     <UploadContext.Provider value={{ transforming, uploading }}>
-      <Upload
+      <Comp
         accept={accept}
         beforeUpload={handleBeforeUpload}
         fileList={transforming ? [] : fileList}
@@ -294,6 +325,7 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
         onPreview={handlePreview}
         disabled={transforming}
         className={classNames(prefixCls, className)}
+        multiple={multiple}
         {...restProps}
       />
       {enabledShowPreview && <Preview {...previewProps} onCancel={handlePreviewCancel} />}

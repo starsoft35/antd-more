@@ -10,7 +10,11 @@ import { getBase64 } from './uploadUtil';
 
 const prefixCls = 'antd-more-upload-avatar';
 
-const UploadButton: React.FC<{ fileList?: UploadFile[] }> = ({ fileList }) => {
+const UploadButton: React.FC<{
+  fileList?: UploadFile[];
+  title?: React.ReactNode;
+  icon?: React.ReactNode;
+}> = ({ fileList, icon, title }) => {
   const { uploading, transforming } = React.useContext(UploadContext);
   const [imgUrl, setImgUrl] = React.useState('');
   const currentFile = React.useMemo(() => {
@@ -56,7 +60,9 @@ const UploadButton: React.FC<{ fileList?: UploadFile[] }> = ({ fileList }) => {
       </div>
     );
   } else if (transforming || uploading || !imgUrl) {
-    view = <UploadImageButton uploading={uploading} loading={transforming} />;
+    view = (
+      <UploadImageButton uploading={uploading} loading={transforming} icon={icon} title={title} />
+    );
   } else {
     view = <img src={imgUrl} alt={(currentFile && currentFile.name) || ''} />;
   }
@@ -78,7 +84,13 @@ const UploadButton: React.FC<{ fileList?: UploadFile[] }> = ({ fileList }) => {
   return dom;
 };
 
-const UploadImage: React.FC<UploadWrapperProps> = ({ fileList, className, ...restProps }) => {
+const UploadImage: React.FC<UploadWrapperProps> = ({
+  fileList,
+  className,
+  icon,
+  title,
+  ...restProps
+}) => {
   return (
     <UploadWrapper
       {...restProps}
@@ -86,9 +98,10 @@ const UploadImage: React.FC<UploadWrapperProps> = ({ fileList, className, ...res
       fileList={fileList}
       showUploadList={false}
       only
+      multiple={false}
       className={classNames(prefixCls, className)}
     >
-      <UploadButton fileList={fileList} />
+      <UploadButton fileList={fileList} icon={icon} title={title} />
     </UploadWrapper>
   );
 };

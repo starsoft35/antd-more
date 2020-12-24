@@ -37,8 +37,10 @@ const Demo: React.FC<{}> = () => {
         name="images"
         label="图片"
         type="image"
+        tooltip="配置multiple后，支持多选"
         max={9}
         required
+        multiple
       />
       <ItemUpload
         name="headpic01"
@@ -54,6 +56,13 @@ const Demo: React.FC<{}> = () => {
         max={1}
         tooltip="使用image的方式，修改时需要先删除才能再上传"
         required
+      />
+      <ItemUpload
+        name="dragger"
+        label="拖拽上传"
+        type="dragger"
+        required
+        multiple
       />
     </BizForm>
   );

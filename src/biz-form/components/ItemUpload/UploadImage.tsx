@@ -3,12 +3,18 @@ import UploadWrapper, { UploadWrapperProps } from './UploadWrapper';
 import UploadContext from './UploadContext';
 import UploadImageButton from './UploadImageButton';
 
-const UploadButton: React.FC<{}> = () => {
+const UploadButton = ({ icon, title }) => {
   const { transforming } = React.useContext(UploadContext);
-  return <UploadImageButton loading={transforming} />;
+  return <UploadImageButton icon={icon} title={title} loading={transforming} />;
 };
 
-const UploadImage: React.FC<UploadWrapperProps> = ({ fileList, max, ...restProps }) => {
+const UploadImage: React.FC<UploadWrapperProps> = ({
+  fileList,
+  max,
+  icon,
+  title,
+  ...restProps
+}) => {
   return (
     <UploadWrapper
       fileList={fileList}
@@ -17,7 +23,9 @@ const UploadImage: React.FC<UploadWrapperProps> = ({ fileList, max, ...restProps
       {...restProps}
       accept={restProps?.accept || '.jpg, .jpeg, .png'}
     >
-      {max && fileList && fileList.length >= max ? null : <UploadButton />}
+      {max && fileList && fileList.length >= max ? null : (
+        <UploadButton icon={icon} title={title} />
+      )}
     </UploadWrapper>
   );
 };

@@ -5,6 +5,7 @@ import { UploadWrapperProps } from './UploadWrapper';
 import UploadButton from './UploadButton';
 import UploadImage from './UploadImage';
 import UploadAvatar from './UploadAvatar';
+import UploadDragger from './UploadDragger';
 
 const normFile = (e) => {
   if (Array.isArray(e)) {
@@ -19,9 +20,12 @@ export interface FormItemUploadProps
       UploadWrapperProps,
       'accept' | 'onUpload' | 'fileTypeMessage' | 'fileSizeMessage' | 'maxSize' | 'max'
     > {
-  type?: 'default' | 'image' | 'avatar';
+  type?: 'default' | 'image' | 'avatar' | 'dragger';
   uploadProps?: UploadProps;
   disabled?: boolean;
+  multiple?: boolean;
+  icon?: React.ReactNode;
+  title?: React.ReactNode;
 }
 
 const FormItemUpload: React.FC<FormItemUploadProps> = ({
@@ -34,6 +38,9 @@ const FormItemUpload: React.FC<FormItemUploadProps> = ({
   max,
   type = 'default',
   disabled = false,
+  multiple = false,
+  icon,
+  title,
 
   label,
   required,
@@ -46,6 +53,9 @@ const FormItemUpload: React.FC<FormItemUploadProps> = ({
     }
     if (type === 'avatar') {
       return UploadAvatar;
+    }
+    if (type === 'dragger') {
+      return UploadDragger;
     }
     return UploadButton;
   }, [type]);
@@ -83,6 +93,9 @@ const FormItemUpload: React.FC<FormItemUploadProps> = ({
         maxSize={maxSize}
         max={max}
         disabled={disabled}
+        multiple={multiple}
+        icon={icon}
+        title={title}
         {...uploadProps}
       />
     </BizFormItem>

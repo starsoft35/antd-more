@@ -48,23 +48,21 @@ const defaultFssId = ["jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ", "jkjgkEfvpUPVyRjUImniV
 const beforeTransformUploadValues = async (fssIds: string[]) => {
   let ret = [];
   for (let i = 0; i < fssIds.length; i++) {
-    let fileProp = {
-      uid: -i,
-      value: fssIds[i], // 用于在提交时获取真实的value
-    };
     try {
       const serverPathObj = await getStaticServerPath(fssIds[i]);
       const url = serverPathObj.data;
       ret.push({
-        url,
+        uid: -i,
         name: url.substring(url.lastIndexOf('/') + 1),
-        ...fileProp
+        url,
+        value: fssIds[i] // 用于在提交时获取真实的value
       });
     } catch (err) {
       ret.push({
+        uid: -i,
         status: 'error',
         response: '加载失败',
-        ...fileProp
+        value: fssIds[i] // 用于在提交时获取真实的value
       });
     }
   }

@@ -1,16 +1,15 @@
 import * as React from 'react';
-import { Button } from 'antd';
-import { UploadOutlined } from '@ant-design/icons';
+import { InboxOutlined } from '@ant-design/icons';
 import UploadWrapper, { UploadWrapperProps } from './UploadWrapper';
 
 const defaultShowUploadList = {
   showPreviewIcon: false,
 };
 
-const UploadButton: React.FC<UploadWrapperProps> = ({
+const UploadDragger: React.FC<UploadWrapperProps> = ({
   showUploadList,
-  icon = <UploadOutlined />,
-  title = '点击上传',
+  icon = <InboxOutlined />,
+  title = '单击或拖动文件到此区域进行上传',
   ...restProps
 }) => {
   const innerShowUploadList = React.useMemo(() => {
@@ -28,10 +27,11 @@ const UploadButton: React.FC<UploadWrapperProps> = ({
   }, [showUploadList]);
 
   return (
-    <UploadWrapper {...restProps} showUploadList={innerShowUploadList}>
-      <Button icon={icon}>{title}</Button>
+    <UploadWrapper {...restProps} dragger showUploadList={innerShowUploadList}>
+      <p className="ant-upload-drag-icon">{icon}</p>
+      <p className="ant-upload-text">{title}</p>
     </UploadWrapper>
   );
 };
 
-export default UploadButton;
+export default UploadDragger;

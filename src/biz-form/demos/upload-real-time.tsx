@@ -98,6 +98,15 @@ const Demo: React.FC<{}> = () => {
         onUpload={handleUpload}
         transform={transformUploadValue}
       />
+      <ItemUpload
+        name="dragger"
+        label="拖拽上传"
+        type="dragger"
+        required
+        multiple
+        onUpload={handleUpload}
+        transform={transformUploadValue}
+      />
     </BizForm>
   );
 }
