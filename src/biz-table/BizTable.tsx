@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Table, Card, Space } from 'antd';
-import { TableProps, ColumnType, ColumnGroupType } from 'antd/es/table';
+import { TableProps, ColumnType } from 'antd/es/table';
 import { SpaceProps } from 'antd/es/space';
 import { CardProps } from 'antd/es/card';
 import { FormInstance } from 'antd/es/form';
@@ -12,20 +12,20 @@ import WithTooltip from '../biz-descriptions/WithTooltip';
 import actionCache, { createActionCacheKey } from './actionCache';
 import { Request, RecordType, ActionType } from './interface';
 
-export declare type BizColumns = ((ColumnGroupType<any> | ColumnType<any>) & {
+export declare type BizColumns<Record = RecordType> = (ColumnType<Record> & {
   valueType?: ValueType;
   valueEnum?: EnumData;
   tooltip?: string;
 })[];
 
-export declare interface BizTableInnerProps
-  extends TableProps<RecordType>,
+export declare interface BizTableInnerProps<Record = RecordType>
+  extends Omit<TableProps<Record>, 'columns'>,
     Pick<SearchFormProps, 'formItems'> {
   formRef?:
     | React.MutableRefObject<FormInstance | undefined>
     | ((instance: FormInstance<any>) => void);
   ref?: React.MutableRefObject<ActionType | undefined> | ((actionRef: ActionType) => void);
-  columns?: BizColumns;
+  columns?: BizColumns<Record>;
   ready?: boolean;
   autoRequest?: boolean;
   request?: Request;
