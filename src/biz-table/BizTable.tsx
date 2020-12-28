@@ -78,8 +78,10 @@ const BizTableInner: React.FC<BizTableInnerProps> = React.forwardRef(
     );
 
     const handleChange = React.useCallback((page, filters, sorter, extra) => {
-      onTableChange(page, filters, sorter, extra);
-      typeof onChange === 'function' && onChange(page, filters, sorter, extra);
+      // fix: sorter 带组件参数问题
+      const { title, render, valueType, valueEnum, tooltip, ...restSorter } = sorter;
+      onTableChange(page, filters, restSorter, extra);
+      typeof onChange === 'function' && onChange(page, filters, restSorter, extra);
     }, []);
 
     const handleReload = React.useCallback(() => {
