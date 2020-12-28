@@ -22,7 +22,7 @@ function createDescriptionsItem({
 }: ItemProps) {
   return (
     <Descriptions.Item
-      label={label ? <WithTooltip label={label} tooltip={tooltip} /> : label}
+      label={label && tooltip ? <WithTooltip label={label} tooltip={tooltip} /> : label}
       {...restProps}
     >
       <BizField value={children} valueType={valueType} valueEnum={valueEnum} />

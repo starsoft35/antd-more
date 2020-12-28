@@ -135,7 +135,7 @@ const BizTableInner: React.FC<BizTableInnerProps> = React.forwardRef(
       () =>
         columns.map(({ valueType, valueEnum, tooltip, title, ...restItem }) => {
           const newItem = {
-            title: title ? <WithTooltip label={title} tooltip={tooltip} /> : title,
+            title: title && tooltip ? <WithTooltip label={title} tooltip={tooltip} /> : title,
             ...restItem,
           };
           if (valueType && !newItem.render) {
