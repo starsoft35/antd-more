@@ -9,14 +9,15 @@ import {
   RequestParamExtra,
 } from './interface';
 
+// 显示数据总量
+const showTotal = (num: number | string) => `共 ${num} 条数据`;
+
 interface ParamsRef {
-  params: Record<string, any>;
+  params: RequestParamParams;
   filters: RequestParamFilters;
   sorter: RequestParamSorter;
   extra: RequestParamExtra;
 }
-
-type showTotalFn = (num: number | string) => string;
 
 interface Options extends AsyncParams<any, any[] | undefined> {
   defaultPageSize?: number;
@@ -25,28 +26,26 @@ interface Options extends AsyncParams<any, any[] | undefined> {
 
 interface ReturnValues extends AsyncResult {
   onTableChange: (
-    params: RequestParamParams,
-    filters: RequestParamFilters,
-    sorter: RequestParamSorter,
-    extra: RequestParamExtra,
+    params: ParamsRef['params'],
+    filters: ParamsRef['filters'],
+    sorter: ParamsRef['sorter'],
+    extra: ParamsRef['extra'],
   ) => Promise<any>;
   pagination: {
     total: number;
     current: number;
     pageSize: number;
-    showTotal: showTotalFn;
-    showSizeChanger: true;
+    showTotal: typeof showTotal;
+    showSizeChanger: boolean;
+    showQuickJumper: boolean;
   };
 }
 
 type UsePagination = (asyncFn: (...args: any) => Promise<any>, options?: Options) => ReturnValues;
 
-// 显示数据总量
-const showTotal = (num) => `共 ${num} 条数据`;
-
 const usePagination: UsePagination = (
   asyncFn,
-  { defaultPageSize = 10, actionCacheKey = '', autoRun, onSuccess = () => {}, ...restOptions },
+  { defaultPageSize = 10, actionCacheKey = '', autoRun, onSuccess = () => {}, ...restOptions } = {},
 ) => {
   const [data, setData] = useState([]);
 

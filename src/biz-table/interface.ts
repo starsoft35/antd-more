@@ -1,5 +1,10 @@
 import { SorterResult, TableCurrentDataSource } from 'antd/es/table/interface';
 
+export interface AsyncFnReturn extends Record<string | number, any> {
+  data: any[];
+  total?: number;
+}
+
 export type ActionType = {
   reload: () => void;
   reset: () => void;
@@ -27,4 +32,4 @@ export type Request = (
   filters: RequestParamFilters,
   sorter: RequestParamSorter,
   extra: RequestParamExtra,
-) => Promise<{ data: object[]; total?: number; [x: string]: any }>;
+) => Promise<AsyncFnReturn>;
