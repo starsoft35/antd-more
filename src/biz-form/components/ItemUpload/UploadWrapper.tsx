@@ -22,7 +22,8 @@ export interface UploadWrapperProps extends UploadProps {
   onUpload?: (file: UploadFile) => Promise<object | undefined>; // 单个文件上传
   maxSize?: number; // 单个文件最大尺寸，用于校验
   max?: number; // 最大上传文件数量
-  beforeTransformValue?: (value: any) => UploadFile[] | Promise<UploadFile[]>; // 初始值转换
+  beforeTransformValue?: (value: any[]) => UploadFile[] | Promise<UploadFile[]>; // 初始值转换
+  onGetPreviewUrl?: (file: UploadFile) => Promise<string>; // 点击预览获取大图URL
   only?: boolean; // 仅支持一个，适用于头像
   dragger?: boolean; // 支持拖拽
 
@@ -38,6 +39,7 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
   maxSize = 1024 * 1024 * 2,
   max,
   beforeTransformValue,
+  onGetPreviewUrl,
   only = false,
   dragger = false,
   icon,
@@ -247,12 +249,16 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
         return;
       }
       if (!file.url && !file.preview) {
-        if (!file.originFileObj) {
+        if (onGetPreviewUrl) {
+          // eslint-disable-next-line
+          file.preview = await onGetPreviewUrl(file);
+        } else if (file.originFileObj) {
+          // eslint-disable-next-line
+          file.preview = await getBase64(file.originFileObj as File);
+        } else {
           message.error('当前文件不支持预览！');
           return;
         }
-        // eslint-disable-next-line
-        file.preview = await getBase64(file.originFileObj as File);
       }
 
       setPreviewProps({
@@ -301,7 +307,7 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
         setTransforming(false);
       }, 0);
     }
-  }, []);
+  }, [fileList]);
 
   React.useEffect(() => {
     if (transforming) {

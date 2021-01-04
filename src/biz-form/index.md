@@ -683,9 +683,12 @@ pickerProps  | 选择器的属性 | [`TimeRangePickerProps`](https://ant-design.
 
 ```typescript
 type UploadFile = {
-  uid: string;
+  uid: string | number;
   name: string;
-  [key:string]: any;
+  thumbUrl?: string; // 小图（缩略图）
+  url?: string; // 大图（预览）
+  response?: any; // 加载失败时，鼠标移入提示
+  // ...
 }
 ```
 
@@ -695,6 +698,7 @@ type UploadFile = {
 ------------- | ------------- | ------------- | ------------- |
 type  | 上传组件内建类型样式。 | `default` \| `image` \| `avatar` \| `dragger` | `default` |
 onUpload  | 上传，添加文件时触发。<br/>内部自动处理上传中和失败状态。<br/>如果返回 `object` 将添加到 `UploadFile` 对象中。 | `(file: UploadFile)=>Promise<object `\|` undefined>` | - |
+onGetPreviewUrl  | 获取预览图片，点击预览时触发。<br/>（仅在没有url的情况下生效，执行成功后将预览图放在file.preview，不再触发） | `(file: UploadFile)=>Promise<string>` | - |
 maxSize  | 单个文件限制大小，单位 `Byte`。 | `number` | `1024*1024*2` |
 max  | 最大上传文件数量。<br/>如果 `type` 为 `avatar` 该参数将失效。 | `number` | - |
 accept  | 接受上传的文件类型。<br/>如果 `type` 为 `image` 或 `avatar` ，默认为 `.jpg, .jpeg, .png`  | `string` | - |

@@ -61,16 +61,15 @@ const defaultFssId = [
 
 // 将值转换为 UploadFile 对象
 const beforeTransformUploadValues = async (fssIds: Record<string, any>[]) => {
-  let ret = [];
-  for (let i = 0; i < fssIds.length; i++) {
-    let fileProp = {
+  const ret = [];
+  for (let i = 0; i < fssIds.length; i += 1) {
+    const fileProp = {
       uid: -i,
       thumbImgId: fssIds[i].thumbImgId, // 用于在提交时获取真实的value
       bigImgId: fssIds[i].bigImgId,
     };
     try {
-      const serverPathObj = await getStaticServerPath(fssIds[i].thumbImgId);
-      const { bigImg, thumbImg } = serverPathObj;
+      const { bigImg, thumbImg } = await getStaticServerPath(fssIds[i].thumbImgId); // eslint-disable-line
       ret.push({
         url: bigImg,
         thumbUrl: thumbImg,
@@ -131,6 +130,7 @@ const Demo: React.FC<{}> = () => {
         label="图片"
         type="image"
         onUpload={handleUpload}
+        // onGetPreviewUrl={async () => 'https://www.caijinfeng.com/assets/images/logo-doly@3x.png'}
         max={9}
         disabled={!ready}
         required

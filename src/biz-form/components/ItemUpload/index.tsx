@@ -18,7 +18,13 @@ export interface FormItemUploadProps
   extends BizFormItemProps,
     Pick<
       UploadWrapperProps,
-      'accept' | 'onUpload' | 'fileTypeMessage' | 'fileSizeMessage' | 'maxSize' | 'max'
+      | 'accept'
+      | 'onUpload'
+      | 'fileTypeMessage'
+      | 'fileSizeMessage'
+      | 'maxSize'
+      | 'max'
+      | 'onGetPreviewUrl'
     > {
   type?: 'default' | 'image' | 'avatar' | 'dragger';
   uploadProps?: UploadProps;
@@ -32,6 +38,7 @@ const FormItemUpload: React.FC<FormItemUploadProps> = ({
   uploadProps,
   accept,
   onUpload,
+  onGetPreviewUrl,
   fileTypeMessage,
   fileSizeMessage,
   maxSize,
@@ -88,6 +95,7 @@ const FormItemUpload: React.FC<FormItemUploadProps> = ({
       <Comp
         accept={accept}
         onUpload={onUpload}
+        onGetPreviewUrl={onGetPreviewUrl}
         fileTypeMessage={fileTypeMessage}
         fileSizeMessage={fileSizeMessage}
         maxSize={maxSize}

@@ -46,10 +46,10 @@ const defaultFssId = ["jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ", "jkjgkEfvpUPVyRjUImniV
 
 // 将值转换为 UploadFile 对象
 const beforeTransformUploadValues = async (fssIds: string[]) => {
-  let ret = [];
-  for (let i = 0; i < fssIds.length; i++) {
+  const ret = [];
+  for (let i = 0; i < fssIds.length; i += 1) {
     try {
-      const serverPathObj = await getStaticServerPath(fssIds[i]);
+      const serverPathObj = await getStaticServerPath(fssIds[i]); // eslint-disable-line
       const url = serverPathObj.data;
       ret.push({
         uid: -i,
