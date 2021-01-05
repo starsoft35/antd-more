@@ -10,7 +10,7 @@ const UploadButton = ({ icon, title }) => {
 
 const UploadImage: React.FC<UploadWrapperProps> = ({
   fileList,
-  max,
+  maxCount,
   icon,
   title,
   ...restProps
@@ -18,12 +18,12 @@ const UploadImage: React.FC<UploadWrapperProps> = ({
   return (
     <UploadWrapper
       fileList={fileList}
-      max={max}
+      maxCount={maxCount}
       listType="picture-card"
       {...restProps}
       accept={restProps?.accept || '.jpg, .jpeg, .png'}
     >
-      {max && fileList && fileList.length >= max ? null : (
+      {maxCount && fileList && fileList.length >= maxCount ? null : (
         <UploadButton icon={icon} title={title} />
       )}
     </UploadWrapper>

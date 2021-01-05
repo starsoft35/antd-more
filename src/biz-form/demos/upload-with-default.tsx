@@ -112,7 +112,7 @@ const Demo: React.FC<{}> = () => {
         label="图片"
         type="image"
         onUpload={handleUpload}
-        max={9}
+        maxCount={9}
         disabled={!ready}
         required
       />

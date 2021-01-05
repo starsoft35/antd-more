@@ -131,7 +131,7 @@ const Demo: React.FC<{}> = () => {
         type="image"
         onUpload={handleUpload}
         // onGetPreviewUrl={async () => 'https://www.caijinfeng.com/assets/images/logo-doly@3x.png'}
-        max={9}
+        maxCount={9}
         disabled={!ready}
         required
       // uploadProps={{

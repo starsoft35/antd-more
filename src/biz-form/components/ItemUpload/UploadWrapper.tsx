@@ -19,9 +19,10 @@ const prefixCls = 'antd-more-upload';
 export interface UploadWrapperProps extends UploadProps {
   fileTypeMessage?: string; // 文件类型错误提示
   fileSizeMessage?: string; // 文件超过最大尺寸提示
+  maxCountMessage?: string; // 上传文件超过限制数量时提示
   onUpload?: (file: UploadFile) => Promise<object | undefined>; // 单个文件上传
   maxSize?: number; // 单个文件最大尺寸，用于校验
-  max?: number; // 最大上传文件数量
+  maxCount?: number; // 最多上传文件数量
   beforeTransformValue?: (value: any[]) => UploadFile[] | Promise<UploadFile[]>; // 初始值转换
   onGetPreviewUrl?: (file: UploadFile) => Promise<string>; // 点击预览获取大图URL
   only?: boolean; // 仅支持一个，适用于头像
@@ -36,8 +37,9 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
   onUpload,
   fileTypeMessage,
   fileSizeMessage,
+  maxCountMessage,
   maxSize = 1024 * 1024 * 2,
-  max,
+  maxCount,
   beforeTransformValue,
   onGetPreviewUrl,
   only = false,
@@ -68,8 +70,13 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
   const handleBeforeUpload = React.useCallback(
     (file: RcFile) => {
       // 验证上传文件数量
-      if (max && Array.isArray(fileListRef.current) && fileListRef.current.length >= max) {
-        message.error(`最多上传${max}个文件`);
+      if (
+        !only &&
+        maxCount &&
+        Array.isArray(fileListRef.current) &&
+        fileListRef.current.length >= maxCount
+      ) {
+        message.error(maxCountMessage || `最多上传${maxCount}个文件`);
         actionRef.current = 'error';
         return false;
       }
@@ -96,7 +103,7 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
       actionRef.current = 'upload';
       return false;
     },
-    [fileList, max, fileSizeMessage, fileTypeMessage, maxSize, accept],
+    [fileList, maxCount, fileSizeMessage, fileTypeMessage, maxCountMessage, maxSize, accept, only],
   );
 
   // 处理上传
@@ -227,7 +234,7 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
         fileList: fileListRef.current,
       });
     },
-    [fileList, max, fileSizeMessage, fileTypeMessage, maxSize],
+    [fileList, only],
   );
 
   // 是否支持预览

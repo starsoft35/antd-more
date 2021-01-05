@@ -55,7 +55,7 @@ const Demo: React.FC<{}> = () => {
       <ItemUpload
         name="doc"
         label="doc文档"
-        max={1}
+        maxCount={1}
         accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
         fileTypeMessage="不支持文件类型"
         onUpload={handleUpload}
@@ -74,7 +74,7 @@ const Demo: React.FC<{}> = () => {
         name="images"
         label="图片"
         type="image"
-        max={9}
+        maxCount={9}
         required
         onUpload={handleUpload}
         transform={transformUploadValue}
@@ -92,7 +92,7 @@ const Demo: React.FC<{}> = () => {
         name="headpic02"
         label="头像2"
         type="image"
-        max={1}
+        maxCount={1}
         tooltip="使用image的方式，修改时需要先删除才能再上传"
         required
         onUpload={handleUpload}

@@ -22,14 +22,20 @@ export interface FormItemUploadProps
       | 'onUpload'
       | 'fileTypeMessage'
       | 'fileSizeMessage'
+      | 'maxCountMessage'
       | 'maxSize'
-      | 'max'
+      | 'maxCount'
       | 'onGetPreviewUrl'
     > {
   type?: 'default' | 'image' | 'avatar' | 'dragger';
   uploadProps?: UploadProps;
   disabled?: boolean;
   multiple?: boolean;
+
+  /**
+   * @deprecated Please use `maxCount`
+   */
+  max?: number;
   icon?: React.ReactNode;
   title?: React.ReactNode;
 }
@@ -41,8 +47,10 @@ const FormItemUpload: React.FC<FormItemUploadProps> = ({
   onGetPreviewUrl,
   fileTypeMessage,
   fileSizeMessage,
+  maxCountMessage,
   maxSize,
   max,
+  maxCount,
   type = 'default',
   disabled = false,
   multiple = false,
@@ -99,7 +107,7 @@ const FormItemUpload: React.FC<FormItemUploadProps> = ({
         fileTypeMessage={fileTypeMessage}
         fileSizeMessage={fileSizeMessage}
         maxSize={maxSize}
-        max={max}
+        maxCount={maxCount || max}
         disabled={disabled}
         multiple={multiple}
         icon={icon}
