@@ -73,31 +73,53 @@ ReactDon.render(<BizField value="red" valueType="color" />, mountNode);
 
 ## 贡献
 
-### commit 规范
+### commit格式
 
-**格式: 冒号后面有空格**
+- **格式**
 
-```shell
-<type>: <subject>
+```bash
+type(scope?): subject
 ```
 
-- **upd** - 更新某功能（不是 feat, 不是 fix）
-- **feat** - 新功能（feature）
-- **fix** - 修补bug
-- **docs** - 文档（documentation）
-- **style** -  格式（不影响代码运行的变动）
-- **refactor** - 重构（即不是新增功能，也不是修改bug的代码变动）
-- **test** - 增加测试
-- **chore** - 构建过程或辅助工具的变动
+- **示例**
 
-**示例**
-
-```shell
-git commit -m 'feat: 增加 xxx 功能'
-git commit -m 'bug: 修复 xxx 功能'
-git commit -m 'upd: 更新某组件文本'
+```bash
+chore: run tests on travis ci
+fix(server): send cors headers
+feat(blog): add comment section
 ```
 
+- **type**
+
+ 值 | 说明 
+ --- | ---
+build | 影响构建系统或外部依赖项的更新（示例范围：gulp, broccoli, npm）
+ci | 对CI配置文件和脚本的更改(例如scopes: Travis, Circle, BrowserStack, SauceLabs)
+chore | 其他不修改src或测试文件的更改
+docs | 只改变文档
+feat | 新功能
+fix | bug 修复
+perf | 改进性能的代码更改
+refactor | 既不修复bug也不添加新功能的代码更改
+revert | 还原以前的提交
+style | 不影响代码含义的更改(white-space、格式、缺少分号等)
+test | 添加缺失的测试或纠正现有的测试
+
+- **使用 `cz` 生成**
+
+> 格式参考 [What is commitlint]
+
+原来使用 `git commit -m "xx"` 改为以下命令（交互方式填写提交信息）：
+
+```bash
+npm run commit
+```
+
+or 
+
+```bash
+npx cz
+```
 
 
 [npm]: https://img.shields.io/npm/v/antd-more.svg
