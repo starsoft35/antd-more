@@ -11,7 +11,7 @@ import { UserOutlined, LockOutlined, SafetyCertificateOutlined, MobileOutlined, 
 const { ItemInput, ItemCaptcha, ItemMobile, ItemEmail } = BizForm;
 
 function sendCaptcha(mobile) {
-  return new Promise(resolve => {
+  return new Promise<void>(resolve => {
     setTimeout(() => {
       resolve();
     }, 2000);

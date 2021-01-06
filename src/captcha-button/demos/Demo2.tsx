@@ -7,7 +7,7 @@ import { CaptchaButton } from 'antd-more';
 
 // 接口请求
 function getValidateCode() {
-  return new Promise((resolve) => {
+  return new Promise<void>((resolve) => {
     setTimeout(() => {
       resolve();
     }, 1000);

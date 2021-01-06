@@ -96,7 +96,7 @@ const FormItemCheckbox: React.FC<FormItemCheckboxProps> = ({
         {
           validator(rule, value) {
             let errMsg = '';
-            if (!value) {
+            if (!value || (Array.isArray(value) && value.length === 0)) {
               errMsg = required ? `请选择${label}` : '';
             }
             if (errMsg) {

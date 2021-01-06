@@ -34,7 +34,7 @@ const VerificateCodeInput: React.FC<VerificateCodeInputProps> = ({
 
   // 验证手机号码/邮箱是否正确
   const checkResult = React.useCallback(() => {
-    return new Promise((resolve, reject) => {
+    return new Promise<void>((resolve, reject) => {
       const ret = check();
       if (typeof ret === 'boolean' && checkResult) {
         resolve();

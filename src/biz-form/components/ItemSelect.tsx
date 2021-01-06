@@ -49,7 +49,8 @@ const FormItemSelect: React.FC<FormItemSelectProps> = ({
         {
           validator(rule, value) {
             let errMsg = '';
-            if (!value) {
+            const hasOptValue = options.find((item) => item.value === value);
+            if (!value && !hasOptValue && !(all && allValue === value)) {
               errMsg = required ? `请选择${label}` : '';
             }
             if (errMsg) {

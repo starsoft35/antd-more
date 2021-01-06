@@ -103,7 +103,7 @@ const Demo: React.FC<{}> = () => {
               label='验证码'
               name='code'
               onGetCaptcha={() => {
-                return new Promise(resolve => {
+                return new Promise<void>(resolve => {
                   setTimeout(() => {
                     resolve();
                   }, 1000);

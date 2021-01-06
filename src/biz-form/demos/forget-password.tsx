@@ -3,7 +3,7 @@ import { message } from 'antd';
 import { BizForm } from 'antd-more';
 
 function sendCaptcha(mobile) {
-  return new Promise(resolve => {
+  return new Promise<void>(resolve => {
     setTimeout(() => {
       resolve();
     }, 2000);
