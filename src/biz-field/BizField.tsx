@@ -3,6 +3,7 @@ import { formatMoney } from 'util-helpers';
 import { BizFieldProps } from './interface';
 import FieldProgress from './components/Progress';
 import FieldIndex from './components/Index';
+import FieldImage from './components/Image';
 import Dictionary from '../dictionary';
 import Color from '../color';
 import '../color/style';
@@ -58,6 +59,9 @@ const BizField: React.FC<BizFieldProps> = ({
   if (type === 'text') {
     // 文本
     view = <span {...props}>{value || '-'}</span>;
+  } else if (type === 'image') {
+    // 图片
+    view = <FieldImage value={value} {...props} />;
   } else if (type === 'money') {
     // 金额
     view = <span {...props}>{formatMoney(value)}</span>;

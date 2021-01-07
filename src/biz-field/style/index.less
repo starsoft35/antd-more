@@ -1,6 +1,7 @@
 @import '../../style/themes/default.less';
 
 @prefix-index-cls: ~'@{prefix}-field-index';
+@prefix-image-cls: ~'@{prefix}-field-image';
 
 .@{prefix-index-cls} {
   display: inline-flex;
@@ -17,8 +18,18 @@
     line-height: 12px;
     background-color: #314659;
     border-radius: 10px;
+
     &.top-three {
       background-color: #979797;
     }
+  }
+}
+
+.@{prefix-image-cls} {
+  display: inline-flex;
+  flex-wrap: wrap;
+
+  .ant-image {
+    margin: 0 8px 8px 0;
   }
 }

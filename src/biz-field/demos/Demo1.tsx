@@ -96,6 +96,12 @@ export default () => {
         <Descriptions.Item label="颜色带文本">
           <BizField value='blue' valueType="color" showText />
         </Descriptions.Item>
+        <Descriptions.Item label="图片" span={2}>
+          <BizField value="https://gw.alipayobjects.com/zos/antfincdn/aPkFc8Sj7n/method-draw-image.svg" valueType="image" />
+        </Descriptions.Item>
+        <Descriptions.Item label="多张图片" span={3}>
+          <BizField value={["https://gw.alipayobjects.com/zos/antfincdn/aPkFc8Sj7n/method-draw-image.svg", "https://gw.alipayobjects.com/zos/antfincdn/aPkFc8Sj7n/method-draw-image.svg"]} valueType="image" />
+        </Descriptions.Item>
       </Descriptions>
       <Descriptions title="日期">
         <Descriptions.Item label="日期">

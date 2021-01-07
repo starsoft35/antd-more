@@ -122,6 +122,10 @@ showColor  | 显示颜色 | `boolean` | `false` |
 showSymbol  | 显示符号 | `boolean` | `false` |
 suffix  | 百分号后缀 | `string` | `%` |
 
+#### image
+
+同 [`Image`](https://ant-design.gitee.io/components/image-cn/#API) 。
+
 #### progress
 
 同 [`Progress`](https://ant-design.gitee.io/components/progress-cn/#API) 。

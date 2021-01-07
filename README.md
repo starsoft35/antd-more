@@ -140,3 +140,4 @@ npx cz
 [BizField]: https://doly-dev.github.io/antd-more/site/v1/index.html#/business/biz-field
 [BizForm]: https://doly-dev.github.io/antd-more/site/v1/index.html#/business/biz-form
 [BizTable]: https://doly-dev.github.io/antd-more/site/v1/index.html#/business/biz-table
+[What is commitlint]: https://github.com/conventional-changelog/commitlint#what-is-commitlint
