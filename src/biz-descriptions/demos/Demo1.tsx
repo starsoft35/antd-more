@@ -14,10 +14,12 @@ const data = {
   startDate: '2020-10-10 10:00:00',
   endDate: '2020-12-12 10:00:00',
   status: 1,
-  other: '其他内容'
+  other: '其他内容',
+  image: 'https://gw.alipayobjects.com/zos/antfincdn/aPkFc8Sj7n/method-draw-image.svg',
+  image2: ["https://gw.alipayobjects.com/zos/antfincdn/aPkFc8Sj7n/method-draw-image.svg", "https://gw.alipayobjects.com/zos/antfincdn/aPkFc8Sj7n/method-draw-image.svg"]
 }
 
-const Demo: React.FC<{}> = () => {
+const Demo: React.FC = () => {
   return (
     <BizDescriptions title="标题" tooltip="标题提示文字" >
       <BizDescriptions.Item label="空字符串" valueType="text" tooltip="空字符串显示 -">{data.text1}</BizDescriptions.Item>
@@ -49,6 +51,8 @@ const Demo: React.FC<{}> = () => {
       <BizDescriptions.Item label="状态" valueType="enum" valueEnum={ApproveStatus}>{data.status}</BizDescriptions.Item>
       <BizDescriptions.Item label="状态" valueType="enumTag" valueEnum={ApproveStatus}>{data.status}</BizDescriptions.Item>
       <BizDescriptions.Item label="状态" valueType="enumBadge" valueEnum={ApproveStatus}>{data.status}</BizDescriptions.Item>
+      <BizDescriptions.Item label="图片" valueType={{ type: 'image' }}>{data.image}</BizDescriptions.Item>
+      <BizDescriptions.Item label="多张图片" valueType={{ type: 'image' }}>{data.image2}</BizDescriptions.Item>
     </BizDescriptions>
   );
 }

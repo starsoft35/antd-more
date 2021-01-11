@@ -14,7 +14,9 @@ const data = {
   startDate: '2020-10-10 10:00:00',
   endDate: '2020-12-12 10:00:00',
   status: 1,
-  other: '其他内容'
+  other: '其他内容',
+  image: 'https://gw.alipayobjects.com/zos/antfincdn/aPkFc8Sj7n/method-draw-image.svg',
+  image2: ["https://gw.alipayobjects.com/zos/antfincdn/aPkFc8Sj7n/method-draw-image.svg", "https://gw.alipayobjects.com/zos/antfincdn/aPkFc8Sj7n/method-draw-image.svg"]
 }
 
 const columns = [
@@ -111,6 +113,16 @@ const columns = [
     title: "状态",
     valueType: "enumBadge",
     valueEnum: ApproveStatus
+  },
+  {
+    dataIndex: "image",
+    title: "图片",
+    valueType: "image"
+  },
+  {
+    dataIndex: "image2",
+    title: "多张图片",
+    valueType: "image"
   },
   {
     dataIndex: "other",

@@ -4,12 +4,12 @@ import { ImageProps } from 'antd/es/image';
 
 const prefixCls = 'antd-more-field-image';
 
-export interface FiledImageProps extends ImageProps {
+export interface FiledImageProps extends Omit<ImageProps, 'src'> {
   value: string | string[];
 }
 
 const FiledImage: React.FC<FiledImageProps> = ({ value, ...restProps }) => {
-  const values = React.useMemo(() => (Array.isArray(value) ? value : [value]), []);
+  const values = React.useMemo(() => (Array.isArray(value) ? value : [value]), [value]);
 
   return (
     <div className={prefixCls}>
