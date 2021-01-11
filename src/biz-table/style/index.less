@@ -1,1 +1,24 @@
 @import '../../style/themes/default.less';
+
+@prefix-table-cls: ~'@{prefix}-table';
+
+.@{prefix-table-cls} {
+  &-nowrap {
+    .ant-table-pagination.ant-pagination {
+      flex-wrap: wrap;
+    }
+
+    .ant-table {
+      th,
+      td {
+        white-space: nowrap;
+      }
+    }
+  }
+
+  @media (max-width: @screen-xs) {
+    .ant-pagination-total-text {
+      display: none;
+    }
+  }
+}

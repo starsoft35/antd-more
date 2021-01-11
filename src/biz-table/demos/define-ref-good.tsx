@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { BizTable } from 'antd-more';
-import { ActionType, BizTableProps, Request } from 'antd-more/es/biz-table';
+import { ActionType, BizTableProps, Request, BizColumnType } from 'antd-more/es/biz-table';
 
 const mockData = [
   { name: '' },
@@ -22,7 +22,7 @@ const DefineTable: React.FC<BizTableProps> = ({ actionRef, ...restProps }) => {
 
   React.useImperativeHandle(actionRef, () => innerActionRef.current, [innerActionRef.current]);
 
-  const columns = React.useMemo(() => ([
+  const columns: BizColumnType = React.useMemo(() => ([
     {
       title: '序号',
       valueType: 'indexBorder'

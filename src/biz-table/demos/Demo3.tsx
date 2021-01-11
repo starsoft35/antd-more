@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { BizTable } from 'antd-more';
+import { BizColumnType } from 'antd-more/es/biz-table';
 import moment from 'moment';
 import Mock from 'mockjs';
 
@@ -26,7 +27,7 @@ function getApplyList(params) {
     }, 1000);
   })
 }
-const columns = [
+const columns:BizColumnType = [
   {
     dataIndex: "applyCode",
     title: "申请编号"

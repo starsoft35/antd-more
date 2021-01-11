@@ -4,6 +4,7 @@ import { TableProps, ColumnType } from 'antd/es/table';
 import { SpaceProps } from 'antd/es/space';
 import { CardProps } from 'antd/es/card';
 import { FormInstance } from 'antd/es/form';
+import classnames from 'classnames';
 import SearchForm, { SearchFormProps } from './SearchForm';
 import { QueryFormProps } from '../biz-form';
 import usePagination from './usePagination';
@@ -12,7 +13,9 @@ import WithTooltip from '../biz-descriptions/WithTooltip';
 import actionCache, { createActionCacheKey } from './actionCache';
 import { Request, RecordType, ActionType } from './interface';
 
-export declare type BizColumns<Record = RecordType> = (ColumnType<Record> & {
+const prefixCls = 'antd-more-table';
+
+export declare type BizColumnType<Record = RecordType> = (ColumnType<Record> & {
   valueType?: ValueType;
   valueEnum?: EnumData;
   tooltip?: string;
@@ -25,9 +28,10 @@ export declare interface BizTableInnerProps<Record = RecordType>
     | React.MutableRefObject<FormInstance | undefined>
     | ((instance: FormInstance<any>) => void);
   ref?: React.MutableRefObject<ActionType | undefined> | ((actionRef: ActionType) => void);
-  columns?: BizColumns<Record>;
+  columns?: BizColumnType<Record>;
   ready?: boolean;
   autoRequest?: boolean;
+  nowrap?: boolean;
   request?: Request;
   form?: QueryFormProps;
   spaceProps?: SpaceProps;
@@ -54,6 +58,7 @@ const BizTableInner: React.FC<BizTableInnerProps> = React.forwardRef(
       request,
       ready = true,
       autoRequest = true,
+      nowrap = true,
 
       columns,
       pagination,
@@ -191,6 +196,11 @@ const BizTableInner: React.FC<BizTableInnerProps> = React.forwardRef(
         direction="vertical"
         size={16}
         {...spaceProps}
+        className={classnames(
+          prefixCls,
+          { [`${prefixCls}-nowrap`]: nowrap },
+          spaceProps?.className,
+        )}
         style={{ display: 'flex', width: '100%', ...spaceProps?.style }}
       >
         <SearchForm
@@ -221,6 +231,7 @@ const BizTableInner: React.FC<BizTableInnerProps> = React.forwardRef(
             }
             onChange={handleChange}
             {...restProps}
+            scroll={{ ...(nowrap ? { x: true } : {}), ...restProps?.scroll }}
           />
         </Card>
       </Space>

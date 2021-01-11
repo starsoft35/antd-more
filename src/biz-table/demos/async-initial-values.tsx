@@ -4,7 +4,7 @@
  */
 import * as React from 'react';
 import { BizForm, BizTable } from 'antd-more';
-import { Request } from 'antd-more/es/biz-table';
+import { Request, BizColumnType } from 'antd-more/es/biz-table';
 import moment from 'moment';
 import Mock from 'mockjs';
 
@@ -73,7 +73,7 @@ function getAsyncInitialValues(): Promise<{
 }
 
 
-const columns = [
+const columns: BizColumnType = [
   {
     dataIndex: "applyCode",
     title: "申请编号"
