@@ -19,6 +19,7 @@ export declare type BizColumnType<Record = RecordType> = (ColumnType<Record> & {
   valueType?: ValueType;
   valueEnum?: EnumData;
   tooltip?: string;
+  nowrap?: boolean;
 })[];
 
 export declare interface BizTableInnerProps<Record = RecordType>
@@ -138,24 +139,38 @@ const BizTableInner: React.FC<BizTableInnerProps> = React.forwardRef(
 
     const currentColumns = React.useMemo(
       () =>
-        columns.map(({ valueType, valueEnum, tooltip, title, ...restItem }) => {
-          const newItem = {
-            title: title && tooltip ? <WithTooltip label={title} tooltip={tooltip} /> : title,
-            ...restItem,
-          };
-          if (valueType && !newItem.render) {
-            if (valueType === 'index' || valueType === 'indexBorder') {
-              newItem.render = (text, record, index) => (
-                <BizField value={index} valueType={valueType} valueEnum={valueEnum} />
-              );
-            } else {
-              newItem.render = (text) => (
-                <BizField value={text} valueType={valueType} valueEnum={valueEnum} />
-              );
+        columns.map(
+          ({
+            valueType,
+            valueEnum,
+            tooltip,
+            title,
+            className,
+            nowrap: cellNowrap,
+            ...restItem
+          }) => {
+            const newItem = {
+              title: title && tooltip ? <WithTooltip label={title} tooltip={tooltip} /> : title,
+              className: classnames(
+                { [`${prefixCls}-cell-wrap`]: nowrap && cellNowrap === false },
+                className,
+              ),
+              ...restItem,
+            };
+            if (valueType && !newItem.render) {
+              if (valueType === 'index' || valueType === 'indexBorder') {
+                newItem.render = (text, record, index) => (
+                  <BizField value={index} valueType={valueType} valueEnum={valueEnum} />
+                );
+              } else {
+                newItem.render = (text) => (
+                  <BizField value={text} valueType={valueType} valueEnum={valueEnum} />
+                );
+              }
             }
-          }
-          return newItem;
-        }),
+            return newItem;
+          },
+        ),
       [columns],
     );
 

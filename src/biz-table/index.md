@@ -50,7 +50,7 @@ legacy: /business/biz-table
 request  | 获取 `dataSource` 的方法 | `Request` | - |
 autoRequest  | 初始化时自动触发 `request` | `boolean` | `true` |
 ready  | 为 `false` 时，禁止提交/重置表单，不触发 `request` 。<br/>为 `true` 时，会重新设置表单初始值，如果 `autoRequest=true` 则自动请求。 | `boolean` | `true` |
-nowrap  | th、td内容不会换行，表格宽度超过100%自动处理横向滚动条。 | `boolean` | `true` |
+nowrap  | 单元格内容不会换行，表格宽度超过100%自动处理横向滚动条。<br />如果要设置单元格宽度，请关闭该配置 或 `column` 的 `nowrap` 设置为 `false`。 | `boolean` | `true` |
 formItems  | 表单列 | `React.ReactNode[]` | - |
 toolbar  | 工具栏，表格内的上面区域 | `React.ReactNode` | - |
 extra  | 扩展内容，表格外的上面、查询表单下面的区域 | `React.ReactNode` | - |

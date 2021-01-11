@@ -3,6 +3,14 @@
 @prefix-table-cls: ~'@{prefix}-table';
 
 .@{prefix-table-cls} {
+  .ant-table {
+    th,
+    td {
+      word-wrap: break-word;
+      word-break: break-all;
+    }
+  }
+
   &-nowrap {
     .ant-table-pagination.ant-pagination {
       flex-wrap: wrap;
@@ -12,6 +20,10 @@
       th,
       td {
         white-space: nowrap;
+      }
+
+      td.antd-more-table-cell-wrap {
+        white-space: normal;
       }
     }
   }
