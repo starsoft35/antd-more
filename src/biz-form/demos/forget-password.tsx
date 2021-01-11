@@ -23,9 +23,7 @@ const ForgetPassword: React.FC<{}> = () => {
         noReset: true
       }}
       form={form}
-      labelCol={{
-        flex: '0 0 96px'
-      }}
+      labelWidth={98}
     >
       <ItemMobile label="手机号码" name="mobile" required />
       <ItemCaptcha

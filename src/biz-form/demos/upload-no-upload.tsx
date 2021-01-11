@@ -15,9 +15,7 @@ const Demo: React.FC<{}> = () => {
       onFinish={(values) => {
         console.log(values);
       }}
-      labelCol={{
-        flex: '0 0 100px'
-      }}
+      labelWidth={98}
     >
       <ItemUpload
         name="doc"

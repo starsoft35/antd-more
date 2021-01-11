@@ -10,9 +10,7 @@ const Demo: React.FC<{}> = () => {
       onFinish={values => {
         console.log(values);
       }}
-      labelCol={{
-        flex: '0 0 96px'
-      }}
+      labelWidth={112}
     >
       <ItemInput label="Input" name="input1" />
       <ItemInput label="禁止空格" name="input2" disabledWhiteSpace />

@@ -65,9 +65,7 @@ const SettlementInfo: React.FC<{}> = () => {
         // 提交按钮居中
         render: (_, dom) => <div style={{ display: "flex", justifyContent: "center" }}>{dom}</div>,
       }}
-      labelCol={{
-        flex: "0 0 120px"
-      }}
+      labelWidth={112}
     >
       <Row>
         <Col {...oneColSpan}>

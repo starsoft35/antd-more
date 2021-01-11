@@ -17,9 +17,7 @@ const Demo: React.FC<{}> = () => {
         console.log(values);
       }}
       initialValues={initialValues}
-      labelCol={{
-        flex: '0 0 96px'
-      }}
+      labelWidth={98}
     >
       <ItemDateRange label="日期" name="date1" />
       <ItemDateRange label="解构字段" names={["startDate", "endDate"]} required tooltip='传入names会自动将值解构到当前层级' />

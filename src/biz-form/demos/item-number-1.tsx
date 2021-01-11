@@ -10,9 +10,7 @@ const Demo: React.FC<{}> = () => {
       onFinish={values => {
         console.log(values);
       }}
-      labelCol={{
-        flex: '0 0 96px'
-      }}
+      labelWidth={98}
     >
       <ItemNumber label="number1" name="number1" />
       <ItemNumber label="number2" name="number2" required />

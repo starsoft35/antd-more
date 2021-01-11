@@ -11,9 +11,6 @@ const RegisterDemo: React.FC<{}> = () => {
       onFinish={values => {
         console.log(values);
       }}
-      labelCol={{
-        flex: '0 0 80px'
-      }}
     >
       <ItemUserName label="用户名" name="userName" required />
       <ItemMobile label="手机号码" name="mobile" required />

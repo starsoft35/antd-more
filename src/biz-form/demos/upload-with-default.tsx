@@ -103,9 +103,7 @@ const Demo: React.FC<{}> = () => {
       }}
       ready={ready}
       initialValues={initialValues}
-      labelCol={{
-        flex: '0 0 100px'
-      }}
+      labelWidth={98}
     >
       <ItemUpload
         name="images"

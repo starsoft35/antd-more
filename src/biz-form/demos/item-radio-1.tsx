@@ -26,9 +26,7 @@ const Demo: React.FC<{}> = () => {
       onFinish={values => {
         console.log(values);
       }}
-      labelCol={{
-        flex: '0 0 96px'
-      }}
+      labelWidth={98}
     >
       <ItemRadio label="单选框1" name="radio1" options={cycle} />
       <ItemRadio label="单选框2" name="radio2" options={cycle} required />

@@ -17,9 +17,7 @@ const Demo: React.FC<{}> = () => {
         console.log(values);
       }}
       initialValues={initialValues}
-      labelCol={{
-        flex: '0 0 96px'
-      }}
+      labelWidth={98}
     >
       <ItemDate label="日期" name="date1" />
       <ItemDate label="日期2" name="date2" required />

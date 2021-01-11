@@ -39,7 +39,6 @@ const LoginDemo: React.FC<{}> = () => {
         loading={loading}
         onFinish={onFinish}
         submitter={{
-          // render: (_, dom) => dom[0],
           noReset: true,
           submitText: '登录',
           submitButtonProps: {
@@ -47,7 +46,7 @@ const LoginDemo: React.FC<{}> = () => {
             block: true,
           }
         }}
-        labelCol={{ style: { display: 'none' } }}
+        hideLabel
         size="large"
       >
         <ItemInput

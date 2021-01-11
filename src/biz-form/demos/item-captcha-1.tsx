@@ -26,9 +26,7 @@ const Demo: React.FC<{}> = () => {
       onFinish={values => {
         console.log(values);
       }}
-      labelCol={{
-        flex: '0 0 96px'
-      }}
+      labelWidth={98}
     >
       <ItemCaptcha label="验证码1" name="captcha1" check={checkNumber} onGetCaptcha={sendCode} />
       <ItemCaptcha label="验证码2" name="captcha2" second={120} check={checkNumber} onGetCaptcha={sendCode} required />

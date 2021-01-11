@@ -68,9 +68,7 @@ const Demo: React.FC<{}> = () => {
         onFinish={(values) => {
           console.log(values);
         }}
-        labelCol={{
-          flex: '0 0 100px'
-        }}
+        labelWidth={110}
       >
         <h3>业务组件</h3>
         <Row gutter={16}>

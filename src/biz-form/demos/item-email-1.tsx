@@ -14,9 +14,7 @@ const Demo: React.FC<{}> = () => {
       onFinish={values => {
         console.log(values);
       }}
-      labelCol={{
-        flex: '0 0 96px'
-      }}
+      labelWidth={98}
       initialValues={initialValues}
     >
       <ItemEmail label="email1" name="email1" />

@@ -10,9 +10,7 @@ const Demo: React.FC<{}> = () => {
       onFinish={values => {
         console.log(values);
       }}
-      labelCol={{
-        flex: '0 0 96px'
-      }}
+      labelWidth={98}
     >
       <ItemColor label="颜色" name="color1" showText />
       <ItemColor label="rgb" name="color2" showText colorMode="rgb" />

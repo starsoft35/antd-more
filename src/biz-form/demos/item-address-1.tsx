@@ -12,9 +12,7 @@ const Demo: React.FC<{}> = () => {
       onFinish={values => {
         console.log(values);
       }}
-      labelCol={{
-        flex: '0 0 96px'
-      }}
+      labelWidth={98}
     >
       <ItemAddress label="地址1" names={['location-1', 'address-1']} labels={['省/市/区', '详细地址']} options={lcnFormInland} />
       <ItemAddress label="地址2" names={['location-2', 'address-2']} labels={['省/市/区', '详细地址']} options={lcnFormInland} required />

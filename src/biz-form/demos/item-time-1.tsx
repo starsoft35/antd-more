@@ -15,9 +15,7 @@ const Demo: React.FC<{}> = () => {
       name='item-time-1'
       onFinish={value => console.log(value)}
       initialValues={initialValues}
-      labelCol={{
-        flex: '0 0 96px'
-      }}
+      labelWidth={98}
     >
       <ItemTime label='时间' name='time1' />
       <ItemTime label='时间2' name='time2' required />

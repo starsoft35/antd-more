@@ -16,6 +16,8 @@ export interface BizFormItemProps extends FormItemProps {
   transform?: TransformFn;
   colProps?: ColProps;
   extendRules?: Rule[];
+  labelWidth?: number | 'auto';
+  hideLabel?: boolean;
 }
 
 const BizFormItem: React.FC<BizFormItemProps> = ({
@@ -25,10 +27,40 @@ const BizFormItem: React.FC<BizFormItemProps> = ({
   colProps,
   rules = [],
   extendRules = [],
+  labelWidth,
+  hideLabel,
+  labelCol,
   ...restProps
 }) => {
-  const { setFieldTransform } = React.useContext(FieldContext);
+  const {
+    setFieldTransform,
+    layout,
+    hideLabel: formHideLabel,
+    labelCol: formLabelCol,
+  } = React.useContext(FieldContext);
   const { parentListName } = React.useContext(ListFieldContext);
+
+  const labelColProps = React.useMemo(() => {
+    const formLabelColFlex =
+      formLabelCol?.flex && labelWidth !== 'auto' ? { flex: formLabelCol.flex } : {};
+    const labelFlex =
+      layout !== 'vertical' && labelWidth && labelWidth !== 'auto'
+        ? { flex: `0 0 ${labelWidth}px` }
+        : formLabelColFlex;
+    const labelStyle = {
+      style: {
+        ...formLabelCol?.style,
+        ...(formHideLabel && hideLabel === false ? { display: 'block' } : {}),
+        ...(hideLabel ? { display: 'none' } : {}),
+        ...labelCol?.style,
+      },
+    };
+    return {
+      ...labelFlex,
+      ...labelCol,
+      ...labelStyle,
+    };
+  }, [layout, labelWidth, hideLabel, labelCol, formHideLabel, formLabelCol]);
 
   React.useEffect(() => {
     if (name && transform && setFieldTransform) {
@@ -37,7 +69,13 @@ const BizFormItem: React.FC<BizFormItemProps> = ({
   }, []);
 
   return (
-    <Form.Item name={name} validateFirst rules={[...rules, ...extendRules]} {...restProps}>
+    <Form.Item
+      name={name}
+      validateFirst
+      rules={[...rules, ...extendRules]}
+      labelCol={labelColProps}
+      {...restProps}
+    >
       {children}
     </Form.Item>
   );

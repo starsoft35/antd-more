@@ -99,6 +99,8 @@ submitter  | 提交、重置按钮相关配置 | `false` \| `SubmitterProps` | -
 pressEnterSubmit  | 是否开启回车键提交，注意不要与自定义的 `htmlType='submit'` 的按钮冲突。 | `boolean` | `true` |
 ready  | 为 `false` 时，禁止提交/重置表单。<br/>为 `true` 时，会重新设置表单初始值。 | `boolean` | `true` |
 loading  | 设置提交、重置的加载/禁止状态 | `boolean` | `false` |
+labelWidth  | label 宽度 | `number` \| `'auto'` | `84` |
+hideLabel  | 隐藏 label | `boolean` | `false` |
 
 #### SubmitterProps
 
@@ -125,7 +127,6 @@ const { QueryForm } = BizForm;
 
 参数 | 说明 | 类型 | 默认值 |
 ------------- | ------------- | ------------- | ------------- |
-labelWidth  | label 宽度 | `number` \| `'auto'` | `84` |
 submitText  | 提交按钮文本 | `React.ReactNode` | `查询` |
 resetText  | 重置按钮文本 | `React.ReactNode` | `重置` |
 defaultCollapsed  | 默认状态下是否折叠超出的表单项 | `boolean` | `true` |
@@ -153,6 +154,8 @@ const { Item } = BizForm;
 
 参数 | 说明 | 类型 | 默认值 |
 ------------- | ------------- | ------------- | ------------- |
+labelWidth  | label 宽度。默认继承 `BizForm` 的 `labelWidth`。 | `number` \| `'auto'` | `auto` |
+hideLabel  | 隐藏 label 。默认继承 `BizForm` 的 `hideLabel`。 | `boolean` | - |
 transform  | 转换该字段值，表单提交时执行。 | `(value)=>any` | - |
 extendRules  | 扩展校验规则。如果需要覆盖，请使用 `rules` | `Rule[]` | - |
 colProps  | 设置该表单项 Col 属性。部分场景下生效，如 QueryForm 下。  | [`ColProps`](https://ant-design.gitee.io/components/grid-cn/#Col) | - |

@@ -16,9 +16,7 @@ const Demo: React.FC<{}> = () => {
       onFinish={values => {
         console.log(values);
       }}
-      labelCol={{
-        flex: '0 0 96px'
-      }}
+      labelWidth={98}
       initialValues={initialValues}
     >
       <ItemBankCard label="银行卡号1" name="bankCardNo1" />

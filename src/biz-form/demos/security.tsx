@@ -41,9 +41,7 @@ const Demo: React.FC<{}> = () => {
         submitText: "提交",
         noReset: true
       }}
-      labelCol={{
-        flex: '0 0 96px'
-      }}
+      labelWidth={98}
     >
       <ItemInput label="姓名" name="name" required />
       <ItemIdCard label="身份证号" name="idCard" required security initialValue={initialValues.idCard} />

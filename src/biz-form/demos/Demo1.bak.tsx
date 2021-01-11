@@ -43,7 +43,7 @@ const Demo: React.FC<{}> = () => {
   return (
     <>
       <BizForm
-        name='biz-form-demo2'
+        name='biz-form-demo1-bak'
         onFinish={onFinish}
         // initialValues={initialValues}
         {...formLayout}

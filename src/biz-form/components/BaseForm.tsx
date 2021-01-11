@@ -17,6 +17,8 @@ export interface BaseFormProps extends FormProps {
   onReset?: (event: React.FormEvent<HTMLFormElement>) => void;
   pressEnterSubmit?: boolean;
   children?: React.ReactNode;
+  labelWidth?: number | 'auto';
+  hideLabel?: boolean;
 }
 
 const BaseForm: React.FC<BaseFormProps> = ({
@@ -30,6 +32,10 @@ const BaseForm: React.FC<BaseFormProps> = ({
   onReset,
   children,
   initialValues,
+  labelWidth = 84,
+  layout = 'horizontal',
+  labelCol,
+  hideLabel = false,
   ...restProps
 }) => {
   const [form] = Form.useForm();
@@ -84,6 +90,19 @@ const BaseForm: React.FC<BaseFormProps> = ({
   const items = React.Children.toArray(children);
   const content = contentRender ? contentRender(items, submitterDom) : items;
 
+  const labelColProps = React.useMemo(() => {
+    const labelFlex =
+      layout !== 'vertical' && labelWidth && labelWidth !== 'auto'
+        ? { flex: `0 0 ${labelWidth}px` }
+        : {};
+    const labelStyle = { style: { ...(hideLabel ? { display: 'none' } : {}), ...labelCol?.style } };
+    return {
+      ...labelFlex,
+      ...labelCol,
+      ...labelStyle,
+    };
+  }, [hideLabel, layout, labelWidth, labelCol]);
+
   React.useEffect(() => {
     // 准备完成后，重新设置初始值
     if (ready) {
@@ -92,7 +111,9 @@ const BaseForm: React.FC<BaseFormProps> = ({
   }, [ready]);
 
   return (
-    <FieldContext.Provider value={{ setFieldTransform }}>
+    <FieldContext.Provider
+      value={{ setFieldTransform, layout, hideLabel, labelCol: labelColProps }}
+    >
       <Form
         onKeyPress={(event) => {
           const buttonHtmlType = submitterProps?.submitButtonProps?.htmlType;
@@ -110,6 +131,8 @@ const BaseForm: React.FC<BaseFormProps> = ({
           onFinish(transValues);
         }}
         initialValues={initialValues}
+        layout={layout}
+        labelCol={labelColProps}
         {...restProps}
       >
         {content}

@@ -37,9 +37,6 @@ const Demo: React.FC<{}> = () => {
       }}
       ready={ready}
       initialValues={initialValues}
-      labelCol={{
-        flex: '0 0 84px'
-      }}
     >
       <ItemInput label="姓名" name="name" />
     </BizForm>

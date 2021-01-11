@@ -26,9 +26,7 @@ const Demo: React.FC<{}> = () => {
       onFinish={values => {
         console.log(values);
       }}
-      labelCol={{
-        flex: '0 0 96px'
-      }}
+      labelWidth={98}
     >
       <ItemSelect label="选择器1" name="select1" options={cycle} />
       <ItemSelect label="选择器2" name="select2" options={cycle} required />

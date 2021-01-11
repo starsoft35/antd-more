@@ -29,10 +29,8 @@ const Demo: React.FC<{}> = () => {
       }}
       onFinish={onFinish}
       loading={loading}
-      labelCol={{
-        flex: '0 0 96px'
-      }}
       form={form}
+      labelWidth={98}
       name="form-change-password"
     >
       <Form.Item label="手机号码">13000000000</Form.Item>

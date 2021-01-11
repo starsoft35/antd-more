@@ -29,7 +29,6 @@ const Collapse: React.FC<CollapseProps> = React.memo(({ collapsed, onToggle = ()
 const formItemHideLabelClass = 'antd-more-form-item-hide-label';
 
 export interface QueryFormProps extends BaseFormProps {
-  labelWidth?: number | 'auto';
   submitText?: string;
   resetText?: string;
   defaultCollapsed?: boolean;
@@ -46,8 +45,6 @@ const colSpan = {
 const QueryForm: React.FC<QueryFormProps> = (props) => {
   const {
     layout = 'horizontal',
-    labelWidth = 84,
-    labelCol,
     submitter,
     submitText = '查询',
     resetText = '重置',
@@ -56,12 +53,6 @@ const QueryForm: React.FC<QueryFormProps> = (props) => {
     ...restProps
   } = props;
   const [collapsed, setCollapsed] = React.useState(defaultCollapsed);
-
-  const labelFlexStyle = React.useMemo(() => {
-    return layout !== 'vertical' && labelWidth && labelWidth !== 'auto'
-      ? { flex: `0 0 ${labelWidth}px` }
-      : {};
-  }, [layout, labelWidth]);
 
   return (
     <BaseForm
@@ -72,10 +63,6 @@ const QueryForm: React.FC<QueryFormProps> = (props) => {
         ...submitter,
       }}
       layout={layout}
-      labelCol={{
-        ...labelFlexStyle,
-        ...labelCol,
-      }}
       contentRender={(items, submitter) => {
         const enabledCollapse =
           typeof defaultColsNumber === 'number' && defaultColsNumber < items.length;

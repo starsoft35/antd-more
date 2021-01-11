@@ -10,9 +10,7 @@ const Demo: React.FC<{}> = () => {
       onFinish={values => {
         console.log(values);
       }}
-      labelCol={{
-        flex: '0 0 120px'
-      }}
+      labelWidth={112}
     >
       <ItemPassword label="password1" name="password1" />
       <ItemPassword label="password2" name="password2" required />

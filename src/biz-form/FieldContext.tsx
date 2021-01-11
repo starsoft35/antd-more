@@ -1,17 +1,22 @@
 import React from 'react';
 import { NamePath } from 'antd/es/form/interface';
+import { FormProps } from 'antd/es/form';
 
 export type TransformFn<T = any> = (value: T) => T | any;
 
-export interface FiledContextProps {
+export interface FiledContextProps extends Pick<FormProps, 'layout' | 'labelCol'> {
   setFieldTransform?: (
     name: NamePath,
     transform?: TransformFn | undefined,
     parentList?: NamePath[],
   ) => void;
+  hideLabel?: boolean;
 }
 
-const FieldContext = React.createContext<FiledContextProps>({ setFieldTransform: () => {} });
+const FieldContext = React.createContext<FiledContextProps>({
+  setFieldTransform: () => {},
+  hideLabel: false,
+});
 
 export default FieldContext;
 
