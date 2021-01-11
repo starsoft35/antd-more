@@ -33,7 +33,14 @@ module.exports = {
     "@typescript-eslint/camelcase": 0,
     "jsx-a11y/click-events-have-key-events": 0,
     "jsx-a11y/no-static-element-interactions": 0,
-    "jsx-a11y/anchor-is-valid": 0
+    "jsx-a11y/anchor-is-valid": 0,
+
+    // demo rules
+    // "no-trailing-spaces": 0,
+    // "max-len": 0,
+    // "import/no-extraneous-dependencies": 0,
+    // "no-console": 0,
+    // "import/prefer-default-export": 0,
   },
   "env": {
     "browser": true,

@@ -19,10 +19,10 @@ function sendCode() {
   });
 }
 
-const Demo: React.FC<{}> = () => {
+const Demo: React.FC = () => {
   return (
     <BizForm
-      name='form-item-captcha-1'
+      name="form-item-captcha-1"
       onFinish={values => {
         console.log(values);
       }}

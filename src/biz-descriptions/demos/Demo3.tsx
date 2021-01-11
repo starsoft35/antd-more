@@ -34,13 +34,13 @@ const columns = [
   }
 ];
 
-const Demo: React.FC<{}> = () => {
+const Demo: React.FC = () => {
   return (
     <BizDescriptions
       dataSource={data}
       columns={columns}
     >
-      <BizDescriptions.Item label="Label1" valueType="text">{''}</BizDescriptions.Item>
+      <BizDescriptions.Item label="Label1" valueType="text">{ }</BizDescriptions.Item>
       <BizDescriptions.Item label="Label2" span={2}>测试文本</BizDescriptions.Item>
     </BizDescriptions>
   );

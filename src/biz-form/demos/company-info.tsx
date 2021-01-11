@@ -14,7 +14,7 @@ const twoColSpan = {
   lg: 12
 };
 
-const CompanyInfo: React.FC<{}> = () => {
+const CompanyInfo: React.FC = () => {
   const [loading, setLoading] = React.useState(false);
   const onFinish = React.useCallback((values) => {
     console.log(values);
@@ -90,7 +90,7 @@ const CompanyInfo: React.FC<{}> = () => {
           <ItemAddress label="公司地址" names={["location", "address"]} labels={["省/市/区", "详细地址"]} options={lcnFormInland} required />
         </Col>
       </Row>
-    </BizForm >
+    </BizForm>
   );
 }
 

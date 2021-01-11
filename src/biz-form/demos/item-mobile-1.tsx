@@ -7,10 +7,10 @@ const initialValues = {
   mobile3: '150****2020'
 }
 
-const Demo: React.FC<{}> = () => {
+const Demo: React.FC = () => {
   return (
     <BizForm
-      name='form-item-mobile-1'
+      name="form-item-mobile-1"
       onFinish={values => {
         console.log(values);
       }}

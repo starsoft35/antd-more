@@ -92,20 +92,20 @@ const columns: BizColumnType = [
   }
 ];
 
-const Demo: React.FC<{}> = () => {
+const Demo: React.FC = () => {
   const [ready, setReady] = React.useState(false);
   const [initialValues, setInitialValues] = React.useState<any>({ approveResult: '' })
   const formItems = [
-    <BizForm.ItemInput name='applyCode' label='申请编号' />,
-    <BizForm.ItemDate name='createTime' label='提交时间' />,
-    <BizForm.ItemSelect name='approveResult' label='审核状态' options={approveResult} all />
+    <BizForm.ItemInput name="applyCode" label="申请编号" />,
+    <BizForm.ItemDate name="createTime" label="提交时间" />,
+    <BizForm.ItemSelect name="approveResult" label="审核状态" options={approveResult} all />
   ];
   const handleRequest: Request = React.useCallback((params, filters, sorter, extra) => {
     const { pageSize, current, ...restParams } = params;
     console.log(params, filters, sorter, extra);
     return getApplyList({
       page: {
-        pageSize: pageSize,
+        pageSize,
         pageNum: current
       },
       data: restParams
@@ -131,7 +131,7 @@ const Demo: React.FC<{}> = () => {
       formItems={formItems}
       form={{ initialValues }}
       columns={columns}
-      rowKey='applyCode'
+      rowKey="applyCode"
       request={handleRequest}
     />
   );

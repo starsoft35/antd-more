@@ -7,10 +7,10 @@ const initialValues = {
   idCard3: '130***********2288'
 }
 
-const Demo: React.FC<{}> = () => {
+const Demo: React.FC = () => {
   return (
     <BizForm
-      name='form-item-idCard-1'
+      name="form-item-idCard-1"
       onFinish={values => {
         console.log(values);
       }}

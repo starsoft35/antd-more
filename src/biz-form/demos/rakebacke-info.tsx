@@ -25,7 +25,7 @@ const RakebackeCycle = [
   }
 ];
 
-const RakebackeInfo: React.FC<{}> = () => {
+const RakebackeInfo: React.FC = () => {
   const [loading, setLoading] = React.useState(false);
   const onFinish = React.useCallback((values) => {
     console.log(values);
@@ -102,7 +102,7 @@ const RakebackeInfo: React.FC<{}> = () => {
           </BizForm.Item>
         </Col>
       </Row>
-    </BizForm >
+    </BizForm>
   );
 }
 

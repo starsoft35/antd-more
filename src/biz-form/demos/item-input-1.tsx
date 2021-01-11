@@ -3,10 +3,10 @@ import { BizForm } from 'antd-more';
 
 const { ItemInput } = BizForm;
 
-const Demo: React.FC<{}> = () => {
+const Demo: React.FC = () => {
   return (
     <BizForm
-      name='form-item-input-1'
+      name="form-item-input-1"
       onFinish={values => {
         console.log(values);
       }}

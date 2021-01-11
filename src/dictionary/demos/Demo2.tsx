@@ -26,8 +26,12 @@ export default () => {
   return (
     <>
       <Dictionary.Select data={ApproveStatus} value={value} onChange={setValue} all={false} style={{ width: 200 }} />
-      <br /><br />
-      <div>current value: {value}</div>
+      <br />
+      <br />
+      <div>
+        current value:
+        {value}
+      </div>
     </>
   )
 }

@@ -21,7 +21,7 @@ const data = {
 
 const Demo: React.FC = () => {
   return (
-    <BizDescriptions title="标题" tooltip="标题提示文字" >
+    <BizDescriptions title="标题" tooltip="标题提示文字">
       <BizDescriptions.Item label="空字符串" valueType="text" tooltip="空字符串显示 -">{data.text1}</BizDescriptions.Item>
       <BizDescriptions.Item label="空字符串" valueType="text">{data.text2}</BizDescriptions.Item>
       <BizDescriptions.Item label="金额" valueType="money">{data.number1}</BizDescriptions.Item>
@@ -31,11 +31,13 @@ const Demo: React.FC = () => {
       <BizDescriptions.Item
         label="百分比带颜色符号"
         valueType={{
-          type: 'percent',
+          type: "percent",
           showSymbol: true,
           showColor: true
         }}
-      >{data.number3}</BizDescriptions.Item>
+      >
+        {data.number3}
+      </BizDescriptions.Item>
       <BizDescriptions.Item label="颜色" valueType="color">{data.color}</BizDescriptions.Item>
       <BizDescriptions.Item
         label="颜色"
@@ -43,7 +45,9 @@ const Demo: React.FC = () => {
           type: "color",
           showText: true
         }}
-      >{data.color}</BizDescriptions.Item>
+      >
+        {data.color}
+      </BizDescriptions.Item>
       <BizDescriptions.Item label="日期" valueType="date">{data.date}</BizDescriptions.Item>
       <BizDescriptions.Item label="日期时间" valueType="dateTime">{data.date}</BizDescriptions.Item>
       <BizDescriptions.Item label="时间" valueType="time">{data.date}</BizDescriptions.Item>
@@ -51,8 +55,8 @@ const Demo: React.FC = () => {
       <BizDescriptions.Item label="状态" valueType="enum" valueEnum={ApproveStatus}>{data.status}</BizDescriptions.Item>
       <BizDescriptions.Item label="状态" valueType="enumTag" valueEnum={ApproveStatus}>{data.status}</BizDescriptions.Item>
       <BizDescriptions.Item label="状态" valueType="enumBadge" valueEnum={ApproveStatus}>{data.status}</BizDescriptions.Item>
-      <BizDescriptions.Item label="图片" valueType={{ type: 'image' }}>{data.image}</BizDescriptions.Item>
-      <BizDescriptions.Item label="多张图片" valueType={{ type: 'image' }}>{data.image2}</BizDescriptions.Item>
+      <BizDescriptions.Item label="图片" valueType={{ type: "image" }}>{data.image}</BizDescriptions.Item>
+      <BizDescriptions.Item label="多张图片" valueType={{ type: "image" }}>{data.image2}</BizDescriptions.Item>
     </BizDescriptions>
   );
 }

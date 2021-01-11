@@ -37,7 +37,7 @@ export const SettlementType = [
   }
 ];
 
-const SettlementInfo: React.FC<{}> = () => {
+const SettlementInfo: React.FC = () => {
   const [loading, setLoading] = React.useState(false);
   const onFinish = React.useCallback((values) => {
     console.log(values);
@@ -87,7 +87,7 @@ const SettlementInfo: React.FC<{}> = () => {
           <ItemAddress label="开户支行" names={["branchLocation", "branchName"]} labels={["省/市", "支行名称"]} required options={lcnFormPC} />
         </Col>
       </Row>
-    </BizForm >
+    </BizForm>
   );
 }
 

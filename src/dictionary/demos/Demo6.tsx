@@ -36,7 +36,8 @@ export default () => {
   return (
     <>
       <Dictionary.Radio data={OrgType} value={value} onChange={handleChange} />
-      <br /><br />
+      <br />
+      <br />
       <Dictionary.Radio data={OrgType} value={value} onChange={handleChange} type="button" />
     </>
   )

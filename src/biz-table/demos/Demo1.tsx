@@ -53,12 +53,12 @@ const columns: BizColumnType = [
   }
 ];
 
-const Demo: React.FC<{}> = () => {
+const Demo: React.FC = () => {
   const formItems = [
-    <BizForm.ItemInput name='applyCode' label='申请编号' />,
-    <BizForm.ItemDate name='createTime' label='提交时间' />,
-    <BizForm.ItemInput name='approverName' label='审核员' />,
-    <BizForm.ItemDateRange name='approveTime' names={['startTime', 'endTime']} label='审核时间' />
+    <BizForm.ItemInput name="applyCode" label="申请编号" />,
+    <BizForm.ItemDate name="createTime" label="提交时间" />,
+    <BizForm.ItemInput name="approverName" label="审核员" />,
+    <BizForm.ItemDateRange name="approveTime" names={["startTime", "endTime"]} label="审核时间" />
   ];
 
   const handleRequest: Request = React.useCallback((params, filters, sorter, extra) => {
@@ -66,7 +66,7 @@ const Demo: React.FC<{}> = () => {
     console.log(params, filters, sorter, extra);
     return getApplyList({
       page: {
-        pageSize: pageSize,
+        pageSize,
         pageNum: current
       },
       data: restParams
@@ -82,7 +82,7 @@ const Demo: React.FC<{}> = () => {
     <BizTable
       formItems={formItems}
       columns={columns}
-      rowKey='applyCode'
+      rowKey="applyCode"
       request={handleRequest}
     />
   );

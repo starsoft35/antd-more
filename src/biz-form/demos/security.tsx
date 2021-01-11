@@ -20,7 +20,7 @@ const initialValues = {
   bankCardNo: "563058*******277"
 }
 
-const Demo: React.FC<{}> = () => {
+const Demo: React.FC = () => {
   const [loading, setLoading] = React.useState(false);
   const onFinish = React.useCallback((values) => {
     console.log(values);
@@ -46,7 +46,7 @@ const Demo: React.FC<{}> = () => {
       <ItemInput label="姓名" name="name" required />
       <ItemIdCard label="身份证号" name="idCard" required security initialValue={initialValues.idCard} />
       <ItemMobile label="手机号码" name="mobile" required security initialValue={initialValues.mobile} />
-      <ItemEmail label="邮箱" name="email" inputProps={{placeholder: "请输入（选填）"}} security initialValue={initialValues.email} />
+      <ItemEmail label="邮箱" name="email" inputProps={{ placeholder: "请输入（选填）" }} security initialValue={initialValues.email} />
       <ItemBankCard label="银行卡号" name="bankCardNo" required formatting security initialValue={initialValues.bankCardNo} />
     </BizForm>
   );

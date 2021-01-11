@@ -51,13 +51,13 @@ const columns:BizColumnType = [
   }
 ];
 
-const Demo: React.FC<{}> = () => {
+const Demo: React.FC = () => {
   const handleRequest = React.useCallback((params, filters, sorter, extra): Promise<{ data: any[]; total: number; }> => {
     const { pageSize, current, ...restParams } = params;
     console.log(params, filters, sorter, extra);
     return getApplyList({
       page: {
-        pageSize: pageSize,
+        pageSize,
         pageNum: current
       },
       data: restParams
@@ -72,7 +72,7 @@ const Demo: React.FC<{}> = () => {
   return (
     <BizTable
       columns={columns}
-      rowKey='applyCode'
+      rowKey="applyCode"
       request={handleRequest}
     />
   );

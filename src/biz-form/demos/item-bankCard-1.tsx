@@ -9,10 +9,10 @@ const initialValues = {
   bankCardNo5: '6228------------018',
 }
 
-const Demo: React.FC<{}> = () => {
+const Demo: React.FC = () => {
   return (
     <BizForm
-      name='form-item-bankCard-1'
+      name="form-item-bankCard-1"
       onFinish={values => {
         console.log(values);
       }}

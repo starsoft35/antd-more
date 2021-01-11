@@ -16,7 +16,7 @@ function getNameApi(): Promise<string> {
   })
 }
 
-const Demo: React.FC<{}> = () => {
+const Demo: React.FC = () => {
   const [ready, setReady] = React.useState(false);
 
   const [initialValues, setInitialValues] = React.useState({ name: '张三' });

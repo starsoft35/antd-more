@@ -32,7 +32,7 @@ function uploadImage(file: File): Promise<{ fssId: string; }> {
     setTimeout(() => {
       if (Math.random() > 0.5) {
         resolve({
-          fssId: Math.random() + ''
+          fssId: `${Math.random()}`
         });
       } else {
         reject();
@@ -69,7 +69,7 @@ const beforeTransformUploadValues = async (fssIds: string[]) => {
   return ret;
 };
 
-const Demo: React.FC<{}> = () => {
+const Demo: React.FC = () => {
   const [ready, setReady] = React.useState(false);
   const [initialValues, setInitialValues] = React.useState({});
   const [form] = BizForm.useForm();

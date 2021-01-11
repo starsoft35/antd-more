@@ -55,16 +55,17 @@ const cycle = [
   },
 ];
 
-const Demo: React.FC<{}> = () => {
+const Demo: React.FC = () => {
   const [required, setRequired] = React.useState(false);
 
   return (
     <>
       <div style={{ marginBottom: 24 }}>
-        必填 <Switch defaultChecked={required} onChange={val => setRequired(val)} />
+        必填
+        <Switch defaultChecked={required} onChange={val => setRequired(val)} />
       </div>
       <BizForm
-        name='biz-form-demo1'
+        name="biz-form-demo1"
         onFinish={(values) => {
           console.log(values);
         }}
@@ -73,33 +74,33 @@ const Demo: React.FC<{}> = () => {
         <h3>业务组件</h3>
         <Row gutter={16}>
           <Col {...colSpan}>
-            <ItemNumber label='数字' name='number' tooltip="提示文字" required={required} />
+            <ItemNumber label="数字" name="number" tooltip="提示文字" required={required} />
           </Col>
           <Col {...colSpan}>
-            <ItemEmail label='邮箱' name='email' required={required} />
+            <ItemEmail label="邮箱" name="email" required={required} />
           </Col>
           <Col {...colSpan}>
-            <ItemIdCard label='身份证号' name='idCard' required={required} />
+            <ItemIdCard label="身份证号" name="idCard" required={required} />
           </Col>
           <Col {...colSpan}>
-            <ItemMobile label='手机号码' name='mobile' required={required} />
+            <ItemMobile label="手机号码" name="mobile" required={required} />
           </Col>
           <Col {...colSpan}>
-            <ItemUserName label='用户名' name='userName' required={required} />
+            <ItemUserName label="用户名" name="userName" required={required} />
           </Col>
           <Col {...colSpan}>
-            <ItemPassword label='密码' name='password' required={required} />
+            <ItemPassword label="密码" name="password" required={required} />
           </Col>
           <Col {...colSpan}>
-            <ItemBankCard label='银行卡号' name='bankCardNo' formatting required={required} />
+            <ItemBankCard label="银行卡号" name="bankCardNo" formatting required={required} />
           </Col>
           <Col {...colSpan}>
-            <ItemColor label='颜色' name='color' required={required} />
+            <ItemColor label="颜色" name="color" required={required} />
           </Col>
           <Col {...specialColSpan}>
             <ItemCaptcha
-              label='验证码'
-              name='code'
+              label="验证码"
+              name="code"
               onGetCaptcha={() => {
                 return new Promise<void>(resolve => {
                   setTimeout(() => {
@@ -112,10 +113,10 @@ const Demo: React.FC<{}> = () => {
           </Col>
           <Col xs={24}>
             <ItemAddress
-              label='地址'
-              tooltip='组合组件'
-              names={['location', 'address']}
-              labels={['省/市/区', '详细地址']}
+              label="地址"
+              tooltip="组合组件"
+              names={["location", "address"]}
+              labels={["省/市/区", "详细地址"]}
               options={lcnFormInlandData}
               // formItemProps={[
               //   {
@@ -130,55 +131,55 @@ const Demo: React.FC<{}> = () => {
         <h3>基础组件</h3>
         <Row gutter={16}>
           <Col {...colSpan}>
-            <ItemDate label='日期' name='date' required={required} />
+            <ItemDate label="日期" name="date" required={required} />
           </Col>
           <Col {...colSpan}>
-            <ItemDate label='周' name='week' picker='week' required={required} />
+            <ItemDate label="周" name="week" picker="week" required={required} />
           </Col>
           <Col {...colSpan}>
-            <ItemDate label='月' name='month' picker='month' required={required} />
+            <ItemDate label="月" name="month" picker="month" required={required} />
           </Col>
           <Col {...colSpan}>
-            <ItemDate label='季' name='quarter' picker='quarter' required={required} />
+            <ItemDate label="季" name="quarter" picker="quarter" required={required} />
           </Col>
           <Col {...colSpan}>
-            <ItemDate label='年' name='year' picker='year' required={required} />
+            <ItemDate label="年" name="year" picker="year" required={required} />
           </Col>
           <Col {...colSpan}>
-            <ItemDate label='日期时间' name='dateTime' showTime required={required} />
+            <ItemDate label="日期时间" name="dateTime" showTime required={required} />
           </Col>
           <Col {...colSpan}>
-            <ItemDateRange label='日期区间' name='dateRange' required={required} />
+            <ItemDateRange label="日期区间" name="dateRange" required={required} />
           </Col>
           <Col {...specialColSpan}>
-            <ItemDateRange label='日期时间区间' name='dateTimeRange' showTime required={required} />
+            <ItemDateRange label="日期时间区间" name="dateTimeRange" showTime required={required} />
           </Col>
           <Col {...colSpan}>
-            <ItemTime label='时间' name='time' required={required} />
+            <ItemTime label="时间" name="time" required={required} />
           </Col>
           <Col {...specialColSpan}>
-            <ItemTimeRange label='时间区间' name='timeRange' required={required} />
+            <ItemTimeRange label="时间区间" name="timeRange" required={required} />
           </Col>
           <Col {...specialColSpan}>
-            <ItemInput label='Input' name='input' required={required} />
+            <ItemInput label="Input" name="input" required={required} />
           </Col>
           <Col {...specialColSpan}>
-            <ItemInput.TextArea label='Input.TextArea' name='inputTextArea' required={required} />
+            <ItemInput.TextArea label="Input.TextArea" name="inputTextArea" required={required} />
           </Col>
           <Col {...specialColSpan}>
-            <ItemRadio label='Radio' name='radio' options={cycle} required={required} />
+            <ItemRadio label="Radio" name="radio" options={cycle} required={required} />
           </Col>
           <Col {...specialColSpan}>
-            <ItemRadio label='RadioButton' name='radioButton' optionType='button' options={cycle} required={required} />
+            <ItemRadio label="RadioButton" name="radioButton" optionType="button" options={cycle} required={required} />
           </Col>
           <Col {...specialColSpan}>
-            <ItemSelect label='Select' name='select' options={cycle} required={required} />
+            <ItemSelect label="Select" name="select" options={cycle} required={required} />
           </Col>
           <Col {...specialColSpan}>
-            <ItemCheckbox label='Checkbox' name='checkbox' options={cycle} all required={required} />
+            <ItemCheckbox label="Checkbox" name="checkbox" options={cycle} all required={required} />
           </Col>
           <Col {...specialColSpan}>
-            <ItemUpload label='Upload' name='upload' required={required} />
+            <ItemUpload label="Upload" name="upload" required={required} />
           </Col>
         </Row>
       </BizForm>

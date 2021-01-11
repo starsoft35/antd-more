@@ -26,12 +26,12 @@ interface VerificateCodeInputProps {
 }
 
 // 组件：验证码和获取验证码按钮
-function VerificateCodeInput({
+const VerificateCodeInput: React.FC<VerificateCodeInputProps> = ({
   mobileField = 'mobile',
   form,
   value,
-  onChange = () => {},
-}: VerificateCodeInputProps) {
+  onChange = () => { },
+}) => {
   const inputRef = useRef(null);
   const [start, setStart] = useState(false); // 倒计时按钮状态
 
@@ -187,7 +187,10 @@ export default () => {
           </Button>
         </Form.Item>
       </Form>
-      <div>params: {JSON.stringify(params)}</div>
+      <div>
+        params:
+        {JSON.stringify(params)}
+      </div>
     </>
   );
 };

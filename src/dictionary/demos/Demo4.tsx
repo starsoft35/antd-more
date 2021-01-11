@@ -55,7 +55,10 @@ export default () => {
         </Form.Item>
       </Form>
       <br />
-      <div>form values: {JSON.stringify(result)}</div>
+      <div>
+        form values:
+        {JSON.stringify(result)}
+      </div>
     </>
   )
 }

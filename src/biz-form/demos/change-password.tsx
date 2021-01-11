@@ -10,7 +10,7 @@ import { validatePassword } from 'util-helpers';
 
 const { ItemInput } = BizForm;
 
-const Demo: React.FC<{}> = () => {
+const Demo: React.FC = () => {
   const [loading, setLoading] = React.useState(false);
   const [form] = BizForm.useForm();
   const onFinish = React.useCallback((values) => {
@@ -52,7 +52,7 @@ const Demo: React.FC<{}> = () => {
 
               if (!value) {
                 errMsg = '请输入新密码';
-              } else if(value.length > 16 || value.length < 8) {
+              } else if (value.length > 16 || value.length < 8) {
                 errMsg = '新密码为8~16位';
               } else {
                 const ret = validatePassword(value);

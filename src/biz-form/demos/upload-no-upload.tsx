@@ -8,7 +8,7 @@ import { BizForm } from 'antd-more';
 
 const { ItemUpload } = BizForm;
 
-const Demo: React.FC<{}> = () => {
+const Demo: React.FC = () => {
   return (
     <BizForm
       name="upload-no-upload"

@@ -33,8 +33,8 @@ function uploadImage(file: File): Promise<{ thumbImgId: string; bigImgId: string
     setTimeout(() => {
       if (Math.random() > 0.5) {
         resolve({
-          thumbImgId: Math.random() + '',
-          bigImgId: Math.random() + ''
+          thumbImgId: `${Math.random()}`,
+          bigImgId: `${Math.random()}`
         });
       } else {
         reject();
@@ -87,7 +87,7 @@ const beforeTransformUploadValues = async (fssIds: Record<string, any>[]) => {
   return ret;
 };
 
-const Demo: React.FC<{}> = () => {
+const Demo: React.FC = () => {
   const [ready, setReady] = React.useState(false);
   const [initialValues, setInitialValues] = React.useState({});
   const [form] = BizForm.useForm();

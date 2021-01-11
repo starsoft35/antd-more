@@ -57,10 +57,10 @@ export default () => {
     <>
       <Descriptions>
         <Descriptions.Item label="空字符串">
-          <BizField value='' valueType='text' />
+          <BizField value="" valueType="text" />
         </Descriptions.Item>
         <Descriptions.Item label="文本">
-          <BizField value='这是一段文本' valueType='text' />
+          <BizField value="这是一段文本" valueType="text" />
         </Descriptions.Item>
         <Descriptions.Item label="金额">
           <BizField value={100} valueType="money" />
@@ -91,10 +91,10 @@ export default () => {
           <BizField value={9} valueType="indexBorder" />
         </Descriptions.Item>
         <Descriptions.Item label="颜色">
-          <BizField value='red' valueType="color" />
+          <BizField value="red" valueType="color" />
         </Descriptions.Item>
         <Descriptions.Item label="颜色带文本">
-          <BizField value='blue' valueType="color" showText />
+          <BizField value="blue" valueType="color" showText />
         </Descriptions.Item>
         <Descriptions.Item label="图片" span={2}>
           <BizField value="https://gw.alipayobjects.com/zos/antfincdn/aPkFc8Sj7n/method-draw-image.svg" valueType="image" />
@@ -105,34 +105,34 @@ export default () => {
       </Descriptions>
       <Descriptions title="日期">
         <Descriptions.Item label="日期">
-          <BizField value='2020-10-10' valueType="date" />
+          <BizField value="2020-10-10" valueType="date" />
         </Descriptions.Item>
         <Descriptions.Item label="日期时间">
-          <BizField value='2020-10-10' valueType="dateTime" />
+          <BizField value="2020-10-10" valueType="dateTime" />
         </Descriptions.Item>
         <Descriptions.Item label="周">
-          <BizField value='2020-10-10' valueType="dateWeek" />
+          <BizField value="2020-10-10" valueType="dateWeek" />
         </Descriptions.Item>
         <Descriptions.Item label="月">
-          <BizField value='2020-10-10' valueType="dateMonth" />
+          <BizField value="2020-10-10" valueType="dateMonth" />
         </Descriptions.Item>
         <Descriptions.Item label="季">
-          <BizField value='2020-10-10' valueType="dateQuarter" />
+          <BizField value="2020-10-10" valueType="dateQuarter" />
         </Descriptions.Item>
         <Descriptions.Item label="年">
-          <BizField value='2020-10-10' valueType="dateYear" />
+          <BizField value="2020-10-10" valueType="dateYear" />
         </Descriptions.Item>
         <Descriptions.Item label="时间">
-          <BizField value={'2020-10-10'} valueType="time" />
+          <BizField value="2020-10-10" valueType="time" />
         </Descriptions.Item>
         <Descriptions.Item label="相对当前时间">
-          <BizField value={'2020-10-10'} valueType="fromNow" />
+          <BizField value="2020-10-10" valueType="fromNow" />
         </Descriptions.Item>
         <Descriptions.Item label="日期区间">
-          <BizField value={['2020-10-10', '2020-12-12']} valueType="dateRange" />
+          <BizField value={["2020-10-10", "2020-12-12"]} valueType="dateRange" />
         </Descriptions.Item>
         <Descriptions.Item label="日期时间区间">
-          <BizField value={['2020-10-10', '2020-12-12']} valueType="dateTimeRange" />
+          <BizField value={["2020-10-10", "2020-12-12"]} valueType="dateTimeRange" />
         </Descriptions.Item>
       </Descriptions>
       <Descriptions title="枚举">

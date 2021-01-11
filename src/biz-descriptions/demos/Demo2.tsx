@@ -57,7 +57,7 @@ const columns = [
     dataIndex: "number3",
     title: "百分比带颜色符号",
     valueType: {
-      type: 'percent',
+      type: "percent",
       showSymbol: true,
       showColor: true
     }
@@ -127,15 +127,15 @@ const columns = [
   {
     dataIndex: "other",
     title: "自定义render1",
-    render: (val) => <span style={{ color: 'red' }}>{val}</span>
+    render: (val) => <span style={{ color: "red" }}>{val}</span>
   },
   {
     title: "自定义render2",
-    render: (val, allData) => <span style={{ color: 'red' }}>{allData.other}</span>
+    render: (val, allData) => <span style={{ color: "red" }}>{allData.other}</span>
   },
 ];
 
-const Demo: React.FC<{}> = () => {
+const Demo: React.FC = () => {
   return (
     <BizDescriptions
       title="标题"

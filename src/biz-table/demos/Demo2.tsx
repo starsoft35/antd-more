@@ -80,21 +80,21 @@ const columns: BizColumnType = [
   }
 ];
 
-const Demo: React.FC<{}> = () => {
+const Demo: React.FC = () => {
   const formRef = React.useRef<FormInstance | undefined>();
   const actionRef = React.useRef<ActionType | undefined>();
   const formItems = [
-    <BizForm.ItemInput name='applyCode' label='申请编号' />,
-    <BizForm.ItemDate name='createTime' label='提交时间' />,
-    <BizForm.ItemDateRange name='approveTime' names={['startTime', 'endTime']} label='审核时间' />,
-    <BizForm.ItemSelect name='approveResult' label='审核状态' options={approveResult} all />
+    <BizForm.ItemInput name="applyCode" label="申请编号" />,
+    <BizForm.ItemDate name="createTime" label="提交时间" />,
+    <BizForm.ItemDateRange name="approveTime" names={["startTime", "endTime"]} label="审核时间" />,
+    <BizForm.ItemSelect name="approveResult" label="审核状态" options={approveResult} all />
   ];
   const handleRequest: Request = React.useCallback((params, filters, sorter, extra) => {
     const { pageSize, current, ...restParams } = params;
     console.log(params, filters, sorter, extra);
     return getApplyList({
       page: {
-        pageSize: pageSize,
+        pageSize,
         pageNum: current
       },
       data: restParams
@@ -156,13 +156,13 @@ const Demo: React.FC<{}> = () => {
         },
         defaultColsNumber: 1,
         initialValues: {
-          approveResult: ''
+          approveResult: ""
         }
       }}
       toolbar={(
         <Space>
           <Button type="primary">新增</Button>
-          <Button onClick={() => { formRef.current.setFieldsValue({ applyCode: '12345' }) }}>赋值</Button>
+          <Button onClick={() => { formRef.current.setFieldsValue({ applyCode: "12345" }) }}>赋值</Button>
         </Space>
       )}
       extra={(
@@ -171,7 +171,7 @@ const Demo: React.FC<{}> = () => {
         </Card>
       )}
       columns={currentColumns}
-      rowKey='applyCode'
+      rowKey="applyCode"
       request={handleRequest}
     />
   );

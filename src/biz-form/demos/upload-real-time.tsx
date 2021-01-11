@@ -19,7 +19,7 @@ function uploadImage(file: File): Promise<{ fssId: string; }> {
     setTimeout(() => {
       if (Math.random() > 0.3) {
         resolve({
-          fssId: Math.random() + ''
+          fssId: `${Math.random()}`
         });
       } else {
         reject();
@@ -28,7 +28,7 @@ function uploadImage(file: File): Promise<{ fssId: string; }> {
   })
 }
 
-const Demo: React.FC<{}> = () => {
+const Demo: React.FC = () => {
   // 上传图片
   const handleUpload = React.useCallback((file: UploadFile) => {
     return uploadImage(file.originFileObj as File).then(res => {

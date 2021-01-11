@@ -19,10 +19,10 @@ const cycle = [
   },
 ];
 
-const Demo: React.FC<{}> = () => {
+const Demo: React.FC = () => {
   return (
     <BizForm
-      name='form-item-checkbox-1'
+      name="form-item-checkbox-1"
       onFinish={values => {
         console.log(values);
       }}

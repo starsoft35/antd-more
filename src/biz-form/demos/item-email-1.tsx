@@ -7,10 +7,10 @@ const initialValues = {
   email3: '12****@qq.com'
 }
 
-const Demo: React.FC<{}> = () => {
+const Demo: React.FC = () => {
   return (
     <BizForm
-      name='form-item-email-1'
+      name="form-item-email-1"
       onFinish={values => {
         console.log(values);
       }}

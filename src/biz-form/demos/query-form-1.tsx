@@ -3,7 +3,7 @@ import { BizForm } from 'antd-more';
 
 const { QueryForm, ItemInput, ItemDate, ItemMobile, ItemDateRange } = BizForm;
 
-const Demo: React.FC<{}> = () => {
+const Demo: React.FC = () => {
   const [form] = BizForm.useForm();
 
   const updateInitialValues = React.useCallback(() => {
@@ -20,7 +20,7 @@ const Demo: React.FC<{}> = () => {
 
   return (
     <QueryForm
-      name='query-form-1'
+      name="query-form-1"
       form={form}
       onReset={updateInitialValues}
       onFinish={values => {
@@ -28,10 +28,10 @@ const Demo: React.FC<{}> = () => {
       }}
       initialValues={{}}
     >
-      <ItemInput label='商品编号' name='goodsNo' />
-      <ItemDate label='交易日期' name='tradeDate' />
-      <ItemMobile label='手机号码' name='mobile' />
-      <ItemDateRange label='时间' name='time' names={['startTime', 'endTime']} showTime colProps={{ xs: 24, md: 24, lg: 14 }} />
+      <ItemInput label="商品编号" name="goodsNo" />
+      <ItemDate label="交易日期" name="tradeDate" />
+      <ItemMobile label="手机号码" name="mobile" />
+      <ItemDateRange label="时间" name="time" names={["startTime", "endTime"]} showTime colProps={{ xs: 24, md: 24, lg: 14 }} />
     </QueryForm>
   );
 }
