@@ -4,7 +4,7 @@ import { BizForm, BizTable } from 'antd-more';
 import moment from 'moment';
 import Mock from 'mockjs';
 import { FormInstance } from 'antd/lib/form';
-import { ActionType, Request, BizColumnType } from 'antd-more/es/biz-table';
+import { ActionType, Request, BizColumnType } from 'antd-more/lib/biz-table';
 
 // 审核状态
 const approveResult = [

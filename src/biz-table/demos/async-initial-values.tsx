@@ -4,7 +4,7 @@
  */
 import * as React from 'react';
 import { BizForm, BizTable } from 'antd-more';
-import { Request, BizColumnType } from 'antd-more/es/biz-table';
+import { Request, BizColumnType } from 'antd-more/lib/biz-table';
 import moment from 'moment';
 import Mock from 'mockjs';
 

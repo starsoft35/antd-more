@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { BizTable } from 'antd-more';
-import { BizColumnType } from 'antd-more/es/biz-table';
+import { BizColumnType } from 'antd-more/lib/biz-table';
 import moment from 'moment';
 import Mock from 'mockjs';
 

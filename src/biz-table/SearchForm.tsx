@@ -5,7 +5,9 @@ import { CardProps } from 'antd/es/card';
 import BizForm, { QueryForm, QueryFormProps } from '../biz-form';
 
 export declare interface SearchFormProps extends QueryFormProps {
-  formItems?: React.ReactNode[];
+  formItems?:
+    | JSX.Element[] // eslint-disable-line
+    | Exclude<React.ReactNode, string | number | boolean | null | undefined>[];
   cardProps?: CardProps;
   ref?: React.MutableRefObject<FormInstance | undefined> | ((instance: FormInstance<any>) => void);
 }
@@ -30,9 +32,9 @@ const SearchForm: React.FC<SearchFormProps> = React.forwardRef(
         bodyStyle={{ paddingBottom: 0, ...cardProps?.bodyStyle }}
       >
         <QueryForm form={form} name={formName} {...restProps}>
-          {React.Children.toArray(formItems).map((item: React.ReactElement) =>
+          {React.Children.toArray(formItems).map((item: any, index) =>
             React.cloneElement(item, {
-              key: item.props.key || item.props.name || item.props.label,
+              key: item?.props?.key || index.toString(),
             }),
           )}
         </QueryForm>

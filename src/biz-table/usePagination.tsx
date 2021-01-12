@@ -13,7 +13,7 @@ import {
 const showTotal = (num: number | string) => `共 ${num} 条数据`;
 
 interface ParamsRef {
-  params: RequestParamParams;
+  params: any;
   filters: RequestParamFilters;
   sorter: RequestParamSorter;
   extra: RequestParamExtra;
@@ -26,7 +26,7 @@ interface Options extends AsyncParams<any, any[] | undefined> {
 
 interface ReturnValues extends AsyncResult {
   onTableChange: (
-    params: ParamsRef['params'],
+    params: RequestParamParams,
     filters: ParamsRef['filters'],
     sorter: ParamsRef['sorter'],
     extra: ParamsRef['extra'],

@@ -16,8 +16,8 @@ export type RecordType = {
 };
 
 export type RequestParamParams = {
-  pageSize?: number;
-  current?: number;
+  pageSize: number;
+  current: number;
   [key: string]: any;
 };
 export interface RequestParamExtra
