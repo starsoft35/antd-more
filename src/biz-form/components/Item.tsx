@@ -41,21 +41,22 @@ const BizFormItem: React.FC<BizFormItemProps> = ({
   const { parentListName } = React.useContext(ListFieldContext);
 
   const labelColProps = React.useMemo(() => {
-    const formLabelColFlex =
-      formLabelCol?.flex && labelWidth !== 'auto' ? { flex: formLabelCol.flex } : {};
+    const { flex: formLabelFlex, style: formLabelStyle, ...restFormLabelCol } = formLabelCol || {};
+    const formLabelColFlex = formLabelFlex && labelWidth !== 'auto' ? { flex: formLabelFlex } : {};
     const labelFlex =
       layout !== 'vertical' && labelWidth && labelWidth !== 'auto'
         ? { flex: `0 0 ${labelWidth}px` }
         : formLabelColFlex;
     const labelStyle = {
       style: {
-        ...formLabelCol?.style,
+        ...formLabelStyle,
         ...(formHideLabel && hideLabel === false ? { display: 'block' } : {}),
         ...(hideLabel ? { display: 'none' } : {}),
         ...labelCol?.style,
       },
     };
     return {
+      ...restFormLabelCol,
       ...labelFlex,
       ...labelCol,
       ...labelStyle,
