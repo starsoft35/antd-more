@@ -67,12 +67,15 @@ const FormItemSelect: React.FC<FormItemSelectProps> = ({
         // allowClear={!required && !all}
         {...selectProps}
       >
-        {opts.map(({ options: itemOpts, ...restOpts }: OptionGroupDataExtend) => {
+        {opts.map(({ options: itemOpts, ...restOpts }: OptionGroupDataExtend, index) => {
           if (itemOpts) {
             return (
-              <OptGroup key={restOpts.key || restOpts.label || restOpts.value} {...restOpts}>
-                {itemOpts.map(({ name, label, ...restSubOpts }: OptionDataExtend) => (
-                  <Option key={restSubOpts.key || restSubOpts.value || name} {...restSubOpts}>
+              <OptGroup key={restOpts.key || restOpts.value + index.toString()} {...restOpts}>
+                {itemOpts.map(({ name, label, ...restSubOpts }: OptionDataExtend, subIndex) => (
+                  <Option
+                    key={restSubOpts.key || restSubOpts.value + subIndex.toString()}
+                    {...restSubOpts}
+                  >
                     {name}
                   </Option>
                 ))}
@@ -81,7 +84,7 @@ const FormItemSelect: React.FC<FormItemSelectProps> = ({
           } else {
             const { name, label, ...rest } = restOpts as OptionDataExtend;
             return (
-              <Option key={rest.key || rest.value || name} {...rest}>
+              <Option key={rest.key || rest.value + index.toString()} {...rest}>
                 {name}
               </Option>
             );

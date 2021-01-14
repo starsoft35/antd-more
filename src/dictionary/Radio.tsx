@@ -18,8 +18,8 @@ const DictionaryRadio: React.FC<DictionaryRadioProps> = ({
 
   return (
     <Radio.Group {...restProps}>
-      {data.map(({ value, name, disabled }) => (
-        <RadioComp value={value} key={value} disabled={disabled}>
+      {data.map(({ value, name, disabled, key }, index) => (
+        <RadioComp value={value} key={key || index.toString()} disabled={disabled}>
           {name}
         </RadioComp>
       ))}

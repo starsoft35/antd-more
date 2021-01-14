@@ -15,7 +15,7 @@ const FiledImage: React.FC<FiledImageProps> = ({ value, ...restProps }) => {
     <div className={prefixCls}>
       <Image.PreviewGroup>
         {values.map((item, index) => (
-          <Image src={item} width={100} key={index.toString()} {...restProps} />
+          <Image src={item} width={100} key={item + index.toString()} {...restProps} />
         ))}
       </Image.PreviewGroup>
     </div>

@@ -32,9 +32,9 @@ const DictionaryList: React.FC<DictionaryListProps> = ({
     return defaultName;
   }
 
-  const dom = value.map((itemVal) => (
+  const dom = value.map((itemVal, index) => (
     <Dictionary
-      key={itemVal}
+      key={itemVal + index.toString()}
       defaultName=""
       value={itemVal}
       style={styles}

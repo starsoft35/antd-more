@@ -55,8 +55,8 @@ const CheckboxWrapper: React.FC<CheckboxWrapperProps> = ({
     <>
       {allDom}
       <Checkbox.Group {...checkboxGroupProps} value={value} onChange={onChangeValue}>
-        {opts.map(({ value, name, ...restOpts }) => (
-          <Checkbox {...checkboxProps} key={value || name} value={value} {...restOpts}>
+        {opts.map(({ value, name, ...restOpts }, index) => (
+          <Checkbox {...checkboxProps} key={value + index.toString()} value={value} {...restOpts}>
             {name}
           </Checkbox>
         ))}

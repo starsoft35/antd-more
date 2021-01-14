@@ -73,7 +73,7 @@ const QueryForm: React.FC<QueryFormProps> = (props) => {
               const hidden = collapsed && index >= defaultColsNumber;
               return (
                 <Col
-                  key={item.key || item.props.name || item.props.label}
+                  key={item.key || index.toString()}
                   {...colSpan}
                   {...colProps}
                   style={hidden ? { display: 'none' } : {}}

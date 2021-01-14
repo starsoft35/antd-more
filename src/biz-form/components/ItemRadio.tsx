@@ -58,10 +58,10 @@ const FormItemRadio: React.FC<FormItemRadioProps> = ({
       {...restProps}
     >
       <Radio.Group {...radioGroupProps}>
-        {opts.map(({ value, name, ...restOpts }) => {
+        {opts.map(({ value, name, ...restOpts }, index) => {
           const Comp = optionType === 'button' ? Radio.Button : Radio;
           return (
-            <Comp {...radioProps} key={value || name} value={value} {...restOpts}>
+            <Comp {...radioProps} key={value + index.toString()} value={value} {...restOpts}>
               {name}
             </Comp>
           );
