@@ -115,12 +115,6 @@ test | 添加缺失的测试或纠正现有的测试
 npm run commit
 ```
 
-or 
-
-```bash
-npx cz
-```
-
 
 [npm]: https://img.shields.io/npm/v/antd-more.svg
 [npm-url]: https://npmjs.com/package/antd-more
