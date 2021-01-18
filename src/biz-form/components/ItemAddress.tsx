@@ -1,13 +1,12 @@
 import * as React from 'react';
 import { Cascader, Input, Row, Col } from 'antd';
-import { FormItemProps } from 'antd/es/form';
 import { NamePath } from 'antd/es/form/interface';
 import { InputProps } from 'antd/es/input';
 import { CascaderProps, CascaderOptionType } from 'antd/es/cascader';
 import { normalizeWhiteSpace } from '../_util/normalize';
 import BizFormItem, { BizFormItemProps } from './Item';
 
-export interface FormItemAddressProps extends FormItemProps {
+export interface FormItemAddressProps extends Omit<BizFormItemProps, 'name' | 'transform'> {
   options?: CascaderOptionType[];
   names: [NamePath, NamePath]; // 如 ['location', 'address']
   labels: [string, string]; // 如 ['省/市/区', '详细地址']

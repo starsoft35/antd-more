@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { Form, Input } from 'antd';
-import { FormItemProps } from 'antd/es/form';
+import { Input } from 'antd';
 import { PasswordProps } from 'antd/es/input';
+import BizFormItem, { BizFormItemProps } from './Item';
 
-export interface FormItemPasswordProps extends FormItemProps {
+export interface FormItemPasswordProps extends BizFormItemProps {
   inputProps?: PasswordProps;
 }
 
@@ -14,7 +14,7 @@ const FormItemPassword: React.FC<FormItemPasswordProps> = ({
   ...restProps
 }) => {
   return (
-    <Form.Item
+    <BizFormItem
       label={label}
       required={required}
       rules={[
@@ -34,7 +34,7 @@ const FormItemPassword: React.FC<FormItemPasswordProps> = ({
       {...restProps}
     >
       <Input.Password placeholder="请输入" autoComplete="off" {...inputProps} />
-    </Form.Item>
+    </BizFormItem>
   );
 };
 

@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { TooltipPlacement } from 'antd/es/tooltip';
 import Color from '../../color';
-import '../../color/style';
 import BizFormItem, { BizFormItemProps } from './Item';
 
 export enum ColorPicker {

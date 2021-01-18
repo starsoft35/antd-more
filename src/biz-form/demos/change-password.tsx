@@ -1,14 +1,11 @@
 /**
  * title: 修改密码
- * desc: |
- *    由于含有特殊校验：新密码不能与原密码一致，所以新密码也使用 `ItemInput.Password` 。
  */
 import * as React from 'react';
 import { Form } from 'antd';
 import { BizForm } from 'antd-more';
-import { validatePassword } from 'util-helpers';
 
-const { ItemInput } = BizForm;
+const { ItemInput, ItemPassword } = BizForm;
 
 const Demo: React.FC = () => {
   const [loading, setLoading] = React.useState(false);
@@ -37,35 +34,21 @@ const Demo: React.FC = () => {
       <Form.Item label="用户名">guest</Form.Item>
       <ItemInput.Password
         label="原密码"
-        name="password"
+        name="oldPassword"
         required
       />
-      <ItemInput.Password
+      <ItemPassword
         label="新密码"
-        name="newPassword"
+        name="password"
         required
-        dependencies={['password']}
-        rules={[
+        dependencies={['oldPassword']}
+        extendRules={[
           {
             validator(rules, value) {
               let errMsg = '';
-
-              if (!value) {
-                errMsg = '请输入新密码';
-              } else if (value.length > 16 || value.length < 8) {
-                errMsg = '新密码为8~16位';
-              } else {
-                const ret = validatePassword(value);
-                if (ret.containes.unallowableCharacter) {
-                  errMsg = '新密码包含无法识别的字符';
-                } else if (!ret.validated) {
-                  errMsg = `新密码为大小写字母、数字或符号任意两者组成`;
-                } else {
-                  const oldPwd = form.getFieldValue('password');
-                  if (oldPwd && oldPwd === value) {
-                    errMsg = '新密码不能与原密码一致';
-                  }
-                }
+              const oldPwd = form.getFieldValue('oldPassword');
+              if (oldPwd && oldPwd === value) {
+                errMsg = '新密码不能与原密码一致';
               }
               if (errMsg) {
                 return Promise.reject(errMsg);
@@ -78,16 +61,16 @@ const Demo: React.FC = () => {
       />
       <ItemInput.Password
         label="重复新密码"
-        name="repeatNewPassword"
+        name="repeatPassword"
         required
-        dependencies={['newPassword']}
+        dependencies={['password']}
         rules={[
           {
             validator(rules, value) {
               let errMsg = '';
               if (!value) {
                 errMsg = '请再次输入新密码';
-              } else if (value !== form.getFieldValue('newPassword')) {
+              } else if (value !== form.getFieldValue('password')) {
                 errMsg = '两次输入的密码不一致';
               }
               if (errMsg) {
