@@ -1,7 +1,7 @@
 import { SorterResult, TableCurrentDataSource } from 'antd/es/table/interface';
 
-export interface AsyncFnReturn extends Record<string | number, any> {
-  data: any[];
+export interface AsyncFnReturn<D = any> extends Record<string | number, any> {
+  data: D[];
   total?: number;
 }
 
@@ -11,25 +11,25 @@ export type ActionType = {
   submit: () => void;
 };
 
-export type RecordType = {
-  [key: string]: any;
-};
-
-export type RequestParamParams = {
+export interface RequestParams extends Record<string | number, any> {
   pageSize: number;
   current: number;
-  [key: string]: any;
-};
-export interface RequestParamExtra
+}
+export interface RequestExtra<RecordType = any>
   extends Pick<TableCurrentDataSource<RecordType>, 'currentDataSource'> {
   action: 'paginate' | 'sort' | 'filter' | 'reload' | 'reset' | 'submit';
 }
-export type RequestParamFilters = Record<string, (string | number)[] | null>;
-export type RequestParamSorter = SorterResult<RecordType> | SorterResult<RecordType>[];
+export type RequestFilters = Record<string, (string | number | boolean)[] | null>;
+export type RequestSorter<RecordType> = SorterResult<RecordType> | SorterResult<RecordType>[];
 
-export type Request = (
-  params: RequestParamParams,
-  filters: RequestParamFilters,
-  sorter: RequestParamSorter,
-  extra: RequestParamExtra,
-) => Promise<AsyncFnReturn>;
+export type BizTableRequest<RecordType = any> = (
+  params: RequestParams,
+  filters: RequestFilters,
+  sorter: RequestSorter<RecordType>,
+  extra: RequestExtra<RecordType>,
+) => Promise<AsyncFnReturn<RecordType>>;
+
+/**
+ * @deprecated Please use `BizTableRequest` instead.
+ */
+export type Request<RecordType = any> = BizTableRequest<RecordType>;

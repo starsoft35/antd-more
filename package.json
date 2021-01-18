@@ -6,13 +6,13 @@
   "module": "es/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
-    "start": "npx dumi dev",
-    "doc": "npx dumi build",
-    "build": "npx father-build",
+    "start": "dumi dev",
+    "doc": "dumi build",
+    "build": "father-build",
     "build:doc": "npm run doc",
-    "lint": "npx eslint src/* --ext .tsx,.ts --ignore-pattern 'src/*/demos/**'",
-    "prettier": "npx prettier --write 'src/**/*.tsx' && npx prettier --write 'src/**/*.ts'",
-    "lint-staged": "npx lint-staged",
+    "lint": "eslint src/* --ext .tsx,.ts --ignore-pattern 'src/*/demos/**'",
+    "prettier": "prettier --write 'src/**/*.tsx' && prettier --write 'src/**/*.ts'",
+    "lint-staged": "lint-staged",
     "lint-staged:prettier": "prettier --write",
     "lint-staged:lint": "eslint --ignore-pattern 'src/*/demos/**'",
     "commit": "cz"
@@ -59,6 +59,7 @@
     "lcn": "^2.2.3",
     "lint-staged": "^10.5.1",
     "mockjs": "^1.1.0",
+    "prettier": "^2.2.1",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "typescript": "^3.9.7"
@@ -67,9 +68,9 @@
     "classnames": "^2.2.6",
     "countdown-pro": "^1.0.2",
     "moment": "^2.29.1",
-    "rc-hooks": "^0.7.0",
+    "rc-hooks": "^0.7.1",
     "react-color": "^2.19.3",
-    "util-helpers": "^3.7.4"
+    "util-helpers": "^3.8.0"
   },
   "lint-staged": {
     "src/**/*.{ts,tsx,js,jsx,less}": [

@@ -4,7 +4,7 @@
  */
 import * as React from 'react';
 import { BizForm, BizTable } from 'antd-more';
-import { Request, BizColumnType } from 'antd-more/lib/biz-table';
+import { BizTableRequest } from 'antd-more/lib/biz-table';
 import moment from 'moment';
 import Mock from 'mockjs';
 
@@ -73,7 +73,7 @@ function getAsyncInitialValues(): Promise<{
 }
 
 
-const columns: BizColumnType = [
+const columns = [
   {
     dataIndex: "applyCode",
     title: "申请编号"
@@ -100,7 +100,7 @@ const Demo: React.FC = () => {
     <BizForm.ItemDate name="createTime" label="提交时间" />,
     <BizForm.ItemSelect name="approveResult" label="审核状态" options={approveResult} all />
   ];
-  const handleRequest: Request = React.useCallback((params, filters, sorter, extra) => {
+  const handleRequest: BizTableRequest = React.useCallback((params, filters, sorter, extra) => {
     const { pageSize, current, ...restParams } = params;
     console.log(params, filters, sorter, extra);
     return getApplyList({

@@ -4,7 +4,7 @@ import { BizForm, BizTable } from 'antd-more';
 import moment from 'moment';
 import Mock from 'mockjs';
 import { FormInstance } from 'antd/lib/form';
-import { ActionType, Request, BizColumnType } from 'antd-more/lib/biz-table';
+import { ActionType, BizTableRequest } from 'antd-more/lib/biz-table';
 
 // 审核状态
 const approveResult = [
@@ -53,7 +53,9 @@ function getApplyList(params) {
     }, 1000);
   })
 }
-const columns: BizColumnType = [
+
+
+const columns = [
   {
     dataIndex: "applyCode",
     title: "申请编号"
@@ -89,9 +91,10 @@ const Demo: React.FC = () => {
     <BizForm.ItemDateRange name="approveTime" names={["startTime", "endTime"]} label="审核时间" />,
     <BizForm.ItemSelect name="approveResult" label="审核状态" options={approveResult} all />
   ];
-  const handleRequest: Request = React.useCallback((params, filters, sorter, extra) => {
+  const handleRequest: BizTableRequest = React.useCallback((params, filters, sorter, extra) => {
     const { pageSize, current, ...restParams } = params;
     console.log(params, filters, sorter, extra);
+
     return getApplyList({
       page: {
         pageSize,

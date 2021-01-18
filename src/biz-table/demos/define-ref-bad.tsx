@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { BizTable } from 'antd-more';
-import { ActionType, BizTableProps, Request, BizColumnType } from 'antd-more/lib/biz-table';
+import { ActionType, BizTableProps, BizTableRequest } from 'antd-more/lib/biz-table';
 
 const mockData = [
   { name: '' },
@@ -8,7 +8,7 @@ const mockData = [
   { name: '李四' },
 ];
 
-const request: Request = (params) => {
+const request: BizTableRequest = (params) => {
   // const { current, pageSize, ...restParams } = params;
   return new Promise(resolve => {
     // console.log(restParams);
@@ -26,7 +26,7 @@ const DefineTable: React.FC<DefineTableProps> = React.forwardRef((props, ref) =>
 
   React.useImperativeHandle(ref, () => innerActionRef.current, [innerActionRef.current]);
 
-  const columns: BizColumnType = React.useMemo(() => ([
+  const columns = React.useMemo(() => ([
     {
       title: '序号',
       valueType: 'indexBorder'

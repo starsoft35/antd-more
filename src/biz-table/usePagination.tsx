@@ -1,36 +1,32 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { useAsync } from 'rc-hooks';
-import { AsyncParams, AsyncResult } from 'rc-hooks/types/useAsync';
+import type { AsyncFn, AsyncParams, AsyncResult } from 'rc-hooks';
 import actionCache from './actionCache';
 import {
-  RequestParamParams,
-  RequestParamFilters,
-  RequestParamSorter,
-  RequestParamExtra,
+  BizTableRequest,
+  RequestFilters,
+  RequestSorter,
+  RequestExtra,
+  AsyncFnReturn,
 } from './interface';
 
 // 显示数据总量
 const showTotal = (num: number | string) => `共 ${num} 条数据`;
 
-interface ParamsRef {
+interface ParamsRef<RecordType> {
   params: any;
-  filters: RequestParamFilters;
-  sorter: RequestParamSorter;
-  extra: RequestParamExtra;
+  filters: RequestFilters;
+  sorter: RequestSorter<RecordType>;
+  extra: RequestExtra<RecordType>;
 }
 
-interface Options extends AsyncParams<any, any[] | undefined> {
+interface Options<D = any, P = any> extends AsyncParams<D, P> {
   defaultPageSize?: number;
   actionCacheKey?: string;
 }
 
-interface ReturnValues extends AsyncResult {
-  onTableChange: (
-    params: RequestParamParams,
-    filters: ParamsRef['filters'],
-    sorter: ParamsRef['sorter'],
-    extra: ParamsRef['extra'],
-  ) => Promise<any>;
+interface ReturnValues<RecordType> extends AsyncResult {
+  onTableChange: BizTableRequest<RecordType>;
   pagination: {
     total: number;
     current: number;
@@ -41,12 +37,16 @@ interface ReturnValues extends AsyncResult {
   };
 }
 
-type UsePagination = (asyncFn: (...args: any) => Promise<any>, options?: Options) => ReturnValues;
-
-const usePagination: UsePagination = (
-  asyncFn,
-  { defaultPageSize = 10, actionCacheKey = '', autoRun, onSuccess = () => {}, ...restOptions } = {},
-) => {
+function usePagination<RecordType = any, P = any>(
+  asyncFn: AsyncFn<AsyncFnReturn<RecordType>>,
+  {
+    defaultPageSize = 10,
+    actionCacheKey = '',
+    autoRun = false,
+    onSuccess = () => {},
+    ...restOptions
+  }: Options<AsyncFnReturn<RecordType>, P> = {},
+): ReturnValues<RecordType> {
   const [data, setData] = useState([]);
 
   const pageRef = useRef({
@@ -54,7 +54,7 @@ const usePagination: UsePagination = (
     pageSize: defaultPageSize || 10,
     total: 0,
   }); // 分页
-  const paramsRef = useRef<ParamsRef>({
+  const paramsRef = useRef<ParamsRef<RecordType>>({
     params: {},
     filters: {},
     sorter: {},
@@ -64,7 +64,7 @@ const usePagination: UsePagination = (
     },
   }); // 请求参数，这里不使用 useAsync 缓存params，因为里面可能包含了分页数据
 
-  const request = useAsync(asyncFn, {
+  const request = useAsync<AsyncFnReturn<RecordType>, P>(asyncFn, {
     ...restOptions,
     autoRun: false,
     onSuccess: (res, params) => {
@@ -139,6 +139,6 @@ const usePagination: UsePagination = (
       ...pageRef.current,
     },
   };
-};
+}
 
 export default usePagination;

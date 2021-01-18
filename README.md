@@ -92,7 +92,7 @@ feat(blog): add comment section
 - **type**
 
  值 | 说明 
- --- | ---
+ ----- | -----
 build | 影响构建系统或外部依赖项的更新（示例范围：gulp, broccoli, npm）
 ci | 对CI配置文件和脚本的更改(例如scopes: Travis, Circle, BrowserStack, SauceLabs)
 chore | 其他不修改src或测试文件的更改

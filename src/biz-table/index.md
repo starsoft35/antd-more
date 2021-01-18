@@ -63,7 +63,7 @@ actionRef  | 常用操作引用，便于自定义触发  | `React.MutableRefObje
 只需按照提供的参数发起请求，并处理成相应的返回值格式即可。
 
 ```typescript
-type Request = (
+type BizTableRequest = (
   params: {
     pageSize?: number;
     current?: number;
@@ -75,7 +75,7 @@ type Request = (
     currentDataSource,
     action: "paginate" | "sort" | "filter" | "reload" | "reset" | "submit";
   }
-) => Promise<{ data: object[]; total?: number; [x: string]: any }>;
+) => Promise<{ data: object[]; total?: number; }>;
 ```
 
 **参数**

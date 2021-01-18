@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { BizTable } from 'antd-more';
-import { BizColumnType } from 'antd-more/lib/biz-table';
+import { BizTableRequest } from 'antd-more/lib/biz-table';
 import moment from 'moment';
 import Mock from 'mockjs';
 
@@ -27,7 +27,7 @@ function getApplyList(params) {
     }, 1000);
   })
 }
-const columns:BizColumnType = [
+const columns = [
   {
     dataIndex: "applyCode",
     title: "申请编号"
@@ -52,9 +52,10 @@ const columns:BizColumnType = [
 ];
 
 const Demo: React.FC = () => {
-  const handleRequest = React.useCallback((params, filters, sorter, extra): Promise<{ data: any[]; total: number; }> => {
+  const handleRequest: BizTableRequest = React.useCallback((params, filters, sorter, extra): Promise<{ data: any[]; total: number; }> => {
     const { pageSize, current, ...restParams } = params;
     console.log(params, filters, sorter, extra);
+
     return getApplyList({
       page: {
         pageSize,

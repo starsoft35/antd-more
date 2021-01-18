@@ -11,29 +11,29 @@ import usePagination from './usePagination';
 import BizField, { ValueType, EnumData } from '../biz-field';
 import WithTooltip from '../biz-descriptions/WithTooltip';
 import actionCache, { createActionCacheKey } from './actionCache';
-import { Request, RecordType, ActionType } from './interface';
+import { BizTableRequest, ActionType } from './interface';
 
 const prefixCls = 'antd-more-table';
 
-export declare type BizColumnType<Record = RecordType> = (ColumnType<Record> & {
+export declare type BizColumnType<RecordType = any> = (ColumnType<RecordType> & {
   valueType?: ValueType;
   valueEnum?: EnumData;
   tooltip?: string;
   nowrap?: boolean;
 })[];
 
-export declare interface BizTableInnerProps<Record = RecordType>
-  extends Omit<TableProps<Record>, 'columns'>,
+export declare interface BizTableProps<RecordType = any>
+  extends Omit<TableProps<RecordType>, 'columns'>,
     Pick<SearchFormProps, 'formItems'> {
   formRef?:
     | React.MutableRefObject<FormInstance | undefined>
     | ((instance: FormInstance<any>) => void);
-  ref?: React.MutableRefObject<ActionType | undefined> | ((actionRef: ActionType) => void);
-  columns?: BizColumnType<Record>;
+  actionRef?: React.MutableRefObject<ActionType | undefined> | ((actionRef: ActionType) => void);
+  columns?: BizColumnType<RecordType>;
   ready?: boolean;
   autoRequest?: boolean;
   nowrap?: boolean;
-  request?: Request;
+  request?: BizTableRequest<RecordType>;
   form?: QueryFormProps;
   spaceProps?: SpaceProps;
   formCardProps?: CardProps;
@@ -42,228 +42,200 @@ export declare interface BizTableInnerProps<Record = RecordType>
   extra?: React.ReactNode;
 }
 
-const BizTableInner: React.FC<BizTableInnerProps> = React.forwardRef(
-  (
+function BizTable<RecordType extends object = any>(props: BizTableProps<RecordType>) {
+  const {
+    formItems,
+    formRef,
+    form,
+
+    spaceProps,
+    formCardProps,
+    tableCardProps,
+
+    toolbar,
+    extra,
+    actionRef,
+
+    request,
+    ready = true,
+    autoRequest = true,
+    nowrap = true,
+
+    columns,
+    pagination,
+    onChange,
+    ...restProps
+  } = props;
+
+  const actionCacheKey = React.useMemo(() => createActionCacheKey(), []);
+
+  const innerFormRef =
+    (formRef as React.MutableRefObject<FormInstance | undefined>) ||
+    React.useRef<FormInstance | undefined>();
+
+  const { data, loading, run, onTableChange, pagination: pageRet } = usePagination<RecordType>(
+    request,
     {
-      formItems,
-      formRef,
-      form,
-
-      spaceProps,
-      formCardProps,
-      tableCardProps,
-
-      toolbar,
-      extra,
-
-      request,
-      ready = true,
-      autoRequest = true,
-      nowrap = true,
-
-      columns,
-      pagination,
-      onChange,
-      ...restProps
+      autoRun: false,
+      defaultPageSize: (pagination && pagination?.pageSize) || 10,
+      actionCacheKey,
     },
-    ref,
-  ) => {
-    const actionCacheKey = React.useMemo(() => createActionCacheKey(), []);
+  );
 
-    const innerFormRef =
-      (formRef as React.MutableRefObject<FormInstance | undefined>) ||
-      React.useRef<FormInstance | undefined>();
+  const handleChange = React.useCallback((page, filters, sorter, extra) => {
+    onTableChange(page, filters, sorter, extra);
+    typeof onChange === 'function' && onChange(page, filters, sorter, extra);
+  }, []);
 
-    const { data, loading, run, onTableChange, pagination: paginationRet } = usePagination(
-      request,
-      {
-        autoRun: false,
-        defaultPageSize: (pagination && pagination?.pageSize) || 10,
-        actionCacheKey,
-      },
-    );
+  const handleReload = React.useCallback(() => {
+    actionCache[actionCacheKey] = 'reload';
+    run();
+  }, [run]);
 
-    const handleChange = React.useCallback((page, filters, sorter, extra) => {
-      onTableChange(page, filters, sorter, extra);
-      typeof onChange === 'function' && onChange(page, filters, sorter, extra);
-    }, []);
+  const handleReset = React.useCallback(() => {
+    actionCache[actionCacheKey] = 'reset';
+    if (formItems) {
+      innerFormRef.current.resetFields();
+      innerFormRef.current?.submit();
+    } else {
+      run({}); // 触发修改分页
+      actionCache[actionCacheKey] = '';
+    }
+  }, [run, innerFormRef.current]);
 
-    const handleReload = React.useCallback(() => {
-      actionCache[actionCacheKey] = 'reload';
-      run();
-    }, [run]);
+  const handleSubmit = React.useCallback(() => {
+    actionCache[actionCacheKey] = 'submit';
+    if (formItems) {
+      innerFormRef.current?.submit();
+    } else {
+      run({}); // 触发修改分页
+    }
+  }, [run, innerFormRef.current]);
 
-    const handleReset = React.useCallback(() => {
-      actionCache[actionCacheKey] = 'reset';
-      if (formItems) {
-        innerFormRef.current.resetFields();
-        innerFormRef.current?.submit();
-      } else {
-        run({}); // 触发修改分页
+  // 默认 onReset 中已经重置表单，这里只需触发请求
+  const handleDefaultReset = React.useCallback(() => {
+    actionCache[actionCacheKey] = 'reset';
+    if (formItems) {
+      innerFormRef.current?.submit();
+    } else {
+      run({}); // 触发修改分页
+      actionCache[actionCacheKey] = '';
+    }
+  }, [run, innerFormRef.current]);
+
+  const handleFinish = React.useCallback(
+    (values) => {
+      if (actionCache[actionCacheKey] !== 'reset') {
+        actionCache[actionCacheKey] = 'submit';
+      }
+      run(values);
+      if (actionCache[actionCacheKey] === 'reset') {
         actionCache[actionCacheKey] = '';
       }
-    }, [run, innerFormRef.current]);
+    },
+    [run],
+  );
 
-    const handleSubmit = React.useCallback(() => {
-      actionCache[actionCacheKey] = 'submit';
-      if (formItems) {
-        innerFormRef.current?.submit();
-      } else {
-        run({}); // 触发修改分页
-      }
-    }, [run, innerFormRef.current]);
-
-    // 默认 onReset 中已经重置表单，这里只需触发请求
-    const handleDefaultReset = React.useCallback(() => {
-      actionCache[actionCacheKey] = 'reset';
-      if (formItems) {
-        innerFormRef.current?.submit();
-      } else {
-        run({}); // 触发修改分页
-        actionCache[actionCacheKey] = '';
-      }
-    }, [run, innerFormRef.current]);
-
-    const handleFinish = React.useCallback(
-      (values) => {
-        if (actionCache[actionCacheKey] !== 'reset') {
-          actionCache[actionCacheKey] = 'submit';
-        }
-        run(values);
-        if (actionCache[actionCacheKey] === 'reset') {
-          actionCache[actionCacheKey] = '';
-        }
-      },
-      [run],
-    );
-
-    const currentColumns = React.useMemo(
-      () =>
-        columns.map(
-          ({
-            valueType,
-            valueEnum,
-            tooltip,
-            title,
-            className,
-            nowrap: cellNowrap,
-            ...restItem
-          }) => {
-            const newItem = {
-              title: title && tooltip ? <WithTooltip label={title} tooltip={tooltip} /> : title,
-              className: classnames(
-                { [`${prefixCls}-cell-wrap`]: nowrap && cellNowrap === false },
-                className,
-              ),
-              ...restItem,
-            };
-            if (valueType && !newItem.render) {
-              if (valueType === 'index' || valueType === 'indexBorder') {
-                newItem.render = (text, record, index) => (
-                  <BizField value={index} valueType={valueType} valueEnum={valueEnum} />
-                );
-              } else {
-                newItem.render = (text) => (
-                  <BizField value={text} valueType={valueType} valueEnum={valueEnum} />
-                );
-              }
+  const currentColumns = React.useMemo(
+    () =>
+      columns.map(
+        ({ valueType, valueEnum, tooltip, title, className, nowrap: cellNowrap, ...restItem }) => {
+          const newItem = {
+            title: title && tooltip ? <WithTooltip label={title} tooltip={tooltip} /> : title,
+            className: classnames(
+              { [`${prefixCls}-cell-wrap`]: nowrap && cellNowrap === false },
+              className,
+            ),
+            ...restItem,
+          };
+          if (valueType && !newItem.render) {
+            if (valueType === 'index' || valueType === 'indexBorder') {
+              newItem.render = (text, record, index) => (
+                <BizField value={index} valueType={valueType} valueEnum={valueEnum} />
+              );
+            } else {
+              newItem.render = (text) => (
+                <BizField value={text} valueType={valueType} valueEnum={valueEnum} />
+              );
             }
-            return newItem;
-          },
-        ),
-      [columns],
-    );
+          }
+          return newItem;
+        },
+      ),
+    [columns],
+  );
 
-    React.useImperativeHandle(
-      ref,
-      () => ({
-        reload: handleReload,
-        reset: handleReset,
-        submit: handleSubmit,
-      }),
-      [],
-    );
+  const innerActionRef = React.useRef<ActionType | undefined>();
 
-    React.useEffect(() => {
-      if (ready && autoRequest) {
-        if (formItems) {
-          innerFormRef.current?.submit();
-        } else {
-          run();
-        }
+  React.useImperativeHandle(
+    actionRef || innerActionRef,
+    () => ({
+      reload: handleReload,
+      reset: handleReset,
+      submit: handleSubmit,
+    }),
+    [actionRef],
+  );
+
+  React.useEffect(() => {
+    if (ready && autoRequest) {
+      if (formItems) {
+        innerFormRef.current?.submit();
+      } else {
+        run();
       }
-    }, [ready]);
+    }
+  }, [ready]);
 
-    // 删除缓存 action
-    React.useEffect(() => {
-      return () => {
-        delete actionCache[actionCacheKey];
-      };
-    }, []);
+  // 删除缓存 action
+  React.useEffect(() => {
+    return () => {
+      delete actionCache[actionCacheKey];
+    };
+  }, []);
 
-    const tableCardStyle = React.useMemo(
-      () => ({ padding: !formItems && !toolbar ? 0 : '16px 24px 0' }),
-      [formItems, toolbar],
-    );
+  const tableCardStyle = React.useMemo(
+    () => ({ padding: !formItems && !toolbar ? 0 : '16px 24px 0' }),
+    [formItems, toolbar],
+  );
 
-    return (
-      <Space
-        direction="vertical"
-        size={16}
-        {...spaceProps}
-        className={classnames(
-          prefixCls,
-          { [`${prefixCls}-nowrap`]: nowrap },
-          spaceProps?.className,
-        )}
-        style={{ display: 'flex', width: '100%', ...spaceProps?.style }}
+  return (
+    <Space
+      direction="vertical"
+      size={16}
+      {...spaceProps}
+      className={classnames(prefixCls, { [`${prefixCls}-nowrap`]: nowrap }, spaceProps?.className)}
+      style={{ display: 'flex', width: '100%', ...spaceProps?.style }}
+    >
+      <SearchForm
+        formItems={formItems}
+        ref={innerFormRef}
+        loading={loading}
+        onFinish={handleFinish}
+        onReset={handleDefaultReset}
+        ready={ready}
+        cardProps={formCardProps}
+        {...form}
+      />
+      {extra}
+      <Card
+        bordered={false}
+        {...tableCardProps}
+        bodyStyle={{ ...tableCardStyle, ...tableCardProps?.bodyStyle }}
       >
-        <SearchForm
-          formItems={formItems}
-          ref={innerFormRef}
+        {toolbar && <div style={{ padding: '0 0 16px' }}>{toolbar}</div>}
+        <Table
           loading={loading}
-          onFinish={handleFinish}
-          onReset={handleDefaultReset}
-          ready={ready}
-          cardProps={formCardProps}
-          {...form}
+          columns={currentColumns}
+          dataSource={data}
+          pagination={pagination !== false ? { ...pageRet, ...pagination } : false}
+          onChange={handleChange}
+          {...restProps}
+          scroll={{ ...(nowrap ? { x: true } : {}), ...restProps?.scroll }}
         />
-        {extra}
-        <Card
-          bordered={false}
-          {...tableCardProps}
-          bodyStyle={{ ...tableCardStyle, ...tableCardProps?.bodyStyle }}
-        >
-          {toolbar && <div style={{ padding: '0 0 16px' }}>{toolbar}</div>}
-          <Table
-            loading={loading}
-            columns={currentColumns}
-            dataSource={data}
-            pagination={
-              typeof pagination !== 'boolean' || pagination
-                ? { ...paginationRet, ...pagination }
-                : false
-            }
-            onChange={handleChange}
-            {...restProps}
-            scroll={{ ...(nowrap ? { x: true } : {}), ...restProps?.scroll }}
-          />
-        </Card>
-      </Space>
-    );
-  },
-);
-
-export interface BizTableProps extends Omit<BizTableInnerProps, 'ref'> {
-  actionRef?: React.MutableRefObject<ActionType | undefined> | ((actionRef: ActionType) => void);
+      </Card>
+    </Space>
+  );
 }
-
-const BizTable: React.FC<BizTableProps> = ({ actionRef, ...restProps }) => {
-  const innerActionRef =
-    (actionRef as React.MutableRefObject<ActionType | undefined>) ||
-    React.useRef<ActionType | undefined>();
-
-  return <BizTableInner {...restProps} ref={innerActionRef} />;
-};
 
 export default BizTable;
