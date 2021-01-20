@@ -25,7 +25,9 @@ interface Options<D = any, P = any> extends AsyncParams<D, P> {
   actionCacheKey?: string;
 }
 
-interface ReturnValues<RecordType> extends AsyncResult {
+interface ReturnValues<RecordType = any>
+  extends Omit<AsyncResult<AsyncFnReturn<RecordType>>, 'data'> {
+  data: AsyncFnReturn<RecordType>['data'];
   onTableChange: BizTableRequest<RecordType>;
   pagination: {
     total: number;
