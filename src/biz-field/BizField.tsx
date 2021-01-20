@@ -6,7 +6,6 @@ import FieldIndex from './components/Index';
 import FieldImage from './components/Image';
 import Dictionary from '../dictionary';
 import Color from '../color';
-import '../color/style';
 import Percent from './components/Percent';
 import { getDateStr } from './_util/dateUtil';
 
@@ -42,7 +41,7 @@ const BizField: React.FC<BizFieldProps> = ({
   } else {
     let params: any;
     if (typeof valueType === 'function') {
-      params = valueType();
+      params = valueType(value);
     } else if (typeof valueType === 'object') {
       params = valueType;
     }

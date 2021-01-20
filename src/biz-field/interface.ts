@@ -26,7 +26,7 @@ type ValueTypeObj = {
   type: ValueType;
   [x: string]: any;
 };
-type ValueTypeFn = () => ValueTypeObj;
+type ValueTypeFn = (value: any) => ValueTypeObj;
 
 export type ValueType = ValueTypeStr | ValueTypeObj | ValueTypeFn;
 
