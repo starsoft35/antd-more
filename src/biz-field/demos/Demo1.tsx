@@ -123,7 +123,10 @@ export default () => {
           <BizField value="2020-10-10" valueType="dateYear" />
         </Descriptions.Item>
         <Descriptions.Item label="时间">
-          <BizField value="2020-10-10" valueType="time" />
+          <BizField value="10:00:00" valueType="time" />
+        </Descriptions.Item>
+        <Descriptions.Item label="时间区间">
+          <BizField value={["10:00:00", "12:00:00"]} valueType="timeRange" />
         </Descriptions.Item>
         <Descriptions.Item label="相对当前时间">
           <BizField value="2020-10-10" valueType="fromNow" />

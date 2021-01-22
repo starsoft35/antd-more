@@ -61,7 +61,8 @@ dateYear  | 年 `YYYY` | 2020 |
 dateRange  | 日期区间 `YYYY-MM-DD ~ YYYY-MM-DD` | 2020-10-10 ~ 2020-12-12 |
 dateTime  | 日期时间 `YYYY-MM-DD HH:mm:ss` | 2020-10-10 00:00:00 |
 dateTimeRange  | 日期时间区间 `YYYY-MM-DD HH:mm:ss ~ YYYY-MM-DD HH:mm:ss` | 2020-10-10 00:00:00 ~ 2020-12-12 00:00:00 |
-time  | 时间 `HH:mm:ss` | 00:00:00 |
+time  | 时间 `HH:mm:ss` | 10:05:20 |
+timeRange  | 时间区间 `HH:mm:ss ~ HH:mm:ss` | 10:05:20 ~ 20:00:00 |
 fromNow  | 相对当前时间，使用 `moment` [`fromNow`](http://momentjs.cn/docs/#/displaying/fromnow/) 方法 | - |
 
 <br/>
@@ -121,6 +122,12 @@ precision  | 精度 | `number` | `2` |
 showColor  | 显示颜色 | `boolean` | `false` |
 showSymbol  | 显示符号 | `boolean` | `false` |
 suffix  | 百分号后缀 | `string` | `%` |
+
+#### 日期类
+
+参数 | 说明 | 类型 | 默认值 |
+------------- | ------------- | ------------- | ------------- |
+format  | 设置日期或时间格式 | `string` | - |
 
 #### image
 

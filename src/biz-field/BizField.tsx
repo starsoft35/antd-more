@@ -19,6 +19,7 @@ const DateType = [
   'dateTime',
   'dateTimeRange',
   'time',
+  'timeRange',
   'fromNow',
 ];
 const IndexType = ['index', 'indexBorder'];
@@ -66,7 +67,8 @@ const BizField: React.FC<BizFieldProps> = ({
     view = <span {...props}>{formatMoney(value)}</span>;
   } else if (DateType.includes(type)) {
     // 日期类型
-    view = <span {...props}>{getDateStr(value, type)}</span>;
+    const { format, ...rest } = props;
+    view = <span {...rest}>{getDateStr(value, type, format)}</span>;
   } else if (IndexType.includes(type)) {
     // 序号
     view = <FieldIndex value={value + 1} type={type} {...props} />;

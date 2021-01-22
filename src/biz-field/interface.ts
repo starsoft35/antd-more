@@ -11,6 +11,7 @@ type ValueTypeStr =
   | 'dateTime'
   | 'dateTimeRange'
   | 'time'
+  | 'timeRange'
   | 'fromNow'
   | 'money'
   | 'index'
