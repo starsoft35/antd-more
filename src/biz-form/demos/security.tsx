@@ -10,9 +10,17 @@
 import * as React from 'react';
 import { BizForm } from 'antd-more';
 
-const { ItemInput, ItemIdCard, ItemMobile, ItemEmail, ItemBankCard } = BizForm;
+const { ItemInput } = BizForm;
 
-const initialValues = {
+type FormValuesType = {
+  name: string;
+  mobile: string;
+  email: string;
+  idCard: string;
+  bankCardNo: string;
+}
+
+const defaultValues = {
   name: "张三",
   mobile: "130****0000",
   email: "12****@qq.com",
@@ -21,22 +29,27 @@ const initialValues = {
 }
 
 const Demo: React.FC = () => {
-  const [loading, setLoading] = React.useState(false);
-  const onFinish = React.useCallback((values) => {
-    console.log(values);
-    setLoading(true);
+  const [ready, setReady] = React.useState(false);
+  const [initialValues, setInitialValues] = React.useState<Partial<FormValuesType>>({});
 
+  const [form] = BizForm.useForm();
+
+  React.useEffect(() => {
     setTimeout(() => {
-      setLoading(false);
-    }, 2000);
+      setInitialValues(defaultValues);
+      setReady(true);
+    }, 3000);
   }, []);
 
   return (
     <BizForm
       name="form-security"
-      loading={loading}
+      form={form}
+      ready={ready}
       initialValues={initialValues}
-      onFinish={onFinish}
+      onFinish={(values) => {
+        console.log(values);
+      }}
       submitter={{
         submitText: "提交",
         noReset: true
@@ -44,10 +57,10 @@ const Demo: React.FC = () => {
       labelWidth={98}
     >
       <ItemInput label="姓名" name="name" required />
-      <ItemIdCard label="身份证号" name="idCard" required security initialValue={initialValues.idCard} />
-      <ItemMobile label="手机号码" name="mobile" required security initialValue={initialValues.mobile} />
-      <ItemEmail label="邮箱" name="email" inputProps={{ placeholder: "请输入（选填）" }} security initialValue={initialValues.email} />
-      <ItemBankCard label="银行卡号" name="bankCardNo" required formatting security initialValue={initialValues.bankCardNo} />
+      <ItemInput label="身份证号" name="idCard" type="idCard" required security initialValue={initialValues.idCard} />
+      <ItemInput label="手机号码" name="mobile" type="mobile" required security initialValue={initialValues.mobile} />
+      <ItemInput label="邮箱" name="email" type="email" inputProps={{ placeholder: "请输入（选填）" }} security initialValue={initialValues?.email} />
+      <ItemInput label="银行卡号" name="bankCardNo" type="bankCard" required security initialValue={initialValues.bankCardNo} />
     </BizForm>
   );
 }

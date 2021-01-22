@@ -1,14 +1,14 @@
 /**
  * title: 登录
  * desc: |
- *    ItemCaptcha 组件执行顺序： `check` 方法验证手机号码或邮箱成功后，调用 `onGetCaptcha` 并设置按钮 `loading` 状态。当 `onGetCaptcha` 执行成功后，开始倒计时。
+ *    组件 `ItemCaptcha` 执行顺序： `check` 方法验证手机号码或邮箱成功后，调用 `onGetCaptcha` 并设置按钮 `loading` 状态。当 `onGetCaptcha` 执行成功后，开始倒计时。
  */
 import * as React from 'react';
 import { message } from 'antd';
 import { BizForm } from 'antd-more';
 import { UserOutlined, LockOutlined, SafetyCertificateOutlined, MobileOutlined, MailOutlined } from '@ant-design/icons';
 
-const { ItemInput, ItemCaptcha, ItemMobile, ItemEmail } = BizForm;
+const { ItemInput, ItemCaptcha, ItemPassword } = BizForm;
 
 function sendCaptcha(mobile) {
   return new Promise<void>(resolve => {
@@ -58,7 +58,7 @@ const LoginDemo: React.FC = () => {
           label="用户名"
           required
         />
-        <ItemInput.Password
+        <ItemPassword
           name="password"
           inputProps={{
             prefix: <LockOutlined />,
@@ -66,9 +66,11 @@ const LoginDemo: React.FC = () => {
           }}
           label="密码"
           required
+          validated={false}
         />
-        <ItemEmail
+        <ItemInput
           name="email"
+          type="email"
           inputProps={{
             prefix: <MailOutlined />,
             placeholder: "请输入邮箱"
@@ -77,8 +79,9 @@ const LoginDemo: React.FC = () => {
           label="邮箱"
           required
         />
-        <ItemMobile
+        <ItemInput
           name="mobile"
+          type="mobile"
           inputProps={{
             prefix: <MobileOutlined />,
             placeholder: "请输入手机号码"

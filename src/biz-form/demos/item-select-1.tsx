@@ -30,7 +30,7 @@ const Demo: React.FC = () => {
     >
       <ItemSelect label="选择器1" name="select1" options={cycle} />
       <ItemSelect label="选择器2" name="select2" options={cycle} required />
-      <ItemSelect label="选择器3" name="select3" options={cycle} all allValue={["1", "2"]} excludeValues={["0"]} tooltip="包含全部，并且排除按日" />
+      <ItemSelect label="排除项" name="select3" options={cycle} all allValue={["1", "2"]} excludeValues={["0"]} tooltip="包含全部，并且排除按日" />
     </BizForm>
   );
 }

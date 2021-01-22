@@ -6,7 +6,7 @@ import moment from 'moment';
 const invalidDateRangeNameValue = `date_range_invalid_${Math.random()}`;
 
 // 转换银行卡号
-function transformBankCard(val: string, char = '') {
+function transformBankCard(val: string, char = ' ') {
   if (typeof val !== 'string') {
     return val;
   }

@@ -2,10 +2,9 @@
  * title: 修改密码
  */
 import * as React from 'react';
-import { Form } from 'antd';
 import { BizForm } from 'antd-more';
 
-const { ItemInput, ItemPassword } = BizForm;
+const { ItemPassword, Item } = BizForm;
 
 const Demo: React.FC = () => {
   const [loading, setLoading] = React.useState(false);
@@ -30,12 +29,13 @@ const Demo: React.FC = () => {
       labelWidth={98}
       name="form-change-password"
     >
-      <Form.Item label="手机号码">13000000000</Form.Item>
-      <Form.Item label="用户名">guest</Form.Item>
-      <ItemInput.Password
+      <Item label="手机号码">13000000000</Item>
+      <Item label="用户名">guest</Item>
+      <ItemPassword
         label="原密码"
         name="oldPassword"
         required
+        validated={false}
       />
       <ItemPassword
         label="新密码"
@@ -59,7 +59,7 @@ const Demo: React.FC = () => {
           }
         ]}
       />
-      <ItemInput.Password
+      <ItemPassword
         label="重复新密码"
         name="repeatPassword"
         required

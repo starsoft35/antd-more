@@ -10,7 +10,7 @@ function sendCaptcha(mobile) {
   })
 }
 
-const { ItemMobile, ItemCaptcha, ItemPassword, ItemInput } = BizForm;
+const { ItemCaptcha, ItemPassword, ItemInput } = BizForm;
 
 const ForgetPassword: React.FC = () => {
   const [form] = BizForm.useForm();
@@ -25,7 +25,7 @@ const ForgetPassword: React.FC = () => {
       form={form}
       labelWidth={98}
     >
-      <ItemMobile label="手机号码" name="mobile" required />
+      <ItemInput label="手机号码" name="mobile" type="mobile" required />
       <ItemCaptcha
         label="验证码"
         name="captcha"
@@ -43,7 +43,7 @@ const ForgetPassword: React.FC = () => {
         }}
       />
       <ItemPassword label="新密码" name="password" required inputProps={{ allowClear: false }} />
-      <ItemInput.Password
+      <ItemPassword
         label="重复新密码"
         name="repeatPassword"
         required

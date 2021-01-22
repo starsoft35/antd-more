@@ -17,6 +17,7 @@ import ItemNumber, { FormItemNumberProps } from './components/ItemNumber';
 import ItemPassword, { FormItemPasswordProps } from './components/ItemPassword';
 import ItemRadio, { FormItemRadioProps } from './components/ItemRadio';
 import ItemSelect, { FormItemSelectProps } from './components/ItemSelect';
+import ItemTextArea, { FormItemTextAreaProps } from './components/ItemTextArea';
 import ItemTime, { FormItemTimeProps } from './components/ItemTime';
 import ItemTimeRange, { FormItemTimeRangeProps } from './components/ItemTimeRange';
 import ItemUpload, { FormItemUploadProps } from './components/ItemUpload';
@@ -43,6 +44,7 @@ export type {
   FormItemPasswordProps as ItemPasswordProps,
   FormItemRadioProps as ItemRadioProps,
   FormItemSelectProps as ItemSelectProps,
+  FormItemTextAreaProps as ItemTextAreaProps,
   FormItemTimeProps as ItemTimeProps,
   FormItemTimeRangeProps as ItemTimeRangeProps,
   FormItemUploadProps as ItemUploadProps,
@@ -68,6 +70,7 @@ export {
   ItemPassword,
   ItemRadio,
   ItemSelect,
+  ItemTextArea,
   ItemTime,
   ItemTimeRange,
   ItemUpload,

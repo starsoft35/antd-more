@@ -3,7 +3,7 @@ import { Row, Col } from 'antd';
 import { BizForm } from 'antd-more';
 import lcnFormPC from 'lcn/lcn-form-pc';
 
-const { ItemInput, ItemAddress, ItemRadio, ItemBankCard } = BizForm;
+const { ItemInput, ItemAddress, ItemRadio } = BizForm;
 
 const oneColSpan = {
   span: 24
@@ -78,7 +78,7 @@ const SettlementInfo: React.FC = () => {
           <ItemInput label="账户名称" name="bankCertName" required />
         </Col>
         <Col {...twoColSpan}>
-          <ItemBankCard label="银行卡号" name="bankCardNo" required formatting />
+          <ItemInput label="银行卡号" name="bankCardNo" type="bankCard" required />
         </Col>
         <Col {...twoColSpan}>
           <ItemInput label="开户银行名称" name="bankName" required />

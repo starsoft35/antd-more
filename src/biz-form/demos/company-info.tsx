@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { Row, Col, Card, Space, Form } from 'antd';
+import { Row, Col } from 'antd';
 import { BizForm } from 'antd-more';
 import { isSocialCreditCode, isBusinessLicense } from 'util-helpers';
 import lcnFormInland from 'lcn/lcn-form-inland';
 
-const { ItemInput, ItemIdCard, ItemMobile, ItemAddress } = BizForm;
+const { ItemInput, ItemAddress } = BizForm;
 
 const oneColSpan = {
   span: 24
@@ -81,10 +81,10 @@ const CompanyInfo: React.FC = () => {
           <ItemInput label="法人姓名" name="legalName" required />
         </Col>
         <Col {...twoColSpan}>
-          <ItemIdCard label="法人身份证号" name="legalIdCard" required />
+          <ItemInput label="法人身份证号" name="legalIdCard" type="idCard" required />
         </Col>
         <Col {...twoColSpan}>
-          <ItemMobile label="法人手机号码" name="legalMobile" required />
+          <ItemInput label="法人手机号码" name="legalMobile" type="mobile" required />
         </Col>
         <Col {...oneColSpan}>
           <ItemAddress label="公司地址" names={["location", "address"]} labels={["省/市/区", "详细地址"]} options={lcnFormInland} required />

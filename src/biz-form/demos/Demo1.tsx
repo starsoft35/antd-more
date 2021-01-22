@@ -9,19 +9,15 @@ const {
   ItemRadio,
   ItemSelect,
   ItemAddress,
-  ItemBankCard,
   ItemDate,
   ItemDateRange,
-  ItemEmail,
-  ItemIdCard,
-  ItemMobile,
   ItemNumber,
   ItemPassword,
-  ItemUserName,
   ItemColor,
   ItemCaptcha,
   ItemCheckbox,
   ItemUpload,
+  ItemTextArea,
   ItemTime,
   ItemTimeRange
 } = BizForm;
@@ -77,22 +73,22 @@ const Demo: React.FC = () => {
             <ItemNumber label="数字" name="number" tooltip="提示文字" required={required} />
           </Col>
           <Col {...colSpan}>
-            <ItemEmail label="邮箱" name="email" required={required} />
+            <ItemInput label="邮箱" name="email" type="email" required={required} />
           </Col>
           <Col {...colSpan}>
-            <ItemIdCard label="身份证号" name="idCard" required={required} />
+            <ItemInput label="身份证号" name="idCard" type="idCard" required={required} />
           </Col>
           <Col {...colSpan}>
-            <ItemMobile label="手机号码" name="mobile" required={required} />
+            <ItemInput label="手机号码" name="mobile" type="mobile" required={required} />
           </Col>
           <Col {...colSpan}>
-            <ItemUserName label="用户名" name="userName" required={required} />
+            <ItemInput label="用户名" name="userName" type="userName" required={required} />
           </Col>
           <Col {...colSpan}>
             <ItemPassword label="密码" name="password" required={required} />
           </Col>
           <Col {...colSpan}>
-            <ItemBankCard label="银行卡号" name="bankCardNo" formatting required={required} />
+            <ItemInput label="银行卡号" name="bankCardNo" type="bankCard" required={required} />
           </Col>
           <Col {...colSpan}>
             <ItemColor label="颜色" name="color" required={required} />
@@ -160,11 +156,11 @@ const Demo: React.FC = () => {
           <Col {...specialColSpan}>
             <ItemTimeRange label="时间区间" name="timeRange" required={required} />
           </Col>
-          <Col {...specialColSpan}>
+          <Col {...colSpan}>
             <ItemInput label="Input" name="input" required={required} />
           </Col>
           <Col {...specialColSpan}>
-            <ItemInput.TextArea label="Input.TextArea" name="inputTextArea" required={required} />
+            <ItemTextArea label="TextArea" name="textarea" required={required} />
           </Col>
           <Col {...specialColSpan}>
             <ItemRadio label="Radio" name="radio" options={cycle} required={required} />

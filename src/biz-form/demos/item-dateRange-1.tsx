@@ -20,7 +20,7 @@ const Demo: React.FC = () => {
       labelWidth={98}
     >
       <ItemDateRange label="日期" name="date1" />
-      <ItemDateRange label="解构字段" names={["startDate", "endDate"]} required tooltip="传入names会自动将值解构到当前层级" />
+      <ItemDateRange label="解构字段" names={["startDate", "endDate"]} required tooltip="传入names会自动将值解构当前层级" />
       <ItemDateRange label="日期时间" name="date3" showTime />
       <ItemDateRange label="月" name="date4" picker="month" />
       <ItemDateRange label="交易日期" name="date5" disabledDateAfter={0} maxRange={30} tooltip="当日及以后日期不可选，最大区间不能超过30天" />

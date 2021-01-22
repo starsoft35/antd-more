@@ -18,6 +18,7 @@ import ItemNumber from './ItemNumber';
 import ItemPassword from './ItemPassword';
 import ItemRadio from './ItemRadio';
 import ItemSelect from './ItemSelect';
+import ItemTextArea from './ItemTextArea';
 import ItemTime from './ItemTime';
 import ItemTimeRange from './ItemTimeRange';
 import ItemUpload from './ItemUpload';
@@ -33,23 +34,44 @@ const BizForm: React.FC<BaseFormProps> & {
   List: typeof List;
   useForm: typeof Form.useForm;
   ItemAddress: typeof ItemAddress;
+
+  /**
+   * @deprecated Please use `ItemInput`, type="bankCard"
+   */
   ItemBankCard: typeof ItemBankCard;
   ItemCaptcha: typeof ItemCaptcha;
   ItemCheckbox: typeof ItemCheckbox;
   ItemColor: typeof ItemColor;
+
+  /**
+   * @deprecated Please use `ItemInput`, type="email"
+   */
   ItemEmail: typeof ItemEmail;
   ItemDate: typeof ItemDate;
   ItemDateRange: typeof ItemDateRange;
+
+  /**
+   * @deprecated Please use `ItemInput`, type="idCard"
+   */
   ItemIdCard: typeof ItemIdCard;
   ItemInput: typeof ItemInput;
+
+  /**
+   * @deprecated Please use `ItemInput`, type="mobile"
+   */
   ItemMobile: typeof ItemMobile;
   ItemNumber: typeof ItemNumber;
   ItemPassword: typeof ItemPassword;
   ItemRadio: typeof ItemRadio;
   ItemSelect: typeof ItemSelect;
+  ItemTextArea: typeof ItemTextArea;
   ItemTime: typeof ItemTime;
   ItemTimeRange: typeof ItemTimeRange;
   ItemUpload: typeof ItemUpload;
+
+  /**
+   * @deprecated Please use `ItemInput`, type="userName"
+   */
   ItemUserName: typeof ItemUserName;
 } = ({ submitter, ...restProps }) => {
   const submitterProps = typeof submitter === 'boolean' || !submitter ? {} : submitter;
@@ -98,6 +120,7 @@ BizForm.ItemNumber = ItemNumber;
 BizForm.ItemPassword = ItemPassword;
 BizForm.ItemRadio = ItemRadio;
 BizForm.ItemSelect = ItemSelect;
+BizForm.ItemTextArea = ItemTextArea;
 BizForm.ItemTime = ItemTime;
 BizForm.ItemTimeRange = ItemTimeRange;
 BizForm.ItemUpload = ItemUpload;

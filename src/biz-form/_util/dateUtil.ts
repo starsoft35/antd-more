@@ -83,13 +83,13 @@ export function createDisabledDate(picker: Picker = 'date', opts?: CreateDisable
 
     if (hasBefore && hasAfter) {
       return (
-        current <= moment().add(before, scale).endOf('day') ||
-        current >= moment().add(after, scale).startOf('day')
+        current <= moment().add(before, scale).endOf(scale) ||
+        current >= moment().add(after, scale).startOf(scale)
       );
     } else if (hasBefore) {
-      return current <= moment().add(before, scale).endOf('day');
+      return current <= moment().add(before, scale).endOf(scale);
     } else if (hasAfter) {
-      return current >= moment().add(after, scale).startOf('day');
+      return current >= moment().add(after, scale).startOf(scale);
     }
     return false;
   };

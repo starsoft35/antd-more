@@ -29,7 +29,8 @@ const Demo: React.FC = () => {
       labelWidth={98}
     >
       <ItemCheckbox label="多选框1" name="checkbox1" options={cycle} />
-      <ItemCheckbox label="多选框2" name="checkbox2" options={cycle} all allName="全全全部" required />
+      <ItemCheckbox label="多选框2" name="checkbox2" options={cycle} all required />
+      <ItemCheckbox label="排除项" name="checkbox3" options={cycle} all allName="全全全部" excludeValues={["2"]} required />
     </BizForm>
   );
 }

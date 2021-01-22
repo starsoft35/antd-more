@@ -21,7 +21,7 @@ const normalizeWhiteSpace: NormalizeFn<ValueType> = (val) => {
 // 标准化输入银行卡号
 const normalizeBankCard: NormalizeSecurityFn<ValueType> = (
   val,
-  { symbol = '', char = '', length = 4 },
+  { symbol = '', char = ' ', length = 4 },
 ) => {
   let ret = val;
   if (typeof val === 'string') {

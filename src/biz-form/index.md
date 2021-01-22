@@ -12,6 +12,7 @@ legacy: /business/biz-form
 基于 antd Form 扩展了布局、校验、转换值等功能，帮助业务快速开发。
 
 ## 代码演示
+
 ### 创建用户
 
 <code src='./demos/base-register.tsx' />
@@ -157,7 +158,7 @@ const { Item } = BizForm;
 labelWidth  | label 宽度。默认继承 `BizForm` 的 `labelWidth`。 | `number` \| `'auto'` | - |
 hideLabel  | 隐藏 label 。默认继承 `BizForm` 的 `hideLabel`。 | `boolean` | - |
 transform  | 转换该字段值，表单提交时执行。 | `(value)=>any` | - |
-extendRules  | 扩展校验规则。如果需要覆盖，请使用 `rules` | `Rule[]` | - |
+extendRules  | 扩展校验规则。如果需要覆盖，请使用 `rules` | [`Rule[]`](https://ant-design.gitee.io/components/form-cn/#Rule) | - |
 colProps  | 设置该表单项 Col 属性。部分场景下生效，如 QueryForm 下。  | [`ColProps`](https://ant-design.gitee.io/components/grid-cn/#Col) | - |
 
 ### 其它Item
@@ -185,7 +186,7 @@ colProps  | 设置该表单项 Col 属性。部分场景下生效，如 QueryFor
 
 ```typescript
 type CascaderValue = string[] | number[];
-type Value = [CascaderValue, string | undefined];
+
 interface Option {
   value: string | number;
   label?: React.ReactNode;
@@ -204,36 +205,6 @@ options  | 级联选项数据 | `Option[]` | - |
 formItemProps  | 级联选项和输入框的 Item 属性。如果要修改宽度，可以分别传入 `colProps` 进行设置。 | `[BizFormItemProps, BizFormItemProps]` | `[]` |
 inputProps  | 输入框的属性 | [`InputProps`](https://ant-design.gitee.io/components/input-cn/#API) | - |
 cascaderProps  | 级联选项的属性 | [`CascaderProps`](https://ant-design.gitee.io/components/cascader-cn/#API) | - |
-
-### ItemBankCard
-
-银行卡号输入框
-
-**特点**
-
-- 自动过滤非数字（如果开启脱敏校验允许输入脱敏符号）
-- 支持格式化
-- 失焦校验
-- 开启脱敏校验后，与 `initialValue` 比较
-
-**校验顺序**
-
-- 必填时为空，提示：`请输入${label}`
-- 开启脱敏校验后，判断是否与初始值相等，相等即 `验证通过`
-- 使用 [util-helpers isBankCard](https://doly-dev.github.io/util-helpers/module-Validator.html#.isBankCard) 验证，提示：`请输入正确的${label}`
-
-<code src="./demos/item-bankCard-1.tsx" />
-
-<br/>
-
-参数 | 说明 | 类型 | 默认值 |
-------------- | ------------- | ------------- | ------------- |
-security  | 开启脱敏校验。为 `ture` 时，必须传入 `initialValue` 。 | `boolean` | `false` |
-symbol  | 脱敏符号 | `string` | `*` |
-loose  | 宽松模式校验银行卡号，参考 [util-helpers isBankCard](https://doly-dev.github.io/util-helpers/module-Validator.html#.isBankCard)。<br/>正常模式（非0开头，15~19位数字，常用于对私账户）宽松模式（8~30位数字，对公账户）。 | `boolean` | `true` |
-formatting  | 输入显示格式化 | `boolean` | `false` |
-divider  | 格式化的分隔符，需配合 `formatting` 使用。 | `string` | `' '` |
-inputProps  | 输入框的属性 | [`InputProps`](https://ant-design.gitee.io/components/input-cn/#API) | - |
 
 
 ### ItemCaptcha
@@ -373,60 +344,6 @@ picker  | 设置选择器类型 | `date` `week` `month` `quarter` `year` | `date
 pickerProps  | 选择器的属性 | [`DateRangePickerProps`](https://ant-design.gitee.io/components/date-picker-cn/#RangePicker) | - |
 
 
-### ItemEmail
-
-邮箱输入框
-
-**特点**
-
-- 自动过滤空格
-- 失焦校验
-- 开启脱敏校验后，与 `initialValue` 比较
-
-**校验顺序**
-
-- 必填时为空，提示：`请输入${label}`
-- 开启脱敏校验后，判断是否与初始值相等，相等即 `验证通过`
-- 使用 [util-helpers isEmail](https://doly-dev.github.io/util-helpers/module-Validator.html#.isEmail) 验证，提示：`请输入正确的${label}`
-
-<code src="./demos/item-email-1.tsx" />
-
-<br/>
-
-参数 | 说明 | 类型 | 默认值 |
-------------- | ------------- | ------------- | ------------- |
-security  | 开启脱敏校验。为 `ture` 时，必须传入 `initialValue` 。 | `boolean` | `false` |
-symbol  | 脱敏符号 | `string` | `*` |
-inputProps  | 输入框的属性 | [`InputProps`](https://ant-design.gitee.io/components/input-cn/#API) | - |
-
-
-### ItemIdCard
-
-身份证号输入框
-
-**特点**
-
-- 过滤非数字 xX （如果开启脱敏校验允许输入脱敏符号）
-- 小写 x 自动转为大写 X
-- 失焦校验
-- 开启脱敏校验后，与 `initialValue` 比较
-
-**校验顺序**
-
-- 必填时为空，提示：`请输入${label}`
-- 开启脱敏校验后，判断是否与初始值相等，相等即 `验证通过`
-- 使用 [util-helpers isIdCard](https://doly-dev.github.io/util-helpers/module-Validator.html#.isIdCard) 验证，提示：`请输入正确的${label}`
-
-<code src="./demos/item-idCard-1.tsx" />
-
-<br/>
-
-参数 | 说明 | 类型 | 默认值 |
-------------- | ------------- | ------------- | ------------- |
-security  | 开启脱敏校验。为 `ture` 时，必须传入 `initialValue` 。 | `boolean` | `false` |
-symbol  | 脱敏符号 | `string` | `*` |
-inputProps  | 输入框的属性 | [`InputProps`](https://ant-design.gitee.io/components/input-cn/#API) | - |
-
 
 ### ItemInput
 
@@ -435,10 +352,19 @@ Input 输入框
 **特点**
 
 - 可配置过滤空格
+- 当有 `type` 值时：
+  - 失焦校验
+  - 手机号码、身份证号、银行卡号自动格式化
+  - 邮箱、用户名自动过滤空格
 
 **校验顺序**
 
 - 必填时为空，提示：`请输入${label}`
+- 开启脱敏校验后，判断是否与初始值相等，相等即 `验证通过`
+- 根据 `type` 使用 `util-helpers` [isMobile]、[isIdCard]、[isBankCard]、[isEmail] 验证，提示：`请输入正确的${label}`
+- 如果是用户名（如有长度限制，可通过 `excludeRules` 扩展规则）
+  - 验证非手机号码，提示：`${label}不能为手机号码`
+  - 验证不包含@符号，提示：`${label}不能包含@符号`
 
 <code src="./demos/item-input-1.tsx" />
 
@@ -446,34 +372,10 @@ Input 输入框
 
 参数 | 说明 | 类型 | 默认值 |
 ------------- | ------------- | ------------- | ------------- |
+type  | 输入框类型。 | `mobile` \| `bankCard` \| `idCard` \| `email` \| `userName` | - |
 disabledWhiteSpace  | 禁止输入空白符。 `Password` 组件不支持该项。 | `boolean` | `false` |
 before  | 输入框前面元素 | `React.ReactNode` | - |
 after  | 输入框后面元素 | `React.ReactNode` | - |
-inputProps  | 输入框的属性 | [`InputProps`](https://ant-design.gitee.io/components/input-cn/#API) | - |
-
-
-### ItemMobile
-
-手机号码输入框
-
-**特点**
-
-- 过滤非数字（如果开启脱敏校验允许输入脱敏符号）
-- 失焦校验
-- 开启脱敏校验后，与 `initialValue` 比较
-
-**校验顺序**
-
-- 必填时为空，提示：`请输入${label}`
-- 开启脱敏校验后，判断是否与初始值相等，相等即 `验证通过`
-- 使用 [util-helpers isMobile](https://doly-dev.github.io/util-helpers/module-Validator.html#.isMobile) 验证，提示：`请输入正确的${label}`
-
-<code src="./demos/item-mobile-1.tsx" />
-
-<br/>
-
-参数 | 说明 | 类型 | 默认值 |
-------------- | ------------- | ------------- | ------------- |
 security  | 开启脱敏校验。为 `ture` 时，必须传入 `initialValue` 。 | `boolean` | `false` |
 symbol  | 脱敏符号 | `string` | `*` |
 inputProps  | 输入框的属性 | [`InputProps`](https://ant-design.gitee.io/components/input-cn/#API) | - |
@@ -516,16 +418,13 @@ inputProps  | 数字输入框的属性 | [`InputNumberProps`](https://ant-design
 
 密码输入框
 
-**特点**
-
-- 失焦校验
-
 **校验顺序**
 
 - 必填时为空，提示：`请输入${label}`
-- 验证长度，提示：`${label}为${min}～${max}位`
-- 使用 [util-helpers validatePassword](https://doly-dev.github.io/util-helpers/module-Validator.html#.validatePassword) 验证非法字符，提示：`${label}包含无法识别的字符`
-- 验证密码强度，提示：`${label}为大小写字母、数字或符号任意${numMap[level]}者组成`
+- `validated` 为 `true` 时：
+  - 验证长度，提示：`${label}为${min}～${max}位`
+  - 使用 `util-helpers` [validatePassword] 验证非法字符，提示：`${label}包含无法识别的字符`
+  - 验证密码强度，提示：`${label}为大小写字母、数字或符号任意${numMap[level]}者组成`
 
 <code src="./demos/item-password-1.tsx" />
 
@@ -533,6 +432,7 @@ inputProps  | 数字输入框的属性 | [`InputNumberProps`](https://ant-design
 
 参数 | 说明 | 类型 | 默认值 |
 ------------- | ------------- | ------------- | ------------- |
+validated  | 开启验证。为 `false` 时则为普通密码框，不验证长度、强度、特殊字符。 | `boolean` \| `{ len: boolean; level: boolean; special: boolean; }` | `true` |
 min  | 最小长度 | `number` | `8` |
 max  | 最大长度 | `number` | `16` |
 level  | 密码强度。可选 `1` `2` `3` | `number` | `2` |
@@ -622,6 +522,29 @@ excludeValues | 排除的值 | `any[]` | `[]` |
 selectProps  | 选择器配置参数 | [`SelectProps`](https://ant-design.gitee.io/components/select-cn/#Select-props) | - |
 
 
+
+### ItemTextArea
+
+TextArea 输入框
+
+**特点**
+
+- 可配置过滤空格
+
+**校验顺序**
+
+- 必填时为空，提示：`请输入${label}`
+
+<code src="./demos/item-textarea-1.tsx" />
+
+<br/>
+
+参数 | 说明 | 类型 | 默认值 |
+------------- | ------------- | ------------- | ------------- |
+disabledWhiteSpace  | 禁止输入空白符 | `boolean` | `false` |
+inputProps  | 输入框的属性 | [`TextAreaProps`](https://ant-design.gitee.io/components/input-cn/#Input.TextArea) | - |
+
+
 ### ItemTime
 
 日期选择框
@@ -684,6 +607,10 @@ pickerProps  | 选择器的属性 | [`TimeRangePickerProps`](https://ant-design.
 
 - 必填时为空，提示：`请上传${label}`
 
+<code src="./demos/item-upload-1.tsx" />
+
+<br/>
+
 ```typescript
 type UploadFile = {
   uid: string | number;
@@ -715,31 +642,9 @@ title  | 文本 | `ReactNode` | - |
 uploadProps  | 上传配置参数 | [`UploadProps`](https://ant-design.gitee.io/components/upload-cn/#API) | - |
 
 
-### ItemUserName
 
-用户名输入框
-
-**特点**
-
-- 自动过滤空格
-- 失焦校验
-
-**校验顺序**
-
-- 必填时为空，提示：`请输入${label}`
-- 验证长度，提示：`${label}为${min}~${max}位`
-- 验证非手机号码，提示：`${label}不能为手机号码`
-- 验证不包含@符号，提示：`${label}不能包含@符号`
-
-<code src="./demos/item-useName-1.tsx" />
-
-<br/>
-
-参数 | 说明 | 类型 | 默认值 |
-------------- | ------------- | ------------- | ------------- |
-min  | 最小长度 | `number` | `6` |
-max  | 最大长度 | `number` | `32` |
-inputProps  | 输入框配置参数 | [`InputProps`](https://ant-design.gitee.io/components/input-cn/#Input) | - |
-
-
-
+[isMobile]: https://doly-dev.github.io/util-helpers/module-Validator.html#.isMobile
+[isBankCard]: https://doly-dev.github.io/util-helpers/module-Validator.html#.isBankCard
+[isEmail]: https://doly-dev.github.io/util-helpers/module-Validator.html#.isEmail
+[isIdCard]: https://doly-dev.github.io/util-helpers/module-Validator.html#.isIdCard
+[validatePassword]: https://doly-dev.github.io/util-helpers/module-Validator.html#.validatePassword

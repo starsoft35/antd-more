@@ -1,56 +1,116 @@
 import * as React from 'react';
-import { Input } from 'antd';
-import { InputProps } from 'antd/es/input';
-import { normalizeWhiteSpace } from '../_util/normalize';
-import ItemInputTextArea from './ItemInputTextArea';
+import { isBankCard, isEmail, isIdCard, isMobile } from 'util-helpers';
+import {
+  normalizeWhiteSpace,
+  normalizeBankCard,
+  normalizeIdCard,
+  normalizeMobile,
+} from '../_util/normalize';
+import { transformBankCard } from '../_util/transform';
+import ItemTextArea from './ItemTextArea';
 import ItemInputPassword from './ItemInputPassword';
 import BizFormItem, { BizFormItemProps } from './Item';
+import InputWrapper, { InputWrapperProps } from './form/InputWrapper';
 
-const prefixCls = 'antd-more-input';
+type InputType = 'bankCard' | 'email' | 'idCard' | 'mobile' | 'userName';
 
-interface InputWrapperProps extends InputProps {
-  before?: React.ReactNode;
-  after?: React.ReactNode;
-}
+const validateUserName = (value, { label }) => {
+  const ret = {
+    validated: true,
+    message: '',
+  };
+  if (isMobile(value)) {
+    ret.message = `${label}不能为手机号码`;
+  } else if (value.indexOf('@') > -1) {
+    ret.message = `${label}不能包含@符号`;
+  }
+  if (ret.message) {
+    ret.validated = false;
+  }
+  return ret;
+};
 
-const InputWrapper: React.FC<InputWrapperProps> = ({ after, before, ...restProps }) => {
-  return (
-    <div className={prefixCls}>
-      {before && <div style={{ marginRight: 8 }}>{before}</div>}
-      <Input {...restProps} />
-      {after && <div style={{ marginLeft: 8 }}>{after}</div>}
-    </div>
-  );
+const validateMethod = {
+  bankCard: (val) => isBankCard(val, { loose: true }),
+  email: isEmail,
+  idCard: isIdCard,
+  mobile: isMobile,
+};
+
+const maxLengthConfig = {
+  idCard: 18,
+  mobile: 11,
 };
 
 export interface FormItemInputProps
   extends BizFormItemProps,
     Pick<InputWrapperProps, 'before' | 'after'> {
+  security?: boolean; // 脱敏。 为 true 时，必须传入 initialValue
+  symbol?: string; // 脱敏符号
+  type?: InputType;
   disabledWhiteSpace?: boolean;
-  inputProps?: InputWrapperProps;
+  inputProps?: Omit<InputWrapperProps, 'initialTransform'>;
 }
 
 const FormItemInput: React.FC<FormItemInputProps> & {
-  TextArea: typeof ItemInputTextArea;
+  /**
+   * @deprecated Please use `ItemTextArea`
+   */
+  TextArea: typeof ItemTextArea;
+
+  /**
+   * @deprecated Please use `ItemPassword`
+   */
   Password: typeof ItemInputPassword;
 } = ({
+  type,
   before,
   after,
+  security = false,
+  symbol = '*',
   disabledWhiteSpace = false,
   inputProps = {},
   required = false,
   label,
+  transform,
   ...restProps
 }) => {
   const handleNormalize = React.useCallback(
     (val) => {
-      if (disabledWhiteSpace) {
+      if (type === 'bankCard') {
+        return normalizeBankCard(val, { symbol: security ? symbol : '' });
+      } else if (type === 'idCard') {
+        return normalizeIdCard(val, { symbol: security ? symbol : '' });
+      } else if (type === 'mobile') {
+        return normalizeMobile(val, { symbol: security ? symbol : '' });
+      } else if (disabledWhiteSpace || type === 'email' || type === 'userName') {
         return normalizeWhiteSpace(val);
       }
       return val;
     },
-    [disabledWhiteSpace],
+    [disabledWhiteSpace, type, symbol, security],
   );
+  const handleTransform = React.useCallback(
+    (val) => {
+      if (transform) {
+        return transform;
+      }
+      if (type === 'bankCard') {
+        return transformBankCard(val);
+      }
+      return val;
+    },
+    [transform],
+  );
+
+  const defaultInputProps = React.useMemo(() => {
+    if (maxLengthConfig[type]) {
+      return {
+        maxLength: maxLengthConfig[type],
+      };
+    }
+    return {};
+  }, [type]);
 
   return (
     <BizFormItem
@@ -63,14 +123,24 @@ const FormItemInput: React.FC<FormItemInputProps> & {
             let errMsg = '';
             if (!value) {
               errMsg = required ? `请输入${label}` : '';
+            } else if (security && restProps?.initialValue === value) {
+              // 脱敏校验
+              errMsg = '';
+            } else if (type === 'userName') {
+              errMsg = validateUserName(value, { label }).message;
+            } else if (validateMethod[type] && !validateMethod[type](value)) {
+              errMsg = `请输入正确的${label}`;
             }
             if (errMsg) {
               return Promise.reject(errMsg);
             }
             return Promise.resolve();
           },
+          transform: handleTransform,
         },
       ]}
+      transform={handleTransform}
+      validateTrigger={type ? 'onBlur' : 'onChange'}
       {...restProps}
     >
       <InputWrapper
@@ -79,13 +149,15 @@ const FormItemInput: React.FC<FormItemInputProps> & {
         autoComplete="off"
         before={before}
         after={after}
+        initialTransform={handleNormalize}
+        {...defaultInputProps}
         {...inputProps}
       />
     </BizFormItem>
   );
 };
 
-FormItemInput.TextArea = ItemInputTextArea;
+FormItemInput.TextArea = ItemTextArea;
 FormItemInput.Password = ItemInputPassword;
 
 export default FormItemInput;

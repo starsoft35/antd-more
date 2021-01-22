@@ -30,7 +30,7 @@ const Demo: React.FC = () => {
     >
       <ItemRadio label="单选框1" name="radio1" options={cycle} />
       <ItemRadio label="单选框2" name="radio2" options={cycle} required />
-      <ItemRadio label="单选框3" name="radio3" options={cycle} all excludeValues={["0"]} tooltip="包含全部，并且排除按日" />
+      <ItemRadio label="排除项" name="radio3" options={cycle} all allName="全全全部" allValue={["1", "2"]} excludeValues={["0"]} tooltip="包含全部，并且排除按日" />
     </BizForm>
   );
 }

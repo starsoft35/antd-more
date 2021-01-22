@@ -5,7 +5,7 @@ import CaptchaButton from '../../captcha-button';
 import { CaptchaButtonProps } from '../../captcha-button/CaptchaButton';
 import BizFormItem, { BizFormItemProps } from './Item';
 
-interface VerificateCodeInputProps {
+interface VerificateCodeInputProps extends Record<number | string, any> {
   value?: any;
   onChange?: (value: any) => void;
   // 验证手机号码 或 邮箱
@@ -14,7 +14,6 @@ interface VerificateCodeInputProps {
   onGetCaptcha?: () => Promise<any>;
   inputProps?: InputProps;
   buttonProps?: CaptchaButtonProps;
-  [x: string]: any;
 }
 
 const VerificateCodeInput: React.FC<VerificateCodeInputProps> = ({
