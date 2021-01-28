@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Table, Card, Space } from 'antd';
-import { TableProps, ColumnType } from 'antd/es/table';
+import { TableProps } from 'antd/es/table';
 import { SpaceProps } from 'antd/es/space';
 import { CardProps } from 'antd/es/card';
 import { FormInstance } from 'antd/es/form';
@@ -8,19 +8,12 @@ import classnames from 'classnames';
 import SearchForm, { SearchFormProps } from './SearchForm';
 import { QueryFormProps } from '../biz-form';
 import usePagination from './usePagination';
-import BizField, { ValueType, EnumData } from '../biz-field';
+import BizField from '../biz-field';
 import WithTooltip from '../biz-descriptions/WithTooltip';
-import actionCache, { createActionCacheKey } from './actionCache';
-import { BizTableRequest, ActionType } from './interface';
+import actionCache, { createActionCacheKey } from './_util/actionCache';
+import { BizTableRequest, ActionType, BizColumnType } from './interface';
 
 const prefixCls = 'antd-more-table';
-
-export declare type BizColumnType<RecordType = any> = (ColumnType<RecordType> & {
-  valueType?: ValueType;
-  valueEnum?: EnumData;
-  tooltip?: string;
-  nowrap?: boolean;
-})[];
 
 export declare interface BizTableProps<RecordType = any>
   extends Omit<TableProps<RecordType>, 'columns'>,
@@ -73,6 +66,84 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
     (formRef as React.MutableRefObject<FormInstance | undefined>) ||
     React.useRef<FormInstance | undefined>();
 
+  const searchItems = React.useMemo(() => {
+    if (!Array.isArray(columns) || columns.length <= 0) {
+      return [];
+    }
+
+    const ret = [];
+
+    columns.forEach((item) => {
+      const { dataIndex, title, valueType, valueEnum, order, search } = item;
+      if (search) {
+        ret.push({
+          dataIndex,
+          title,
+          valueType,
+          valueEnum,
+          order,
+          search,
+          originItem: item,
+        });
+      }
+    });
+
+    return ret;
+  }, [columns]);
+
+  const hasSearch = React.useMemo(() => {
+    return (
+      (Array.isArray(searchItems) && searchItems.length > 0) ||
+      (Array.isArray(formItems) && formItems.length > 0)
+    );
+  }, [searchItems, formItems]);
+
+  const currentColumns = React.useMemo(() => {
+    if (!Array.isArray(columns) || columns.length <= 0) {
+      return [];
+    }
+
+    return columns
+      .map(
+        ({
+          valueType,
+          valueEnum,
+          tooltip,
+          title,
+          className,
+          nowrap: cellNowrap,
+          search,
+          order,
+          ...restItem
+        }) => {
+          const newItem = {
+            title: title && tooltip ? <WithTooltip label={title} tooltip={tooltip} /> : title,
+            className: classnames(
+              { [`${prefixCls}-cell-wrap`]: nowrap && cellNowrap === false },
+              className,
+            ),
+            ...restItem,
+          };
+          if (valueType && !newItem.render) {
+            if (valueType === 'index' || valueType === 'indexBorder') {
+              newItem.render = (text, record, index) => (
+                <BizField value={index} valueType={valueType} valueEnum={valueEnum} />
+              );
+            } else {
+              newItem.render = (text) => (
+                <BizField value={text} valueType={valueType} valueEnum={valueEnum} />
+              );
+            }
+          }
+
+          return newItem;
+        },
+      )
+      .filter((columnItem) => columnItem.table !== false);
+  }, [columns]);
+
+  const innerActionRef = React.useRef<ActionType | undefined>();
+
   const { data, loading, run, onTableChange, pagination: pageRet } = usePagination<RecordType>(
     request,
     {
@@ -94,34 +165,36 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
 
   const handleReset = React.useCallback(() => {
     actionCache[actionCacheKey] = 'reset';
-    if (formItems) {
-      innerFormRef.current.resetFields();
-      innerFormRef.current?.submit();
+    if (hasSearch) {
+      innerFormRef.current?.resetFields();
+      Promise.resolve().then(() => {
+        innerFormRef.current?.submit();
+      });
     } else {
       run({}); // 触发修改分页
       actionCache[actionCacheKey] = '';
     }
-  }, [run, innerFormRef.current]);
+  }, [run, innerFormRef.current, hasSearch]);
 
   const handleSubmit = React.useCallback(() => {
     actionCache[actionCacheKey] = 'submit';
-    if (formItems) {
+    if (hasSearch) {
       innerFormRef.current?.submit();
     } else {
       run({}); // 触发修改分页
     }
-  }, [run, innerFormRef.current]);
+  }, [run, innerFormRef.current, hasSearch]);
 
   // 默认 onReset 中已经重置表单，这里只需触发请求
   const handleDefaultReset = React.useCallback(() => {
     actionCache[actionCacheKey] = 'reset';
-    if (formItems) {
+    if (hasSearch) {
       innerFormRef.current?.submit();
     } else {
       run({}); // 触发修改分页
       actionCache[actionCacheKey] = '';
     }
-  }, [run, innerFormRef.current]);
+  }, [run, innerFormRef.current, hasSearch]);
 
   const handleFinish = React.useCallback(
     (values) => {
@@ -136,37 +209,6 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
     [run],
   );
 
-  const currentColumns = React.useMemo(
-    () =>
-      columns.map(
-        ({ valueType, valueEnum, tooltip, title, className, nowrap: cellNowrap, ...restItem }) => {
-          const newItem = {
-            title: title && tooltip ? <WithTooltip label={title} tooltip={tooltip} /> : title,
-            className: classnames(
-              { [`${prefixCls}-cell-wrap`]: nowrap && cellNowrap === false },
-              className,
-            ),
-            ...restItem,
-          };
-          if (valueType && !newItem.render) {
-            if (valueType === 'index' || valueType === 'indexBorder') {
-              newItem.render = (text, record, index) => (
-                <BizField value={index} valueType={valueType} valueEnum={valueEnum} />
-              );
-            } else {
-              newItem.render = (text) => (
-                <BizField value={text} valueType={valueType} valueEnum={valueEnum} />
-              );
-            }
-          }
-          return newItem;
-        },
-      ),
-    [columns],
-  );
-
-  const innerActionRef = React.useRef<ActionType | undefined>();
-
   React.useImperativeHandle(
     actionRef || innerActionRef,
     () => ({
@@ -179,8 +221,10 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
 
   React.useEffect(() => {
     if (ready && autoRequest) {
-      if (formItems) {
-        innerFormRef.current?.submit();
+      if (hasSearch) {
+        Promise.resolve().then(() => {
+          innerFormRef.current?.submit();
+        });
       } else {
         run();
       }
@@ -195,8 +239,8 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
   }, []);
 
   const tableCardStyle = React.useMemo(
-    () => ({ padding: !formItems && !toolbar ? 0 : '16px 24px 0' }),
-    [formItems, toolbar],
+    () => ({ padding: !hasSearch && !toolbar ? 0 : '16px 24px 0' }),
+    [hasSearch, toolbar],
   );
 
   return (
@@ -209,12 +253,13 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
     >
       <SearchForm
         formItems={formItems}
+        searchItems={searchItems}
         ref={innerFormRef}
         loading={loading}
         onFinish={handleFinish}
         onReset={handleDefaultReset}
-        ready={ready}
         cardProps={formCardProps}
+        ready={ready}
         {...form}
       />
       {extra}

@@ -1,41 +1,35 @@
 import * as React from 'react';
-import { BizForm, BizTable } from 'antd-more';
-import { BizTableRequest, BizColumnType } from 'antd-more/lib/biz-table';
-import moment from 'moment';
-import Mock from 'mockjs';
+import { BizTable } from 'antd-more';
+import { BizTableRequest, BizColumnType } from 'antd-more/es/biz-table';
+import { getApplyList } from './service';
 
-const applyList = ({ page: { pageNum, pageSize }, data = {} }) => (
-  Mock.mock({
-    [`data|${pageSize}`]: [{
-      "applyCode|+1": (pageNum - 1) * pageSize + 1,
-      applicantName: '@cname',
-      approverName: '@cname',
-      createTime: moment().format("YYYY-MM-DD HH:mm:ss"),
-      approveTime: moment().format("YYYY-MM-DD HH:mm:ss"),
-      "approveResult|1-3": 1
-    }],
-    pageInfo: {
-      total: 50,
-      pages: 10
-    },
-  })
-);
-function getApplyList(params) {
-  return new Promise(resolve => {
-    setTimeout(() => {
-      resolve(applyList(params));
-    }, 1000);
-  })
+type DataItem = {
+  applyCode: string;
+  applicantName: string;
+  approverName: string;
+  createTime: string;
+  approveTime: string;
+  approveResult: 1 | 2 | 3;
 }
-const columns: BizColumnType = [
+
+const columns: BizColumnType<DataItem> = [
+  {
+    valueType: "indexBorder"
+  },
   {
     dataIndex: "applyCode",
     title: "申请编号",
-    tooltip: "提示文字"
+    tooltip: "提示文字",
+    search: true
   },
   {
     dataIndex: "createTime",
-    title: "提交时间"
+    title: "提交时间",
+    valueType: "dateTime",
+    search: {
+      valueType: "date"
+    },
+    order: 2
   },
   {
     dataIndex: "applicantName",
@@ -45,23 +39,23 @@ const columns: BizColumnType = [
     dataIndex: "approveTime",
     title: "审核时间",
     tooltip: "提示文字",
-    sorter: true
+    sorter: true,
+    search: {
+      valueType: "dateTimeRange",
+      names: ["startTime", "endTime"],
+      colProps: { lg: 12, md: 24 }
+    },
+    order: 10
   },
   {
     dataIndex: "approverName",
-    title: "审核员"
+    title: "审核员",
+    search: true
   }
 ];
 
 const Demo: React.FC = () => {
-  const formItems = [
-    <BizForm.ItemInput name="applyCode" label="申请编号" />,
-    <BizForm.ItemDate name="createTime" label="提交时间" />,
-    <BizForm.ItemInput name="approverName" label="审核员" />,
-    <BizForm.ItemDateRange name="approveTime" names={["startTime", "endTime"]} label="审核时间" />
-  ];
-
-  const handleRequest: BizTableRequest = React.useCallback((params, filters, sorter, extra) => {
+  const handleRequest: BizTableRequest<DataItem> = React.useCallback((params, filters, sorter, extra) => {
     const { pageSize, current, ...restParams } = params;
     console.log(params, filters, sorter, extra);
 
@@ -80,8 +74,7 @@ const Demo: React.FC = () => {
   }, []);
 
   return (
-    <BizTable
-      formItems={formItems}
+    <BizTable<DataItem>
       columns={columns}
       rowKey="applyCode"
       request={handleRequest}

@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { useAsync } from 'rc-hooks';
 import type { AsyncFn, AsyncParams, AsyncResult } from 'rc-hooks';
-import actionCache from './actionCache';
+import actionCache from './_util/actionCache';
 import {
   BizTableRequest,
   RequestFilters,

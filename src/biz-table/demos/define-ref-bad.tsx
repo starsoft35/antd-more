@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { BizTable } from 'antd-more';
-import { ActionType, BizTableProps, BizTableRequest } from 'antd-more/lib/biz-table';
+import { ActionType, BizTableProps, BizTableRequest } from 'antd-more/es/biz-table';
 
 const mockData = [
   { name: '' },

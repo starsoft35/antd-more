@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Form } from 'antd';
 import { FormProps, FormInstance } from 'antd/es/form';
-import namePathSet from 'rc-util/lib/utils/set'; // eslint-disable-line import/no-extraneous-dependencies
+import namePathSet from 'rc-util/es/utils/set'; // eslint-disable-line import/no-extraneous-dependencies
 import { transformFormValues } from '../_util/transform';
 import FieldContext, { TransformFn } from '../FieldContext';
 import Submitter, { SubmitterProps } from './Submitter';
@@ -106,7 +106,7 @@ const BaseForm: React.FC<BaseFormProps> = ({
   React.useEffect(() => {
     // 准备完成后，重新设置初始值
     if (ready) {
-      formRef.current.setFieldsValue(initialValues);
+      formRef.current?.resetFields();
     }
   }, [ready]);
 

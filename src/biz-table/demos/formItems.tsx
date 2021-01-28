@@ -1,21 +1,13 @@
 import * as React from 'react';
-import { BizTable } from 'antd-more';
-import { BizTableRequest, BizColumnType } from 'antd-more/es/biz-table';
+import { BizForm, BizTable } from 'antd-more';
+import { BizTableRequest, BizColumnType } from 'antd-more/lib/biz-table';
 import { getApplyList } from './service';
 
-type DataItem = {
-  applyCode: string;
-  applicantName: string;
-  approverName: string;
-  createTime: string;
-  approveTime: string;
-  approveResult: 1 | 2 | 3;
-}
-
-const columns: BizColumnType<DataItem> = [
+const columns: BizColumnType = [
   {
     dataIndex: "applyCode",
-    title: "申请编号"
+    title: "申请编号",
+    tooltip: "提示文字"
   },
   {
     dataIndex: "createTime",
@@ -28,6 +20,7 @@ const columns: BizColumnType<DataItem> = [
   {
     dataIndex: "approveTime",
     title: "审核时间",
+    tooltip: "提示文字",
     sorter: true
   },
   {
@@ -37,7 +30,14 @@ const columns: BizColumnType<DataItem> = [
 ];
 
 const Demo: React.FC = () => {
-  const handleRequest: BizTableRequest<DataItem> = React.useCallback((params, filters, sorter, extra): Promise<{ data: any[]; total: number; }> => {
+  const formItems = [
+    <BizForm.ItemInput name="applyCode" label="申请编号" />,
+    <BizForm.ItemDate name="createTime" label="提交时间" />,
+    <BizForm.ItemInput name="approverName" label="审核员" />,
+    <BizForm.ItemDateRange name="approveTime" names={["startTime", "endTime"]} label="审核时间" colProps={{ lg: 12, md: 24 }} />
+  ];
+
+  const handleRequest: BizTableRequest = React.useCallback((params, filters, sorter, extra) => {
     const { pageSize, current, ...restParams } = params;
     console.log(params, filters, sorter, extra);
 
@@ -56,13 +56,11 @@ const Demo: React.FC = () => {
   }, []);
 
   return (
-    <BizTable<DataItem>
+    <BizTable
+      formItems={formItems}
       columns={columns}
       rowKey="applyCode"
       request={handleRequest}
-      pagination={{
-        pageSize: 5
-      }}
     />
   );
 }

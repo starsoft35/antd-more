@@ -15,9 +15,9 @@ legacy: /business/biz-table
 
 ### 简易列表页
 
-只需定义 `request` `rowKey` `columns` `formItems` 。
+只需定义 `request` `rowKey` `columns` 。
 
-<code src='./demos/Demo1.tsx'  background="#f5f5f5" />
+<code src="./demos/Demo1.tsx"  background="#f5f5f5" />
 
 ### 复杂列表页
 
@@ -25,19 +25,29 @@ legacy: /business/biz-table
 
 但是自定义查询表单操作，需要自己设置按钮 `loading` 等状态.
 
-<code src='./demos/Demo2.tsx'  background="#f5f5f5" />
+<code src="./demos/Demo2.tsx"  background="#f5f5f5" />
 
 ### 普通表格
 
-不设置 `formItems` 。
+<code src="./demos/Demo3.tsx"  background="#f5f5f5" />
 
-<code src='./demos/Demo3.tsx'  background="#f5f5f5" />
+### formItems配置
+
+不推荐使用该方式，更推荐 `columns` 中配置 `search` 。
+
+当有 `formItems` 配置时， `columns` 配置的 `search` 将失效。
+
+<code src="./demos/formItems.tsx"  background="#f5f5f5" />
 
 ### 异步初始值表格
 
 5秒后获取到初始值再发起请求。
 
-<code src='./demos/async-initial-values.tsx'  background="#f5f5f5" />
+<code src="./demos/async-initial-values.tsx"  background="#f5f5f5" />
+
+### 更多查询表单项
+
+<code src="./demos/Demo4.tsx" background="#f5f5f5" />
 
 ## API
 
@@ -51,7 +61,7 @@ request  | 获取 `dataSource` 的方法 | `Request` | - |
 autoRequest  | 初始化时自动触发 `request` | `boolean` | `true` |
 ready  | 为 `false` 时，禁止提交/重置表单，不触发 `request` 。<br/>为 `true` 时，会重新设置表单初始值，如果 `autoRequest=true` 则自动请求。 | `boolean` | `true` |
 nowrap  | 单元格内容不会换行，表格宽度超过100%自动处理横向滚动条。<br />如果要设置单元格宽度，请关闭该配置 或 `column` 的 `nowrap` 设置为 `false`。 | `boolean` | `true` |
-formItems  | 表单列 | `React.ReactNode[]` | - |
+formItems  | 查询表单项，推荐使用 `columns.search` 配置 | `React.ReactNode[]` | - |
 toolbar  | 工具栏，表格内的上面区域 | `React.ReactNode` | - |
 extra  | 扩展内容，表格外的上面、查询表单下面的区域 | `React.ReactNode` | - |
 form  | 同 [BizForm.QueryForm] 配置参数 | [QueryFormProps] | - |
@@ -73,7 +83,7 @@ type BizTableRequest = (
   sorter: SorterResult<RecordType> | SorterResult<RecordType>[],
   extra: {
     currentDataSource,
-    action: "paginate" | "sort" | "filter" | "reload" | "reset" | "submit";
+    action: "paginate" | "sort" | "filter" | "reload" | "reset" | "submit"
   }
 ) => Promise<{ data: object[]; total?: number; }>;
 ```
@@ -101,9 +111,90 @@ submit | 点击查询 或 调用 `actionRef.current.submit` |
 
 ### Columns 列定义
 
-在原来的基础上扩展了几个配置 `tooltip` `valueType` `valueEnum` 。 `valueType` `valueEnum` 具体可以参考 [BizField] 。
+在原来的基础上扩展了几个配置 `tooltip` `valueType` `valueEnum` `search` `order` `table`。 
 
-如果设置 `valueType`，且没有 `render`，将使用 [BizField] 渲染。
+- `valueType` `valueEnum` 用于字段展示（如设置 search，也用于查询），如有 `valueType` 且没有 `render`，将使用 [BizField] 渲染
+- `search` 配置查询表单项
+- `order` 查询表单项排序，数值越小越靠前，默认为0
+- `table` 是否在表格中显示，适用于部分字段只有查询表单，但表格中不显示
+
+#### search 查询表单配置项
+
+当值为 `true` 或 `object` 时，自动添加查询表单项。除了以下映射值的配置，其余项皆透传给表单项。
+
+`columns` 部分配置跟表单项配置的映射：
+
+```
+dataIndex = name
+title = label
+valueType = itemType
+valueEnum = options
+```
+
+<br/>
+
+valueType | itemType | BizForm表单项
+----- | ----- | ----- 
+`text` | `input` | [ItemInput]
+`money` `progress` `percent` | `number` | [ItemNumber]
+`color` | `color` | [ItemColor]
+`enum` `enumTag` `enumBadge` | `select` | [ItemSelect]
+`date` `formNow` `dateWeek` `dateMonth` `dateQuarter` `dateYear` | `date` | [ItemDate]
+`dateRange` | `dateRange` | [ItemDateRange]
+`time` | `time` | [ItemTime]
+`timeRange` | `timeRange` | [ItemTimeRange]
+- | `address` | [ItemAddress]
+- | `captcha` | [ItemCaptcha]
+- | `checkbox` | [ItemCheckbox]
+- | `textarea` | [ItemTextArea]
+- | `password` | [ItemPassword]
+- | `radio` | [ItemRadio]
+- | `upload` | [ItemUpload]
+
+以下几种配置都是一样的:
+
+```typescript
+{
+  dataIndex: "createTime",
+  title: "创建时间",
+  valueType: "dateTime",
+  search: true
+},
+{
+  dataIndex: "createTime",
+  title: "创建时间",
+  search: {
+    valueType: "dateTime"
+  }
+},
+{
+  dataIndex: "createTime",
+  title: "创建时间",
+  search: {
+    itemType: "date",
+    format: "YYYY-MM-DD HH:mm:ss"
+  }
+},
+```
+
+如果 `valueType` 没有匹配的 `itemType` ，默认使用 `input` 。
+
+再如果以上都不符合要求，可以自定义表单项渲染 `search.render` 。
+
+```typescript
+search: {
+  render: (item: columItem, dom: JSX.Element, form: FormInstance): JSX.Element{
+    console.log(item, dom, form);
+    // return dom;
+
+    return (
+      <BizForm.Item>
+        {/* some form, example Rate Slider Switch ... */}
+      </BizForm.Item>
+    )
+  }
+}
+```
 
 ### actionRef
 
@@ -130,6 +221,25 @@ ref.current.reset();
 ref.current.submit();
 ```
 
+
+
+
 [BizField]: https://doly-dev.github.io/antd-more/site/v1/index.html#/business/biz-field?anchor=api
 [QueryFormProps]: https://doly-dev.github.io/antd-more/site/v1/index.html#/business/biz-form?anchor=%E6%9F%A5%E8%AF%A2%E8%A1%A8%E5%8D%95#queryform
 [BizForm.QueryForm]: https://doly-dev.github.io/antd-more/site/v1/index.html#/business/biz-form?anchor=%E6%9F%A5%E8%AF%A2%E8%A1%A8%E5%8D%95#queryform
+
+[ItemAddress]: https://doly-dev.github.io/antd-more/site/v1/index.html#/business/biz-form#itemaddress
+[ItemCaptcha]: https://doly-dev.github.io/antd-more/site/v1/index.html#/business/biz-form#itemcaptcha
+[ItemCheckbox]: https://doly-dev.github.io/antd-more/site/v1/index.html#/business/biz-form#itemcheckbox
+[ItemColor]: https://doly-dev.github.io/antd-more/site/v1/index.html#/business/biz-form#itemcolor
+[ItemDate]: https://doly-dev.github.io/antd-more/site/v1/index.html#/business/biz-form#itemdate
+[ItemDateRange]: https://doly-dev.github.io/antd-more/site/v1/index.html#/business/biz-form#itemdaterange
+[ItemInput]: https://doly-dev.github.io/antd-more/site/v1/index.html#/business/biz-form#iteminput
+[ItemNumber]: https://doly-dev.github.io/antd-more/site/v1/index.html#/business/biz-form#itemnumber
+[ItemPassword]: https://doly-dev.github.io/antd-more/site/v1/index.html#/business/biz-form#itempassword
+[ItemRadio]: https://doly-dev.github.io/antd-more/site/v1/index.html#/business/biz-form#itemradio
+[ItemSelect]: https://doly-dev.github.io/antd-more/site/v1/index.html#/business/biz-form#itemselect
+[ItemTextArea]: https://doly-dev.github.io/antd-more/site/v1/index.html#/business/biz-form#itemtextarea
+[ItemTime]: https://doly-dev.github.io/antd-more/site/v1/index.html#/business/biz-form#itemtime
+[ItemTimeRange]: https://doly-dev.github.io/antd-more/site/v1/index.html#/business/biz-form#itemtimerange
+[ItemUpload]: https://doly-dev.github.io/antd-more/site/v1/index.html#/business/biz-form#itemupload

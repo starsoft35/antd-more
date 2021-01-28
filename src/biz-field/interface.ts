@@ -21,13 +21,13 @@ type ValueTypeStr =
   | 'enum'
   | 'enumTag'
   | 'enumBadge'
-  | 'color'
-  | string;
+  | 'image'
+  | 'color';
 type ValueTypeObj = {
   type: ValueType;
   [x: string]: any;
 };
-type ValueTypeFn = (value: any) => ValueTypeObj;
+type ValueTypeFn = (value?: any) => ValueTypeObj;
 
 export type ValueType = ValueTypeStr | ValueTypeObj | ValueTypeFn;
 

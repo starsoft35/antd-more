@@ -5,7 +5,7 @@
  */
 import * as React from 'react';
 import { BizForm } from 'antd-more';
-import { UploadFile } from 'antd/lib/upload/interface';
+import { UploadFile } from 'antd/es/upload/interface';
 
 const { ItemUpload } = BizForm;
 

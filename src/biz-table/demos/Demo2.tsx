@@ -1,73 +1,44 @@
 import * as React from 'react';
 import { Button, Card, Space } from 'antd';
-import { BizForm, BizTable } from 'antd-more';
-import moment from 'moment';
-import Mock from 'mockjs';
-import { FormInstance } from 'antd/lib/form';
-import { ActionType, BizTableRequest } from 'antd-more/lib/biz-table';
+import { BizTable } from 'antd-more';
+import { FormInstance } from 'antd/es/form';
+import { ActionType, BizTableRequest, BizColumnType } from 'antd-more/es/biz-table';
+import { getApplyList } from './service';
+import { ApproveStatus } from './constants';
 
-// 审核状态
-const approveResult = [
-  {
-    name: "待审核",
-    value: 1,
-    badge: {
-      status: "processing"
-    }
-  },
-  {
-    name: "审核通过",
-    value: 2,
-    badge: {
-      status: "success"
-    }
-  },
-  {
-    name: "审核拒绝",
-    value: 3,
-    badge: {
-      status: "error"
-    }
-  },
-];
-const applyList = ({ page: { pageNum, pageSize }, data = {} }) => (
-  Mock.mock({
-    [`data|${pageSize}`]: [{
-      "applyCode|+1": (pageNum - 1) * pageSize + 1,
-      applicantName: '@cname',
-      approverName: '@cname',
-      createTime: moment().format("YYYY-MM-DD HH:mm:ss"),
-      approveTime: moment().format("YYYY-MM-DD HH:mm:ss"),
-      "approveResult|1-3": 1
-    }],
-    pageInfo: {
-      total: 50,
-      pages: 10
-    },
-  })
-);
-function getApplyList(params) {
-  return new Promise(resolve => {
-    setTimeout(() => {
-      resolve(applyList(params));
-    }, 1000);
-  })
+type DataItem = {
+  applyCode: string;
+  applicantName: string;
+  approverName: string;
+  createTime: string;
+  approveTime: string;
+  approveResult: 1 | 2 | 3;
 }
 
-
-const columns = [
+const columns: BizColumnType<DataItem> = [
   {
     dataIndex: "applyCode",
-    title: "申请编号"
+    title: "申请编号",
+    search: true,
+    table: false
   },
   {
     dataIndex: "createTime",
-    title: "提交时间"
+    title: "提交时间",
+    search: {
+      valueType: "date"
+    }
   },
   {
     dataIndex: "approveTime",
     title: "审核时间",
-    sorter: true
+    sorter: true,
+    search: {
+      valueType: "dateTimeRange",
+      names: ["startTime", "endTime"],
+      colProps: { lg: 12, md: 24 }
+    },
+    order: 2
   },
   {
     dataIndex: "approverName",
@@ -76,22 +47,21 @@ const columns = [
   {
     dataIndex: "approveResult",
     title: "审核状态",
-    filters: approveResult.map(item => ({ text: item.name, ...item })),
+    filters: ApproveStatus.map(item => ({ text: item.name, ...item })),
     valueType: 'enumBadge',
-    valueEnum: approveResult
+    valueEnum: ApproveStatus,
+    search: {
+      name: "approveStatus",
+      all: true,
+      initialValue: ""
+    }
   }
 ];
 
 const Demo: React.FC = () => {
   const formRef = React.useRef<FormInstance | undefined>();
   const actionRef = React.useRef<ActionType | undefined>();
-  const formItems = [
-    <BizForm.ItemInput name="applyCode" label="申请编号" />,
-    <BizForm.ItemDate name="createTime" label="提交时间" />,
-    <BizForm.ItemDateRange name="approveTime" names={["startTime", "endTime"]} label="审核时间" />,
-    <BizForm.ItemSelect name="approveResult" label="审核状态" options={approveResult} all />
-  ];
-  const handleRequest: BizTableRequest = React.useCallback((params, filters, sorter, extra) => {
+  const handleRequest: BizTableRequest<DataItem> = React.useCallback((params, filters, sorter, extra) => {
     const { pageSize, current, ...restParams } = params;
     console.log(params, filters, sorter, extra);
 
@@ -124,8 +94,7 @@ const Demo: React.FC = () => {
   ]), []);
 
   return (
-    <BizTable
-      formItems={formItems}
+    <BizTable<DataItem>
       formRef={formRef}
       actionRef={actionRef}
       form={{
@@ -157,10 +126,7 @@ const Demo: React.FC = () => {
             )
           }
         },
-        defaultColsNumber: 1,
-        initialValues: {
-          approveResult: ""
-        }
+        defaultColsNumber: 1
       }}
       toolbar={(
         <Space>
@@ -176,6 +142,9 @@ const Demo: React.FC = () => {
       columns={currentColumns}
       rowKey="applyCode"
       request={handleRequest}
+      pagination={{
+        pageSize: 5
+      }}
     />
   );
 }

@@ -68,9 +68,9 @@
     "classnames": "^2.2.6",
     "countdown-pro": "^1.0.2",
     "moment": "^2.29.1",
-    "rc-hooks": "^0.7.1",
+    "rc-hooks": "^0.8.0",
     "react-color": "^2.19.3",
-    "util-helpers": "^3.8.0"
+    "util-helpers": "^3.9.0"
   },
   "lint-staged": {
     "src/**/*.{ts,tsx,js,jsx,less}": [

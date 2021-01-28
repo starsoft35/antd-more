@@ -14,7 +14,7 @@ export enum ColorPicker {
 export interface FormItemColorProps extends BizFormItemProps {
   showText?: boolean;
   picker?: keyof typeof ColorPicker;
-  trigger?: 'hover' | 'click';
+  trigger?: 'hover' | 'click' | string;
   colorMode?: 'rgb' | 'hex';
   placement?: TooltipPlacement;
   colorProps?: any;

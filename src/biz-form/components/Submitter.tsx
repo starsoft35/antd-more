@@ -32,8 +32,10 @@ const Submitter: React.FC<SubmitterProps> = (props) => {
   const handleReset = React.useCallback(
     (e) => {
       form?.resetFields();
-      onReset?.(e);
-      resetButtonProps.onClick?.(e);
+      Promise.resolve().then(() => {
+        onReset?.(e);
+        resetButtonProps.onClick?.(e);
+      });
     },
     [resetButtonProps, form, onReset],
   );

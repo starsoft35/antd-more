@@ -70,10 +70,10 @@ const QueryForm: React.FC<QueryFormProps> = (props) => {
           <Row gutter={16}>
             {items.map((item: any, index) => {
               const { colProps, ...restProps } = item.props;
-              const hidden = collapsed && index >= defaultColsNumber;
+              const hidden = collapsed && enabledCollapse && index >= defaultColsNumber;
               return (
                 <Col
-                  key={item.key || index.toString()}
+                  key={item?.key || index.toString()}
                   {...colSpan}
                   {...colProps}
                   style={hidden ? { display: 'none' } : {}}
