@@ -34,7 +34,7 @@ const Demo: React.FC = () => {
     <BizForm.ItemInput name="applyCode" label="申请编号" />,
     <BizForm.ItemDate name="createTime" label="提交时间" />,
     <BizForm.ItemInput name="approverName" label="审核员" />,
-    <BizForm.ItemDateRange name="approveTime" names={["startTime", "endTime"]} label="审核时间" colProps={{ lg: 12, md: 24 }} />
+    <BizForm.ItemDateRange name="approveTime" names={["startTime", "endTime"]} showTime label="审核时间" colProps={{ lg: 12, md: 24 }} />
   ];
 
   const handleRequest: BizTableRequest = React.useCallback((params, filters, sorter, extra) => {

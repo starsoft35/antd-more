@@ -32,18 +32,17 @@ const columns: BizColumnType<DataItem> = [
     title: "经办员"
   },
   {
-    dataIndex: "approveTime",
-    valueType: "dateTime",
-    title: "审核时间",
+    dataIndex: "dateTimeRange",
+    title: "日期时间区间",
     tooltip: "提示文字",
     sorter: true,
     search: {
-      itemType: "dateRange", // 日期范围，当valueType不满足时，使用 itemType 指定 formItem 类型
-      format: "YYYY-MM-DD HH:mm:ss",
+      valueType: "dateTimeRange", // 日期范围，当valueType不满足时，使用 itemType 指定 formItem 类型
       names: ["startTime", "endTime"],
       initialValue: ["2020-10-10 00:00:00", "2020-11-11 11:11:11"],
       colProps: { lg: 12, md: 24 }
     },
+    table: false,
     order: 2
   },
   {
@@ -196,6 +195,9 @@ const Demo: React.FC = () => {
       columns={columns}
       rowKey="applyCode"
       request={handleRequest}
+      form={{
+        labelWidth: 112
+      }}
       pagination={{
         pageSize: 5
       }}

@@ -151,13 +151,13 @@ valueType | itemType | BizForm表单项
 - | `radio` | [ItemRadio]
 - | `upload` | [ItemUpload]
 
-以下几种配置都是一样的:
+以下几种配置结果都是一样的:
 
 ```typescript
 {
   dataIndex: "createTime",
   title: "创建时间",
-  valueType: "dateTime",
+  valueType: "dateTime", // valueType 为日期时，内部自动处理格式
   search: true
 },
 {
@@ -171,13 +171,14 @@ valueType | itemType | BizForm表单项
   dataIndex: "createTime",
   title: "创建时间",
   search: {
-    itemType: "date",
+    itemType: "date", // 注意区分 valueType 和 itemType，valueType 只是用于映射 itemType，最终还是使用 itemType，而 itemType 没有 dateTime
+    showTime: true,
     format: "YYYY-MM-DD HH:mm:ss"
   }
 },
 ```
 
-如果 `valueType` 没有匹配的 `itemType` ，默认使用 `input` 。
+如果 `valueType` 没有匹配的 `itemType` ，并且没有设置 `itemType`，默认 `itemType='input'` 。
 
 再如果以上都不符合要求，可以自定义表单项渲染 `search.render` 。
 
@@ -188,7 +189,7 @@ search: {
     // return dom;
 
     return (
-      <BizForm.Item>
+      <BizForm.Item name="defineItemName" label="defineItemLabel">
         {/* some form, example Rate Slider Switch ... */}
       </BizForm.Item>
     )
