@@ -59,7 +59,7 @@ const FormItemInput: React.FC<FormItemInputProps> & {
   TextArea: typeof ItemTextArea;
 
   /**
-   * @deprecated Please use `ItemPassword`
+   * @deprecated Please use `ItemPassword` validated=false
    */
   Password: typeof ItemInputPassword;
 } = ({
@@ -73,20 +73,28 @@ const FormItemInput: React.FC<FormItemInputProps> & {
   required = false,
   label,
   transform,
+  normalize,
   ...restProps
 }) => {
   const handleNormalize = React.useCallback(
-    (val) => {
-      if (type === 'bankCard') {
-        return normalizeBankCard(val, { symbol: security ? symbol : '' });
-      } else if (type === 'idCard') {
-        return normalizeIdCard(val, { symbol: security ? symbol : '' });
-      } else if (type === 'mobile') {
-        return normalizeMobile(val, { symbol: security ? symbol : '' });
-      } else if (disabledWhiteSpace || type === 'email' || type === 'userName') {
-        return normalizeWhiteSpace(val);
+    (value, prevValue, allValues) => {
+      if (normalize) {
+        return normalize(value, prevValue, allValues);
       }
-      return val;
+
+      if (type === 'bankCard') {
+        return normalizeBankCard(value, { symbol: security ? symbol : '' });
+      }
+      if (type === 'idCard') {
+        return normalizeIdCard(value, { symbol: security ? symbol : '' });
+      }
+      if (type === 'mobile') {
+        return normalizeMobile(value, { symbol: security ? symbol : '' });
+      }
+      if (disabledWhiteSpace || type === 'email' || type === 'userName') {
+        return normalizeWhiteSpace(value);
+      }
+      return value;
     },
     [disabledWhiteSpace, type, symbol, security],
   );
@@ -149,7 +157,7 @@ const FormItemInput: React.FC<FormItemInputProps> & {
         autoComplete="off"
         before={before}
         after={after}
-        initialTransform={handleNormalize}
+        initialTransform={normalize || type ? handleNormalize : false}
         {...defaultInputProps}
         {...inputProps}
       />
