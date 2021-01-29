@@ -1,3 +1,5 @@
+export { isPromiseLike, bytesToSize } from 'util-helpers';
+
 // 获取base64文件
 export function getBase64(file: File): Promise<string> {
   return new Promise((resolve, reject) => {
@@ -33,26 +35,6 @@ export function checkFileType(file: File, accept?: string): boolean {
 // 检查文件大小
 export function checkFileSize(file: File, size: number): boolean {
   return file.size < size;
-}
-
-// 字节转为单位
-export function bytesToSize(bytes: number): string {
-  if (bytes === 0) return '0B';
-  const k = 1024;
-  const sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-  const i = Math.floor(Math.log(bytes) / Math.log(k));
-
-  // eslint-disable-next-line
-  return Number((bytes / Math.pow(k, i)).toFixed(2)) + sizes[i];
-}
-
-// 判断是否为promise
-export function isPromiseLike(obj: any) {
-  return (
-    obj !== null &&
-    (typeof obj === 'object' || typeof obj === 'function') &&
-    typeof obj.then === 'function'
-  );
 }
 
 // 获取文件名
