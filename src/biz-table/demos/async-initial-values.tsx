@@ -83,10 +83,7 @@ const Demo: React.FC = () => {
     <BizTable
       ready={ready}
       form={{
-        initialValues,
-        onFinishFailed: (err) => {
-          console.log(err);
-        }
+        initialValues
       }}
       columns={columns}
       rowKey="applyCode"

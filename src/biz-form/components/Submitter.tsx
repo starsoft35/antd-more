@@ -32,6 +32,8 @@ const Submitter: React.FC<SubmitterProps> = (props) => {
   const handleReset = React.useCallback(
     (e) => {
       form?.resetFields();
+      // 由于刚重置表单，使用异步可防止立即触发提交操作，导致数据过时而提交失败。
+      // refs: https://github.com/ant-design/ant-design/issues/26747
       Promise.resolve().then(() => {
         onReset?.(e);
         resetButtonProps.onClick?.(e);

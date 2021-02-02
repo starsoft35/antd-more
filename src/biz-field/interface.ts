@@ -22,7 +22,8 @@ type ValueTypeStr =
   | 'enumTag'
   | 'enumBadge'
   | 'image'
-  | 'color';
+  | 'color'
+  | string;
 type ValueTypeObj = {
   type: ValueType;
   [x: string]: any;
