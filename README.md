@@ -71,6 +71,11 @@ ReactDon.render(<BizField value="red" valueType="color" />, mountNode);
   - [Color] - 颜色显示、选择器
   - [Dictionary] - 数据字典
 
+## 精选第三方 react 组件
+
+- [qrcode.react] - 生成二维码
+- [wangeditor] - 轻量级 web 富文本编辑器
+
 ## 贡献
 
 ### commit格式
@@ -135,3 +140,7 @@ npm run commit
 [BizForm]: https://doly-dev.github.io/antd-more/site/v1/index.html#/business/biz-form
 [BizTable]: https://doly-dev.github.io/antd-more/site/v1/index.html#/business/biz-table
 [What is commitlint]: https://github.com/conventional-changelog/commitlint#what-is-commitlint
+
+
+[qrcode.react]: https://www.npmjs.com/package/qrcode.react
+[wangeditor]: https://www.npmjs.com/package/wangeditor

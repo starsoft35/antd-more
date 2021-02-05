@@ -33,15 +33,36 @@ const BizField: React.FC<BizFieldProps> = ({ value, valueType, valueEnum = [], .
     ...restParams,
   };
 
-  if (type === 'text') {
-    // 文本
-    return <span {...props}>{value || '-'}</span>;
+  if (type === 'text' || type === 'money') {
+    // 文本 或 金额
+    const { color, size, prefix, suffix, style, ...restProps } = props || {};
+    const styles: Record<string, any> = { ...style };
+
+    const realValue = type === 'text' ? value : formatMoney(value);
+
+    if (props?.color && value) {
+      styles.color = props.color;
+    }
+    if (props?.size && value) {
+      styles.fontSize = props.size;
+    }
+
+    return (
+      <span {...restProps} style={styles}>
+        {realValue ? (
+          <>
+            {prefix}
+            {realValue}
+            {suffix}
+          </>
+        ) : (
+          '-'
+        )}
+      </span>
+    );
   } else if (type === 'image') {
     // 图片
     return <FieldImage value={value} {...props} />;
-  } else if (type === 'money') {
-    // 金额
-    return <span {...props}>{formatMoney(value)}</span>;
   } else if (DateType.includes(type)) {
     // 日期类型
     const { format, ...rest } = props;
