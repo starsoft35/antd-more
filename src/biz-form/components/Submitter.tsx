@@ -3,17 +3,22 @@ import { Button, Space } from 'antd';
 import { ButtonProps } from 'antd/es/button';
 import { FormInstance } from 'antd/es/form';
 
-export interface SubmitterProps {
-  onSubmit?: (event: React.FormEvent<HTMLFormElement>) => void;
-  onReset?: (event: React.FormEvent<HTMLFormElement>) => void;
-  submitText?: React.ReactNode;
+export interface SubmitterProps<T = {}> {
   resetText?: React.ReactNode;
-  submitButtonProps?: ButtonProps;
   resetButtonProps?: ButtonProps;
+  onReset?: (event: React.FormEvent<HTMLFormElement>) => void;
   noReset?: boolean;
+
+  submitText?: React.ReactNode;
+  submitButtonProps?: ButtonProps;
+  onSubmit?: (event: React.FormEvent<HTMLFormElement>) => void;
+
   form?: FormInstance;
   render?:
-    | ((props: SubmitterProps, dom: JSX.Element[]) => React.ReactNode[] | React.ReactNode | false) // eslint-disable-line
+    | ((
+        props: SubmitterProps & T,
+        dom: JSX.Element[], // eslint-disable-line
+      ) => React.ReactNode[] | React.ReactNode | false)
     | false;
 }
 

@@ -1,5 +1,9 @@
 import BizForm from './components/BizForm';
 import QueryForm, { QueryFormProps } from './components/QueryForm';
+import StepsForm, {
+  StepsFormProps,
+  ActionType as StepsFormActionType,
+} from './components/StepsForm';
 import List, { BizFormListProps } from './components/List';
 import Item, { BizFormItemProps } from './components/Item';
 import ItemAddress, { FormItemAddressProps } from './components/ItemAddress';
@@ -29,6 +33,7 @@ export type {
   BizFormListProps,
   BizFormItemProps,
   QueryFormProps,
+  StepsFormProps,
   FormItemAddressProps as ItemAddressProps,
   FormItemBankCardProps as ItemBankCardProps,
   FormItemCaptchaProps as ItemCaptchaProps,
@@ -49,10 +54,12 @@ export type {
   FormItemTimeRangeProps as ItemTimeRangeProps,
   FormItemUploadProps as ItemUploadProps,
   FormItemUserNameProps as ItemUserNameProps,
+  StepsFormActionType,
 };
 
 export {
   QueryForm,
+  StepsForm,
   List,
   Item,
   ItemAddress,

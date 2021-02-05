@@ -83,6 +83,23 @@ legacy: /business/biz-form
 
 <code src='./demos/query-form-3.tsx' />
 
+### 分步表单
+
+<code src="./demos/steps-form-1.tsx" />
+
+### 分步表单-忘记密码
+
+<code src="./demos/steps-form-2.tsx" />
+
+### 分步表单-与Modal配合使用
+
+<code src="./demos/steps-form-3.tsx" />
+
+### 分步表单-固定页脚
+
+<code src="./demos/steps-form-4.tsx" iframe="550px" />
+
+
 ## API
 
 ```typescript
@@ -136,6 +153,56 @@ defaultColsNumber  | 默认显示的表单控件数量，数量大于等于控�
 #### 支持响应式
 
 QueryForm 下的 Col 默认设置 `{ xs: 24, md: 12, lg: 8, xxl: 6 }` ，可以通过 BizForm.Item 的 `colProps` 重置。
+
+### StepsForm
+
+分步表单。
+
+```typescript
+const { StepsForm } = BizForm;
+```
+
+参数 | 说明 | 类型 | 默认值 |
+------------- | ------------- | ------------- | ------------- |
+current  | 当前表单的步骤数，从 `0` 开始 | `number` | 0 |
+onCurrentChange  | current 发生改变的事件 | `(current:number)=>void` | - |
+onFinish  | 表单提交成功后调用 | `(values)=>void` | - |
+stepsProps  | `StepsForm` 自带的 `Steps` 的 `props`，使用方式与 antd 相同，但是去掉了 `current` 和 `onChange` | [StepsProps](https://ant.design/components/steps-cn/#API) | - |
+formProps  | `StepsForm.StepForm` 的属性，除了没有 `onReset` 和 `submitter`  | `BizFormProps` | - |
+submitter  | 上一步、下一步、提交按钮的配置 | `StepsSubmitterProps` | - |
+actionRef  | 常用操作引用，便于自定义触发 | `React.MutableRefObject<ActionType>` | - |
+stepsRender  | 自定义步骤器 | `(stepsProps: StepsProps,stepsDom: React.ReactNode)=>React.ReactNode` | - |
+stepFormRender  | 自定义每个表单 | `(formDom: React.ReactNode)=>React.ReactNode` | - |
+stepsFormRender  | 自定义整个表单 | `(stepsDom: React.ReactNode, formDom: React.ReactNode, submitterDom: React.ReactNode)=>React.ReactNode` | - |
+
+#### StepsForm.StepForm
+
+基于 BizForm 扩展的表单，没有 `onReset` `resetText`， 除了以下参数，其余和 BizForm 一样。
+
+参数 | 说明 | 类型 | 默认值 |
+------------- | ------------- | ------------- | ------------- |
+stepProps  | 步骤条内的当前步骤配置。 | [Steps.Spep](https://ant.design/components/steps-cn/#Steps.Step) | - |
+submitter  | 上一步、下一步、提交按钮的配置。会与 StepsForm 的 submitter 合并，优先级更高。 | `StepsSubmitterProps` | - |
+
+#### StepsSubmitterProps
+
+参数 | 说明 | 类型 | 默认值 |
+------------- | ------------- | ------------- | ------------- |
+onPrev  | 点击上一步按钮的回调 | `()=>void` | - |
+prevText  | 上一步按钮文本 | `React.ReactNode` | `上一步` |
+prevButtonProps  | 上一步按钮属性，和 [`antd Button`](https://ant-design.gitee.io/components/button-cn/#API) 一致 | [`ButtonProps`](https://ant-design.gitee.io/components/button-cn/#API) | - |
+noPrev  | 不显示上一步按钮 | `boolean` | - |
+forceShowPrev  | 强制显示上一步按钮，优先级比noPrev高 | `boolean` | - |
+onNext  | 点击下一步按钮的回调 | `()=>void` | - |
+nextText  | 下一步按钮文本 | `React.ReactNode` | `下一步` |
+nextButtonProps  | 提交按钮属性，和 [`antd Button`](https://ant-design.gitee.io/components/button-cn/#API) 一致 | [`ButtonProps`](https://ant-design.gitee.io/components/button-cn/#API) | - |
+noNext  | 不显示下一步按钮 | `boolean` | - |
+forceShowNext  | 强制显示下一步按钮，优先级比noNext高 | `boolean` | - |
+onSubmit  | 点击提交按钮的回调 | `()=>void` | - |
+submitText  | 提交按钮文本 | `React.ReactNode` | `提交` |
+submitButtonProps  | 提交按钮属性，和 [`antd Button`](https://ant-design.gitee.io/components/button-cn/#API) 一致 | [`ButtonProps`](https://ant-design.gitee.io/components/button-cn/#API) | - |
+forceShowSubmit  | 强制显示提交按钮 | `boolean` | - |
+render  | 自定义操作的渲染 | `false` \| `(props,dom:JSX[])=>ReactNode[]` | - |
 
 ### List
 
@@ -439,7 +506,7 @@ max  | 最大长度 | `number` | `16` |
 level  | 密码强度。可选 `1` `2` `3` | `number` | `2` |
 ignoreCase | 忽略大小写。为 `ture` 时，大小写字母视为一种字符 | `boolean` | `false` |
 special  | 支持的特殊字符 | `string` | `!@#$%^&*()-=_+[]\|{},./?<>~` |
-inputProps  | 输入框配置参数 | [`InputProps`](https://ant-design.gitee.io/components/input-cn/#Input) | - |
+inputProps  | 密码框配置参数 | [`Input.Password`](https://ant.design/components/input-cn/#Input.Password) | - |
 
 
 ### ItemRadio

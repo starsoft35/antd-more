@@ -6,7 +6,7 @@ import { transformFormValues } from '../_util/transform';
 import FieldContext, { TransformFn } from '../FieldContext';
 import Submitter, { SubmitterProps } from './Submitter';
 
-export interface BaseFormProps extends FormProps {
+export interface BaseFormProps extends Omit<FormProps, 'onFinish'> {
   contentRender?: (
     items: React.ReactNode[],
     submitter: React.ReactElement<Omit<SubmitterProps, 'form'>> | undefined,
@@ -19,6 +19,7 @@ export interface BaseFormProps extends FormProps {
   children?: React.ReactNode;
   labelWidth?: number | 'auto';
   hideLabel?: boolean;
+  onFinish?: (values, originValues) => any;
 }
 
 const BaseForm: React.FC<BaseFormProps> = ({
@@ -123,12 +124,12 @@ const BaseForm: React.FC<BaseFormProps> = ({
         }}
         form={formRef.current}
         onFinish={(values) => {
-          if (typeof onFinish !== 'function') {
-            return;
+          if (typeof onFinish === 'function') {
+            const transValues = transformFormValues(values, transformRecordRef.current);
+            // console.log(values, transValues);
+            return onFinish(transValues, values);
           }
-          const transValues = transformFormValues(values, transformRecordRef.current);
-          // console.log(values, transValues);
-          onFinish(transValues);
+          return true;
         }}
         initialValues={initialValues}
         layout={layout}

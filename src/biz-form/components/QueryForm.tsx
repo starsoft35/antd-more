@@ -63,13 +63,13 @@ const QueryForm: React.FC<QueryFormProps> = (props) => {
         ...submitter,
       }}
       layout={layout}
-      contentRender={(items, submitter) => {
+      contentRender={(items, internalSubmitter) => {
         const enabledCollapse =
           typeof defaultColsNumber === 'number' && defaultColsNumber < items.length;
         return (
           <Row gutter={16}>
             {items.map((item: any, index) => {
-              const { colProps, ...restProps } = item.props;
+              const { colProps, ...restItemProps } = item.props;
               const hidden = collapsed && enabledCollapse && index >= defaultColsNumber;
               return (
                 <Col
@@ -80,7 +80,7 @@ const QueryForm: React.FC<QueryFormProps> = (props) => {
                 >
                   {React.cloneElement(item, {
                     hidden,
-                    ...restProps,
+                    ...restItemProps,
                   })}
                 </Col>
               );
@@ -100,7 +100,7 @@ const QueryForm: React.FC<QueryFormProps> = (props) => {
                 className={layout !== 'vertical' ? formItemHideLabelClass : ''}
               >
                 <Space>
-                  {submitter}
+                  {internalSubmitter}
                   {enabledCollapse && <Collapse collapsed={collapsed} onToggle={setCollapsed} />}
                 </Space>
               </Form.Item>

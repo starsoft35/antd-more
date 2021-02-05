@@ -5,6 +5,13 @@ module.exports = {
     "airbnb-typescript"
   ],
   "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2019,
+    "sourceType": "module",
+    "ecmaFeatures": true,
+    "project": "./tsconfig.json",
+    "tsconfigRootDir": __dirname
+  },
   "plugins": [
     "@typescript-eslint"
   ],
@@ -31,9 +38,14 @@ module.exports = {
     "@typescript-eslint/indent": 0,
     "@typescript-eslint/no-unused-vars": 0,
     "@typescript-eslint/camelcase": 0,
+    "@typescript-eslint/quotes": 0,
+    "@typescript-eslint/comma-dangle": 0,
+    "@typescript-eslint/no-unused-expressions": 0,
+    "@typescript-eslint/object-curly-spacing": 0,
     "jsx-a11y/click-events-have-key-events": 0,
     "jsx-a11y/no-static-element-interactions": 0,
     "jsx-a11y/anchor-is-valid": 0,
+    "react/jsx-props-no-spreading": 0,
 
     // demo rules
     // "no-trailing-spaces": 0,

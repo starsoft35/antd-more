@@ -71,18 +71,20 @@ const FormItemSelect: React.FC<FormItemSelectProps> = ({
           if (itemOpts) {
             return (
               <OptGroup key={restOpts.key || restOpts.value + index.toString()} {...restOpts}>
-                {itemOpts.map(({ name, label, ...restSubOpts }: OptionDataExtend, subIndex) => (
-                  <Option
-                    key={restSubOpts.key || restSubOpts.value + subIndex.toString()}
-                    {...restSubOpts}
-                  >
-                    {name}
-                  </Option>
-                ))}
+                {itemOpts.map(
+                  ({ name, label: internalLabel, ...restSubOpts }: OptionDataExtend, subIndex) => (
+                    <Option
+                      key={restSubOpts.key || restSubOpts.value + subIndex.toString()}
+                      {...restSubOpts}
+                    >
+                      {name}
+                    </Option>
+                  ),
+                )}
               </OptGroup>
             );
           } else {
-            const { name, label, ...rest } = restOpts as OptionDataExtend;
+            const { name, label: internalLabel, ...rest } = restOpts as OptionDataExtend;
             return (
               <Option key={rest.key || rest.value + index.toString()} {...rest}>
                 {name}
