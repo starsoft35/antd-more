@@ -35,7 +35,7 @@ const VerificateCodeInput: React.FC<VerificateCodeInputProps> = ({
   const checkResult = React.useCallback(() => {
     return new Promise<void>((resolve, reject) => {
       const ret = check();
-      if (typeof ret === 'boolean' && checkResult) {
+      if (typeof ret === 'boolean' && ret) {
         resolve();
       } else if (typeof ret === 'object' && ret.then) {
         ret.then(resolve).catch(reject);
