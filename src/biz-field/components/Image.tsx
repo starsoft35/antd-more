@@ -32,15 +32,9 @@ const FiledImage: React.FC<FiledImageProps> = ({
           const name = typeof item !== 'string' ? item.name : '';
 
           return (
-            <div className={`${prefixCls}-item`}>
+            <div className={`${prefixCls}-item`} key={src + index.toString()}>
               <div className={`${prefixCls}-item-image`}>
-                <Image
-                  src={src}
-                  width={width}
-                  key={src + index.toString()}
-                  {...defaultProps}
-                  {...restProps}
-                />
+                <Image src={src} width={width} {...defaultProps} {...restProps} />
               </div>
               {name && (
                 <div className={`${prefixCls}-item-name`} style={{ width }} title={name}>
