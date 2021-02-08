@@ -225,6 +225,7 @@ cascaderProps  | 级联选项的属性 | [`CascaderProps`](https://ant-design.gi
 
 参数 | 说明 | 类型 | 默认值 |
 ------------- | ------------- | ------------- | ------------- |
+type  | 显示类型 | `default` \| `inline` | `default` |
 check  | 用于检查手机号码或邮箱是否正确，点击按钮时触发。 | `()=>boolean` \| `()=>Promise<any>` | `()=>true` |
 onGetCaptcha  | 用于请求获取验证码，`check` 验证成功后触发。 | `()=>Primise<any>` | `()=>Promise.resolve()` |
 initText  | 按钮初始显示文本 | `string` | `获取验证码` |
