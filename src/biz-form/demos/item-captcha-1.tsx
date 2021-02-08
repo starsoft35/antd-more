@@ -29,10 +29,11 @@ const Demo: React.FC = () => {
       labelWidth={98}
     >
       <ItemCaptcha label="验证码1" name="captcha1" check={checkNumber} onGetCaptcha={sendCode} />
-      <ItemCaptcha label="验证码2" name="captcha2" second={120} check={checkNumber} onGetCaptcha={sendCode} required />
+      <ItemCaptcha label="内联验证码2" name="captcha2" type="inline" check={checkNumber} onGetCaptcha={sendCode} />
+      <ItemCaptcha label="验证码3" name="captcha3" second={120} check={checkNumber} onGetCaptcha={sendCode} required />
       <ItemCaptcha
         label="自定义文本"
-        name="captcha3"
+        name="captcha4"
         check={checkNumber}
         onGetCaptcha={sendCode}
         required

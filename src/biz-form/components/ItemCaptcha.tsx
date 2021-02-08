@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Input } from 'antd';
+import { Input, Divider } from 'antd';
 import { InputProps } from 'antd/es/input';
 import CaptchaButton from '../../captcha-button';
 import { CaptchaButtonProps } from '../../captcha-button/CaptchaButton';
@@ -14,6 +14,7 @@ interface VerificateCodeInputProps extends Record<number | string, any> {
   onGetCaptcha?: () => Promise<any>;
   inputProps?: InputProps;
   buttonProps?: CaptchaButtonProps;
+  type?: 'default' | 'inline'; // 显示类型
 }
 
 const VerificateCodeInput: React.FC<VerificateCodeInputProps> = ({
@@ -23,6 +24,7 @@ const VerificateCodeInput: React.FC<VerificateCodeInputProps> = ({
   onGetCaptcha = () => Promise.resolve(),
   inputProps = {},
   buttonProps = {},
+  type = 'default',
   ...restProps
 }) => {
   const inputRef = React.useRef(null);
@@ -69,6 +71,44 @@ const VerificateCodeInput: React.FC<VerificateCodeInputProps> = ({
     setStart(false);
   }, []);
 
+  const defaultStyle = React.useMemo(() => {
+    let inputStyle: Record<string, any> = {
+      flex: 1,
+      transition: 'width 0.3s ease 0s',
+      marginRight: '8px',
+    };
+    let buttonStyle = {};
+
+    if (type === 'inline') {
+      inputStyle = {
+        flex: 1,
+      };
+      buttonStyle = {
+        height: 'auto',
+        padding: '0 4px 0 6px',
+      };
+    }
+    return {
+      input: inputStyle,
+      button: buttonStyle,
+    };
+  }, [type]);
+
+  const captchaButtonDom = (
+    <CaptchaButton
+      start={start}
+      onClick={onButtonClick}
+      onEnd={handleEnd}
+      loading={loading}
+      type={type === 'inline' ? 'link' : 'default'}
+      {...buttonProps}
+      style={{
+        ...defaultStyle.button,
+        ...buttonProps?.style,
+      }}
+    />
+  );
+
   return (
     <div style={{ display: 'flex' }}>
       <Input
@@ -80,31 +120,37 @@ const VerificateCodeInput: React.FC<VerificateCodeInputProps> = ({
         {...restProps}
         {...inputProps}
         style={{
-          flex: 1,
-          transition: 'width 0.3s ease 0s',
-          marginRight: '8px',
+          ...defaultStyle.input,
           ...inputProps?.style,
         }}
+        suffix={
+          type === 'inline' ? (
+            <>
+              {inputProps?.suffix}
+              <Divider type="vertical" />
+              {captchaButtonDom}
+            </>
+          ) : (
+            inputProps?.suffix
+          )
+        }
       />
-      <CaptchaButton
-        start={start}
-        onClick={onButtonClick}
-        onEnd={handleEnd}
-        // block
-        loading={loading}
-        {...buttonProps}
-      />
+      {type !== 'inline' ? captchaButtonDom : null}
     </div>
   );
 };
 
 export interface FormItemCaptchaProps
   extends BizFormItemProps,
-    Pick<VerificateCodeInputProps, 'check' | 'onGetCaptcha' | 'inputProps' | 'buttonProps'>,
+    Pick<
+      VerificateCodeInputProps,
+      'check' | 'onGetCaptcha' | 'type' | 'inputProps' | 'buttonProps'
+    >,
     Pick<CaptchaButtonProps, 'initText' | 'runText' | 'resetText' | 'second'> {}
 
 const FormItemCaptcha: React.FC<FormItemCaptchaProps> = ({
   check,
+  type,
   onGetCaptcha,
   initText,
   runText,
@@ -139,6 +185,7 @@ const FormItemCaptcha: React.FC<FormItemCaptchaProps> = ({
     >
       <VerificateCodeInput
         check={check}
+        type={type}
         onGetCaptcha={onGetCaptcha}
         inputProps={inputProps}
         buttonProps={{
