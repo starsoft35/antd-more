@@ -20,7 +20,7 @@ const request: BizTableRequest = (params) => {
 const DefineTable: React.FC<BizTableProps> = ({ actionRef, ...restProps }) => {
   const innerActionRef = React.useRef<ActionType | undefined>();
 
-  React.useImperativeHandle(actionRef, () => innerActionRef.current, [innerActionRef.current]);
+  React.useImperativeHandle(actionRef, () => innerActionRef.current);
 
   const columns = React.useMemo(() => ([
     {

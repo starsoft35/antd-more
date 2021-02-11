@@ -153,9 +153,9 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
     },
   );
 
-  const handleChange = React.useCallback((page, filters, sorter, extra) => {
-    onTableChange(page, filters, sorter, extra);
-    typeof onChange === 'function' && onChange(page, filters, sorter, extra);
+  const handleChange = React.useCallback((page, filters, sorter, extraInfo) => {
+    onTableChange(page, filters, sorter, extraInfo);
+    typeof onChange === 'function' && onChange(page, filters, sorter, extraInfo);
   }, []);
 
   const handleReload = React.useCallback(() => {
@@ -209,15 +209,11 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
     [run],
   );
 
-  React.useImperativeHandle(
-    actionRef || innerActionRef,
-    () => ({
-      reload: handleReload,
-      reset: handleReset,
-      submit: handleSubmit,
-    }),
-    [actionRef],
-  );
+  React.useImperativeHandle(actionRef || innerActionRef, () => ({
+    reload: handleReload,
+    reset: handleReset,
+    submit: handleSubmit,
+  }));
 
   React.useEffect(() => {
     if (ready && autoRequest) {

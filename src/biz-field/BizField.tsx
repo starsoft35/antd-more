@@ -35,7 +35,7 @@ const BizField: React.FC<BizFieldProps> = ({ value, valueType, valueEnum = [], .
 
   if (type === 'text' || type === 'money') {
     // 文本 或 金额
-    const { color, size, prefix, suffix, style, ...restProps } = props || {};
+    const { color, size, prefix, suffix, style, ...restTextProps } = props || {};
     const styles: Record<string, any> = { ...style };
 
     const realValue = type === 'text' ? value : formatMoney(value);
@@ -48,7 +48,7 @@ const BizField: React.FC<BizFieldProps> = ({ value, valueType, valueEnum = [], .
     }
 
     return (
-      <span {...restProps} style={styles}>
+      <span {...restTextProps} style={styles}>
         {realValue ? (
           <>
             {prefix}

@@ -25,4 +25,3 @@ export function getApplyList(params) {
     }, 1000);
   })
 }
-

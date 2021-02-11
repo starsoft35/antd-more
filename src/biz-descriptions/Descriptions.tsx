@@ -70,28 +70,33 @@ const BizDescriptions: React.FC<BizDescriptionsProps> & {
     return (
       <Descriptions {...defaultProps} {...restProps}>
         {currentDom}
-        {columns.map(({ title, label, dataIndex, render, ...restColItem }, index) => {
-          let currentDataValue;
-          if (Array.isArray(dataIndex)) {
-            currentDataValue = dataIndex.map((subItem) => dataSource[subItem]);
-          } else if (typeof dataIndex === 'string' || typeof dataIndex === 'number') {
-            currentDataValue = dataSource[dataIndex];
-          } else {
-            currentDataValue = dataSource;
-          }
+        {columns.map(
+          (
+            { title: internalTitle, label: internalLabel, dataIndex, render, ...restColItem },
+            index,
+          ) => {
+            let currentDataValue;
+            if (Array.isArray(dataIndex)) {
+              currentDataValue = dataIndex.map((subItem) => dataSource[subItem]);
+            } else if (typeof dataIndex === 'string' || typeof dataIndex === 'number') {
+              currentDataValue = dataSource[dataIndex];
+            } else {
+              currentDataValue = dataSource;
+            }
 
-          const child =
-            typeof render === 'function'
-              ? render(currentDataValue, dataSource, index)
-              : currentDataValue;
+            const child =
+              typeof render === 'function'
+                ? render(currentDataValue, dataSource, index)
+                : currentDataValue;
 
-          return createDescriptionsItem({
-            key: index,
-            label: label || title,
-            children: child,
-            ...restColItem,
-          });
-        })}
+            return createDescriptionsItem({
+              key: index,
+              label: internalLabel || internalTitle,
+              children: child,
+              ...restColItem,
+            });
+          },
+        )}
       </Descriptions>
     );
   }

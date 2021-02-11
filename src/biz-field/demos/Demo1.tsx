@@ -60,12 +60,15 @@ export default () => {
           <BizField value="" valueType="text" />
         </Descriptions.Item>
         <Descriptions.Item label="文本">
-          <BizField value="这是一段文本" valueType="text" />、
+          <BizField value="这是一段文本" valueType="text" />
+          、
           <BizField value="带颜色和文字大小" valueType="text" color="red" size={13} />
         </Descriptions.Item>
         <Descriptions.Item label="金额">
-          <BizField value={100} valueType="money" />、
-          <BizField value={100} valueType="money" prefix="¥" />、
+          <BizField value={100} valueType="money" />
+          、
+          <BizField value={100} valueType="money" prefix="¥" />
+          、
           <BizField value={100} valueType="money" prefix="¥" color="red" />
         </Descriptions.Item>
         <Descriptions.Item label="进度条">
@@ -103,7 +106,7 @@ export default () => {
           <BizField value="https://gw.alipayobjects.com/zos/antfincdn/aPkFc8Sj7n/method-draw-image.svg" valueType="image" />
         </Descriptions.Item>
         <Descriptions.Item label="图片（名称）">
-          <BizField value={{src: "https://gw.alipayobjects.com/zos/antfincdn/aPkFc8Sj7n/method-draw-image.svg", name: "测试名称测试名称测试名称"}} valueType="image" />
+          <BizField value={{ src: "https://gw.alipayobjects.com/zos/antfincdn/aPkFc8Sj7n/method-draw-image.svg", name: "测试名称测试名称测试名称" }} valueType="image" />
         </Descriptions.Item>
         <Descriptions.Item label="图片(边框/名称)">
           <BizField value={{ src: "https://gw.alipayobjects.com/zos/antfincdn/aPkFc8Sj7n/method-draw-image.svg", name: "测试名称" }} valueType="image" bordered />

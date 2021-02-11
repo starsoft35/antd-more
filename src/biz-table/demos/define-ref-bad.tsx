@@ -24,7 +24,7 @@ export interface DefineTableProps extends BizTableProps {
 const DefineTable: React.FC<DefineTableProps> = React.forwardRef((props, ref) => {
   const innerActionRef = React.useRef<ActionType | undefined>();
 
-  React.useImperativeHandle(ref, () => innerActionRef.current, [innerActionRef.current]);
+  React.useImperativeHandle(ref, () => innerActionRef.current);
 
   const columns = React.useMemo(() => ([
     {

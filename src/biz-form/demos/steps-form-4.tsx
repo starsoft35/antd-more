@@ -70,7 +70,13 @@ const Demo: React.FC = () => {
               actionRef.current.next(false);
             }}
             actionRef={actionRef}
-            stepsFormRender={(stepsDom, formDom, submitterDom) => <>{stepsDom}{formDom}<FooterToolbar>{submitterDom}</FooterToolbar></>}
+            stepsFormRender={(stepsDom, formDom, submitterDom) => (
+              <>
+                {stepsDom}
+                {formDom}
+                <FooterToolbar>{submitterDom}</FooterToolbar>
+              </>
+            )}
           >
             <StepsForm.StepForm
               title="选择收款方"
@@ -81,7 +87,12 @@ const Demo: React.FC = () => {
               }}
               labelWidth={112}
               submitter={{
-                render: (_, dom) => <><span style={{ marginRight: 10, color: 'gray' }}>自定义提示信息</span> {dom}</>
+                render: (_, dom) => (
+                  <>
+                    <span style={{ marginRight: 10, color: 'gray' }}>自定义提示信息</span>
+                    {dom}
+                  </>
+                )
               }}
             >
               <ItemInput label="收款账号" name="ban" required />

@@ -29,7 +29,10 @@ const Demo: React.FC = () => {
       stepsFormRender={(stepsDom, formDom, submitterDom) => (
         <>
           <div style={{ width: "80%", minWidth: 375, margin: "0 auto" }}>{stepsDom}</div>
-          <div style={{ maxWidth: 375, width: "100%", margin: "0 auto" }}>{formDom}{submitterDom}</div>
+          <div style={{ maxWidth: 375, width: "100%", margin: "0 auto" }}>
+            {formDom}
+            {submitterDom}
+          </div>
         </>
       )}
       submitter={{
@@ -153,7 +156,7 @@ const Demo: React.FC = () => {
           ]}
         />
       </StepsForm.StepForm>
-    </StepsForm >
+    </StepsForm>
   );
 }
 

@@ -10,7 +10,7 @@
     "doc": "dumi build",
     "build": "father-build",
     "build:doc": "npm run doc",
-    "lint": "eslint src/* --ext .tsx,.ts --ignore-pattern 'src/*/demos/**'",
+    "lint": "eslint src/* --ext .tsx,.ts",
     "prettier": "prettier --write 'src/**/*.tsx' && prettier --write 'src/**/*.ts'",
     "lint-staged": "lint-staged",
     "lint-staged:prettier": "prettier --write",
