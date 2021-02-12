@@ -22,6 +22,7 @@ export type ActionType = {
 export interface StepsFormProps {
   current?: number;
   onCurrentChange?: (current: number) => void;
+  ready?: boolean;
   stepsProps?: Omit<StepsProps, 'current' | 'onChange'>;
   formProps?: Omit<BaseFormProps, 'title' | 'onReset' | 'contentRender'>;
   onFinish?: (values) => void | Promise<any>;
@@ -44,6 +45,7 @@ const StepsForm: React.FC<StepsFormProps> & {
 } = ({
   current = 0,
   onCurrentChange,
+  ready = true,
   stepsProps,
   formProps,
   submitter,
@@ -115,6 +117,10 @@ const StepsForm: React.FC<StepsFormProps> & {
 
   React.useImperativeHandle(actionRef || innerActionRef, () => ({
     prev: () => {
+      if (!ready) {
+        return;
+      }
+
       actionCache.set('prev');
       prev();
       const currentSubmitter = submitterConfig[step];
@@ -123,6 +129,10 @@ const StepsForm: React.FC<StepsFormProps> & {
     // 是否触发当前表单提交验证
     // 部分情况下第二步提交，第三步为结果。提交之后无需再次触发当前表单提交校验
     next: (submitted = true) => {
+      if (!ready) {
+        return;
+      }
+
       actionCache.set('next');
       if (submitted) {
         formArrayRef.current[step].submit();
@@ -133,6 +143,9 @@ const StepsForm: React.FC<StepsFormProps> & {
       currentSubmitter && currentSubmitter?.onNext?.();
     },
     submit: () => {
+      if (!ready) {
+        return;
+      }
       actionCache.set('submit');
       formArrayRef.current[step].submit();
       const currentSubmitter = submitterConfig[step];
@@ -178,15 +191,17 @@ const StepsForm: React.FC<StepsFormProps> & {
 
     const internalProps = {
       prevButtonProps: {
-        disabled: loading,
+        disabled: loading || !ready,
         ...currentSubmitter?.prevButtonProps,
       },
       nextButtonProps: {
         loading,
+        disabled: !ready,
         ...currentSubmitter?.nextButtonProps,
       },
       submitButtonProps: {
         loading,
+        disabled: !ready,
         ...currentSubmitter?.submitButtonProps,
       },
       onPrev: (e) => {
@@ -222,6 +237,7 @@ const StepsForm: React.FC<StepsFormProps> & {
   const submitterDom = renderSubmitter();
 
   const formDom = childs.map((item: any, index) => {
+    const isCurrentIndex = step === index;
     formSubmitterRef.current[index] = item.props?.submitter;
     const name = item.props?.name || `${actionCache.key}${index}`;
 
@@ -230,7 +246,7 @@ const StepsForm: React.FC<StepsFormProps> & {
       contentRender: (items) => (
         <>
           {stepFormRender ? stepFormRender(items) : items}
-          {!stepsFormRender && step === index ? (
+          {!stepsFormRender && isCurrentIndex ? (
             <Form.Item label=" " colon={false} className={formItemHideLabelClass}>
               {submitterDom}
             </Form.Item>
@@ -241,7 +257,7 @@ const StepsForm: React.FC<StepsFormProps> & {
 
     return (
       <div
-        className={classNames(`${prefixCls}-item`, { [`${prefixCls}-active`]: step === index })}
+        className={classNames(`${prefixCls}-item`, { [`${prefixCls}-active`]: isCurrentIndex })}
         key={index.toString()}
       >
         {React.cloneElement(item, {

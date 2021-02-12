@@ -166,6 +166,7 @@ const { StepsForm } = BizForm;
 ------------- | ------------- | ------------- | ------------- |
 current  | 当前表单的步骤数，从 `0` 开始 | `number` | 0 |
 onCurrentChange  | current 发生改变的事件 | `(current:number)=>void` | - |
+ready  | 为 `false` 时，禁止上一步、下一步、提交操作。 | `boolean` | `true` |
 onFinish  | 表单提交成功后调用 | `(values)=>void` | - |
 stepsProps  | `StepsForm` 自带的 `Steps` 的 `props`，使用方式与 antd 相同，但是去掉了 `current` 和 `onChange` | [StepsProps](https://ant.design/components/steps-cn/#API) | - |
 formProps  | `StepsForm.StepForm` 的属性，除了没有 `onReset` 和 `submitter`  | `BizFormProps` | - |
@@ -177,10 +178,14 @@ stepsFormRender  | 自定义整个表单 | `(stepsDom: React.ReactNode, formDom:
 
 #### StepsForm.StepForm
 
-基于 BizForm 扩展的表单，没有 `onReset` `resetText`， 除了以下参数，其余和 BizForm 一样。
+基于 BizForm 扩展的表单，没有 `onReset` `resetText` `ready`， 除了以下参数，其余和 BizForm 一样。
 
 参数 | 说明 | 类型 | 默认值 |
 ------------- | ------------- | ------------- | ------------- |
+title  | 步骤条标题 | `React.ReactNode` | - |
+subTitle  | 步骤条子标题，可选 | `React.ReactNode` | - |
+icon  | 步骤图标的类型，可选 | `React.ReactNode` | - |
+description  | 步骤的详情描述，可选 | `React.ReactNode` | - |
 stepProps  | 步骤条内的当前步骤配置。 | [Steps.Spep](https://ant.design/components/steps-cn/#Steps.Step) | - |
 submitter  | 上一步、下一步、提交按钮的配置。会与 StepsForm 的 submitter 合并，优先级更高。 | `StepsSubmitterProps` | - |
 

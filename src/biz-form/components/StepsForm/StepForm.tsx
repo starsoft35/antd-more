@@ -7,7 +7,7 @@ import StepsFormContext from './StepsFormContext';
 import { StepsSubmitterProps } from './StepsSubmitter';
 
 export interface StepFormProps
-  extends Omit<BaseFormProps, 'title' | 'onReset' | 'contentRender' | 'submitter'>,
+  extends Omit<BaseFormProps, 'title' | 'onReset' | 'contentRender' | 'submitter' | 'ready'>,
     Pick<StepProps, 'title' | 'icon' | 'subTitle' | 'description'> {
   stepProps?: StepProps;
   submitter?: Omit<StepsSubmitterProps, 'total' | 'current' | 'form'> | false;
