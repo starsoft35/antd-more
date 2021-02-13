@@ -152,6 +152,9 @@ const StepsForm: React.FC<StepsFormProps> & {
       currentSubmitter && currentSubmitter?.onSubmit?.();
     },
     reset: () => {
+      if (!ready) {
+        return;
+      }
       setStep(current);
       formDataRef.current = {};
       formArrayRef.current.forEach((item) => {
