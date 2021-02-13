@@ -30,6 +30,7 @@ module.exports = {
     "arrow-body-style": 0,
     "no-use-before-define": 0,
     "operator-linebreak": 0,
+    "consistent-return": 0,
     "react/prop-types": 0,
     "react/jsx-indent": 0,
     "import/no-unresolved": 0,

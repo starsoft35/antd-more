@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Form } from 'antd';
 import { FormProps, FormInstance } from 'antd/es/form';
 import namePathSet from 'rc-util/es/utils/set'; // eslint-disable-line import/no-extraneous-dependencies
+import { isPromiseLike } from 'util-helpers';
 import { transformFormValues } from '../_util/transform';
 import FieldContext, { TransformFn } from '../FieldContext';
 import Submitter, { SubmitterProps } from './Submitter';
@@ -19,7 +20,7 @@ export interface BaseFormProps extends Omit<FormProps, 'onFinish'> {
   children?: React.ReactNode;
   labelWidth?: number | 'auto';
   hideLabel?: boolean;
-  onFinish?: (values, originValues) => any;
+  onFinish?: (values, originValues?) => any;
 }
 
 const BaseForm: React.FC<BaseFormProps> = ({
@@ -27,7 +28,7 @@ const BaseForm: React.FC<BaseFormProps> = ({
   form: formProp,
   pressEnterSubmit = true,
   ready = true,
-  loading = false,
+  loading: outLoading = false,
   submitter = {},
   onFinish,
   onReset,
@@ -41,6 +42,12 @@ const BaseForm: React.FC<BaseFormProps> = ({
 }) => {
   const [form] = Form.useForm();
   const formRef = React.useRef<FormInstance>(formProp || form);
+  const [loading, setLoading] = React.useState(false);
+
+  const [isUpdate, updateState] = React.useState(false);
+  const forgetUpdate = () => {
+    setTimeout(() => updateState(true));
+  };
 
   const transformRecordRef = React.useRef<{ [x: string]: TransformFn | undefined }>({});
 
@@ -75,7 +82,7 @@ const BaseForm: React.FC<BaseFormProps> = ({
     <Submitter
       {...submitterProps}
       onReset={onReset}
-      form={formRef.current}
+      form={formProp || form}
       submitButtonProps={{
         loading,
         disabled: !ready,
@@ -111,6 +118,10 @@ const BaseForm: React.FC<BaseFormProps> = ({
     }
   }, [ready]);
 
+  React.useEffect(() => {
+    setLoading(outLoading);
+  }, [outLoading]);
+
   return (
     <FieldContext.Provider
       value={{ setFieldTransform, layout, hideLabel, labelCol: labelColProps }}
@@ -122,20 +133,47 @@ const BaseForm: React.FC<BaseFormProps> = ({
             formRef.current?.submit();
           }
         }}
-        form={formRef.current}
-        onFinish={(values) => {
-          if (typeof onFinish === 'function') {
-            const transValues = transformFormValues(values, transformRecordRef.current);
-            // console.log(values, transValues);
-            return onFinish(transValues, values);
+        form={formProp || form}
+        onFinish={async (values) => {
+          if (typeof onFinish !== 'function') {
+            return;
           }
-          return true;
+          const transValues = transformFormValues(values, transformRecordRef.current);
+          // console.log(values, transValues);
+
+          let ret = onFinish(transValues, values);
+
+          try {
+            if (isPromiseLike(ret)) {
+              setLoading(true);
+              ret = await ret;
+              setLoading(false);
+            }
+            return ret;
+          } catch (err) {
+            console.error(err); // eslint-disable-line
+            setLoading(false);
+          }
         }}
         initialValues={initialValues}
         layout={layout}
         labelCol={labelColProps}
         {...restProps}
       >
+        <input
+          type="text"
+          style={{
+            display: 'none',
+          }}
+        />
+        <Form.Item noStyle shouldUpdate>
+          {(formInstance) => {
+            if (!isUpdate) forgetUpdate();
+            // 支持 fromRef，这里 ref 里面可以随时拿到最新的值
+            formRef.current = formInstance as FormInstance;
+            return null;
+          }}
+        </Form.Item>
         {content}
       </Form>
     </FieldContext.Provider>

@@ -4,18 +4,16 @@
 import * as React from 'react';
 import { BizForm } from 'antd-more';
 
+function waitTime(time: number = 1000) {
+  return new Promise(resolve => {
+    setTimeout(resolve, time);
+  });
+}
+
 const { ItemPassword, Item } = BizForm;
 
 const Demo: React.FC = () => {
-  const [loading, setLoading] = React.useState(false);
   const [form] = BizForm.useForm();
-  const onFinish = React.useCallback((values) => {
-    console.log(values);
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-  }, []);
 
   return (
     <BizForm
@@ -23,8 +21,10 @@ const Demo: React.FC = () => {
         submitText: '确定',
         noReset: true
       }}
-      onFinish={onFinish}
-      loading={loading}
+      onFinish={async (values) => {
+        await waitTime(2000);
+        console.log(values);
+      }}
       form={form}
       labelWidth={98}
       name="form-change-password"

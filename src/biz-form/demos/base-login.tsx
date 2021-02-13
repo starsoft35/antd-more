@@ -1,12 +1,13 @@
-/**
- * title: 登录
- * desc: |
- *    组件 `ItemCaptcha` 执行顺序： `check` 方法验证手机号码或邮箱成功后，调用 `onGetCaptcha` 并设置按钮 `loading` 状态。当 `onGetCaptcha` 执行成功后，开始倒计时。
- */
 import * as React from 'react';
 import { message } from 'antd';
 import { BizForm } from 'antd-more';
 import { UserOutlined, LockOutlined, SafetyCertificateOutlined, MobileOutlined, MailOutlined } from '@ant-design/icons';
+
+function waitTime(time: number = 1000) {
+  return new Promise(resolve => {
+    setTimeout(resolve, time);
+  });
+}
 
 const { ItemInput, ItemCaptcha, ItemPassword } = BizForm;
 
@@ -19,25 +20,17 @@ function sendCaptcha(mobile) {
 }
 
 const LoginDemo: React.FC = () => {
-  const [loading, setLoading] = React.useState(false);
   const [form] = BizForm.useForm();
-
-  const onFinish = React.useCallback((values) => {
-    console.log(values);
-    setLoading(true);
-
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-  }, []);
 
   return (
     <div style={{ width: "80%", maxWidth: 380, margin: "0 auto" }}>
       <BizForm
         name="form-login"
         form={form}
-        loading={loading}
-        onFinish={onFinish}
+        onFinish={async (values) => {
+          await waitTime(2000);
+          console.log(values);
+        }}
         submitter={{
           noReset: true,
           submitText: "登录",

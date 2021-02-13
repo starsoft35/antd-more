@@ -4,6 +4,7 @@ import StepsForm, {
   StepsFormProps,
   ActionType as StepsFormActionType,
 } from './components/StepsForm';
+import ModalForm, { ModalFormProps } from './components/ModalForm';
 import List, { BizFormListProps } from './components/List';
 import Item, { BizFormItemProps } from './components/Item';
 import ItemAddress, { FormItemAddressProps } from './components/ItemAddress';
@@ -34,6 +35,7 @@ export type {
   BizFormItemProps,
   QueryFormProps,
   StepsFormProps,
+  ModalFormProps,
   FormItemAddressProps as ItemAddressProps,
   FormItemBankCardProps as ItemBankCardProps,
   FormItemCaptchaProps as ItemCaptchaProps,
@@ -60,6 +62,7 @@ export type {
 export {
   QueryForm,
   StepsForm,
+  ModalForm,
   List,
   Item,
   ItemAddress,

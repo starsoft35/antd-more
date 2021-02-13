@@ -2,6 +2,12 @@ import * as React from 'react';
 import { Row, Col } from 'antd';
 import { BizForm } from 'antd-more';
 
+function waitTime(time: number = 1000) {
+  return new Promise(resolve => {
+    setTimeout(resolve, time);
+  });
+}
+
 const { ItemRadio, ItemNumber } = BizForm;
 
 const oneColSpan = {
@@ -26,21 +32,13 @@ const RakebackeCycle = [
 ];
 
 const RakebackeInfo: React.FC = () => {
-  const [loading, setLoading] = React.useState(false);
-  const onFinish = React.useCallback((values) => {
-    console.log(values);
-    setLoading(true);
-
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-  }, []);
-
   return (
     <BizForm
       name="form-rakebacke-info"
-      onFinish={onFinish}
-      loading={loading}
+      onFinish={async (values) => {
+        await waitTime(2000);
+        console.log(values);
+      }}
       submitter={{
         submitText: "提交",
         submitButtonProps: {

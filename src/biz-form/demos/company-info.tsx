@@ -4,6 +4,12 @@ import { BizForm } from 'antd-more';
 import { isSocialCreditCode, isBusinessLicense } from 'util-helpers';
 import lcnFormInland from 'lcn/lcn-form-inland';
 
+function waitTime(time: number = 1000) {
+  return new Promise(resolve => {
+    setTimeout(resolve, time);
+  });
+}
+
 const { ItemInput, ItemAddress } = BizForm;
 
 const oneColSpan = {
@@ -15,21 +21,13 @@ const twoColSpan = {
 };
 
 const CompanyInfo: React.FC = () => {
-  const [loading, setLoading] = React.useState(false);
-  const onFinish = React.useCallback((values) => {
-    console.log(values);
-    setLoading(true);
-
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-  }, []);
-
   return (
     <BizForm
       name="form-company-info"
-      onFinish={onFinish}
-      loading={loading}
+      onFinish={async (values) => {
+        await waitTime(2000);
+        console.log(values);
+      }}
       initialValues={{
         businessRegno: "93410526MA45RDU53U"
       }}

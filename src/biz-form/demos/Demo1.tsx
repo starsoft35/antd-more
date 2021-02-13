@@ -4,6 +4,12 @@ import { Switch, Row, Col } from 'antd';
 import { BizForm } from 'antd-more';
 import lcnFormInlandData from 'lcn/lcn-form-inland';
 
+function waitTime(time: number = 1000) {
+  return new Promise(resolve => {
+    setTimeout(resolve, time);
+  });
+}
+
 const {
   ItemInput,
   ItemRadio,
@@ -97,12 +103,8 @@ const Demo: React.FC = () => {
             <ItemCaptcha
               label="验证码"
               name="code"
-              onGetCaptcha={() => {
-                return new Promise<void>(resolve => {
-                  setTimeout(() => {
-                    resolve();
-                  }, 1000);
-                })
+              onGetCaptcha={async () => {
+                await waitTime(2000);
               }}
               required={required}
             />

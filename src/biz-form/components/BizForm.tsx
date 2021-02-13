@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Form, Space } from 'antd';
 import QueryForm from './QueryForm';
 import StepsForm from './StepsForm';
+import ModalForm from './ModalForm';
 import Item from './Item';
 import List from './List';
 import ItemAddress from './ItemAddress';
@@ -32,6 +33,7 @@ const formItemHideLabelClass = 'antd-more-form-item-hide-label';
 const BizForm: React.FC<BaseFormProps> & {
   QueryForm: typeof QueryForm;
   StepsForm: typeof StepsForm;
+  ModalForm: typeof ModalForm;
   Item: typeof Item;
   List: typeof List;
   useForm: typeof Form.useForm;
@@ -105,6 +107,7 @@ const BizForm: React.FC<BaseFormProps> & {
 
 BizForm.QueryForm = QueryForm;
 BizForm.StepsForm = StepsForm;
+BizForm.ModalForm = ModalForm;
 BizForm.Item = Item;
 BizForm.List = List;
 BizForm.useForm = Form.useForm;
