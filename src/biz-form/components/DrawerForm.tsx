@@ -1,23 +1,23 @@
 import * as React from 'react';
-import { Modal, Form } from 'antd';
-import { ModalProps } from 'antd/es/modal';
+import { Drawer, Form } from 'antd';
+import { DrawerProps } from 'antd/es/drawer';
 import { isPromiseLike } from 'util-helpers';
 import BaseForm, { BaseFormProps } from './BaseForm';
 
-export interface ModalFormProps extends Omit<BaseFormProps, 'title'> {
+export interface DrawerFormProps extends Omit<BaseFormProps, 'title'> {
   title?: React.ReactNode;
-  width?: ModalProps['width'];
+  width?: DrawerProps['width'];
   trigger?: JSX.Element;
-  modalProps?: Omit<ModalProps, 'visible' | 'footer'>;
+  drawerProps?: Omit<DrawerProps, 'visible' | 'footer'>;
   visible?: boolean;
   onVisibleChange?: (visible: boolean) => void;
 }
 
-const ModalForm: React.FC<ModalFormProps> = ({
+const DrawerForm: React.FC<DrawerFormProps> = ({
   title,
   width,
   trigger,
-  modalProps,
+  drawerProps,
   visible: outVisible = false,
   onVisibleChange = () => {},
   children,
@@ -35,10 +35,10 @@ const ModalForm: React.FC<ModalFormProps> = ({
   }, [visible]);
 
   React.useEffect(() => {
-    if (!visible && modalProps?.destroyOnClose) {
+    if (!visible && drawerProps?.destroyOnClose) {
       formRef.current.resetFields();
     }
-  }, [visible, modalProps?.destroyOnClose]);
+  }, [visible, drawerProps?.destroyOnClose]);
 
   return (
     <>
@@ -56,17 +56,14 @@ const ModalForm: React.FC<ModalFormProps> = ({
           }
         }}
         submitter={{
-          submitText: modalProps?.okText || '确认',
-          resetText: modalProps?.cancelText || '取消',
-          submitButtonProps: {
-            type: (modalProps?.okType as 'text') || 'primary',
-          },
+          submitText: '确认',
+          resetText: '取消',
           ...submitter,
           resetButtonProps: {
             preventDefault: true,
             ...(submitter ? submitter?.resetButtonProps : {}),
-            onClick: (e) => {
-              modalProps?.onCancel?.(e);
+            onClick: (e: any) => {
+              drawerProps?.onClose?.(e);
               setVisible(false);
               submitter && submitter?.resetButtonProps?.onClick?.(e);
             },
@@ -79,20 +76,28 @@ const ModalForm: React.FC<ModalFormProps> = ({
           },
         }}
         contentRender={(formDom, submitterDom) => (
-          <Modal
+          <Drawer
             title={title}
             width={width || 600}
-            centered
-            {...modalProps}
+            {...drawerProps}
             visible={visible}
-            footer={submitterDom}
-            onCancel={(e) => {
+            footer={
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'flex-end',
+                }}
+              >
+                {submitterDom}
+              </div>
+            }
+            onClose={(e) => {
               setVisible(false);
-              modalProps?.onCancel?.(e);
+              drawerProps?.onClose?.(e);
             }}
           >
             {formDom}
-          </Modal>
+          </Drawer>
         )}
         {...restProps}
       >
@@ -110,4 +115,4 @@ const ModalForm: React.FC<ModalFormProps> = ({
   );
 };
 
-export default ModalForm;
+export default DrawerForm;
