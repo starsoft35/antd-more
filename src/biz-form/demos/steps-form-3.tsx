@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Modal, Button, message } from 'antd';
 import { BizForm } from 'antd-more';
+import { StepsFormActionType } from 'antd-more/es/biz-form';
 
 const { StepsForm, ItemInput, ItemSelect, ItemNumber, ItemUpload, ItemTextArea } = BizForm;
 
@@ -23,16 +24,28 @@ const BillAccountName = [
 
 const Demo: React.FC = () => {
   const [visible, setVisible] = React.useState(false);
+  const actionRef = React.useRef<StepsFormActionType>();
+
+  // 关闭时重置表单
+  React.useEffect(() => {
+    if (!visible) {
+      actionRef.current.reset();
+    }
+  }, [visible]);
 
   return (
     <>
       <Button type="primary" onClick={() => setVisible(true)}>创建付款单</Button>
       <StepsForm
+        actionRef={actionRef}
         onFinish={async (values) => {
           await waitTime(2000);
           console.log(values);
           setVisible(false);
           message.success('提交成功');
+
+          // 提交成功再重置表单
+          // actionRef.current.reset();
         }}
         stepsFormRender={(stepsDom, formDom, submitterDom) => (
           <Modal
@@ -42,6 +55,8 @@ const Demo: React.FC = () => {
             width={600}
             onCancel={() => setVisible(false)}
             centered
+
+            // 关闭时销毁dom
             destroyOnClose
           >
             {stepsDom}
