@@ -27,7 +27,7 @@ const IndexType = ['index', 'indexBorder'];
 const EnumType = ['enum', 'enumTag', 'enumBadge'];
 
 const BizField: React.FC<BizFieldProps> = ({ value, valueType, valueEnum = [], ...restProps }) => {
-  const { type, ...restParams } = parseValueType(valueType);
+  const { type, ...restParams } = parseValueType(valueType, value);
   const props = {
     ...restProps,
     ...restParams,
