@@ -14,6 +14,7 @@ export interface StepsFormContextProps {
   setLoading: (loading: boolean) => void;
 
   actionCache: InstanceType<typeof SyncMemoryStore>;
+  forgetUpdate: () => void;
 }
 
 export default React.createContext<StepsFormContextProps | undefined>(undefined);

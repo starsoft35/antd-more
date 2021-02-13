@@ -33,9 +33,13 @@ const StepForm: React.FC<StepFormProps> = ({
   const ctx = React.useContext(StepsFormContext);
   const [form] = Form.useForm();
 
-  if (ctx && ctx?.formArrayRef) {
-    ctx.formArrayRef.current[step] = formProp || form;
-  }
+  React.useEffect(() => {
+    if (ctx && ctx?.formArrayRef) {
+      ctx.formArrayRef.current[step] = formProp || form;
+    }
+    // modal 可能未加载时拿不到 form
+    ctx?.forgetUpdate();
+  }, []);
 
   return (
     <BaseForm

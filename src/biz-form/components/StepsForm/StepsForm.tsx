@@ -64,6 +64,11 @@ const StepsForm: React.FC<StepsFormProps> & {
   const formSubmitterRef = React.useRef([]);
   const formDataRef = React.useRef({});
 
+  const [updateCount, updateState] = React.useState(0);
+  const forgetUpdate = () => {
+    setTimeout(() => updateState((c) => c + 1));
+  };
+
   const actionCache = React.useMemo(() => SyncMemoryStore.create<'prev' | 'next' | 'submit'>(), []); // 记录当前操作
 
   const childs = React.Children.toArray(children);
@@ -158,7 +163,7 @@ const StepsForm: React.FC<StepsFormProps> & {
       setStep(current);
       formDataRef.current = {};
       formArrayRef.current.forEach((item) => {
-        item.resetFields();
+        item?.resetFields();
       });
     },
   }));
@@ -316,6 +321,7 @@ const StepsForm: React.FC<StepsFormProps> & {
           submit,
           onFormFinish,
           actionCache,
+          forgetUpdate,
         }}
       >
         {stepsFormRender ? (

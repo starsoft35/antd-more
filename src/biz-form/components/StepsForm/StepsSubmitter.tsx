@@ -62,31 +62,22 @@ const StepsSubmitter: React.FC<StepsSubmitterProps> = (props) => {
     render,
   } = props;
 
-  const handlePrev = React.useCallback(
-    (e) => {
-      onPrev?.(e);
-      prevButtonProps?.onClick?.(e);
-    },
-    [prevButtonProps, onPrev],
-  );
+  const handlePrev = (e) => {
+    onPrev?.(e);
+    prevButtonProps?.onClick?.(e);
+  };
 
-  const handleNext = React.useCallback(
-    (e) => {
-      form?.submit();
-      onNext?.(e);
-      nextButtonProps?.onClick?.(e);
-    },
-    [nextButtonProps, form, onNext],
-  );
+  const handleNext = (e) => {
+    form?.submit();
+    onNext?.(e);
+    nextButtonProps?.onClick?.(e);
+  };
 
-  const handleSubmit = React.useCallback(
-    (e) => {
-      form?.submit();
-      onSubmit?.(e);
-      submitButtonProps?.onClick?.(e);
-    },
-    [submitButtonProps, form, onSubmit],
-  );
+  const handleSubmit = (e) => {
+    form?.submit();
+    onSubmit?.(e);
+    submitButtonProps?.onClick?.(e);
+  };
 
   const prevButton = (
     <Button key="prev" {...prevButtonProps} onClick={handlePrev}>
