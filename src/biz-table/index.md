@@ -133,23 +133,23 @@ valueEnum = options
 
 <br/>
 
-valueType | itemType | BizForm表单项
------ | ----- | ----- 
-`text` | `input` | [ItemInput]
-`money` `progress` `percent` | `number` | [ItemNumber]
-`color` | `color` | [ItemColor]
-`enum` `enumTag` `enumBadge` | `select` | [ItemSelect]
-`date` `formNow` `dateWeek` `dateMonth` `dateQuarter` `dateYear` | `date` | [ItemDate]
-`dateRange` | `dateRange` | [ItemDateRange]
-`time` | `time` | [ItemTime]
-`timeRange` | `timeRange` | [ItemTimeRange]
-- | `address` | [ItemAddress]
-- | `captcha` | [ItemCaptcha]
-- | `checkbox` | [ItemCheckbox]
-- | `textarea` | [ItemTextArea]
-- | `password` | [ItemPassword]
-- | `radio` | [ItemRadio]
-- | `upload` | [ItemUpload]
+| valueType | itemType | BizForm表单项
+| ----- | ----- | ----- 
+| `text` | `input` | [ItemInput]
+| `money` `progress` `percent` | `number` | [ItemNumber]
+| `color` | `color` | [ItemColor]
+| `enum` `enumTag` `enumBadge` | `select` | [ItemSelect]
+| `date` `formNow` `dateWeek` `dateMonth` `dateQuarter` `dateYear` | `date` | [ItemDate]
+| `dateRange` | `dateRange` | [ItemDateRange]
+| `time` | `time` | [ItemTime]
+| `timeRange` | `timeRange` | [ItemTimeRange]
+| - | `address` | [ItemAddress]
+| - | `captcha` | [ItemCaptcha]
+| - | `checkbox` | [ItemCheckbox]
+| - | `textarea` | [ItemTextArea]
+| - | `password` | [ItemPassword]
+| - | `radio` | [ItemRadio]
+| - | `upload` | [ItemUpload]
 
 以下几种配置结果都是一样的:
 
@@ -199,7 +199,7 @@ search: {
 
 ### actionRef
 
-用 `actionRef` 可手动触发 `reload` `reset` 等操作。
+用 `actionRef` 可手动触发 `reload` `reset` `submit` 操作。
 
 ```typescript
 type ActionType = {

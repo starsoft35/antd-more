@@ -209,6 +209,19 @@ submitButtonProps  | 提交按钮属性，和 [`antd Button`](https://ant-design
 forceShowSubmit  | 强制显示提交按钮 | `boolean` | - |
 render  | 自定义操作的渲染 | `false` \| `(props,dom:JSX[])=>ReactNode[]` | - |
 
+#### StepsFormActionType
+
+```typescript
+// import { StepsFormActionType } from 'antd-more/es/biz-form';
+
+interface StepsFormActionType {
+  prev: () => void; // 返回上一步
+  next: (submitted: boolean) => void; // 跳转下一步，当submitted为true时，触发当前表单校验，校验成功则跳转下一步；当submitted为false时，不触发当前表单校验直接进入下一步。默认submitted为true
+  submit: () => void; // 触发当前表单校验，并提交所有表单值
+  reset: () => void; // 重置所有表单和值，将步骤恢复初始步骤
+}
+```
+
 ### List
 
 ```typescript

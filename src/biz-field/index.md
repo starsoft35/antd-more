@@ -142,7 +142,7 @@ format  | 设置日期或时间格式 | `string` | - |
 
 参数 | 说明 | 类型 | 默认值 |
 ------------- | ------------- | ------------- | ------------- |
-value  | 如果为 `string`，表示为 `src`。<br/>如果为 `object` 需传入 `src`，也支持传入 `name`。 | `string` \| `{ src: string; name: string; }` | - |
+value  | 如果为 `string`，表示为 `src`。<br/>如果为 `object` 需传入 `src`，也支持传入 `name`。 | `string` \| `{ src: string; name?: string; }` | - |
 bordered  | 显示边框。高和宽将保持一致，以正方形方式呈现，图片根据最长的宽或高自适应。 | `boolean` | `false` |
 
 其余同 [`Image`](https://ant-design.gitee.io/components/image-cn/#API) 。

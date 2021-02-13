@@ -18,13 +18,11 @@ function getNameApi(): Promise<string> {
 
 const Demo: React.FC = () => {
   const [ready, setReady] = React.useState(false);
-
   const [initialValues, setInitialValues] = React.useState({ name: '张三' });
 
   React.useEffect(() => {
     getNameApi().then((name) => {
       setInitialValues({ name })
-    }).then(() => {
       setReady(true);
     });
   }, []);
