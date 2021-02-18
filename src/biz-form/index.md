@@ -559,6 +559,8 @@ max  | 最大长度 | `number` | `16` |
 level  | 密码强度。可选 `1` `2` `3` | `number` | `2` |
 ignoreCase | 忽略大小写。为 `ture` 时，大小写字母视为一种字符 | `boolean` | `false` |
 special  | 支持的特殊字符 | `string` | `!@#$%^&*()-=_+[]\|{},./?<>~` |
+disabledPaste  | 禁止粘贴 | `boolean` | `false` |
+disabledCopy  | 禁止复制 | `boolean` | `false` |
 inputProps  | 密码框配置参数 | [`Input.Password`](https://ant.design/components/input-cn/#Input.Password) | - |
 
 

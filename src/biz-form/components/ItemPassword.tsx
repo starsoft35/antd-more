@@ -17,6 +17,8 @@ export interface FormItemPasswordProps extends BizFormItemProps {
   ignoreCase?: boolean;
   special?: string;
   inputProps?: PasswordProps;
+  disabledPaste?: boolean;
+  disabledCopy?: boolean;
 
   validated?: boolean | Validated;
   // validateMessages?: {
@@ -37,6 +39,8 @@ const FormItemPassword: React.FC<FormItemPasswordProps> = ({
   special = '\\x21-\\x2F\\x3A-\\x40\\x5B-\\x60\\x7B-\\x7E',
   validated = true,
   // validateMessages,
+  disabledPaste = false,
+  disabledCopy = false,
 
   inputProps = {},
   label,
@@ -61,6 +65,26 @@ const FormItemPassword: React.FC<FormItemPasswordProps> = ({
     }
     return ret;
   }, [validated]);
+
+  const handlePaste = React.useCallback(
+    (e) => {
+      if (disabledPaste) {
+        e.preventDefault();
+      }
+      inputProps?.onPaste?.(e);
+    },
+    [inputProps?.onPaste, disabledPaste],
+  );
+
+  const handleCopy = React.useCallback(
+    (e) => {
+      if (disabledCopy) {
+        e.preventDefault();
+      }
+      inputProps?.onCopy?.(e);
+    },
+    [inputProps?.onCopy, disabledCopy],
+  );
 
   return (
     <BizFormItem
@@ -96,7 +120,14 @@ const FormItemPassword: React.FC<FormItemPasswordProps> = ({
       ]}
       {...restProps}
     >
-      <Input.Password placeholder="请输入" autoComplete="off" allowClear {...inputProps} />
+      <Input.Password
+        placeholder="请输入"
+        autoComplete="off"
+        allowClear
+        {...inputProps}
+        onPaste={handlePaste}
+        onCopy={handleCopy}
+      />
     </BizFormItem>
   );
 };
