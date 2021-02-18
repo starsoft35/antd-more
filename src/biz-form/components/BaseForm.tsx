@@ -20,7 +20,8 @@ export interface BaseFormProps extends Omit<FormProps, 'onFinish'> {
   children?: React.ReactNode;
   labelWidth?: number | 'auto';
   hideLabel?: boolean;
-  onFinish?: (values, originValues?) => any;
+  onFinish?: (values) => any;
+  transformRecordRef?: React.MutableRefObject<Record<string, TransformFn | undefined>>;
 }
 
 const BaseForm: React.FC<BaseFormProps> = ({
@@ -38,6 +39,7 @@ const BaseForm: React.FC<BaseFormProps> = ({
   layout = 'horizontal',
   labelCol,
   hideLabel = false,
+  transformRecordRef: outTransformRecordRef,
   ...restProps
 }) => {
   const [form] = Form.useForm();
@@ -49,7 +51,7 @@ const BaseForm: React.FC<BaseFormProps> = ({
     setTimeout(() => updateState(true));
   };
 
-  const transformRecordRef = React.useRef<{ [x: string]: TransformFn | undefined }>({});
+  const transformRecordRef = React.useRef<Record<string, TransformFn | undefined>>({});
 
   const setFieldTransform = React.useCallback((name, transform, parentListName) => {
     if (name && transform) {
@@ -111,6 +113,9 @@ const BaseForm: React.FC<BaseFormProps> = ({
     };
   }, [hideLabel, layout, labelWidth, labelCol]);
 
+  // 将转换记录传给外部
+  React.useImperativeHandle(outTransformRecordRef, () => transformRecordRef.current);
+
   React.useEffect(() => {
     // 准备完成后，重新设置初始值
     if (ready) {
@@ -141,7 +146,7 @@ const BaseForm: React.FC<BaseFormProps> = ({
           const transValues = transformFormValues(values, transformRecordRef.current);
           // console.log(values, transValues);
 
-          let ret = onFinish(transValues, values);
+          let ret = onFinish(transValues);
 
           try {
             if (isPromiseLike(ret)) {

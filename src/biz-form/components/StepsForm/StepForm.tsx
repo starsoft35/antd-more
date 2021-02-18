@@ -45,8 +45,8 @@ const StepForm: React.FC<StepFormProps> = ({
     <BaseForm
       name={name}
       form={formProp || form}
-      onFinish={async (values, originValues) => {
-        let ret = typeof onFinish === 'function' ? onFinish(values, originValues) : true;
+      onFinish={async (values) => {
+        let ret = typeof onFinish === 'function' ? onFinish(values) : true;
         if (isPromiseLike(ret)) {
           ctx?.setLoading(true);
           try {
