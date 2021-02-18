@@ -101,7 +101,7 @@ const FormItemInput: React.FC<FormItemInputProps> & {
   const handleTransform = React.useCallback(
     (val) => {
       if (transform) {
-        return transform;
+        return transform(val);
       }
       if (type === 'bankCard') {
         return transformBankCard(val);
