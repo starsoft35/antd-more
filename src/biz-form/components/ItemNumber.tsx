@@ -4,7 +4,7 @@ import InputNumberWrapper, { InputNumberWrapperProps } from './form/InputNumberW
 
 export interface FormItemNumberProps
   extends BizFormItemProps,
-    Pick<InputNumberWrapperProps, 'before' | 'after'> {
+    Pick<InputNumberWrapperProps, 'before' | 'after' | 'precision'> {
   lt?: number;
   gt?: number;
   lte?: number;
@@ -20,6 +20,8 @@ const FormItemNumber: React.FC<FormItemNumberProps> = ({
   lte,
   gte,
   inputProps = {},
+  precision = 2,
+
   label,
   required = false,
   ...restProps
@@ -54,7 +56,7 @@ const FormItemNumber: React.FC<FormItemNumberProps> = ({
     >
       <InputNumberWrapper
         placeholder="请输入"
-        precision={2}
+        precision={precision}
         before={before}
         after={after}
         {...inputProps}
