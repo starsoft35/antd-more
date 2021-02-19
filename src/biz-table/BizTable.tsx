@@ -33,6 +33,7 @@ export declare interface BizTableProps<RecordType = any>
   tableCardProps?: CardProps;
   toolbar?: React.ReactNode;
   extra?: React.ReactNode;
+  tableRender?: (props: BizTableProps<RecordType>, dom: JSX.Element) => JSX.Element;
 }
 
 function BizTable<RecordType extends object = any>(props: BizTableProps<RecordType>) {
@@ -48,6 +49,7 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
     toolbar,
     extra,
     actionRef,
+    tableRender,
 
     request,
     ready = true,
@@ -239,6 +241,27 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
     [hasSearch, toolbar],
   );
 
+  const tableDom = (
+    <Card
+      bordered={false}
+      {...tableCardProps}
+      bodyStyle={{ ...tableCardStyle, ...tableCardProps?.bodyStyle }}
+    >
+      {toolbar && <div style={{ padding: '0 0 16px' }}>{toolbar}</div>}
+      <Table
+        loading={loading}
+        columns={currentColumns}
+        dataSource={data}
+        pagination={pagination !== false ? { ...pageRet, ...pagination } : false}
+        onChange={handleChange}
+        {...restProps}
+        scroll={{ ...(nowrap ? { x: true } : {}), ...restProps?.scroll }}
+      />
+    </Card>
+  );
+
+  const renderTable = () => (tableRender ? tableRender(props, tableDom) : tableDom);
+
   return (
     <Space
       direction="vertical"
@@ -259,22 +282,7 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
         {...form}
       />
       {extra}
-      <Card
-        bordered={false}
-        {...tableCardProps}
-        bodyStyle={{ ...tableCardStyle, ...tableCardProps?.bodyStyle }}
-      >
-        {toolbar && <div style={{ padding: '0 0 16px' }}>{toolbar}</div>}
-        <Table
-          loading={loading}
-          columns={currentColumns}
-          dataSource={data}
-          pagination={pagination !== false ? { ...pageRet, ...pagination } : false}
-          onChange={handleChange}
-          {...restProps}
-          scroll={{ ...(nowrap ? { x: true } : {}), ...restProps?.scroll }}
-        />
-      </Card>
+      {renderTable()}
     </Space>
   );
 }
