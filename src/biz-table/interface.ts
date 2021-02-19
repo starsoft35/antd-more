@@ -47,7 +47,7 @@ export interface SearchProps<RecordType = any>
   valueType?: ValueType;
   valueEnum?: EnumData;
   itemType?: keyof typeof ItemTypes;
-  order?: number;
+  order?: number; // 定义查询项的排列顺序，越小越靠前。参照flex的order，默认都为0
   render?: (
     originItem: BizColumnType<RecordType>,
     dom: JSX.Element, // eslint-disable-line
@@ -55,12 +55,26 @@ export interface SearchProps<RecordType = any>
   ) => JSX.Element | React.ReactNode; // eslint-disable-line
 }
 
-export type BizColumnType<RecordType = any> = (ColumnType<RecordType> & {
+// export interface EditableProps<RecordType = any> extends Omit<SearchProps<RecordType>, 'order'> {
+
+// }
+
+type InternalColumnType<RecordType = any> = ColumnType<RecordType> & {
   valueType?: ValueType;
   valueEnum?: EnumData;
   tooltip?: string;
   nowrap?: boolean;
   search?: boolean | SearchProps<RecordType>; // 显示搜索 或 搜索配置
+  // editable?: boolean | EditableProps<RecordType>; // 编辑模式下的配置
   table?: boolean; // 是否显示在表格列中，部分设置列可能只为了设置 search
-  order?: number; // 用于search表单排序，数字越大越靠前
-})[];
+  order?: number; // 用于search表单排序，数字越小越靠前
+};
+
+interface ColumnGroupType<RecordType> extends Omit<InternalColumnType<RecordType>, 'dataIndex'> {
+  children: BizColumnType<RecordType>;
+}
+
+export type BizColumnType<RecordType = any> = (
+  | ColumnGroupType<RecordType>
+  | InternalColumnType<RecordType>
+)[];
