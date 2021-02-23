@@ -38,6 +38,10 @@ function transformDateString(value, type, fmt) {
 export function getDateStr(value, type, format) {
   let str = '';
 
+  if (!value) {
+    return '-';
+  }
+
   const fmt = format || DateFormat[type];
 
   if (type === 'dateRange' || type === 'dateTimeRange' || type === 'timeRange') {
