@@ -195,8 +195,6 @@ const StepsForm: React.FC<StepsFormProps> & {
       return null;
     }
 
-    const { render, ...restCurrentSubmitter } = currentSubmitter || {};
-
     const internalProps = {
       prevButtonProps: {
         disabled: loading || !ready,
@@ -231,15 +229,13 @@ const StepsForm: React.FC<StepsFormProps> & {
       <StepsSubmitter
         total={stepsConfig.length}
         current={step}
-        {...restCurrentSubmitter}
+        {...currentSubmitter}
         form={formArrayRef.current[step]}
         {...internalProps}
       />
     );
 
-    return typeof render === 'function'
-      ? render({ ...restCurrentSubmitter, ...internalProps }, dom)
-      : dom;
+    return dom;
   };
 
   const submitterDom = renderSubmitter();
