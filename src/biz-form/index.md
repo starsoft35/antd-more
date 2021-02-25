@@ -216,7 +216,7 @@ submitButtonProps  | 提交按钮属性，和 [`antd Button`](https://ant-design
 forceShowSubmit  | 强制显示提交按钮 | `boolean` | - |
 render  | 自定义操作的渲染 | `false` \| `(props,dom:JSX[])=>ReactNode[]` | - |
 
-#### StepsFormActionType
+#### StepsForm actionRef 说明
 
 ```typescript
 // import { StepsFormActionType } from 'antd-more/es/biz-form';

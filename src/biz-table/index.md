@@ -65,9 +65,9 @@ formItems  | 查询表单项，推荐使用 `columns.search` 配置 | `React.Rea
 toolbar  | 工具栏，表格内的上面区域 | `React.ReactNode` | - |
 extra  | 扩展内容，表格外的上面、查询表单下面的区域 | `React.ReactNode` | - |
 form  | 同 [BizForm.QueryForm] 配置参数 | [QueryFormProps] | - |
-formRef  | 获取查询表单的 `form` 实例  | `React.MutableRefObject<FormInstance>` | - |
-actionRef  | 常用操作引用，便于自定义触发  | `React.MutableRefObject<ActionType>` | - |
-tableRender  | 自定义表格渲染  | `(props: BizTableProps<RecordType>, dom: JSX.Element) => JSX.Element | React.ReactNode` | - |
+formRef  | 获取查询表单的 `form` 实例  | `React.MutableRefObject&lt;FormInstance&gt;` | - |
+actionRef  | 常用操作引用，便于自定义触发  | `React.MutableRefObject&lt;ActionType&gt;` | - |
+tableRender  | 自定义表格渲染  | `(props: BizTableProps&lt;RecordType&gt;, dom: JSX.Element) => JSX.Element | React.ReactNode` | - |
 
 ### Request 请求方法
 
