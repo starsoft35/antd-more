@@ -67,6 +67,7 @@ extra  | 扩展内容，表格外的上面、查询表单下面的区域 | `Reac
 form  | 同 [BizForm.QueryForm] 配置参数 | [QueryFormProps] | - |
 formRef  | 获取查询表单的 `form` 实例  | `React.MutableRefObject<FormInstance>` | - |
 actionRef  | 常用操作引用，便于自定义触发  | `React.MutableRefObject<ActionType>` | - |
+tableRender  | 自定义表格渲染  | `(props: BizTableProps<RecordType>, dom: JSX.Element) => JSX.Element | React.ReactNode` | - |
 
 ### Request 请求方法
 

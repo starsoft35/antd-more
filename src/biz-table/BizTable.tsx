@@ -36,7 +36,10 @@ export declare interface BizTableProps<RecordType = any>
   tableCardProps?: CardProps;
   toolbar?: React.ReactNode;
   extra?: React.ReactNode;
-  tableRender?: (props: BizTableProps<RecordType>, dom: JSX.Element) => JSX.Element;
+  tableRender?: (
+    props: BizTableProps<RecordType>,
+    dom: JSX.Element,
+  ) => JSX.Element | React.ReactNode;
 
   // 以下供 EditableBizTable 使用
   editableKeys?: (string | number)[];
