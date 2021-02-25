@@ -48,10 +48,11 @@ module.exports = {
     "jsx-a11y/anchor-is-valid": 0,
     "react/jsx-props-no-spreading": 0,
     "react/jsx-wrap-multilines": 0,
+    "max-len": 0,
+    "quote-props": 0,
 
     // demo rules
     // "no-trailing-spaces": 0,
-    // "max-len": 0,
     // "import/no-extraneous-dependencies": 0,
     // "no-console": 0,
     // "import/prefer-default-export": 0,

@@ -49,15 +49,13 @@ export interface SearchProps<RecordType = any>
   itemType?: keyof typeof ItemTypes;
   order?: number; // 定义查询项的排列顺序，越小越靠前。参照flex的order，默认都为0
   render?: (
-    originItem: BizColumnType<RecordType>,
+    originItem: InternalColumnType<RecordType>,
     dom: JSX.Element, // eslint-disable-line
     form: FormInstance,
   ) => JSX.Element | React.ReactNode; // eslint-disable-line
 }
 
-// export interface EditableProps<RecordType = any> extends Omit<SearchProps<RecordType>, 'order'> {
-
-// }
+export interface EditableProps<RecordType = any> extends Omit<SearchProps<RecordType>, 'order'> {}
 
 type InternalColumnType<RecordType = any> = ColumnType<RecordType> & {
   valueType?: ValueType;
@@ -65,7 +63,10 @@ type InternalColumnType<RecordType = any> = ColumnType<RecordType> & {
   tooltip?: string;
   nowrap?: boolean;
   search?: boolean | SearchProps<RecordType>; // 显示搜索 或 搜索配置
-  // editable?: boolean | EditableProps<RecordType>; // 编辑模式下的配置
+  editable?:
+    | boolean
+    | EditableProps<RecordType>
+    | ((text: any, record: RecordType, index: number) => boolean | EditableProps<RecordType>); // 编辑模式下的配置
   table?: boolean; // 是否显示在表格列中，部分设置列可能只为了设置 search
   order?: number; // 用于search表单排序，数字越小越靠前
 };

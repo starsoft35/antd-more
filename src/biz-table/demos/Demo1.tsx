@@ -40,6 +40,7 @@ const columns: BizColumnType<DataItem> = [
     title: "审核时间",
     tooltip: "提示文字",
     sorter: true,
+    valueType: "dateTime",
     search: {
       valueType: "dateTimeRange",
       names: ["startTime", "endTime"],

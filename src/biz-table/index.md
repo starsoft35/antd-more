@@ -184,13 +184,14 @@ valueEnum = options
 
 ```typescript
 search: {
-  render: (item: columItem, dom: JSX.Element, form: FormInstance): JSX.Element{
-    console.log(item, dom, form);
+  render: (columnItem, dom: JSX.Element, form: FormInstance): JSX.Element{
+    console.log(columnItem, dom, form);
     // return dom;
 
     return (
-      <BizForm.Item name="defineItemName" label="defineItemLabel">
+      <BizForm.Item name={columnItem.dataIndex} label={columnItem.title}>
         {/* some form, example Rate Slider Switch ... */}
+        <AutoComplete />
       </BizForm.Item>
     )
   }

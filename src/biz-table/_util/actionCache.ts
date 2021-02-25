@@ -1,9 +1,8 @@
-let id = 0;
+import createUniqueId from './createUniqueId';
 
 // 创建一个操作缓存key
 function createActionCacheKey() {
-  id += 1;
-  return `bizTable${id}`;
+  return `bizTable${createUniqueId()}`;
 }
 
 const actionCache = {};

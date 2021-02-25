@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { BizTable } from 'antd-more';
+import { Slider } from 'antd';
+import { BizTable, BizForm } from 'antd-more';
 import { BizTableRequest, BizColumnType } from 'antd-more/es/biz-table';
 import { getApplyList } from './service';
 import { ApproveStatus } from './constants';
@@ -169,6 +170,19 @@ const columns: BizColumnType<DataItem> = [
     table: false,
     order: 1
   },
+  {
+    dataIndex: "slider",
+    title: "自定义滑动条",
+    search: {
+      render: (columnItem, dom, form) => (
+        <BizForm.Item name={columnItem.dataIndex} label={columnItem.title}>
+          <Slider />
+        </BizForm.Item>
+      )
+    },
+    table: false,
+    order: 1
+  }
 ];
 
 const Demo: React.FC = () => {

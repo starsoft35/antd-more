@@ -22,3 +22,19 @@ export const ApproveStatus = [
     }
   },
 ];
+
+// 银行
+export const Bank = [
+  {
+    name: "中国银行",
+    value: "BOC"
+  },
+  {
+    name: "交通银行",
+    value: "BCM"
+  },
+  {
+    name: "中国农业银行",
+    value: "ABC"
+  },
+];

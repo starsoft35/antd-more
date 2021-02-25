@@ -3,9 +3,17 @@ import { Form } from 'antd';
 import { FormProps, FormInstance } from 'antd/es/form';
 import namePathSet from 'rc-util/es/utils/set'; // eslint-disable-line import/no-extraneous-dependencies
 import { isPromiseLike } from 'util-helpers';
+import classnames from 'classnames';
 import { transformFormValues } from '../_util/transform';
 import FieldContext, { TransformFn } from '../FieldContext';
+import ChildFormContext from '../ChildFormContext';
 import Submitter, { SubmitterProps } from './Submitter';
+
+const prefixCls = 'antd-more-form';
+
+export type TransformRecordActionType = {
+  get: () => Record<string, TransformFn | undefined>;
+};
 
 export interface BaseFormProps extends Omit<FormProps, 'onFinish'> {
   contentRender?: (
@@ -21,7 +29,7 @@ export interface BaseFormProps extends Omit<FormProps, 'onFinish'> {
   labelWidth?: number | 'auto';
   hideLabel?: boolean;
   onFinish?: (values) => any;
-  transformRecordRef?: React.MutableRefObject<Record<string, TransformFn | undefined>>;
+  transformRecordActionRef?: React.MutableRefObject<TransformRecordActionType>;
 }
 
 const BaseForm: React.FC<BaseFormProps> = ({
@@ -32,6 +40,7 @@ const BaseForm: React.FC<BaseFormProps> = ({
   loading: outLoading = false,
   submitter = {},
   onFinish,
+  onFinishFailed,
   onReset,
   children,
   initialValues,
@@ -39,7 +48,8 @@ const BaseForm: React.FC<BaseFormProps> = ({
   layout = 'horizontal',
   labelCol,
   hideLabel = false,
-  transformRecordRef: outTransformRecordRef,
+  transformRecordActionRef,
+  className,
   ...restProps
 }) => {
   const [form] = Form.useForm();
@@ -78,6 +88,54 @@ const BaseForm: React.FC<BaseFormProps> = ({
     }
   }, []);
 
+  const childFormRefs = React.useRef<Record<string, FormInstance>>({});
+
+  const regChildForm = React.useCallback((name, internalForm) => {
+    childFormRefs.current[name] = internalForm;
+  }, []);
+
+  const unregChildForm = React.useCallback((name) => {
+    delete childFormRefs.current[name];
+  }, []);
+
+  const mergeFieldsError = (err1, err2) => {
+    if (!err1) {
+      return err2;
+    }
+    if (!err2) {
+      return err1;
+    }
+    return {
+      values: { ...err1.values, ...err2.values },
+      errorFields: [...err1.errorFields, err2.errorFields],
+      outOfDate: err1.outOfDate || err2.outOfDate,
+    };
+  };
+
+  const validateChildFormFields = React.useCallback(async (isScrollToField = false) => {
+    let errorInfo = null;
+    const childForms = Object.values(childFormRefs.current);
+    if (childForms && childForms.length > 0) {
+      childForms.forEach(async (itemForm) => {
+        try {
+          await itemForm.validateFields();
+        } catch (err) {
+          if (!errorInfo) {
+            errorInfo = err;
+            // 外部表单有错误时，不需要滚动
+            isScrollToField &&
+              Array.isArray(err?.errorFields) &&
+              err.errorFields[0]?.name &&
+              itemForm.scrollToField(err.errorFields[0].name);
+          } else {
+            errorInfo = mergeFieldsError(errorInfo, err);
+          }
+        }
+      });
+    }
+    return errorInfo;
+  }, []);
+
   const submitterProps = typeof submitter === 'boolean' || !submitter ? {} : submitter;
 
   const submitterDom = submitter ? (
@@ -114,7 +172,10 @@ const BaseForm: React.FC<BaseFormProps> = ({
   }, [hideLabel, layout, labelWidth, labelCol]);
 
   // 将转换记录传给外部
-  React.useImperativeHandle(outTransformRecordRef, () => transformRecordRef.current);
+  // 这里不能直接将transformRecordRef.current传给外部ref，因为无法获取到最新的值，所以通过方法获取。
+  React.useImperativeHandle(transformRecordActionRef, () => ({
+    get: () => transformRecordRef.current,
+  }));
 
   React.useEffect(() => {
     // 准备完成后，重新设置初始值
@@ -128,60 +189,87 @@ const BaseForm: React.FC<BaseFormProps> = ({
   }, [outLoading]);
 
   return (
-    <FieldContext.Provider
-      value={{ setFieldTransform, layout, hideLabel, labelCol: labelColProps }}
+    <ChildFormContext.Provider
+      value={{
+        regChildForm,
+        unregChildForm,
+      }}
     >
-      <Form
-        onKeyPress={(event) => {
-          const buttonHtmlType = submitterProps?.submitButtonProps?.htmlType;
-          if (pressEnterSubmit && buttonHtmlType !== 'submit' && event.key === 'Enter' && ready) {
-            formRef.current?.submit();
-          }
-        }}
-        form={formProp || form}
-        onFinish={async (values) => {
-          if (typeof onFinish !== 'function') {
-            return;
-          }
-          const transValues = transformFormValues(values, transformRecordRef.current);
-          // console.log(values, transValues);
+      <FieldContext.Provider
+        value={{ setFieldTransform, layout, hideLabel, labelCol: labelColProps }}
+      >
+        <Form
+          onKeyPress={(event) => {
+            const buttonHtmlType = submitterProps?.submitButtonProps?.htmlType;
+            if (pressEnterSubmit && buttonHtmlType !== 'submit' && event.key === 'Enter' && ready) {
+              formRef.current?.submit();
+            }
+          }}
+          form={formProp || form}
+          onFinish={async (values) => {
+            if (typeof onFinish !== 'function') {
+              return;
+            }
 
-          let ret = onFinish(transValues);
+            // 验证子表单
+            const childFormErrors = await validateChildFormFields(true);
+            if (childFormErrors) {
+              return;
+            }
 
-          try {
-            if (isPromiseLike(ret)) {
-              setLoading(true);
-              ret = await ret;
+            const transValues = transformFormValues(values, transformRecordRef.current);
+            // console.log(values, transValues);
+
+            let ret = onFinish(transValues);
+
+            try {
+              if (isPromiseLike(ret)) {
+                setLoading(true);
+                ret = await ret;
+                setLoading(false);
+              }
+              return ret;
+            } catch (err) {
+              console.error(err); // eslint-disable-line
               setLoading(false);
             }
-            return ret;
-          } catch (err) {
-            console.error(err); // eslint-disable-line
-            setLoading(false);
-          }
-        }}
-        initialValues={initialValues}
-        layout={layout}
-        labelCol={labelColProps}
-        {...restProps}
-      >
-        <input
-          type="text"
-          style={{
-            display: 'none',
           }}
-        />
-        <Form.Item noStyle shouldUpdate>
-          {(formInstance) => {
-            if (!isUpdate) forgetUpdate();
-            // 支持 fromRef，这里 ref 里面可以随时拿到最新的值
-            formRef.current = formInstance as FormInstance;
-            return null;
+          onFinishFailed={async (errorInfo) => {
+            let ret = errorInfo;
+
+            // 验证子表单
+            const childFormErrors = await validateChildFormFields();
+            if (childFormErrors) {
+              ret = mergeFieldsError(childFormErrors, ret);
+            }
+            if (typeof onFinishFailed === 'function') {
+              onFinishFailed(ret);
+            }
           }}
-        </Form.Item>
-        {content}
-      </Form>
-    </FieldContext.Provider>
+          initialValues={initialValues}
+          layout={layout}
+          labelCol={labelColProps}
+          className={classnames(prefixCls, className)}
+          {...restProps}
+        >
+          <input
+            type="text"
+            style={{
+              display: 'none',
+            }}
+          />
+          <Form.Item noStyle shouldUpdate>
+            {(formInstance) => {
+              if (!isUpdate) forgetUpdate();
+              // 支持 fromRef，这里 ref 里面可以随时拿到最新的值
+              formRef.current = formInstance as FormInstance;
+              return null;
+            }}
+          </Form.Item>
+          {content}
+        </Form>
+      </FieldContext.Provider>
+    </ChildFormContext.Provider>
   );
 };
 

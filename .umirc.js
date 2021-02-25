@@ -46,7 +46,11 @@ const umiConfig = {
   },
   links,
   hash: true,
-  locales: [['zh-CN', '中文'], ['en-US', 'English']]
+  locales: [['zh-CN', '中文'], ['en-US', 'English']],
+  nodeModulesTransform: {
+    type: 'none',
+    exclude: [],
+  },
 };
 
 if (process.env.NODE_ENV === 'production') {

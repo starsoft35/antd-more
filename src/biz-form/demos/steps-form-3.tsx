@@ -55,8 +55,6 @@ const Demo: React.FC = () => {
             width={600}
             onCancel={() => setVisible(false)}
             centered
-
-            // 关闭时销毁dom
             destroyOnClose
           >
             {stepsDom}
