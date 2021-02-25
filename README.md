@@ -66,6 +66,7 @@ ReactDon.render(<BizField value="red" valueType="color" />, mountNode);
   - [BizField] - 字段
   - [BizForm] - 表单
   - [BizTable] - 表格
+  - [EditableBizTable] - 可编辑表格
 - **通用组件**
   - [CaptchaButton] - 验证码按钮
   - [Color] - 颜色显示、选择器
@@ -139,6 +140,7 @@ npm run commit
 [BizField]: https://doly-dev.github.io/antd-more/site/v1/index.html#/business/biz-field
 [BizForm]: https://doly-dev.github.io/antd-more/site/v1/index.html#/business/biz-form
 [BizTable]: https://doly-dev.github.io/antd-more/site/v1/index.html#/business/biz-table
+[EditableBizTable]: https://doly-dev.github.io/antd-more/site/v1/index.html#/business/editable-biz-table
 [What is commitlint]: https://github.com/conventional-changelog/commitlint#what-is-commitlint
 
 
