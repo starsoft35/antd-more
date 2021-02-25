@@ -40,7 +40,7 @@ const FormItemPassword: React.FC<FormItemPasswordProps> = ({
   validated = true,
   // validateMessages,
   disabledPaste = false,
-  disabledCopy = false,
+  disabledCopy = true,
 
   inputProps = {},
   label,
