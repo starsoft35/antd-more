@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { message } from 'antd';
 import { SafetyCertificateOutlined, MobileOutlined, LockOutlined } from '@ant-design/icons';
 import { BizForm } from 'antd-more';
 
@@ -25,6 +26,7 @@ const Demo: React.FC = () => {
     <StepsForm
       onFinish={values => {
         console.log(values);
+        message.success("设置成功");
       }}
       stepsFormRender={(stepsDom, formDom, submitterDom) => (
         <>
@@ -88,7 +90,12 @@ const Demo: React.FC = () => {
           console.log(values);
         }}
         submitter={{
-          noPrev: true
+          noPrev: true,
+          nextButtonProps: {
+            size: "large",
+            block: true,
+            disabled: !sent
+          }
         }}
       >
         <TipText>{sent ? `验证码已发送至 ${form1.getFieldValue('mobile')}` : '请点击获取验证码'}</TipText>

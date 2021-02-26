@@ -58,21 +58,54 @@ const StepsForm: React.FC<StepsFormProps> & {
 }) => {
   const [step, setStep] = React.useState(current);
   const [loading, setLoading] = React.useState(false);
-  const [stepsConfig, setStepsConfig] = React.useState([]);
-  const [submitterConfig, setSubmitterConfig] = React.useState([]);
+  // const [stepsConfig, setStepsConfig] = React.useState([]);
+  // const [submitterConfig, setSubmitterConfig] = React.useState([]);
   const formArrayRef = React.useRef([]);
-  const formSubmitterRef = React.useRef([]);
-  const formDataRef = React.useRef({});
+  const formSubmitterRef = React.useRef([]); // 操作配置
+  const stepsConfigRef = React.useRef([]); // 步骤条配置
+  const formDataRef = React.useRef({}); // 全部表单数据
 
+  // 手动触发更新
   const [updateCount, updateState] = React.useState(0);
   const forgetUpdate = () => {
     setTimeout(() => updateState((c) => c + 1));
   };
 
-  const actionCache = React.useMemo(() => SyncMemoryStore.create<'prev' | 'next' | 'submit'>(), []); // 记录当前操作
+  // 记录当前操作
+  const actionCache = React.useMemo(() => SyncMemoryStore.create<'prev' | 'next' | 'submit'>(), []);
 
+  // 遍历子组件提取配置
   const childs = React.Children.toArray(children);
+  childs.forEach((childItem: JSX.Element, index) => {
+    const {
+      stepProps,
+      title,
+      subTitle,
+      icon,
+      description,
+      submitter: childSubmitter,
+    } = childItem.props as StepFormProps;
+    stepsConfigRef.current[index] = {
+      title,
+      subTitle,
+      icon,
+      description,
+      key: `${index}`,
+      ...stepProps,
+    };
 
+    if (childSubmitter === false || childSubmitter === null) {
+      formSubmitterRef.current[index] = false;
+    } else if (typeof childSubmitter === 'object') {
+      formSubmitterRef.current[index] = submitter
+        ? { ...submitter, ...childSubmitter }
+        : childSubmitter;
+    } else {
+      formSubmitterRef.current[index] = submitter;
+    }
+  });
+
+  // 下一步
   const next = () => {
     if (step < childs.length - 1) {
       const currStep = step + 1;
@@ -80,6 +113,7 @@ const StepsForm: React.FC<StepsFormProps> & {
       onCurrentChange?.(currStep);
     }
   };
+  // 上一步
   const prev = () => {
     if (step > 0) {
       const currStep = step - 1;
@@ -87,6 +121,7 @@ const StepsForm: React.FC<StepsFormProps> & {
       onCurrentChange?.(currStep);
     }
   };
+  // 提交
   const submit = async () => {
     if (typeof onFinish === 'function') {
       const values = Object.values<typeof formDataRef.current>(formDataRef.current).reduce(
@@ -106,90 +141,18 @@ const StepsForm: React.FC<StepsFormProps> & {
       }
     }
   };
+  // 单个表单下一步/提交时触发，仅用于记录当前表单值
+  // 不能在这里直接使用最后一步提交，可能中间某个步骤就要提交。最后一步仅是显示结果或完成
   const onFormFinish = (name, values) => {
     formDataRef.current[name] = values;
-    // // 不能直接使用最后一步提交，可能中间某个步骤就要提交。最后一步仅是显示结果或完成
-    // if (step === childs.length - 1 && typeof onFinish === 'function') {
-    //   const values = Object.values<typeof formDataRef.current>(formDataRef.current).reduce(
-    //     (prev, curr) => ({ ...prev, ...curr }),
-    //     {},
-    //   );
-    //   onFinish(values);
-    // }
   };
 
-  const innerActionRef = React.useRef<ActionType | undefined>();
-
-  React.useImperativeHandle(actionRef || innerActionRef, () => ({
-    prev: () => {
-      if (!ready) {
-        return;
-      }
-
-      actionCache.set('prev');
-      prev();
-      const currentSubmitter = submitterConfig[step];
-      currentSubmitter && currentSubmitter?.onPrev();
-    },
-    // 是否触发当前表单提交验证
-    // 部分情况下第二步提交，第三步为结果。提交之后无需再次触发当前表单提交校验
-    next: (submitted = true) => {
-      if (!ready) {
-        return;
-      }
-
-      actionCache.set('next');
-      if (submitted) {
-        formArrayRef.current[step].submit();
-      } else {
-        next();
-      }
-      const currentSubmitter = submitterConfig[step];
-      currentSubmitter && currentSubmitter?.onNext?.();
-    },
-    submit: () => {
-      if (!ready) {
-        return;
-      }
-      actionCache.set('submit');
-      formArrayRef.current[step].submit();
-      const currentSubmitter = submitterConfig[step];
-      currentSubmitter && currentSubmitter?.onSubmit?.();
-    },
-    reset: () => {
-      if (!ready) {
-        return;
-      }
-      setStep(current);
-      formDataRef.current = {};
-      formArrayRef.current.forEach((item) => {
-        item?.resetFields();
-      });
-    },
-  }));
-
-  const stepsDom = React.useMemo(() => {
-    if (!Array.isArray(stepsConfig) || stepsConfig.length <= 0) {
-      return null;
-    }
-
-    const dom = (
-      <Steps {...stepsProps} current={step}>
-        {stepsConfig.map((item) => (
-          <Steps.Step {...item} />
-        ))}
-      </Steps>
-    );
-
-    return stepsRender ? stepsRender(stepsConfig, dom) : dom;
-  }, [step, stepsConfig, stepsProps, stepsRender]);
-
   const renderSubmitter = () => {
-    if (!Array.isArray(submitterConfig) || submitterConfig.length <= 0) {
+    if (!Array.isArray(formSubmitterRef.current) || formSubmitterRef.current.length <= 0) {
       return null;
     }
 
-    const currentSubmitter = submitterConfig[step];
+    const currentSubmitter = formSubmitterRef.current[step];
 
     if (currentSubmitter === false) {
       return null;
@@ -225,31 +188,46 @@ const StepsForm: React.FC<StepsFormProps> & {
       },
     };
 
-    const dom = (
+    return (
       <StepsSubmitter
-        total={stepsConfig.length}
+        total={stepsConfigRef.current.length}
         current={step}
         {...currentSubmitter}
         form={formArrayRef.current[step]}
         {...internalProps}
       />
     );
-
-    return dom;
   };
 
   const submitterDom = renderSubmitter();
 
+  const renderStepsDom = () => {
+    if (!Array.isArray(stepsConfigRef.current) || stepsConfigRef.current.length <= 0) {
+      return null;
+    }
+
+    const dom = (
+      <Steps {...stepsProps} current={step}>
+        {stepsConfigRef.current.map((item) => (
+          <Steps.Step {...item} />
+        ))}
+      </Steps>
+    );
+
+    return stepsRender ? stepsRender(stepsConfigRef.current, dom) : dom;
+  };
+
+  const stepsDom = renderStepsDom();
+
   const formDom = childs.map((item: any, index) => {
     const isCurrentIndex = step === index;
-    formSubmitterRef.current[index] = item.props?.submitter;
     const name = item.props?.name || `${actionCache.key}${index}`;
 
     const config = {
       submitter: false,
-      contentRender: (items) => (
+      contentRender: (dom) => (
         <>
-          {stepFormRender ? stepFormRender(items) : items}
+          {stepFormRender ? stepFormRender(dom) : dom}
           {!stepsFormRender && isCurrentIndex ? (
             <Form.Item label=" " colon={false} className={formItemHideLabelClass}>
               {submitterDom}
@@ -275,35 +253,62 @@ const StepsForm: React.FC<StepsFormProps> & {
     );
   });
 
-  React.useEffect(() => {
-    const steps = childs.map((item: any, index) => {
-      const { stepProps, title, subTitle, icon, description } = item.props as StepFormProps;
-      return {
-        title,
-        subTitle,
-        icon,
-        description,
-        key: `${index}`,
-        ...stepProps,
-      };
-    });
-    setStepsConfig(steps);
-
-    const submitters = formSubmitterRef.current.map((item) => {
-      if (item === false || item === null) {
-        return false;
-      }
-      if (typeof item === 'object') {
-        return submitter ? { ...submitter, ...item } : item;
-      }
-      return submitter;
-    });
-    setSubmitterConfig(submitters);
-
-    return () => {
+  React.useEffect(
+    () => () => {
       actionCache.clear();
-    };
-  }, []);
+    },
+    [],
+  );
+
+  React.useImperativeHandle(actionRef, () => ({
+    prev: () => {
+      if (!ready) {
+        return;
+      }
+
+      actionCache.set('prev');
+      prev();
+      const currentSubmitter = formSubmitterRef.current[step];
+      currentSubmitter && currentSubmitter?.onPrev();
+    },
+    // 是否触发当前表单提交验证
+    // 部分情况下第二步提交，第三步为结果。提交之后无需再次触发当前表单提交校验
+    next: (submitted = true) => {
+      if (!ready) {
+        return;
+      }
+
+      actionCache.set('next');
+      if (submitted) {
+        formArrayRef.current[step].submit();
+      } else {
+        next();
+      }
+      const currentSubmitter = formSubmitterRef.current[step];
+      currentSubmitter && currentSubmitter?.onNext?.();
+    },
+    submit: () => {
+      if (!ready) {
+        return;
+      }
+
+      actionCache.set('submit');
+      formArrayRef.current[step].submit();
+      const currentSubmitter = formSubmitterRef.current[step];
+      currentSubmitter && currentSubmitter?.onSubmit?.();
+    },
+    reset: () => {
+      if (!ready) {
+        return;
+      }
+
+      setStep(current);
+      formDataRef.current = {};
+      formArrayRef.current.forEach((item) => {
+        item?.resetFields();
+      });
+    },
+  }));
 
   return (
     <div className={prefixCls}>
