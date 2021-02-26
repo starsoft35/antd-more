@@ -175,13 +175,13 @@ const columns: BizColumnType<DataItem> = [
     title: "自定义滑动条",
     search: {
       render: (columnItem, dom, form) => (
-        <BizForm.Item name={columnItem.dataIndex} label={columnItem.title}>
+        <BizForm.Item name={columnItem.dataIndex} label={columnItem.title} colProps={{ lg: 12, md: 24 }}>
           <Slider />
         </BizForm.Item>
       )
     },
     table: false,
-    order: 1
+    order: 3
   }
 ];
 

@@ -21,10 +21,8 @@ const prefixCls = 'antd-more-table';
 export declare interface BizTableProps<RecordType = any>
   extends Omit<TableProps<RecordType>, 'columns'>,
     Pick<SearchFormProps, 'formItems'> {
-  formRef?:
-    | React.MutableRefObject<FormInstance | undefined>
-    | ((instance: FormInstance<any>) => void);
-  actionRef?: React.MutableRefObject<ActionType | undefined> | ((actionRef: ActionType) => void);
+  formRef?: React.MutableRefObject<FormInstance | undefined>;
+  actionRef?: React.MutableRefObject<ActionType | undefined>;
   columns?: BizColumnType<RecordType>;
   ready?: boolean;
   autoRequest?: boolean;
@@ -230,8 +228,6 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
     );
   }, [searchItems, formItems]);
 
-  const innerActionRef = React.useRef<ActionType | undefined>();
-
   const { data, loading, run, onTableChange, pagination: pageRet } = usePagination<RecordType>(
     request,
     {
@@ -297,7 +293,7 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
     [run],
   );
 
-  React.useImperativeHandle(actionRef || innerActionRef, () => ({
+  React.useImperativeHandle(actionRef, () => ({
     reload: handleReload,
     reset: handleReset,
     submit: handleSubmit,

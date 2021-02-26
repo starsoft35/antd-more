@@ -18,10 +18,6 @@ const request: BizTableRequest = (params) => {
 
 // 部分场景下外部封装BizTable中使用操作，推荐
 const DefineTable: React.FC<BizTableProps> = ({ actionRef, ...restProps }) => {
-  const innerActionRef = React.useRef<ActionType | undefined>();
-
-  React.useImperativeHandle(actionRef, () => innerActionRef.current);
-
   const columns = React.useMemo(() => ([
     {
       title: '序号',
@@ -35,7 +31,7 @@ const DefineTable: React.FC<BizTableProps> = ({ actionRef, ...restProps }) => {
     {
       title: '操作',
       render: () => (
-        <a onClick={innerActionRef.current.reload}>刷新</a>
+        <a onClick={actionRef.current.reload}>刷新</a>
       )
     }
   ]), []);
@@ -46,7 +42,7 @@ const DefineTable: React.FC<BizTableProps> = ({ actionRef, ...restProps }) => {
       request={request}
       pagination={false}
       rowKey="name"
-      actionRef={innerActionRef}
+      actionRef={actionRef}
       {...restProps}
     />
   );
