@@ -61,16 +61,17 @@ ReactDon.render(<BizField value="red" valueType="color" />, mountNode);
 
 ## API
 
-- **业务组件**
-  - [BizDescriptions] - 描述
-  - [BizField] - 字段
-  - [BizForm] - 表单
-  - [BizTable] - 表格
-  - [EditableBizTable] - 可编辑表格
-- **通用组件**
-  - [CaptchaButton] - 验证码按钮
-  - [Color] - 颜色显示、选择器
-  - [Dictionary] - 数据字典
+- **数据展示**
+  - [BizDescriptions] - 业务描述
+  - [BizField] - 业务字段
+  - [BizTable] - 业务表格
+  - [EditableBizTable] - 可编辑业务表格
+- **数据录入**
+  - [BizForm] - 业务表单
+  - [Item] - 表单项
+  - [Modal/Drawer] - 浮层表单
+  - [QueryForm] - 查询表单
+  - [StepsForm] - 分步表单
 
 ## 精选第三方 react 组件
 
@@ -125,24 +126,29 @@ npm run commit
 [npm]: https://img.shields.io/npm/v/antd-more.svg
 [npm-url]: https://npmjs.com/package/antd-more
 
-[site]: https://doly-dev.github.io/antd-more/site/v1/index.html
+[site]: /antd-more/site/v1/index.html
 [babel-plugin-import]: https://www.npmjs.com/package/babel-plugin-import
 
 [doly]: https://www.npmjs.com/package/doly-cli
 [umi]: https://umijs.org/zh-CN
 [antd]: https://ant-design.gitee.io
 
-[CaptchaButton]: https://doly-dev.github.io/antd-more/site/v1/index.html#/common/captcha-button
-[Color]: https://doly-dev.github.io/antd-more/site/v1/index.html#/common/color
-[Dictionary]: https://doly-dev.github.io/antd-more/site/v1/index.html#/common/dictionary
+[CaptchaButton]: /antd-more/site/v1/index.html#/common/captcha-button
+[Color]: /antd-more/site/v1/index.html#/common/color
+[Dictionary]: /antd-more/site/v1/index.html#/common/dictionary
 
-[BizDescriptions]: https://doly-dev.github.io/antd-more/site/v1/index.html#/business/biz-descriptions
-[BizField]: https://doly-dev.github.io/antd-more/site/v1/index.html#/business/biz-field
-[BizForm]: https://doly-dev.github.io/antd-more/site/v1/index.html#/business/biz-form
-[BizTable]: https://doly-dev.github.io/antd-more/site/v1/index.html#/business/biz-table
-[EditableBizTable]: https://doly-dev.github.io/antd-more/site/v1/index.html#/business/editable-biz-table
+[BizDescriptions]: /antd-more/site/v1/index.html#/dataview/biz-descriptions
+[BizField]: /antd-more/site/v1/index.html#/dataview/biz-field
+[BizTable]: /antd-more/site/v1/index.html#/dataview/biz-table
+[EditableBizTable]: /antd-more/site/v1/index.html#/dataview/editable-biz-table
+
+[BizForm]: /antd-more/site/v1/index.html#/form/biz-form
+[Item]: /antd-more/site/v1/index.html#/form/item
+[Modal/Drawer]: /antd-more/site/v1/index.html#/form/modal-form
+[QueryForm]: /antd-more/site/v1/index.html#/form/query-form
+[StepsForm]: /antd-more/site/v1/index.html#/form/steps-form
+
 [What is commitlint]: https://github.com/conventional-changelog/commitlint#what-is-commitlint
-
 
 [qrcode.react]: https://www.npmjs.com/package/qrcode.react
 [wangeditor]: https://www.npmjs.com/package/wangeditor

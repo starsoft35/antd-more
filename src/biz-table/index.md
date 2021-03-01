@@ -1,13 +1,13 @@
 ---
-title: BizTable
+title: BizTable - 业务表格
 group:
-  title: 业务组件
-  path: /business
+  title: 数据展示
+  path: /dataview
   order: 0
-legacy: /business/biz-table
+legacy: /dataview/biz-table
 ---
 
-# BizTable
+# BizTable - 业务表格
 
 基于 antd Table 扩展了表单（BizForm）、字段（BizField）、分页等功能。
 
@@ -53,7 +53,7 @@ legacy: /business/biz-table
 
 ### BizTable
 
-除了以下参数，其余和 [`antd Table`](https://ant-design.gitee.io/components/table-cn/#API) 组件一样。
+除了以下参数，其余和 antd [Table](https://ant-design.gitee.io/components/table-cn/#API) 组件一样。
 
 参数 | 说明 | 类型 | 默认值 |
 ------------- | ------------- | ------------- | ------------- |

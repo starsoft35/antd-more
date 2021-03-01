@@ -5,6 +5,7 @@ group:
   path: /common
   order: 2
 legacy: /common/captcha-button
+hide: true
 ---
 
 # CaptchaButton
@@ -30,7 +31,7 @@ legacy: /common/captcha-button
 
 ## API
 
-除了以下参数，其余和 [`antd Button`](https://ant.design/components/button-cn/) 组件一样。
+除了以下参数，其余和 antd [Button](https://ant.design/components/button-cn/) 组件一样。
 
 参数 | 说明 | 类型 | 默认值 |
 ------------- | ------------- | ------------- | ------------- |

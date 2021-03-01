@@ -5,6 +5,7 @@ group:
   path: /common
   order: 2
 legacy: /common/color
+hide: true
 ---
 
 # Color

@@ -1,13 +1,13 @@
 ---
-title: BizField
+title: BizField - 业务字段
 group:
-  title: 业务组件
-  path: /business
-  order: 0
-legacy: /business/biz-field
+  title: 数据展示
+  path: /dataview
+legacy: /dataview/biz-field
+order: 0
 ---
 
-# BizField
+# BizField - 业务字段
 
 业务常见字段显示。
 
@@ -43,8 +43,8 @@ valueEnum  | 包含 `value` `name` 的数据字典。<br/>当 `valueType` 为 `e
 
 类型 | 描述 | 示例 |
 ------------- | ------------- | ------------- |
-text  | 默认不做处理，当值为 [`Falsy`](https://developer.mozilla.org/zh-CN/docs/Glossary/Falsy) 时，显示 `-` | - |
-money  | 金额 | 100.00 |
+text  | 默认不做处理，当值为 [Falsy](https://developer.mozilla.org/zh-CN/docs/Glossary/Falsy) 时，显示 `-` | - |
+money  | 金额 | - |
 index  | 序列号 | - |
 indexBorder  | 带 border 的序列号 | - |
 progress  | 进度条 | - |
@@ -63,7 +63,7 @@ dateTime  | 日期时间 `YYYY-MM-DD HH:mm:ss` | 2020-10-10 00:00:00 |
 dateTimeRange  | 日期时间区间 `YYYY-MM-DD HH:mm:ss ~ YYYY-MM-DD HH:mm:ss` | 2020-10-10 00:00:00 ~ 2020-12-12 00:00:00 |
 time  | 时间 `HH:mm:ss` | 10:05:20 |
 timeRange  | 时间区间 `HH:mm:ss ~ HH:mm:ss` | 10:05:20 ~ 20:00:00 |
-fromNow  | 相对当前时间，使用 `moment` [`fromNow`](http://momentjs.cn/docs/#/displaying/fromnow/) 方法 | - |
+fromNow  | 相对当前时间，使用 `moment` [fromNow](http://momentjs.cn/docs/#/displaying/fromnow/) 方法 | 5 个月前 |
 
 <br/>
 
@@ -114,7 +114,7 @@ type EnumData = EnumItem[];
 
 ### 个别 ValueType 的 API
 
-#### text 和 money
+#### text、money
 
 参数 | 说明 | 类型 | 默认值 |
 ------------- | ------------- | ------------- | ------------- |
@@ -142,19 +142,33 @@ format  | 设置日期或时间格式 | `string` | - |
 
 参数 | 说明 | 类型 | 默认值 |
 ------------- | ------------- | ------------- | ------------- |
-value  | 如果为 `string`，表示为 `src`。<br/>如果为 `object` 需传入 `src`，也支持传入 `name`。 | `string` \| `{ src: string; name?: string; }` | - |
-bordered  | 显示边框。高和宽将保持一致，以正方形方式呈现，图片根据最长的宽或高自适应。 | `boolean` | `false` |
+value  | 图片地址。<br/>如果为 `string`，表示为 `src`。<br/>如果为 `object` 需传入 `src`，也支持传入 `name`。 | `string` \| `{ src: string; name?: string; }` | - |
+width  | 图片宽度 | `string` \| `number` | `100` |
+bordered  | 显示边框。以正方形方式呈现，图片根据最长的宽或高自适应。 | `boolean` | `false` |
 
-其余同 [`Image`](https://ant-design.gitee.io/components/image-cn/#API) 。
+其余同 antd [Image](https://ant-design.gitee.io/components/image-cn/#API) 。
 
 #### progress
 
-同 [`Progress`](https://ant-design.gitee.io/components/progress-cn/#API) 。
+同 antd [Progress](https://ant-design.gitee.io/components/progress-cn/#API) 。
 
 #### enum、enumTag、enumBadge
 
-枚举数据改为 `valueEnum` 传入，其余同 [`Dictionary`](https://doly-dev.github.io/antd-more/site/v1/index.html#/common/dictionary?anchor=dictionary-1) 。
+需配合 `valueEnum` 使用。
+
+`align` `direction` `size` 仅在 value 为数组时生效。
+
+参数 | 说明 | 类型 | 默认值 |
+------------- | ------------- | ------------- | ------------- |
+value  | 字典值 | `ReactText` \| `ReactText[]` | - |
+defaultName  | 当找不到值对应的名称时，显示默认名称 | `string` | `-` |
+align  | 对齐方式 | `start` \| `end` \| `center` \| `baseline` | `start` |
+direction  | 间距方向 `vertical` `horizontal` | `string` | `horizontal` |
+size  | 间距大小，支持 `small` `middle` `large` 或 数值 | `string` \| `number` | `small` |
 
 #### color
 
-同 [`Color`](https://doly-dev.github.io/antd-more/site/v1/index.html#/common/color?anchor=api) 。
+参数      | 说明      | 类型   | 默认值    |
+--------- | --------- | --------- | --------- |
+value     | 颜色值 | `string`  | - |
+showText  | 显示颜色值文本 | `boolean` | `false` |

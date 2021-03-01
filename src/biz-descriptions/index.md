@@ -1,13 +1,13 @@
 ---
-title: BizDescriptions
+title: BizDescriptions - 业务描述
 group:
-  title: 业务组件
-  path: /business
-  order: 0
-legacy: /business/biz-descriptions
+  title: 数据展示
+  path: /dataview
+legacy: /dataview/biz-descriptions
+order: 10
 ---
 
-# BizDescriptions
+# BizDescriptions - 业务描述
 
 基于 Descriptions 扩展了 字段（BizField）、columns 列展示。
 

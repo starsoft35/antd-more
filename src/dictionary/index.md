@@ -5,6 +5,7 @@ group:
   path: /common
   order: 2
 legacy: /common/dictionary
+hide: true
 ---
 
 # Dictionary
@@ -98,7 +99,7 @@ value  | 字典值数组 | `any[]` | `[]` |
 
 ### Dictionary.Select
 
-除了以下参数，其余和 [`antd Select`](https://ant.design/components/select-cn/) 组件一样。如需支持多选，可设置 `mode`。
+除了以下参数，其余和 antd [Select](https://ant.design/components/select-cn/) 组件一样。如需支持多选，可设置 `mode`。
 
 参数 | 说明 | 类型 | 默认值 |
 ------------- | ------------- | ------------- | ------------- |
@@ -111,7 +112,7 @@ excludeValues | 排除的值 | `any[]` | `[]` |
 
 ### Dictionary.Radio
 
-除了以下参数，其余和 [`antd RadioGroup`](https://ant.design/components/radio-cn/#RadioGroup) 组件一样。
+除了以下参数，其余和 antd [RadioGroup](https://ant.design/components/radio-cn/#RadioGroup) 组件一样。
 
 参数 | 说明 | 类型 | 默认值 |
 ------------- | ------------- | ------------- | ------------- |
