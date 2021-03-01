@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Drawer, Form } from 'antd';
+import { useUpdateEffect } from 'rc-hooks';
 import { DrawerProps } from 'antd/es/drawer';
 import { isPromiseLike } from 'util-helpers';
 import BaseForm, { BaseFormProps } from './BaseForm';
@@ -18,7 +19,7 @@ const DrawerForm: React.FC<DrawerFormProps> = ({
   width,
   trigger,
   drawerProps,
-  visible: outVisible = false,
+  visible: outVisible,
   onVisibleChange = () => {},
   children,
   submitter,
@@ -26,12 +27,22 @@ const DrawerForm: React.FC<DrawerFormProps> = ({
   form: formProp,
   ...restProps
 }) => {
-  const [visible, setVisible] = React.useState(outVisible);
+  const [visible, setVisible] = React.useState(outVisible || false);
   const [form] = Form.useForm();
   const formRef = React.useRef(formProp || form);
 
+  // 受控时，外部的visible改变后，内部改变visible值
   React.useEffect(() => {
-    onVisibleChange(visible);
+    if (typeof outVisible !== 'undefined') {
+      setVisible(outVisible);
+    }
+  }, [outVisible]);
+
+  // 非受控时，内部的visible改变后，执行onVisibleChange
+  useUpdateEffect(() => {
+    if (typeof outVisible === 'undefined') {
+      onVisibleChange?.(visible);
+    }
   }, [visible]);
 
   React.useEffect(() => {
@@ -39,6 +50,14 @@ const DrawerForm: React.FC<DrawerFormProps> = ({
       formRef.current.resetFields();
     }
   }, [visible, drawerProps?.destroyOnClose]);
+
+  const changeVisible = (isVisible) => {
+    if (typeof outVisible !== 'undefined') {
+      onVisibleChange?.(isVisible);
+    } else {
+      setVisible(isVisible);
+    }
+  };
 
   return (
     <>
@@ -51,7 +70,7 @@ const DrawerForm: React.FC<DrawerFormProps> = ({
             ret = await ret;
           }
           if (ret !== false) {
-            setVisible(false);
+            changeVisible(false);
             formRef.current.resetFields();
           }
         }}
@@ -64,7 +83,7 @@ const DrawerForm: React.FC<DrawerFormProps> = ({
             ...(submitter ? submitter?.resetButtonProps : {}),
             onClick: (e: any) => {
               drawerProps?.onClose?.(e);
-              setVisible(false);
+              changeVisible(false);
               submitter && submitter?.resetButtonProps?.onClick?.(e);
             },
           },
@@ -92,7 +111,7 @@ const DrawerForm: React.FC<DrawerFormProps> = ({
               </div>
             }
             onClose={(e) => {
-              setVisible(false);
+              changeVisible(false);
               drawerProps?.onClose?.(e);
             }}
           >
@@ -107,7 +126,7 @@ const DrawerForm: React.FC<DrawerFormProps> = ({
         React.cloneElement(trigger, {
           ...trigger.props,
           onClick: (e) => {
-            setVisible(true);
+            changeVisible(true);
             trigger.props?.onClick?.(e);
           },
         })}
