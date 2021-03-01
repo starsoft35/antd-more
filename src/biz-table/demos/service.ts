@@ -1,4 +1,3 @@
-import moment from 'moment';
 import Mock from 'mockjs';
 
 const applyList = ({ page: { pageNum, pageSize }, data = {} }) => (
@@ -7,8 +6,8 @@ const applyList = ({ page: { pageNum, pageSize }, data = {} }) => (
       applyCode: '@word(6)',
       applicantName: '@cname',
       approverName: '@cname',
-      createTime: moment().format("YYYY-MM-DD HH:mm:ss"),
-      approveTime: moment().format("YYYY-MM-DD HH:mm:ss"),
+      createTime: '@datetime',
+      approveTime: '@datetime',
       "approveResult|1-3": 1
     }],
     pageInfo: {

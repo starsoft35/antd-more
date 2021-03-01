@@ -56,7 +56,7 @@ stepsRender  | 自定义步骤器 | `(stepsProps: StepsProps,stepsDom: React.Rea
 stepFormRender  | 自定义每个表单 | `(formDom: React.ReactNode)=>React.ReactNode` | - |
 stepsFormRender  | 自定义整个表单 | `(stepsDom: React.ReactNode, formDom: React.ReactNode, submitterDom: React.ReactNode)=>React.ReactNode` | - |
 
-#### StepsForm.StepForm
+### StepsForm.StepForm
 
 基于 BizForm 扩展的表单，没有 `onReset` `resetText` `ready`， 除了以下参数，其余和 BizForm 一样。
 
@@ -69,7 +69,7 @@ description  | 步骤的详情描述，可选 | `React.ReactNode` | - |
 stepProps  | 步骤条内的当前步骤配置。 | [Steps.Spep](https://ant.design/components/steps-cn/#Steps.Step) | - |
 submitter  | 上一步、下一步、提交按钮的配置。会与 StepsForm 的 submitter 合并，优先级更高。 | `StepsSubmitterProps` | - |
 
-#### StepsSubmitterProps
+### StepsSubmitterProps
 
 参数 | 说明 | 类型 | 默认值 |
 ------------- | ------------- | ------------- | ------------- |
@@ -89,7 +89,7 @@ submitButtonProps  | 提交按钮属性，和 antd [Button](https://ant-design.g
 forceShowSubmit  | 强制显示提交按钮 | `boolean` | - |
 render  | 自定义操作的渲染 | `false` \| `(props,dom:JSX[])=>ReactNode[]` | - |
 
-#### StepsForm actionRef 说明
+### actionRef
 
 ```typescript
 // import { StepsFormActionType } from 'antd-more/es/biz-form';
