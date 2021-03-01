@@ -32,18 +32,14 @@ const DrawerForm: React.FC<DrawerFormProps> = ({
   const formRef = React.useRef(formProp || form);
 
   // 受控时，外部的visible改变后，内部改变visible值
-  React.useEffect(() => {
-    if (typeof outVisible !== 'undefined') {
-      setVisible(outVisible);
-    }
-  }, [outVisible]);
-
   // 非受控时，内部的visible改变后，执行onVisibleChange
   useUpdateEffect(() => {
     if (typeof outVisible === 'undefined') {
       onVisibleChange?.(visible);
+    } else {
+      setVisible(outVisible);
     }
-  }, [visible]);
+  }, [visible, outVisible]);
 
   React.useEffect(() => {
     if (!visible && drawerProps?.destroyOnClose) {
