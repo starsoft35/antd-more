@@ -133,20 +133,20 @@ npm run commit
 [umi]: https://umijs.org/zh-CN
 [antd]: https://ant-design.gitee.io
 
-[CaptchaButton]: https://doly-dev.github.io/antd-more/site/v1/index.html#/common/captcha-button
-[Color]: https://doly-dev.github.io/antd-more/site/v1/index.html#/common/color
-[Dictionary]: https://doly-dev.github.io/antd-more/site/v1/index.html#/common/dictionary
+[CaptchaButton]: /common/captcha-button
+[Color]: /common/color
+[Dictionary]: /common/dictionary
 
-[BizDescriptions]: https://doly-dev.github.io/antd-more/site/v1/index.html#/dataview/biz-descriptions
-[BizField]: https://doly-dev.github.io/antd-more/site/v1/index.html#/dataview/biz-field
-[BizTable]: https://doly-dev.github.io/antd-more/site/v1/index.html#/dataview/biz-table
-[EditableBizTable]: https://doly-dev.github.io/antd-more/site/v1/index.html#/dataview/editable-biz-table
+[BizDescriptions]: /dataview/biz-descriptions
+[BizField]: /dataview/biz-field
+[BizTable]: /dataview/biz-table
+[EditableBizTable]: /dataview/editable-biz-table
 
-[BizForm]: https://doly-dev.github.io/antd-more/site/v1/index.html#/form/biz-form
-[Item]: https://doly-dev.github.io/antd-more/site/v1/index.html#/form/item
-[Modal/Drawer]: https://doly-dev.github.io/antd-more/site/v1/index.html#/form/modal-form
-[QueryForm]: https://doly-dev.github.io/antd-more/site/v1/index.html#/form/query-form
-[StepsForm]: https://doly-dev.github.io/antd-more/site/v1/index.html#/form/steps-form
+[BizForm]: /form/biz-form
+[Item]: /form/item
+[Modal/Drawer]: /form/modal-form
+[QueryForm]: /form/query-form
+[StepsForm]: /form/steps-form
 
 [What is commitlint]: https://github.com/conventional-changelog/commitlint#what-is-commitlint
 

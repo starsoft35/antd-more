@@ -8,9 +8,9 @@ legacy: /form/steps-form
 
 # StepsForm - 分步表单
 
-StepsForm 定义了 Context，分别处理 StepsForm.StepForm 的表单提交和汇总。
+`StepsForm` 定义了 `Context`，分别处理 `StepsForm.StepForm` 的表单提交和汇总。
 
-StepsForm.StepForm 基于 BizForm 扩展了的分步表单。
+`StepsForm.StepForm` 基于 BizForm 扩展了的分步表单。
 
 ## 代码演示
 
