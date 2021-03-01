@@ -126,27 +126,27 @@ npm run commit
 [npm]: https://img.shields.io/npm/v/antd-more.svg
 [npm-url]: https://npmjs.com/package/antd-more
 
-[site]: /antd-more/site/v1/index.html
+[site]: https://doly-dev.github.io/antd-more/site/v1/index.html
 [babel-plugin-import]: https://www.npmjs.com/package/babel-plugin-import
 
 [doly]: https://www.npmjs.com/package/doly-cli
 [umi]: https://umijs.org/zh-CN
 [antd]: https://ant-design.gitee.io
 
-[CaptchaButton]: /antd-more/site/v1/index.html#/common/captcha-button
-[Color]: /antd-more/site/v1/index.html#/common/color
-[Dictionary]: /antd-more/site/v1/index.html#/common/dictionary
+[CaptchaButton]: https://doly-dev.github.io/antd-more/site/v1/index.html#/common/captcha-button
+[Color]: https://doly-dev.github.io/antd-more/site/v1/index.html#/common/color
+[Dictionary]: https://doly-dev.github.io/antd-more/site/v1/index.html#/common/dictionary
 
-[BizDescriptions]: /antd-more/site/v1/index.html#/dataview/biz-descriptions
-[BizField]: /antd-more/site/v1/index.html#/dataview/biz-field
-[BizTable]: /antd-more/site/v1/index.html#/dataview/biz-table
-[EditableBizTable]: /antd-more/site/v1/index.html#/dataview/editable-biz-table
+[BizDescriptions]: https://doly-dev.github.io/antd-more/site/v1/index.html#/dataview/biz-descriptions
+[BizField]: https://doly-dev.github.io/antd-more/site/v1/index.html#/dataview/biz-field
+[BizTable]: https://doly-dev.github.io/antd-more/site/v1/index.html#/dataview/biz-table
+[EditableBizTable]: https://doly-dev.github.io/antd-more/site/v1/index.html#/dataview/editable-biz-table
 
-[BizForm]: /antd-more/site/v1/index.html#/form/biz-form
-[Item]: /antd-more/site/v1/index.html#/form/item
-[Modal/Drawer]: /antd-more/site/v1/index.html#/form/modal-form
-[QueryForm]: /antd-more/site/v1/index.html#/form/query-form
-[StepsForm]: /antd-more/site/v1/index.html#/form/steps-form
+[BizForm]: https://doly-dev.github.io/antd-more/site/v1/index.html#/form/biz-form
+[Item]: https://doly-dev.github.io/antd-more/site/v1/index.html#/form/item
+[Modal/Drawer]: https://doly-dev.github.io/antd-more/site/v1/index.html#/form/modal-form
+[QueryForm]: https://doly-dev.github.io/antd-more/site/v1/index.html#/form/query-form
+[StepsForm]: https://doly-dev.github.io/antd-more/site/v1/index.html#/form/steps-form
 
 [What is commitlint]: https://github.com/conventional-changelog/commitlint#what-is-commitlint
 
