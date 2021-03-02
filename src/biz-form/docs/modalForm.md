@@ -40,6 +40,8 @@ import { BizForm } from 'antd-more';
 const { ModalForm } = BizForm;
 ```
 
+除了以下参数，其余和 BizForm 一样。
+
 参数 | 说明 | 类型 | 默认值 |
 ------------- | ------------- | ------------- | ------------- |
 title  | `Modal` 标题 | `React.ReactNode` | - |
@@ -55,6 +57,8 @@ onFinish  | 提交数据时触发，如果返回不是 `false`，会关掉弹框
 ```typescript
 const { DrawerForm } = BizForm;
 ```
+
+除了以下参数，其余和 BizForm 一样。
 
 参数 | 说明 | 类型 | 默认值 |
 ------------- | ------------- | ------------- | ------------- |
