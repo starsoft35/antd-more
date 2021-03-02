@@ -132,7 +132,7 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
 
             onChange({
               file,
-              fileList: fileListRef.current,
+              fileList: [...fileListRef.current],
             });
           })
           .catch((err) => {
@@ -152,7 +152,7 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
 
             onChange({
               file,
-              fileList: fileListRef.current,
+              fileList: [...fileListRef.current],
             });
           });
       } else {
@@ -168,7 +168,7 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
         });
         onChange({
           file,
-          fileList: fileListRef.current,
+          fileList: [...fileListRef.current],
         });
       }
     },
@@ -191,7 +191,7 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
         actionRef.current = 'normal';
         onChange({
           file,
-          fileList: fileListRef.current,
+          fileList: [...fileListRef.current],
         });
         return;
       }
@@ -207,7 +207,7 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
           currentFileList.find((item) => item.uid === file.uid),
         ];
       } else {
-        fileListRef.current = currentFileList;
+        fileListRef.current = currentFileList || [];
       }
 
       if (actionRef.current === 'upload') {
@@ -231,7 +231,7 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
 
       onChange({
         file,
-        fileList: fileListRef.current,
+        fileList: [...fileListRef.current],
       });
     },
     [fileList, only],
