@@ -10,6 +10,12 @@
 import * as React from 'react';
 import { BizForm } from 'antd-more';
 
+function waitTime(time: number = 1000) {
+  return new Promise(resolve => {
+    setTimeout(resolve, time);
+  });
+}
+
 const { ItemInput } = BizForm;
 
 type FormValuesType = {
@@ -47,7 +53,8 @@ const Demo: React.FC = () => {
       form={form}
       ready={ready}
       initialValues={initialValues}
-      onFinish={(values) => {
+      onFinish={async (values) => {
+        await waitTime();
         console.log(values);
       }}
       submitter={{

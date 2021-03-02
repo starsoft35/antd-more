@@ -68,7 +68,8 @@ const Demo: React.FC = () => {
       </div>
       <BizForm
         name="biz-form-demo1"
-        onFinish={(values) => {
+        onFinish={async (values) => {
+          await waitTime();
           console.log(values);
         }}
         labelWidth={110}

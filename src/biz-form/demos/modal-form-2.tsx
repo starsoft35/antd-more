@@ -1,14 +1,14 @@
 import * as React from 'react';
-import { Button, Space } from 'antd';
+import { Button, Space, message } from 'antd';
 import { BizForm } from 'antd-more';
-
-const { ModalForm, DrawerForm, ItemInput, ItemSelect, ItemNumber, ItemUpload, ItemTextArea } = BizForm;
 
 function waitTime(time: number = 1000) {
   return new Promise(resolve => {
     setTimeout(resolve, time);
   })
 }
+
+const { ModalForm, DrawerForm, ItemInput, ItemSelect, ItemNumber, ItemUpload, ItemTextArea } = BizForm;
 
 const BillAccountName = [
   {
@@ -36,6 +36,7 @@ const Demo: React.FC = () => {
         onFinish={async (values) => {
           await waitTime(2000);
           console.log(values);
+          message.success('提交成功');
         }}
         labelWidth={112}
         visible={visibleModal}

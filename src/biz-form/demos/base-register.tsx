@@ -2,13 +2,20 @@ import * as React from 'react';
 import { BizForm } from 'antd-more';
 import lcnFormInlandData from 'lcn/lcn-form-inland';
 
+function waitTime(time: number = 1000) {
+  return new Promise(resolve => {
+    setTimeout(resolve, time);
+  });
+}
+
 const { ItemInput, ItemAddress, ItemPassword } = BizForm;
 
 const RegisterDemo: React.FC = () => {
   return (
     <BizForm
       name="base-register"
-      onFinish={values => {
+      onFinish={async (values) => {
+        await waitTime(2000);
         console.log(values);
       }}
     >

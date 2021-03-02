@@ -6,13 +6,20 @@
 import * as React from 'react';
 import { BizForm } from 'antd-more';
 
+function waitTime(time: number = 1000) {
+  return new Promise(resolve => {
+    setTimeout(resolve, time);
+  })
+}
+
 const { ItemUpload } = BizForm;
 
 const Demo: React.FC = () => {
   return (
     <BizForm
       name="upload-no-upload"
-      onFinish={(values) => {
+      onFinish={async (values) => {
+        await waitTime();
         console.log(values);
       }}
       labelWidth={98}

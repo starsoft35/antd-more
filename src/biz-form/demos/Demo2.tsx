@@ -1,13 +1,22 @@
 import * as React from 'react';
 import { BizForm } from 'antd-more';
 
+function waitTime(time: number = 1000) {
+  return new Promise(resolve => {
+    setTimeout(resolve, time);
+  });
+}
+
 const { QueryForm, ItemInput, ItemDate, ItemDateRange } = BizForm;
 
 const Demo: React.FC = () => {
   return (
     <QueryForm
       name="biz-form-demo2"
-      onFinish={values => console.log(values)}
+      onFinish={async (values) => {
+        await waitTime();
+        console.log(values)
+      }}
       labelWidth={80}
       defaultColsNumber={2}
     >

@@ -2,13 +2,13 @@ import * as React from 'react';
 import { message } from 'antd';
 import { BizForm } from 'antd-more';
 
-const { StepsForm, ItemInput, ItemSelect, ItemNumber, ItemUpload, ItemTextArea } = BizForm;
-
 function waitTime(time: number = 1000) {
   return new Promise(resolve => {
     setTimeout(resolve, time);
   })
 }
+
+const { StepsForm, ItemInput, ItemSelect, ItemNumber, ItemUpload, ItemTextArea } = BizForm;
 
 const BillAccountName = [
   {

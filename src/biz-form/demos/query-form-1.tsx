@@ -1,6 +1,12 @@
 import * as React from 'react';
 import { BizForm } from 'antd-more';
 
+function waitTime(time: number = 1000) {
+  return new Promise(resolve => {
+    setTimeout(resolve, time);
+  });
+}
+
 const { QueryForm, ItemInput, ItemDate, ItemDateRange } = BizForm;
 
 const Demo: React.FC = () => {
@@ -10,7 +16,8 @@ const Demo: React.FC = () => {
     <QueryForm
       name="query-form-1"
       form={form}
-      onFinish={values => {
+      onFinish={async (values) => {
+        await waitTime();
         console.log(values);
       }}
     >

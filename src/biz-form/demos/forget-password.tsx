@@ -2,6 +2,12 @@ import * as React from 'react';
 import { message } from 'antd';
 import { BizForm } from 'antd-more';
 
+function waitTime(time: number = 1000) {
+  return new Promise(resolve => {
+    setTimeout(resolve, time);
+  });
+}
+
 function sendCaptcha(mobile) {
   return new Promise<void>(resolve => {
     setTimeout(() => {
@@ -18,6 +24,10 @@ const ForgetPassword: React.FC = () => {
   return (
     <BizForm
       name="form-forget-password"
+      onFinish={async (values)=>{
+        await waitTime();
+        console.log(values);
+      }}
       submitter={{
         submitText: "确定",
         noReset: true

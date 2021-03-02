@@ -11,6 +11,12 @@ import * as React from 'react';
 import { BizForm } from 'antd-more';
 import { UploadFile } from 'antd/es/upload/interface';
 
+function waitTime(time: number = 1000) {
+  return new Promise(resolve => {
+    setTimeout(resolve, time);
+  })
+}
+
 const { ItemUpload } = BizForm;
 
 // 上传图片
@@ -45,7 +51,8 @@ const Demo: React.FC = () => {
   return (
     <BizForm
       name="upload-real-time"
-      onFinish={(values) => {
+      onFinish={async (values) => {
+        await waitTime();
         console.log(values);
       }}
       labelWidth={98}

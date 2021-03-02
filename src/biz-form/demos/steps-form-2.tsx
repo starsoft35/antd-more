@@ -3,13 +3,13 @@ import { message } from 'antd';
 import { SafetyCertificateOutlined, MobileOutlined, LockOutlined } from '@ant-design/icons';
 import { BizForm } from 'antd-more';
 
-const { StepsForm, ItemInput, ItemCaptcha, ItemPassword } = BizForm;
-
 function waitTime(time: number = 1000) {
   return new Promise(resolve => {
     setTimeout(resolve, time);
   })
 }
+
+const { StepsForm, ItemInput, ItemCaptcha, ItemPassword } = BizForm;
 
 const TipText: React.FC = ({ children }) => {
   return (

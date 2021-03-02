@@ -1,6 +1,6 @@
 import * as React from 'react';
+import { Button, message } from 'antd';
 import { BizForm } from 'antd-more';
-import { Button } from 'antd';
 
 const { ModalForm, ItemInput, ItemSelect, ItemNumber, ItemUpload, ItemTextArea } = BizForm;
 
@@ -29,6 +29,7 @@ const Demo: React.FC = () => {
       onFinish={async (values) => {
         await waitTime(2000);
         console.log(values);
+        message.success('提交成功');
       }}
       labelWidth={112}
     >

@@ -62,8 +62,8 @@ ReactDon.render(<BizField value="red" valueType="color" />, mountNode);
 ## API
 
 - **数据展示**
-  - [BizDescriptions] - 业务描述
   - [BizField] - 业务字段
+  - [BizDescriptions] - 业务描述
   - [BizTable] - 业务表格
   - [EditableBizTable] - 可编辑业务表格
 - **数据录入**
