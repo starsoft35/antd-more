@@ -62,7 +62,7 @@ export interface EditableBizTableProps<RecordType extends object = any>
 }
 
 const EditableBizTable = <RecordType extends object = any>({
-  value: outValue = [],
+  value: outValue,
   dataSource,
   onValuesChange,
   editable,
@@ -75,7 +75,7 @@ const EditableBizTable = <RecordType extends object = any>({
 }: EditableBizTableProps<RecordType>) => {
   const [form] = BizForm.useForm();
   const formName = React.useMemo(() => createUniqueId(), []);
-  const [value, setValue] = React.useState(outValue);
+  const [value, setValue] = React.useState(outValue || []);
   const [newRecords, setNewRecords] = React.useState<
     { index: number; rowKey: Key; recordConfig: Partial<RecordType> }[]
   >([]); // 新增记录
@@ -89,12 +89,33 @@ const EditableBizTable = <RecordType extends object = any>({
     return () => unregChildForm?.(formName);
   }, []);
 
+  const changeValue = (val) => {
+    if (
+      typeof outValue !== 'undefined' &&
+      typeof onChange === 'function' &&
+      typeof onValuesChange !== 'function'
+    ) {
+      onChange?.(val);
+    } else {
+      setValue(val);
+    }
+  };
+
   useUpdateEffect(() => {
-    onChange?.(value);
-  }, [value]);
-  useUpdateEffect(() => {
-    setValue(value);
+    if (
+      typeof outValue !== 'undefined' &&
+      typeof onChange === 'function' &&
+      typeof onValuesChange !== 'function'
+    ) {
+      setValue(outValue);
+    }
   }, [outValue]);
+
+  useUpdateEffect(() => {
+    if (typeof outValue === 'undefined') {
+      onChange?.(value);
+    }
+  }, [value]);
 
   // 转换值
   const transformRecordActionRef = React.useRef<any>();
@@ -234,7 +255,7 @@ const EditableBizTable = <RecordType extends object = any>({
     } else {
       newValue = value.map((item) => (getCurentRowKey(item) === rowKey ? fieldsValue : item));
     }
-    setValue(newValue);
+    changeValue(newValue);
     editable?.onChange?.(
       editable?.editableKeys.filter((item) => item !== rowKey),
       fieldsValue,
@@ -264,7 +285,7 @@ const EditableBizTable = <RecordType extends object = any>({
       );
     } else {
       const newValue = value.filter((item) => getCurentRowKey(item) !== rowKey);
-      setValue(newValue);
+      changeValue(newValue);
     }
     editable?.onChange?.(
       editable?.editableKeys.filter((item) => item !== rowKey),
@@ -374,7 +395,7 @@ const EditableBizTable = <RecordType extends object = any>({
         editableKeyMapRef={editableKeyMapRef}
         onDataSourceChange={(data) => {
           form.setFieldsValue({});
-          setValue(data);
+          changeValue(data);
           restProps?.onDataSourceChange?.(data);
           setNewRecords([]);
           // 手动触发

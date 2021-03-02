@@ -1,10 +1,9 @@
 import * as React from 'react';
 import { Button, Space } from 'antd';
-import { BizTable } from 'antd-more';
+import { BizTable, BizForm } from 'antd-more';
 import { EditableActionType, BizColumnType } from 'antd-more/es/biz-table';
 import Mock from 'mockjs';
 import { ApproveStatus } from './constants';
-import BizForm from '../../biz-form';
 
 const defaultData = Mock.mock({
   'list|2-5': [{

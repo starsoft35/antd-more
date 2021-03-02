@@ -108,6 +108,9 @@ const Demo: React.FC = () => {
       rowKey="applyCode"
       request={handleRequest}
       pagination={{ pageSize: 5 }}
+      onChange={(values) => {
+        console.log(values);
+      }}
       autoRequest
       editable={{
         editableKeys,

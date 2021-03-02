@@ -15,9 +15,10 @@ legacy: /dataview/editable-biz-table
 
 **注意说明**
 
+- 内部保存了两套数据，分别为 `已存在的数据`和`新增数据`。外部只能在同时设置 `value` 和 `onChange` 时控制已存在的数据。
+- `onValuesChange` 在新增和已存在数据编辑状态下有变动时触发。当存在 `onValuesChange` 时，已存在的数据将变为`不可控`。
+- 新增数据在 `editableActionRef.current.save` 之后才会变成已存在的数据。
 - 如果单行保存/删除需要同步服务端，请保证不要有同时触发多个异步保存或删除数据的情况（通过loading 或 判断操作数据数量），不然编辑状态可能会产生偏差。
-- 内部保存了两套数据（区分已存在和新增），所有操作都需通过 `editableActionRef` 来触发，避免数据异常。
-- 新增数据在 `editableActionRef.current.save` 之后才会改为已存在的数据。
 
 ## 代码演示
 
@@ -47,15 +48,23 @@ legacy: /dataview/editable-biz-table
 
 ## API
 
+```typescript
+import { BizTable } from 'antd-more';
+```
+
 ### EditableBizTable
+
+```typescript
+const { EditableBizTable } = BizTable;
+```
 
 除了以下参数，其余和 BizTable 一样。
 
 参数 | 说明 | 类型 | 默认值 |
 ------------- | ------------- | ------------- | ------------- |
 value  | 当前已存在的数据，同表格的 `dataSource` | `T[]` | - |
-onChange  | 新增数据保存时和已存在的数据进行修改和删除时触发 | `(values: T[])=>void` | - |
-onValuesChange  | 新增数据和已存在的数据有变动时触发，可用于实时数据 或 表单中。 | `(values: T[])=>void` | - |
+onChange  | dataSource 修改时，已存在的数据保存和删除时触发。<br/>如果设置了`value`，并且没有`onValuesChange`，将变为一个受控组件。 | `(values: T[])=>void` | - |
+onValuesChange  | 新增和已存在数据编辑状态下有变动时触发，可用于实时数据 或 表单中。<br/>设置该方法后，已存在的数据将变成不可控。 | `(values: T[])=>void` | - |
 editable  | 编辑表格的配置 | `EditableOptions` | - |
 
 
