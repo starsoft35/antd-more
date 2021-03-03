@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Row, Col, Space, Button } from 'antd';
-import { BizForm, BizTable } from 'antd-more';
+import { BizForm, BizTable, BizField } from 'antd-more';
 import { EditableActionType } from 'antd-more/es/biz-table';
 import Mock from 'mockjs';
 import { Bank } from './constants';
@@ -81,6 +81,17 @@ const Demo: React.FC = () => {
       ]
     },
     {
+      dataIndex: "tempId", // 任意的唯一值
+      title: "日期区间",
+      valueType: "dateRange",
+      width: 300,
+      render: (text, record) => <BizField value={[record.startDate, record.endDate]} valueType="dateRange" />,
+      editable: (text, record) => ({
+        initialValue: [record.startDate, record.endDate],
+        names: ["d1", "d2"]
+      })
+    },
+    {
       title: "操作",
       fixed: "right" as "right",
       width: 80,
@@ -141,7 +152,7 @@ const Demo: React.FC = () => {
           }}
           bordered
           scroll={{
-            x: 1200
+            x: 1500
           }}
         />
       </Item>

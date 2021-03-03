@@ -514,7 +514,7 @@ pickerProps  | 选择器的属性 | [TimeRangePickerProps](https://ant-design.gi
 
 ### ItemUpload
 
-上传
+上传。支持 `uploadProps.action` 默认上传 或 `onUpload` 自定义上传。
 
 **特点**
 
@@ -546,10 +546,10 @@ type UploadFile = {
 参数 | 说明 | 类型 | 默认值 |
 ------------- | ------------- | ------------- | ------------- |
 type  | 上传组件内建类型样式。 | `default` \| `image` \| `avatar` \| `dragger` | `default` |
-onUpload  | 上传，添加文件时触发。<br/>内部自动处理上传中和失败状态。<br/>如果返回 `object` 将添加到 `UploadFile` 对象中。 | `(file: UploadFile)=>Promise<object `\|` undefined>` | - |
+onUpload  | 自定义上传，添加文件时触发。<br/>内部自动处理上传中和失败状态。<br/>如果返回 `object` 将添加到 `UploadFile` 对象中。 | `(file: UploadFile)=>Promise<object `\|` undefined>` | - |
 onGetPreviewUrl  | 获取预览图片，点击预览时触发。<br/>（仅在没有url的情况下生效，执行成功后将预览图放在file.preview，不再触发） | `(file: UploadFile)=>Promise<string>` | - |
 maxSize  | 单个文件限制大小，单位 `Byte`。 | `number` | `1024*1024*2` |
-maxCount  | 限制上传文件数量。<br/>如果 `type` 为 `avatar` 该参数将失效。 | `number` | - |
+maxCount  | 限制上传文件数量。<br/>当为 `1` 时，始终用最新上传的代替当前。 | `number` | - |
 accept  | 接受上传的文件类型。<br/>如果 `type` 为 `image` 或 `avatar` ，默认为 `.jpg, .jpeg, .png`  | `string` | - |
 fileTypeMessage  | 文件类型错误时提示 | `string` | `只支持上传 ${accept} 文件` |
 fileSizeMessage  | 文件超过最大尺寸时提示，包含 `%s` 会自动替换为 `maxFileSizeStr`。 | `string` | `必须小于 ${maxFileSizeStr}！` |

@@ -22,6 +22,8 @@ const { ItemUpload } = BizForm;
 // 上传图片
 function uploadImage(file: File): Promise<{ fssId: string; }> {
   return new Promise((resolve, reject) => {
+    // const formData: any = new FormData();
+    // formData.append('file', file);
     setTimeout(() => {
       if (Math.random() > 0.3) {
         resolve({
@@ -63,8 +65,22 @@ const Demo: React.FC = () => {
         maxCount={1}
         accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
         fileTypeMessage="不支持文件类型"
+
+        // 使用自定义上传
         onUpload={handleUpload}
         transform={transformUploadValue}
+
+      // 使用 action 上传
+      // uploadProps={{
+      //   name: "file",
+      //   action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
+      //   headers: {
+      //     authorization: 'authorization-text',
+      //   }
+      // }}
+      // transform={(files) => {
+      //   return files.map(item => item?.response?.fssId).filter(item=>!!item);
+      // }}
       />
       <ItemUpload
         name="xls"
@@ -72,8 +88,22 @@ const Demo: React.FC = () => {
         accept=".xls,.xlsx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
         required
         fileTypeMessage="不支持文件类型"
+
+        // 使用自定义上传
         onUpload={handleUpload}
         transform={transformUploadValue}
+
+      // 使用 action 上传
+      // uploadProps={{
+      //   name: "file",
+      //   action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
+      //   headers: {
+      //     authorization: 'authorization-text',
+      //   }
+      // }}
+      // transform={(files) => {
+      //   return files.map(item => item?.response?.fssId).filter(item=>!!item);
+      // }}
       />
       <ItemUpload
         name="images"
@@ -81,8 +111,22 @@ const Demo: React.FC = () => {
         type="image"
         maxCount={9}
         required
+
+        // 使用自定义上传
         onUpload={handleUpload}
         transform={transformUploadValue}
+
+      // 使用 action 上传
+      // uploadProps={{
+      //   name: "file",
+      //   action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
+      //   headers: {
+      //     authorization: 'authorization-text',
+      //   }
+      // }}
+      // transform={(files) => {
+      //   return files.map(item => item?.response?.fssId).filter(item=>!!item);
+      // }}
       />
       <ItemUpload
         name="headpic01"

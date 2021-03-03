@@ -33,7 +33,7 @@ function getStaticServerPath(fssId: string): Promise<{ data: string; }> {
 // 上传图片
 function uploadImage(file: File): Promise<{ fssId: string; }> {
   return new Promise((resolve, reject) => {
-    // const formData = new FormData();
+    // const formData: any = new FormData();
     // formData.append("file", file);
     setTimeout(() => {
       if (Math.random() > 0.5) {

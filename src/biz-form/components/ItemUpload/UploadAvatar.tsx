@@ -10,7 +10,7 @@ import { getBase64 } from './uploadUtil';
 
 const prefixCls = 'antd-more-upload-avatar';
 
-const UploadButton: React.FC<{
+const UploadAvatar: React.FC<{
   fileList?: UploadFile[];
   title?: React.ReactNode;
   icon?: React.ReactNode;
@@ -97,11 +97,11 @@ const UploadImage: React.FC<UploadWrapperProps> = ({
       accept={restProps?.accept || '.jpg, .jpeg, .png'}
       fileList={fileList}
       showUploadList={false}
-      only
       multiple={false}
+      maxCount={1}
       className={classNames(prefixCls, className)}
     >
-      <UploadButton fileList={fileList} icon={icon} title={title} />
+      <UploadAvatar fileList={fileList} icon={icon} title={title} />
     </UploadWrapper>
   );
 };

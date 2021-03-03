@@ -20,12 +20,11 @@ export interface UploadWrapperProps extends UploadProps {
   fileTypeMessage?: string; // 文件类型错误提示
   fileSizeMessage?: string; // 文件超过最大尺寸提示
   maxCountMessage?: string; // 上传文件超过限制数量时提示
-  onUpload?: (file: UploadFile) => Promise<object | undefined>; // 单个文件上传
+  onUpload?: (file: UploadFile) => Promise<object | undefined>; // 自定义文件上传
   maxSize?: number; // 单个文件最大尺寸，用于校验
   maxCount?: number; // 最多上传文件数量
   beforeTransformValue?: (value: any[]) => UploadFile[] | Promise<UploadFile[]>; // 初始值转换
   onGetPreviewUrl?: (file: UploadFile) => Promise<string>; // 点击预览获取大图URL
-  only?: boolean; // 仅支持一个，适用于头像
   dragger?: boolean; // 支持拖拽
 
   // icon和title配置仅在 Dragger 和 Button 中生效
@@ -42,7 +41,6 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
   maxCount,
   beforeTransformValue,
   onGetPreviewUrl,
-  only = false,
   dragger = false,
   icon,
   title,
@@ -52,6 +50,8 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
   fileList,
   accept,
   className,
+  disabled,
+  action,
   ...restProps
 }) => {
   const actionRef = React.useRef<'normal' | 'error' | 'upload'>('normal');
@@ -71,7 +71,7 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
     (file: RcFile) => {
       // 验证上传文件数量
       if (
-        !only &&
+        maxCount !== 1 &&
         maxCount &&
         Array.isArray(fileListRef.current) &&
         fileListRef.current.length >= maxCount
@@ -101,9 +101,9 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
       }
 
       actionRef.current = 'upload';
-      return false;
+      return !!action;
     },
-    [fileList, maxCount, fileSizeMessage, fileTypeMessage, maxCountMessage, maxSize, accept, only],
+    [fileList, maxCount, fileSizeMessage, fileTypeMessage, maxCountMessage, maxSize, accept],
   );
 
   // 处理上传
@@ -196,7 +196,7 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
         return;
       }
 
-      if (only && currentFileList.length > 0) {
+      if (maxCount === 1 && currentFileList.length > 0) {
         // 单个头像上传
         fileListRef.current = currentFileList.slice(-1);
       } else if (multiple && actionRef.current === 'upload') {
@@ -213,7 +213,7 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
       if (actionRef.current === 'upload') {
         actionRef.current = 'normal';
 
-        if (typeof onUpload === 'function') {
+        if (!action && typeof onUpload === 'function') {
           const { uid } = file;
           fileListRef.current = fileListRef.current.map((fileItem) => {
             if (fileItem.uid === uid) {
@@ -234,7 +234,7 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
         fileList: [...fileListRef.current],
       });
     },
-    [fileList, only],
+    [fileList, action],
   );
 
   // 是否支持预览
@@ -295,7 +295,7 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
           fileListRef.current = res;
           onChange({
             file: null,
-            fileList: fileListRef.current,
+            fileList: [...fileListRef.current],
           });
           setTimeout(() => {
             setTransforming(false);
@@ -308,7 +308,7 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
       fileListRef.current = transformRet as UploadFile[];
       onChange({
         file: null,
-        fileList: fileListRef.current,
+        fileList: [...fileListRef.current],
       });
       setTimeout(() => {
         setTransforming(false);
@@ -336,9 +336,10 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
         }}
         onChange={handleChange}
         onPreview={handlePreview}
-        disabled={transforming}
+        disabled={transforming || disabled}
         className={classNames(prefixCls, className)}
         multiple={multiple}
+        action={action}
         {...restProps}
       />
       {enabledShowPreview && <Preview {...previewProps} onCancel={handlePreviewCancel} />}
