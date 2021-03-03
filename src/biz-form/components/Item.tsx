@@ -18,11 +18,13 @@ export interface BizFormItemProps extends FormItemProps {
   extendRules?: Rule[];
   labelWidth?: number | 'auto';
   hideLabel?: boolean;
+  renderField?: (dom: JSX.Element) => JSX.Element;
 }
 
 const BizFormItem: React.FC<BizFormItemProps> = ({
   children,
   transform,
+  renderField,
   name,
   colProps,
   rules = [],
@@ -77,7 +79,7 @@ const BizFormItem: React.FC<BizFormItemProps> = ({
       labelCol={labelColProps}
       {...restProps}
     >
-      {children}
+      {renderField ? renderField(children as JSX.Element) : children}
     </Form.Item>
   );
 };
