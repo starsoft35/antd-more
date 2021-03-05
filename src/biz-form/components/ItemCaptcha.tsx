@@ -8,20 +8,34 @@ import BizFormItem, { BizFormItemProps } from './Item';
 interface VerificateCodeInputProps extends Record<number | string, any> {
   value?: any;
   onChange?: (value: any) => void;
-  // 验证手机号码 或 邮箱
+  /**
+   * @deprecated Please use `onGetCaptcha`
+   */
   check?: () => boolean | Promise<any>;
   // 发送验证码
-  onGetCaptcha?: () => Promise<any>;
+  onGetCaptcha?: () => boolean | Promise<any>;
   inputProps?: InputProps;
   buttonProps?: CaptchaButtonProps;
   type?: 'default' | 'inline'; // 显示类型
 }
 
+const checkResult = async (fn) => {
+  try {
+    const ret = await fn();
+    if (ret !== false) {
+      return ret;
+    }
+  } catch (err) {
+    console.error(err);
+  }
+  return Promise.reject();
+};
+
 const VerificateCodeInput: React.FC<VerificateCodeInputProps> = ({
   value,
   onChange = () => {},
   check = () => true,
-  onGetCaptcha = () => Promise.resolve(),
+  onGetCaptcha = () => true,
   inputProps = {},
   buttonProps = {},
   type = 'default',
@@ -33,35 +47,18 @@ const VerificateCodeInput: React.FC<VerificateCodeInputProps> = ({
   const [start, setStart] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
 
-  // 验证手机号码/邮箱是否正确
-  const checkResult = React.useCallback(() => {
-    return new Promise<void>((resolve, reject) => {
-      const ret = check();
-      if (typeof ret === 'boolean' && ret) {
-        resolve();
-      } else if (typeof ret === 'object' && ret.then) {
-        ret.then(resolve).catch(reject);
-      } else {
-        reject();
-      }
-    });
-  }, [check]);
-
+  // 点击按钮
   const onButtonClick = async () => {
     setLoading(true);
     try {
-      await checkResult();
-
+      // 验证手机号码/邮箱是否正确
       // 发送验证码
-      onGetCaptcha()
-        .then(() => {
-          setStart(true);
-          setLoading(false);
-          inputRef.current.focus();
-        })
-        .catch(() => {
-          setLoading(false);
-        });
+      await checkResult(check);
+      await checkResult(onGetCaptcha);
+
+      setStart(true);
+      setLoading(false);
+      inputRef.current.focus();
     } catch (err) {
       setLoading(false);
     }

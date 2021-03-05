@@ -14,6 +14,7 @@ const { ItemInput, ItemCaptcha, ItemPassword } = BizForm;
 function sendCaptcha(mobile) {
   return new Promise<void>(resolve => {
     setTimeout(() => {
+      message.success(`验证码已发送至 ${mobile}`);
       resolve();
     }, 2000);
   })
@@ -91,14 +92,15 @@ const LoginDemo: React.FC = () => {
           }}
           required
           label="验证码"
-          check={() => {
-            // 验证手机号码或邮箱是否正确
-            return form.validateFields(["mobile"]).catch(() => {
+          onGetCaptcha={async () => {
+            try {
+              // 验证手机号码或邮箱是否正确
+              await form.validateFields(["mobile"]);
+            } catch (err) {
               message.error("请输入正确的手机号码");
-              return Promise.reject();
-            });
-          }}
-          onGetCaptcha={() => {
+              return false;
+            }
+
             // 发送验证码
             return sendCaptcha(form.getFieldValue("mobile"));
           }}

@@ -14,7 +14,8 @@
     "prettier": "prettier --write 'src/**/*.tsx' && prettier --write 'src/**/*.ts'",
     "lint-staged": "lint-staged",
     "lint-staged:prettier": "prettier --write",
-    "lint-staged:lint": "eslint --ignore-pattern 'src/*/demos/**'",
+    "lint-staged:lint": "eslint --ext .js,.jsx,.ts,.tsx --ignore-pattern 'src/*/demos/**'",
+    "precommit": "lint-staged",
     "commit": "cz"
   },
   "repository": {
@@ -75,15 +76,11 @@
     "util-helpers": "^3.9.0"
   },
   "lint-staged": {
-    "src/**/*.{ts,tsx,js,jsx,less}": [
-      "npm run lint-staged:prettier",
-      "git add"
-    ],
-    "src/**/*.{ts,tsx,js,jsx}": "npm run lint-staged:lint"
+    "src/**/*.{ts,tsx,js,jsx}": "npm run lint-staged:lint",
+    "src/**/*.{ts,tsx,js,jsx,less}": "npm run lint-staged:prettier"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint-staged",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },

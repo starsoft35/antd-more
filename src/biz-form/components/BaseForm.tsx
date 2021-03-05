@@ -2,7 +2,6 @@ import * as React from 'react';
 import { Form } from 'antd';
 import { FormProps, FormInstance } from 'antd/es/form';
 import namePathSet from 'rc-util/es/utils/set'; // eslint-disable-line import/no-extraneous-dependencies
-import { isPromiseLike } from 'util-helpers';
 import classnames from 'classnames';
 import { transformFormValues } from '../_util/transform';
 import FieldContext, { TransformFn } from '../FieldContext';
@@ -220,17 +219,13 @@ const BaseForm: React.FC<BaseFormProps> = ({
             const transValues = transformFormValues(values, transformRecordRef.current);
             // console.log(values, transValues);
 
-            let ret = onFinish(transValues);
-
             try {
-              if (isPromiseLike(ret)) {
-                setLoading(true);
-                ret = await ret;
-                setLoading(false);
-              }
+              setLoading(true);
+              const ret = await onFinish(transValues);
               return ret;
             } catch (err) {
               console.error(err); // eslint-disable-line
+            } finally {
               setLoading(false);
             }
           }}

@@ -112,8 +112,7 @@ cascaderProps  | 级联选项的属性 | [CascaderProps](https://ant-design.gite
 参数 | 说明 | 类型 | 默认值 |
 ------------- | ------------- | ------------- | ------------- |
 type  | 显示类型 | `default` \| `inline` | `default` |
-check  | 用于检查手机号码或邮箱是否正确，点击按钮时触发。 | `()=>boolean` \| `()=>Promise<any>` | `()=>true` |
-onGetCaptcha  | 用于请求获取验证码，`check` 验证成功后触发。 | `()=>Primise<any>` | `()=>Promise.resolve()` |
+onGetCaptcha  | 点击按钮触发。用于验证手机号码或邮箱，请求获取验证码。如果返回 `false` 或 `Promise.reject()` 表示验证失败。 | `()=>boolean` \| `()=>Promise<any>` | `()=>true` |
 initText  | 按钮初始显示文本 | `string` | `获取验证码` |
 runText  | 按钮倒计时显示文本，包含 `%s` 会自动替换为秒数 | `string` | `%s秒后重新获取` |
 resetText  | 按钮倒计时结束显示文本 | `string` | `重新获取验证码` |

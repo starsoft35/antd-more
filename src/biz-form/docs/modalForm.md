@@ -68,4 +68,4 @@ trigger  | 用于触发 `Drawer` 打开的 dom，一般是 button | `JSX.Element
 visible  | 是否打开。<br/>设置后表示为 `受控组件`，可结合 `onVisibleChange` 进行控制。 | `boolean` | - |
 onVisibleChange  | `visible` 改变时触发 | `(visible:boolean)=>void` | - |
 drawerProps  | `Drawer` 的 `props`，使用方式与 antd 相同。注意：不支持 'visible'，请使用全局的 visible。 | [DrawerProps](https://ant.design/components/drawer-cn/#API) | - |
-onFinish  | 提交数据时触发，如果返回不是 `false`，会关掉弹框并且重置表单 | `async (values)=>any` | - |
+onFinish  | 提交数据时触发。如果返回 `false` 或 `Promise.reject()` 表示提交失败。否则会关掉弹框并且重置表单 | `async (values)=>any` | - |

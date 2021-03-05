@@ -40,14 +40,15 @@ const ForgetPassword: React.FC = () => {
         label="验证码"
         name="captcha"
         required
-        check={() => {
-          // 验证手机号码或邮箱是否正确
-          return form.validateFields(["mobile"]).catch(() => {
+        onGetCaptcha={async () => {
+          try {
+            // 验证手机号码或邮箱是否正确
+            await form.validateFields(["mobile"]);
+          } catch (err) {
             message.error("请输入正确的手机号码");
-            return Promise.reject();
-          });
-        }}
-        onGetCaptcha={() => {
+            return false;
+          }
+
           // 发送验证码
           return sendCaptcha(form.getFieldValue("mobile"));
         }}
