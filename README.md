@@ -119,8 +119,15 @@ test | 添加缺失的测试或纠正现有的测试
 原来使用 `git commit -m "xx"` 改为以下命令（交互方式填写提交信息）：
 
 ```bash
+yarn commit
+```
+
+或
+
+```bash
 npm run commit
 ```
+
 
 
 [npm]: https://img.shields.io/npm/v/antd-more.svg
