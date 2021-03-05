@@ -90,7 +90,7 @@ const DrawerForm: React.FC<DrawerFormProps> = ({
             return submitterDom.reverse();
           },
         }}
-        contentRender={(formDom, submitterDom) => (
+        formRender={(formDom, submitterDom) => (
           <Drawer
             title={title}
             width={width || 600}

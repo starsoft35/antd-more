@@ -3,6 +3,7 @@ import { Form } from 'antd';
 import { FormProps, FormInstance } from 'antd/es/form';
 import namePathSet from 'rc-util/es/utils/set'; // eslint-disable-line import/no-extraneous-dependencies
 import classnames from 'classnames';
+import { useUpdateEffect } from 'rc-hooks';
 import { transformFormValues } from '../_util/transform';
 import FieldContext, { TransformFn } from '../FieldContext';
 import ChildFormContext from '../ChildFormContext';
@@ -19,6 +20,10 @@ export interface BaseFormProps extends Omit<FormProps, 'onFinish'> {
     items: React.ReactNode[],
     submitter: React.ReactElement<Omit<SubmitterProps, 'form'>> | undefined,
   ) => React.ReactNode;
+  formRender?: (
+    formDom: JSX.Element,
+    submitter: React.ReactElement<Omit<SubmitterProps, 'form'>> | undefined,
+  ) => JSX.Element | React.ReactElement | undefined;
   ready?: boolean; // false 时，禁止触发 submit 。 true 时，会对表单初始值重新赋值。
   loading?: boolean;
   submitter?: false | Omit<SubmitterProps, 'form'>;
@@ -33,6 +38,7 @@ export interface BaseFormProps extends Omit<FormProps, 'onFinish'> {
 
 const BaseForm: React.FC<BaseFormProps> = ({
   contentRender,
+  formRender,
   form: formProp,
   pressEnterSubmit = true,
   ready = true,
@@ -53,7 +59,7 @@ const BaseForm: React.FC<BaseFormProps> = ({
 }) => {
   const [form] = Form.useForm();
   const formRef = React.useRef<FormInstance>(formProp || form);
-  const [loading, setLoading] = React.useState(false);
+  const [loading, setLoading] = React.useState(outLoading);
 
   const [isUpdate, updateState] = React.useState(false);
   const forgetUpdate = () => {
@@ -176,18 +182,18 @@ const BaseForm: React.FC<BaseFormProps> = ({
     get: () => transformRecordRef.current,
   }));
 
-  React.useEffect(() => {
+  useUpdateEffect(() => {
     // 准备完成后，重新设置初始值
     if (ready) {
-      formRef.current?.resetFields();
+      formRef.current?.resetFields?.();
     }
   }, [ready]);
 
-  React.useEffect(() => {
+  useUpdateEffect(() => {
     setLoading(outLoading);
   }, [outLoading]);
 
-  return (
+  const formDom = (
     <ChildFormContext.Provider
       value={{
         regChildForm,
@@ -266,6 +272,7 @@ const BaseForm: React.FC<BaseFormProps> = ({
       </FieldContext.Provider>
     </ChildFormContext.Provider>
   );
+  return formRender ? formRender(formDom, submitterDom) : formDom;
 };
 
 export default BaseForm;

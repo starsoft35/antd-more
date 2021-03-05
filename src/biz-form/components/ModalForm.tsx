@@ -93,7 +93,7 @@ const ModalForm: React.FC<ModalFormProps> = ({
             return submitterDom.reverse();
           },
         }}
-        contentRender={(formDom, submitterDom) => (
+        formRender={(formDom, submitterDom) => (
           <Modal
             title={title}
             width={width || 600}
