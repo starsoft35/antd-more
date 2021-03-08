@@ -113,6 +113,7 @@ const VerificateCodeInput: React.FC<VerificateCodeInputProps> = ({
         onChange={onChange}
         value={value}
         allowClear
+        autoComplete="off"
         ref={inputRef}
         {...restProps}
         {...inputProps}
