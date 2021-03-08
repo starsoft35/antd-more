@@ -18,29 +18,17 @@ const InputWrapper: React.FC<InputWrapperProps> = ({
   onChange,
   ...restProps
 }) => {
-  const countRef = React.useRef(0);
-
-  const handleChange = React.useCallback(
-    (e) => {
-      if (countRef.current === 0) {
-        countRef.current += 1;
-      }
-      onChange(e);
-    },
-    [onChange],
-  );
-
   React.useEffect(() => {
     // 对第一次加载的数据格式化
-    if (countRef.current === 0 && initialTransform && value) {
-      handleChange(initialTransform(value));
+    if (initialTransform && value) {
+      onChange(initialTransform(value));
     }
-  }, [value, handleChange, initialTransform]);
+  }, []);
 
   return (
     <div className={prefixCls}>
       {before && <div style={{ marginRight: 8 }}>{before}</div>}
-      <Input value={value} onChange={handleChange} {...restProps} />
+      <Input value={value} onChange={onChange} {...restProps} />
       {after && <div style={{ marginLeft: 8 }}>{after}</div>}
     </div>
   );
