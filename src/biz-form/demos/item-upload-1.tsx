@@ -1,15 +1,53 @@
 import * as React from 'react';
 import { BizForm } from 'antd-more';
+import { UploadFile } from 'antd/es/upload/interface';
 import ItemSpecialUpload from './components/ItemSpecialUpload';
 import ItemDefineUpload from './components/ItemDefineUpload';
 
+function waitTime(time: number = 1000) {
+  return new Promise(resolve => {
+    setTimeout(resolve, time);
+  })
+}
+
 const { ItemUpload } = BizForm;
 
+// 上传图片
+function uploadImage(file: File): Promise<{ fssId: string; }> {
+  return new Promise((resolve, reject) => {
+    // const formData: any = new FormData();
+    // formData.append('file', file);
+    setTimeout(() => {
+      if (Math.random() > 0.3) {
+        resolve({
+          fssId: `${Math.random()}`
+        });
+      } else {
+        reject();
+      }
+    }, 2000);
+  })
+}
+
 const Demo: React.FC = () => {
+  // 上传图片
+  const handleUpload = React.useCallback((file: UploadFile) => {
+    return uploadImage(file.originFileObj as File).then(res => {
+      // 返回值自动添加到 file 中
+      return { value: res.fssId }
+    });
+  }, []);
+
+  // 提交时转换上传值
+  const transformUploadValue = React.useCallback((uploadValues: (UploadFile & Record<string, any>)[]) => {
+    return uploadValues ? uploadValues.filter(valItem => valItem.status !== 'error' && valItem.value).map(valItem => valItem.value) : undefined;
+  }, []);
+
   return (
     <BizForm
       name="item-upload-1"
-      onFinish={(values) => {
+      onFinish={async (values) => {
+        await waitTime();
         console.log(values);
       }}
       labelWidth={112}
@@ -37,13 +75,29 @@ const Demo: React.FC = () => {
         maxCount={9}
         // required
         multiple
+
+        // 使用自定义上传
+        onUpload={handleUpload}
+        transform={transformUploadValue}
+
+      // 使用 action 上传
+      // uploadProps={{
+      //   name: "file",
+      //   action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
+      //   headers: {
+      //     authorization: 'authorization-text',
+      //   }
+      // }}
+      // transform={(files) => {
+      //   return files.map(item => item?.response?.fssId).filter(item=>!!item);
+      // }}
       />
       <ItemUpload
         name="headpic01"
         label="头像1"
         type="avatar"
         tooltip="点击图片区域上传替换，常用于头像或封面，不支持预览"
-        // required
+      // required
       />
       <ItemUpload
         name="headpic02"
@@ -51,7 +105,7 @@ const Demo: React.FC = () => {
         type="image"
         maxCount={1}
         tooltip="使用image的方式，修改时需要先删除才能再上传"
-        // required
+      // required
       />
       <ItemUpload
         name="dragger"

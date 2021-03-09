@@ -441,6 +441,19 @@ excludeValues | 排除的值 | `any[]` | `[]` |
 selectProps  | 选择器配置参数 | [SelectProps](https://ant-design.gitee.io/components/select-cn/#Select-props) | - |
 
 
+### ItemSwitch
+
+开关
+
+<code src="../demos/item-switch-1.tsx" />
+
+<br/>
+
+参数 | 说明 | 类型 | 默认值 |
+------------- | ------------- | ------------- | ------------- |
+switchProps  | 开关选择器配置参数 | [SwitchProps](https://ant-design.gitee.io/components/switch-cn/#API) | - |
+
+
 
 ### ItemTextArea
 

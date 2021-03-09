@@ -15,7 +15,7 @@ export interface ChangePasswordModalProps extends Pick<ModalFormProps, 'visible'
 
 const ChangePasswordModal: React.FC<ChangePasswordModalProps> = ({
   visible = false,
-  onVisibleChange = () => { }
+  onVisibleChange
 }) => {
   const [form] = BizForm.useForm();
 
