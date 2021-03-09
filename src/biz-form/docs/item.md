@@ -441,6 +441,23 @@ excludeValues | 排除的值 | `any[]` | `[]` |
 selectProps  | 选择器配置参数 | [SelectProps](https://ant-design.gitee.io/components/select-cn/#Select-props) | - |
 
 
+### ItemSlider
+
+滑块输入条
+
+<code src="../demos/item-slider-1.tsx" />
+
+<br/>
+
+参数 | 说明 | 类型 | 默认值 |
+------------- | ------------- | ------------- | ------------- |
+min  | 最小值 | `number` | 0 |
+max  | 最大值 | `number` | 100 |
+step  | 步长，取值必须大于 0，并且可被 (max - min) 整除。当 `marks` 不为空对象时，可以设置 `step` 为 null，此时 Slider 的可选值仅有 marks 标出来的部分 | `number` \| `null` | - |
+marks  | 刻度标记，key 的类型必须为 `number` 且取值在闭区间 [min, max] 内，每个标签可以单独设置样式 | `object` | - |
+sliderProps  | 滑块输入条配置参数 | [SliderProps](https://ant-design.gitee.io/components/slider-cn/#API) | - |
+
+
 ### ItemSwitch
 
 开关
@@ -451,6 +468,8 @@ selectProps  | 选择器配置参数 | [SelectProps](https://ant-design.gitee.io
 
 参数 | 说明 | 类型 | 默认值 |
 ------------- | ------------- | ------------- | ------------- |
+checkedChildren  | 选中时的内容 | `ReactNode` | - |
+unCheckedChildren  | 非选中时的内容 | `ReactNode` | - |
 switchProps  | 开关选择器配置参数 | [SwitchProps](https://ant-design.gitee.io/components/switch-cn/#API) | - |
 
 

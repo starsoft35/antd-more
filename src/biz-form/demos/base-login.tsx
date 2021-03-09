@@ -115,12 +115,12 @@ const LoginDemo: React.FC = () => {
           label="图片验证码"
           required
         />
-        <div style={{ marginBottom: 24, overflow: "hidden" }}>
+        <Item>
           <Item noStyle name="autoLogin" valuePropName="checked">
             <Checkbox>自动登录</Checkbox>
           </Item>
           <a style={{ float: 'right' }}>忘记密码</a>
-        </div>
+        </Item>
       </BizForm>
     </div>
   );

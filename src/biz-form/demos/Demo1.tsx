@@ -14,6 +14,7 @@ const {
   ItemInput,
   ItemRadio,
   ItemSelect,
+  ItemSlider,
   ItemSwitch,
   ItemAddress,
   ItemDate,
@@ -179,7 +180,10 @@ const Demo: React.FC = () => {
             <ItemCheckbox label="Checkbox" name="checkbox" options={cycle} all required={required} />
           </Col>
           <Col {...colSpan}>
-            <ItemSwitch label="Switch" name="switch" required={required} />
+            <ItemSwitch label="Switch" name="switch" />
+          </Col>
+          <Col {...colSpan}>
+            <ItemSlider label="Slider" name="slider" />
           </Col>
           <Col {...colSpan}>
             <ItemUpload label="Upload" name="upload" required={required} />
