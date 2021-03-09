@@ -18,9 +18,13 @@ legacy: /form/steps-form
 
 <code src="../demos/steps-form-1.tsx" />
 
-### 分步表单-忘记密码
+### 分步表单-忘记密码1
 
 <code src="../demos/steps-form-2.tsx" />
+
+### 分步表单-忘记密码2
+
+<code src="../demos/steps-form-5.tsx" background="#f5f5f5" />
 
 ### 分步表单-与Modal配合使用
 

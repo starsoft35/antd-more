@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { message } from 'antd';
+import { message, Checkbox } from 'antd';
 import { BizForm } from 'antd-more';
 import { UserOutlined, LockOutlined, SafetyCertificateOutlined, MobileOutlined, MailOutlined } from '@ant-design/icons';
 
@@ -9,7 +9,7 @@ function waitTime(time: number = 1000) {
   });
 }
 
-const { ItemInput, ItemCaptcha, ItemPassword } = BizForm;
+const { ItemInput, ItemCaptcha, ItemPassword, Item } = BizForm;
 
 function sendCaptcha(mobile) {
   return new Promise<void>(resolve => {
@@ -115,6 +115,12 @@ const LoginDemo: React.FC = () => {
           label="图片验证码"
           required
         />
+        <div style={{ marginBottom: 24, overflow: "hidden" }}>
+          <Item noStyle name="autoLogin" valuePropName="checked">
+            <Checkbox>自动登录</Checkbox>
+          </Item>
+          <a style={{ float: 'right' }}>忘记密码</a>
+        </div>
       </BizForm>
     </div>
   );
