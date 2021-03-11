@@ -20,7 +20,7 @@ const defaultData = Mock.mock({
     'bank': '@bank',
     'bankCardNo|100000000-10000000000000000': 1,
     'money|0-10000.2': null,
-    'materials': null,
+    'materials': [],
     'remark': null, // '@cparagraph'
     'status|1-3': null, // 1
   }]
@@ -108,6 +108,14 @@ const Demo: React.FC = () => {
       }
     }
   ];
+
+  // React.useEffect(() => {
+  //   setTimeout(() => {
+  //     const ret = defaultData.slice(0, 1);
+  //     console.log(ret);
+  //     editableActionRef.current.setDataSource(ret);
+  //   }, 3000);
+  // });
 
   return (
     <BizForm

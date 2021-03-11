@@ -92,6 +92,7 @@ setFields  | 设置单行表单值 | `(rowKey: Key, record: Partial<T>) => void`
 reset  | 重置表单值，不指定 `rowKey` 表示全部重置。 | `(rowKey?: Key) => void` |
 clearNewRecords  | 清除新增数据 | `() => void` |
 getNewRecords  | 获取新增数据 | `() => void` |
+setDataSource  | 手动设置数据源，该操作会清除新增的数据。 | `(records: T[]) => void` |
 
 
 ### Columns 列定义

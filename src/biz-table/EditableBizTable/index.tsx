@@ -36,6 +36,7 @@ export interface EditableActionType<RecordType = any> {
   reset: (rowKey?: Key) => void; // 重置单行表单或全部
   clearNewRecords: () => void; // 清除全部新增项
   getNewRecords: () => void; // 获取所有新增项
+  setDataSource: (records: RecordType[]) => void; // 手动设置数据源
 }
 
 export interface EditableOptions<RecordType = any> {
@@ -355,6 +356,15 @@ const EditableBizTable = <RecordType extends object = any>({
     return newRecords.map((item) => ({ ...item.recordConfig, ...values[item.rowKey] }));
   };
 
+  const handleDataSourceChange = (records) => {
+    form.setFieldsValue({});
+    changeValue(records);
+    restProps?.onDataSourceChange?.(records);
+    setNewRecords([]);
+    // 手动触发
+    setTimeout(() => triggerValuesChange(), 0);
+  };
+
   React.useImperativeHandle(editable?.editableActionRef, () => ({
     save: handleSave,
     delete: handleDelete,
@@ -366,6 +376,8 @@ const EditableBizTable = <RecordType extends object = any>({
     reset: handleReset,
     clearNewRecords,
     getNewRecords,
+
+    setDataSource: handleDataSourceChange,
   }));
 
   const concatValue = React.useMemo(getConcatValue, [value, newRecords]);
@@ -393,14 +405,7 @@ const EditableBizTable = <RecordType extends object = any>({
         onChange={onTableChange}
         dataSource={concatValue}
         editableKeyMapRef={editableKeyMapRef}
-        onDataSourceChange={(data) => {
-          form.setFieldsValue({});
-          changeValue(data);
-          restProps?.onDataSourceChange?.(data);
-          setNewRecords([]);
-          // 手动触发
-          setTimeout(() => triggerValuesChange(), 0);
-        }}
+        onDataSourceChange={handleDataSourceChange}
       />
     </BizForm>
   );

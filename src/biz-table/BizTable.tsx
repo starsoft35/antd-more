@@ -187,7 +187,7 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
                     search: {
                       initialValue: text,
                       ...(typeof realEditable === 'object' ? realEditable : {}),
-                      style: { margin: '-5px 0', ...realEditable?.style },
+                      style: { marginTop: -5, marginBottom: -5, ...realEditable?.style },
                     },
                     originItem: item,
                   },

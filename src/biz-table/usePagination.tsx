@@ -44,7 +44,7 @@ function usePagination<RecordType = any, P = any>(
   {
     defaultPageSize = 10,
     actionCacheKey = '',
-    autoRun = false,
+    autoRun,
     onSuccess = () => {},
     ...restOptions
   }: Options<AsyncFnReturn<RecordType>, P> = {},

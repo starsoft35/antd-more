@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { FormInstance } from 'antd/es/form';
+import { NamePath } from 'antd/es/form/interface';
 import BizForm from '../../biz-form';
 import { BizFormItemProps } from '../../biz-form/components/Item';
 import { SearchProps } from '../interface';
@@ -62,7 +63,7 @@ export function createFormItem({ search, ...restProps }: SearchProps, form: Form
   const dom = (
     <Comp
       label={label || title}
-      name={name || dataIndex}
+      name={name || (dataIndex as NamePath)}
       options={valueEnum}
       {...showTimeProps}
       {...formatProps}
