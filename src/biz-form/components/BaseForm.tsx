@@ -3,6 +3,7 @@ import { Form } from 'antd';
 import { FormProps, FormInstance } from 'antd/es/form';
 import namePathSet from 'rc-util/es/utils/set'; // eslint-disable-line import/no-extraneous-dependencies
 import classnames from 'classnames';
+import { isPromiseLike } from 'util-helpers';
 import { useUpdateEffect } from 'rc-hooks';
 import { transformFormValues } from '../_util/transform';
 import FieldContext, { TransformFn } from '../FieldContext';
@@ -120,23 +121,22 @@ const BaseForm: React.FC<BaseFormProps> = ({
   const validateChildFormFields = React.useCallback(async (isScrollToField = false) => {
     let errorInfo = null;
     const childForms = Object.values(childFormRefs.current);
-    if (childForms && childForms.length > 0) {
-      childForms.forEach(async (itemForm) => {
-        try {
-          await itemForm.validateFields();
-        } catch (err) {
-          if (!errorInfo) {
-            errorInfo = err;
-            // 外部表单有错误时，不需要滚动
-            isScrollToField &&
-              Array.isArray(err?.errorFields) &&
-              err.errorFields[0]?.name &&
-              itemForm.scrollToField(err.errorFields[0].name);
-          } else {
-            errorInfo = mergeFieldsError(errorInfo, err);
-          }
+
+    for (let i = 0; i < childForms.length; i += 1) {
+      try {
+        await childForms[i].validateFields(); // eslint-disable-line
+      } catch (err) {
+        if (!errorInfo) {
+          errorInfo = err;
+          // 外部表单有错误时，不需要滚动
+          isScrollToField &&
+            Array.isArray(err?.errorFields) &&
+            err.errorFields[0]?.name &&
+            childForms[i].scrollToField(err.errorFields[0].name);
+        } else {
+          errorInfo = mergeFieldsError(errorInfo, err);
         }
-      });
+      }
     }
     return errorInfo;
   }, []);
@@ -225,14 +225,19 @@ const BaseForm: React.FC<BaseFormProps> = ({
             const transValues = transformFormValues(values, transformRecordRef.current);
             // console.log(values, transValues);
 
-            try {
+            const ret = onFinish(transValues);
+
+            if (isPromiseLike(ret)) {
               setLoading(true);
-              const ret = await onFinish(transValues);
-              return ret;
-            } catch (err) {
-              console.error(err); // eslint-disable-line
-            } finally {
-              setLoading(false);
+              return ret
+                .then((res) => {
+                  setLoading(false);
+                  return res;
+                })
+                .catch((err) => {
+                  setLoading(false);
+                  return Promise.reject(err);
+                });
             }
           }}
           onFinishFailed={async (errorInfo) => {
