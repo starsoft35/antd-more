@@ -53,6 +53,7 @@ const StepForm: React.FC<StepFormProps> = ({
             ret = await ret;
           } catch (err) {
             console.error(err); // eslint-disable-line
+            ret = false;
           } finally {
             ctx?.setLoading(false);
           }
