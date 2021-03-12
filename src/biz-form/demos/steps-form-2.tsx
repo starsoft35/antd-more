@@ -103,13 +103,15 @@ const Demo: React.FC = () => {
           label="短信验证码"
           name="code"
           type="inline"
+          normalize={(val) => val.replace(/[^\d]/g, '')}
           onGetCaptcha={async () => {
             await waitTime(2000);
             setSent(true);
           }}
           inputProps={{
             prefix: <SafetyCertificateOutlined />,
-            placeholder: "短信验证码"
+            placeholder: "短信验证码",
+            maxLength: 6
           }}
           required
         />

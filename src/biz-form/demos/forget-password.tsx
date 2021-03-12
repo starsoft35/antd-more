@@ -24,7 +24,7 @@ const ForgetPassword: React.FC = () => {
   return (
     <BizForm
       name="form-forget-password"
-      onFinish={async (values)=>{
+      onFinish={async (values) => {
         await waitTime();
         console.log(values);
       }}
@@ -40,6 +40,8 @@ const ForgetPassword: React.FC = () => {
         label="验证码"
         name="captcha"
         required
+        normalize={(val) => val.replace(/[^\d]/g, '')}
+        inputProps={{ maxLength: 6 }}
         onGetCaptcha={async () => {
           try {
             // 验证手机号码或邮箱是否正确

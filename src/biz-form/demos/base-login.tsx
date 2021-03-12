@@ -86,9 +86,11 @@ const LoginDemo: React.FC = () => {
         />
         <ItemCaptcha
           name="captcha"
+          normalize={(val) => val.replace(/[^\d]/g, '')}
           inputProps={{
             prefix: <SafetyCertificateOutlined />,
-            placeholder: "请输入验证码"
+            placeholder: "请输入验证码",
+            maxLength: 6
           }}
           required
           label="验证码"

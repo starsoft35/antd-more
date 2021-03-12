@@ -68,6 +68,8 @@ const Demo: React.FC = () => {
             name="smsCode"
             validateTrigger="onBlur"
             label="验证码"
+            normalize={(val) => val.replace(/[^\d]/g, '')}
+            inputProps={{ maxLength: 6 }}
             onGetCaptcha={async () => {
               try {
                 await form1.validateFields(['mobile', 'code']);
