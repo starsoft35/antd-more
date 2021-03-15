@@ -20,7 +20,7 @@ const FormItemNumber: React.FC<FormItemNumberProps> = ({
   lte,
   gte,
   inputProps = {},
-  precision = 2,
+  precision,
 
   label,
   required = false,

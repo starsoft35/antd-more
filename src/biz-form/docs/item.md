@@ -306,7 +306,6 @@ inputProps  | 输入框的属性 | [InputProps](https://ant-design.gitee.io/comp
 
 - 支持数字输入框前后插入元素
 - 返回的值为类型数字
-- 默认精度 `precision=2`
 
 **校验顺序**
 
@@ -322,6 +321,7 @@ inputProps  | 输入框的属性 | [InputProps](https://ant-design.gitee.io/comp
 
 参数 | 说明 | 类型 | 默认值 |
 ------------- | ------------- | ------------- | ------------- |
+precision  | 数值精度 | `number` | - |
 before  | 数字输入框前面元素 | `React.ReactNode` | - |
 after  | 数字输入框后面元素 | `React.ReactNode` | - |
 lt  | 最大值 | `number` | - |
