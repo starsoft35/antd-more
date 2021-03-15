@@ -240,7 +240,7 @@ const StepsForm: React.FC<StepsFormProps> & {
     return (
       <div
         className={classNames(`${prefixCls}-item`, { [`${prefixCls}-active`]: isCurrentIndex })}
-        key={index.toString()}
+        key={name}
       >
         {React.cloneElement(item, {
           ...item.props,

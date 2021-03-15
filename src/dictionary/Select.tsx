@@ -29,7 +29,7 @@ const DictionarySelect: React.FC<DictionarySelectProps> = ({
     <Select placeholder="请选择" {...restProps}>
       {all ? <Select.Option value={allValue}>{allName}</Select.Option> : null}
       {dataRet.map((item, index) => (
-        <Select.Option key={item.key || index.toString()} value={item.value}>
+        <Select.Option key={item.key || (item.value + index.toString())} value={item.value}>
           {item.name}
         </Select.Option>
       ))}
