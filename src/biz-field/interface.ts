@@ -34,9 +34,10 @@ export type ValueType = ValueTypeStr | ValueTypeObj | ValueTypeFn;
 
 export type { EnumData };
 
-export interface BizFieldProps {
-  value: any;
+export interface BizFieldProps<T = any> {
+  value: T;
   valueType?: ValueType;
   valueEnum?: EnumData;
+  formatValue?: (value: T) => any;
   [x: string]: any;
 }

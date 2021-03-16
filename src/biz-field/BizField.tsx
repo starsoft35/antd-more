@@ -26,33 +26,41 @@ const DateType = [
 const IndexType = ['index', 'indexBorder'];
 const EnumType = ['enum', 'enumTag', 'enumBadge'];
 
-const BizField: React.FC<BizFieldProps> = ({ value, valueType, valueEnum = [], ...restProps }) => {
+const BizField: React.FC<BizFieldProps> = ({
+  value,
+  valueType,
+  valueEnum = [],
+  formatValue,
+  ...restProps
+}) => {
   const { type, ...restParams } = parseValueType(valueType, value);
   const props = {
     ...restProps,
     ...restParams,
   };
 
+  const realValue = typeof formatValue === 'function' ? formatValue(value) : value;
+
   if (type === 'text' || type === 'money') {
     // 文本 或 金额
     const { color, size, prefix, suffix, style, ...restTextProps } = props || {};
     const styles: Record<string, any> = { ...style };
 
-    const realValue = type === 'text' ? value : formatMoney(value);
+    const retValue = type === 'text' ? realValue : formatMoney(realValue);
 
-    if (props?.color && value) {
+    if (props?.color && retValue) {
       styles.color = props.color;
     }
-    if (props?.size && value) {
+    if (props?.size && retValue) {
       styles.fontSize = props.size;
     }
 
     return (
       <span {...restTextProps} style={styles}>
-        {realValue ? (
+        {retValue ? (
           <>
             {prefix}
-            {realValue}
+            {retValue}
             {suffix}
           </>
         ) : (
@@ -62,20 +70,20 @@ const BizField: React.FC<BizFieldProps> = ({ value, valueType, valueEnum = [], .
     );
   } else if (type === 'image') {
     // 图片
-    return <FieldImage value={value} {...props} />;
+    return <FieldImage value={realValue} {...props} />;
   } else if (DateType.includes(type)) {
     // 日期类型
     const { format, ...rest } = props;
-    return <span {...rest}>{getDateStr(value, type, format)}</span>;
+    return <span {...rest}>{getDateStr(realValue, type, format)}</span>;
   } else if (IndexType.includes(type)) {
     // 序号
-    return <FieldIndex value={value + 1} type={type} {...props} />;
+    return <FieldIndex value={realValue + 1} type={type} {...props} />;
   } else if (type === 'progress') {
     // 进度条
-    return <FieldProgress value={value} {...props} />;
+    return <FieldProgress value={realValue} {...props} />;
   } else if (type === 'percent') {
     // 百分比
-    return <Percent value={value} {...props} />;
+    return <Percent value={realValue} {...props} />;
   } else if (EnumType.includes(type)) {
     // 枚举值
     const typeObj = {
@@ -84,21 +92,21 @@ const BizField: React.FC<BizFieldProps> = ({ value, valueType, valueEnum = [], .
       enumTag: 'tag',
     };
     const enumProps = {
-      value,
+      value: realValue,
       type: typeObj[type],
       data: valueEnum,
     };
-    return Array.isArray(value) ? (
+    return Array.isArray(realValue) ? (
       <Dictionary.List {...enumProps} {...props} />
     ) : (
       <Dictionary {...enumProps} {...props} />
     );
   } else if (type === 'color') {
     // 颜色
-    return <Color value={value} {...props} />;
+    return <Color value={realValue} {...props} />;
   }
 
-  return value;
+  return realValue;
 };
 
 export default BizField;

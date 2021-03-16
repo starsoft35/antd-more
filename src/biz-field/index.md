@@ -34,6 +34,7 @@ import { BizField } from 'antd-more';
 value  | 值 | `any` | - |
 valueType  | 值类型 | `ValueType` | - |
 valueEnum  | 包含 `value` `name` 的数据字典。<br/>当 `valueType` 为 `enum` `enumTag` `enumBadge` 时生效。 | `EnumData` | - |
+formatValue  | 格式化 `value` 。<br/>在 BizTable 或 BizDescriptions ，可对数据进行转换，如金额单位、图片等。 | `(value: any)=>any` | - |
 
 ### ValueType 值
 
