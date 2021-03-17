@@ -33,13 +33,15 @@ const BizField: React.FC<BizFieldProps> = ({
   formatValue,
   ...restProps
 }) => {
-  const { type, ...restParams } = parseValueType(valueType, value);
+  const { type, formatValue: otherFormatValue, ...restParams } = parseValueType(valueType, value);
   const props = {
     ...restProps,
     ...restParams,
   };
 
-  const realValue = typeof formatValue === 'function' ? formatValue(value) : value;
+  const formatFn = otherFormatValue || formatValue;
+
+  const realValue = typeof formatFn === 'function' ? formatFn(value) : value;
 
   if (type === 'text' || type === 'money') {
     // 文本 或 金额
