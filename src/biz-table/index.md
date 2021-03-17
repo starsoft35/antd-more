@@ -127,6 +127,12 @@ table  | 是否在表格中显示，适用于部分字段只有查询表单，�
 - `valueType` 用于字段展示时，如果没有 `render`，将使用 [BizField] 渲染。
 - `valueType` 用于查询表单项 或 可编辑表格项时，转换为下表中的 `itemType` 。
 
+valueType valueEnum 为以下几个配置共用字段，可以复写：
+
+- field - 展示字段的配置
+- search - 查询表单项的配置
+- editable - 可编辑表格项配置（[EditableBizTable](/dataview/editable-biz-table) 组件）
+
 #### search 查询表单配置项
 
 当值为 `true` 或 `object` 时，自动添加查询表单项。除了以下映射值的配置，其余项皆透传给表单项。

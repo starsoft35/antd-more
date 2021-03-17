@@ -17,7 +17,7 @@
  antd-more | antd |
  --------- | ---- |
  [v0.x](https://doly-dev.github.io/antd-more/site/v0/index.html)      | v4.x |
- [v1.x](https://doly-dev.github.io/antd-more/site/v2/index.html)      | v4.x |
+ [v1.x](https://doly-dev.github.io/antd-more/site/v1/index.html)      | v4.x |
  [v2.x](https://doly-dev.github.io/antd-more/site/v2/index.html)      | v4.x |
 
 ## 使用
