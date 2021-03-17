@@ -8,7 +8,6 @@ import Dictionary from '../dictionary';
 import Color from '../color';
 import Percent from './components/Percent';
 import { getDateStr } from './_util/dateUtil';
-import parseValueType from './_util/parseValueType';
 
 const DateType = [
   'date',
@@ -26,6 +25,12 @@ const DateType = [
 const IndexType = ['index', 'indexBorder'];
 const EnumType = ['enum', 'enumTag', 'enumBadge'];
 
+const DectionaryTypeMap = {
+  enum: 'text',
+  enumBadge: 'badge',
+  enumTag: 'tag',
+};
+
 const BizField: React.FC<BizFieldProps> = ({
   value,
   valueType,
@@ -33,28 +38,20 @@ const BizField: React.FC<BizFieldProps> = ({
   formatValue,
   ...restProps
 }) => {
-  const { type, formatValue: otherFormatValue, ...restParams } = parseValueType(valueType, value);
-  const props = {
-    ...restProps,
-    ...restParams,
-  };
+  const realValue = typeof formatValue === 'function' ? formatValue(value) : value;
 
-  const formatFn = otherFormatValue || formatValue;
-
-  const realValue = typeof formatFn === 'function' ? formatFn(value) : value;
-
-  if (type === 'text' || type === 'money') {
+  if (valueType === 'text' || valueType === 'money') {
     // 文本 或 金额
-    const { color, size, prefix, suffix, style, ...restTextProps } = props || {};
+    const { color, size, prefix, suffix, style, ...restTextProps } = restProps || {};
     const styles: Record<string, any> = { ...style };
 
-    const retValue = type === 'text' ? realValue : formatMoney(realValue);
+    const retValue = valueType === 'text' ? realValue : formatMoney(realValue);
 
-    if (props?.color && retValue) {
-      styles.color = props.color;
+    if (restProps?.color && retValue) {
+      styles.color = restProps.color;
     }
-    if (props?.size && retValue) {
-      styles.fontSize = props.size;
+    if (restProps?.size && retValue) {
+      styles.fontSize = restProps.size;
     }
 
     return (
@@ -70,42 +67,37 @@ const BizField: React.FC<BizFieldProps> = ({
         )}
       </span>
     );
-  } else if (type === 'image') {
+  } else if (valueType === 'image') {
     // 图片
-    return <FieldImage value={realValue} {...props} />;
-  } else if (DateType.includes(type)) {
+    return <FieldImage value={realValue} {...restProps} />;
+  } else if (DateType.includes(valueType)) {
     // 日期类型
-    const { format, ...rest } = props;
-    return <span {...rest}>{getDateStr(realValue, type, format)}</span>;
-  } else if (IndexType.includes(type)) {
+    const { format, ...rest } = restProps;
+    return <span {...rest}>{getDateStr(realValue, valueType, format)}</span>;
+  } else if (IndexType.includes(valueType)) {
     // 序号
-    return <FieldIndex value={realValue + 1} type={type} {...props} />;
-  } else if (type === 'progress') {
+    return <FieldIndex value={realValue + 1} type={valueType} {...restProps} />;
+  } else if (valueType === 'progress') {
     // 进度条
-    return <FieldProgress value={realValue} {...props} />;
-  } else if (type === 'percent') {
+    return <FieldProgress value={realValue} {...restProps} />;
+  } else if (valueType === 'percent') {
     // 百分比
-    return <Percent value={realValue} {...props} />;
-  } else if (EnumType.includes(type)) {
+    return <Percent value={realValue} {...restProps} />;
+  } else if (EnumType.includes(valueType)) {
     // 枚举值
-    const typeObj = {
-      enum: 'text',
-      enumBadge: 'badge',
-      enumTag: 'tag',
-    };
     const enumProps = {
       value: realValue,
-      type: typeObj[type],
+      type: DectionaryTypeMap[valueType],
       data: valueEnum,
     };
     return Array.isArray(realValue) ? (
-      <Dictionary.List {...enumProps} {...props} />
+      <Dictionary.List {...enumProps} {...restProps} />
     ) : (
-      <Dictionary {...enumProps} {...props} />
+      <Dictionary {...enumProps} {...restProps} />
     );
-  } else if (type === 'color') {
+  } else if (valueType === 'color') {
     // 颜色
-    return <Color value={realValue} {...props} />;
+    return <Color value={realValue} {...restProps} />;
   }
 
   return realValue;

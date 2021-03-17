@@ -38,10 +38,6 @@ formatValue  | 格式化 `value` 。<br/>在 BizTable 或 BizDescriptions ，可
 
 ### ValueType 值
 
-<code src="./demos/valueType.tsx" />
-
-值为 `string` 时，支持以下类型：
-
 类型 | 描述 | 示例 |
 ------------- | ------------- | ------------- |
 text  | 默认不做处理，当值为 [Falsy](https://developer.mozilla.org/zh-CN/docs/Glossary/Falsy) 时，显示 `-` | - |
@@ -65,28 +61,6 @@ dateTimeRange  | 日期时间区间 `YYYY-MM-DD HH:mm:ss ~ YYYY-MM-DD HH:mm:ss` 
 time  | 时间 `HH:mm:ss` | 10:05:20 |
 timeRange  | 时间区间 `HH:mm:ss ~ HH:mm:ss` | 10:05:20 ~ 20:00:00 |
 fromNow  | 相对当前时间，使用 `moment` [fromNow](http://momentjs.cn/docs/#/displaying/fromnow/) 方法 | 5 个月前 |
-
-<br/>
-
-```javascript
-<BizField value={40} valueType='percent' showSymbol showColor />
-```
-
-值为 `object` 时，必须包含 `type`，且 `type` 为上述 `string` ，剩下的值将作为 `props` 传入组件。
-
-如下两种写法皆可：
-
-```javascript
-<BizField value={40} valueType={{type: 'percent', showSymbol: true, showColor: true}}  />
-
-<BizField value={40} valueType={{type: 'percent'}} showSymbol showColor  />
-```
-
-值为 `function` 时，必须返回上述 `object` 值。
-
-```javascript
-<BizField value={40} valueType={()=>({type: 'percent', showSymbol: true, showColor: true})}  />
-```
 
 ### valueEnum 值
 

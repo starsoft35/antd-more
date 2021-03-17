@@ -1,6 +1,6 @@
 import { EnumData } from '../dictionary';
 
-type ValueTypeStr =
+type ValueType =
   | 'text'
   | 'date'
   | 'dateWeek'
@@ -22,25 +22,9 @@ type ValueTypeStr =
   | 'enumTag'
   | 'enumBadge'
   | 'image'
-  | 'color'
-  | string;
+  | 'color';
 
-/**
- * @deprecated 即将不支持，请使用 string
- */
-type ValueTypeObj = {
-  type: ValueType;
-  [x: string]: any;
-};
-
-/**
- * @deprecated 即将不支持，请使用 string
- */
-type ValueTypeFn = (value?: any) => ValueTypeObj;
-
-export type ValueType = ValueTypeStr | ValueTypeObj | ValueTypeFn;
-
-export type { EnumData };
+export type { EnumData, ValueType };
 
 export interface BizFieldProps<T = any> {
   value: T;
