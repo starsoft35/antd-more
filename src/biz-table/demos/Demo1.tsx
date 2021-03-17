@@ -34,12 +34,12 @@ const columns: BizColumnType<DataItem> = [
       formatValue: value => divide(value, 100), // 分转元
       prefix: "¥"
     },
-    // 写法二
+    // 写法二，可关联当前数据配置
     // field: (text, record, index) => {
     //   console.log(text, record, index);
     //   return {
     //     formatValue: value => divide(value, 100), // 分转元
-    //     prefix: "¥"
+    //     prefix: `${record.applicantName} `,
     //   }
     // },
     order: 2
