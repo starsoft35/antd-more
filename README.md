@@ -16,8 +16,9 @@
 
  antd-more | antd |
  --------- | ---- |
- v0.x      | v4.x |
- v1.x      | v4.x |
+ [v0.x](https://doly-dev.github.io/antd-more/site/v0/index.html)      | v4.x |
+ [v1.x](https://doly-dev.github.io/antd-more/site/v2/index.html)      | v4.x |
+ [v2.x](https://doly-dev.github.io/antd-more/site/v2/index.html)      | v4.x |
 
 ## 使用
 
@@ -133,7 +134,7 @@ npm run commit
 [npm]: https://img.shields.io/npm/v/antd-more.svg
 [npm-url]: https://npmjs.com/package/antd-more
 
-[site]: https://doly-dev.github.io/antd-more/site/v1/index.html
+[site]: https://doly-dev.github.io/antd-more/site/v2/index.html
 [babel-plugin-import]: https://www.npmjs.com/package/babel-plugin-import
 
 [doly]: https://www.npmjs.com/package/doly-cli
