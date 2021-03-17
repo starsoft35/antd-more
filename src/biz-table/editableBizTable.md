@@ -168,6 +168,17 @@ valueEnum = options
     format: "YYYY-MM-DD HH:mm:ss"
   }
 },
+{
+  dataIndex: "createTime",
+  title: "创建时间",
+  editable: (originItem, dom, form)=>{
+    return {
+      itemType: "date", // 注意区分 valueType 和 itemType，valueType 只是用于映射 itemType，最终还是使用 itemType，而 itemType 没有 dateTime
+      showTime: true,
+      format: "YYYY-MM-DD HH:mm:ss"
+    }
+  }
+},
 ```
 
 如果 `valueType` 没有匹配的 `itemType` ，并且没有设置 `itemType`，默认 `itemType='input'` 。
@@ -176,12 +187,12 @@ valueEnum = options
 
 ```typescript
 editable: (_, record, index)=>{
-  render: (columnItem, dom: JSX.Element, form: FormInstance): JSX.Element{
-    console.log(columnItem, dom, form);
+  render: (originItem, dom: JSX.Element, form: FormInstance): JSX.Element{
+    console.log(originItem, dom, form);
     // return dom;
 
     return (
-      <BizForm.Item name={record[rowKey], columnItem.dataIndex} label={columnItem.title}>
+      <BizForm.Item name={record[rowKey], originItem.dataIndex} label={originItem.title}>
         {/* some form, example Rate Slider Switch ... */}
         <AutoComplete />
       </BizForm.Item>
@@ -203,6 +214,8 @@ editable: (_, record, index)=>{
 [ItemPassword]: https://doly-dev.github.io/antd-more/site/v1/index.html#/business/biz-form#itempassword
 [ItemRadio]: https://doly-dev.github.io/antd-more/site/v1/index.html#/business/biz-form#itemradio
 [ItemSelect]: https://doly-dev.github.io/antd-more/site/v1/index.html#/business/biz-form#itemselect
+[ItemSlider]: https://doly-dev.github.io/antd-more/site/v1/index.html#/business/biz-form#itemslider
+[ItemSwitch]: https://doly-dev.github.io/antd-more/site/v1/index.html#/business/biz-form#itemswitch
 [ItemTextArea]: https://doly-dev.github.io/antd-more/site/v1/index.html#/business/biz-form#itemtextarea
 [ItemTime]: https://doly-dev.github.io/antd-more/site/v1/index.html#/business/biz-form#itemtime
 [ItemTimeRange]: https://doly-dev.github.io/antd-more/site/v1/index.html#/business/biz-form#itemtimerange

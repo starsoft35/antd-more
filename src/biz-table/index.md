@@ -67,7 +67,7 @@ extra  | 扩展内容，表格外的上面、查询表单下面的区域 | `Reac
 form  | 同 [BizForm.QueryForm] 配置参数 | [QueryFormProps] | - |
 formRef  | 获取查询表单的 `form` 实例  | `React.MutableRefObject&lt;FormInstance&gt;` | - |
 actionRef  | 常用操作引用，便于自定义触发  | `React.MutableRefObject&lt;ActionType&gt;` | - |
-tableRender  | 自定义表格渲染  | `(props: BizTableProps&lt;RecordType&gt;, dom: JSX.Element) => JSX.Element | React.ReactNode` | - |
+tableRender  | 自定义表格渲染  | `(props: BizTableProps&lt;RecordType&gt;, dom: JSX.Element) => React.ReactNode` | - |
 
 ### Request 请求方法
 
@@ -97,9 +97,7 @@ type BizTableRequest = (
 
 `data` 用于设置 Table 的 dataSource ，`total` 用于设置分页。
 
-**action 触发请求说明**
-
-如果使用 `formRef.current.submit()` 触发表单提交，会导致第四个参数的 `action` 不准确，`formRef` 一般在处理赋值时使用。常用操作推荐使用 `actionRef` 。
+**第四个参数中的 action 说明**
 
 值 | 说明 |
 ---- | ---- |
@@ -110,20 +108,29 @@ reload | 调用 `actionRef.current.reload` |
 reset | 点击重置 或 调用 `actionRef.current.reset` |
 submit | 点击查询 或 调用 `actionRef.current.submit` |
 
+如果手动使用 `formRef.current.submit()` 触发表单提交，会导致 `action` 不准确，`formRef` 一般在处理赋值时使用。常用操作推荐使用 `actionRef` 。
+
 ### Columns 列定义
 
-在原来的基础上扩展了几个配置 `tooltip` `valueType` `valueEnum` `search` `order` `table`。 
+列描述数据对象，在原来 antd Table [Column](https://ant-design.gitee.io/components/table-cn/#Column) 的基础上扩展了以下配置：
 
-- `valueType` `valueEnum` 用于字段展示（如设置 search，也用于查询），如有 `valueType` 且没有 `render`，将使用 [BizField] 渲染
-- `search` 配置查询表单项
-- `order` 查询表单项排序，数值越小越靠前，默认为0
-- `table` 是否在表格中显示，适用于部分字段只有查询表单，但表格中不显示
+参数 | 说明 | 类型 | 默认值 |
+------------- | ------------- | ------------- | ------------- |
+tooltip  | 表头标题后面的补充提示 | `string` | - |
+valueType  | 值类型。同 BizField 的 valueType，用于列展示 或 查询表单项 或 可编辑表格项。 | [ValueType](/dataview/biz-field#共同的api) | - |
+valueEnum  | 包含 `value` `name` 的数据字典。<br/>当 `valueType` 为 `enum` `enumTag` `enumBadge` 时生效。 | `EnumData` | - |
+search  | 配置查询表单项 | `SearchProps` | - |
+order  | 查询表单项排序，数值越小越靠前 | `number` | `0` |
+table  | 是否在表格中显示，适用于部分字段只有查询表单，但表格中不显示 | `number` | `0` |
+
+- `valueType` 用于字段展示时，如果没有 `render`，将使用 [BizField] 渲染。
+- `valueType` 用于查询表单项 或 可编辑表格项时，转换为下表中的 `itemType` 。
 
 #### search 查询表单配置项
 
 当值为 `true` 或 `object` 时，自动添加查询表单项。除了以下映射值的配置，其余项皆透传给表单项。
 
-`columns` 部分配置跟表单项配置的映射：
+`columns` 部分配置跟查询表单项配置的映射：
 
 ```
 dataIndex = name
@@ -185,12 +192,12 @@ valueEnum = options
 
 ```typescript
 search: {
-  render: (columnItem, dom: JSX.Element, form: FormInstance): JSX.Element{
-    console.log(columnItem, dom, form);
+  render: (originItem, dom: JSX.Element, form: FormInstance): JSX.Element{
+    console.log(originItem, dom, form);
     // return dom;
 
     return (
-      <BizForm.Item name={columnItem.dataIndex} label={columnItem.title}>
+      <BizForm.Item name={originItem.dataIndex} label={originItem.title}>
         {/* some form, example Rate Slider Switch ... */}
         <AutoComplete />
       </BizForm.Item>
@@ -242,6 +249,8 @@ ref.current.submit();
 [ItemPassword]: https://doly-dev.github.io/antd-more/site/v1/index.html#/business/biz-form#itempassword
 [ItemRadio]: https://doly-dev.github.io/antd-more/site/v1/index.html#/business/biz-form#itemradio
 [ItemSelect]: https://doly-dev.github.io/antd-more/site/v1/index.html#/business/biz-form#itemselect
+[ItemSlider]: https://doly-dev.github.io/antd-more/site/v1/index.html#/business/biz-form#itemslider
+[ItemSwitch]: https://doly-dev.github.io/antd-more/site/v1/index.html#/business/biz-form#itemswitch
 [ItemTextArea]: https://doly-dev.github.io/antd-more/site/v1/index.html#/business/biz-form#itemtextarea
 [ItemTime]: https://doly-dev.github.io/antd-more/site/v1/index.html#/business/biz-form#itemtime
 [ItemTimeRange]: https://doly-dev.github.io/antd-more/site/v1/index.html#/business/biz-form#itemtimerange
