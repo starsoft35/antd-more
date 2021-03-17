@@ -24,10 +24,18 @@ type ValueTypeStr =
   | 'image'
   | 'color'
   | string;
+
+/**
+ * @deprecated 即将不支持，请使用 string
+ */
 type ValueTypeObj = {
   type: ValueType;
   [x: string]: any;
 };
+
+/**
+ * @deprecated 即将不支持，请使用 string
+ */
 type ValueTypeFn = (value?: any) => ValueTypeObj;
 
 export type ValueType = ValueTypeStr | ValueTypeObj | ValueTypeFn;

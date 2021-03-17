@@ -57,7 +57,8 @@ export interface SearchProps<RecordType = any>
 
 export interface EditableProps<RecordType = any> extends Omit<SearchProps<RecordType>, 'order'> {}
 
-type InternalColumnType<RecordType = any> = ColumnType<RecordType> & {
+interface InternalColumnType<RecordType = any> extends Omit<ColumnType<RecordType>, 'dataIndex'> {
+  dataIndex?: string | number | (string | number)[];
   valueType?: ValueType;
   valueEnum?: EnumData;
   tooltip?: string;
@@ -69,7 +70,7 @@ type InternalColumnType<RecordType = any> = ColumnType<RecordType> & {
     | ((text: any, record: RecordType, index: number) => boolean | EditableProps<RecordType>); // 编辑模式下的配置
   table?: boolean; // 是否显示在表格列中，部分设置列可能只为了设置 search
   order?: number; // 用于search表单排序，数字越小越靠前
-};
+}
 
 interface ColumnGroupType<RecordType> extends Omit<InternalColumnType<RecordType>, 'dataIndex'> {
   children: BizColumnType<RecordType>;
