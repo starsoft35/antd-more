@@ -7,16 +7,12 @@ import DrawerForm from './DrawerForm';
 import Item from './Item';
 import List from './List';
 import ItemAddress from './ItemAddress';
-import ItemBankCard from './ItemBankCard';
 import ItemCaptcha from './ItemCaptcha';
 import ItemCheckbox from './ItemCheckbox';
 import ItemColor from './ItemColor';
-import ItemEmail from './ItemEmail';
 import ItemDate from './ItemDate';
 import ItemDateRange from './ItemDateRange';
-import ItemIdCard from './ItemIdCard';
 import ItemInput from './ItemInput';
-import ItemMobile from './ItemMobile';
 import ItemNumber from './ItemNumber';
 import ItemPassword from './ItemPassword';
 import ItemRadio from './ItemRadio';
@@ -27,7 +23,6 @@ import ItemTextArea from './ItemTextArea';
 import ItemTime from './ItemTime';
 import ItemTimeRange from './ItemTimeRange';
 import ItemUpload from './ItemUpload';
-import ItemUserName from './ItemUserName';
 
 import BaseForm, { BaseFormProps } from './BaseForm';
 
@@ -42,32 +37,12 @@ const BizForm: React.FC<BaseFormProps> & {
   List: typeof List;
   useForm: typeof Form.useForm;
   ItemAddress: typeof ItemAddress;
-
-  /**
-   * @deprecated Please use `ItemInput`, type="bankCard"
-   */
-  ItemBankCard: typeof ItemBankCard;
   ItemCaptcha: typeof ItemCaptcha;
   ItemCheckbox: typeof ItemCheckbox;
   ItemColor: typeof ItemColor;
-
-  /**
-   * @deprecated Please use `ItemInput`, type="email"
-   */
-  ItemEmail: typeof ItemEmail;
   ItemDate: typeof ItemDate;
   ItemDateRange: typeof ItemDateRange;
-
-  /**
-   * @deprecated Please use `ItemInput`, type="idCard"
-   */
-  ItemIdCard: typeof ItemIdCard;
   ItemInput: typeof ItemInput;
-
-  /**
-   * @deprecated Please use `ItemInput`, type="mobile"
-   */
-  ItemMobile: typeof ItemMobile;
   ItemNumber: typeof ItemNumber;
   ItemPassword: typeof ItemPassword;
   ItemRadio: typeof ItemRadio;
@@ -78,11 +53,6 @@ const BizForm: React.FC<BaseFormProps> & {
   ItemTime: typeof ItemTime;
   ItemTimeRange: typeof ItemTimeRange;
   ItemUpload: typeof ItemUpload;
-
-  /**
-   * @deprecated Please use `ItemInput`, type="userName"
-   */
-  ItemUserName: typeof ItemUserName;
 } = ({ submitter, ...restProps }) => {
   const submitterProps = typeof submitter === 'boolean' || !submitter ? {} : submitter;
   const submitterConfig =
@@ -119,16 +89,12 @@ BizForm.Item = Item;
 BizForm.List = List;
 BizForm.useForm = Form.useForm;
 BizForm.ItemAddress = ItemAddress;
-BizForm.ItemBankCard = ItemBankCard;
 BizForm.ItemCaptcha = ItemCaptcha;
 BizForm.ItemCheckbox = ItemCheckbox;
 BizForm.ItemColor = ItemColor;
-BizForm.ItemEmail = ItemEmail;
 BizForm.ItemDate = ItemDate;
 BizForm.ItemDateRange = ItemDateRange;
-BizForm.ItemIdCard = ItemIdCard;
 BizForm.ItemInput = ItemInput;
-BizForm.ItemMobile = ItemMobile;
 BizForm.ItemNumber = ItemNumber;
 BizForm.ItemPassword = ItemPassword;
 BizForm.ItemRadio = ItemRadio;
@@ -139,6 +105,5 @@ BizForm.ItemTextArea = ItemTextArea;
 BizForm.ItemTime = ItemTime;
 BizForm.ItemTimeRange = ItemTimeRange;
 BizForm.ItemUpload = ItemUpload;
-BizForm.ItemUserName = ItemUserName;
 
 export default BizForm;
