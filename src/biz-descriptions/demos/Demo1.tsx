@@ -30,8 +30,8 @@ const Demo: React.FC = () => {
       <BizDescriptions.Item label="百分比" valueType="percent">{data.number3}</BizDescriptions.Item>
       <BizDescriptions.Item
         label="百分比带颜色符号"
-        valueType={{
-          type: "percent",
+        valueType="percent"
+        field={{
           showSymbol: true,
           showColor: true
         }}
@@ -41,8 +41,8 @@ const Demo: React.FC = () => {
       <BizDescriptions.Item label="颜色" valueType="color">{data.color}</BizDescriptions.Item>
       <BizDescriptions.Item
         label="颜色"
-        valueType={{
-          type: "color",
+        valueType="color"
+        field={{
           showText: true
         }}
       >
@@ -55,8 +55,8 @@ const Demo: React.FC = () => {
       <BizDescriptions.Item label="状态" valueType="enum" valueEnum={ApproveStatus}>{data.status}</BizDescriptions.Item>
       <BizDescriptions.Item label="状态" valueType="enumTag" valueEnum={ApproveStatus}>{data.status}</BizDescriptions.Item>
       <BizDescriptions.Item label="状态" valueType="enumBadge" valueEnum={ApproveStatus}>{data.status}</BizDescriptions.Item>
-      <BizDescriptions.Item label="图片" valueType={{ type: "image" }}>{data.image}</BizDescriptions.Item>
-      <BizDescriptions.Item label="多张图片" valueType={{ type: "image" }}>{data.image2}</BizDescriptions.Item>
+      <BizDescriptions.Item label="图片" valueType="image">{data.image}</BizDescriptions.Item>
+      <BizDescriptions.Item label="多张图片" valueType="image">{data.image2}</BizDescriptions.Item>
     </BizDescriptions>
   );
 }

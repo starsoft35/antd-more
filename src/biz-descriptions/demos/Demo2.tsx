@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { BizDescriptions } from 'antd-more';
+import { BizDescriptionsColumnItemProps } from 'antd-more/es/biz-descriptions';
 import { ApproveStatus } from './constants';
 
 const data = {
@@ -19,7 +20,7 @@ const data = {
   image2: ["https://gw.alipayobjects.com/zos/antfincdn/aPkFc8Sj7n/method-draw-image.svg", "https://gw.alipayobjects.com/zos/antfincdn/aPkFc8Sj7n/method-draw-image.svg"]
 }
 
-const columns = [
+const columns: BizDescriptionsColumnItemProps[] = [
   {
     dataIndex: "text1",
     title: "空字符串",
@@ -56,8 +57,8 @@ const columns = [
   {
     dataIndex: "number3",
     title: "百分比带颜色符号",
-    valueType: {
-      type: "percent",
+    valueType: "percent",
+    field: {
       showSymbol: true,
       showColor: true
     }
@@ -70,8 +71,8 @@ const columns = [
   {
     dataIndex: "color",
     title: "颜色带文本",
-    valueType: {
-      type: "color",
+    valueType: "color",
+    field: {
       showText: true
     }
   },

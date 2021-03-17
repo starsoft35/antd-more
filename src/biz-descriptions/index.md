@@ -56,22 +56,24 @@ tooltip  | 标题后面的补充提示，需有标题才生效 | `string` | - |
 ------------- | ------------- | ------------- | ------------- |
 valueType  | 值类型 | `ValueType` | - |
 valueEnum  | 包含 `value` `name` 的数据字典。<br/>当 `valueType` 为 `enum` `enumTag` `enumBadge` 时生效。 | `EnumData` | - |
+field  | 同 BizField 的配置项，支持 object 和 function 方式。<br/>function 方式默认参数为当前值。 | `object` \| `(value:any)=>object` | - |
 tooltip  | 标签后面的补充提示，需有标签才生效 | `string` | - |
 
 ### 类型
 
 ```typescript
-interface ItemProps extends DescriptionsItemProps {
+interface BizDescriptionsItemProps extends DescriptionsItemProps {
   valueType?: ValueType;
   valueEnum?: EnumData;
   tooltip?: string;
+  field?: Omit<BizFieldProps, 'value'> | ((value: any)=>Omit<BizFieldProps, 'value'>)
   key?: React.ReactText;
 }
 
-type DataIndex = string | number;
+type DataIndex = string | number | (string|number)[];
 
-interface ColumnItem extends Omit<ItemProps, 'children'> {
-  dataIndex?: DataIndex | DataIndex[];
+interface BizDescriptionsColumnItemProps extends Omit<ItemProps, 'children'> {
+  dataIndex?: DataIndex;
   title?: React.ReactNode;
   render?: (value: any, dataSource: Record<DataIndex, any>, index: number) => React.ReactNode;
 }

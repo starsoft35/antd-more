@@ -2,13 +2,14 @@ import * as React from 'react';
 import { Descriptions } from 'antd';
 import { DescriptionsProps } from 'antd/es/descriptions';
 import { DescriptionsItemProps } from 'antd/es/descriptions/Item';
-import BizField, { ValueType, EnumData } from '../biz-field';
+import BizField, { ValueType, EnumData, BizFieldProps } from '../biz-field';
 import WithTooltip from './WithTooltip';
 
-interface ItemProps extends DescriptionsItemProps {
+export interface BizDescriptionsItemProps extends DescriptionsItemProps {
   valueType?: ValueType;
   valueEnum?: EnumData;
   tooltip?: string;
+  field?: Omit<BizFieldProps, 'value'> | ((value: any) => Omit<BizFieldProps, 'value'>);
   key?: React.ReactText;
 }
 
@@ -18,23 +19,27 @@ function createDescriptionsItem({
   children,
   label,
   tooltip,
+  field,
   ...restProps
-}: ItemProps) {
+}: BizDescriptionsItemProps) {
+  const fieldProps = typeof field === 'function' ? field(children) : field;
+
   return (
     <Descriptions.Item
       label={label && tooltip ? <WithTooltip label={label} tooltip={tooltip} /> : label}
       {...restProps}
     >
-      <BizField value={children} valueType={valueType} valueEnum={valueEnum} />
+      <BizField value={children} valueType={valueType} valueEnum={valueEnum} {...fieldProps} />
     </Descriptions.Item>
   );
 }
 
-const DescriptionsItem: React.FC<ItemProps> = (props) => createDescriptionsItem(props);
+const DescriptionsItem: React.FC<BizDescriptionsItemProps> = (props) =>
+  createDescriptionsItem(props);
 
 type DataIndex = string | number;
 
-interface ColumnItem extends Omit<ItemProps, 'children'> {
+export interface BizDescriptionsColumnItemProps extends Omit<BizDescriptionsItemProps, 'children'> {
   dataIndex?: DataIndex | DataIndex[];
   title?: React.ReactNode;
   render?: (value: any, dataSource: Record<DataIndex, any>, index: number) => React.ReactNode;
@@ -42,7 +47,7 @@ interface ColumnItem extends Omit<ItemProps, 'children'> {
 
 export interface BizDescriptionsProps extends DescriptionsProps {
   dataSource?: Record<DataIndex, any>;
-  columns?: ColumnItem[];
+  columns?: BizDescriptionsColumnItemProps[];
   tooltip?: string;
 }
 

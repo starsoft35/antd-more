@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { BizDescriptions } from 'antd-more';
+import { BizDescriptionsColumnItemProps } from 'antd-more/es/biz-descriptions';
 
 const data = {
   text1: '',
@@ -8,7 +9,7 @@ const data = {
   number1: 100,
 }
 
-const columns = [
+const columns: BizDescriptionsColumnItemProps[] = [
   {
     dataIndex: "text1",
     title: "空字符串",

@@ -4,7 +4,6 @@ import { NamePath } from 'antd/es/form/interface';
 import BizForm from '../../biz-form';
 import { BizFormItemProps } from '../../biz-form/components/Item';
 import { SearchProps } from '../interface';
-import parseValueType from '../../biz-field/_util/parseValueType';
 import { DateFormat } from '../../biz-field/_util/dateUtil';
 import { ItemTypes, ValueTypeToItemType, DatePickerMap } from './constants';
 
@@ -43,13 +42,7 @@ export function createFormItem({ search, ...restProps }: SearchProps, form: Form
     ...restOptions
   } = options;
 
-  let type: string = '';
-
-  if (itemType) {
-    type = itemType;
-  } else if (valueType) {
-    type = parseValueType(valueType).type; // eslint-disable-line prefer-destructuring
-  }
+  const type: string = itemType || valueType;
 
   const formItemType = ValueTypeToItemType[type]
     ? ItemTypes[ValueTypeToItemType[type]]
