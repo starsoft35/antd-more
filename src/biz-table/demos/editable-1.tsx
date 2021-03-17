@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Space, Button } from 'antd';
 import { BizTable } from 'antd-more';
-import { EditableActionType } from 'antd-more/es/biz-table';
+import { EditableActionType, BizColumnType } from 'antd-more/es/biz-table';
 import Mock from 'mockjs';
 import { ApproveStatus } from './constants';
 
@@ -22,7 +22,7 @@ const Demo: React.FC = () => {
   const [editableKeys, setEditableKeys] = React.useState([]);
   const editableActionRef = React.useRef<EditableActionType>();
 
-  const columns = [
+  const columns: BizColumnType = [
     {
       valueType: "indexBorder",
       title: "序号",

@@ -8,7 +8,8 @@ const applyList = ({ page: { pageNum, pageSize }, data = {} }) => (
       approverName: '@cname',
       createTime: '@datetime',
       approveTime: '@datetime',
-      "approveResult|1-3": 1
+      "approveResult|1-3": 1,
+      "money|0-10000.0-2": 0 
     }],
     pageInfo: {
       total: 50,

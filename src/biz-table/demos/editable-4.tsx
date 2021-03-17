@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Row, Col, Space, Button } from 'antd';
-import { BizForm, BizTable, BizField } from 'antd-more';
-import { EditableActionType } from 'antd-more/es/biz-table';
+import { BizForm, BizTable } from 'antd-more';
+import { EditableActionType, BizColumnType } from 'antd-more/es/biz-table';
 import Mock from 'mockjs';
 import { Bank } from './constants';
 
@@ -37,7 +37,7 @@ const Demo: React.FC = () => {
   const [editableKeys, setEditableKeys] = React.useState(() => defaultData.map(item => item.id));
   const editableActionRef = React.useRef<EditableActionType>();
 
-  const columns = [
+  const columns:BizColumnType = [
     {
       dataIndex: "shopsName",
       title: "商品名称",
@@ -48,9 +48,6 @@ const Demo: React.FC = () => {
       valueType: "enum",
       valueEnum: Bank,
       width: 300,
-      // editable: {
-      //   itemType: "checkbox"
-      // }
       editable: {
         selectProps: {
           showSearch: true,
@@ -85,7 +82,9 @@ const Demo: React.FC = () => {
       title: "日期区间",
       valueType: "dateRange",
       width: 300,
-      render: (text, record) => <BizField value={[record.startDate, record.endDate]} valueType="dateRange" />,
+      field: (text, record) => ({
+        formatValue: () => [record.startDate, record.endDate]
+      }),
       editable: (text, record) => ({
         initialValue: [record.startDate, record.endDate],
         names: ["d1", "d2"]

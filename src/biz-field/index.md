@@ -64,6 +64,8 @@ fromNow  | 相对当前时间，使用 `moment` [fromNow](http://momentjs.cn/doc
 
 ### valueEnum 值
 
+建议在项目 `util/constants.ts` 中维护常量枚举配置。
+
 ```typescript
 interface EnumItem {
   name: string;

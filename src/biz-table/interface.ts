@@ -2,7 +2,7 @@ import * as React from 'react';
 import { ColumnType } from 'antd/es/table';
 import { SorterResult, TableCurrentDataSource } from 'antd/es/table/interface';
 import { FormInstance } from 'antd/es/form';
-import { ValueType, EnumData } from '../biz-field';
+import { ValueType, EnumData, BizFieldProps } from '../biz-field';
 import { BizFormItemProps } from '../biz-form';
 import { ItemTypes } from './_util/constants';
 
@@ -63,6 +63,9 @@ interface InternalColumnType<RecordType = any> extends Omit<ColumnType<RecordTyp
   valueEnum?: EnumData;
   tooltip?: string;
   nowrap?: boolean;
+  field?:
+    | Omit<BizFieldProps, 'value'>
+    | ((text: any, record: RecordType, index: number) => Omit<BizFieldProps, 'value'>);
   search?: boolean | SearchProps<RecordType>; // 显示搜索 或 搜索配置
   editable?:
     | boolean

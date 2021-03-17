@@ -108,6 +108,7 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
             title,
             className,
             nowrap: cellNowrap,
+            field,
             search,
             editable,
             order,
@@ -201,11 +202,17 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
               }
 
               if (valueType) {
-                if (valueType === 'index' || valueType === 'indexBorder') {
-                  return <BizField value={index} valueType={valueType} valueEnum={valueEnum} />;
-                } else {
-                  return <BizField value={text} valueType={valueType} valueEnum={valueEnum} />;
-                }
+                const retValue =
+                  valueType === 'index' || valueType === 'indexBorder' ? index : text;
+                const fieldProps = typeof field === 'function' ? field(text, record, index) : field;
+                return (
+                  <BizField
+                    value={retValue}
+                    valueType={valueType}
+                    valueEnum={valueEnum}
+                    {...fieldProps}
+                  />
+                );
               }
               return text;
             };

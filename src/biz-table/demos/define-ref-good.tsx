@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { BizTable } from 'antd-more';
-import { ActionType, BizTableProps, BizTableRequest } from 'antd-more/es/biz-table';
+import { ActionType, BizTableProps, BizTableRequest, BizColumnType } from 'antd-more/es/biz-table';
 
 const mockData = [
   { name: '' },
@@ -18,7 +18,7 @@ const request: BizTableRequest = (params) => {
 
 // 部分场景下外部封装BizTable中使用操作，推荐
 const DefineTable: React.FC<BizTableProps> = ({ actionRef, ...restProps }) => {
-  const columns = React.useMemo(() => ([
+  const columns: BizColumnType = React.useMemo(() => ([
     {
       title: '序号',
       valueType: 'indexBorder'
