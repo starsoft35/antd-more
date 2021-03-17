@@ -52,7 +52,7 @@ export interface SearchProps<RecordType = any>
     originItem: InternalColumnType<RecordType>,
     dom: JSX.Element, // eslint-disable-line
     form: FormInstance,
-  ) => JSX.Element | React.ReactNode; // eslint-disable-line
+  ) => JSX.Element; // eslint-disable-line
 }
 
 export interface EditableProps<RecordType = any> extends Omit<SearchProps<RecordType>, 'order'> {}

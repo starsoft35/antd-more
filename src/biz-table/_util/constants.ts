@@ -14,6 +14,8 @@ export enum ItemTypes {
   select = 'ItemSelect',
   time = 'ItemTime',
   timeRange = 'ItemTimeRange',
+  switch = 'ItemSwitch',
+  slider = 'ItemSlider',
 }
 
 export enum ValueTypeToItemType {
