@@ -121,7 +121,7 @@ valueType  | 值类型。同 BizField 的 valueType，用于列展示 或 查询
 valueEnum  | 包含 `value` `name` 的数据字典。<br/>当 `valueType` 为 `enum` `enumTag` `enumBadge` 时生效。 | `EnumData` | - |
 search  | 配置查询表单项 | `SearchProps` | - |
 order  | 查询表单项排序，数值越小越靠前 | `number` | `0` |
-table  | 是否在表格中显示，适用于部分字段只有查询表单，但表格中不显示 | `number` | `0` |
+table  | 是否在表格中显示，适用于部分字段只有查询表单，但表格中不显示 | `boolean` | `true` |
 
 - `valueType` 用于字段展示时，如果没有 `render`，将使用 [BizField] 渲染。
 - `valueType` 用于查询表单项 或 可编辑表格项时，转换为下表中的 `itemType` 。
@@ -158,6 +158,8 @@ valueEnum = options
 | - | `password` | [ItemPassword]
 | - | `radio` | [ItemRadio]
 | - | `upload` | [ItemUpload]
+| - | `slider` | [ItemSlider]
+| - | `switch` | [ItemSwitch]
 
 以下几种配置结果都是一样的:
 

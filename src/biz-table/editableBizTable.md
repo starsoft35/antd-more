@@ -143,6 +143,8 @@ valueEnum = options
 | - | `password` | [ItemPassword]
 | - | `radio` | [ItemRadio]
 | - | `upload` | [ItemUpload]
+| - | `slider` | [ItemSlider]
+| - | `switch` | [ItemSwitch]
 
 以下几种配置结果都是一样的:
 
