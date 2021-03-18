@@ -39,6 +39,7 @@ function uploadImage(file: File): Promise<{ fssId: string; }> {
 const Demo: React.FC = () => {
   // 上传图片
   const handleUpload = React.useCallback((file: UploadFile) => {
+    console.log(file);
     return uploadImage(file.originFileObj as File).then(res => {
       // 返回值自动添加到 file 中
       return { value: res.fssId }
@@ -65,7 +66,6 @@ const Demo: React.FC = () => {
         maxCount={1}
         accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
         fileTypeMessage="不支持文件类型"
-
         // 使用自定义上传
         onUpload={handleUpload}
         transform={transformUploadValue}
@@ -88,7 +88,6 @@ const Demo: React.FC = () => {
         accept=".xls,.xlsx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
         required
         fileTypeMessage="不支持文件类型"
-
         // 使用自定义上传
         onUpload={handleUpload}
         transform={transformUploadValue}
@@ -111,7 +110,6 @@ const Demo: React.FC = () => {
         type="image"
         maxCount={9}
         required
-
         // 使用自定义上传
         onUpload={handleUpload}
         transform={transformUploadValue}

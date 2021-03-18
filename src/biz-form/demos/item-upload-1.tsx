@@ -75,7 +75,6 @@ const Demo: React.FC = () => {
         maxCount={9}
         // required
         multiple
-
         // 使用自定义上传
         onUpload={handleUpload}
         transform={transformUploadValue}

@@ -50,12 +50,10 @@ module.exports = {
     "react/jsx-wrap-multilines": 0,
     "max-len": 0,
     "quote-props": 0,
-
-    // demo rules
-    // "no-trailing-spaces": 0,
-    // "import/no-extraneous-dependencies": 0,
-    // "no-console": 0,
-    // "import/prefer-default-export": 0,
+    "import/no-extraneous-dependencies": 0,
+    "no-trailing-spaces": 0,
+    "no-console": 0,
+    "import/prefer-default-export": 0,
   },
   "env": {
     "browser": true,
