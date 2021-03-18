@@ -20,11 +20,11 @@ export interface UploadWrapperProps extends UploadProps {
   fileTypeMessage?: string; // 文件类型错误提示
   fileSizeMessage?: string; // 文件超过最大尺寸提示
   maxCountMessage?: string; // 上传文件超过限制数量时提示
-  onUpload?: (file: UploadFile) => Promise<object | undefined>; // 自定义文件上传
+  onUpload?: (file: File) => Promise<object | undefined>; // 自定义文件上传
   maxSize?: number; // 单个文件最大尺寸，用于校验
   maxCount?: number; // 最多上传文件数量
   beforeTransformValue?: (value: any[]) => UploadFile[] | Promise<UploadFile[]>; // 初始值转换
-  onGetPreviewUrl?: (file: UploadFile) => Promise<string>; // 点击预览获取大图URL
+  onGetPreviewUrl?: (file: File) => Promise<string>; // 点击预览获取大图URL
   dragger?: boolean; // 支持拖拽
 
   // icon和title配置仅在 Dragger 和 Button 中生效
@@ -112,7 +112,7 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
       const { uid } = file;
 
       // 支持逐个上传文件
-      const uploadRet = onUpload(file);
+      const uploadRet = onUpload((file.originFileObj || file) as File);
       if (isPromiseLike(uploadRet)) {
         setUploading(true);
         uploadRet
@@ -258,10 +258,10 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
       if (!file.url && !file.preview) {
         if (onGetPreviewUrl) {
           // eslint-disable-next-line
-          file.preview = await onGetPreviewUrl(file);
+          file.preview = await onGetPreviewUrl((file as any).originFileObj || file);
         } else if (file.originFileObj || file) {
           // eslint-disable-next-line
-          file.preview = await getBase64((file.originFileObj || file) as File);
+          file.preview = await getBase64(file);
         } else {
           message.error('当前文件不支持预览！');
           return;

@@ -5,7 +5,6 @@
  */
 import * as React from 'react';
 import { BizForm } from 'antd-more';
-import { UploadFile } from 'antd/es/upload/interface';
 
 function waitTime(time: number = 1000) {
   return new Promise(resolve => {
@@ -108,9 +107,8 @@ const Demo: React.FC = () => {
   }, []);
 
   // 上传图片
-  const handleUpload = React.useCallback((file: UploadFile) => {
-    // 兼容写法，antd@4.14.0 在 beforeUpload 返回 false 时，onChange 的 file 去掉 originFileObj 直接返回 File
-    return uploadImage((file.originFileObj || file) as File).then(res => {
+  const handleUpload = React.useCallback((file: File) => {
+    return uploadImage(file).then(res => {
       return { thumbImgId: res.thumbImgId, bigImgId: res.thumbImgId }
     });
   }, []);

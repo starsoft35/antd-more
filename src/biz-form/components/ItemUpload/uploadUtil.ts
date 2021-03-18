@@ -1,10 +1,10 @@
 export { isPromiseLike, bytesToSize } from 'util-helpers';
 
 // 获取base64文件
-export function getBase64(file: File): Promise<string> {
+export function getBase64(file): Promise<string> {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
-    reader.readAsDataURL(file);
+    reader.readAsDataURL(file.originFileObj || file);
     reader.onload = () => resolve(reader.result as string);
     reader.onerror = (error) => reject(error);
   });
