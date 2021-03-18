@@ -24,12 +24,12 @@ const UploadAvatar: React.FC<{
   const transformBase64 = React.useCallback(async () => {
     if (currentFile) {
       if (!currentFile.url && !currentFile.preview) {
-        if (!currentFile.originFileObj) {
-          message.error('当前文件不支持显示！');
-          setImgUrl('');
-          return;
-        }
-        currentFile.preview = await getBase64(currentFile.originFileObj as File);
+        // if (!currentFile.originFileObj) {
+        //   message.error('当前文件不支持显示！');
+        //   setImgUrl('');
+        //   return;
+        // }
+        currentFile.preview = await getBase64((currentFile.originFileObj || currentFile) as File);
       }
       setImgUrl(currentFile.url || currentFile.preview);
     }

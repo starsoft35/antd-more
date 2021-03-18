@@ -39,8 +39,8 @@ function uploadImage(file: File): Promise<{ fssId: string; }> {
 const Demo: React.FC = () => {
   // 上传图片
   const handleUpload = React.useCallback((file: UploadFile) => {
-    console.log(file);
-    return uploadImage(file.originFileObj as File).then(res => {
+    // 兼容写法，antd@4.14.0 在 beforeUpload 返回 false 时，onChange 的 file 去掉 originFileObj 直接返回 File
+    return uploadImage((file.originFileObj || file) as File).then(res => {
       // 返回值自动添加到 file 中
       return { value: res.fssId }
     });

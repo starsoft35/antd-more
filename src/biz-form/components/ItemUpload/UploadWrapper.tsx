@@ -259,9 +259,9 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
         if (onGetPreviewUrl) {
           // eslint-disable-next-line
           file.preview = await onGetPreviewUrl(file);
-        } else if (file.originFileObj) {
+        } else if (file.originFileObj || file) {
           // eslint-disable-next-line
-          file.preview = await getBase64(file.originFileObj as File);
+          file.preview = await getBase64((file.originFileObj || file) as File);
         } else {
           message.error('当前文件不支持预览！');
           return;
