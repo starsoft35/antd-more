@@ -56,7 +56,7 @@ const BizDescriptions: React.FC<BizDescriptionsProps> & {
 } = ({ dataSource, columns, children, title, tooltip, column, ...restProps }) => {
   const defaultProps = React.useMemo(
     () => ({
-      title: <WithTooltip label={title} tooltip={tooltip} />,
+      title: title && tooltip ? <WithTooltip label={title} tooltip={tooltip} /> : title,
       column: column || { xs: 1, md: 2, lg: 3, xxl: 4 },
     }),
     [title, tooltip, column],
