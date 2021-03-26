@@ -32,6 +32,10 @@ legacy: /form/modal-form
 
 <code src="../demos/modal-form-4.tsx" />
 
+### 修改和新增共用表单
+
+<code src="../demos/modal-form-5.tsx" />
+
 ## API
 
 ```typescript

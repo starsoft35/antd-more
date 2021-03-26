@@ -37,8 +37,7 @@ const ChangePasswordModal: React.FC<ChangePasswordModalProps> = ({
       onVisibleChange={onVisibleChange}
       modalProps={{
         destroyOnClose: true,
-        maskClosable: false,
-        forceRender: true
+        maskClosable: false
       }}
       form={form}
     >
