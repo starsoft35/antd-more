@@ -1,5 +1,5 @@
 const pkg = require('./package.json');
-const version = `v${pkg.version.split('.')[0]}`;
+const version = process.env.BUILD_MODE === 'version' ? `v${pkg.version.split('.')[0]}` : 'latest';
 
 const serverRootDirect = process.env.NODE_ENV === 'production' ? 'https://doly-dev.github.io/antd-more/' : '/';
 const logo = 'https://www.caijinfeng.com/assets/images/logo-doly@3x.png';
@@ -32,7 +32,7 @@ const umiConfig = {
       'antd-more'
     ]
   ],
-  mode: 'doc',
+  mode: 'site',
   history: {
     type: 'hash'
   },
@@ -51,6 +51,55 @@ const umiConfig = {
     type: 'none',
     exclude: [],
   },
+  theme: {
+    '@s-site-menu-width': '258px',
+  },
+  navs: [
+    null, // null 值代表保留约定式生成的导航，只做增量配置
+    {
+      title: 'v1.x',
+      path: 'https://doly-dev.github.io/antd-more/site/v1/index.html',
+    },
+    {
+      title: 'GitHub',
+      path: 'https://github.com/doly-dev/antd-more',
+    },
+    {
+      title: '更新日志',
+      path: 'https://github.com/doly-dev/antd-more/releases',
+    },
+  ],
+  menus: {
+    '/components': [
+      {
+        title: '数据展示',
+        children: [
+          'biz-field',
+          'biz-descriptions',
+          'biz-table/index',
+          'biz-table'
+        ]
+      },
+      {
+        title: '数据录入',
+        children: [
+          'biz-form',
+          'biz-form/docs/item',
+          'biz-form/docs/modalForm',
+          'biz-form/docs/queryForm',
+          'biz-form/docs/stepsForm',
+        ]
+      },
+      {
+        title: '通用',
+        children: [
+          'color',
+          'dictionary',
+          'captcha-button'
+        ]
+      }
+    ]
+  }
 };
 
 if (process.env.NODE_ENV === 'production') {

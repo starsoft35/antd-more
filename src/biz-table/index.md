@@ -1,10 +1,11 @@
 ---
 title: BizTable - 业务表格
+order: 2
 group:
-  title: 数据展示
-  path: /dataview
-  order: 0
-legacy: /dataview/biz-table
+  path: /
+nav:
+  title: 组件
+  path: /components
 ---
 
 # BizTable - 业务表格

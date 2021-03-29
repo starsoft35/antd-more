@@ -1,11 +1,11 @@
 ---
-title: Color
+title: Color - 颜色
+order: 0
 group:
-  title: 通用组件
-  path: /common
-  order: 2
-legacy: /common/color
-hide: true
+  path: /
+nav:
+  title: 组件
+  path: /components
 ---
 
 # Color

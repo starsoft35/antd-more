@@ -1,10 +1,11 @@
 ---
 title: EditableBizTable - 可编辑业务表格
+order: 3
 group:
-  title: 数据展示
-  path: /dataview
-  order: 0
-legacy: /dataview/editable-biz-table
+  path: /
+nav:
+  title: 组件
+  path: /components
 ---
 
 # EditableBizTable - 可编辑业务表格

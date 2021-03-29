@@ -1,9 +1,11 @@
 ---
 title: QueryForm - 查询表单
+order: 2
 group:
-  title: 数据录入
-  path: /form
-legacy: /form/query-form
+  path: /
+nav:
+  title: 组件
+  path: /components
 ---
 
 # QueryForm - 查询表单

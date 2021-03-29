@@ -1,10 +1,11 @@
 ---
 title: BizDescriptions - 业务描述
+order: 1
 group:
-  title: 数据展示
-  path: /dataview
-legacy: /dataview/biz-descriptions
-order: 10
+  path: /
+nav:
+  title: 组件
+  path: /components
 ---
 
 # BizDescriptions - 业务描述

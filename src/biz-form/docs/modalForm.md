@@ -1,9 +1,11 @@
 ---
 title: Modal/Drawer - 浮层表单
+order: 2
 group:
-  title: 数据录入
-  path: /form
-legacy: /form/modal-form
+  path: /
+nav:
+  title: 组件
+  path: /components
 ---
 
 # ModalForm/DrawerForm - 浮层表单

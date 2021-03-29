@@ -1,9 +1,11 @@
 ---
 title: Item - 表单项
+order: 1
 group:
-  title: 数据录入
-  path: /form
-legacy: /form/item
+  path: /
+nav:
+  title: 组件
+  path: /components
 ---
 
 # Item - 表单项

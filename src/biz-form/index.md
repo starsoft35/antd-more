@@ -1,10 +1,11 @@
 ---
 title: BizForm - 业务表单
+order: 0
 group:
-  title: 数据录入
-  path: /form
-  order: 0
-legacy: /form/biz-form
+  path: /
+nav:
+  title: 组件
+  path: /components
 ---
 
 # BizForm - 业务表单

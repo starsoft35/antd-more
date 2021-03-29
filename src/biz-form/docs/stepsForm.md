@@ -1,9 +1,11 @@
 ---
 title: StepsForm - 分步表单
+order: 3
 group:
-  title: 数据录入
-  path: /form
-legacy: /form/steps-form
+  path: /
+nav:
+  title: 组件
+  path: /components
 ---
 
 # StepsForm - 分步表单

@@ -1,10 +1,12 @@
 ---
 title: BizField - 业务字段
-group:
-  title: 数据展示
-  path: /dataview
-legacy: /dataview/biz-field
 order: 0
+legacy: /field
+group:
+  path: /
+nav:
+  title: 组件
+  path: /components
 ---
 
 # BizField - 业务字段

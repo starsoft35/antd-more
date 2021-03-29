@@ -1,11 +1,11 @@
 ---
-title: CaptchaButton
+title: CaptchaButton - 验证码按钮
+order: 2
 group:
-  title: 通用组件
-  path: /common
-  order: 2
-legacy: /common/captcha-button
-hide: true
+  path: /
+nav:
+  title: 组件
+  path: /components
 ---
 
 # CaptchaButton

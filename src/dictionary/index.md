@@ -1,11 +1,11 @@
 ---
-title: Dictionary
+title: Dictionary - 字典
+order: 1
 group:
-  title: 通用组件
-  path: /common
-  order: 2
-legacy: /common/dictionary
-hide: true
+  path: /
+nav:
+  title: 组件
+  path: /components
 ---
 
 # Dictionary
