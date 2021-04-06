@@ -201,20 +201,16 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
                 return render(text, record, index);
               }
 
-              if (valueType) {
-                const retValue =
-                  valueType === 'index' || valueType === 'indexBorder' ? index : text;
-                const fieldProps = typeof field === 'function' ? field(text, record, index) : field;
-                return (
-                  <BizField
-                    value={retValue}
-                    valueType={valueType}
-                    valueEnum={valueEnum}
-                    {...fieldProps}
-                  />
-                );
-              }
-              return text;
+              const retValue = valueType === 'index' || valueType === 'indexBorder' ? index : text;
+              const fieldProps = typeof field === 'function' ? field(text, record, index) : field;
+              return (
+                <BizField
+                  value={retValue}
+                  valueType={valueType}
+                  valueEnum={valueEnum}
+                  {...fieldProps}
+                />
+              );
             };
           }
 
