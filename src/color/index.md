@@ -10,7 +10,7 @@ nav:
 
 # Color
 
-> 推荐使用 `BizField` 和 `BizForm.ItemColor` 。
+> 推荐使用 [BizField](/components/biz-field) 和 [BizForm.ItemColor](/components/item#itemcolor)。
 
 用于显示/选择颜色
 

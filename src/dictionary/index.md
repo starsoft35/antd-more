@@ -10,7 +10,7 @@ nav:
 
 # Dictionary
 
-> 推荐使用 `BizField` 和 `BizForm.ItemSelect` `BizForm.Radio` 。
+> 推荐使用 [BizField](/components/biz-field)、[BizForm.ItemSelect](/components/item#itemselect) 和 [BizForm.Radio](/components/item#itemradio)。
 
 `数据字典` 显示 和 选择
 

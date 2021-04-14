@@ -12,8 +12,6 @@ nav:
 
 [![npm][npm]][npm-url]
 
-基于 [antd] 扩展的业务场景组件。
-
 ## 使用
 
 ### npm 或 yarn 安装

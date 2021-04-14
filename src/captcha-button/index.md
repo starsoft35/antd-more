@@ -10,7 +10,7 @@ nav:
 
 # CaptchaButton
 
-> 推荐使用 `BizForm.ItemCaptcha` 。
+> 推荐使用 [BizForm.ItemCaptcha](/components/item#itemcaptcha)。
 
 验证码按钮，用于获取手机号验证码、邮箱验证码等场景。
 
