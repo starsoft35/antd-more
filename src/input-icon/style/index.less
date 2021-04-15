@@ -1,0 +1,51 @@
+@import '../../style/themes/default.less';
+
+@prefix-cls: ~'@{prefix}-input-icon';
+
+.@{prefix-cls} {
+  &-input {
+    input {
+      color: transparent;
+      transition: none;
+    }
+  }
+
+  &-input-no-empty {
+    input {
+      text-shadow: 0 0 0 #333;
+    }
+  }
+
+  &-panel {
+    &-input {
+      margin-bottom: 12px;
+    }
+    &-result {
+      min-height: 120px;
+      max-height: 180px;
+      overflow-y: scroll;
+      overflow-x: hidden;
+    }
+
+    &-icon {
+      line-height: 30px;
+      display: block;
+      color: #999;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      span {
+        margin-right: 5px;
+      }
+
+      &:hover {
+        color: rgba(0, 0, 0, 0.85);
+      }
+    }
+  }
+}
+
+.ant-popover:not(.ant-popover-hidden) {
+  pointer-events: auto !important;
+}

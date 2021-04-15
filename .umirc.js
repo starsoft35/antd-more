@@ -95,7 +95,8 @@ const umiConfig = {
         children: [
           'color',
           'dictionary',
-          'captcha-button'
+          'captcha-button',
+          'input-icon'
         ]
       }
     ]
