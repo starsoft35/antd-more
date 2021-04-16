@@ -4,6 +4,7 @@ import type { InputProps } from 'antd/es/input';
 import classnames from 'classnames';
 import type { IconProp } from './icons';
 import SelectPopover from './SelectPopover';
+import useControllableValue from './useControllableValue';
 
 const prefixCls = 'antd-more-input-icon';
 
@@ -14,68 +15,34 @@ export interface InputIconProps extends Omit<InputProps, 'onChange'> {
   onChange?: (iconName: string) => void;
 }
 
-const InputIcon: React.FC<InputIconProps> = ({
-  iconData: icons = new Map([]),
-  showSearch = true,
-  onChange,
-  value,
-  column,
-  ...restProps
-}) => {
-  const [currentIcon, setCurrentIcon] = React.useState<IconProp>();
-  const [internalValue, setInternalValue] = React.useState(value);
-
-  React.useEffect(() => {
-    setInternalValue(value);
-
-    if (value) {
-      // eslint-disable-next-line no-restricted-syntax
-      for (const [k, v] of icons) {
-        if (k === value) {
-          setCurrentIcon([k, v]);
-        }
-      }
-    }
-  }, [value]);
-
-  const changeValue = React.useCallback(
-    (e) => {
-      const realValue = e?.target ? e.target.value : e;
-
-      onChange?.(realValue);
-
-      if (!value) {
-        setInternalValue(realValue);
-      }
-    },
-    [onChange, value],
-  );
+const InputIcon: React.FC<InputIconProps> = (props) => {
+  const {
+    iconData: icons = new Map([]),
+    showSearch = true,
+    column,
+    onChange,
+    ...restProps
+  } = props;
+  const [state, setState] = useControllableValue(props);
 
   const handleSelect = React.useCallback(
     (icon: IconProp) => {
-      const hasChange = icon?.[0] !== internalValue;
+      const hasChange = icon?.[0] !== state;
       if (hasChange) {
-        setCurrentIcon(icon);
-        changeValue(icon?.[0] as any);
+        setState(icon?.[0] as any);
       }
     },
-    [internalValue],
+    [state],
   );
 
   const handleChange = React.useCallback((e) => {
-    const realValue = e.target.value.trim();
-
-    if (!realValue) {
-      // 清空
-      setCurrentIcon(undefined);
-      changeValue(e);
-    } else if (!icons.has(realValue)) {
-      // 输入时恢复原值
-      changeValue(undefined as any);
+    // 清空
+    if (!e.target.value) {
+      setState(undefined);
     }
   }, []);
 
-  const IconComp = currentIcon?.[0] ? currentIcon[1] : null;
+  const IconComp = state && icons.has(state) ? icons.get(state) : null;
 
   return (
     <SelectPopover
@@ -86,13 +53,13 @@ const InputIcon: React.FC<InputIconProps> = ({
     >
       <div
         className={classnames(`${prefixCls}-input`, {
-          [`${prefixCls}-input-no-empty`]: internalValue,
+          [`${prefixCls}-input-no-empty`]: state,
         })}
       >
         <Input
           // readOnly
           prefix={IconComp ? <IconComp /> : null}
-          value={internalValue}
+          value={state}
           placeholder="点击选择图标"
           allowClear
           onChange={handleChange}
