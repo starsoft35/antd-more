@@ -100,7 +100,7 @@ const BizField: React.FC<BizFieldProps> = ({
     return <Color value={realValue} {...restProps} />;
   }
 
-  return realValue;
+  return typeof realValue === 'undefined' ? null : realValue;
 };
 
 export default BizField;
