@@ -35,12 +35,15 @@ const InputIcon: React.FC<InputIconProps> = (props) => {
     [state],
   );
 
-  const handleChange = React.useCallback((e) => {
-    // 清空
-    if (!e.target.value) {
-      setState(undefined);
-    }
-  }, []);
+  const handleChange = React.useCallback(
+    (e) => {
+      // 清空 或 输入无效值时
+      if (!e.target.value || (!state && !icons.has(e.target.value))) {
+        setState('');
+      }
+    },
+    [icons, state],
+  );
 
   const IconComp = state && icons.has(state) ? icons.get(state) : null;
 
@@ -57,7 +60,7 @@ const InputIcon: React.FC<InputIconProps> = (props) => {
         })}
       >
         <Input
-          // readOnly
+          readOnly
           prefix={IconComp ? <IconComp /> : null}
           value={state}
           placeholder="点击选择图标"
