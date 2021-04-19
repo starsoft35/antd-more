@@ -91,9 +91,9 @@ add  | 新增数据，可指定新增数据的位置，默认添加到最后。 
 edit  | 进入编辑 | `(rowKey: Key) => void` |
 setFields  | 设置单行表单值 | `(rowKey: Key, record: Partial<T>) => void` |
 reset  | 重置表单值，不指定 `rowKey` 表示全部重置。 | `(rowKey?: Key) => void` |
-clearNewRecords  | 清除新增数据 | `() => void` |
-getNewRecords  | 获取新增数据 | `() => void` |
-setDataSource  | 手动设置数据源，该操作会清除新增的数据。 | `(records: T[]) => void` |
+clearNewRecords  | 清除未保存的新增数据 | `() => void` |
+getNewRecords  | 获取未保存的新增数据 | `() => void` |
+setDataSource  | 手动设置数据源，该操作会清除全部数据。 | `(records: T[]) => void` |
 
 
 ### Columns 列定义
