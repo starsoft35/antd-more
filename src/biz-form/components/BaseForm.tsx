@@ -145,8 +145,8 @@ const BaseForm: React.FC<BaseFormProps> = ({
 
   const submitterDom = submitter ? (
     <Submitter
-      {...submitterProps}
       onReset={onReset}
+      {...submitterProps}
       form={formProp || form}
       submitButtonProps={{
         loading,
