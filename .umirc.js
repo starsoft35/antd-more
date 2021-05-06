@@ -8,9 +8,6 @@ const favicon = 'https://www.caijinfeng.com/assets/images/doly-touch-icon_48x48.
 const outputPath = 'site/' + version;
 // const outputPath = 'site';
 const publicPath = serverRootDirect + outputPath + '/';
-const manifestLink = `${publicPath}asset-manifest.json`;
-
-const links = process.env.NODE_ENV === 'production' ? [{ rel: 'manifest', href: manifestLink }] : [];
 
 const umiConfig = {
   extraBabelPlugins: [
@@ -36,7 +33,6 @@ const umiConfig = {
   history: {
     type: 'hash'
   },
-  title: pkg.name,
   logo,
   favicon,
   publicPath,
@@ -44,7 +40,6 @@ const umiConfig = {
   manifest: {
     publicPath
   },
-  links,
   hash: true,
   locales: [['zh-CN', '中文'], ['en-US', 'English']],
   nodeModulesTransform: {
