@@ -101,6 +101,7 @@ const Demo: React.FC = () => {
       columns={columns}
       rowKey="applyCode"
       request={handleRequest}
+      toolbarAction
     />
   );
 }

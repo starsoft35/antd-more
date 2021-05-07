@@ -21,6 +21,8 @@ interface ParamsRef<RecordType> {
 }
 
 interface Options<D = any, P = any> extends AsyncParams<D, P> {
+  defaultCurrent?: number;
+  defaultTotal?: number;
   defaultPageSize?: number;
   actionCacheKey?: string;
 }
@@ -42,6 +44,8 @@ interface ReturnValues<RecordType = any>
 function usePagination<RecordType = any, P = any>(
   asyncFn: AsyncFn<AsyncFnReturn<RecordType>>,
   {
+    // defaultCurrent = 1, // 设置 current 无效，初始请求会自动改为第一页
+    defaultTotal = 0,
     defaultPageSize = 10,
     actionCacheKey = '',
     autoRun,
@@ -53,8 +57,8 @@ function usePagination<RecordType = any, P = any>(
 
   const pageRef = useRef({
     current: 1,
-    pageSize: defaultPageSize || 10,
-    total: 0,
+    pageSize: defaultPageSize,
+    total: defaultTotal,
   }); // 分页
   const paramsRef = useRef<ParamsRef<RecordType>>({
     params: {},

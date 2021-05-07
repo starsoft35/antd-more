@@ -18,7 +18,7 @@ nav:
 
 只需定义 `request` `rowKey` `columns` 。
 
-<code src="./demos/Demo1.tsx"  background="#f5f5f5" />
+<code src="./demos/Demo1.tsx" background="#f5f5f5" />
 
 ### 复杂列表页
 
@@ -26,11 +26,11 @@ nav:
 
 但是自定义查询表单操作，需要自己设置按钮 `loading` 等状态.
 
-<code src="./demos/Demo2.tsx"  background="#f5f5f5" />
+<code src="./demos/Demo2.tsx" background="#f5f5f5" />
 
 ### 普通表格
 
-<code src="./demos/Demo3.tsx"  background="#f5f5f5" />
+<code src="./demos/Demo3.tsx" background="#f5f5f5" />
 
 ### formItems配置
 
@@ -38,13 +38,13 @@ nav:
 
 当有 `formItems` 配置时， `columns` 配置的 `search` 将失效。
 
-<code src="./demos/formItems.tsx"  background="#f5f5f5" />
+<code src="./demos/formItems.tsx" background="#f5f5f5" />
 
 ### 异步初始值表格
 
 5秒后获取到初始值再发起请求。
 
-<code src="./demos/async-initial-values.tsx"  background="#f5f5f5" />
+<code src="./demos/async-initial-values.tsx" background="#f5f5f5" />
 
 ### 更多查询表单项
 
@@ -64,6 +64,9 @@ ready  | 为 `false` 时，禁止提交/重置表单，不触发 `request` 。<b
 nowrap  | 单元格内容不会换行，表格宽度超过100%自动处理横向滚动条。<br />如果要设置单元格宽度，请关闭该配置 或 `column` 的 `nowrap` 设置为 `false`。 | `boolean` | `true` |
 formItems  | 查询表单项，推荐使用 `columns.search` 配置 | `React.ReactNode[]` | - |
 toolbar  | 工具栏，表格内的上面区域 | `React.ReactNode` | - |
+toolbarAction  | 工具栏右侧显示内置工具 | `boolean` \| `{ reload?: boolean; density?: boolean; fullScreen?: boolean; columnSetting?: boolean; }` | `false` |
+toolbarRender  | 自定义工具栏渲染。<br/>如果有设置toolbarAction，参数 dom 包含了右侧内置工具。 | `(dom: JSX.Element) => React.ReactNode` | - |
+fullScreenBackgroundColor  | 全屏时显示的背景颜色 | `string` | `#ffffff` |
 extra  | 扩展内容，表格外的上面、查询表单下面的区域 | `React.ReactNode` | - |
 form  | 同 [BizForm.QueryForm] 配置参数 | [QueryFormProps] | - |
 formRef  | 获取查询表单的 `form` 实例  | `React.MutableRefObject&lt;FormInstance&gt;` | - |
@@ -241,7 +244,21 @@ ref.current.reset();
 ref.current.submit();
 ```
 
+## 常见问题
 
+### 在全屏下的Modal不会展示？
+
+> 问题参考: [proTable在全屏下的modal不会展示]
+
+可查看具体示例：[修改和新增共用表单](/components/modal-form#修改和新增共用表单)
+
+```typescript
+<ConfigProvider
+  getPopupContainer={() => document.querySelector(".antd-more-table")}
+>
+  // modal
+</ConfigProvider>;
+```
 
 
 [BizField]: https://doly-dev.github.io/antd-more/site/v2/index.html#/business/biz-field?anchor=api
@@ -265,3 +282,5 @@ ref.current.submit();
 [ItemTime]: https://doly-dev.github.io/antd-more/site/v2/index.html#/business/biz-form#itemtime
 [ItemTimeRange]: https://doly-dev.github.io/antd-more/site/v2/index.html#/business/biz-form#itemtimerange
 [ItemUpload]: https://doly-dev.github.io/antd-more/site/v2/index.html#/business/biz-form#itemupload
+
+[proTable在全屏下的modal不会展示]: https://github.com/ant-design/pro-components/issues/922

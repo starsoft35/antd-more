@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button } from 'antd';
+import { Button, ConfigProvider } from 'antd';
 import { BizTable } from 'antd-more';
 import { BizTableRequest, BizColumnType, ActionType } from 'antd-more/es/biz-table';
 
@@ -94,16 +94,22 @@ const Demo: React.FC = () => {
           </Button>
         }
         nowrap={false}
+        toolbarAction
       />
-      <UpdateModal
-        visible={visible}
-        onVisibleChange={setVisible}
-        data={editableRecord}
-        onChange={() => {
-          // 数据变动后，重新加载数据
-          actionRef.current?.reload();
-        }}
-      />
+      {/* 如果没有使用表格的全屏 toolbarAction.fullScreen ，就不用包裹 ConfigProvider */}
+      <ConfigProvider
+        getPopupContainer={() => document.querySelector('.antd-more-table')}
+      >
+        <UpdateModal
+          visible={visible}
+          onVisibleChange={setVisible}
+          data={editableRecord}
+          onChange={() => {
+            // 数据变动后，重新加载数据
+            actionRef.current?.reload();
+          }}
+        />
+      </ConfigProvider>
     </>
   );
 }

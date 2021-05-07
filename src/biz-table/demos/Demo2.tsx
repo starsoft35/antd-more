@@ -135,6 +135,8 @@ const Demo: React.FC = () => {
           <Button onClick={() => { formRef.current.setFieldsValue({ applyCode: "12345" }) }}>赋值</Button>
         </Space>
       )}
+      toolbarAction
+      fullScreenBackgroundColor="#f5f5f5"
       extra={(
         <Card bordered={false}>
           Extra Block!

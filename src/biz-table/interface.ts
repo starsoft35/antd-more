@@ -83,3 +83,14 @@ export type BizColumnType<RecordType = any> = (
   | ColumnGroupType<RecordType>
   | InternalColumnType<RecordType>
 )[];
+
+type ToolbarActionConfig = {
+  fullScreen?: boolean;
+  density?: boolean;
+  reload?: boolean;
+  columnSetting?: boolean;
+};
+
+export interface ToolbarActionProps {
+  config?: boolean | ToolbarActionConfig;
+}

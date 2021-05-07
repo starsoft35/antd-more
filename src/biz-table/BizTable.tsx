@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Table, Card, Space } from 'antd';
+import { Table, Card, Space, ConfigProvider } from 'antd';
 import { TableProps } from 'antd/es/table';
 import { SpaceProps } from 'antd/es/space';
 import { CardProps } from 'antd/es/card';
@@ -12,9 +12,12 @@ import usePagination from './usePagination';
 import BizField from '../biz-field';
 import WithTooltip from '../biz-descriptions/WithTooltip';
 import actionCache, { createActionCacheKey } from './_util/actionCache';
-import { BizTableRequest, ActionType, BizColumnType } from './interface';
+import { BizTableRequest, ActionType, BizColumnType, ToolbarActionProps } from './interface';
 import { createFormItem } from './_util/createFormItems';
 import getRowKey from './_util/getRowKey';
+import TableContext from './TableContext';
+import ToolbarAction from './components/ToolbarAction';
+import omit from '../biz-form/_util/omit';
 
 const prefixCls = 'antd-more-table';
 
@@ -33,11 +36,16 @@ export declare interface BizTableProps<RecordType = any>
   formCardProps?: CardProps;
   tableCardProps?: CardProps;
   toolbar?: React.ReactNode;
+  toolbarRender?: (dom: JSX.Element) => JSX.Element | React.ReactNode;
+  toolbarAction?: boolean | ToolbarActionProps['config'];
   extra?: React.ReactNode;
   tableRender?: (
     props: BizTableProps<RecordType>,
     dom: JSX.Element,
   ) => JSX.Element | React.ReactNode;
+  tableClassName?: string;
+  tableStyle?: React.CSSProperties;
+  fullScreenBackgroundColor?: string; // 全屏时的背景颜色
 
   // 以下供 EditableBizTable 使用
   editableKeys?: (string | number)[];
@@ -57,9 +65,16 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
     tableCardProps,
 
     toolbar,
+    toolbarAction = false,
+    toolbarRender,
     extra,
     actionRef,
     tableRender,
+    className,
+    style,
+    tableClassName,
+    tableStyle,
+    fullScreenBackgroundColor = '#fff',
 
     request,
     ready = true,
@@ -74,11 +89,47 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
     columns,
     pagination,
     onChange,
+    size: defaultSize,
     ...restProps
   } = props;
 
   const actionCacheKey = React.useMemo(() => createActionCacheKey(), []);
   const editableKeyMap = React.useRef({}); // 可编辑项的namePath映射
+  const [size, setSize] = React.useState(defaultSize);
+  const rootRef = React.useRef<HTMLDivElement>(null);
+  const [isFullScreen, setFullScreen] = React.useState(false);
+  const [newColumns, setNewColumns] = React.useState([]);
+  const toolbarActionConfig: ToolbarActionProps['config'] = React.useMemo(() => {
+    const defaultConfig = {
+      reload: true,
+      density: true,
+      fullScreen: true,
+      columnSetting: true,
+    };
+
+    if (typeof toolbarAction === 'object') {
+      return {
+        ...defaultConfig,
+        ...toolbarAction,
+      };
+    }
+
+    if (toolbarAction) {
+      return defaultConfig;
+    }
+
+    const tmp = {};
+
+    Object.keys(defaultConfig).forEach((item) => {
+      tmp[item] = false;
+    });
+    return tmp;
+  }, [toolbarAction]);
+
+  const hasToolbarAction = React.useMemo(
+    () => Object.values(toolbarActionConfig).filter((item) => item).length > 0,
+    [toolbarActionConfig],
+  );
 
   const innerFormRef =
     (formRef as React.MutableRefObject<FormInstance | undefined>) ||
@@ -106,7 +157,7 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
             valueEnum,
             tooltip,
             title,
-            className,
+            className: cellClassName,
             nowrap: cellNowrap,
             field,
             search,
@@ -135,7 +186,7 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
             title: title && tooltip ? <WithTooltip label={title} tooltip={tooltip} /> : title,
             className: classnames(
               { [`${prefixCls}-cell-wrap`]: nowrap && cellNowrap === false },
-              className,
+              cellClassName,
             ),
             ...restItem,
           };
@@ -321,14 +372,47 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
     };
   }, []);
 
+  React.useEffect(() => {
+    if (!toolbarActionConfig.columnSetting) {
+      setNewColumns(currentColumns);
+    }
+  }, [currentColumns, toolbarActionConfig]);
+
   useUpdateEffect(() => {
     onDataSourceChange?.(data);
   }, [data]);
 
-  const tableCardStyle = React.useMemo(
-    () => ({ padding: !hasSearch && !extra ? 0 : '16px 24px 0' }),
-    [hasSearch, extra],
-  );
+  const toolbarDom =
+    toolbar || hasToolbarAction ? (
+      <div style={{ padding: '0 0 16px' }}>
+        <Space
+          align="end"
+          size="middle"
+          style={{ display: 'flex', width: '100%', justifyContent: 'space-between' }}
+        >
+          <div style={{ wordBreak: 'break-all' }}>{toolbar}</div>
+          {hasToolbarAction && (
+            <div>
+              <ToolbarAction config={toolbarActionConfig} />
+            </div>
+          )}
+        </Space>
+      </div>
+    ) : null;
+
+  const tableCardStyle = React.useMemo(() => {
+    if (!hasSearch && !extra) {
+      return {
+        padding: 0,
+      };
+    } else if (pagination !== false) {
+      return {
+        paddingBottom: 8,
+      };
+    } else {
+      return {};
+    }
+  }, [hasSearch, extra, pagination]);
 
   const tableDom = (
     <Card
@@ -336,14 +420,21 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
       {...tableCardProps}
       bodyStyle={{ ...tableCardStyle, ...tableCardProps?.bodyStyle }}
     >
-      {toolbar && <div style={{ padding: '0 0 16px' }}>{toolbar}</div>}
+      {toolbarRender ? toolbarRender(toolbarDom) : toolbarDom}
       <Table
         loading={loading}
         rowKey={rowKey}
-        columns={currentColumns}
+        columns={newColumns}
         dataSource={data}
-        pagination={pagination !== false ? { ...pageRet, ...pagination } : false}
+        pagination={
+          pagination !== false
+            ? { ...pageRet, ...omit(pagination, ['current', 'pageSize', 'total']) }
+            : false
+        }
         onChange={handleChange}
+        size={size}
+        className={tableClassName}
+        style={tableStyle}
         {...restProps}
         scroll={{ ...(nowrap ? { x: true } : {}), ...restProps?.scroll }}
       />
@@ -352,28 +443,64 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
 
   const renderTable = () => (tableRender ? tableRender(props, tableDom) : tableDom);
 
-  return (
-    <Space
-      direction="vertical"
-      size={16}
-      {...spaceProps}
-      className={classnames(prefixCls, { [`${prefixCls}-nowrap`]: nowrap }, spaceProps?.className)}
-      style={{ display: 'flex', width: '100%', ...spaceProps?.style }}
+  const wrapperDefaultStyle = isFullScreen
+    ? {
+        background: fullScreenBackgroundColor,
+        overflow: 'auto',
+        padding: !hasSearch && !extra ? 24 : 0,
+      }
+    : {};
+
+  const finallyDom = (
+    <TableContext.Provider
+      value={{
+        size,
+        setSize,
+        reload: handleReload,
+        rootRef,
+        isFullScreen,
+        setFullScreen,
+        columns: currentColumns,
+        setColumns: setNewColumns,
+      }}
     >
-      <SearchForm
-        formItems={formItems}
-        searchItems={searchItems}
-        ref={innerFormRef}
-        loading={loading}
-        onFinish={handleFinish}
-        onReset={handleDefaultReset}
-        cardProps={formCardProps}
-        ready={ready}
-        {...form}
-      />
-      {extra}
-      {renderTable()}
-    </Space>
+      <div
+        ref={rootRef}
+        className={classnames(prefixCls, { [`${prefixCls}-nowrap`]: nowrap }, className)}
+        style={{ ...wrapperDefaultStyle, ...style }}
+      >
+        <Space
+          direction="vertical"
+          size="middle"
+          {...spaceProps}
+          style={{ display: 'flex', width: '100%', ...spaceProps?.style }}
+        >
+          <SearchForm
+            formItems={formItems}
+            searchItems={searchItems}
+            ref={innerFormRef}
+            loading={loading}
+            onFinish={handleFinish}
+            onReset={handleDefaultReset}
+            cardProps={formCardProps}
+            ready={ready}
+            {...form}
+          />
+          {extra}
+          {renderTable()}
+        </Space>
+      </div>
+    </TableContext.Provider>
+  );
+
+  if (!toolbarActionConfig.fullScreen) {
+    return finallyDom;
+  }
+
+  return (
+    <ConfigProvider getPopupContainer={() => rootRef.current || document.body}>
+      {finallyDom}
+    </ConfigProvider>
   );
 }
 
