@@ -466,7 +466,11 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
     >
       <div
         ref={rootRef}
-        className={classnames(prefixCls, { [`${prefixCls}-nowrap`]: nowrap }, className)}
+        className={classnames(
+          prefixCls,
+          { [`${prefixCls}-nowrap`]: nowrap, [`${prefixCls}-fullscreen`]: isFullScreen },
+          className,
+        )}
         style={{ ...wrapperDefaultStyle, ...style }}
       >
         <Space
