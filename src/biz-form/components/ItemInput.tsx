@@ -11,6 +11,7 @@ import ItemTextArea from './ItemTextArea';
 import ItemInputPassword from './ItemInputPassword';
 import BizFormItem, { BizFormItemProps } from './Item';
 import InputWrapper, { InputWrapperProps } from './form/InputWrapper';
+import getLabel from '../_util/getLabel';
 
 type InputType = 'bankCard' | 'email' | 'idCard' | 'mobile' | 'userName';
 
@@ -71,7 +72,6 @@ const FormItemInput: React.FC<FormItemInputProps> & {
   disabledWhiteSpace = false,
   inputProps = {},
   required = false,
-  label,
   transform,
   normalize,
   ...restProps
@@ -120,9 +120,10 @@ const FormItemInput: React.FC<FormItemInputProps> & {
     return {};
   }, [type]);
 
+  const messageLabel = getLabel(restProps);
+
   return (
     <BizFormItem
-      label={label}
       required={required}
       normalize={handleNormalize}
       rules={[
@@ -130,14 +131,14 @@ const FormItemInput: React.FC<FormItemInputProps> & {
           validator(rule, value) {
             let errMsg = '';
             if (!value) {
-              errMsg = required ? `请输入${label}` : '';
+              errMsg = required ? `请输入${messageLabel}` : '';
             } else if (security && restProps?.initialValue === value) {
               // 脱敏校验
               errMsg = '';
             } else if (type === 'userName') {
-              errMsg = validateUserName(value, { label }).message;
+              errMsg = validateUserName(value, { label: messageLabel }).message;
             } else if (validateMethod[type] && !validateMethod[type](value)) {
-              errMsg = `请输入正确的${label}`;
+              errMsg = `请输入正确的${messageLabel}`;
             }
             if (errMsg) {
               return Promise.reject(errMsg);

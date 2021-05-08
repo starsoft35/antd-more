@@ -2,6 +2,7 @@ import * as React from 'react';
 import { TooltipPlacement } from 'antd/es/tooltip';
 import Color from '../../color';
 import BizFormItem, { BizFormItemProps } from './Item';
+import getLabel from '../_util/getLabel';
 
 export enum ColorPicker {
   block = 'BlockPicker',
@@ -21,7 +22,6 @@ export interface FormItemColorProps extends BizFormItemProps {
 }
 
 const FormItemColor: React.FC<FormItemColorProps> = ({
-  label,
   required = false,
 
   picker = 'sketch',
@@ -36,14 +36,13 @@ const FormItemColor: React.FC<FormItemColorProps> = ({
 
   return (
     <BizFormItem
-      label={label}
       required={required}
       rules={[
         {
           validator(rules, value) {
             let errMsg = '';
             if (!value) {
-              errMsg = required ? `请选择${label}` : '';
+              errMsg = required ? `请选择${getLabel(restProps)}` : '';
             }
             if (errMsg) {
               return Promise.reject(errMsg);

@@ -3,6 +3,7 @@ import { Input } from 'antd';
 import { validatePassword } from 'util-helpers';
 import { PasswordProps } from 'antd/es/input';
 import BizFormItem, { BizFormItemProps } from './Item';
+import getLabel from '../_util/getLabel';
 
 type Validated = {
   len?: boolean;
@@ -43,7 +44,6 @@ const FormItemPassword: React.FC<FormItemPasswordProps> = ({
   disabledCopy = true,
 
   inputProps = {},
-  label,
   required = false,
   ...restProps
 }) => {
@@ -86,9 +86,10 @@ const FormItemPassword: React.FC<FormItemPasswordProps> = ({
     [inputProps?.onCopy, disabledCopy],
   );
 
+  const messageLabel = getLabel(restProps);
+
   return (
     <BizFormItem
-      label={label}
       validateTrigger={validated ? 'onBlur' : 'onChange'}
       required={required}
       rules={[
@@ -97,16 +98,16 @@ const FormItemPassword: React.FC<FormItemPasswordProps> = ({
             let errMsg = '';
 
             if (!value) {
-              errMsg = required ? `请输入${label}` : '';
+              errMsg = required ? `请输入${messageLabel}` : '';
             } else if (validated) {
               if (validateObj.len && (value.length < min || value.length > max)) {
-                errMsg = `${label}为${min}～${max}位`;
+                errMsg = `${messageLabel}为${min}～${max}位`;
               } else {
                 const result = validatePassword(value, { ignoreCase, level, special });
                 if (validateObj.special && result.containes.unallowableCharacter) {
-                  errMsg = `${label}包含无法识别的字符`;
+                  errMsg = `${messageLabel}包含无法识别的字符`;
                 } else if (validateObj.level && !result.validated) {
-                  errMsg = `${label}为大小写字母、数字或符号任意${numMap[level]}者组成`;
+                  errMsg = `${messageLabel}为大小写字母、数字或符号任意${numMap[level]}者组成`;
                 }
               }
             }

@@ -14,6 +14,7 @@ import {
 } from '../_util/dateUtil';
 import BizFormItem, { BizFormItemProps } from './Item';
 import { transformDate, invalidDateRangeNameValue } from '../_util/transform';
+import getLabel from '../_util/getLabel';
 
 const DateRangePickerWrapper: React.FC<RangePickerProps> = ({ value, ...restProps }) => {
   return <DatePicker.RangePicker value={transformMomentValue(value)} {...restProps} />;
@@ -43,7 +44,6 @@ const FormItemDateRange: React.FC<FormItemDateRangeProps> = ({
   picker = 'date',
   names = [],
   pickerProps = {},
-  label,
   name,
   required = false,
   className,
@@ -90,7 +90,6 @@ const FormItemDateRange: React.FC<FormItemDateRangeProps> = ({
 
   return (
     <BizFormItem
-      label={label}
       name={currentName}
       required={required}
       rules={[
@@ -98,7 +97,7 @@ const FormItemDateRange: React.FC<FormItemDateRangeProps> = ({
           validator(rule, value) {
             let errMsg = '';
             if (!value) {
-              errMsg = required ? `请选择${label}` : '';
+              errMsg = required ? `请选择${getLabel(restProps)}` : '';
             } else if (maxRange > 0) {
               const [t1, t2] = value;
               const range = currentPicker === 'quarter' ? maxRange * 3 : maxRange;

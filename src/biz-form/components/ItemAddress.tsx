@@ -24,7 +24,6 @@ const FormItemAddress: React.FC<FormItemAddressProps> = ({
   cascaderProps = {},
 
   style = {},
-  label,
   required = false,
   ...restProps
 }) => {
@@ -34,12 +33,7 @@ const FormItemAddress: React.FC<FormItemAddressProps> = ({
   ] = formItemProps;
 
   return (
-    <BizFormItem
-      label={label}
-      required={required}
-      style={{ marginBottom: 0, ...style }}
-      {...restProps}
-    >
+    <BizFormItem required={required} style={{ marginBottom: 0, ...style }} {...restProps}>
       <Row gutter={10}>
         <Col span={24} md={12} lg={8} {...cascaderColProps}>
           <BizFormItem

@@ -6,6 +6,7 @@ import UploadButton from './UploadButton';
 import UploadImage from './UploadImage';
 import UploadAvatar from './UploadAvatar';
 import UploadDragger from './UploadDragger';
+import getLabel from '../../_util/getLabel';
 
 const normFile = (e) => {
   if (Array.isArray(e)) {
@@ -57,7 +58,6 @@ const FormItemUpload: React.FC<FormItemUploadProps> = ({
   icon,
   title,
 
-  label,
   required,
   transform,
   ...restProps
@@ -77,7 +77,6 @@ const FormItemUpload: React.FC<FormItemUploadProps> = ({
 
   return (
     <BizFormItem
-      label={label}
       required={required}
       valuePropName="fileList"
       getValueFromEvent={normFile}
@@ -89,7 +88,7 @@ const FormItemUpload: React.FC<FormItemUploadProps> = ({
             const realValue = value && typeof transform === 'function' ? transform(value) : value;
 
             if (!realValue || (Array.isArray(realValue) && realValue.length <= 0)) {
-              errMsg = required ? `请上传${label}` : '';
+              errMsg = required ? `请上传${getLabel(restProps)}` : '';
             }
             if (errMsg) {
               return Promise.reject(errMsg);

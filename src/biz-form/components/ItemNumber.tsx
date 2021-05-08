@@ -1,6 +1,7 @@
 import * as React from 'react';
 import BizFormItem, { BizFormItemProps } from './Item';
 import InputNumberWrapper, { InputNumberWrapperProps } from './form/InputNumberWrapper';
+import getLabel from '../_util/getLabel';
 
 export interface FormItemNumberProps
   extends BizFormItemProps,
@@ -22,20 +23,18 @@ const FormItemNumber: React.FC<FormItemNumberProps> = ({
   inputProps = {},
   precision,
 
-  label,
   required = false,
   ...restProps
 }) => {
   return (
     <BizFormItem
-      label={label}
       required={required}
       rules={[
         {
           validator(rule, value) {
             let errMsg = '';
             if (typeof value !== 'number') {
-              errMsg = required ? `请输入${label}` : '';
+              errMsg = required ? `请输入${getLabel(restProps)}` : '';
             } else if (typeof lt === 'number' && value >= lt) {
               errMsg = `不能大于等于${lt}`;
             } else if (typeof gt === 'number' && value <= gt) {

@@ -4,6 +4,7 @@ import { InputProps } from 'antd/es/input';
 import CaptchaButton from '../../captcha-button';
 import { CaptchaButtonProps } from '../../captcha-button/CaptchaButton';
 import BizFormItem, { BizFormItemProps } from './Item';
+import getLabel from '../_util/getLabel';
 
 interface VerificateCodeInputProps extends Record<number | string, any> {
   value?: any;
@@ -157,20 +158,18 @@ const FormItemCaptcha: React.FC<FormItemCaptchaProps> = ({
   inputProps = {},
   buttonProps = {},
 
-  label,
   required,
   ...restProps
 }) => {
   return (
     <BizFormItem
-      label={label}
       required={required}
       rules={[
         {
           validator(rules, value) {
             let errMsg = '';
             if (!value) {
-              errMsg = required ? `请输入${label}` : '';
+              errMsg = required ? `请输入${getLabel(restProps)}` : '';
             }
             if (errMsg) {
               return Promise.reject(errMsg);

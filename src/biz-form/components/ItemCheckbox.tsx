@@ -4,6 +4,7 @@ import { CheckboxProps, CheckboxGroupProps } from 'antd/es/checkbox';
 import { CheckboxOptionType } from 'antd/es/checkbox/Group';
 import useFilterOptions from '../_util/useFilterOptions';
 import BizFormItem, { BizFormItemProps } from './Item';
+import getLabel from '../_util/getLabel';
 
 export interface CheckboxWrapperProps {
   value?: any;
@@ -84,7 +85,6 @@ const FormItemCheckbox: React.FC<FormItemCheckboxProps> = ({
   options = [],
   checkboxProps = {},
   checkboxGroupProps = {},
-  label,
   required = false,
   ...restProps
 }) => {
@@ -95,14 +95,13 @@ const FormItemCheckbox: React.FC<FormItemCheckboxProps> = ({
 
   return (
     <BizFormItem
-      label={label}
       required={required}
       rules={[
         {
           validator(rule, value) {
             let errMsg = '';
             if (!value || (Array.isArray(value) && value.length === 0)) {
-              errMsg = required ? `请选择${label}` : '';
+              errMsg = required ? `请选择${getLabel(restProps)}` : '';
             }
             if (errMsg) {
               return Promise.reject(errMsg);

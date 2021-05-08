@@ -5,6 +5,7 @@ import { SelectProps } from 'antd/es/select';
 import { OptionCoreData, OptionGroupData } from 'rc-select/es/interface';
 import useFilterOptions from '../_util/useFilterOptions';
 import BizFormItem, { BizFormItemProps } from './Item';
+import getLabel from '../_util/getLabel';
 
 const { Option, OptGroup } = Select;
 
@@ -35,7 +36,6 @@ const FormItemSelect: React.FC<FormItemSelectProps> = ({
   excludeValues = [],
   options = [],
   selectProps = {},
-  label,
   required = false,
   ...restProps
 }) => {
@@ -43,7 +43,6 @@ const FormItemSelect: React.FC<FormItemSelectProps> = ({
 
   return (
     <BizFormItem
-      label={label}
       required={required}
       rules={[
         {
@@ -51,7 +50,7 @@ const FormItemSelect: React.FC<FormItemSelectProps> = ({
             let errMsg = '';
             const hasOptValue = options.find((item) => item.value === value);
             if (!value && !hasOptValue && !(all && allValue === value)) {
-              errMsg = required ? `请选择${label}` : '';
+              errMsg = required ? `请选择${getLabel(restProps)}` : '';
             }
             if (errMsg) {
               return Promise.reject(errMsg);
@@ -71,20 +70,18 @@ const FormItemSelect: React.FC<FormItemSelectProps> = ({
           if (itemOpts) {
             return (
               <OptGroup key={restOpts.key || restOpts.value + index.toString()} {...restOpts}>
-                {itemOpts.map(
-                  ({ name, label: internalLabel, ...restSubOpts }: OptionDataExtend, subIndex) => (
-                    <Option
-                      key={restSubOpts.key || restSubOpts.value + subIndex.toString()}
-                      {...restSubOpts}
-                    >
-                      {name}
-                    </Option>
-                  ),
-                )}
+                {itemOpts.map(({ name, label, ...restSubOpts }: OptionDataExtend, subIndex) => (
+                  <Option
+                    key={restSubOpts.key || restSubOpts.value + subIndex.toString()}
+                    {...restSubOpts}
+                  >
+                    {name}
+                  </Option>
+                ))}
               </OptGroup>
             );
           } else {
-            const { name, label: internalLabel, ...rest } = restOpts as OptionDataExtend;
+            const { name, label, ...rest } = restOpts as OptionDataExtend;
             return (
               <Option key={rest.key || rest.value + index.toString()} {...rest}>
                 {name}

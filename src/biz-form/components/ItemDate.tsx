@@ -6,6 +6,7 @@ import { TimePickerProps } from 'antd/es/time-picker';
 import { createDisabledDate, transformMomentValue, getDateFormat, Picker } from '../_util/dateUtil';
 import { transformDate } from '../_util/transform';
 import BizFormItem, { BizFormItemProps } from './Item';
+import getLabel from '../_util/getLabel';
 
 const DatePickerWrapper: React.FC<DatePickerProps | MonthPickerProps | WeekPickerProps | any> = ({
   value,
@@ -32,7 +33,6 @@ const FormItemDate: React.FC<FormItemDateProps> = ({
   format,
   picker = 'date',
   pickerProps = {},
-  label,
   className,
   required = false,
   transform,
@@ -65,14 +65,13 @@ const FormItemDate: React.FC<FormItemDateProps> = ({
 
   return (
     <BizFormItem
-      label={label}
       required={required}
       rules={[
         {
           validator(rule, value) {
             let errMsg = '';
             if (!value) {
-              errMsg = required ? `请选择${label}` : '';
+              errMsg = required ? `请选择${getLabel(restProps)}` : '';
             }
             if (errMsg) {
               return Promise.reject(errMsg);

@@ -5,6 +5,7 @@ import { TimePickerProps } from 'antd/es/time-picker';
 import BizFormItem, { BizFormItemProps } from './Item';
 import { transformMomentTime } from '../_util/dateUtil';
 import { transformDate } from '../_util/transform';
+import getLabel from '../_util/getLabel';
 
 const prefixCls = 'antd-more-form-item-date';
 
@@ -30,7 +31,6 @@ const FormItemTime: React.FC<FormItemTimeProps> = ({
   format,
   pickerProps,
 
-  label,
   name,
   required,
   className,
@@ -56,7 +56,6 @@ const FormItemTime: React.FC<FormItemTimeProps> = ({
 
   return (
     <BizFormItem
-      label={label}
       name={name}
       required={required}
       rules={[
@@ -64,7 +63,7 @@ const FormItemTime: React.FC<FormItemTimeProps> = ({
           validator(rules, value) {
             let errMsg = '';
             if (!value) {
-              errMsg = required ? `请选择${label}` : '';
+              errMsg = required ? `请选择${getLabel(restProps)}` : '';
             }
             if (errMsg) {
               return Promise.reject(errMsg);

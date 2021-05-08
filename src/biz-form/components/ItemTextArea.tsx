@@ -3,6 +3,7 @@ import { Input } from 'antd';
 import { TextAreaProps } from 'antd/es/input';
 import { normalizeWhiteSpace } from '../_util/normalize';
 import BizFormItem, { BizFormItemProps } from './Item';
+import getLabel from '../_util/getLabel';
 
 export interface FormItemTextAreaProps extends BizFormItemProps {
   disabledWhiteSpace?: boolean;
@@ -12,7 +13,6 @@ export interface FormItemTextAreaProps extends BizFormItemProps {
 const FormItemTextArea: React.FC<FormItemTextAreaProps> = ({
   disabledWhiteSpace = false,
   inputProps = {},
-  label,
   required = false,
   ...restProps
 }) => {
@@ -28,7 +28,6 @@ const FormItemTextArea: React.FC<FormItemTextAreaProps> = ({
 
   return (
     <BizFormItem
-      label={label}
       required={required}
       normalize={handleNormalize}
       rules={[
@@ -36,7 +35,7 @@ const FormItemTextArea: React.FC<FormItemTextAreaProps> = ({
           validator(rule, value) {
             let errMsg = '';
             if (!value) {
-              errMsg = required ? `请输入${label}` : '';
+              errMsg = required ? `请输入${getLabel(restProps)}` : '';
             }
             if (errMsg) {
               return Promise.reject(errMsg);

@@ -4,6 +4,7 @@ import { RadioProps, RadioGroupProps, RadioGroupOptionType } from 'antd/es/radio
 import { CheckboxOptionType } from 'antd/es/checkbox/Group';
 import useFilterOptions from '../_util/useFilterOptions';
 import BizFormItem, { BizFormItemProps } from './Item';
+import getLabel from '../_util/getLabel';
 
 interface OptionData extends Omit<CheckboxOptionType, 'label'> {
   name: string;
@@ -30,7 +31,6 @@ const FormItemRadio: React.FC<FormItemRadioProps> = ({
   optionType = 'default',
   radioProps = {},
   radioGroupProps = {},
-  label,
   required = false,
   ...restProps
 }) => {
@@ -38,7 +38,6 @@ const FormItemRadio: React.FC<FormItemRadioProps> = ({
 
   return (
     <BizFormItem
-      label={label}
       required={required}
       rules={[
         {
@@ -46,7 +45,7 @@ const FormItemRadio: React.FC<FormItemRadioProps> = ({
             let errMsg = '';
             const hasOptValue = options.find((item) => item.value === value);
             if (!value && !hasOptValue && !(all && allValue === value)) {
-              errMsg = required ? `请选择${label}` : '';
+              errMsg = required ? `请选择${getLabel(restProps)}` : '';
             }
             if (errMsg) {
               return Promise.reject(errMsg);
