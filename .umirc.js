@@ -80,6 +80,7 @@ const umiConfig = {
         children: [
           'biz-form',
           'biz-form/docs/item',
+          'biz-form/docs/list',
           'biz-form/docs/modalForm',
           'biz-form/docs/queryForm',
           'biz-form/docs/stepsForm',

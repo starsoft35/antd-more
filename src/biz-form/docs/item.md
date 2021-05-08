@@ -1,6 +1,6 @@
 ---
 title: Item - 表单项
-order: 1
+order: 2
 group:
   path: /
 nav:
@@ -23,14 +23,6 @@ nav:
 ```typescript
 import { BizForm } from 'antd-more';
 ```
-
-### List
-
-```typescript
-const { List } = BizForm;
-```
-
-同 antd Form.List 一样。
 
 ### Item
 

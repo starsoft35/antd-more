@@ -180,10 +180,10 @@ const Demo: React.FC = () => {
             <ItemCheckbox label="Checkbox" name="checkbox" options={cycle} all required={required} />
           </Col>
           <Col {...colSpan}>
-            <ItemSwitch label="Switch" name="switch" />
+            <ItemSwitch label="Switch" name="switch" required={required} />
           </Col>
           <Col {...colSpan}>
-            <ItemSlider label="Slider" name="slider" />
+            <ItemSlider label="Slider" name="slider" required={required} />
           </Col>
           <Col {...colSpan}>
             <ItemUpload label="Upload" name="upload" required={required} />

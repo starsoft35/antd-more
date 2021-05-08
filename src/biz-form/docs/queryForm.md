@@ -1,6 +1,6 @@
 ---
 title: QueryForm - 查询表单
-order: 2
+order: 5
 group:
   path: /
 nav:

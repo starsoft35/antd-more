@@ -1,6 +1,6 @@
 ---
 title: StepsForm - 分步表单
-order: 3
+order: 6
 group:
   path: /
 nav:
