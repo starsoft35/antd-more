@@ -18,6 +18,7 @@ export default {
   //   sourcemap: true,
   //   minFile: true
   // },
+  runtimeHelpers: true,
   extraBabelPlugins: [
     [
       'import',

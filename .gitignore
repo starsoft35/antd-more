@@ -3,7 +3,8 @@
 # dependencies
 node_modules
 npm-debug.log*
-yarn-error.log
+yarn-debug.log*
+yarn-error.log*
 
 # production
 dist
@@ -21,6 +22,7 @@ components/**/*.css
 .umi
 .umi-production
 package-lock.json
+yarn.lock
 .cache
 public
 .rpt2_cache

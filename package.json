@@ -72,13 +72,14 @@
     "typescript": "^3.9.7"
   },
   "dependencies": {
+    "@babel/runtime": "^7.14.0",
     "classnames": "^2.2.6",
     "countdown-pro": "^1.0.2",
     "cross-env": "^7.0.3",
     "moment": "^2.29.1",
     "rc-hooks": "^0.8.2",
     "react-color": "^2.19.3",
-    "util-helpers": "^3.9.1"
+    "util-helpers": "^3.9.2"
   },
   "lint-staged": {
     "src/**/*.{ts,tsx,js,jsx}": "npm run lint-staged:lint",
