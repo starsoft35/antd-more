@@ -7,13 +7,13 @@ export default {
     type: 'babel',
     lazy: true
   },
-  // 如要开启，需将 https://github.com/umijs/fabric/blob/master/tsconfig.json 存到根目录
-  // umi: {
-  //   name: 'antdMore',
+  // 不支持 umd
+  // umd: {
   //   file: 'antd-more',
   //   globals: {
   //     react: 'React',
-  //     antd: 'antd'
+  //     antd: 'antd',
+  //     // '@ant-design/icons': '@ant-design/icons' // ?
   //   },
   //   sourcemap: true,
   //   minFile: true

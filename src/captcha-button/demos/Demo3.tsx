@@ -6,7 +6,7 @@ import { useAsync } from 'rc-hooks';
 import { CaptchaButton } from 'antd-more';
 
 // 接口：发送短信验证码
-function asyncSendVerificationCode() {
+function asyncSendVerificationCode(): Promise<{ data: { requestId: string; } }> {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve({

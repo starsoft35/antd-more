@@ -21,7 +21,7 @@ const Demo: React.FC = () => {
     >
       <List name="list">
         {
-          (fields, { add, remove, move }) => {
+          (fields, { add, remove }) => {
             return (
               <>
                 {

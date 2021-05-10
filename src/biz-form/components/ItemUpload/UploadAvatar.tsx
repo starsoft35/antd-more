@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { message, Tooltip } from 'antd';
+import { Tooltip } from 'antd';
 import { PictureOutlined } from '@ant-design/icons';
 import classNames from 'classnames';
 import { UploadFile } from 'antd/es/upload/interface';
