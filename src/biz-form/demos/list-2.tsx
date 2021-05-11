@@ -95,7 +95,7 @@ const Demo: React.FC = () => {
                           />
                         </Col>
                         <Col {...colspan}>
-                          <List name={[field.fieldKey, "mobile"]}>
+                          <List name={[field.name, "mobile"]}>
                             {
                               (mobileFields, mobileFieldAction) => (
                                 <>
