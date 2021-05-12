@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { DatePicker } from 'antd';
 import classNames from 'classnames';
-import { DatePickerProps, MonthPickerProps, WeekPickerProps } from 'antd/es/date-picker';
-import { TimePickerProps } from 'antd/es/time-picker';
+import { DatePickerProps, MonthPickerProps, WeekPickerProps } from 'antd/lib/date-picker';
+import { TimePickerProps } from 'antd/lib/time-picker';
 import { createDisabledDate, transformMomentValue, getDateFormat, Picker } from '../_util/dateUtil';
 import { transformDate } from '../_util/transform';
 import BizFormItem, { BizFormItemProps } from './Item';
@@ -38,10 +38,10 @@ const FormItemDate: React.FC<FormItemDateProps> = ({
   transform,
   ...restProps
 }) => {
-  const currentPicker = React.useMemo(() => pickerProps.picker || picker, [
-    pickerProps.picker,
-    picker,
-  ]);
+  const currentPicker = React.useMemo(
+    () => pickerProps.picker || picker,
+    [pickerProps.picker, picker],
+  );
   const currentFormat = React.useMemo(() => {
     return getDateFormat(
       pickerProps.format || format,

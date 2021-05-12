@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Progress } from 'antd';
-import { ProgressProps } from 'antd/es/progress';
+import { ProgressProps } from 'antd/lib/progress';
 
 function getProgressStatus(text: number): 'success' | 'exception' | 'normal' | 'active' {
   if (typeof text !== 'number') {

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Button, Card, Space } from 'antd';
 import { BizTable } from 'antd-more';
-import { FormInstance } from 'antd/es/form';
+import { FormInstance } from 'antd/lib/form';
 import { ActionType, BizTableRequest, BizColumnType } from 'antd-more/es/biz-table';
 import { getApplyList } from './service';
 import { ApproveStatus } from './constants';

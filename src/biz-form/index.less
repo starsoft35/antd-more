@@ -1,0 +1,31 @@
+@import '~antd/es/style/themes/default.less';
+
+@prefix-form-cls: ~'antd-more-form';
+
+.@{prefix-form-cls} {
+  .ant-checkbox-group {
+    white-space: normal;
+  }
+
+  .ant-checkbox-wrapper {
+    margin-left: 0;
+    margin-right: 8px;
+  }
+
+  &-item-hide-label {
+    .ant-form-item-label {
+      height: 0;
+      padding-bottom: 0;
+
+      label {
+        width: 0;
+      }
+    }
+  }
+
+  &-item-date {
+    .ant-picker {
+      width: 100%;
+    }
+  }
+}

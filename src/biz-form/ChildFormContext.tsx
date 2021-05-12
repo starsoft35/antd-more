@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { FormInstance } from 'antd/es/form';
+import { FormInstance } from 'antd/lib/form';
 
 // 解决Form嵌套Form，提交校验问题
 // 提供注册/解除子form引用

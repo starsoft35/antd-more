@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Switch } from 'antd';
-import { SwitchProps } from 'antd/es/switch';
+import { SwitchProps } from 'antd/lib/switch';
 import BizFormItem, { BizFormItemProps } from './Item';
 
 export interface FormItemSwitchProps

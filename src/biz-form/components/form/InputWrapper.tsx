@@ -1,8 +1,10 @@
 import * as React from 'react';
 import { Input } from 'antd';
-import { InputProps } from 'antd/es/input';
+import { InputProps } from 'antd/lib/input';
 
-const prefixCls = 'antd-more-input';
+import './index.less';
+
+const prefixCls = 'antd-more-form-input';
 
 export interface InputWrapperProps extends InputProps {
   before?: React.ReactNode;

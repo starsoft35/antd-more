@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Cascader, Input, Row, Col } from 'antd';
-import { NamePath } from 'antd/es/form/interface';
-import { InputProps } from 'antd/es/input';
-import { CascaderProps, CascaderOptionType } from 'antd/es/cascader';
+import { NamePath } from 'antd/lib/form/interface';
+import { InputProps } from 'antd/lib/input';
+import { CascaderProps, CascaderOptionType } from 'antd/lib/cascader';
 import { normalizeWhiteSpace } from '../_util/normalize';
 import BizFormItem, { BizFormItemProps } from './Item';
 

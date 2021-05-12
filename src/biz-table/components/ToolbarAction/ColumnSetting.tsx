@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Tooltip, Popover, Tree, Checkbox } from 'antd';
 import { SettingOutlined } from '@ant-design/icons';
-import { ColumnType } from 'antd/es/table';
+import { ColumnType } from 'antd/lib/table';
 import TableContext from '../../TableContext';
 
 import './index.less';
@@ -18,10 +18,10 @@ const ColumnSetting: React.FC = () => {
   const columnsKey = React.useMemo(() => columns.map(getColumnKey), [columns]); // 全部列的 key
   const [selectedKey, setSelectedKey] = React.useState<React.Key[]>(columnsKey); // 当前显示的列 key ，默认全部选中
 
-  const checkAll = React.useMemo(() => selectedKey.length === columns.length, [
-    selectedKey,
-    columns,
-  ]);
+  const checkAll = React.useMemo(
+    () => selectedKey.length === columns.length,
+    [selectedKey, columns],
+  );
   const indeterminate = React.useMemo(
     () => selectedKey.length > 0 && selectedKey.length !== columns.length,
     [selectedKey, columns],

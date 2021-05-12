@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Input } from 'antd';
 import { validatePassword } from 'util-helpers';
-import { PasswordProps } from 'antd/es/input';
+import { PasswordProps } from 'antd/lib/input';
 import BizFormItem, { BizFormItemProps } from './Item';
 import getLabel from '../_util/getLabel';
 

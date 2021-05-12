@@ -19,15 +19,6 @@ const umiConfig = {
         style: true,
       },
     ],
-    [
-      'babel-plugin-import',
-      {
-        libraryName: 'antd-more',
-        libraryDirectory: 'es',
-        style: true,
-      },
-      'antd-more'
-    ]
   ],
   mode: 'site',
   history: {

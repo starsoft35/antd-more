@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { Table, Card, Space, ConfigProvider } from 'antd';
-import { TableProps } from 'antd/es/table';
-import { SpaceProps } from 'antd/es/space';
-import { CardProps } from 'antd/es/card';
-import { FormInstance } from 'antd/es/form';
+import { TableProps } from 'antd/lib/table';
+import { SpaceProps } from 'antd/lib/space';
+import { CardProps } from 'antd/lib/card';
+import { FormInstance } from 'antd/lib/form';
 import classnames from 'classnames';
 import { useUpdateEffect } from 'rc-hooks';
 import SearchForm, { SearchFormProps } from './SearchForm';
@@ -18,6 +18,8 @@ import getRowKey from './_util/getRowKey';
 import TableContext from './TableContext';
 import ToolbarAction from './components/ToolbarAction';
 import omit from '../biz-form/_util/omit';
+
+import './index.less';
 
 const prefixCls = 'antd-more-table';
 
@@ -282,14 +284,17 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
     );
   }, [searchItems, formItems]);
 
-  const { data, loading, run, onTableChange, pagination: pageRet } = usePagination<RecordType>(
-    request,
-    {
-      autoRun: false,
-      defaultPageSize: (pagination && pagination?.pageSize) || 10,
-      actionCacheKey,
-    },
-  );
+  const {
+    data,
+    loading,
+    run,
+    onTableChange,
+    pagination: pageRet,
+  } = usePagination<RecordType>(request, {
+    autoRun: false,
+    defaultPageSize: (pagination && pagination?.pageSize) || 10,
+    actionCacheKey,
+  });
 
   const handleChange = React.useCallback((page, filters, sorter, extraInfo) => {
     onTableChange(page, filters, sorter, extraInfo);

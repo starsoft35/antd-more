@@ -1,6 +1,6 @@
 import React from 'react';
-import { NamePath } from 'antd/es/form/interface';
-import { FormProps } from 'antd/es/form';
+import { NamePath } from 'antd/lib/form/interface';
+import { FormProps } from 'antd/lib/form';
 
 export type TransformFn<T = any> = (value: T) => T | any;
 

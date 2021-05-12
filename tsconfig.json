@@ -5,9 +5,11 @@
     "module": "esnext",
     "target": "esnext",
     "moduleResolution": "node",
-    "jsx": "react"
+    "jsx": "react",
   },
-  "include": ["./src"],
+  "include": [
+    "./src"
+  ],
   "typings": "./src/typing.d.ts",
   "exclude": [
     "node_modules",

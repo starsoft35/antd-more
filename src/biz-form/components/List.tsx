@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Form } from 'antd';
-import { FormListProps } from 'antd/es/form';
+import { FormListProps } from 'antd/lib/form';
 import ListFieldContext from '../ListFieldContext';
 
 export interface BizFormListProps extends FormListProps {}

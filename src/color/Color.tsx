@@ -7,6 +7,8 @@ import CompactPicker from './CompactPicker';
 import PhotoshopPicker from './PhotoshopPicker';
 import SketchPicker from './SketchPicker';
 
+import './index.less';
+
 const prefixCls = 'antd-more-color';
 
 export interface ColorProps {

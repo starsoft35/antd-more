@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { Space } from 'antd';
-import { SpaceProps } from 'antd/es/space';
+import { SpaceProps } from 'antd/lib/space';
 import Dictionary from './Dictionary';
 import { DictionaryProps } from './interface';
 
@@ -23,10 +23,10 @@ const DictionaryList: React.FC<DictionaryListProps> = ({
   size = 'small',
   ...restProps
 }) => {
-  const styles = useMemo(() => (type === 'tag' ? { ...tagDefaultStyle, ...style } : { ...style }), [
-    type,
-    style,
-  ]);
+  const styles = useMemo(
+    () => (type === 'tag' ? { ...tagDefaultStyle, ...style } : { ...style }),
+    [type, style],
+  );
 
   if (!Array.isArray(value) || value.length <= 0) {
     return defaultName;

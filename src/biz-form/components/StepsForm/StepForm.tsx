@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { isPromiseLike } from 'util-helpers';
 import { Form } from 'antd';
-import { StepProps } from 'antd/es/steps';
+import { StepProps } from 'antd/lib/steps';
 import BaseForm, { BaseFormProps } from '../BaseForm';
 import StepsFormContext from './StepsFormContext';
 import { StepsSubmitterProps } from './StepsSubmitter';

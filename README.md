@@ -25,7 +25,7 @@
 ### npm 或 yarn 安装
 
 ```shell
-npm install antd-more --save
+npm install antd-more
 ```
 
 <br />
@@ -33,24 +33,6 @@ npm install antd-more --save
 ```shell
 yarn add antd-more
 ```
-
-### 按需加载
-
-- 使用 [doly] 或 [umi] 脚手架，在配置文件中的 `extraBabelPlugins` 添加：
-
-```javascript
-[
-  'import', 
-  { 
-    libraryName: 'antd-more', 
-    libraryDirectory:  'es', 
-    style: true, 
-  }, 
-  'antd-more'
-]
-```
-
-- 自定义配置的 `webpack` 项目，请安装 [babel-plugin-import] ，将上面配置添加到 `babel` 的 `plugins` 中。
 
 ### 示例
 

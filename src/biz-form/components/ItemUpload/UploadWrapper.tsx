@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Upload, message } from 'antd';
-import { UploadProps } from 'antd/es/upload';
-import { UploadFile, UploadChangeParam, RcFile } from 'antd/es/upload/interface';
+import { UploadProps } from 'antd/lib/upload';
+import { UploadFile, UploadChangeParam, RcFile } from 'antd/lib/upload/interface';
 import classNames from 'classnames';
 import {
   getBase64,
@@ -14,7 +14,9 @@ import {
 import Preview from './Preview';
 import UploadContext from './UploadContext';
 
-const prefixCls = 'antd-more-upload';
+import './index.less';
+
+const prefixCls = 'antd-more-form-upload';
 
 export interface UploadWrapperProps extends UploadProps {
   fileTypeMessage?: string; // 文件类型错误提示

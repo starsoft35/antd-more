@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { TimePicker } from 'antd';
 import classNames from 'classnames';
-import { TimeRangePickerProps } from 'antd/es/time-picker';
+import { TimeRangePickerProps } from 'antd/lib/time-picker';
 import BizFormItem, { BizFormItemProps } from './Item';
 import { transformMomentTime } from '../_util/dateUtil';
 import { transformDate, invalidDateRangeNameValue } from '../_util/transform';

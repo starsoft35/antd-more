@@ -1,9 +1,13 @@
 import React, { useCallback, useState, cloneElement } from 'react';
 import { Popover } from 'antd';
-import { PopoverProps } from 'antd/es/popover';
-import { TooltipPlacement } from 'antd/es/tooltip';
+import { PopoverProps } from 'antd/lib/popover';
+import { TooltipPlacement } from 'antd/lib/tooltip';
 import classNames from 'classnames';
 import { transformColor, ColorObj } from './utils';
+
+import './index.less';
+
+const prefixCls = 'antd-more-color';
 
 interface PhotoshopAction {
   onCancel?: () => void;
@@ -27,8 +31,6 @@ export interface PickerWrapperProps extends PickerCommonProps, PopoverProps {
   photoshop?: boolean;
   [key: string]: any;
 }
-
-const prefixCls = 'antd-more-color';
 
 const PickerWrapper: React.FC<PickerWrapperProps> = ({
   className,

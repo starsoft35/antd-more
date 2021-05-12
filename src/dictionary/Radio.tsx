@@ -1,6 +1,6 @@
 import React from 'react';
 import { Radio } from 'antd';
-import { RadioGroupProps } from 'antd/es/radio/interface';
+import { RadioGroupProps } from 'antd/lib/radio/interface';
 import { EnumData } from './interface';
 
 export interface DictionaryRadioProps extends RadioGroupProps {
@@ -19,7 +19,7 @@ const DictionaryRadio: React.FC<DictionaryRadioProps> = ({
   return (
     <Radio.Group {...restProps}>
       {data.map(({ value, name, disabled, key }, index) => (
-        <RadioComp value={value} key={key || (value + index.toString())} disabled={disabled}>
+        <RadioComp value={value} key={key || value + index.toString()} disabled={disabled}>
           {name}
         </RadioComp>
       ))}

@@ -1,0 +1,25 @@
+@import '~antd/es/style/themes/default.less';
+
+@prefix-index-cls: ~'antd-more-field-index';
+
+.@{prefix-index-cls} {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-width: 20px;
+  padding: 0 2px;
+  height: 20px;
+
+  &-border {
+    color: #fff;
+    font-size: 12px;
+    line-height: 12px;
+    background-color: #314659;
+    border-radius: 10px;
+
+    &.top-three {
+      background-color: #979797;
+    }
+  }
+}

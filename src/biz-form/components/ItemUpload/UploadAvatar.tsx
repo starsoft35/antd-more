@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Tooltip } from 'antd';
 import { PictureOutlined } from '@ant-design/icons';
 import classNames from 'classnames';
-import { UploadFile } from 'antd/es/upload/interface';
+import { UploadFile } from 'antd/lib/upload/interface';
 import UploadWrapper, { UploadWrapperProps } from './UploadWrapper';
 import UploadContext from './UploadContext';
 import UploadImageButton from './UploadImageButton';

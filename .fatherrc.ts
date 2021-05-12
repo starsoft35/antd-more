@@ -1,3 +1,4 @@
+
 export default {
   esm: {
     type: 'babel',
@@ -7,6 +8,18 @@ export default {
     type: 'babel',
     lazy: true
   },
+  // umd: {
+  //   globals: {
+  //     react: "React",
+  //     antd: "antd",
+  //     "@ant-design/icons": "@ant-design/icons"
+  //   },
+  //   minFile: true,
+  //   file: "antd-more",
+  //   name: "antdMore",
+  //   sourcemap: true
+  // },
+  // extractCSS: true,
   runtimeHelpers: true,
   extraBabelPlugins: [
     [

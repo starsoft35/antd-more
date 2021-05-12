@@ -1,10 +1,12 @@
 import * as React from 'react';
 import { Input } from 'antd';
-import type { InputProps } from 'antd/es/input';
+import type { InputProps } from 'antd/lib/input';
 import classnames from 'classnames';
 import type { IconProp } from './icons';
-import SelectPopover from './SelectPopover';
+import SelectPopover from './components/SelectPopover';
 import useControllableValue from './useControllableValue';
+
+import './index.less';
 
 const prefixCls = 'antd-more-input-icon';
 

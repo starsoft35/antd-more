@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { FormInstance } from 'antd/es/form';
+import { FormInstance } from 'antd/lib/form';
 import SyncMemoryStore from '../../_util/SyncMemoryStore';
 
 export interface StepsFormContextProps {

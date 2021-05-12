@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Select } from 'antd';
-import { SelectProps } from 'antd/es/select';
+import { SelectProps } from 'antd/lib/select';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { OptionCoreData, OptionGroupData } from 'rc-select/es/interface';
 import useFilterOptions from '../_util/useFilterOptions';

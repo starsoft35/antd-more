@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { TooltipPlacement } from 'antd/es/tooltip';
+import { TooltipPlacement } from 'antd/lib/tooltip';
 import Color from '../../color';
 import BizFormItem, { BizFormItemProps } from './Item';
 import getLabel from '../_util/getLabel';

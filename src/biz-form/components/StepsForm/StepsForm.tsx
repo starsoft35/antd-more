@@ -2,12 +2,14 @@ import * as React from 'react';
 import { Steps, Form } from 'antd';
 import classNames from 'classnames';
 import { isPromiseLike } from 'util-helpers';
-import { StepsProps, StepProps } from 'antd/es/steps';
+import { StepsProps, StepProps } from 'antd/lib/steps';
 import StepsFormContext from './StepsFormContext';
 import { BaseFormProps } from '../BaseForm';
 import StepForm, { StepFormProps } from './StepForm';
 import StepsSubmitter, { StepsSubmitterProps } from './StepsSubmitter';
 import SyncMemoryStore from '../../_util/SyncMemoryStore';
+
+import './index.less';
 
 const prefixCls = 'antd-more-steps-form';
 const formItemHideLabelClass = 'antd-more-form-item-hide-label';

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { UploadProps } from 'antd/es/upload';
+import { UploadProps } from 'antd/lib/upload';
 import BizFormItem, { BizFormItemProps } from '../Item';
 import { UploadWrapperProps } from './UploadWrapper';
 import UploadButton from './UploadButton';

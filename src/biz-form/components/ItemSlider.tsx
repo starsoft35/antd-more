@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Slider } from 'antd';
-import { SliderSingleProps, SliderRangeProps } from 'antd/es/slider';
+import { SliderSingleProps, SliderRangeProps } from 'antd/lib/slider';
 import BizFormItem, { BizFormItemProps } from './Item';
 
 export interface FormItemSliderProps

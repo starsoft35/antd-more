@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Form } from 'antd';
-import { FormProps, FormInstance } from 'antd/es/form';
+import { FormProps, FormInstance } from 'antd/lib/form';
 import namePathSet from 'rc-util/es/utils/set'; // eslint-disable-line import/no-extraneous-dependencies
 import classnames from 'classnames';
 import { isPromiseLike } from 'util-helpers';
@@ -9,6 +9,8 @@ import { transformFormValues } from '../_util/transform';
 import FieldContext, { TransformFn } from '../FieldContext';
 import ChildFormContext from '../ChildFormContext';
 import Submitter, { SubmitterProps } from './Submitter';
+
+import '../index.less';
 
 const prefixCls = 'antd-more-form';
 

@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { ColumnType } from 'antd/es/table';
-import { SorterResult, TableCurrentDataSource } from 'antd/es/table/interface';
-import { FormInstance } from 'antd/es/form';
+import { ColumnType } from 'antd/lib/table';
+import { SorterResult, TableCurrentDataSource } from 'antd/lib/table/interface';
+import { FormInstance } from 'antd/lib/form';
 import { ValueType, EnumData, BizFieldProps } from '../biz-field';
 import { BizFormItemProps } from '../biz-form';
 import { ItemTypes } from './_util/constants';

@@ -2,6 +2,8 @@ import * as React from 'react';
 import classnames from 'classnames';
 import { BizFieldProps } from '../interface';
 
+import './Index.less';
+
 const prefixCls = 'antd-more-field-index';
 
 const FieldIndex: React.FC<BizFieldProps> = ({

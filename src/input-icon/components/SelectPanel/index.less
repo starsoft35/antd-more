@@ -1,0 +1,32 @@
+@import '~antd/es/style/themes/default.less';
+
+@prefix-cls: ~'antd-more-input-icon-panel';
+
+.@{prefix-cls} {
+  &-input {
+    margin-bottom: 12px;
+  }
+  &-result {
+    min-height: 120px;
+    max-height: 180px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+
+  &-icon {
+    line-height: 30px;
+    display: block;
+    color: #999;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    span {
+      margin-right: 5px;
+    }
+
+    &:hover {
+      color: rgba(0, 0, 0, 0.85);
+    }
+  }
+}

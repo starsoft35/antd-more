@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Checkbox } from 'antd';
-import { CheckboxProps, CheckboxGroupProps } from 'antd/es/checkbox';
-import { CheckboxOptionType } from 'antd/es/checkbox/Group';
+import { CheckboxProps, CheckboxGroupProps } from 'antd/lib/checkbox';
+import { CheckboxOptionType } from 'antd/lib/checkbox/Group';
 import useFilterOptions from '../_util/useFilterOptions';
 import BizFormItem, { BizFormItemProps } from './Item';
 import getLabel from '../_util/getLabel';

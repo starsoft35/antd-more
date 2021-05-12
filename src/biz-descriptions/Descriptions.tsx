@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Descriptions } from 'antd';
-import { DescriptionsProps } from 'antd/es/descriptions';
-import { DescriptionsItemProps } from 'antd/es/descriptions/Item';
+import { DescriptionsProps } from 'antd/lib/descriptions';
+import { DescriptionsItemProps } from 'antd/lib/descriptions/Item';
 import BizField, { ValueType, EnumData, BizFieldProps } from '../biz-field';
 import WithTooltip from './WithTooltip';
 

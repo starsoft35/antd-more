@@ -2,8 +2,8 @@ import * as React from 'react';
 import { DatePicker } from 'antd';
 import classNames from 'classnames';
 import { Moment } from 'moment';
-import { RangePickerProps } from 'antd/es/date-picker';
-import { RangePickerDateProps } from 'antd/es/date-picker/generatePicker';
+import { RangePickerProps } from 'antd/lib/date-picker';
+import { RangePickerDateProps } from 'antd/lib/date-picker/generatePicker';
 import {
   MomentScale,
   DateUnit,
@@ -51,10 +51,10 @@ const FormItemDateRange: React.FC<FormItemDateRangeProps> = ({
   ...restProps
 }) => {
   const currentName = React.useMemo(() => name || `${names[0]}_${names[1]}`, [name, names]);
-  const currentPicker = React.useMemo(() => pickerProps.picker || picker, [
-    pickerProps.picker,
-    picker,
-  ]);
+  const currentPicker = React.useMemo(
+    () => pickerProps.picker || picker,
+    [pickerProps.picker, picker],
+  );
   const currentFormat = React.useMemo(() => {
     return getDateFormat(
       pickerProps.format || format,

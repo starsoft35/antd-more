@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Input } from 'antd';
-import { TextAreaProps } from 'antd/es/input';
+import { TextAreaProps } from 'antd/lib/input';
 import { normalizeWhiteSpace } from '../_util/normalize';
 import BizFormItem, { BizFormItemProps } from './Item';
 import getLabel from '../_util/getLabel';

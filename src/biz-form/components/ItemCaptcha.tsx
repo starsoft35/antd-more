@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Input, Divider } from 'antd';
-import { InputProps } from 'antd/es/input';
+import { InputProps } from 'antd/lib/input';
 import CaptchaButton from '../../captcha-button';
 import { CaptchaButtonProps } from '../../captcha-button/CaptchaButton';
 import BizFormItem, { BizFormItemProps } from './Item';

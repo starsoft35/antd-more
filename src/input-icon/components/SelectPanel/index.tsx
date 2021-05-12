@@ -3,7 +3,9 @@ import { Input, Row, Col, Empty } from 'antd';
 import { useThrottle } from 'rc-hooks';
 import classnames from 'classnames';
 import { SearchOutlined } from '@ant-design/icons';
-import type { IconProp } from './icons';
+import type { IconProp } from '../../icons';
+
+import './index.less';
 
 const prefixCls = 'antd-more-input-icon';
 

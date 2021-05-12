@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { Image } from 'antd';
 import classNames from 'classnames';
-import { ImageProps } from 'antd/es/image';
+import { ImageProps } from 'antd/lib/image';
+
+import './Image.less';
 
 const prefixCls = 'antd-more-field-image';
 

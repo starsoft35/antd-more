@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Radio } from 'antd';
-import { RadioProps, RadioGroupProps, RadioGroupOptionType } from 'antd/es/radio';
-import { CheckboxOptionType } from 'antd/es/checkbox/Group';
+import { RadioProps, RadioGroupProps, RadioGroupOptionType } from 'antd/lib/radio';
+import { CheckboxOptionType } from 'antd/lib/checkbox/Group';
 import useFilterOptions from '../_util/useFilterOptions';
 import BizFormItem, { BizFormItemProps } from './Item';
 import getLabel from '../_util/getLabel';

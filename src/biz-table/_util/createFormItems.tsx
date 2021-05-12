@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { FormInstance } from 'antd/es/form';
-import { NamePath } from 'antd/es/form/interface';
+import { FormInstance } from 'antd/lib/form';
+import { NamePath } from 'antd/lib/form/interface';
 import BizForm from '../../biz-form';
 import { BizFormItemProps } from '../../biz-form/components/Item';
 import { SearchProps } from '../interface';

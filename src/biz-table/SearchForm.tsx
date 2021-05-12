@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Card } from 'antd';
-import { FormInstance } from 'antd/es/form';
-import { CardProps } from 'antd/es/card';
+import { FormInstance } from 'antd/lib/form';
+import { CardProps } from 'antd/lib/card';
 import BizForm, { QueryForm, QueryFormProps } from '../biz-form';
 import createFormItems from './_util/createFormItems';
 import createUniqueId from './_util/createUniqueId';
@@ -31,9 +31,10 @@ const SearchForm: React.FC<SearchFormProps> = React.forwardRef(
       return null;
     }
 
-    const formName = React.useMemo(() => name || `biz_table_search_form_${createUniqueId()}`, [
-      name,
-    ]);
+    const formName = React.useMemo(
+      () => name || `biz_table_search_form_${createUniqueId()}`,
+      [name],
+    );
     React.useImperativeHandle(ref, () => form, [form, ref]);
 
     return (

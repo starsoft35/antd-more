@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Form } from 'antd';
-import { FormItemProps } from 'antd/es/form';
+import { FormItemProps } from 'antd/lib/form';
 import { Rule } from 'rc-field-form/es/interface'; // eslint-disable-line import/no-extraneous-dependencies
-import { ColProps } from 'antd/es/grid';
+import { ColProps } from 'antd/lib/grid';
 import FieldContext from '../FieldContext';
 import ListFieldContext from '../ListFieldContext';
 

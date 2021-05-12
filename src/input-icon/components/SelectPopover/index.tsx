@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { Popover } from 'antd';
-import type { PopoverProps } from 'antd/es/popover';
-import SelectPanel, { SelectPanelProps } from './SelectPanel';
+import type { PopoverProps } from 'antd/lib/popover';
+import SelectPanel, { SelectPanelProps } from '../SelectPanel';
+
+import './index.less';
 
 export interface SelectPopoverProps
   extends PopoverProps,
@@ -10,7 +12,6 @@ export interface SelectPopoverProps
 const SelectPopover: React.FC<SelectPopoverProps> = ({
   trigger = 'click',
   placement = 'bottom',
-  className,
   children,
   options,
   onSelect,

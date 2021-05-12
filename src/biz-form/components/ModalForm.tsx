@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Modal, Form } from 'antd';
 import { useUpdateEffect } from 'rc-hooks';
-import { ModalProps } from 'antd/es/modal';
+import { ModalProps } from 'antd/lib/modal';
 import { isPromiseLike } from 'util-helpers';
 import BaseForm, { BaseFormProps } from './BaseForm';
 
