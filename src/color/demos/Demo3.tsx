@@ -16,8 +16,8 @@ const buttonItemLayouts = {
 };
 
 const initialValues = {
-  bgColor: '#e60000',
-  textColor: 'rgba(255,127,0,1)',
+  color1: '#e60000',
+  color2: 'rgba(255,127,0,1)',
 };
 
 export default () => {
@@ -29,10 +29,10 @@ export default () => {
   return (
     <>
       <Form {...formItemLayouts} initialValues={initialValues} onFinish={onFinish}>
-        <Form.Item label="背景颜色" name="bgColor">
+        <Form.Item label="颜色1" name="color1">
           <Color.BlockPicker showText />
         </Form.Item>
-        <Form.Item label="文本颜色" name="textColor">
+        <Form.Item label="颜色2" name="color2">
           <Color.SketchPicker colorMode="rgb" placement="topLeft" />
         </Form.Item>
         <Form.Item {...buttonItemLayouts}>

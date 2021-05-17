@@ -29,7 +29,7 @@ const Demo: React.FC = () => {
       <BizDescriptions.Item label="进度条" valueType="progress">{data.number2}</BizDescriptions.Item>
       <BizDescriptions.Item label="百分比" valueType="percent">{data.number3}</BizDescriptions.Item>
       <BizDescriptions.Item
-        label="百分比带颜色符号"
+        label="百分比样式"
         valueType="percent"
         field={{
           showSymbol: true,

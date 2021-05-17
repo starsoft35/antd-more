@@ -1,12 +1,9 @@
 import * as React from 'react';
 import PreView, { IPreviewerProps } from 'dumi-theme-default/src/builtins/Previewer';
-import { context, usePrefersColor } from 'dumi/theme';
-import { loadDarkStyle, unloadDarkStyle } from './_utils';
-
+import { usePrefersColor } from 'dumi/theme';
 
 export default ({ children, background, ...rest }: IPreviewerProps) => {
   const [theme] = usePrefersColor();
-  const ctx = React.useContext(context);
 
   const previewProps = React.useMemo(() => {
     const ret = { ...rest };
@@ -15,14 +12,6 @@ export default ({ children, background, ...rest }: IPreviewerProps) => {
     }
     return ret;
   }, [background, rest, theme]);
-
-  React.useEffect(() => {
-    if (theme !== "dark") {
-      unloadDarkStyle()
-    } else {
-      loadDarkStyle()
-    }
-  }, [theme]);
 
   return (
     <PreView {...previewProps}>

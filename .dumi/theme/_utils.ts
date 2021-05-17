@@ -2,7 +2,7 @@
 const DARK_STYLE_ID = "__antd_more_antd_dark_style__";
 
 function getDarkStyle() {
-  return document.querySelector(DARK_STYLE_ID);
+  return document.querySelector(`#${DARK_STYLE_ID}`);
 }
 
 export function loadDarkStyle() {

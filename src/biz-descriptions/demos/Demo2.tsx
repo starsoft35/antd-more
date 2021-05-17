@@ -56,7 +56,7 @@ const columns: BizDescriptionsColumnItemProps[] = [
   },
   {
     dataIndex: "number3",
-    title: "百分比带颜色符号",
+    title: "百分比样式",
     valueType: "percent",
     field: {
       showSymbol: true,
@@ -96,9 +96,9 @@ const columns: BizDescriptionsColumnItemProps[] = [
     title: "日期时间区间",
     span: 2,
     valueType: "dateTimeRange",
-    field: {
-      formatValue: () => ["startDate", "endDate"]
-    }
+    field: (text, { startDate, endDate }) => ({
+      formatValue: () => [startDate, endDate]
+    })
   },
   {
     dataIndex: "status",
