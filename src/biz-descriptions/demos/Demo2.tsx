@@ -92,10 +92,13 @@ const columns: BizDescriptionsColumnItemProps[] = [
     valueType: "time"
   },
   {
-    dataIndex: ["startDate", "endDate"],
+    dataIndex: "startDate",
     title: "日期时间区间",
     span: 2,
-    valueType: "dateTimeRange"
+    valueType: "dateTimeRange",
+    field: {
+      formatValue: () => ["startDate", "endDate"]
+    }
   },
   {
     dataIndex: "status",
