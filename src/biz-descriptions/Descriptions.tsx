@@ -9,8 +9,12 @@ export interface BizDescriptionsItemProps extends DescriptionsItemProps {
   valueType?: ValueType;
   valueEnum?: EnumData;
   tooltip?: string;
-  field?: Omit<BizFieldProps, 'value'> | ((value: any) => Omit<BizFieldProps, 'value'>);
+  field?:
+    | Partial<BizFieldProps>
+    | ((text: any, record: Record<string | number, any>, index: number) => Partial<BizFieldProps>);
   key?: React.ReactText;
+  dataSource?: Record<string | number, any>;
+  index?: number;
 }
 
 function createDescriptionsItem({
@@ -20,9 +24,11 @@ function createDescriptionsItem({
   label,
   tooltip,
   field,
+  dataSource,
+  index,
   ...restProps
 }: BizDescriptionsItemProps) {
-  const fieldProps = typeof field === 'function' ? field(children) : field;
+  const fieldProps = typeof field === 'function' ? field(children, dataSource, index) : field;
 
   return (
     <Descriptions.Item
@@ -98,6 +104,8 @@ const BizDescriptions: React.FC<BizDescriptionsProps> & {
               key: index,
               label: internalLabel || internalTitle,
               children: child,
+              dataSource,
+              index,
               ...restColItem,
             });
           },
