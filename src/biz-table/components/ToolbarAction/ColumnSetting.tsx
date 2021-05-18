@@ -31,6 +31,11 @@ const ColumnSetting: React.FC = () => {
     setNewColumns(columns.filter((item, index) => selectedKey.includes(columnsKey[index])));
   }, [columns, selectedKey]);
 
+  // 当 columns 变了以后，重置 seletedKey
+  React.useEffect(() => {
+    setSelectedKey(columnsKey);
+  }, [columnsKey]);
+
   const treeData = React.useMemo(() => {
     return columns.map((item, index) => {
       return {
