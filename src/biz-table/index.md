@@ -197,7 +197,7 @@ valueEnum = options
 },
 ```
 
-如果 `valueType` 没有匹配的 `itemType` ，并且没有设置 `itemType`，默认 `itemType='input'` 。
+如果 `valueType` 没有匹配的 `itemType` 或没有设置 `itemType`，默认 `itemType='input'` 。
 
 再如果以上都不符合要求，可以自定义表单项渲染 `search.render` 。
 
