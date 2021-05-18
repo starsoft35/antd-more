@@ -8,7 +8,7 @@ import UploadContext from './UploadContext';
 import UploadImageButton from './UploadImageButton';
 import { getBase64 } from './uploadUtil';
 
-const prefixCls = 'antd-more-upload-avatar';
+const prefixCls = 'antd-more-form-upload-avatar';
 
 const UploadAvatar: React.FC<{
   fileList?: UploadFile[];
