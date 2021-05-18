@@ -5,6 +5,7 @@ import { FormInstance } from 'antd/lib/form';
 import { ValueType, EnumData, BizFieldProps } from '../biz-field';
 import { BizFormItemProps } from '../biz-form';
 import { ItemTypes } from './_util/constants';
+import { WithTooltipProps } from '../biz-descriptions/WithTooltip';
 
 export interface AsyncFnReturn<D = any> extends Record<string | number, any> {
   data: D[];
@@ -61,7 +62,7 @@ interface InternalColumnType<RecordType = any> extends Omit<ColumnType<RecordTyp
   dataIndex?: string | number | (string | number)[];
   valueType?: ValueType;
   valueEnum?: EnumData;
-  tooltip?: string;
+  tooltip?: WithTooltipProps['tooltip'];
   nowrap?: boolean;
   field?:
     | Omit<BizFieldProps, 'value'>

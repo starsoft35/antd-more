@@ -20,7 +20,7 @@ const data = {
   image2: ["https://gw.alipayobjects.com/zos/antfincdn/aPkFc8Sj7n/method-draw-image.svg", "https://gw.alipayobjects.com/zos/antfincdn/aPkFc8Sj7n/method-draw-image.svg"]
 }
 
-const columns: BizDescriptionsColumnItemProps[] = [
+const columns: BizDescriptionsColumnItemProps<typeof data>[] = [
   {
     dataIndex: "text1",
     title: "空字符串",
@@ -135,7 +135,7 @@ const columns: BizDescriptionsColumnItemProps[] = [
   },
   {
     title: "自定义render2",
-    render: (val, allData) => <span style={{ color: "red" }}>{allData.other}</span>
+    render: (val, record) => <span style={{ color: "red" }}>{record.other}</span>
   },
 ];
 

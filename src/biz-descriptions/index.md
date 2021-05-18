@@ -45,7 +45,7 @@ import { BizDescriptions } from 'antd-more';
 ------------- | ------------- | ------------- | ------------- |
 dataSource  | 数据 | `object` | - |
 columns  | 列的配置描述 | `ColumnItem[]` | - |
-tooltip  | 标题后面的补充提示，需有标题才生效 | `string` | - |
+tooltip  | 标题后面的补充提示，需有标题才生效 | `React.ReactNode` | - |
 
 ### BizDescriptions.Item
 
@@ -57,32 +57,7 @@ tooltip  | 标题后面的补充提示，需有标题才生效 | `string` | - |
 ------------- | ------------- | ------------- | ------------- |
 valueType  | 值类型 | [ValueType](/dataview/biz-field#共同的api) | - |
 valueEnum  | 包含 `value` `name` 的数据字典。<br/>当 `valueType` 为 `enum` `enumTag` `enumBadge` 时生效。 | `EnumData` | - |
-field  | 展示字段的配置。同 BizField 的配置项，支持 object 和 function 方式。<br/>function 方式默认参数为当前值，需返回 BizField 的配置。 | `object` \| `(text: any, record: object, index: number)=>object` | - |
-tooltip  | 标签后面的补充提示，需有标签才生效 | `string` | - |
+field  | 展示字段的配置。同 BizField 的配置项，支持 object 和 function 方式。<br/>function 方式默认参数为当前值，需返回 BizField 的配置。 | `object` \| `(text: any, record?: DataType, index?: number)=>object` | - |
+tooltip  | 标签后面的补充提示，需有标签才生效 | `React.ReactNode` | - |
 
-### 类型
-
-```typescript
-interface BizDescriptionsItemProps extends DescriptionsItemProps {
-  valueType?: ValueType;
-  valueEnum?: EnumData;
-  tooltip?: string;
-  field?: Omit<BizFieldProps, 'value'> | ((value: any)=>Omit<BizFieldProps, 'value'>)
-  key?: React.ReactText;
-}
-
-type DataIndex = string | number | (string|number)[];
-
-interface BizDescriptionsColumnItemProps extends Omit<ItemProps, 'children'> {
-  dataIndex?: DataIndex;
-  title?: React.ReactNode;
-  render?: (value: any, dataSource: Record<DataIndex, any>, index: number) => React.ReactNode;
-}
-
-interface BizDescriptionsProps extends DescriptionsProps {
-  dataSource?: Record<DataIndex, any>;
-  columns?: ColumnItem[];
-  tooltip?: string;
-}
-```
 

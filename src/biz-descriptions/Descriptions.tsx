@@ -3,21 +3,22 @@ import { Descriptions } from 'antd';
 import { DescriptionsProps } from 'antd/lib/descriptions';
 import { DescriptionsItemProps } from 'antd/lib/descriptions/Item';
 import BizField, { ValueType, EnumData, BizFieldProps } from '../biz-field';
-import WithTooltip from './WithTooltip';
+import WithTooltip, { WithTooltipProps } from './WithTooltip';
 
-export interface BizDescriptionsItemProps extends DescriptionsItemProps {
+export interface BizDescriptionsItemProps<DataType extends object = any>
+  extends DescriptionsItemProps {
   valueType?: ValueType;
   valueEnum?: EnumData;
-  tooltip?: string;
+  tooltip?: WithTooltipProps['tooltip'];
   field?:
     | Partial<BizFieldProps>
-    | ((text: any, record: Record<string | number, any>, index: number) => Partial<BizFieldProps>);
+    | ((text: any, record?: DataType, index?: number) => Partial<BizFieldProps>);
   key?: React.ReactText;
-  dataSource?: Record<string | number, any>;
+  dataSource?: DataType;
   index?: number;
 }
 
-function createDescriptionsItem({
+function createDescriptionsItem<DataType extends object = any>({
   valueType,
   valueEnum,
   children,
@@ -27,7 +28,7 @@ function createDescriptionsItem({
   dataSource,
   index,
   ...restProps
-}: BizDescriptionsItemProps) {
+}: BizDescriptionsItemProps<DataType>) {
   const fieldProps = typeof field === 'function' ? field(children, dataSource, index) : field;
 
   return (
@@ -45,21 +46,31 @@ const DescriptionsItem: React.FC<BizDescriptionsItemProps> = (props) =>
 
 type DataIndex = string | number;
 
-export interface BizDescriptionsColumnItemProps extends Omit<BizDescriptionsItemProps, 'children'> {
+export interface BizDescriptionsColumnItemProps<DataType extends object = any>
+  extends Omit<BizDescriptionsItemProps<DataType>, 'children' | 'field'> {
+  field?:
+    | Partial<BizFieldProps>
+    | ((text: any, record: DataType, index: number) => Partial<BizFieldProps>);
   dataIndex?: DataIndex | DataIndex[];
   title?: React.ReactNode;
-  render?: (value: any, dataSource: Record<DataIndex, any>, index: number) => React.ReactNode;
+  render?: (value: any, dataSource: DataType, index: number) => React.ReactNode;
 }
 
-export interface BizDescriptionsProps extends DescriptionsProps {
-  dataSource?: Record<DataIndex, any>;
-  columns?: BizDescriptionsColumnItemProps[];
-  tooltip?: string;
+export interface BizDescriptionsProps<DataType extends object = any> extends DescriptionsProps {
+  dataSource?: DataType;
+  columns?: BizDescriptionsColumnItemProps<DataType>[];
+  tooltip?: WithTooltipProps['tooltip'];
 }
 
-const BizDescriptions: React.FC<BizDescriptionsProps> & {
-  Item: typeof DescriptionsItem;
-} = ({ dataSource, columns, children, title, tooltip, column, ...restProps }) => {
+function BizDescriptions<DataType extends object = any>({
+  dataSource,
+  columns,
+  children,
+  title,
+  tooltip,
+  column,
+  ...restProps
+}: BizDescriptionsProps<DataType>) {
   const defaultProps = React.useMemo(
     () => ({
       title: title && tooltip ? <WithTooltip label={title} tooltip={tooltip} /> : title,
@@ -119,7 +130,7 @@ const BizDescriptions: React.FC<BizDescriptionsProps> & {
       {currentDom}
     </Descriptions>
   );
-};
+}
 
 BizDescriptions.Item = DescriptionsItem;
 

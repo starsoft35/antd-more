@@ -9,7 +9,7 @@ const data = {
   number1: 100,
 }
 
-const columns: BizDescriptionsColumnItemProps[] = [
+const columns: BizDescriptionsColumnItemProps<typeof data>[] = [
   {
     dataIndex: "text1",
     title: "空字符串",

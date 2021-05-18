@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { Tooltip } from 'antd';
+import { TooltipProps } from 'antd/es/tooltip';
 import { InfoCircleOutlined } from '@ant-design/icons';
 
 export interface WithTooltipProps {
   label?: React.ReactNode;
-  tooltip?: string;
+  tooltip?: TooltipProps['title'];
 }
 
 const WithTooltip: React.FC<WithTooltipProps> = ({ label, tooltip }) => {
