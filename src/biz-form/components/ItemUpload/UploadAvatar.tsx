@@ -67,7 +67,6 @@ const UploadAvatar: React.FC<{
       className={classNames(`${prefixCls}-box`, {
         [`${prefixCls}-box-error`]: currentFile && currentFile.status === 'error',
       })}
-      style={imgUrl && !transforming && !uploading ? { background: '#fff' } : {}}
     >
       {view}
     </div>
@@ -89,6 +88,7 @@ const UploadImage: React.FC<UploadWrapperProps> = ({
   return (
     <UploadWrapper
       {...restProps}
+      listType="picture-card"
       accept={restProps?.accept || '.jpg, .jpeg, .png'}
       fileList={fileList}
       showUploadList={false}
