@@ -1,5 +1,5 @@
 const pkg = require('./package.json');
-const version = process.env.BUILD_MODE === 'version' ? `v${pkg.version.split('.')[0]}` : 'latest';
+const version = process.env.BUIDL_DOC_VERSION ? `v${pkg.version.split('.')[0]}` : 'latest';
 
 const serverRootDirect = process.env.NODE_ENV === 'production' ? 'https://doly-dev.github.io/antd-more/' : '/';
 const logo = 'https://www.caijinfeng.com/assets/images/logo-doly@3x.png';
@@ -28,9 +28,6 @@ const umiConfig = {
   favicon,
   publicPath,
   outputPath,
-  manifest: {
-    publicPath
-  },
   hash: true,
   locales: [['zh-CN', '中文'], ['en-US', 'English']],
   nodeModulesTransform: {

@@ -8,9 +8,9 @@
   "scripts": {
     "start": "dumi dev",
     "doc": "dumi build",
+    "doc-version": "cross-env BUIDL_DOC_VERSION=version npm run doc",
     "build": "father-build",
-    "build:doc": "npm run doc",
-    "build:doc-version": "cross-env BUILD_MODE=version npm run doc",
+    "build:doc": "npm run doc && npm run doc-version",
     "lint": "eslint src/* --ext .tsx,.ts",
     "prettier": "prettier --write 'src/**/*.tsx' && prettier --write 'src/**/*.ts'",
     "lint-staged": "lint-staged",

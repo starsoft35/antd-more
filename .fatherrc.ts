@@ -1,5 +1,5 @@
 
-export default {
+export default [{
   esm: {
     type: 'babel',
     importLibToEs: true
@@ -8,18 +8,6 @@ export default {
     type: 'babel',
     lazy: true
   },
-  // umd: {
-  //   globals: {
-  //     react: "React",
-  //     antd: "antd",
-  //     "@ant-design/icons": "@ant-design/icons"
-  //   },
-  //   minFile: true,
-  //   file: "antd-more",
-  //   name: "antdMore",
-  //   sourcemap: true
-  // },
-  // extractCSS: true,
   runtimeHelpers: true,
   extraBabelPlugins: [
     [
@@ -31,4 +19,21 @@ export default {
       }
     ]
   ]
-};
+},
+  // {
+  //   extraExternals: ["react", "react-dom", "antd", "@ant-design/icons"],
+  //   // extractCSS: true,
+  //   umd: {
+  //     globals: {
+  //       react: "React",
+  //       "react-dom": "ReactDom",
+  //       antd: "antd",
+  //       "@ant-design/icons": "@ant-design/icons"
+  //     },
+  //     minFile: true,
+  //     file: "antd-more",
+  //     name: "antdMore",
+  //     sourcemap: true
+  //   },
+  // }
+];
