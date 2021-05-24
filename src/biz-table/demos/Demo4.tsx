@@ -174,8 +174,8 @@ const columns: BizColumnType<DataItem> = [
     dataIndex: "slider",
     title: "自定义滑动条",
     search: {
-      render: (columnItem, dom, form) => (
-        <BizForm.Item name={columnItem.dataIndex} label={columnItem.title} colProps={{ lg: 12, md: 24 }}>
+      render: ({ dataIndex, title }, dom, form) => (
+        <BizForm.Item name={dataIndex} label={title} colProps={{ lg: 12, md: 24 }}>
           <Slider />
         </BizForm.Item>
       )

@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { Input } from 'antd';
 import type { InputProps } from 'antd/lib/input';
+import { useControllableValue } from 'rc-hooks';
 import classnames from 'classnames';
 import type { IconProp } from './icons';
 import SelectPopover from './components/SelectPopover';
-import useControllableValue from './useControllableValue';
 
 import './index.less';
 

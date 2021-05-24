@@ -1,58 +1,36 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { useAsync } from 'rc-hooks';
-import type { AsyncFn, AsyncParams, AsyncResult } from 'rc-hooks';
+import { AsyncOptions, AsyncFunction } from 'rc-hooks/es/useAsync';
 import actionCache from './_util/actionCache';
-import {
-  BizTableRequest,
-  RequestFilters,
-  RequestSorter,
-  RequestExtra,
-  AsyncFnReturn,
-} from './interface';
+import { RequestFilters, RequestSorter, RequestExtra, AsyncFnReturn } from './interface';
 
-// 显示数据总量
-const showTotal = (num: number | string) => `共 ${num} 条数据`;
-
-interface ParamsRef<RecordType> {
+interface ParamsRef<DataType> {
   params: any;
   filters: RequestFilters;
-  sorter: RequestSorter<RecordType>;
-  extra: RequestExtra<RecordType>;
+  sorter: RequestSorter<DataType>;
+  extra: RequestExtra<DataType>;
 }
 
-interface Options<D = any, P = any> extends AsyncParams<D, P> {
-  defaultCurrent?: number;
+interface Options<DataType = any> extends AsyncOptions<DataType> {
   defaultTotal?: number;
   defaultPageSize?: number;
   actionCacheKey?: string;
 }
 
-interface ReturnValues<RecordType = any>
-  extends Omit<AsyncResult<AsyncFnReturn<RecordType>>, 'data'> {
-  data: AsyncFnReturn<RecordType>['data'];
-  onTableChange: BizTableRequest<RecordType>;
-  pagination: {
-    total: number;
-    current: number;
-    pageSize: number;
-    showTotal: typeof showTotal;
-    showSizeChanger: boolean;
-    showQuickJumper: boolean;
-  };
-}
+// 显示数据总量
+const showTotal = (total: number) => `共 ${total} 条数据`;
 
-function usePagination<RecordType = any, P = any>(
-  asyncFn: AsyncFn<AsyncFnReturn<RecordType>>,
+function usePagination<DataType = any>(
+  asyncFn: AsyncFunction,
   {
-    // defaultCurrent = 1, // 设置 current 无效，初始请求会自动改为第一页
     defaultTotal = 0,
     defaultPageSize = 10,
     actionCacheKey = '',
     autoRun,
-    onSuccess = () => {},
+    onSuccess,
     ...restOptions
-  }: Options<AsyncFnReturn<RecordType>, P> = {},
-): ReturnValues<RecordType> {
+  }: Options<AsyncFnReturn<DataType>> = {},
+) {
   const [data, setData] = useState([]);
 
   const pageRef = useRef({
@@ -60,7 +38,7 @@ function usePagination<RecordType = any, P = any>(
     pageSize: defaultPageSize,
     total: defaultTotal,
   }); // 分页
-  const paramsRef = useRef<ParamsRef<RecordType>>({
+  const paramsRef = useRef<ParamsRef<DataType>>({
     params: {},
     filters: {},
     sorter: {},
@@ -70,7 +48,7 @@ function usePagination<RecordType = any, P = any>(
     },
   }); // 请求参数，这里不使用 useAsync 缓存params，因为里面可能包含了分页数据
 
-  const request = useAsync<AsyncFnReturn<RecordType>, P>(asyncFn, {
+  const request = useAsync<AsyncFnReturn<DataType>>(asyncFn, {
     ...restOptions,
     autoRun: false,
     onSuccess: (res, params) => {

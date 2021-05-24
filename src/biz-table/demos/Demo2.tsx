@@ -101,20 +101,21 @@ const Demo: React.FC = () => {
       form={{
         submitter: {
           render: (submitterProps, dom) => {
+            const { submitButtonProps, resetButtonProps } = submitterProps;
             return (
               <Space>
                 <Button
                   key="search"
                   type="primary"
                   onClick={() => { actionRef.current.submit(); }}
-                  {...submitterProps.submitButtonProps}
+                  {...submitButtonProps}
                 >
                   查询
                 </Button>
                 <Button
                   key="reset"
                   onClick={() => { actionRef.current.reset(); }}
-                  {...submitterProps.resetButtonProps}
+                  {...resetButtonProps}
                 >
                   重置
                 </Button>
