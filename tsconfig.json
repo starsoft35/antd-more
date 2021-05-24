@@ -20,7 +20,6 @@
     "jest",
     "src/setupTests.ts",
     "tslint:latest",
-    "tslint-config-prettier",
-    "**/demos/**"
+    "tslint-config-prettier"
   ]
 }
