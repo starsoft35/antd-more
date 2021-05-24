@@ -19,21 +19,20 @@ export default [{
       }
     ]
   ]
-},
+  // },
   // {
-  //   extraExternals: ["react", "react-dom", "antd", "@ant-design/icons"],
-  //   // extractCSS: true,
-  //   umd: {
-  //     globals: {
-  //       react: "React",
-  //       "react-dom": "ReactDom",
-  //       antd: "antd",
-  //       "@ant-design/icons": "@ant-design/icons"
-  //     },
-  //     minFile: true,
-  //     file: "antd-more",
-  //     name: "antdMore",
-  //     sourcemap: true
+  // extraExternals: ["react", "react-dom", "antd", "@ant-design/icons"],
+  // // extractCSS: true,
+  // umd: {
+  //   globals: {
+  //     react: "React",
+  //     "react-dom": "ReactDom",
+  //     antd: "antd",
+  //     "@ant-design/icons": "icons"
   //   },
-  // }
-];
+  //   minFile: true,
+  //   file: "antd-more",
+  //   name: "antdMore",
+  //   sourcemap: true
+  // },
+}];
