@@ -118,10 +118,10 @@ export default () => {
           <BizField value={{ src: "https://gw.alipayobjects.com/zos/antfincdn/aPkFc8Sj7n/method-draw-image.svg", name: "测试名称" }} valueType="image" bordered />
         </Descriptions.Item>
         <Descriptions.Item label="多张图片">
-          <BizField value={["https://gw.alipayobjects.com/zos/antfincdn/aPkFc8Sj7n/method-draw-image.svg", "https://gw.alipayobjects.com/zos/antfincdn/aPkFc8Sj7n/method-draw-image.svg"]} valueType="image" />
+          <BizField value={["https://dummyimage.com/200x300", "https://dummyimage.com/300x100"]} valueType="image" />
         </Descriptions.Item>
-        <Descriptions.Item label="多张图片(边框/名称)" span={2}>
-          <BizField value={[{ src: "https://gw.alipayobjects.com/zos/antfincdn/aPkFc8Sj7n/method-draw-image.svg", name: "测试名称" }, { src: "https://gw.alipayobjects.com/zos/antfincdn/aPkFc8Sj7n/method-draw-image.svg", name: "测试名称测试名称测试名称测试名称" }]} valueType="image" bordered />
+        <Descriptions.Item label="多张图片(边框/名称)">
+          <BizField value={[{ src: "https://dummyimage.com/300x600", name: "测试名称" }, { src: "https://dummyimage.com/600x200", name: "测试名称测试名称测试名称测试名称" }]} valueType="image" bordered />
         </Descriptions.Item>
       </Descriptions>
       <Descriptions title="日期">

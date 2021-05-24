@@ -66,7 +66,7 @@ toolbarAction  | 工具栏右侧显示内置工具 | `boolean` \| `{ reload?: bo
 toolbarRender  | 自定义工具栏渲染。<br/>如果有设置toolbarAction，参数 dom 包含了右侧内置工具。 | `(dom: JSX.Element) => React.ReactNode` | - |
 fullScreenBackgroundColor  | 全屏时显示的背景颜色 | `string` | `#ffffff` |
 extra  | 扩展内容，表格外的上面、查询表单下面的区域 | `React.ReactNode` | - |
-form  | 同 [BizForm.QueryForm] 配置参数 | [QueryFormProps] | - |
+form  | 同 [QueryForm] 配置参数 | [QueryFormProps] | - |
 formRef  | 获取查询表单的 `form` 实例  | `React.MutableRefObject&lt;FormInstance&gt;` | - |
 actionRef  | 常用操作引用，便于自定义触发  | `React.MutableRefObject&lt;ActionType&gt;` | - |
 tableRender  | 自定义表格渲染  | `(props: BizTableProps&lt;RecordType&gt;, dom: JSX.Element) => React.ReactNode` | - |
@@ -119,7 +119,7 @@ submit | 点击查询 或 调用 `actionRef.current.submit` |
 参数 | 说明 | 类型 | 默认值 |
 ------------- | ------------- | ------------- | ------------- |
 tooltip  | 表头标题后面的补充提示 | `React.ReactNode` | - |
-valueType  | 值类型。同 BizField 的 valueType，用于列展示 或 查询表单项 或 可编辑表格项。 | [ValueType](/dataview/biz-field#共同的api) | - |
+valueType  | 值类型。同 BizField 的 valueType，用于列展示 或 查询表单项 或 可编辑表格项。 | [ValueType](/components/biz-field#valuetype-值) | - |
 valueEnum  | 包含 `value` `name` 的数据字典。<br/>当 `valueType` 为 `enum` `enumTag` `enumBadge` 时生效。 | `EnumData` | - |
 field  | 展示字段的配置。同 BizField 的配置项，支持 object 和 function 方式。<br/>function 方式默认参数和render一样，需返回 BizField 的配置。 | `object` \| `(text: any, record: RecordType, index: number)=>object` | - |
 search  | 配置查询表单项 | `SearchProps` | - |
@@ -133,7 +133,7 @@ valueType valueEnum 为以下几个配置共用字段，可以复写：
 
 - field - 展示字段的配置
 - search - 查询表单项的配置
-- editable - 可编辑表格项配置（[EditableBizTable](/dataview/editable-biz-table) 组件）
+- editable - 可编辑表格项配置（[EditableBizTable](/components/biz-field#valuetype-值) 组件）
 
 #### search 查询表单配置项
 
@@ -207,8 +207,9 @@ search: {
     console.log(originItem, dom, form);
     // return dom;
 
+    const { dataIndex, title } = originItem;
     return (
-      <BizForm.Item name={originItem.dataIndex} label={originItem.title}>
+      <BizForm.Item name={dataIndex} label={title}>
         {/* some form, example Rate Slider Switch ... */}
         <AutoComplete />
       </BizForm.Item>
@@ -259,26 +260,26 @@ ref.current.submit();
 ```
 
 
-[BizField]: https://doly-dev.github.io/antd-more/site/v2/index.html#/business/biz-field?anchor=api
-[QueryFormProps]: https://doly-dev.github.io/antd-more/site/v2/index.html#/business/biz-form?anchor=%E6%9F%A5%E8%AF%A2%E8%A1%A8%E5%8D%95#queryform
-[BizForm.QueryForm]: https://doly-dev.github.io/antd-more/site/v2/index.html#/business/biz-form?anchor=%E6%9F%A5%E8%AF%A2%E8%A1%A8%E5%8D%95#queryform
+[BizField]: /components/biz-field#api
+[QueryFormProps]: /components/query-form#queryform
+[QueryForm]: /components/query-form
 
-[ItemAddress]: https://doly-dev.github.io/antd-more/site/v2/index.html#/business/biz-form#itemaddress
-[ItemCaptcha]: https://doly-dev.github.io/antd-more/site/v2/index.html#/business/biz-form#itemcaptcha
-[ItemCheckbox]: https://doly-dev.github.io/antd-more/site/v2/index.html#/business/biz-form#itemcheckbox
-[ItemColor]: https://doly-dev.github.io/antd-more/site/v2/index.html#/business/biz-form#itemcolor
-[ItemDate]: https://doly-dev.github.io/antd-more/site/v2/index.html#/business/biz-form#itemdate
-[ItemDateRange]: https://doly-dev.github.io/antd-more/site/v2/index.html#/business/biz-form#itemdaterange
-[ItemInput]: https://doly-dev.github.io/antd-more/site/v2/index.html#/business/biz-form#iteminput
-[ItemNumber]: https://doly-dev.github.io/antd-more/site/v2/index.html#/business/biz-form#itemnumber
-[ItemPassword]: https://doly-dev.github.io/antd-more/site/v2/index.html#/business/biz-form#itempassword
-[ItemRadio]: https://doly-dev.github.io/antd-more/site/v2/index.html#/business/biz-form#itemradio
-[ItemSelect]: https://doly-dev.github.io/antd-more/site/v2/index.html#/business/biz-form#itemselect
-[ItemSlider]: https://doly-dev.github.io/antd-more/site/v2/index.html#/business/biz-form#itemslider
-[ItemSwitch]: https://doly-dev.github.io/antd-more/site/v2/index.html#/business/biz-form#itemswitch
-[ItemTextArea]: https://doly-dev.github.io/antd-more/site/v2/index.html#/business/biz-form#itemtextarea
-[ItemTime]: https://doly-dev.github.io/antd-more/site/v2/index.html#/business/biz-form#itemtime
-[ItemTimeRange]: https://doly-dev.github.io/antd-more/site/v2/index.html#/business/biz-form#itemtimerange
-[ItemUpload]: https://doly-dev.github.io/antd-more/site/v2/index.html#/business/biz-form#itemupload
+[ItemAddress]: /components/item#itemaddress
+[ItemCaptcha]: /components/item#itemcaptcha
+[ItemCheckbox]: /components/item#itemcheckbox
+[ItemColor]: /components/item#itemcolor
+[ItemDate]: /components/item#itemdate
+[ItemDateRange]: /components/item#itemdaterange
+[ItemInput]: /components/item#iteminput
+[ItemNumber]: /components/item#itemnumber
+[ItemPassword]: /components/item#itempassword
+[ItemRadio]: /components/item#itemradio
+[ItemSelect]: /components/item#itemselect
+[ItemSlider]: /components/item#itemslider
+[ItemSwitch]: /components/item#itemswitch
+[ItemTextArea]: /components/item#itemtextarea
+[ItemTime]: /components/item#itemtime
+[ItemTimeRange]: /components/item#itemtimerange
+[ItemUpload]: /components/item#itemupload
 
 [proTable在全屏下的modal不会展示]: https://github.com/ant-design/pro-components/issues/922

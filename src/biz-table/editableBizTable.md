@@ -206,20 +206,20 @@ editable: (_, record, index)=>{
 
 
 
-[ItemAddress]: https://doly-dev.github.io/antd-more/site/v2/index.html#/business/biz-form#itemaddress
-[ItemCaptcha]: https://doly-dev.github.io/antd-more/site/v2/index.html#/business/biz-form#itemcaptcha
-[ItemCheckbox]: https://doly-dev.github.io/antd-more/site/v2/index.html#/business/biz-form#itemcheckbox
-[ItemColor]: https://doly-dev.github.io/antd-more/site/v2/index.html#/business/biz-form#itemcolor
-[ItemDate]: https://doly-dev.github.io/antd-more/site/v2/index.html#/business/biz-form#itemdate
-[ItemDateRange]: https://doly-dev.github.io/antd-more/site/v2/index.html#/business/biz-form#itemdaterange
-[ItemInput]: https://doly-dev.github.io/antd-more/site/v2/index.html#/business/biz-form#iteminput
-[ItemNumber]: https://doly-dev.github.io/antd-more/site/v2/index.html#/business/biz-form#itemnumber
-[ItemPassword]: https://doly-dev.github.io/antd-more/site/v2/index.html#/business/biz-form#itempassword
-[ItemRadio]: https://doly-dev.github.io/antd-more/site/v2/index.html#/business/biz-form#itemradio
-[ItemSelect]: https://doly-dev.github.io/antd-more/site/v2/index.html#/business/biz-form#itemselect
-[ItemSlider]: https://doly-dev.github.io/antd-more/site/v2/index.html#/business/biz-form#itemslider
-[ItemSwitch]: https://doly-dev.github.io/antd-more/site/v2/index.html#/business/biz-form#itemswitch
-[ItemTextArea]: https://doly-dev.github.io/antd-more/site/v2/index.html#/business/biz-form#itemtextarea
-[ItemTime]: https://doly-dev.github.io/antd-more/site/v2/index.html#/business/biz-form#itemtime
-[ItemTimeRange]: https://doly-dev.github.io/antd-more/site/v2/index.html#/business/biz-form#itemtimerange
-[ItemUpload]: https://doly-dev.github.io/antd-more/site/v2/index.html#/business/biz-form#itemupload
+[ItemAddress]: /components/item#itemaddress
+[ItemCaptcha]: /components/item#itemcaptcha
+[ItemCheckbox]: /components/item#itemcheckbox
+[ItemColor]: /components/item#itemcolor
+[ItemDate]: /components/item#itemdate
+[ItemDateRange]: /components/item#itemdaterange
+[ItemInput]: /components/item#iteminput
+[ItemNumber]: /components/item#itemnumber
+[ItemPassword]: /components/item#itempassword
+[ItemRadio]: /components/item#itemradio
+[ItemSelect]: /components/item#itemselect
+[ItemSlider]: /components/item#itemslider
+[ItemSwitch]: /components/item#itemswitch
+[ItemTextArea]: /components/item#itemtextarea
+[ItemTime]: /components/item#itemtime
+[ItemTimeRange]: /components/item#itemtimerange
+[ItemUpload]: /components/item#itemupload
