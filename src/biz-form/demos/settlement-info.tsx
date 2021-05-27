@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { Row, Col } from 'antd';
 import { BizForm } from 'antd-more';
-import lcnFormPC from 'lcn/lcn-form-pc';
+import { getPC } from 'lcn';
+
+const pcInlandData = getPC({ inland: true, formatForm: true });
 
 function waitTime(time: number = 1000) {
   return new Promise(resolve => {
@@ -82,7 +84,7 @@ const SettlementInfo: React.FC = () => {
           <ItemInput label="开户银行名称" name="bankName" required />
         </Col>
         <Col {...oneColSpan}>
-          <ItemAddress label="开户支行" names={["branchLocation", "branchName"]} labels={["省/市", "支行名称"]} required options={lcnFormPC} />
+          <ItemAddress label="开户支行" names={["branchLocation", "branchName"]} labels={["省/市", "支行名称"]} required options={pcInlandData} />
         </Col>
       </Row>
     </BizForm>

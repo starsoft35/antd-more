@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { BizForm } from 'antd-more';
-import lcnFormInlandData from 'lcn/lcn-form-inland';
+import { getPCA } from 'lcn';
+
+const pcaInlandData = getPCA({ inland: true, formatForm: true });
 
 const formLayout = {
   labelCol: {
@@ -53,7 +55,7 @@ const Demo: React.FC = () => {
           label="地址"
           names={["location", "address"]}
           labels={["省/市/区", "详细地址"]}
-          options={lcnFormInlandData}
+          options={pcaInlandData}
         />
         <BizForm.ItemInput label="银行卡号" name="bankCardNo" type="bankCard" />
         {/* <BizForm.List name="arr1">
@@ -74,7 +76,7 @@ const Demo: React.FC = () => {
                     label="嵌套地址"
                     names={[[field.name, "location"], [field.name, "address"]]}
                     labels={["省/市/区", "详细地址"]}
-                    options={lcnFormInlandData}
+                    options={pcaInlandData}
                   />
                 </div>
               )

@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { BizForm } from 'antd-more';
-import lcnFormInlandData from 'lcn/lcn-form-inland';
+import { getPCA } from 'lcn';
+
+const pcaInlandData = getPCA({ inland: true, formatForm: true });
 
 function waitTime(time: number = 1000) {
   return new Promise(resolve => {
@@ -36,7 +38,7 @@ const RegisterDemo: React.FC = () => {
       <ItemInput label="身份证号" name="idCard" type="idCard" required />
       <ItemInput label="邮箱" name="email" type="email" inputProps={{ placeholder: "请输入（选填）" }} />
       <ItemPassword label="密码" name="password" required />
-      <ItemAddress label="地址" names={["location", "address"]} labels={["省/市/区", "详细地址"]} required options={lcnFormInlandData} />
+      <ItemAddress label="地址" names={["location", "address"]} labels={["省/市/区", "详细地址"]} required options={pcaInlandData} />
     </BizForm>
   );
 }

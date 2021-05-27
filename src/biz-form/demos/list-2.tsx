@@ -2,7 +2,9 @@ import * as React from 'react';
 import { BizForm } from 'antd-more';
 import { Button, Card, Space, Row, Col, Popconfirm } from 'antd';
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
-import lcnFormInland from 'lcn/lcn-form-inland';
+import { getPCA } from 'lcn';
+
+const pcaInlandData = getPCA({ inland: true, formatForm: true });
 
 function waitTime(time: number = 1000) {
   return new Promise(resolve => {
@@ -36,9 +38,9 @@ const Demo: React.FC = () => {
       />
       <ItemAddress
         label="公司地址"
-        labels={["省市区", "详细地址"]}
+        labels={["省/市/区", "详细地址"]}
         names={["locals", "address"]}
-        options={lcnFormInland}
+        options={pcaInlandData}
       />
       <List name="contacts">
         {

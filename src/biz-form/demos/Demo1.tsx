@@ -2,7 +2,9 @@ import * as React from 'react';
 import 'moment/locale/zh-cn';
 import { Switch, Row, Col } from 'antd';
 import { BizForm } from 'antd-more';
-import lcnFormInlandData from 'lcn/lcn-form-inland';
+import { getPCA } from 'lcn';
+
+const pcaInlandData = getPCA({ inland: true, formatForm: true });
 
 function waitTime(time: number = 1000) {
   return new Promise(resolve => {
@@ -118,7 +120,7 @@ const Demo: React.FC = () => {
               tooltip="组合组件"
               names={["location", "address"]}
               labels={["省/市/区", "详细地址"]}
-              options={lcnFormInlandData}
+              options={pcaInlandData}
               // formItemProps={[
               //   {
               //     colProps: { lg: 6 }
