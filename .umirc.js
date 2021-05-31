@@ -15,7 +15,7 @@ const umiConfig = {
       'babel-plugin-import',
       {
         libraryName: 'antd',
-        libraryDirectory: 'es',
+        libraryDirectory: 'lib',
         style: true,
       },
     ],
