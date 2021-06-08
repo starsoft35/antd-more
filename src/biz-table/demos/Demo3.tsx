@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { BizTable } from 'antd-more';
-import { BizTableRequest, BizColumnType } from 'antd-more/es/biz-table';
+import type { BizTableRequest, BizTableColumnType } from 'antd-more';
 import { getApplyList } from './service';
 
 type DataItem = {
@@ -12,7 +12,7 @@ type DataItem = {
   approveResult: 1 | 2 | 3;
 }
 
-const columns: BizColumnType<DataItem> = [
+const columns: BizTableColumnType<DataItem> = [
   {
     dataIndex: "applyCode",
     title: "申请编号"

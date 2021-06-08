@@ -1,12 +1,22 @@
 import * as React from 'react';
-import BizTable, { BizTableProps } from './BizTable';
-import EditableBizTable, {
+import BizTable from './BizTable';
+import type { BizTableProps } from './BizTable';
+import EditableBizTable from './EditableBizTable';
+import type {
   EditableBizTableProps,
   EditableActionType,
+  EditableBizTableActionType,
   EditableOptions,
+  EditableBizTableOptions,
 } from './EditableBizTable';
-
-import { ActionType, Request, BizTableRequest, BizColumnType } from './interface';
+import type {
+  ActionType,
+  BizTableActionType,
+  Request,
+  BizTableRequest,
+  BizColumnType,
+  BizTableColumnType,
+} from './interface';
 
 function BizTableWrap<RecordType extends object = any>(props: BizTableProps<RecordType>) {
   return <BizTable<RecordType> {...props} />;
@@ -17,12 +27,16 @@ BizTableWrap.EditableBizTable = EditableBizTable;
 export type {
   ActionType,
   Request,
-  BizTableRequest,
   BizColumnType,
-  BizTableProps,
-  EditableBizTableProps,
   EditableActionType,
   EditableOptions,
+  BizTableActionType,
+  BizTableRequest,
+  BizTableColumnType,
+  BizTableProps,
+  EditableBizTableProps,
+  EditableBizTableActionType,
+  EditableBizTableOptions,
 };
 
 export default BizTableWrap;

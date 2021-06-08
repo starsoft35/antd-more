@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Space, Button } from 'antd';
-import { ButtonProps } from 'antd/lib/button';
-import { SubmitterProps } from '../Submitter';
+import type { ButtonProps } from '../antd.interface';
+import type { SubmitterProps } from '../Submitter';
 
 export interface StepsSubmitterProps
   extends Omit<

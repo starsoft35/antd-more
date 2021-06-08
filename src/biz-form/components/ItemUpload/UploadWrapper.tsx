@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { Upload, message } from 'antd';
-import { UploadProps } from 'antd/lib/upload';
-import { UploadFile, UploadChangeParam, RcFile } from 'antd/lib/upload/interface';
 import classNames from 'classnames';
+import type { UploadProps, UploadFile, UploadChangeParam, RcFile } from '../antd.interface';
 import {
   getBase64,
   bytesToSize,

@@ -1,12 +1,7 @@
 import * as React from 'react';
 import { message } from 'antd';
 import { BizForm } from 'antd-more';
-
-function waitTime(time: number = 1000) {
-  return new Promise(resolve => {
-    setTimeout(resolve, time);
-  });
-}
+import waitTime from './utils/waitTime';
 
 function sendCaptcha(mobile) {
   return new Promise<void>(resolve => {

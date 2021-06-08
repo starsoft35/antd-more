@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { TableProps } from 'antd/lib/table';
+import type { TableProps } from 'antd';
 
 type SizeType = TableProps<any>['size'];
 

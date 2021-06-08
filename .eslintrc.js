@@ -54,6 +54,10 @@ module.exports = {
     "no-trailing-spaces": 0,
     "no-console": 0,
     "import/prefer-default-export": 0,
+    "@typescript-eslint/consistent-type-imports": [1, {
+      prefer: 'type-imports',
+      disallowTypeAnnotations: true,
+    }]
   },
   "env": {
     "browser": true,

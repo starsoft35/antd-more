@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { Radio } from 'antd';
-import { RadioProps, RadioGroupProps, RadioGroupOptionType } from 'antd/lib/radio';
-import { CheckboxOptionType } from 'antd/lib/checkbox/Group';
+import type { CheckboxOptionType, RadioProps, RadioGroupProps } from './antd.interface';
 import useFilterOptions from '../_util/useFilterOptions';
-import BizFormItem, { BizFormItemProps } from './Item';
+import BizFormItem from './Item';
+import type { BizFormItemProps } from './Item';
 import getLabel from '../_util/getLabel';
 
 interface OptionData extends Omit<CheckboxOptionType, 'label'> {
@@ -17,7 +17,7 @@ export interface FormItemRadioProps extends BizFormItemProps {
   allName?: string;
   excludeValues?: any[];
   options?: OptionData[];
-  optionType?: RadioGroupOptionType;
+  optionType?: RadioGroupProps['optionType'];
   radioProps?: RadioProps;
   radioGroupProps?: RadioGroupProps;
 }

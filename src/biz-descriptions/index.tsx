@@ -1,9 +1,2 @@
-import Descriptions, {
-  BizDescriptionsProps,
-  BizDescriptionsItemProps,
-  BizDescriptionsColumnItemProps,
-} from './Descriptions';
-
-export type { BizDescriptionsProps, BizDescriptionsItemProps, BizDescriptionsColumnItemProps };
-
-export default Descriptions;
+export { default } from './Descriptions';
+export type { BizDescriptionsProps, BizDescriptionsItemProps, BizDescriptionsColumnItemProps } from './Descriptions';

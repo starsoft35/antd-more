@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Slider } from 'antd';
 import { BizTable, BizForm } from 'antd-more';
-import { BizTableRequest, BizColumnType } from 'antd-more/es/biz-table';
+import type { BizTableRequest, BizTableColumnType } from 'antd-more';
 import { getApplyList } from './service';
 import { ApproveStatus } from './constants';
 
@@ -14,7 +14,7 @@ type DataItem = {
   approveResult: 1 | 2 | 3;
 }
 
-const columns: BizColumnType<DataItem> = [
+const columns: BizTableColumnType<DataItem> = [
   {
     dataIndex: "applyCode",
     title: "申请编号",

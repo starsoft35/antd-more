@@ -1,4 +1,4 @@
-import React, { ReactComponentElement, ReactElement, ReactNode } from 'react';
+import type { FC, ReactComponentElement, ReactElement, ReactNode } from 'react';
 import {
   AreaChartOutlined,
   PieChartOutlined,
@@ -90,7 +90,7 @@ import {
   WifiOutlined,
 } from '@ant-design/icons';
 
-export type IconProp = [string, React.FC];
+export type IconProp = [string, FC];
 
 export default new Map([
   // 数据类

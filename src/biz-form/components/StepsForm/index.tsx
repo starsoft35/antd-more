@@ -1,7 +1,8 @@
-import StepsForm, { StepsFormProps, ActionType } from './StepsForm';
-import { StepFormProps } from './StepForm';
-import { StepsFormContextProps } from './StepsFormContext';
-import { StepsSubmitterProps } from './StepsSubmitter';
+import StepsForm from './StepsForm';
+import type { StepsFormProps, ActionType } from './StepsForm';
+import type { StepFormProps } from './StepForm';
+import type { StepsFormContextProps } from './StepsFormContext';
+import type { StepsSubmitterProps } from './StepsSubmitter';
 
 export type {
   StepsFormProps,

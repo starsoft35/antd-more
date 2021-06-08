@@ -2,11 +2,13 @@ import * as React from 'react';
 import { Steps, Form } from 'antd';
 import classNames from 'classnames';
 import { isPromiseLike } from 'util-helpers';
-import { StepsProps, StepProps } from 'antd/lib/steps';
+import type { StepsProps, StepProps } from '../antd.interface';
 import StepsFormContext from './StepsFormContext';
-import { BaseFormProps } from '../BaseForm';
-import StepForm, { StepFormProps } from './StepForm';
-import StepsSubmitter, { StepsSubmitterProps } from './StepsSubmitter';
+import type { BaseFormProps } from '../BaseForm';
+import StepForm from './StepForm';
+import type { StepFormProps } from './StepForm';
+import StepsSubmitter from './StepsSubmitter';
+import type { StepsSubmitterProps } from './StepsSubmitter';
 import SyncMemoryStore from '../../_util/SyncMemoryStore';
 
 import './index.less';

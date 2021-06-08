@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { Card } from 'antd';
-import { FormInstance } from 'antd/lib/form';
-import { CardProps } from 'antd/lib/card';
-import BizForm, { QueryForm, QueryFormProps } from '../biz-form';
+import type { CardProps, FormInstance } from 'antd';
+import BizForm, { QueryForm } from '../biz-form';
+import type { QueryFormProps } from '../biz-form';
 import createFormItems from './_util/createFormItems';
 import createUniqueId from './_util/createUniqueId';
-import { SearchProps } from './interface';
+import type { SearchProps } from './interface';
 
 export declare interface SearchFormProps extends QueryFormProps {
   formItems?:

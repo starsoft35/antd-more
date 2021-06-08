@@ -1,9 +1,11 @@
 import * as React from 'react';
 import { Descriptions } from 'antd';
-import { DescriptionsProps } from 'antd/lib/descriptions';
-import { DescriptionsItemProps } from 'antd/lib/descriptions/Item';
-import BizField, { ValueType, EnumData, BizFieldProps } from '../biz-field';
-import WithTooltip, { WithTooltipProps } from './WithTooltip';
+import type { DescriptionsProps } from 'antd';
+import type { DescriptionsItemProps } from 'antd/lib/descriptions/Item';
+import BizField from '../biz-field';
+import type { ValueType, EnumData, BizFieldProps } from '../biz-field';
+import WithTooltip from './WithTooltip';
+import type { WithTooltipProps } from './WithTooltip';
 
 export interface BizDescriptionsItemProps<DataType extends object = any>
   extends DescriptionsItemProps {
@@ -11,8 +13,8 @@ export interface BizDescriptionsItemProps<DataType extends object = any>
   valueEnum?: EnumData;
   tooltip?: WithTooltipProps['tooltip'];
   field?:
-    | Partial<BizFieldProps>
-    | ((text: any, record?: DataType, index?: number) => Partial<BizFieldProps>);
+  | Partial<BizFieldProps>
+  | ((text: any, record?: DataType, index?: number) => Partial<BizFieldProps>);
   key?: React.ReactText;
   dataSource?: DataType;
   index?: number;
@@ -49,8 +51,8 @@ type DataIndex = string | number;
 export interface BizDescriptionsColumnItemProps<DataType extends object = any>
   extends Omit<BizDescriptionsItemProps<DataType>, 'children' | 'field'> {
   field?:
-    | Partial<BizFieldProps>
-    | ((text: any, record: DataType, index: number) => Partial<BizFieldProps>);
+  | Partial<BizFieldProps>
+  | ((text: any, record: DataType, index: number) => Partial<BizFieldProps>);
   dataIndex?: DataIndex | DataIndex[];
   title?: React.ReactNode;
   render?: (value: any, dataSource: DataType, index: number) => React.ReactNode;

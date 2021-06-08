@@ -1,13 +1,8 @@
 import * as React from 'react';
 import { message } from 'antd';
 import { BizForm } from 'antd-more';
-import { ModalFormProps } from 'antd-more/es/biz-form';
-
-function waitTime(time: number = 1000) {
-  return new Promise(resolve => {
-    setTimeout(resolve, time);
-  })
-}
+import type { ModalFormProps } from 'antd-more';
+import waitTime from '../../utils/waitTime';
 
 const { ModalForm, ItemPassword } = BizForm;
 

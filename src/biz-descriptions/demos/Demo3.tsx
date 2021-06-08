@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { BizDescriptions } from 'antd-more';
-import { BizDescriptionsColumnItemProps } from 'antd-more/es/biz-descriptions';
+import type { BizDescriptionsColumnItemProps } from 'antd-more';
 
 const data = {
   text1: '',

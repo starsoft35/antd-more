@@ -1,8 +1,8 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { useAsync } from 'rc-hooks';
-import { AsyncOptions, AsyncFunction } from 'rc-hooks/es/useAsync';
+import type { AsyncOptions, AsyncFunction } from 'rc-hooks/es/useAsync';
 import actionCache from './_util/actionCache';
-import { RequestFilters, RequestSorter, RequestExtra, AsyncFnReturn } from './interface';
+import type { RequestFilters, RequestSorter, RequestExtra, AsyncFnReturn } from './interface';
 
 interface ParamsRef<DataType> {
   params: any;

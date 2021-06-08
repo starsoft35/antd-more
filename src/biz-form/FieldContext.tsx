@@ -1,14 +1,13 @@
 import React from 'react';
-import { NamePath } from 'antd/lib/form/interface';
-import { FormProps } from 'antd/lib/form';
+import type { FormProps, FormItemProps } from './components/antd.interface';
 
 export type TransformFn<T = any> = (value: T) => T | any;
 
 export interface FiledContextProps extends Pick<FormProps, 'layout' | 'labelCol'> {
   setFieldTransform?: (
-    name: NamePath,
+    name: FormItemProps['name'],
     transform?: TransformFn | undefined,
-    parentList?: NamePath[],
+    parentList?: FormItemProps['name'][],
   ) => void;
   hideLabel?: boolean;
 }

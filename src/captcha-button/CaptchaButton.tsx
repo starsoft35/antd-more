@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Button } from 'antd';
-import { ButtonProps } from 'antd/lib/button';
+import type { ButtonProps } from 'antd';
 import CountDown from 'countdown-pro';
 
 export interface CaptchaButtonProps extends ButtonProps {
@@ -24,7 +24,7 @@ const CaptchaButton: React.FC<CaptchaButtonProps> = ({
   // 倒计时时长，单位秒
   second = 60,
   // 倒计时结束的回调方法
-  onEnd = () => {},
+  onEnd = () => { },
   ...restProps
 }) => {
   // 0-初始化 1-运行中 2-结束

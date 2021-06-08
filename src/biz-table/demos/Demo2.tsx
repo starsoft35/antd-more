@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Button, Card, Space } from 'antd';
+import type { FormInstance } from 'antd';
 import { BizTable } from 'antd-more';
-import { FormInstance } from 'antd/lib/form';
-import { ActionType, BizTableRequest, BizColumnType } from 'antd-more/es/biz-table';
+import type { BizTableActionType, BizTableRequest, BizTableColumnType } from 'antd-more';
 import { getApplyList } from './service';
 import { ApproveStatus } from './constants';
 
@@ -15,7 +15,7 @@ type DataItem = {
   approveResult: 1 | 2 | 3;
 }
 
-const columns: BizColumnType<DataItem> = [
+const columns: BizTableColumnType<DataItem> = [
   {
     dataIndex: "applyCode",
     title: "申请编号",
@@ -61,7 +61,7 @@ const columns: BizColumnType<DataItem> = [
 
 const Demo: React.FC = () => {
   const formRef = React.useRef<FormInstance | undefined>();
-  const actionRef = React.useRef<ActionType | undefined>();
+  const actionRef = React.useRef<BizTableActionType | undefined>();
   const handleRequest: BizTableRequest<DataItem> = React.useCallback((params, filters, sorter, extra) => {
     const { pageSize, current, ...restParams } = params;
     console.log(params, filters, sorter, extra);

@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { Form, Row, Col, Space } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
-import BaseForm, { BaseFormProps } from './BaseForm';
+import BaseForm from './BaseForm';
+import type { BaseFormProps } from './BaseForm';
 
 export interface CollapseProps {
   collapsed: boolean;

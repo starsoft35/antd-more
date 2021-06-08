@@ -1,7 +1,7 @@
 import React from 'react';
 import { Radio } from 'antd';
-import { RadioGroupProps } from 'antd/lib/radio/interface';
-import { EnumData } from './interface';
+import type { RadioGroupProps } from 'antd/lib/radio/interface';
+import type { EnumData } from './interface';
 
 export interface DictionaryRadioProps extends RadioGroupProps {
   data: EnumData;

@@ -1,8 +1,6 @@
 import * as React from 'react';
 import { Form } from 'antd';
-import { FormItemProps } from 'antd/lib/form';
-import { Rule } from 'rc-field-form/es/interface'; // eslint-disable-line import/no-extraneous-dependencies
-import { ColProps } from 'antd/lib/grid';
+import type { FormItemProps, ColProps } from './antd.interface';
 import FieldContext from '../FieldContext';
 import ListFieldContext from '../ListFieldContext';
 
@@ -15,7 +13,7 @@ type TransformFn<T = any> = (value: T, currentPathValues?: any) => T | any;
 export interface BizFormItemProps extends FormItemProps {
   transform?: TransformFn;
   colProps?: ColProps;
-  extendRules?: Rule[];
+  extendRules?: FormItemProps['rules'];
   labelWidth?: number | 'auto';
   hideLabel?: boolean;
   renderField?: (dom: JSX.Element) => JSX.Element;

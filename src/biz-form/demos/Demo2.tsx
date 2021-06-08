@@ -1,11 +1,6 @@
 import * as React from 'react';
 import { BizForm } from 'antd-more';
-
-function waitTime(time: number = 1000) {
-  return new Promise(resolve => {
-    setTimeout(resolve, time);
-  });
-}
+import waitTime from './utils/waitTime';
 
 const { QueryForm, ItemInput, ItemDate, ItemDateRange } = BizForm;
 

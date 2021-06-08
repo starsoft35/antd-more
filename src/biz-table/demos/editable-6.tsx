@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Space } from 'antd';
 import { BizTable } from 'antd-more';
-import { BizTableRequest, BizColumnType, EditableActionType } from 'antd-more/es/biz-table';
+import type { BizTableRequest, BizTableColumnType, EditableBizTableActionType } from 'antd-more';
 import { getApplyList } from './service';
 
 type DataItem = {
@@ -17,7 +17,7 @@ const { EditableBizTable } = BizTable;
 
 const Demo: React.FC = () => {
   const [editableKeys, setEditableKeys] = React.useState([]);
-  const editableActionRef = React.useRef<EditableActionType>();
+  const editableActionRef = React.useRef<EditableBizTableActionType>();
 
   const handleRequest: BizTableRequest<DataItem> = (params, filters, sorter, extra) => {
     const { pageSize, current, ...restParams } = params;
@@ -37,7 +37,7 @@ const Demo: React.FC = () => {
     });
   };
 
-  const columns: BizColumnType<DataItem> = [
+  const columns: BizTableColumnType<DataItem> = [
     {
       dataIndex: "applyCode",
       title: "申请编号",
@@ -90,11 +90,11 @@ const Demo: React.FC = () => {
                   <a onClick={() => editableActionRef.current.cancel(record.applyCode)}>取消</a>
                 </>
               ) : (
-                  <>
-                    <a onClick={() => editableActionRef.current.edit(record.applyCode)}>编辑</a>
-                    <a onClick={() => editableActionRef.current.delete(record.applyCode)}>删除</a>
-                  </>
-                )
+                <>
+                  <a onClick={() => editableActionRef.current.edit(record.applyCode)}>编辑</a>
+                  <a onClick={() => editableActionRef.current.delete(record.applyCode)}>删除</a>
+                </>
+              )
             }
           </Space>
         )

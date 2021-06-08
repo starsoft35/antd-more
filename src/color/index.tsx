@@ -1,9 +1,10 @@
-import Color, { ColorProps } from './Color';
-import { BlockPickerProps } from './BlockPicker';
-import { ChromePickerProps } from './ChromePicker';
-import { CompactPickerProps } from './CompactPicker';
-import { PhotoshopPickerProps } from './PhotoshopPicker';
-import { SketchPickerProps } from './SketchPicker';
+import Color from './Color';
+import type { ColorProps } from './Color';
+import type { BlockPickerProps } from './BlockPicker';
+import type { ChromePickerProps } from './ChromePicker';
+import type { CompactPickerProps } from './CompactPicker';
+import type { PhotoshopPickerProps } from './PhotoshopPicker';
+import type { SketchPickerProps } from './SketchPicker';
 
 export type {
   ColorProps,

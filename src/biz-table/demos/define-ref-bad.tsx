@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { BizTable } from 'antd-more';
-import { ActionType, BizTableProps, BizTableRequest, BizColumnType } from 'antd-more/es/biz-table';
+import type { BizTableActionType, BizTableProps, BizTableRequest, BizTableColumnType } from 'antd-more';
 
 const mockData = [
   { name: '' },
@@ -18,15 +18,15 @@ const request: BizTableRequest = (params) => {
 
 // 外部封装的BizTable 含 ref ，不推荐
 export interface DefineTableProps extends BizTableProps {
-  ref?: React.MutableRefObject<ActionType | undefined> | ((actionRef: ActionType) => void);
+  ref?: React.MutableRefObject<BizTableActionType | undefined> | ((actionRef: BizTableActionType) => void);
 }
 
 const DefineTable: React.FC<DefineTableProps> = React.forwardRef((props, ref) => {
-  const innerActionRef = React.useRef<ActionType | undefined>();
+  const innerActionRef = React.useRef<BizTableActionType | undefined>();
 
   React.useImperativeHandle(ref, () => innerActionRef.current);
 
-  const columns: BizColumnType = React.useMemo(() => ([
+  const columns: BizTableColumnType = React.useMemo(() => ([
     {
       title: '序号',
       valueType: 'indexBorder'
@@ -58,7 +58,7 @@ const DefineTable: React.FC<DefineTableProps> = React.forwardRef((props, ref) =>
 
 // 页面
 const Demo: React.FC = () => {
-  const actionRef = React.useRef<ActionType | undefined>();
+  const actionRef = React.useRef<BizTableActionType | undefined>();
 
   // 额外的ref使用，不推荐
   // React.useEffect(() => {

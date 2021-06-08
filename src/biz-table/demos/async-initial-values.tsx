@@ -4,7 +4,7 @@
  */
 import * as React from 'react';
 import { BizTable } from 'antd-more';
-import { BizTableRequest, BizColumnType } from 'antd-more/es/biz-table';
+import type { BizTableRequest, BizTableColumnType } from 'antd-more';
 import { getApplyList } from './service';
 import { ApproveStatus } from './constants';
 
@@ -24,7 +24,7 @@ function getAsyncInitialValues(): Promise<{
   });
 }
 
-const columns: BizColumnType = [
+const columns: BizTableColumnType = [
   {
     dataIndex: "applyCode",
     title: "申请编号",

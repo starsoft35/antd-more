@@ -3,14 +3,9 @@ import { Row, Col } from 'antd';
 import { BizForm } from 'antd-more';
 import { isSocialCreditCode, isBusinessLicense } from 'util-helpers';
 import { getPCA } from 'lcn';
+import waitTime from './utils/waitTime';
 
 const pcaInlandData = getPCA({ inland: true, formatForm: true });
-
-function waitTime(time: number = 1000) {
-  return new Promise(resolve => {
-    setTimeout(resolve, time);
-  });
-}
 
 const { ItemInput, ItemAddress } = BizForm;
 

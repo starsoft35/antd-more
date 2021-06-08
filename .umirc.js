@@ -15,7 +15,7 @@ const umiConfig = {
       'babel-plugin-import',
       {
         libraryName: 'antd',
-        libraryDirectory: 'lib',
+        libraryDirectory: 'es',
         style: true,
       },
     ],
@@ -30,10 +30,10 @@ const umiConfig = {
   outputPath,
   hash: true,
   locales: [['zh-CN', '中文'], ['en-US', 'English']],
-  nodeModulesTransform: {
-    type: 'none',
-    exclude: [],
-  },
+  // nodeModulesTransform: {
+  //   type: 'none',
+  //   exclude: [],
+  // },
   theme: {
     '@s-site-menu-width': '258px',
   },
@@ -89,21 +89,22 @@ const umiConfig = {
 
 if (process.env.NODE_ENV === 'production') {
   umiConfig.chunks = ['vendors', 'umi'];
-  umiConfig.chainWebpack = function (config, { webpack }) {
+  umiConfig.chainWebpack = function (config) {
     config.merge({
       optimization: {
-        minimize: true,
         splitChunks: {
+          chunks: 'all',
+          minSize: 30000,
+          minChunks: 3,
+          automaticNameDelimiter: '.',
           cacheGroups: {
             vendor: {
-              test: /node_modules/,
-              chunks: "all",
-              name: "vendors",
-              priority: -10,
-              enforce: true
-            }
-          }
-        }
+              name: 'vendors',
+              test: /[\\/]node_modules[\\/]/,
+              priority: 10,
+            },
+          },
+        },
       }
     });
   }

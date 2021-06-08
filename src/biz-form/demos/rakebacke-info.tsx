@@ -1,12 +1,7 @@
 import * as React from 'react';
 import { Row, Col } from 'antd';
 import { BizForm } from 'antd-more';
-
-function waitTime(time: number = 1000) {
-  return new Promise(resolve => {
-    setTimeout(resolve, time);
-  });
-}
+import waitTime from './utils/waitTime';
 
 const { ItemRadio, ItemNumber } = BizForm;
 

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { BizTable } from 'antd-more';
+import type { BizTableRequest, BizTableColumnType } from 'antd-more';
 import { divide } from 'util-helpers';
-import { BizTableRequest, BizColumnType } from 'antd-more/es/biz-table';
 import { getApplyList } from './service';
 
 type DataItem = {
@@ -14,7 +14,7 @@ type DataItem = {
   money: number;
 }
 
-const columns: BizColumnType<DataItem> = [
+const columns: BizTableColumnType<DataItem> = [
   {
     valueType: "indexBorder"
   },

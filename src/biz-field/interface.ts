@@ -1,4 +1,4 @@
-import { EnumData } from '../dictionary';
+import type { EnumData } from '../dictionary';
 
 type ValueType =
   | 'text'
@@ -30,6 +30,6 @@ export interface BizFieldProps<T = any> {
   value: T;
   valueType?: ValueType;
   valueEnum?: EnumData;
-  formatValue?: (value: T) => any;
+  formatValue?: (value: any) => T;
   [x: string]: any;
 }

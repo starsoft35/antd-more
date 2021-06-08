@@ -1,6 +1,6 @@
 import React from 'react';
 import { formatMoney } from 'util-helpers';
-import { BizFieldProps } from './interface';
+import type { BizFieldProps } from './interface';
 import FieldProgress from './components/Progress';
 import FieldIndex from './components/Index';
 import FieldImage from './components/Image';

@@ -24,7 +24,8 @@ import ItemTime from './ItemTime';
 import ItemTimeRange from './ItemTimeRange';
 import ItemUpload from './ItemUpload';
 
-import BaseForm, { BaseFormProps } from './BaseForm';
+import BaseForm from './BaseForm';
+import type { BaseFormProps } from './BaseForm';
 
 const formItemHideLabelClass = 'antd-more-form-item-hide-label';
 

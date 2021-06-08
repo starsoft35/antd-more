@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Button, Space } from 'antd';
-import { ButtonProps } from 'antd/lib/button';
-import { FormInstance } from 'antd/lib/form';
+import type { ButtonProps, FormInstance } from './antd.interface';
 import omit from '../_util/omit';
 
 export interface SubmitterProps<T = {}> {

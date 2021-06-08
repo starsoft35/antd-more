@@ -2,12 +2,7 @@ import * as React from 'react';
 import { message, Checkbox } from 'antd';
 import { BizForm } from 'antd-more';
 import { UserOutlined, LockOutlined, SafetyCertificateOutlined, MobileOutlined, MailOutlined } from '@ant-design/icons';
-
-function waitTime(time: number = 1000) {
-  return new Promise(resolve => {
-    setTimeout(resolve, time);
-  });
-}
+import waitTime from './utils/waitTime';
 
 const { ItemInput, ItemCaptcha, ItemPassword, Item } = BizForm;
 

@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { isPromiseLike } from 'util-helpers';
 import { Form } from 'antd';
-import { StepProps } from 'antd/lib/steps';
-import BaseForm, { BaseFormProps } from '../BaseForm';
+import type { StepProps } from '../antd.interface';
+import BaseForm from '../BaseForm';
+import type { BaseFormProps } from '../BaseForm';
 import StepsFormContext from './StepsFormContext';
-import { StepsSubmitterProps } from './StepsSubmitter';
+import type { StepsSubmitterProps } from './StepsSubmitter';
 
 export interface StepFormProps
   extends Omit<BaseFormProps, 'title' | 'onReset' | 'contentRender' | 'submitter' | 'ready'>,

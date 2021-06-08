@@ -1,11 +1,17 @@
 import * as React from 'react';
 import { DatePicker } from 'antd';
 import classNames from 'classnames';
-import { DatePickerProps, MonthPickerProps, WeekPickerProps } from 'antd/lib/date-picker';
-import { TimePickerProps } from 'antd/lib/time-picker';
-import { createDisabledDate, transformMomentValue, getDateFormat, Picker } from '../_util/dateUtil';
+import type {
+  DatePickerProps,
+  TimePickerProps,
+  MonthPickerProps,
+  WeekPickerProps,
+} from './antd.interface';
+import { createDisabledDate, transformMomentValue, getDateFormat } from '../_util/dateUtil';
+import type { Picker } from '../_util/dateUtil';
 import { transformDate } from '../_util/transform';
-import BizFormItem, { BizFormItemProps } from './Item';
+import BizFormItem from './Item';
+import type { BizFormItemProps } from './Item';
 import getLabel from '../_util/getLabel';
 
 const DatePickerWrapper: React.FC<DatePickerProps | MonthPickerProps | WeekPickerProps | any> = ({

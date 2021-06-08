@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { BizForm } from 'antd-more';
-import { ItemUploadProps } from 'antd-more/es/biz-form';
+import type { BizFormItemUploadProps } from 'antd-more';
 import Preview from 'antd-more/es/biz-form/components/ItemUpload/Preview';
 
 const { ItemUpload } = BizForm;
 
-const ItemDefineUpload: React.FC<ItemUploadProps> = (props) => {
+const ItemDefineUpload: React.FC<BizFormItemUploadProps> = (props) => {
   const [visible, setVisible] = React.useState(false);
   const imgUrl = "https://gw.alipayobjects.com/zos/antfincdn/aPkFc8Sj7n/method-draw-image.svg";
 

@@ -5,6 +5,9 @@
   "main": "lib/index.js",
   "module": "es/index.js",
   "types": "lib/index.d.ts",
+  "sideEffects": [
+    "*.less"
+  ],
   "scripts": {
     "start": "dumi dev",
     "doc": "dumi build",
@@ -81,7 +84,7 @@
     "moment": "^2.29.1",
     "rc-hooks": "^1.0.0",
     "react-color": "^2.19.3",
-    "util-helpers": "^3.9.2"
+    "util-helpers": "^3.10.4"
   },
   "lint-staged": {
     "src/**/*.{ts,tsx,js,jsx}": "npm run lint-staged:lint",

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { BizFieldProps } from '../interface';
+import type { BizFieldProps } from '../interface';
 
 function getColor(value) {
   if (value === 0) {

@@ -1,5 +1,6 @@
 import * as React from 'react';
-import UploadWrapper, { UploadWrapperProps } from './UploadWrapper';
+import UploadWrapper from './UploadWrapper';
+import type { UploadWrapperProps } from './UploadWrapper';
 import UploadContext from './UploadContext';
 import UploadImageButton from './UploadImageButton';
 

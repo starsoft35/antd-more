@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { TooltipPlacement } from 'antd/lib/tooltip';
+import type { TooltipProps } from './antd.interface';
 import Color from '../../color';
-import BizFormItem, { BizFormItemProps } from './Item';
+import BizFormItem from './Item';
+import type { BizFormItemProps } from './Item';
 import getLabel from '../_util/getLabel';
 
 export enum ColorPicker {
@@ -17,7 +18,7 @@ export interface FormItemColorProps extends BizFormItemProps {
   picker?: keyof typeof ColorPicker;
   trigger?: 'hover' | 'click' | string;
   colorMode?: 'rgb' | 'hex';
-  placement?: TooltipPlacement;
+  placement?: TooltipProps['placement'];
   colorProps?: any;
 }
 

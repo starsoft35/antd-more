@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { Tooltip, Popover, Tree, Checkbox } from 'antd';
+import type { TableColumnType } from 'antd';
 import { SettingOutlined } from '@ant-design/icons';
-import { ColumnType } from 'antd/lib/table';
 import TableContext from '../../TableContext';
 
 import './index.less';
 
 const prefixCls = 'antd-more-table';
 
-function getColumnKey(column: ColumnType<any>, index: number) {
+function getColumnKey(column: TableColumnType<any>, index: number) {
   return `${column.dataIndex || ''}-${column.key || ''}-${index}`;
 }
 

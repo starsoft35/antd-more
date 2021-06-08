@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { BizForm } from 'antd-more';
-import { ItemUploadProps } from 'antd-more/es/biz-form';
+import type { BizFormItemUploadProps } from 'antd-more';
 import './style.less';
 
 const { ItemUpload } = BizForm;
 
-const ItemSpecialUpload: React.FC<ItemUploadProps> = ({ uploadProps = {}, ...restProps }) => {
+const ItemSpecialUpload: React.FC<BizFormItemUploadProps> = ({ uploadProps = {}, ...restProps }) => {
   const uniqueId = React.useMemo(() => `uniqueId${Date.now()}`, []);
 
   return (

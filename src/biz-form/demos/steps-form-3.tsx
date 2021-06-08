@@ -1,13 +1,8 @@
 import * as React from 'react';
 import { Modal, Button, message } from 'antd';
 import { BizForm } from 'antd-more';
-import { StepsFormActionType } from 'antd-more/es/biz-form';
-
-function waitTime(time: number = 1000) {
-  return new Promise(resolve => {
-    setTimeout(resolve, time);
-  })
-}
+import type { StepsFormActionType } from 'antd-more';
+import waitTime from './utils/waitTime';
 
 const { StepsForm, ItemInput, ItemSelect, ItemNumber, ItemUpload, ItemTextArea } = BizForm;
 

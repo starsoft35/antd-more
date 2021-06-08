@@ -2,12 +2,7 @@ import * as React from 'react';
 import { BizForm } from 'antd-more';
 import { Button } from 'antd';
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
-
-function waitTime(time: number = 1000) {
-  return new Promise(resolve => {
-    setTimeout(resolve, time);
-  });
-}
+import waitTime from './utils/waitTime';
 
 const { List, Item, ItemInput } = BizForm;
 

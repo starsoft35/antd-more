@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { FormInstance } from 'antd/lib/form';
-import SyncMemoryStore from '../../_util/SyncMemoryStore';
+import type { FormInstance } from '../antd.interface';
+import type SyncMemoryStore from '../../_util/SyncMemoryStore';
 
 export interface StepsFormContextProps {
   formArrayRef: React.MutableRefObject<FormInstance[]>; // 每个form的ref

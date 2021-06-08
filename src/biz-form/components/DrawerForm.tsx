@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { Drawer, Form } from 'antd';
 import { useUpdateEffect } from 'rc-hooks';
-import { DrawerProps } from 'antd/lib/drawer';
 import { isPromiseLike } from 'util-helpers';
-import BaseForm, { BaseFormProps } from './BaseForm';
+import type { DrawerProps } from './antd.interface';
+import BaseForm from './BaseForm';
+import type { BaseFormProps } from './BaseForm';
 
 export interface DrawerFormProps extends Omit<BaseFormProps, 'title'> {
   title?: React.ReactNode;

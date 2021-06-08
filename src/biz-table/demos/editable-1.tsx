@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Space, Button } from 'antd';
 import { BizTable } from 'antd-more';
-import { EditableActionType, BizColumnType } from 'antd-more/es/biz-table';
+import type { EditableBizTableActionType, BizTableColumnType } from 'antd-more';
 import Mock from 'mockjs';
 import { ApproveStatus } from './constants';
 
@@ -20,9 +20,9 @@ const { EditableBizTable } = BizTable;
 const Demo: React.FC = () => {
   const [dataSource, setDataSource] = React.useState(defaultData);
   const [editableKeys, setEditableKeys] = React.useState([]);
-  const editableActionRef = React.useRef<EditableActionType>();
+  const editableActionRef = React.useRef<EditableBizTableActionType>();
 
-  const columns: BizColumnType = [
+  const columns: BizTableColumnType = [
     {
       valueType: "indexBorder",
       title: "序号",
@@ -72,11 +72,11 @@ const Demo: React.FC = () => {
                   <a onClick={() => editableActionRef.current.cancel(record.id)}>取消</a>
                 </>
               ) : (
-                  <>
-                    <a onClick={() => editableActionRef.current.edit(record.id)}>编辑</a>
-                    <a onClick={() => editableActionRef.current.delete(record.id)}>删除</a>
-                  </>
-                )
+                <>
+                  <a onClick={() => editableActionRef.current.edit(record.id)}>编辑</a>
+                  <a onClick={() => editableActionRef.current.delete(record.id)}>删除</a>
+                </>
+              )
             }
           </Space>
         )

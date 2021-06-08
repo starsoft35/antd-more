@@ -1,6 +1,8 @@
 import * as React from 'react';
-import BizFormItem, { BizFormItemProps } from './Item';
-import InputNumberWrapper, { InputNumberWrapperProps } from './form/InputNumberWrapper';
+import BizFormItem from './Item';
+import type { BizFormItemProps } from './Item';
+import InputNumberWrapper from './form/InputNumberWrapper';
+import type { InputNumberWrapperProps } from './form/InputNumberWrapper';
 import getLabel from '../_util/getLabel';
 
 export interface FormItemNumberProps

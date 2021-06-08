@@ -1,18 +1,18 @@
 import * as React from 'react';
 import { DatePicker } from 'antd';
 import classNames from 'classnames';
-import { Moment } from 'moment';
-import { RangePickerProps } from 'antd/lib/date-picker';
-import { RangePickerDateProps } from 'antd/lib/date-picker/generatePicker';
+import type { Moment } from 'moment';
+import type { RangePickerProps, RangePickerDateProps } from './antd.interface';
 import {
   MomentScale,
   DateUnit,
   createDisabledDate,
   transformMomentValue,
   getDateFormat,
-  Picker,
 } from '../_util/dateUtil';
-import BizFormItem, { BizFormItemProps } from './Item';
+import type { Picker } from '../_util/dateUtil';
+import BizFormItem from './Item';
+import type { BizFormItemProps } from './Item';
 import { transformDate, invalidDateRangeNameValue } from '../_util/transform';
 import getLabel from '../_util/getLabel';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Badge, Tag } from 'antd';
-import { DictionaryProps } from './interface';
+import type { DictionaryProps } from './interface';
 
 const Dictionary: React.FC<DictionaryProps> = ({
   data = [],

@@ -1,9 +1,9 @@
 import React, { useCallback, useState, cloneElement } from 'react';
 import { Popover } from 'antd';
-import { PopoverProps } from 'antd/lib/popover';
-import { TooltipPlacement } from 'antd/lib/tooltip';
+import type { PopoverProps, TooltipProps } from 'antd';
 import classNames from 'classnames';
-import { transformColor, ColorObj } from './utils';
+import { transformColor } from './utils';
+import type { ColorObj } from './utils';
 
 import './index.less';
 
@@ -22,7 +22,7 @@ export interface PickerCommonProps {
   trigger?: 'click' | 'hover' | string | string[];
   onChange?: (colorStr: string) => void;
   colorMode?: 'hex' | 'rgb';
-  placement?: TooltipPlacement;
+  placement?: TooltipProps['placement'];
 }
 
 export interface PickerWrapperProps extends PickerCommonProps, PopoverProps {
@@ -37,7 +37,7 @@ const PickerWrapper: React.FC<PickerWrapperProps> = ({
   value,
   showText = false,
   trigger = 'click',
-  onChange = () => {},
+  onChange = () => { },
   colorMode = 'hex',
   placement = 'bottomLeft',
   children,

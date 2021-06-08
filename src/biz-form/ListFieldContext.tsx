@@ -1,10 +1,10 @@
 import React from 'react';
-import { NamePath } from 'antd/lib/form/interface';
+import type { FormItemProps } from './components/antd.interface';
 
 export type TransformFn<T = any> = (value: T) => T | any;
 
 export interface FiledContextProps {
-  parentListName: NamePath[];
+  parentListName: FormItemProps['name'][];
 }
 
 const FieldContext = React.createContext<FiledContextProps>({ parentListName: [] });

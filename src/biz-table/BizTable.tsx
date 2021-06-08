@@ -1,18 +1,21 @@
 import * as React from 'react';
 import { Table, Card, Space, ConfigProvider } from 'antd';
-import { TableProps } from 'antd/lib/table';
-import { SpaceProps } from 'antd/lib/space';
-import { CardProps } from 'antd/lib/card';
-import { FormInstance } from 'antd/lib/form';
+import type { TableProps, SpaceProps, CardProps, FormInstance } from 'antd';
 import classnames from 'classnames';
 import { useUpdateEffect } from 'rc-hooks';
-import SearchForm, { SearchFormProps } from './SearchForm';
-import { QueryFormProps } from '../biz-form';
+import SearchForm from './SearchForm';
+import type { SearchFormProps } from './SearchForm';
+import type { QueryFormProps } from '../biz-form';
 import usePagination from './usePagination';
 import BizField from '../biz-field';
 import WithTooltip from '../biz-descriptions/WithTooltip';
 import actionCache, { createActionCacheKey } from './_util/actionCache';
-import { BizTableRequest, ActionType, BizColumnType, ToolbarActionProps } from './interface';
+import type {
+  BizTableRequest,
+  BizTableActionType,
+  BizTableColumnType,
+  ToolbarActionProps,
+} from './interface';
 import { createFormItem } from './_util/createFormItems';
 import getRowKey from './_util/getRowKey';
 import TableContext from './TableContext';
@@ -27,8 +30,8 @@ export declare interface BizTableProps<RecordType = any>
   extends Omit<TableProps<RecordType>, 'columns'>,
     Pick<SearchFormProps, 'formItems'> {
   formRef?: React.MutableRefObject<FormInstance | undefined>;
-  actionRef?: React.MutableRefObject<ActionType | undefined>;
-  columns?: BizColumnType<RecordType>;
+  actionRef?: React.MutableRefObject<BizTableActionType | undefined>;
+  columns?: BizTableColumnType<RecordType>;
   ready?: boolean;
   autoRequest?: boolean;
   nowrap?: boolean;

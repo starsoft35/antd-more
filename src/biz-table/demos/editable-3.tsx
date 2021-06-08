@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Button } from 'antd';
 import { BizTable } from 'antd-more';
-import { EditableActionType, BizColumnType } from 'antd-more/es/biz-table';
+import type { EditableBizTableActionType, BizTableColumnType } from 'antd-more';
 import Mock from 'mockjs';
 
 const defaultData = Mock.mock({
@@ -17,9 +17,9 @@ const { EditableBizTable } = BizTable;
 
 const Demo: React.FC = () => {
   const [editableKeys, setEditableKeys] = React.useState(() => defaultData.map(item => item.id));
-  const editableActionRef = React.useRef<EditableActionType>();
+  const editableActionRef = React.useRef<EditableBizTableActionType>();
 
-  const columns: BizColumnType = [
+  const columns: BizTableColumnType = [
     {
       valueType: "indexBorder",
       title: "序号",

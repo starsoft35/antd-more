@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { BizForm, BizTable } from 'antd-more';
-import { BizTableRequest, BizColumnType } from 'antd-more/lib/biz-table';
+import type { BizTableRequest, BizTableColumnType } from 'antd-more';
 import { getApplyList } from './service';
 
-const columns: BizColumnType = [
+const columns: BizTableColumnType = [
   {
     dataIndex: "applyCode",
     title: "申请编号",

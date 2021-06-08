@@ -1,9 +1,11 @@
 import * as React from 'react';
 import { useUpdateEffect } from 'rc-hooks';
-import BizForm, { BizFormProps } from '../../biz-form';
+import BizForm from '../../biz-form';
+import type { BizFormProps } from '../../biz-form';
 import { transformFormValues } from '../../biz-form/_util/transform';
 import ChildFormContext from '../../biz-form/ChildFormContext';
-import BizTable, { BizTableProps } from '../BizTable';
+import BizTable from '../BizTable';
+import type { BizTableProps } from '../BizTable';
 import createUniqueId from '../_util/createUniqueId';
 import getRowKey from '../_util/getRowKey';
 
@@ -25,7 +27,7 @@ function getAddRecordIndex(index, len): number {
   return index;
 }
 
-export interface EditableActionType<RecordType = any> {
+export interface EditableBizTableActionType<RecordType = any> {
   save: (rowKey: Key) => void;
   delete: (rowKey: Key) => void;
   cancel: (rowKey: Key) => void;
@@ -39,23 +41,33 @@ export interface EditableActionType<RecordType = any> {
   setDataSource: (records: RecordType[]) => void; // 手动设置数据源
 }
 
-export interface EditableOptions<RecordType = any> {
+/**
+ * @deprecated Please use `EditableBizTableActionType` instead.
+ */
+export type EditableActionType<RecordType = any> = EditableBizTableActionType<RecordType>;
+
+export interface EditableBizTableOptions<RecordType = any> {
   onSave?: (rowKey: Key, record: RecordType, isNewRecord: boolean) => Promise<any>;
   onDelete?: (rowKey: Key, record: RecordType, isNewRecord: boolean) => Promise<any>;
   editableKeys?: Key[];
   onChange?: (editableKeys: Key[], editableRow: Partial<RecordType>) => void;
-  editableActionRef?: React.MutableRefObject<EditableActionType<RecordType> | undefined>;
+  editableActionRef?: React.MutableRefObject<EditableBizTableActionType<RecordType> | undefined>;
   formProps?: Omit<
     BizFormProps,
     'form' | 'name' | 'onValuesChange' | 'transformRecordActionRef' | 'component'
   >;
 }
 
+/**
+ * @deprecated Please use `EditableBizTableOptions` instead.
+ */
+export type EditableOptions<RecordType = any> = EditableBizTableOptions<RecordType>;
+
 export interface EditableBizTableProps<RecordType extends object = any>
   extends Omit<BizTableProps<RecordType>, 'onChange'> {
   onValuesChange?: (values: RecordType[]) => void;
   value?: RecordType[];
-  editable?: EditableOptions<RecordType>;
+  editable?: EditableBizTableOptions<RecordType>;
 
   // 保存 或 删除后需要更新表格数据
   onChange?: (values: RecordType[]) => void;

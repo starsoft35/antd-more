@@ -1,9 +1,12 @@
 import * as React from 'react';
 import Dictionary from './Dictionary';
-import Select, { DictionarySelectProps } from './Select';
-import Radio, { DictionaryRadioProps } from './Radio';
-import List, { DictionaryListProps } from './List';
-import { EnumData, DictionaryProps } from './interface';
+import Select from './Select';
+import type { DictionarySelectProps } from './Select';
+import Radio from './Radio';
+import type { DictionaryRadioProps } from './Radio';
+import List from './List';
+import type { DictionaryListProps } from './List';
+import type { EnumData, DictionaryProps } from './interface';
 
 export type {
   DictionaryProps,

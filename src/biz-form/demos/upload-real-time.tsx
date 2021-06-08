@@ -9,13 +9,8 @@
  */
 import * as React from 'react';
 import { BizForm } from 'antd-more';
-import { UploadFile } from 'antd/lib/upload/interface';
-
-function waitTime(time: number = 1000) {
-  return new Promise(resolve => {
-    setTimeout(resolve, time);
-  })
-}
+import type { UploadFile } from 'antd/lib/upload/interface';
+import waitTime from './utils/waitTime';
 
 const { ItemUpload } = BizForm;
 

@@ -1,21 +1,15 @@
 import * as React from 'react';
 import { Button, ConfigProvider } from 'antd';
 import { BizTable } from 'antd-more';
-import { BizTableRequest, BizColumnType, ActionType } from 'antd-more/es/biz-table';
-
+import type { BizTableRequest, BizTableColumnType, BizTableActionType } from 'antd-more';
 import Mock from 'mockjs';
 import UpdateModal from './components/UpdateModal';
+import waitTime from './utils/waitTime';
 
 type DataItem = {
   id: number;
   name: string;
   resume: string;
-}
-
-function waitTime(time: number = 1000) {
-  return new Promise(resolve => {
-    setTimeout(resolve, time);
-  })
 }
 
 const getDataApi = async ({ pageSize, pageNum }) => {
@@ -38,8 +32,8 @@ const Demo: React.FC = () => {
   const [visible, setVisible] = React.useState(false);
   const [editableRecord, setEditablRecord] = React.useState<DataItem>();
 
-  const actionRef = React.useRef<ActionType>();
-  const columns: BizColumnType<DataItem> = React.useMemo(() => ([
+  const actionRef = React.useRef<BizTableActionType>();
+  const columns: BizTableColumnType<DataItem> = React.useMemo(() => ([
     {
       title: '姓名',
       dataIndex: 'name',

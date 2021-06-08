@@ -2,14 +2,9 @@ import * as React from 'react';
 import { Row, Col } from 'antd';
 import { BizForm } from 'antd-more';
 import { getPC } from 'lcn';
+import waitTime from './utils/waitTime';
 
 const pcInlandData = getPC({ inland: true, formatForm: true });
-
-function waitTime(time: number = 1000) {
-  return new Promise(resolve => {
-    setTimeout(resolve, time);
-  });
-}
 
 const { ItemInput, ItemAddress, ItemRadio } = BizForm;
 

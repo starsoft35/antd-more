@@ -1,14 +1,16 @@
 import * as React from 'react';
 import { Form } from 'antd';
-import { FormProps, FormInstance } from 'antd/lib/form';
 import namePathSet from 'rc-util/es/utils/set'; // eslint-disable-line import/no-extraneous-dependencies
 import classnames from 'classnames';
 import { isPromiseLike } from 'util-helpers';
 import { useUpdateEffect } from 'rc-hooks';
+import type { FormProps, FormInstance } from './antd.interface';
 import { transformFormValues } from '../_util/transform';
-import FieldContext, { TransformFn } from '../FieldContext';
+import FieldContext from '../FieldContext';
+import type { TransformFn } from '../FieldContext';
 import ChildFormContext from '../ChildFormContext';
-import Submitter, { SubmitterProps } from './Submitter';
+import Submitter from './Submitter';
+import type { SubmitterProps } from './Submitter';
 
 import '../index.less';
 

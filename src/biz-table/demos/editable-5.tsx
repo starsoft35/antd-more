@@ -3,7 +3,7 @@ import { DeleteOutlined } from '@ant-design/icons';
 import { Popconfirm } from 'antd';
 import { BizForm, BizTable, BizField } from 'antd-more';
 import { formatBankCard } from 'util-helpers';
-import { EditableActionType, BizColumnType } from 'antd-more/es/biz-table';
+import type { EditableBizTableActionType, BizTableColumnType } from 'antd-more';
 import Mock from 'mockjs';
 import { Bank, ApproveStatus } from './constants';
 
@@ -31,9 +31,9 @@ const { Item } = BizForm;
 
 const Demo: React.FC = () => {
   const [editableKeys, setEditableKeys] = React.useState(() => defaultData.map(item => item.id));
-  const editableActionRef = React.useRef<EditableActionType>();
+  const editableActionRef = React.useRef<EditableBizTableActionType>();
 
-  const columns: BizColumnType = [
+  const columns: BizTableColumnType = [
     {
       render: (_, record) => (
         <Popconfirm

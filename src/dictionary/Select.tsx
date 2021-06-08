@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { Select } from 'antd';
-import { SelectProps, SelectValue } from 'antd/lib/select';
-import { EnumData } from './interface';
+import type { SelectProps, SelectValue } from 'antd/lib/select';
+import type { EnumData } from './interface';
 
 export interface DictionarySelectProps extends SelectProps<SelectValue> {
   data: EnumData;

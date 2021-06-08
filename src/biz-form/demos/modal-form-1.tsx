@@ -1,14 +1,9 @@
 import * as React from 'react';
 import { Button, message } from 'antd';
 import { BizForm } from 'antd-more';
+import waitTime from './utils/waitTime';
 
 const { ModalForm, ItemInput, ItemSelect, ItemNumber, ItemUpload, ItemTextArea } = BizForm;
-
-function waitTime(time: number = 1000) {
-  return new Promise(resolve => {
-    setTimeout(resolve, time);
-  })
-}
 
 const BillAccountName = [
   {

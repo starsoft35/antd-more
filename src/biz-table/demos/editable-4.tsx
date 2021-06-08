@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Row, Col, Space, Button } from 'antd';
 import { BizForm, BizTable } from 'antd-more';
-import { EditableActionType, BizColumnType } from 'antd-more/es/biz-table';
+import type { EditableBizTableActionType, BizTableColumnType } from 'antd-more';
 import Mock from 'mockjs';
 import { Bank } from './constants';
 
@@ -35,9 +35,9 @@ const colspanConfig = {
 const Demo: React.FC = () => {
   const [form] = BizForm.useForm();
   const [editableKeys, setEditableKeys] = React.useState(() => defaultData.map(item => item.id));
-  const editableActionRef = React.useRef<EditableActionType>();
+  const editableActionRef = React.useRef<EditableBizTableActionType>();
 
-  const columns:BizColumnType = [
+  const columns: BizTableColumnType = [
     {
       dataIndex: "shopsName",
       title: "商品名称",

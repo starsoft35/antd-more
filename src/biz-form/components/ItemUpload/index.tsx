@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { UploadProps } from 'antd/lib/upload';
-import BizFormItem, { BizFormItemProps } from '../Item';
-import { UploadWrapperProps } from './UploadWrapper';
+import type { UploadProps } from '../antd.interface';
+import BizFormItem from '../Item';
+import type { BizFormItemProps } from '../Item';
+import type { UploadWrapperProps } from './UploadWrapper';
 import UploadButton from './UploadButton';
 import UploadImage from './UploadImage';
 import UploadAvatar from './UploadAvatar';

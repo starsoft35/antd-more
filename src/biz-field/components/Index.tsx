@@ -1,6 +1,6 @@
 import * as React from 'react';
 import classnames from 'classnames';
-import { BizFieldProps } from '../interface';
+import type { BizFieldProps } from '../interface';
 
 import './Index.less';
 

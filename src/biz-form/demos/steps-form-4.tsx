@@ -8,13 +8,8 @@ import { Card, Result, Space, Button, Popconfirm } from 'antd';
 import { PayCircleOutlined } from '@ant-design/icons';
 import { BasicLayout, FooterToolbar, PageContainer } from '@ant-design/pro-layout';
 import { BizForm } from 'antd-more';
-import { StepsFormActionType } from 'antd-more/es/biz-form';
-
-function waitTime(time: number = 1000) {
-  return new Promise(resolve => {
-    setTimeout(resolve, time);
-  })
-}
+import type { StepsFormActionType } from 'antd-more';
+import waitTime from './utils/waitTime';
 
 const { StepsForm, ItemInput, ItemSelect, ItemNumber, ItemUpload, ItemTextArea } = BizForm;
 
@@ -108,7 +103,7 @@ const Demo: React.FC = () => {
               submitter={{
                 noNext: true,
                 forceShowSubmit: true,
-                render: (submitterProps, dom) => (
+                render: ({ submitButtonProps }, dom) => (
                   <Space>
                     {dom[0]}
                     <Popconfirm
@@ -123,7 +118,7 @@ const Demo: React.FC = () => {
                       okText="确认提交"
                       onConfirm={() => actionRef.current.submit()}
                     >
-                      <Button type="primary" {...submitterProps?.submitButtonProps}>提交</Button>
+                      <Button type="primary" {...submitButtonProps}>提交</Button>
                     </Popconfirm>
                   </Space>
                 )
