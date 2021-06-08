@@ -16,9 +16,11 @@ jobs:
           persist-credentials: false
       - name: Install
         run: npm install
+      - name: Build package
+        run: npm run build
       - name: Build docs
         run: npm run build:doc
-      - name: Deploy
+      - name: Deploy docs
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN_WORKFLOW }}

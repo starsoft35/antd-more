@@ -30,10 +30,10 @@ const umiConfig = {
   outputPath,
   hash: true,
   locales: [['zh-CN', '中文'], ['en-US', 'English']],
-  // nodeModulesTransform: {
-  //   type: 'none',
-  //   exclude: [],
-  // },
+  nodeModulesTransform: {
+    type: 'none',
+    exclude: [],
+  },
   theme: {
     '@s-site-menu-width': '258px',
   },
@@ -89,22 +89,21 @@ const umiConfig = {
 
 if (process.env.NODE_ENV === 'production') {
   umiConfig.chunks = ['vendors', 'umi'];
-  umiConfig.chainWebpack = function (config) {
+  umiConfig.chainWebpack = function (config, { webpack }) {
     config.merge({
       optimization: {
+        minimize: true,
         splitChunks: {
-          chunks: 'all',
-          minSize: 30000,
-          minChunks: 3,
-          automaticNameDelimiter: '.',
           cacheGroups: {
             vendor: {
-              name: 'vendors',
-              test: /[\\/]node_modules[\\/]/,
-              priority: 10,
-            },
-          },
-        },
+              test: /node_modules/,
+              chunks: "all",
+              name: "vendors",
+              priority: -10,
+              enforce: true
+            }
+          }
+        }
       }
     });
   }
