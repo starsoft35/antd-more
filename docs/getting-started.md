@@ -66,7 +66,7 @@ ReactDon.render(<BizField value="red" valueType="color" />, mountNode);
 [npm]: https://img.shields.io/npm/v/antd-more.svg
 [npm-url]: https://npmjs.com/package/antd-more
 
-[site]: https://doly-dev.github.io/antd-more/site/latest/index.html
+[site]: https://doly-dev.github.io/antd-more/latest/index.html
 [babel-plugin-import]: https://www.npmjs.com/package/babel-plugin-import
 
 [doly]: https://www.npmjs.com/package/doly-cli
