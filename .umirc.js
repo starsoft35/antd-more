@@ -6,8 +6,7 @@ const logo = 'https://www.caijinfeng.com/assets/images/logo-doly@3x.png';
 const favicon = 'https://www.caijinfeng.com/assets/images/doly-touch-icon_48x48.png';
 
 const outputPath = 'site/' + version;
-// const outputPath = 'site';
-const publicPath = serverRootDirect + outputPath + '/';
+const publicPath = serverRootDirect + version + '/';
 
 const umiConfig = {
   extraBabelPlugins: [
