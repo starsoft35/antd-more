@@ -1,7 +1,7 @@
-import * as React from 'react';
-import { Card, message } from 'antd';
-import { BizForm } from 'antd-more';
-import waitTime from './utils/waitTime';
+import * as React from "react";
+import { Card, message } from "antd";
+import { BizForm } from "antd-more";
+import waitTime from "./utils/waitTime";
 
 const { StepsForm, ItemInput, ItemCaptcha, ItemPassword } = BizForm;
 
@@ -13,16 +13,16 @@ const Demo: React.FC = () => {
     <Card
       title="忘记密码"
       extra={<a>返回登录</a>}
-      style={{ width: '100%', maxWidth: 680, margin: '0 auto' }}
+      style={{ width: "100%", maxWidth: 680, margin: "0 auto" }}
     >
       <StepsForm
         onFinish={async (values) => {
           console.log(values);
           // 整个表单提交时
           await waitTime();
-          message.success('设置新密码成功');
+          message.success("设置新密码成功");
         }}
-        stepsRender={(_, stepsDom) => <div style={{ width: '80%', margin: '0 auto' }}>{stepsDom}</div>}
+        stepsRender={(_, stepsDom) => <div style={{ width: "80%", margin: "0 auto" }}>{stepsDom}</div>}
       >
         <StepsForm.StepForm
           title="验证手机号"
@@ -32,7 +32,7 @@ const Demo: React.FC = () => {
               block: true
             }
           }}
-          style={{ width: '75%', margin: '0 auto' }}
+          style={{ width: "75%", margin: "0 auto" }}
           requiredMark={false}
           form={form1}
           onFinish={async (values) => {
@@ -45,7 +45,7 @@ const Demo: React.FC = () => {
             name="mobile"
             type="mobile"
             inputProps={{
-              placeholder: '请输入11位手机号'
+              placeholder: "请输入11位手机号"
             }}
             label="手机号"
             required
@@ -63,19 +63,19 @@ const Demo: React.FC = () => {
             name="smsCode"
             validateTrigger="onBlur"
             label="验证码"
-            normalize={(val) => val.replace(/[^\d]/g, '')}
+            normalize={(val) => val.replace(/[^\d]/g, "")}
             inputProps={{ maxLength: 6 }}
             onGetCaptcha={async () => {
               try {
-                await form1.validateFields(['mobile', 'code']);
+                await form1.validateFields(["mobile", "code"]);
               } catch (err) {
-                message.error('请输入正确的手机号和图形验证码');
+                message.error("请输入正确的手机号和图形验证码");
                 return false;
               }
 
               // 发送验证码
-              // const mobile = form1.getFieldValue('mobile');
-              // const code = form1.getFieldValue('code');
+              // const mobile = form1.getFieldValue("mobile");
+              // const code = form1.getFieldValue("code");
               // return sendSms({ mobile, code }).then(() => {
               //   message.success(`短信验证码已发送至${mobile}`);
               // });
@@ -95,7 +95,7 @@ const Demo: React.FC = () => {
               block: true
             }
           }}
-          style={{ width: '75%', margin: '0 auto' }}
+          style={{ width: "75%", margin: "0 auto" }}
           requiredMark={false}
           form={form2}
         >
@@ -104,7 +104,7 @@ const Demo: React.FC = () => {
             min={6}
             max={16}
             inputProps={{
-              placeholder: '6-16位密码，区分大小写'
+              placeholder: "6-16位密码，区分大小写"
             }}
             label="新密码"
             validateTrigger="onBlur"
@@ -113,19 +113,19 @@ const Demo: React.FC = () => {
           <ItemPassword
             name="oldPassword"
             inputProps={{
-              placeholder: '再次输入新密码'
+              placeholder: "再次输入新密码"
             }}
-            dependencies={['password']}
+            dependencies={["password"]}
             validateTrigger="onBlur"
             label="确定密码"
             rules={[
               {
                 validator(rules, value) {
-                  let errMsg = '';
+                  let errMsg = "";
                   if (!value) {
-                    errMsg = '请再次输入新密码';
-                  } else if (value !== form2.getFieldValue('password')) {
-                    errMsg = '两次输入的密码不一致';
+                    errMsg = "请再次输入新密码";
+                  } else if (value !== form2.getFieldValue("password")) {
+                    errMsg = "两次输入的密码不一致";
                   }
                   if (errMsg) {
                     return Promise.reject(errMsg);

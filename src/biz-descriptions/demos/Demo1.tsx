@@ -1,21 +1,21 @@
-import * as React from 'react';
-import { BizDescriptions } from 'antd-more';
-import { ApproveStatus } from './constants';
+import * as React from "react";
+import { BizDescriptions } from "antd-more";
+import { ApproveStatusOptions } from "./constants";
 
 const data = {
-  text1: '',
-  text2: '这是一段文本',
-  text3: '长文本长文本长文本长文本长文本长文本长文本长文本长文本长文本',
+  text1: "",
+  text2: "这是一段文本",
+  text3: "长文本长文本长文本长文本长文本长文本长文本长文本长文本长文本",
   number1: 100,
   number2: 40,
   number3: 10,
-  color: 'red',
-  date: '2020-10-10 10:00:00',
-  startDate: '2020-10-10 10:00:00',
-  endDate: '2020-12-12 10:00:00',
+  color: "red",
+  date: "2020-10-10 10:00:00",
+  startDate: "2020-10-10 10:00:00",
+  endDate: "2020-12-12 10:00:00",
   status: 1,
-  other: '其他内容',
-  image: 'https://gw.alipayobjects.com/zos/antfincdn/aPkFc8Sj7n/method-draw-image.svg',
+  other: "其他内容",
+  image: "https://gw.alipayobjects.com/zos/antfincdn/aPkFc8Sj7n/method-draw-image.svg",
   image2: ["https://gw.alipayobjects.com/zos/antfincdn/aPkFc8Sj7n/method-draw-image.svg", "https://gw.alipayobjects.com/zos/antfincdn/aPkFc8Sj7n/method-draw-image.svg"]
 }
 
@@ -52,9 +52,9 @@ const Demo: React.FC = () => {
       <BizDescriptions.Item label="日期时间" valueType="dateTime">{data.date}</BizDescriptions.Item>
       <BizDescriptions.Item label="时间" valueType="time">{data.date}</BizDescriptions.Item>
       <BizDescriptions.Item label="日期时间区间" valueType="dateTimeRange" span={2}>{[data.startDate, data.endDate]}</BizDescriptions.Item>
-      <BizDescriptions.Item label="状态" valueType="enum" valueEnum={ApproveStatus}>{data.status}</BizDescriptions.Item>
-      <BizDescriptions.Item label="状态" valueType="enumTag" valueEnum={ApproveStatus}>{data.status}</BizDescriptions.Item>
-      <BizDescriptions.Item label="状态" valueType="enumBadge" valueEnum={ApproveStatus}>{data.status}</BizDescriptions.Item>
+      <BizDescriptions.Item label="状态" valueType="enum" valueEnum={ApproveStatusOptions}>{data.status}</BizDescriptions.Item>
+      <BizDescriptions.Item label="状态" valueType="enumTag" valueEnum={ApproveStatusOptions}>{data.status}</BizDescriptions.Item>
+      <BizDescriptions.Item label="状态" valueType="enumBadge" valueEnum={ApproveStatusOptions}>{data.status}</BizDescriptions.Item>
       <BizDescriptions.Item label="图片" valueType="image">{data.image}</BizDescriptions.Item>
       <BizDescriptions.Item label="多张图片" valueType="image">{data.image2}</BizDescriptions.Item>
     </BizDescriptions>

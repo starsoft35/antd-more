@@ -1,11 +1,11 @@
-import * as React from 'react';
-import { BizDescriptions } from 'antd-more';
-import type { BizDescriptionsColumnItemProps } from 'antd-more';
+import * as React from "react";
+import { BizDescriptions } from "antd-more";
+import type { BizDescriptionsColumnItemProps } from "antd-more";
 
 const data = {
-  text1: '',
-  text2: '这是一段文本',
-  text3: '长文本长文本长文本长文本长文本长文本长文本长文本长文本长文本',
+  text1: "",
+  text2: "这是一段文本",
+  text3: "长文本长文本长文本长文本长文本长文本长文本长文本长文本长文本",
   number1: 100,
 }
 

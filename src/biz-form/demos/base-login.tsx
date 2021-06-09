@@ -1,8 +1,8 @@
-import * as React from 'react';
-import { message, Checkbox } from 'antd';
-import { BizForm } from 'antd-more';
-import { UserOutlined, LockOutlined, SafetyCertificateOutlined, MobileOutlined, MailOutlined } from '@ant-design/icons';
-import waitTime from './utils/waitTime';
+import * as React from "react";
+import { message, Checkbox } from "antd";
+import { BizForm } from "antd-more";
+import { UserOutlined, LockOutlined, SafetyCertificateOutlined, MobileOutlined, MailOutlined } from "@ant-design/icons";
+import waitTime from "./utils/waitTime";
 
 const { ItemInput, ItemCaptcha, ItemPassword, Item } = BizForm;
 
@@ -81,7 +81,7 @@ const LoginDemo: React.FC = () => {
         />
         <ItemCaptcha
           name="captcha"
-          normalize={(val) => val.replace(/[^\d]/g, '')}
+          normalize={(val) => val.replace(/[^\d]/g, "")}
           inputProps={{
             prefix: <SafetyCertificateOutlined />,
             placeholder: "请输入验证码",
@@ -116,7 +116,7 @@ const LoginDemo: React.FC = () => {
           <Item noStyle name="autoLogin" valuePropName="checked">
             <Checkbox>自动登录</Checkbox>
           </Item>
-          <a style={{ float: 'right' }}>忘记密码</a>
+          <a style={{ float: "right" }}>忘记密码</a>
         </Item>
       </BizForm>
     </div>

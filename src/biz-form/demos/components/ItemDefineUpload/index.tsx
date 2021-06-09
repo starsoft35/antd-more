@@ -1,7 +1,7 @@
-import * as React from 'react';
-import { BizForm } from 'antd-more';
-import type { BizFormItemUploadProps } from 'antd-more';
-import Preview from 'antd-more/es/biz-form/components/ItemUpload/Preview';
+import * as React from "react";
+import { BizForm } from "antd-more";
+import type { BizFormItemUploadProps } from "antd-more";
+import Preview from "antd-more/es/biz-form/components/ItemUpload/Preview";
 
 const { ItemUpload } = BizForm;
 

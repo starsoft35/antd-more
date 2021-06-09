@@ -1,8 +1,8 @@
-import * as React from 'react';
-import { Row, Col } from 'antd';
-import { BizForm } from 'antd-more';
-import { getPC } from 'lcn';
-import waitTime from './utils/waitTime';
+import * as React from "react";
+import { Row, Col } from "antd";
+import { BizForm } from "antd-more";
+import { getPC } from "lcn";
+import waitTime from "./utils/waitTime";
 
 const pcInlandData = getPC({ inland: true, formatForm: true });
 
@@ -17,7 +17,7 @@ const twoColSpan = {
 };
 
 // 结算方式
-export const SettlementCycle = [
+export const settlementCycleOptions = [
   {
     value: "T1",
     name: "T+1"
@@ -29,13 +29,13 @@ export const SettlementCycle = [
 ];
 
 // 结算类型
-export const SettlementType = [
+export const settlementTypeOptions = [
   {
-    value: "0",
+    value: 0,
     name: "对公账户"
   },
   {
-    value: "1",
+    value: 1,
     name: "对私账户"
   }
 ];
@@ -64,10 +64,10 @@ const SettlementInfo: React.FC = () => {
     >
       <Row>
         <Col {...oneColSpan}>
-          <ItemRadio label="结算方式" name="settlementCycle" required options={SettlementCycle} tooltip="T为工作日，D为自然日" />
+          <ItemRadio label="结算方式" name="settlementCycle" required options={settlementCycleOptions} tooltip="T为工作日，D为自然日" />
         </Col>
         <Col {...oneColSpan}>
-          <ItemRadio label="结算类型" name="settlementType" required options={SettlementType} />
+          <ItemRadio label="结算类型" name="settlementType" required options={settlementTypeOptions} />
         </Col>
         <Col {...oneColSpan}>
           <ItemInput label="账户名称" name="bankCertName" required />

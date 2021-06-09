@@ -7,9 +7,9 @@
  *
  *      **注意这里支持输入 `*`，可自定义脱敏符号 **
  */
-import * as React from 'react';
-import { BizForm } from 'antd-more';
-import waitTime from './utils/waitTime';
+import * as React from "react";
+import { BizForm } from "antd-more";
+import waitTime from "./utils/waitTime";
 
 const { ItemInput } = BizForm;
 

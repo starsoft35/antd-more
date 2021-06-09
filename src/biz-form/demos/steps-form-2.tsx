@@ -1,8 +1,8 @@
-import * as React from 'react';
-import { message } from 'antd';
-import { SafetyCertificateOutlined, MobileOutlined, LockOutlined } from '@ant-design/icons';
-import { BizForm } from 'antd-more';
-import waitTime from './utils/waitTime';
+import * as React from "react";
+import { message } from "antd";
+import { SafetyCertificateOutlined, MobileOutlined, LockOutlined } from "@ant-design/icons";
+import { BizForm } from "antd-more";
+import waitTime from "./utils/waitTime";
 
 const { StepsForm, ItemInput, ItemCaptcha, ItemPassword } = BizForm;
 
@@ -93,12 +93,12 @@ const Demo: React.FC = () => {
           }
         }}
       >
-        <TipText>{sent ? `验证码已发送至 ${form1.getFieldValue('mobile')}` : '请点击获取验证码'}</TipText>
+        <TipText>{sent ? `验证码已发送至 ${form1.getFieldValue("mobile")}` : "请点击获取验证码"}</TipText>
         <ItemCaptcha
           label="短信验证码"
           name="code"
           type="inline"
-          normalize={(val) => val.replace(/[^\d]/g, '')}
+          normalize={(val) => val.replace(/[^\d]/g, "")}
           onGetCaptcha={async () => {
             await waitTime(2000);
             setSent(true);
@@ -145,11 +145,11 @@ const Demo: React.FC = () => {
           rules={[
             {
               validator(rules, value) {
-                let errMsg = '';
+                let errMsg = "";
                 if (!value) {
-                  errMsg = '请再次输入新密码';
-                } else if (value !== form3.getFieldValue('password')) {
-                  errMsg = '两次输入的密码不一致';
+                  errMsg = "请再次输入新密码";
+                } else if (value !== form3.getFieldValue("password")) {
+                  errMsg = "两次输入的密码不一致";
                 }
                 if (errMsg) {
                   return Promise.reject(errMsg);

@@ -3,9 +3,9 @@
  * desc: |
  *      将默认值转换成 `UploadFile[]` 数据格式再传入，数据通过异步获取的情况下可用 `ready` 标识位。当然你也可以再外部添加一个 `Spin` 组件用于显示加载状态。
  */
-import * as React from 'react';
-import { BizForm } from 'antd-more';
-import waitTime from './utils/waitTime';
+import * as React from "react";
+import { BizForm } from "antd-more";
+import waitTime from "./utils/waitTime";
 
 const { ItemUpload } = BizForm;
 
@@ -53,15 +53,15 @@ const beforeTransformUploadValues = async (fssIds: string[]) => {
       const url = serverPathObj.data;
       ret.push({
         uid: -i,
-        name: url.substring(url.lastIndexOf('/') + 1),
+        name: url.substring(url.lastIndexOf("/") + 1),
         url,
         value: fssIds[i] // 用于在提交时获取真实的value
       });
     } catch (err) {
       ret.push({
         uid: -i,
-        status: 'error',
-        response: '加载失败',
+        status: "error",
+        response: "加载失败",
         value: fssIds[i] // 用于在提交时获取真实的value
       });
     }

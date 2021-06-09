@@ -4,7 +4,8 @@ import type { FormInstance } from 'antd';
 import { BizTable } from 'antd-more';
 import type { BizTableActionType, BizTableRequest, BizTableColumnType } from 'antd-more';
 import { getApplyList } from './service';
-import { ApproveStatus } from './constants';
+import { ApproveStatusOptions } from './constants';
+import type { ApproveStatus } from './constants';
 
 type DataItem = {
   applyCode: string;
@@ -12,7 +13,7 @@ type DataItem = {
   approverName: string;
   createTime: string;
   approveTime: string;
-  approveResult: 1 | 2 | 3;
+  approveResult: ApproveStatus;
 }
 
 const columns: BizTableColumnType<DataItem> = [
@@ -48,9 +49,9 @@ const columns: BizTableColumnType<DataItem> = [
   {
     dataIndex: "approveResult",
     title: "审核状态",
-    filters: ApproveStatus.map(item => ({ text: item.name, ...item })),
+    filters: ApproveStatusOptions.map(item => ({ text: item.name, ...item })),
     valueType: 'enumBadge',
-    valueEnum: ApproveStatus,
+    valueEnum: ApproveStatusOptions,
     search: {
       name: "approveStatus",
       all: true,

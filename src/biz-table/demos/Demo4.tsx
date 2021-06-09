@@ -3,7 +3,8 @@ import { Slider } from 'antd';
 import { BizTable, BizForm } from 'antd-more';
 import type { BizTableRequest, BizTableColumnType } from 'antd-more';
 import { getApplyList } from './service';
-import { ApproveStatus } from './constants';
+import { ApproveStatusOptions } from './constants';
+import type { ApproveStatus } from './constants';
 
 type DataItem = {
   applyCode: string;
@@ -11,7 +12,7 @@ type DataItem = {
   approverName: string;
   createTime: string;
   approveTime: string;
-  approveResult: 1 | 2 | 3;
+  approveResult: ApproveStatus;
 }
 
 const columns: BizTableColumnType<DataItem> = [
@@ -69,7 +70,7 @@ const columns: BizTableColumnType<DataItem> = [
   {
     dataIndex: "select",
     valueType: "enum", // enumTag enumBadge 一样
-    valueEnum: ApproveStatus,
+    valueEnum: ApproveStatusOptions,
     title: "选择器",
     search: {
       all: true,
@@ -80,7 +81,7 @@ const columns: BizTableColumnType<DataItem> = [
   {
     dataIndex: "radio",
     valueType: "enum",
-    valueEnum: ApproveStatus,
+    valueEnum: ApproveStatusOptions,
     title: "单选框",
     search: {
       itemType: "radio",
@@ -93,7 +94,7 @@ const columns: BizTableColumnType<DataItem> = [
   {
     dataIndex: "checkbox",
     valueType: "enum",
-    valueEnum: ApproveStatus,
+    valueEnum: ApproveStatusOptions,
     title: "多选框",
     search: {
       itemType: "checkbox",

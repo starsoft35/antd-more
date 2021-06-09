@@ -1,18 +1,18 @@
-import * as React from 'react';
-import { Button, Space, message } from 'antd';
-import { BizForm } from 'antd-more';
-import waitTime from './utils/waitTime';
+import * as React from "react";
+import { Button, Space, message } from "antd";
+import { BizForm } from "antd-more";
+import waitTime from "./utils/waitTime";
 
 const { ModalForm, DrawerForm, ItemInput, ItemSelect, ItemNumber, ItemUpload, ItemTextArea } = BizForm;
 
-const BillAccountName = [
+const billAccountOptions = [
   {
     name: "张三",
-    value: 'a'
+    value: "a"
   },
   {
     name: "李四",
-    value: 'b'
+    value: "b"
   },
 ];
 
@@ -31,14 +31,14 @@ const Demo: React.FC = () => {
         onFinish={async (values) => {
           await waitTime(2000);
           console.log(values);
-          message.success('提交成功');
+          message.success("提交成功");
         }}
         labelWidth={112}
         visible={visibleModal}
         onVisibleChange={setVisibleModal}
       >
         <ItemInput label="收款账号" name="ban" required />
-        <ItemSelect label="收款账号名称" name="accountName" options={BillAccountName} required />
+        <ItemSelect label="收款账号名称" name="accountName" options={billAccountOptions} required />
         <ItemNumber label="付款金额" name="money" required precision={2} after="¥" />
         <ItemUpload label="材料文件" name="files" required title="上传文件" transform={values => values.map(val => val.name)} />
         <ItemTextArea label="备注（选填）" name="remark" disabledWhiteSpace inputProps={{ showCount: true, maxLength: 140 }} />
@@ -54,7 +54,7 @@ const Demo: React.FC = () => {
         onVisibleChange={setVisibleDrawer}
       >
         <ItemInput label="收款账号" name="ban" required />
-        <ItemSelect label="收款账号名称" name="accountName" options={BillAccountName} required />
+        <ItemSelect label="收款账号名称" name="accountName" options={billAccountOptions} required />
         <ItemNumber label="付款金额" name="money" required precision={2} after="¥" />
         <ItemUpload label="材料文件" name="files" required title="上传文件" transform={values => values.map(val => val.name)} />
         <ItemTextArea label="备注（选填）" name="remark" disabledWhiteSpace inputProps={{ showCount: true, maxLength: 140 }} />

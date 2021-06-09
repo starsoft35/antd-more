@@ -1,10 +1,10 @@
-import * as React from 'react';
-import { Button, ConfigProvider } from 'antd';
-import { BizTable } from 'antd-more';
-import type { BizTableRequest, BizTableColumnType, BizTableActionType } from 'antd-more';
-import Mock from 'mockjs';
-import UpdateModal from './components/UpdateModal';
-import waitTime from './utils/waitTime';
+import * as React from "react";
+import { Button, ConfigProvider } from "antd";
+import { BizTable } from "antd-more";
+import type { BizTableRequest, BizTableColumnType, BizTableActionType } from "antd-more";
+import Mock from "mockjs";
+import UpdateModal from "./components/UpdateModal";
+import waitTime from "./utils/waitTime";
 
 type DataItem = {
   id: number;
@@ -18,10 +18,10 @@ const getDataApi = async ({ pageSize, pageNum }) => {
   return {
     data: Mock.mock({
       // [`list|${pageSize}`]: [{
-      'list|2': [{
-        'id|+1': pageSize * (pageNum - 1),
-        name: '@cname',
-        resume: '@cparagraph'
+      "list|2": [{
+        "id|+1": pageSize * (pageNum - 1),
+        name: "@cname",
+        resume: "@cparagraph"
       }]
     }).list,
     total: 100
@@ -35,17 +35,17 @@ const Demo: React.FC = () => {
   const actionRef = React.useRef<BizTableActionType>();
   const columns: BizTableColumnType<DataItem> = React.useMemo(() => ([
     {
-      title: '姓名',
-      dataIndex: 'name',
+      title: "姓名",
+      dataIndex: "name",
       width: 100
     },
     {
-      title: '简介',
-      dataIndex: 'resume'
+      title: "简介",
+      dataIndex: "resume"
     },
     {
-      title: '操作',
-      fixed: 'right',
+      title: "操作",
+      fixed: "right",
       width: 80,
       render: (_, record) => (
         <a
@@ -92,7 +92,7 @@ const Demo: React.FC = () => {
       />
       {/* 如果没有使用表格的全屏 toolbarAction.fullScreen ，就不用包裹 ConfigProvider */}
       <ConfigProvider
-        getPopupContainer={() => document.querySelector('.antd-more-table')}
+        getPopupContainer={() => document.querySelector(".antd-more-table")}
       >
         <UpdateModal
           visible={visible}

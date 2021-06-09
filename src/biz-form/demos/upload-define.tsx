@@ -1,13 +1,13 @@
-import * as React from 'react';
-import { BizForm } from 'antd-more';
-// import { UploadFile } from 'antd/lib/upload/interface';
-import ItemSpecialUpload from './components/ItemSpecialUpload';
+import * as React from "react";
+import { BizForm } from "antd-more";
+// import { UploadFile } from "antd/lib/upload/interface";
+import ItemSpecialUpload from "./components/ItemSpecialUpload";
 
 // // 上传图片
 // function uploadImage(file: File): Promise<{ fssId: string; }> {
 //   return new Promise((resolve, reject) => {
 //     // const formData: any = new FormData();
-//     // formData.append('file', file);
+//     // formData.append("file", file);
 //     setTimeout(() => {
 //       if (Math.random() > 0.3) {
 //         resolve({
@@ -31,7 +31,7 @@ const Demo: React.FC = () => {
 
   // // 提交时转换上传值
   // const transformUploadValue = React.useCallback((uploadValues: (UploadFile & Record<string, any>)[]) => {
-  //   return uploadValues ? uploadValues.filter(valItem => valItem.status !== 'error' && valItem.value).map(valItem => valItem.value) : undefined;
+  //   return uploadValues ? uploadValues.filter(valItem => valItem.status !== "error" && valItem.value).map(valItem => valItem.value) : undefined;
   // }, []);
 
   return (
@@ -48,7 +48,7 @@ const Demo: React.FC = () => {
           action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
           name: "file",
           headers: {
-            authorization: 'authorization-text',
+            authorization: "authorization-text",
           }
         }}
         transform={(files) => {

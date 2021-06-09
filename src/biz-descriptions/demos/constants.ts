@@ -1,8 +1,15 @@
 // 审核状态
-export const ApproveStatus = [
+export enum ApproveStatus {
+  Processing = 1,
+  Success,
+  Error
+}
+
+// 审核状态选项
+export const ApproveStatusOptions = [
   {
-    value: 1,
-    name: '审核中',
+    value: ApproveStatus.Processing,
+    name: "审核中",
     badge: {
       status: "processing"
     },
@@ -12,8 +19,8 @@ export const ApproveStatus = [
     }
   },
   {
-    value: 2,
-    name: '审核通过',
+    value: ApproveStatus.Success,
+    name: "审核通过",
     text: {
       style: {
         color: "green"
@@ -27,8 +34,8 @@ export const ApproveStatus = [
     }
   },
   {
-    value: 3,
-    name: '审核不通过',
+    value: ApproveStatus.Error,
+    name: "审核不通过",
     text: {
       style: {
         color: "red"

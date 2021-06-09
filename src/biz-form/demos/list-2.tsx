@@ -1,9 +1,9 @@
-import * as React from 'react';
-import { BizForm } from 'antd-more';
-import { Button, Card, Space, Row, Col, Popconfirm } from 'antd';
-import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
-import { getPCA } from 'lcn';
-import waitTime from './utils/waitTime';
+import * as React from "react";
+import { BizForm } from "antd-more";
+import { Button, Card, Space, Row, Col, Popconfirm } from "antd";
+import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
+import { getPCA } from "lcn";
+import waitTime from "./utils/waitTime";
 
 const pcaInlandData = getPCA({ inland: true, formatForm: true });
 

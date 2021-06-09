@@ -1,7 +1,7 @@
-import * as React from 'react';
-import { BizForm } from 'antd-more';
-import type { ModalFormProps } from 'antd-more';
-import waitTime from '../../utils/waitTime';
+import * as React from "react";
+import { BizForm } from "antd-more";
+import type { ModalFormProps } from "antd-more";
+import waitTime from "../../utils/waitTime";
 
 const { ModalForm, ItemInput, ItemTextArea } = BizForm;
 
@@ -23,7 +23,7 @@ const UpdateModal: React.FC<UpdateModalProps> = ({ data, onChange, visible, ...r
 
   return (
     <ModalForm
-      title={data ? '修改' : '新增'}
+      title={data ? "修改" : "新增"}
       visible={visible}
       form={form}
       pressEnterSubmit={false} // 回车建不触发提交

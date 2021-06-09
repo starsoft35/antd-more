@@ -1,9 +1,9 @@
-import * as React from 'react';
-import { Row, Col } from 'antd';
-import { BizForm } from 'antd-more';
-import { isSocialCreditCode, isBusinessLicense } from 'util-helpers';
-import { getPCA } from 'lcn';
-import waitTime from './utils/waitTime';
+import * as React from "react";
+import { Row, Col } from "antd";
+import { BizForm } from "antd-more";
+import { isSocialCreditCode, isBusinessLicense } from "util-helpers";
+import { getPCA } from "lcn";
+import waitTime from "./utils/waitTime";
 
 const pcaInlandData = getPCA({ inland: true, formatForm: true });
 
@@ -57,11 +57,11 @@ const CompanyInfo: React.FC = () => {
             rules={[
               {
                 validator(rules, value) {
-                  let errMsg = '';
+                  let errMsg = "";
                   if (!value) {
-                    errMsg = '请输入统一社会信用代码或营业执照号';
+                    errMsg = "请输入统一社会信用代码或营业执照号";
                   } else if (!isBusinessLicense(value) && !isSocialCreditCode(value)) {
-                    errMsg = '请输入正确的营业执照号';
+                    errMsg = "请输入正确的营业执照号";
                   }
                   if (errMsg) {
                     return Promise.reject(errMsg);

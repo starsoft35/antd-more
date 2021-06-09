@@ -1,6 +1,6 @@
-import * as React from 'react';
-import { BizForm } from 'antd-more';
-import moment from 'moment';
+import * as React from "react";
+import { BizForm } from "antd-more";
+import moment from "moment";
 
 const { ItemDate } = BizForm;
 

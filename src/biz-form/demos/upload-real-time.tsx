@@ -7,10 +7,10 @@
  * 
  *      如果设置 `transform` 可以帮助内置的规则进行校验。
  */
-import * as React from 'react';
-import { BizForm } from 'antd-more';
-import type { UploadFile } from 'antd/lib/upload/interface';
-import waitTime from './utils/waitTime';
+import * as React from "react";
+import { BizForm } from "antd-more";
+import type { UploadFile } from "antd/lib/upload/interface";
+import waitTime from "./utils/waitTime";
 
 const { ItemUpload } = BizForm;
 
@@ -18,7 +18,7 @@ const { ItemUpload } = BizForm;
 function uploadImage(file: File): Promise<{ fssId: string; }> {
   return new Promise((resolve, reject) => {
     // const formData: any = new FormData();
-    // formData.append('file', file);
+    // formData.append("file", file);
     setTimeout(() => {
       if (Math.random() > 0.3) {
         resolve({
@@ -42,7 +42,7 @@ const Demo: React.FC = () => {
 
   // 提交时转换上传值
   const transformUploadValue = React.useCallback((uploadValues: (UploadFile & Record<string, any>)[]) => {
-    return uploadValues ? uploadValues.filter(valItem => valItem.status !== 'error' && valItem.value).map(valItem => valItem.value) : undefined;
+    return uploadValues ? uploadValues.filter(valItem => valItem.status !== "error" && valItem.value).map(valItem => valItem.value) : undefined;
   }, []);
 
   return (
@@ -67,9 +67,9 @@ const Demo: React.FC = () => {
       // 使用 action 上传
       // uploadProps={{
       //   name: "file",
-      //   action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
+      //   action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
       //   headers: {
-      //     authorization: 'authorization-text',
+      //     authorization: "authorization-text",
       //   }
       // }}
       // transform={(files) => {
@@ -89,9 +89,9 @@ const Demo: React.FC = () => {
       // 使用 action 上传
       // uploadProps={{
       //   name: "file",
-      //   action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
+      //   action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
       //   headers: {
-      //     authorization: 'authorization-text',
+      //     authorization: "authorization-text",
       //   }
       // }}
       // transform={(files) => {
@@ -111,9 +111,9 @@ const Demo: React.FC = () => {
       // 使用 action 上传
       // uploadProps={{
       //   name: "file",
-      //   action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
+      //   action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
       //   headers: {
-      //     authorization: 'authorization-text',
+      //     authorization: "authorization-text",
       //   }
       // }}
       // transform={(files) => {

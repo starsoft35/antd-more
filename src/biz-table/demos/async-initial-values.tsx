@@ -6,19 +6,20 @@ import * as React from 'react';
 import { BizTable } from 'antd-more';
 import type { BizTableRequest, BizTableColumnType } from 'antd-more';
 import { getApplyList } from './service';
-import { ApproveStatus } from './constants';
+import { ApproveStatusOptions } from './constants';
+import type { ApproveStatus } from './constants';
 
 function getAsyncInitialValues(): Promise<{
   applyCode: string;
   createTime: string;
-  approveResult: string | number;
+  approveResult: ApproveStatus;
 }> {
   return new Promise(resolve => {
     setTimeout(() => {
       resolve({
         applyCode: '123456',
         createTime: '2020-10-10',
-        approveResult: ""
+        approveResult: 1
       });
     }, 5000);
   });
@@ -41,9 +42,9 @@ const columns: BizTableColumnType = [
   {
     dataIndex: "approveResult",
     title: "审核状态",
-    filters: ApproveStatus.map(item => ({ text: item.name, ...item })),
+    filters: ApproveStatusOptions.map(item => ({ text: item.name, ...item })),
     valueType: 'enumBadge',
-    valueEnum: ApproveStatus,
+    valueEnum: ApproveStatusOptions,
     search: {
       all: true
     }

@@ -31,7 +31,7 @@ yarn add antd-more
 ```javascript
 import { BizField } from 'antd-more';
 
-ReactDon.render(<BizField value="red" valueType="color" />, mountNode);
+ReactDon.render(<BizField value="This is the red text." valueType="color" />, mountNode);
 ```
 
 ## 对应版本

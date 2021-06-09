@@ -3,7 +3,7 @@ import { Space, Button } from 'antd';
 import { BizTable } from 'antd-more';
 import type { EditableBizTableActionType, BizTableColumnType } from 'antd-more';
 import Mock from 'mockjs';
-import { ApproveStatus } from './constants';
+import { ApproveStatusOptions } from './constants';
 
 const defaultData = Mock.mock({
   'list|2-5': [{
@@ -56,7 +56,7 @@ const Demo: React.FC = () => {
       dataIndex: "status",
       title: "审核状态",
       valueType: "enumBadge",
-      valueEnum: ApproveStatus,
+      valueEnum: ApproveStatusOptions,
       width: 150
     },
     {

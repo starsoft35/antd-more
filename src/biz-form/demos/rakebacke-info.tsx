@@ -1,7 +1,7 @@
-import * as React from 'react';
-import { Row, Col } from 'antd';
-import { BizForm } from 'antd-more';
-import waitTime from './utils/waitTime';
+import * as React from "react";
+import { Row, Col } from "antd";
+import { BizForm } from "antd-more";
+import waitTime from "./utils/waitTime";
 
 const { ItemRadio, ItemNumber } = BizForm;
 
@@ -14,15 +14,20 @@ const threeColSpan = {
   xl: 8
 };
 
+enum RakebackeCycle {
+  Day,
+  Month
+}
+
 // 返佣周期
-const RakebackeCycle = [
+const rakebackeCycle = [
   {
-    value: "0",
-    name: "日返"
+    name: "日返",
+    value: RakebackeCycle.Day
   },
   {
-    value: "1",
-    name: "月返"
+    name: "月返",
+    value: RakebackeCycle.Month
   }
 ];
 
@@ -50,7 +55,7 @@ const RakebackeInfo: React.FC = () => {
     >
       <Row>
         <Col {...oneColSpan}>
-          <ItemRadio label="返佣周期" name="rakebackeCycle" required options={RakebackeCycle} />
+          <ItemRadio label="返佣周期" name="rakebackeCycle" required options={rakebackeCycle} />
         </Col>
         <Col {...oneColSpan}>
           <BizForm.Item label="普通刷卡" colon={false}>

@@ -1,12 +1,12 @@
-import * as React from 'react';
-import { BizForm } from 'antd-more';
-import moment from 'moment';
+import * as React from "react";
+import { BizForm } from "antd-more";
+import moment from "moment";
 
 const { ItemTimeRange } = BizForm;
 
 const initialValues = {
-  time4: ['14:59:45', '18:00:00'],
-  time5: [moment('14:59:45', 'HH:mm:ss'), moment('18:00:00', 'HH:mm:ss')]
+  time4: ["14:59:45", "18:00:00"],
+  time5: [moment("14:59:45", "HH:mm:ss"), moment("18:00:00", "HH:mm:ss")]
 }
 
 const Demo: React.FC = () => {

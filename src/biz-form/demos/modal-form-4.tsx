@@ -1,6 +1,6 @@
-import * as React from 'react';
-import { Button } from 'antd';
-import ChangePasswordModal from './components/ChangePasswordModal';
+import * as React from "react";
+import { Button } from "antd";
+import ChangePasswordModal from "./components/ChangePasswordModal";
 
 const Demo: React.FC = () => {
   const [visible, setVisible] = React.useState(false);

@@ -3,23 +3,23 @@
  * desc: |
  *      可通过 `ready` 控制表单是否已准备好（如表单的初始值需要通过异步获取）。
  */
-import * as React from 'react';
-import { BizForm } from 'antd-more';
-import waitTime from './utils/waitTime';
+import * as React from "react";
+import { BizForm } from "antd-more";
+import waitTime from "./utils/waitTime";
 
 const { ItemInput } = BizForm;
 
 function getNameApi(): Promise<string> {
   return new Promise(resolve => {
     setTimeout(() => {
-      resolve('李四');
+      resolve("李四");
     }, 2000);
   })
 }
 
 const Demo: React.FC = () => {
   const [ready, setReady] = React.useState(false);
-  const [initialValues, setInitialValues] = React.useState({ name: '张三' });
+  const [initialValues, setInitialValues] = React.useState({ name: "张三" });
 
   React.useEffect(() => {
     getNameApi().then((name) => {

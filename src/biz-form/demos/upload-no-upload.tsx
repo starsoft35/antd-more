@@ -3,9 +3,9 @@
  * desc: |
  *      不设置 `onUpload` 即可
  */
-import * as React from 'react';
-import { BizForm } from 'antd-more';
-import waitTime from './utils/waitTime';
+import * as React from "react";
+import { BizForm } from "antd-more";
+import waitTime from "./utils/waitTime";
 
 const { ItemUpload } = BizForm;
 

@@ -3,7 +3,7 @@ import { Button, Space } from 'antd';
 import { BizTable, BizForm } from 'antd-more';
 import type { EditableBizTableActionType, BizTableColumnType } from 'antd-more';
 import Mock from 'mockjs';
-import { ApproveStatus } from './constants';
+import { ApproveStatusOptions } from './constants';
 
 const defaultData = Mock.mock({
   'list|2-5': [{
@@ -66,7 +66,7 @@ const Demo: React.FC = () => {
       title: "审核状态",
       tooltip: "单数行编辑时为选择器",
       valueType: "enumBadge",
-      valueEnum: ApproveStatus,
+      valueEnum: ApproveStatusOptions,
       editable: (_, record, index) => ({
         itemType: index % 2 === 0 ? "select" : "radio"
       })

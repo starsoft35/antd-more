@@ -3,24 +3,24 @@
  * desc: |
  *      第二步即可提交，提交成功后，手动触发下一步，第三步仅用作显示
  */
-import * as React from 'react';
-import { Card, Result, Space, Button, Popconfirm } from 'antd';
-import { PayCircleOutlined } from '@ant-design/icons';
-import { BasicLayout, FooterToolbar, PageContainer } from '@ant-design/pro-layout';
-import { BizForm } from 'antd-more';
-import type { StepsFormActionType } from 'antd-more';
-import waitTime from './utils/waitTime';
+import * as React from "react";
+import { Card, Result, Space, Button, Popconfirm } from "antd";
+import { PayCircleOutlined } from "@ant-design/icons";
+import { BasicLayout, FooterToolbar, PageContainer } from "@ant-design/pro-layout";
+import { BizForm } from "antd-more";
+import type { StepsFormActionType } from "antd-more";
+import waitTime from "./utils/waitTime";
 
 const { StepsForm, ItemInput, ItemSelect, ItemNumber, ItemUpload, ItemTextArea } = BizForm;
 
-const BillAccountName = [
+const billAccountOptions = [
   {
     name: "张三",
-    value: 'a'
+    value: "a"
   },
   {
     name: "李四",
-    value: 'b'
+    value: "b"
   },
 ];
 
@@ -38,20 +38,20 @@ const Demo: React.FC = () => {
       title="antd-more"
       menuDataRender={() => [
         {
-          path: '/one',
+          path: "/one",
           icon: <PayCircleOutlined />,
-          name: '付款管理',
+          name: "付款管理",
           children: [
             {
-              path: 'two',
-              name: '创建付款单',
+              path: "two",
+              name: "创建付款单",
             },
           ],
         },
       ]}
       layout="mix"
       location={{
-        pathname: '/one/two',
+        pathname: "/one/two",
       }}
     >
       <PageContainer title="创建付款单">
@@ -59,7 +59,7 @@ const Demo: React.FC = () => {
           <StepsForm
             onFinish={async (values) => {
               await waitTime(2000);
-              console.log('所有表单值：', values);
+              console.log("所有表单值：", values);
 
               // 因为第二步已经提交，这里手动触发下一步
               actionRef.current.next(false);
@@ -84,14 +84,14 @@ const Demo: React.FC = () => {
               submitter={{
                 render: (_, dom) => (
                   <>
-                    <span style={{ marginRight: 10, color: 'gray' }}>自定义提示信息</span>
+                    <span style={{ marginRight: 10, color: "gray" }}>自定义提示信息</span>
                     {dom}
                   </>
                 )
               }}
             >
               <ItemInput label="收款账号" name="ban" required />
-              <ItemSelect label="收款账号名称" name="accountName" options={BillAccountName} required />
+              <ItemSelect label="收款账号名称" name="accountName" options={billAccountOptions} required />
             </StepsForm.StepForm>
             <StepsForm.StepForm
               title="填写付款信息"

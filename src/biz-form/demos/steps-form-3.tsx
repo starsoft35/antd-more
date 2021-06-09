@@ -1,19 +1,19 @@
-import * as React from 'react';
-import { Modal, Button, message } from 'antd';
-import { BizForm } from 'antd-more';
-import type { StepsFormActionType } from 'antd-more';
-import waitTime from './utils/waitTime';
+import * as React from "react";
+import { Modal, Button, message } from "antd";
+import { BizForm } from "antd-more";
+import type { StepsFormActionType } from "antd-more";
+import waitTime from "./utils/waitTime";
 
 const { StepsForm, ItemInput, ItemSelect, ItemNumber, ItemUpload, ItemTextArea } = BizForm;
 
-const BillAccountName = [
+const billAccountOptions = [
   {
     name: "张三",
-    value: 'a'
+    value: "a"
   },
   {
     name: "李四",
-    value: 'b'
+    value: "b"
   },
 ];
 
@@ -37,7 +37,7 @@ const Demo: React.FC = () => {
           await waitTime(2000);
           console.log(values);
           setVisible(false);
-          message.success('提交成功');
+          message.success("提交成功");
 
           // 提交成功再重置表单
           // actionRef.current.reset();
@@ -62,7 +62,7 @@ const Demo: React.FC = () => {
           labelWidth={112}
         >
           <ItemInput label="收款账号" name="ban" required />
-          <ItemSelect label="收款账号名称" name="accountName" options={BillAccountName} required />
+          <ItemSelect label="收款账号名称" name="accountName" options={billAccountOptions} required />
         </StepsForm.StepForm>
         <StepsForm.StepForm
           title="填写付款信息"

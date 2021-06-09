@@ -5,11 +5,11 @@ import { BizForm, BizTable, BizField } from 'antd-more';
 import { formatBankCard } from 'util-helpers';
 import type { EditableBizTableActionType, BizTableColumnType } from 'antd-more';
 import Mock from 'mockjs';
-import { Bank, ApproveStatus } from './constants';
+import { BankOptions, ApproveStatusOptions } from './constants';
 
 Mock.Random.extend({
   bank() {
-    return this.pick(Bank.map(item => item.value))
+    return this.pick(BankOptions.map(item => item.value))
   }
 });
 
@@ -54,7 +54,7 @@ const Demo: React.FC = () => {
             <div>
               {record.merchantName}
                -
-              <BizField value={record.bank} valueType="enum" valueEnum={Bank} />
+              <BizField value={record.bank} valueType="enum" valueEnum={BankOptions} />
             </div>
             <div>{formatBankCard(`${record.bankCardNo}`)}</div>
           </>
@@ -65,7 +65,7 @@ const Demo: React.FC = () => {
       dataIndex: "status",
       title: "审核状态",
       valueType: "enumBadge",
-      valueEnum: ApproveStatus,
+      valueEnum: ApproveStatusOptions,
       width: 120,
       editable: {
         required: true,

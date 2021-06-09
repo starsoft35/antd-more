@@ -1,6 +1,6 @@
-import * as React from 'react';
-import { BizForm } from 'antd-more';
-import { getPCA, getPC } from 'lcn';
+import * as React from "react";
+import { BizForm } from "antd-more";
+import { getPCA, getPC } from "lcn";
 
 const pcaInlandData = getPCA({ inland: true, formatForm: true });
 const pcInlandData = getPC({ inland: true, formatForm: true });

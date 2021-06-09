@@ -3,11 +3,11 @@ import { Row, Col, Space, Button } from 'antd';
 import { BizForm, BizTable } from 'antd-more';
 import type { EditableBizTableActionType, BizTableColumnType } from 'antd-more';
 import Mock from 'mockjs';
-import { Bank } from './constants';
+import { BankOptions } from './constants';
 
 Mock.Random.extend({
   bank() {
-    return this.pick(Bank.map(item => item.value))
+    return this.pick(BankOptions.map(item => item.value))
   }
 });
 
@@ -46,7 +46,7 @@ const Demo: React.FC = () => {
       dataIndex: "bank",
       title: "银行",
       valueType: "enum",
-      valueEnum: Bank,
+      valueEnum: BankOptions,
       width: 300,
       editable: {
         selectProps: {

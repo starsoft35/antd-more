@@ -1,9 +1,9 @@
-import * as React from 'react';
-import 'moment/locale/zh-cn';
-import { Switch, Row, Col } from 'antd';
-import { BizForm } from 'antd-more';
-import { getPCA } from 'lcn';
-import waitTime from './utils/waitTime';
+import * as React from "react";
+import "moment/locale/zh-cn";
+import { Switch, Row, Col } from "antd";
+import { BizForm } from "antd-more";
+import { getPCA } from "lcn";
+import waitTime from "./utils/waitTime";
 
 const pcaInlandData = getPCA({ inland: true, formatForm: true });
 
@@ -40,19 +40,25 @@ const specialColSpan = {
   xxl: 6
 }
 
+enum Cycle {
+  Day,
+  Month,
+  Quarter
+}
+
 // 周期
-const cycle = [
+const cycleOptions = [
   {
     name: "按日",
-    value: "0"
+    value: Cycle.Day
   },
   {
     name: "按月",
-    value: "1"
+    value: Cycle.Month
   },
   {
-    name: '按季度',
-    value: '2'
+    name: "按季度",
+    value: Cycle.Quarter
   },
 ];
 
@@ -165,16 +171,16 @@ const Demo: React.FC = () => {
             <ItemTextArea label="TextArea" name="textarea" required={required} />
           </Col>
           <Col {...specialColSpan}>
-            <ItemRadio label="Radio" name="radio" options={cycle} required={required} />
+            <ItemRadio label="Radio" name="radio" options={cycleOptions} required={required} />
           </Col>
           <Col {...specialColSpan}>
-            <ItemRadio label="RadioButton" name="radioButton" optionType="button" options={cycle} required={required} />
+            <ItemRadio label="RadioButton" name="radioButton" optionType="button" options={cycleOptions} required={required} />
           </Col>
           <Col {...specialColSpan}>
-            <ItemSelect label="Select" name="select" options={cycle} required={required} />
+            <ItemSelect label="Select" name="select" options={cycleOptions} required={required} />
           </Col>
           <Col {...specialColSpan}>
-            <ItemCheckbox label="Checkbox" name="checkbox" options={cycle} all required={required} />
+            <ItemCheckbox label="Checkbox" name="checkbox" options={cycleOptions} all required={required} />
           </Col>
           <Col {...colSpan}>
             <ItemSwitch label="Switch" name="switch" required={required} />

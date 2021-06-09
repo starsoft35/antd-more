@@ -1,7 +1,7 @@
-import * as React from 'react';
-import { BizForm } from 'antd-more';
-import { getPCA } from 'lcn';
-import waitTime from './utils/waitTime';
+import * as React from "react";
+import { BizForm } from "antd-more";
+import { getPCA } from "lcn";
+import waitTime from "./utils/waitTime";
 
 const pcaInlandData = getPCA({ inland: true, formatForm: true });
 

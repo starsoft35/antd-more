@@ -1,7 +1,7 @@
-import * as React from 'react';
-import { message } from 'antd';
-import { BizForm } from 'antd-more';
-import waitTime from './utils/waitTime';
+import * as React from "react";
+import { message } from "antd";
+import { BizForm } from "antd-more";
+import waitTime from "./utils/waitTime";
 
 function sendCaptcha(mobile) {
   return new Promise<void>(resolve => {
@@ -35,7 +35,7 @@ const ForgetPassword: React.FC = () => {
         label="验证码"
         name="captcha"
         required
-        normalize={(val) => val.replace(/[^\d]/g, '')}
+        normalize={(val) => val.replace(/[^\d]/g, "")}
         inputProps={{ maxLength: 6 }}
         onGetCaptcha={async () => {
           try {

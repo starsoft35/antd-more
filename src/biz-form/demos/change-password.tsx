@@ -1,9 +1,9 @@
 /**
  * title: 修改密码
  */
-import * as React from 'react';
-import { BizForm } from 'antd-more';
-import waitTime from './utils/waitTime';
+import * as React from "react";
+import { BizForm } from "antd-more";
+import waitTime from "./utils/waitTime";
 
 const { ItemPassword, Item } = BizForm;
 
@@ -13,7 +13,7 @@ const Demo: React.FC = () => {
   return (
     <BizForm
       submitter={{
-        submitText: '确定',
+        submitText: "确定",
         noReset: true
       }}
       onFinish={async (values) => {
@@ -36,14 +36,14 @@ const Demo: React.FC = () => {
         label="新密码"
         name="password"
         required
-        dependencies={['oldPassword']}
+        dependencies={["oldPassword"]}
         extendRules={[
           {
             validator(rules, value) {
-              let errMsg = '';
-              const oldPwd = form.getFieldValue('oldPassword');
+              let errMsg = "";
+              const oldPwd = form.getFieldValue("oldPassword");
               if (oldPwd && oldPwd === value) {
-                errMsg = '新密码不能与原密码一致';
+                errMsg = "新密码不能与原密码一致";
               }
               if (errMsg) {
                 return Promise.reject(errMsg);
@@ -58,15 +58,15 @@ const Demo: React.FC = () => {
         label="重复新密码"
         name="repeatPassword"
         required
-        dependencies={['password']}
+        dependencies={["password"]}
         rules={[
           {
             validator(rules, value) {
-              let errMsg = '';
+              let errMsg = "";
               if (!value) {
-                errMsg = '请再次输入新密码';
-              } else if (value !== form.getFieldValue('password')) {
-                errMsg = '两次输入的密码不一致';
+                errMsg = "请再次输入新密码";
+              } else if (value !== form.getFieldValue("password")) {
+                errMsg = "两次输入的密码不一致";
               }
               if (errMsg) {
                 return Promise.reject(errMsg);

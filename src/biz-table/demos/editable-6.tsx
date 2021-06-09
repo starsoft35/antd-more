@@ -3,6 +3,7 @@ import { Space } from 'antd';
 import { BizTable } from 'antd-more';
 import type { BizTableRequest, BizTableColumnType, EditableBizTableActionType } from 'antd-more';
 import { getApplyList } from './service';
+import type { ApproveStatus } from './constants';
 
 type DataItem = {
   applyCode: string;
@@ -10,7 +11,7 @@ type DataItem = {
   approverName: string;
   createTime: string;
   approveTime: string;
-  approveResult: 1 | 2 | 3;
+  approveResult: ApproveStatus;
 }
 
 const { EditableBizTable } = BizTable;

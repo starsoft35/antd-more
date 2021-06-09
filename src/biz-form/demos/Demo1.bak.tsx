@@ -1,6 +1,6 @@
-import * as React from 'react';
-import { BizForm } from 'antd-more';
-import { getPCA } from 'lcn';
+import * as React from "react";
+import { BizForm } from "antd-more";
+import { getPCA } from "lcn";
 
 const pcaInlandData = getPCA({ inland: true, formatForm: true });
 
@@ -18,7 +18,7 @@ const formLayout = {
 // const initialValues = {
 //   arr1: [
 //     {
-//       // bankCardNo: '1111'
+//       // bankCardNo: "1111"
 //     },
 //     {
 
@@ -28,12 +28,12 @@ const formLayout = {
 //     {
 //       subArr2: [
 //         {
-//           bankCardNo: '2222****77***2'
+//           bankCardNo: "2222****77***2"
 //         }
 //       ]
 //     }
 //   ],
-//   date: '2020-10-10 10:00:00'
+//   date: "2020-10-10 10:00:00"
 // };
 
 const Demo: React.FC = () => {

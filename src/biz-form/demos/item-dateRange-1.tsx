@@ -1,11 +1,11 @@
-import * as React from 'react';
-import { BizForm } from 'antd-more';
-import moment from 'moment';
+import * as React from "react";
+import { BizForm } from "antd-more";
+import moment from "moment";
 
 const { ItemDateRange } = BizForm;
 
 const initialValues = {
-  date7: [moment().subtract(30, 'days').startOf('day'), moment().endOf('day')],
+  date7: [moment().subtract(30, "days").startOf("day"), moment().endOf("day")],
   date8: ["2020-10-10", "2020-12-12"]
 }
 
