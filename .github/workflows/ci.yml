@@ -1,11 +1,14 @@
 name: Build and Deploy Docs
 on:
-  push:
+  push|pull_request:
     branches:
       - master
-  pull_request:
-    branches:
-      - master
+      - v*
+    paths:
+      - 'src/**'
+      - 'package.json'
+      - '.umirc.js'
+      - '.dumi/**'
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -18,11 +21,24 @@ jobs:
         run: npm install
       - name: Build package
         run: npm run build
-      - name: Build docs
-        run: npm run build:doc
-      - name: Deploy docs
+      - name: Build latest docs
+        if: ${{github.ref == 'refs/heads/master'}}
+        run: npm run doc
+      - name: Deploy latest docs
+        if: ${{github.ref == 'refs/heads/master'}}
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN_WORKFLOW }}
           BRANCH: gh-pages
           FOLDER: site
+          TARGET_FODLER: latest
+      - name: Build version docs
+        if: ${{github.ref != 'refs/heads/master'}}
+        run: npm run doc-version
+      - name: Deploy version docs
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN_WORKFLOW }}
+          BRANCH: gh-pages
+          FOLDER: site
+          TARGET_FODLER: ${{github.ref}}
