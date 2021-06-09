@@ -1,6 +1,7 @@
 # antd-more
 
 [![npm][npm]][npm-url]
+![GitHub](https://img.shields.io/github/license/doly-dev/util-helpers.svg)
 
 基于 [antd] 扩展的业务场景组件。
 

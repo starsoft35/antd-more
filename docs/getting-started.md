@@ -11,6 +11,7 @@ nav:
 # 快速上手
 
 [![npm][npm]][npm-url]
+![GitHub](https://img.shields.io/github/license/doly-dev/util-helpers.svg)
 
 ## 使用
 
