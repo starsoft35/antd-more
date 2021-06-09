@@ -4,11 +4,6 @@ on:
     branches:
       - master
       - v*
-    paths:
-      - 'src/**'
-      - 'package.json'
-      - '.umirc.js'
-      - '.dumi/**'
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
