@@ -4,6 +4,7 @@ on:
     branches:
       - master
       - v*
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -31,6 +32,7 @@ jobs:
         if: ${{github.ref != 'refs/heads/master'}}
         run: npm run doc-version
       - name: Deploy version docs
+        if: ${{github.ref != 'refs/heads/master'}}
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN_WORKFLOW }}
