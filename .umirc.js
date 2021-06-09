@@ -1,5 +1,12 @@
 const pkg = require('./package.json');
-const version = process.env.BUIDL_DOC_VERSION ? `refs/heads/v${pkg.version.split('.')[0]}` : 'latest';
+
+const MajorVersionNumber = pkg.version.split('.')[0];
+const versionSiteRoot = `refs/heads/v${MajorVersionNumber}`;
+
+const preMajorVersionNumber = MajorVersionNumber - 1;
+const preVersionSiteRoot = `refs/heads/v${preMajorVersionNumber}`;
+
+const version = process.env.BUIDL_DOC_VERSION ? versionSiteRoot : 'latest';
 
 const serverRootDirect = process.env.NODE_ENV === 'production' ? 'https://doly-dev.github.io/antd-more/' : '/';
 const logo = 'https://www.caijinfeng.com/assets/images/logo-doly@3x.png';
@@ -39,8 +46,8 @@ const umiConfig = {
   navs: [
     null, // null 值代表保留约定式生成的导航，只做增量配置
     {
-      title: 'v1.x',
-      path: 'https://doly-dev.github.io/antd-more/site/v1/index.html',
+      title: `v${preMajorVersionNumber}.x`,
+      path: `https://doly-dev.github.io/antd-more/${preVersionSiteRoot}/index.html`,
     },
     {
       title: 'GitHub',
