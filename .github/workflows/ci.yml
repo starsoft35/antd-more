@@ -4,6 +4,14 @@ on:
     branches:
       - master
       - v*
+    tags-ignore:
+      - v*
+    paths:
+      - .dumi/**
+      - docs/**
+      - src/**
+      - .fatherrc.ts
+      - .umirc.js
 
 jobs:
   build-and-deploy:

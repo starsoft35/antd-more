@@ -4,3 +4,5 @@ es
 lib
 site
 dist
+.eslintrc.js
+commitlint.config.js
