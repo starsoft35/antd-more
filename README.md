@@ -40,6 +40,7 @@ yarn add antd-more
 ```javascript
 import { BizField } from 'antd-more';
 
+// 值类型为颜色，显示红色色块
 ReactDon.render(<BizField value="red" valueType="color" />, mountNode);
 ```
 
