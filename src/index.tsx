@@ -14,7 +14,7 @@ export type {
   DictionaryListProps,
   DictionaryRadioProps,
   DictionarySelectProps,
-  EnumData as DictionaryEnumData
+  EnumData as DictionaryEnumData,
 } from './dictionary';
 export { default as Dictionary } from './dictionary';
 export type { InputIconProps } from './input-icon';
@@ -51,7 +51,11 @@ export type {
   StepsFormSubmitterProps,
 } from './biz-form';
 export { default as BizForm } from './biz-form';
-export type { BizFieldProps, ValueType as BizFieldValueType, EnumData as BizFieldEnumData } from './biz-field';
+export type {
+  BizFieldProps,
+  ValueType as BizFieldValueType,
+  EnumData as BizFieldEnumData,
+} from './biz-field';
 export { default as BizField } from './biz-field';
 export type {
   BizTableActionType,
@@ -60,8 +64,12 @@ export type {
   BizTableProps,
   EditableBizTableProps,
   EditableBizTableActionType,
-  EditableBizTableOptions,
+  EditableBizTableEditable,
 } from './biz-table';
 export { default as BizTable } from './biz-table';
-export type { BizDescriptionsProps, BizDescriptionsItemProps, BizDescriptionsColumnItemProps } from './biz-descriptions';
+export type {
+  BizDescriptionsProps,
+  BizDescriptionsItemProps,
+  BizDescriptionsColumnItemProps,
+} from './biz-descriptions';
 export { default as BizDescriptions } from './biz-descriptions';

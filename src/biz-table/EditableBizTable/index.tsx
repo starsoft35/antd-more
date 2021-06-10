@@ -46,7 +46,7 @@ export interface EditableBizTableActionType<RecordType = any> {
  */
 export type EditableActionType<RecordType = any> = EditableBizTableActionType<RecordType>;
 
-export interface EditableBizTableOptions<RecordType = any> {
+export interface EditableBizTableEditable<RecordType = any> {
   onSave?: (rowKey: Key, record: RecordType, isNewRecord: boolean) => Promise<any>;
   onDelete?: (rowKey: Key, record: RecordType, isNewRecord: boolean) => Promise<any>;
   editableKeys?: Key[];
@@ -59,15 +59,15 @@ export interface EditableBizTableOptions<RecordType = any> {
 }
 
 /**
- * @deprecated Please use `EditableBizTableOptions` instead.
+ * @deprecated Please use `EditableBizTableEditable` instead.
  */
-export type EditableOptions<RecordType = any> = EditableBizTableOptions<RecordType>;
+export type EditableOptions<RecordType = any> = EditableBizTableEditable<RecordType>;
 
 export interface EditableBizTableProps<RecordType extends object = any>
   extends Omit<BizTableProps<RecordType>, 'onChange'> {
   onValuesChange?: (values: RecordType[]) => void;
   value?: RecordType[];
-  editable?: EditableBizTableOptions<RecordType>;
+  editable?: EditableBizTableEditable<RecordType>;
 
   // 保存 或 删除后需要更新表格数据
   onChange?: (values: RecordType[]) => void;
@@ -93,7 +93,7 @@ const EditableBizTable = <RecordType extends object = any>({
     { index: number; rowKey: Key; recordConfig: Partial<RecordType> }[]
   >([]); // 新增记录
 
-  const editableKeyMapRef = React.useRef<object>({});
+  const editableKeyMapRef = React.useRef<Record<string, any>>({});
 
   const { regChildForm, unregChildForm } = React.useContext(ChildFormContext) || {};
 

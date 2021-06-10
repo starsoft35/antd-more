@@ -14,7 +14,7 @@ export interface InputIconProps extends Omit<InputProps, 'onChange'> {
   iconData: Map<IconProp[0], IconProp[1]>;
   showSearch?: boolean;
   column?: number;
-  onChange?: (iconName: string) => void;
+  onChange?: (iconName?: string) => void;
 }
 
 const InputIcon: React.FC<InputIconProps> = (props) => {
@@ -31,7 +31,8 @@ const InputIcon: React.FC<InputIconProps> = (props) => {
     (icon: IconProp) => {
       const hasChange = icon?.[0] !== state;
       if (hasChange) {
-        setState(icon?.[0] as any);
+        setState(icon[0]);
+        onChange(icon[0]);
       }
     },
     [state],
@@ -43,6 +44,7 @@ const InputIcon: React.FC<InputIconProps> = (props) => {
       if (!e.target.value || (!state && !icons.has(e.target.value))) {
         setState('');
       }
+      onChange();
     },
     [icons, state],
   );

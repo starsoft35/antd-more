@@ -42,7 +42,7 @@ const BizField: React.FC<BizFieldProps> = ({
 
   if (valueType === 'text' || valueType === 'money') {
     // 文本 或 金额
-    const { color, size, prefix, suffix, style, ...restTextProps } = restProps || {};
+    const { color, size, prefix, suffix, style, ...restTextProps } = restProps || {}; // eslint-disable-line @typescript-eslint/no-unused-vars
     const styles: Record<string, any> = { ...style };
 
     const retValue = valueType === 'text' ? realValue : formatMoney(realValue);

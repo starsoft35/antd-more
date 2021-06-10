@@ -7,7 +7,7 @@ import type {
   EditableActionType,
   EditableBizTableActionType,
   EditableOptions,
-  EditableBizTableOptions,
+  EditableBizTableEditable,
 } from './EditableBizTable';
 import type {
   ActionType,
@@ -36,7 +36,7 @@ export type {
   BizTableProps,
   EditableBizTableProps,
   EditableBizTableActionType,
-  EditableBizTableOptions,
+  EditableBizTableEditable,
 };
 
 export default BizTableWrap;
