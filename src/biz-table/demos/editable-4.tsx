@@ -92,7 +92,7 @@ const Demo: React.FC = () => {
     },
     {
       title: "操作",
-      fixed: "right" as "right",
+      fixed: "right",
       width: 80,
       render: (_, record, index) => (
         <Space>

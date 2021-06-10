@@ -70,11 +70,11 @@ const BizField: React.FC<BizFieldProps> = ({
   } else if (valueType === 'image') {
     // 图片
     return <FieldImage value={realValue} {...restProps} />;
-  } else if (DateType.includes(valueType)) {
+  } else if (DateType.includes(valueType as string)) {
     // 日期类型
     const { format, ...rest } = restProps;
     return <span {...rest}>{getDateStr(realValue, valueType, format)}</span>;
-  } else if (IndexType.includes(valueType)) {
+  } else if (IndexType.includes(valueType as string)) {
     // 序号
     return <FieldIndex value={realValue + 1} type={valueType} {...restProps} />;
   } else if (valueType === 'progress') {
@@ -83,11 +83,11 @@ const BizField: React.FC<BizFieldProps> = ({
   } else if (valueType === 'percent') {
     // 百分比
     return <Percent value={realValue} {...restProps} />;
-  } else if (EnumType.includes(valueType)) {
+  } else if (EnumType.includes(valueType as string)) {
     // 枚举值
     const enumProps = {
       value: realValue,
-      type: DectionaryTypeMap[valueType],
+      type: DectionaryTypeMap[valueType as string],
       data: valueEnum,
     };
     return Array.isArray(realValue) ? (

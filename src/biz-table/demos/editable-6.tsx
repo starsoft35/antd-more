@@ -3,7 +3,6 @@ import { Space } from 'antd';
 import { BizTable } from 'antd-more';
 import type { BizTableRequest, BizTableColumnType, EditableBizTableActionType } from 'antd-more';
 import { getApplyList } from './service';
-import type { ApproveStatus } from './constants';
 
 type DataItem = {
   applyCode: string;
@@ -11,7 +10,6 @@ type DataItem = {
   approverName: string;
   createTime: string;
   approveTime: string;
-  approveResult: ApproveStatus;
 }
 
 const { EditableBizTable } = BizTable;
@@ -80,8 +78,8 @@ const Demo: React.FC = () => {
     {
       title: "操作",
       width: 120,
-      fixed: "right" as "right",
-      render: (_, record, index) => {
+      fixed: "right",
+      render: (_, record) => {
         return (
           <Space>
             {

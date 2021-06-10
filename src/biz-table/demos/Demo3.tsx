@@ -2,7 +2,6 @@ import * as React from 'react';
 import { BizTable } from 'antd-more';
 import type { BizTableRequest, BizTableColumnType } from 'antd-more';
 import { getApplyList } from './service';
-import type { ApproveStatus } from './constants';
 
 type DataItem = {
   applyCode: string;
@@ -10,7 +9,6 @@ type DataItem = {
   approverName: string;
   createTime: string;
   approveTime: string;
-  approveResult: ApproveStatus;
 }
 
 const columns: BizTableColumnType<DataItem> = [
