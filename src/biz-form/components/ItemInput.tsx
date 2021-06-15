@@ -36,7 +36,7 @@ const validateUserName = (value, { label }) => {
 const validateMethod = {
   bankCard: (val) => isBankCard(val, { loose: true }),
   email: isEmail,
-  idCard: isIdCard,
+  idCard: (val) => isIdCard(val, { loose: true }),
   mobile: isMobile,
 };
 

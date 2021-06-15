@@ -82,7 +82,7 @@
     "moment": "^2.29.1",
     "rc-hooks": "^1.0.0",
     "react-color": "^2.19.3",
-    "util-helpers": "^3.10.4"
+    "util-helpers": "4"
   },
   "lint-staged": {
     "src/**/*.{ts,tsx,js,jsx}": "eslint",
