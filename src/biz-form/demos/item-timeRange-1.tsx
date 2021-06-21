@@ -11,12 +11,12 @@ const initialValues = {
 }
 
 // 回显时判断是否选中24小时
-// function isAllDay(times) {
-//   if (Array.isArray(times) && times[0] === '00:00:00' && times[1] === '23:59:59') {
-//     return true;
-//   }
-//   return false;
-// }
+function isAllDay(times) {
+  if (Array.isArray(times) && times[0].format('HH:mm:ss') === '00:00:00' && times[1].format('HH:mm:ss') === '23:59:59') {
+    return true;
+  }
+  return false;
+}
 
 const Demo: React.FC = () => {
   const [form] = BizForm.useForm();
@@ -42,6 +42,12 @@ const Demo: React.FC = () => {
       onFinish={value => console.log(value)}
       initialValues={initialValues}
       labelWidth={98}
+      onValuesChange={(changedValues) => {
+        console.log(changedValues);
+        if (changedValues.time3) {
+          setAllDay(isAllDay(changedValues.time3));
+        }
+      }}
     >
       <ItemTimeRange label="时间" name="time1" />
       <ItemTimeRange label="解构字段" name="time2" names={["startTime", "endTime"]} required tooltip="传入names会自动将值解构到当前层级" />
