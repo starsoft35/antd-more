@@ -12,8 +12,10 @@ const initialValues = {
 
 // 回显时判断是否选中24小时
 function isAllDay(times) {
-  if (Array.isArray(times) && times[0].format('HH:mm:ss') === '00:00:00' && times[1].format('HH:mm:ss') === '23:59:59') {
-    return true;
+  if (Array.isArray(times) && times.length === 2) {
+    const t1 = typeof times[0] === 'object' ? times[0].format('HH:mm:ss') : times[0];
+    const t2 = typeof times[1] === 'object' ? times[1].format('HH:mm:ss') : times[1];
+    return t1 === '00:00:00' && t2 === '23:59:59';
   }
   return false;
 }
