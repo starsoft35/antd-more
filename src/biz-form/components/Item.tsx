@@ -3,6 +3,7 @@ import { Form } from 'antd';
 import type { FormItemProps, ColProps } from './antd.interface';
 import FieldContext from '../FieldContext';
 import ListFieldContext from '../ListFieldContext';
+import WrapperFormElement from './form/WrapperFormElement';
 
 // 初始值（可能脱敏）->格式化->验证（转换再验证）
 // 输入->格式化->验证（转换再验证）
@@ -17,6 +18,11 @@ export interface BizFormItemProps extends FormItemProps {
   labelWidth?: number | 'auto';
   hideLabel?: boolean;
   renderField?: (dom: JSX.Element) => JSX.Element;
+  contentBefore?: React.ReactNode;
+  contentAfter?: React.ReactNode;
+  contentConfig?: {
+    align?: React.CSSProperties['alignItems'];
+  };
 }
 
 const BizFormItem: React.FC<BizFormItemProps> = ({
@@ -24,12 +30,16 @@ const BizFormItem: React.FC<BizFormItemProps> = ({
   transform,
   renderField,
   name,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   colProps,
   rules = [],
   extendRules = [],
   labelWidth,
   hideLabel,
   labelCol,
+  contentBefore,
+  contentAfter,
+  contentConfig,
   ...restProps
 }) => {
   const {
@@ -77,7 +87,9 @@ const BizFormItem: React.FC<BizFormItemProps> = ({
       labelCol={labelColProps}
       {...restProps}
     >
-      {renderField ? renderField(children as JSX.Element) : children}
+      <WrapperFormElement before={contentBefore} after={contentAfter} {...contentConfig}>
+        {renderField ? renderField(children as JSX.Element) : children}
+      </WrapperFormElement>
     </Form.Item>
   );
 };

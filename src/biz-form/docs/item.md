@@ -40,6 +40,8 @@ transform  | 转换该字段值，表单提交时执行。 | `(value)=>any` | - 
 extendRules  | 扩展校验规则。如果需要覆盖，请使用 `rules` | [Rule[]](https://ant-design.gitee.io/components/form-cn/#Rule) | - |
 renderField  | 自定义内部表单渲染。要注意透传 `props` ，可参考 `ItemUpload` 的示例。 | `(dom: JSX.Element) => JSX.Element` | - |
 colProps  | 设置该表单项 Col 属性。部分场景下生效，如 QueryForm 下、ItemCaptcha、ItemAddress 等。  | [ColProps](https://ant-design.gitee.io/components/grid-cn/#Col) | - |
+contentBefore  | 表单前面的内容 | `React.ReactNode` | - |
+contentAfter  | 表单后面的内容 | `React.ReactNode` | - |
 
 ### 其它Item
 
@@ -285,8 +287,6 @@ Input 输入框
 ------------- | ------------- | ------------- | ------------- |
 type  | 输入框类型。 | `mobile` \| `bankCard` \| `idCard` \| `email` \| `userName` | - |
 disabledWhiteSpace  | 禁止输入空白符。 `Password` 组件不支持该项。 | `boolean` | `false` |
-before  | 输入框前面元素 | `React.ReactNode` | - |
-after  | 输入框后面元素 | `React.ReactNode` | - |
 security  | 开启脱敏校验。为 `ture` 时，必须传入 `initialValue` 。 | `boolean` | `false` |
 symbol  | 脱敏符号 | `string` | `*` |
 inputProps  | 输入框的属性 | [InputProps](https://ant-design.gitee.io/components/input-cn/#API) | - |
@@ -316,8 +316,6 @@ inputProps  | 输入框的属性 | [InputProps](https://ant-design.gitee.io/comp
 参数 | 说明 | 类型 | 默认值 |
 ------------- | ------------- | ------------- | ------------- |
 precision  | 数值精度 | `number` | - |
-before  | 数字输入框前面元素 | `React.ReactNode` | - |
-after  | 数字输入框后面元素 | `React.ReactNode` | - |
 lt  | 最大值 | `number` | - |
 lte  | 最大值（允许等于） | `number` | - |
 gt  | 最小值 | `number` | - |

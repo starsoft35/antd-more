@@ -12,8 +12,8 @@ import ItemInputPassword from './ItemInputPassword';
 import BizFormItem from './Item';
 import type { BizFormItemProps } from './Item';
 import InputWrapper from './form/InputWrapper';
-import type { InputWrapperProps } from './form/InputWrapper';
 import getLabel from '../_util/getLabel';
+import type { InputProps } from './antd.interface';
 
 type InputType = 'bankCard' | 'email' | 'idCard' | 'mobile' | 'userName';
 
@@ -45,14 +45,20 @@ const maxLengthConfig = {
   mobile: 11,
 };
 
-export interface FormItemInputProps
-  extends BizFormItemProps,
-    Pick<InputWrapperProps, 'before' | 'after'> {
+export interface FormItemInputProps extends BizFormItemProps {
+  /**
+   * @deprecated Please use 'contentBefore'
+   */
+  before?: React.ReactNode;
+  /**
+   * @deprecated Please use 'contentAfter'
+   */
+  after?: React.ReactNode;
   security?: boolean; // 脱敏。 为 true 时，必须传入 initialValue
   symbol?: string; // 脱敏符号
   type?: InputType;
   disabledWhiteSpace?: boolean;
-  inputProps?: Omit<InputWrapperProps, 'initialTransform'>;
+  inputProps?: InputProps;
 }
 
 const FormItemInput: React.FC<FormItemInputProps> & {
@@ -152,14 +158,14 @@ const FormItemInput: React.FC<FormItemInputProps> & {
       ]}
       transform={handleTransform}
       validateTrigger={type ? 'onBlur' : 'onChange'}
+      contentBefore={before}
+      contentAfter={after}
       {...restProps}
     >
       <InputWrapper
         placeholder="请输入"
         allowClear
         autoComplete="off"
-        before={before}
-        after={after}
         initialTransform={normalize || type ? handleNormalize : false}
         {...defaultInputProps}
         {...inputProps}

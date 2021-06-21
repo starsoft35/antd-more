@@ -43,7 +43,9 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
   beforeTransformValue,
   onGetPreviewUrl,
   dragger = false,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   icon,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   title,
 
   multiple = false,
@@ -77,7 +79,9 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
         Array.isArray(fileListRef.current) &&
         fileListRef.current.length >= maxCount
       ) {
-        message.error(maxCountMessage || `最多上传${maxCount}个文件`);
+        message.error(
+          maxCountMessage?.replace(/%s/g, maxCount + '') || `最多上传${maxCount}个文件`,
+        );
         actionRef.current = 'error';
         return false;
       }
@@ -85,7 +89,7 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
       // 检查是否支持文件类型
       const isSupportFileType = checkFileType(file, accept);
       if (!isSupportFileType) {
-        message.error(fileTypeMessage || `只支持上传 ${accept} 文件`);
+        message.error(fileTypeMessage?.replace(/%s/g, accept) || `只支持上传 ${accept} 文件`);
         actionRef.current = 'error';
         return false;
       }

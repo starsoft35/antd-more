@@ -99,6 +99,10 @@ const FormItemUpload: React.FC<FormItemUploadProps> = ({
         },
       ]}
       {...restProps}
+      contentConfig={{
+        align: 'flex-start',
+        ...restProps.contentConfig,
+      }}
     >
       <Comp
         accept={accept}
@@ -108,6 +112,7 @@ const FormItemUpload: React.FC<FormItemUploadProps> = ({
         fileSizeMessage={fileSizeMessage}
         maxSize={maxSize}
         maxCount={maxCount || max}
+        maxCountMessage={maxCountMessage}
         disabled={disabled}
         multiple={multiple}
         icon={icon}

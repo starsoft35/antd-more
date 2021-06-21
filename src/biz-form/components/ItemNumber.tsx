@@ -1,9 +1,20 @@
 import * as React from 'react';
+import { InputNumber } from 'antd';
 import BizFormItem from './Item';
 import type { BizFormItemProps } from './Item';
-import InputNumberWrapper from './form/InputNumberWrapper';
-import type { InputNumberWrapperProps } from './form/InputNumberWrapper';
+import type { InputNumberProps } from './antd.interface';
 import getLabel from '../_util/getLabel';
+
+interface InputNumberWrapperProps extends InputNumberProps {
+  /**
+   * @deprecated Please use 'contentBefore'
+   */
+  before?: React.ReactNode;
+  /**
+   * @deprecated Please use 'contentAfter'
+   */
+  after?: React.ReactNode;
+}
 
 export interface FormItemNumberProps
   extends BizFormItemProps,
@@ -53,15 +64,11 @@ const FormItemNumber: React.FC<FormItemNumberProps> = ({
           },
         },
       ]}
+      contentBefore={before}
+      contentAfter={after}
       {...restProps}
     >
-      <InputNumberWrapper
-        placeholder="请输入"
-        precision={precision}
-        before={before}
-        after={after}
-        {...inputProps}
-      />
+      <InputNumber placeholder="请输入" precision={precision} {...inputProps} />
     </BizFormItem>
   );
 };
