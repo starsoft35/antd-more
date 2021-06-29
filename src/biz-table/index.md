@@ -30,10 +30,6 @@ nav:
 
 <code src="./demos/Demo3.tsx" background="#f5f5f5" />
 
-### 运费配置
-
-<code src='./demos/freight.tsx' />
-
 ### formItems配置
 
 不推荐使用该方式，更推荐 `columns` 中配置 `search` 。
