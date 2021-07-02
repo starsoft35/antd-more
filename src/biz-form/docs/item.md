@@ -34,14 +34,14 @@ const { Item } = BizForm;
 
 参数 | 说明 | 类型 | 默认值 |
 ------------- | ------------- | ------------- | ------------- |
-labelWidth  | label 宽度。默认继承 `BizForm` 的 `labelWidth`。 | `number` \| `'auto'` | - |
+labelWidth  | label 宽度。默认继承 `BizForm` 的 `labelWidth`。 | `number \| 'auto'` | - |
 hideLabel  | 隐藏 label 。默认继承 `BizForm` 的 `hideLabel`。 | `boolean` | - |
 transform  | 转换该字段值，表单提交时执行。 | `(value)=>any` | - |
 extendRules  | 扩展校验规则。如果需要覆盖，请使用 `rules` | [Rule[]](https://ant-design.gitee.io/components/form-cn/#Rule) | - |
 renderField  | 自定义内部表单渲染。要注意透传 `props` ，可参考 `ItemUpload` 的示例。 | `(dom: JSX.Element) => JSX.Element` | - |
 colProps  | 设置该表单项 Col 属性。部分场景下生效，如 QueryForm 下、ItemCaptcha、ItemAddress 等。  | [ColProps](https://ant-design.gitee.io/components/grid-cn/#Col) | - |
-contentBefore  | 表单前面的内容 | `React.ReactNode` | - |
-contentAfter  | 表单后面的内容 | `React.ReactNode` | - |
+contentBefore  | 表单前面的内容 | `ReactNode` | - |
+contentAfter  | 表单后面的内容 | `ReactNode` | - |
 
 ### 其它Item
 
@@ -71,7 +71,7 @@ type CascaderValue = string[] | number[];
 
 interface Option {
   value: string | number;
-  label?: React.ReactNode;
+  label?: ReactNode;
   disabled?: boolean;
   children?: Option[];
 }
@@ -107,8 +107,8 @@ cascaderProps  | 级联选项的属性 | [CascaderProps](https://ant-design.gite
 
 参数 | 说明 | 类型 | 默认值 |
 ------------- | ------------- | ------------- | ------------- |
-type  | 显示类型 | `default` \| `inline` | `default` |
-onGetCaptcha  | 点击按钮触发。用于验证手机号码或邮箱，请求获取验证码。如果返回 `false` 或 `Promise.reject()` 表示验证失败。 | `()=>boolean` \| `()=>Promise<any>` | `()=>true` |
+type  | 显示类型 | `'default' \| 'inline'` | `'default'` |
+onGetCaptcha  | 点击按钮触发。用于验证手机号码或邮箱，请求获取验证码。如果返回 `false` 或 `Promise.reject()` 表示验证失败。 | `()=>boolean \| ()=>Promise<any>` | `()=>true` |
 initText  | 按钮初始显示文本 | `string` | `获取验证码` |
 runText  | 按钮倒计时显示文本，包含 `%s` 会自动替换为秒数 | `string` | `%s秒后重新获取` |
 resetText  | 按钮倒计时结束显示文本 | `string` | `重新获取验证码` |
@@ -285,7 +285,7 @@ Input 输入框
 
 参数 | 说明 | 类型 | 默认值 |
 ------------- | ------------- | ------------- | ------------- |
-type  | 输入框类型。 | `mobile` \| `bankCard` \| `idCard` \| `email` \| `userName` | - |
+type  | 输入框类型。 | `'mobile' \| 'bankCard' \| 'idCard' \| 'email' \| 'userName'` | - |
 disabledWhiteSpace  | 禁止输入空白符。 `Password` 组件不支持该项。 | `boolean` | `false` |
 security  | 开启脱敏校验。为 `ture` 时，必须传入 `initialValue` 。 | `boolean` | `false` |
 symbol  | 脱敏符号 | `string` | `*` |
@@ -341,7 +341,7 @@ inputProps  | 数字输入框的属性 | [InputNumberProps](https://ant-design.g
 
 参数 | 说明 | 类型 | 默认值 |
 ------------- | ------------- | ------------- | ------------- |
-validated  | 开启验证。为 `false` 时则为普通密码框，不验证长度、强度、特殊字符。 | `boolean` \| `{ len: boolean; level: boolean; special: boolean; }` | `true` |
+validated  | 开启验证。为 `false` 时则为普通密码框，不验证长度、强度、特殊字符。 | `boolean \| { len: boolean; level: boolean; special: boolean; }` | `true` |
 min  | 最小长度 | `number` | `8` |
 max  | 最大长度 | `number` | `16` |
 level  | 密码强度。可选 `1` `2` `3` | `number` | `2` |
@@ -384,7 +384,7 @@ interface Option {
 参数 | 说明 | 类型 | 默认值 |
 ------------- | ------------- | ------------- | ------------- |
 options  | 包含 `value` `name` 的数组 | `Option[]` | `[]` |
-optionType  | 用于设置 Radio `options` 类型 | `default` \| `button` | `default` |
+optionType  | 用于设置 Radio `options` 类型 | `'default' \| 'button'` | `'default'` |
 all  | 是否显示全部  | `boolean` | `false` |
 allValue | 全部的值 | `string` | `""` |
 allName | 全部的名称 | `string` | `全部` |
@@ -445,7 +445,7 @@ selectProps  | 选择器配置参数 | [SelectProps](https://ant-design.gitee.io
 ------------- | ------------- | ------------- | ------------- |
 min  | 最小值 | `number` | 0 |
 max  | 最大值 | `number` | 100 |
-step  | 步长，取值必须大于 0，并且可被 (max - min) 整除。当 `marks` 不为空对象时，可以设置 `step` 为 null，此时 Slider 的可选值仅有 marks 标出来的部分 | `number` \| `null` | - |
+step  | 步长，取值必须大于 0，并且可被 (max - min) 整除。当 `marks` 不为空对象时，可以设置 `step` 为 null，此时 Slider 的可选值仅有 marks 标出来的部分 | `number \| null` | - |
 marks  | 刻度标记，key 的类型必须为 `number` 且取值在闭区间 [min, max] 内，每个标签可以单独设置样式 | `object` | - |
 sliderProps  | 滑块输入条配置参数 | [SliderProps](https://ant-design.gitee.io/components/slider-cn/#API) | - |
 
@@ -569,8 +569,8 @@ type UploadFile = {
 
 参数 | 说明 | 类型 | 默认值 |
 ------------- | ------------- | ------------- | ------------- |
-type  | 上传组件内建类型样式。 | `default` \| `image` \| `avatar` \| `dragger` | `default` |
-onUpload  | 自定义上传，添加文件时触发。<br/>内部自动处理上传中和失败状态。<br/>如果返回 `object` 将添加到 `UploadFile` 对象中。 | `(file: File)=>Promise<object `\|` undefined>` | - |
+type  | 上传组件内建类型样式。 | `'default' \| 'image' \| 'avatar' \| 'dragger'` | `'default'` |
+onUpload  | 自定义上传，添加文件时触发。<br/>内部自动处理上传中和失败状态。<br/>如果返回 `object` 将添加到 `UploadFile` 对象中。 | `(file: File)=>Promise<object> \| undefined>` | - |
 onGetPreviewUrl  | 获取预览图片，点击预览时触发。<br/>（仅在没有url的情况下生效，执行成功后将预览图放在file.preview，不再触发） | `(file: File)=>Promise<string>` | - |
 maxSize  | 单个文件限制大小，单位 `Byte`。 | `number` | `1024*1024*2` |
 maxCount  | 限制上传文件数量。<br/>当为 `1` 时，始终用最新上传的代替当前。 | `number` | - |

@@ -77,7 +77,7 @@ editableKeys  | 正在编辑的行，受控属性。必须使用 `rowKey` 值配
 onChange  | 行数据切换编辑状态时触发 | `(editableKeys: Key[], editableRows: T[]) => void` | - |
 onSave  | 保存时触发。<br/>保存成功后退出编辑状态，如果返回 `Promise.reject` 表示保存失败状态不变。 | `(key: Key, row: T,isNewRecord:boolean) => Promise<any>` | - |
 onDelete  | 删除时触发。<br/>删除成功后退出编辑状态，如果返回 `Promise.reject` 表示删除失败状态不变。 | `(key: Key, row: T,isNewRecord:boolean) => Promise<any>` | - |
-editableActionRef  | 编辑表格的常用操作 | `React.MutableRefObject<EditableActionType>` | - |
+editableActionRef  | 编辑表格的常用操作 | `MutableRefObject<EditableActionType>` | - |
 formProps  | 编辑表格的 form 配置项 | `BizFormProps` | - |
 
 ### editableActionRef 说明

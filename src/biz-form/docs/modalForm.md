@@ -54,7 +54,7 @@ const { ModalForm } = BizForm;
 
 参数 | 说明 | 类型 | 默认值 |
 ------------- | ------------- | ------------- | ------------- |
-title  | `Modal` 标题 | `React.ReactNode` | - |
+title  | `Modal` 标题 | `ReactNode` | - |
 width  | `Modal` 宽度 | `number` | `600` |
 trigger  | 用于触发 `Modal` 打开的 dom，一般是 button | `JSX.Element` | - |
 visible  | 是否打开。<br/>设置后表示为 `受控组件`，可结合 `onVisibleChange` 进行控制。 | `boolean` | - |
@@ -72,7 +72,7 @@ const { DrawerForm } = BizForm;
 
 参数 | 说明 | 类型 | 默认值 |
 ------------- | ------------- | ------------- | ------------- |
-title  | `Drawer` 标题 | `React.ReactNode` | - |
+title  | `Drawer` 标题 | `ReactNode` | - |
 width  | `Drawer` 宽度 | `number` | `600` |
 trigger  | 用于触发 `Drawer` 打开的 dom，一般是 button | `JSX.Element` | - |
 visible  | 是否打开。<br/>设置后表示为 `受控组件`，可结合 `onVisibleChange` 进行控制。 | `boolean` | - |

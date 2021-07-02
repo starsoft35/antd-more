@@ -97,8 +97,8 @@ type EnumData = EnumItem[];
 
 参数 | 说明 | 类型 | 默认值 |
 ------------- | ------------- | ------------- | ------------- |
-prefix  | 前缀 | `React.ReactNode` | - |
-suffix  | 后缀 | `React.ReactNode` | - |
+prefix  | 前缀 | `ReactNode` | - |
+suffix  | 后缀 | `ReactNode` | - |
 color  | 颜色 | `string` | - |
 size  | 文字大小 | `number` | - |
 
@@ -121,8 +121,8 @@ format  | 设置日期或时间格式 | `string` | - |
 
 参数 | 说明 | 类型 | 默认值 |
 ------------- | ------------- | ------------- | ------------- |
-value  | 图片地址。<br/>如果为 `string`，表示为 `src`。<br/>如果为 `object` 需传入 `src`，也支持传入 `name`。 | `string` \| `{ src: string; name?: string; }` | - |
-width  | 图片宽度 | `string` \| `number` | `100` |
+value  | 图片地址。<br/>如果为 `string`，表示为 `src`。<br/>如果为 `object` 需传入 `src`，也支持传入 `name`。 | `string \| { src: string; name?: string; }` | - |
+width  | 图片宽度 | `string \| number` | `100` |
 bordered  | 显示边框。以正方形方式呈现，图片根据最长的宽或高自适应。 | `boolean` | `false` |
 
 其余同 antd [Image](https://ant-design.gitee.io/components/image-cn/#API) 。
@@ -139,11 +139,11 @@ bordered  | 显示边框。以正方形方式呈现，图片根据最长的宽�
 
 参数 | 说明 | 类型 | 默认值 |
 ------------- | ------------- | ------------- | ------------- |
-value  | 字典值 | `ReactText` \| `ReactText[]` | - |
+value  | 字典值 | `ReactText \| ReactText[]` | - |
 defaultName  | 当找不到值对应的名称时，显示默认名称 | `string` | `-` |
-align  | 对齐方式 | `start` \| `end` \| `center` \| `baseline` | `start` |
+align  | 对齐方式 | `'start' \| 'end' \| 'center' \| 'baseline'` | `'start'` |
 direction  | 间距方向 `vertical` `horizontal` | `string` | `horizontal` |
-size  | 间距大小，支持 `small` `middle` `large` 或 数值 | `string` \| `number` | `small` |
+size  | 间距大小 | `'small' \| 'middle' \| 'large' \| number` | `'small'` |
 
 #### color
 

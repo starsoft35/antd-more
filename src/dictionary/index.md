@@ -84,7 +84,7 @@ type EnumData = EnumItem[];
 data  | 包含 `value` `name` 的 `数据字典` | `EnumData` | `[]` |
 value  | 当前字典值 | `any` | `""` |
 defaultName  | 当找不到字典值对应的名称时，显示默认名称 | `string` | `-` |
-type  | 显示方式 | `text` \| `tag` \| `badge` | `text` |
+type  | 显示方式 | `'text' \| 'tag' \| 'badge'` | `'text'` |
 
 ### Dictionary.List
 
@@ -92,9 +92,9 @@ type  | 显示方式 | `text` \| `tag` \| `badge` | `text` |
 
 参数 | 说明 | 类型 | 默认值 |
 ------------- | ------------- | ------------- | ------------- |
-align  | 对齐方式 | `start` \| `end` \| `center` \| `baseline` | `start` |
-direction  | 间距方向 `vertical` `horizontal` | `string` | `horizontal` |
-size  | 间距大小，支持 `small` `middle` `large` 或 数值 | `string` \| `number` | `small` |
+align  | 对齐方式 | `'start' \| 'end' \| 'center' \| 'baseline'` | `'start'` |
+direction  | 间距方向 | `'vertical' \| 'horizontal'` | `'horizontal'` |
+size  | 间距大小 | `'small' \| 'middle' \| 'large' \| number` | `'small'` |
 value  | 字典值数组 | `any[]` | `[]` |
 
 ### Dictionary.Select
@@ -118,4 +118,4 @@ excludeValues | 排除的值 | `any[]` | `[]` |
 ------------- | ------------- | ------------- | ------------- |
 data  | 包含 `value` `name` 的 `数据字典` | `EnumData` | `[]` |
 value  | 当前字典值 | `any` | - |
-type  | `button` 表现为 `Radio.Button`，其他表示为 `Radio`  | `default` \| `button` | `defalut` |
+type  | `button` 表现为 `Radio.Button`，其他表示为 `Radio`  | `'default' \| 'button'` | `'defalut'` |

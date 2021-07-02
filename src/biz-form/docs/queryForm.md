@@ -42,8 +42,8 @@ const { QueryForm } = BizForm;
 
 参数 | 说明 | 类型 | 默认值 |
 ------------- | ------------- | ------------- | ------------- |
-submitText  | 提交按钮文本 | `React.ReactNode` | `查询` |
-resetText  | 重置按钮文本 | `React.ReactNode` | `重置` |
+submitText  | 提交按钮文本 | `ReactNode` | `查询` |
+resetText  | 重置按钮文本 | `ReactNode` | `重置` |
 defaultCollapsed  | 默认状态下是否折叠超出的表单项 | `boolean` | `true` |
 defaultColsNumber  | 默认显示的表单控件数量，数量大于等于控件数量则隐藏展开按钮。 | `number` | - |
 

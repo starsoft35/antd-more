@@ -60,16 +60,16 @@ request  | 获取 `dataSource` 的方法 | `Request` | - |
 autoRequest  | 初始化时自动触发 `request` | `boolean` | `true` |
 ready  | 为 `false` 时，禁止提交/重置表单，不触发 `request` 。<br/>为 `true` 时，会重新设置表单初始值，如果 `autoRequest=true` 则自动请求。 | `boolean` | `true` |
 nowrap  | 单元格内容不会换行，表格宽度超过100%自动处理横向滚动条。<br />如果要设置单元格宽度，请关闭该配置 或 `column` 的 `nowrap` 设置为 `false`。 | `boolean` | `true` |
-formItems  | 查询表单项，推荐使用 `columns.search` 配置 | `React.ReactNode[]` | - |
-toolbar  | 工具栏，表格内的上面区域 | `React.ReactNode` | - |
-toolbarAction  | 工具栏右侧显示内置工具 | `boolean` \| `{ reload?: boolean; density?: boolean; fullScreen?: boolean; columnSetting?: boolean; }` | `false` |
-toolbarRender  | 自定义工具栏渲染。<br/>如果有设置toolbarAction，参数 dom 包含了右侧内置工具。 | `(dom: JSX.Element) => React.ReactNode` | - |
+formItems  | 查询表单项，推荐使用 `columns.search` 配置 | `ReactNode[]` | - |
+toolbar  | 工具栏，表格内的上面区域 | `ReactNode` | - |
+toolbarAction  | 工具栏右侧显示内置工具 | `boolean \| { reload?: boolean; density?: boolean; fullScreen?: boolean; columnSetting?: boolean; }` | `false` |
+toolbarRender  | 自定义工具栏渲染。<br/>如果有设置toolbarAction，参数 dom 包含了右侧内置工具。 | `(dom: JSX.Element) => ReactNode` | - |
 fullScreenBackgroundColor  | 全屏时显示的背景颜色 | `string` | `#ffffff` |
-extra  | 扩展内容，表格外的上面、查询表单下面的区域 | `React.ReactNode` | - |
+extra  | 扩展内容，表格外的上面、查询表单下面的区域 | `ReactNode` | - |
 form  | 同 [QueryForm] 配置参数 | [QueryFormProps] | - |
-formRef  | 获取查询表单的 `form` 实例  | `React.MutableRefObject&lt;FormInstance&gt;` | - |
-actionRef  | 常用操作引用，便于自定义触发  | `React.MutableRefObject&lt;ActionType&gt;` | - |
-tableRender  | 自定义表格渲染  | `(props: BizTableProps&lt;RecordType&gt;, dom: JSX.Element) => React.ReactNode` | - |
+formRef  | 获取查询表单的 `form` 实例  | `MutableRefObject&lt;FormInstance&gt;` | - |
+actionRef  | 常用操作引用，便于自定义触发  | `MutableRefObject&lt;ActionType&gt;` | - |
+tableRender  | 自定义表格渲染  | `(props: BizTableProps&lt;RecordType&gt;, dom: JSX.Element) => ReactNode` | - |
 
 ### Request 请求方法
 
@@ -118,10 +118,10 @@ submit | 点击查询 或 调用 `actionRef.current.submit` |
 
 参数 | 说明 | 类型 | 默认值 |
 ------------- | ------------- | ------------- | ------------- |
-tooltip  | 表头标题后面的补充提示 | `React.ReactNode` | - |
+tooltip  | 表头标题后面的补充提示 | `ReactNode` | - |
 valueType  | 值类型。同 BizField 的 valueType，用于列展示 或 查询表单项 或 可编辑表格项。 | [ValueType](/components/biz-field#valuetype-值) | - |
 valueEnum  | 包含 `value` `name` 的数据字典。<br/>当 `valueType` 为 `enum` `enumTag` `enumBadge` 时生效。 | `EnumData` | - |
-field  | 展示字段的配置。同 BizField 的配置项，支持 object 和 function 方式。<br/>function 方式默认参数和render一样，需返回 BizField 的配置。 | `object` \| `(text: any, record: RecordType, index: number)=>object` | - |
+field  | 展示字段的配置。同 BizField 的配置项，支持 object 和 function 方式。<br/>function 方式默认参数和render一样，需返回 BizField 的配置。 | `object \| (text: any, record: RecordType, index: number)=>object` | - |
 search  | 配置查询表单项 | `SearchProps` | - |
 order  | 查询表单项排序，数值越小越靠前 | `number` | `0` |
 table  | 是否在表格中显示，适用于部分字段只有查询表单，但表格中不显示 | `boolean` | `true` |
