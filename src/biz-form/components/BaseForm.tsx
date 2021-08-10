@@ -3,7 +3,7 @@ import { Form } from 'antd';
 import namePathSet from 'rc-util/es/utils/set';
 import classnames from 'classnames';
 import { isPromiseLike } from 'util-helpers';
-import { useUpdateEffect } from 'rc-hooks';
+import { useUpdateEffect, useIsMounted } from 'rc-hooks';
 import type { FormProps, FormInstance } from './antd.interface';
 import { transformFormValues } from '../_util/transform';
 import FieldContext from '../FieldContext';
@@ -11,7 +11,6 @@ import type { TransformFn } from '../FieldContext';
 import ChildFormContext from '../ChildFormContext';
 import Submitter from './Submitter';
 import type { SubmitterProps } from './Submitter';
-import useIsMounted from '../hooks/useIsMounted';
 
 import '../index.less';
 
@@ -66,12 +65,12 @@ const BaseForm: React.FC<BaseFormProps> = ({
   const [form] = Form.useForm();
   const formRef = React.useRef<FormInstance>(formProp || form);
   const [loading, setLoading] = React.useState(outLoading);
-  const isMounted = useIsMounted();
+  const isMountedRef = useIsMounted();
 
   const [isUpdate, updateState] = React.useState(false);
   const forgetUpdate = () => {
     setTimeout(() => {
-      isMounted.current && updateState(true);
+      isMountedRef.current && updateState(true);
     });
   };
 
