@@ -15,6 +15,7 @@ import waitTime from "./utils/waitTime";
 const { ItemUpload } = BizForm;
 
 // 上传图片
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function uploadImage(file: File): Promise<{ fssId: string; }> {
   return new Promise((resolve, reject) => {
     // const formData: any = new FormData();

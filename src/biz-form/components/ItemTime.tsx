@@ -52,7 +52,7 @@ const FormItemTime: React.FC<FormItemTimeProps> = ({
       }
       return transformDate(val, currentFormat);
     },
-    [currentFormat],
+    [currentFormat, transform],
   );
 
   return (

@@ -41,11 +41,9 @@ const Demo: React.FC = () => {
 
         return {
           // 自定义渲染
-          render: (columnItem, dom, form) => {
-            return (
-              <BizForm.ItemTextArea name={[record.id, "name"]} initialValue={record.name} label="名字" />
-            );
-          }
+          render: () => (
+            <BizForm.ItemTextArea name={[record.id, "name"]} initialValue={record.name} label="名字" />
+          )
         }
       }
     },

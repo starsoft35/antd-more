@@ -76,6 +76,7 @@ export interface EditableBizTableProps<RecordType extends object = any>
 
 const EditableBizTable = <RecordType extends object = any>({
   value: outValue,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   dataSource,
   onValuesChange,
   editable,
@@ -100,7 +101,7 @@ const EditableBizTable = <RecordType extends object = any>({
   React.useEffect(() => {
     regChildForm?.(formName, form);
     return () => unregChildForm?.(formName);
-  }, []);
+  }, [form, formName, regChildForm, unregChildForm]);
 
   const changeValue = (val) => {
     if (
@@ -169,20 +170,26 @@ const EditableBizTable = <RecordType extends object = any>({
   };
 
   // 获取行的数据
-  const getFieldsByRowKey = (rowKey: Key) => {
-    if (
-      editable?.editableKeys &&
-      editable?.editableKeys.indexOf(rowKey) > -1 &&
-      editableKeyMapRef.current[rowKey]
-    ) {
-      const values = form.getFieldsValue(editableKeyMapRef.current[rowKey]?.nameList);
-      const transformValues = transformFormValues(values, transformRecordActionRef?.current?.get());
-      const retValue = (Object.values(transformValues) as object[])[0];
-      return { ...editableKeyMapRef.current[rowKey]?.record, ...retValue };
-    } else {
-      return value.find((item) => getCurentRowKey(item) === rowKey);
-    }
-  };
+  const getFieldsByRowKey = React.useCallback(
+    (rowKey: Key) => {
+      if (
+        editable?.editableKeys &&
+        editable?.editableKeys.indexOf(rowKey) > -1 &&
+        editableKeyMapRef.current[rowKey]
+      ) {
+        const values = form.getFieldsValue(editableKeyMapRef.current[rowKey]?.nameList);
+        const transformValues = transformFormValues(
+          values,
+          transformRecordActionRef?.current?.get(),
+        );
+        const retValue = (Object.values(transformValues) as object[])[0];
+        return { ...editableKeyMapRef.current[rowKey]?.record, ...retValue };
+      } else {
+        return value.find((item) => getCurentRowKey(item) === rowKey);
+      }
+    },
+    [editable?.editableKeys, form, getCurentRowKey, value],
+  );
 
   const getConcatValue = React.useCallback(() => {
     if (newRecords.length <= 0) {
@@ -195,7 +202,7 @@ const EditableBizTable = <RecordType extends object = any>({
         newValue.splice(item.index, 0, { ...item.recordConfig, ...getFieldsByRowKey(item.rowKey) });
       });
     return newValue;
-  }, [value, newRecords]);
+  }, [newRecords, value, getFieldsByRowKey]);
 
   // 获取真实的索引位置（支持新增和编辑多行）
   const getRealIndex = (rowKey: Key) => {
@@ -392,7 +399,7 @@ const EditableBizTable = <RecordType extends object = any>({
     setDataSource: handleDataSourceChange,
   }));
 
-  const concatValue = React.useMemo(getConcatValue, [value, newRecords]);
+  const concatValue = React.useMemo(getConcatValue, [getConcatValue]);
 
   return (
     <BizForm

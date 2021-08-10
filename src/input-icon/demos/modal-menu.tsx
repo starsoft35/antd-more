@@ -8,7 +8,8 @@ import { MenuType, HiddenMenu, CacheMenu } from './type';
 const treeData = [
   {
     title: '顶级类目',
-    value: null,
+    // value: null,
+    value: '',
     children: [
       {
         title: '首页',

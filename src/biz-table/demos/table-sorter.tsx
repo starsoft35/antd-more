@@ -11,6 +11,7 @@ const mockData = [
   { name: '李四' },
 ];
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const request = (params) => {
   // const { current, pageSize, ...restParams } = params;
   return new Promise(resolve => {

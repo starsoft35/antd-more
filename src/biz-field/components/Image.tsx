@@ -24,7 +24,7 @@ const FiledImage: React.FC<FiledImageProps> = ({
   ...restProps
 }) => {
   const values = React.useMemo(() => (Array.isArray(value) ? value : [value]), [value]);
-  const defaultProps = React.useMemo(() => (bordered ? { height: width } : {}), [bordered]);
+  const defaultProps = React.useMemo(() => (bordered ? { height: width } : {}), [bordered, width]);
 
   return (
     <div className={classNames(prefixCls, { [`${prefixCls}-bordered`]: bordered })}>

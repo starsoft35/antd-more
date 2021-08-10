@@ -27,15 +27,15 @@ const SearchForm: React.FC<SearchFormProps> = React.forwardRef(
       items = createFormItems(searchItems, form);
     }
 
-    if (items.length <= 0) {
-      return null;
-    }
-
     const formName = React.useMemo(
       () => name || `biz_table_search_form_${createUniqueId()}`,
       [name],
     );
-    React.useImperativeHandle(ref, () => form, [form, ref]);
+    React.useImperativeHandle(ref, () => form, [form]);
+
+    if (items.length <= 0) {
+      return null;
+    }
 
     return (
       <Card

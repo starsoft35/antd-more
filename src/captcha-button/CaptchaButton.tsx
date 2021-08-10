@@ -24,7 +24,7 @@ const CaptchaButton: React.FC<CaptchaButtonProps> = ({
   // 倒计时时长，单位秒
   second = 60,
   // 倒计时结束的回调方法
-  onEnd = () => { },
+  onEnd = () => {},
   ...restProps
 }) => {
   // 0-初始化 1-运行中 2-结束
@@ -42,7 +42,7 @@ const CaptchaButton: React.FC<CaptchaButtonProps> = ({
           onEnd();
         },
       }),
-    [second],
+    [onEnd, second],
   );
 
   useEffect(() => {
@@ -53,7 +53,7 @@ const CaptchaButton: React.FC<CaptchaButtonProps> = ({
     }
 
     return countdown.pause;
-  }, [start]);
+  }, [countdown, start, status]);
 
   return (
     <Button {...restProps} disabled={status === 1}>

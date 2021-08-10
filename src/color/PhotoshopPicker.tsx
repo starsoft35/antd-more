@@ -29,15 +29,16 @@ const PhotoshopPickerWrapper: React.FC<PhotoshopPickerProps> = ({
   };
   const [innerColor, setInnerColor] = useState(value);
 
-  const handleChangeComplete = useCallback((color) => {
-    setInnerColor(transformColor(color, colorMode));
-  }, []);
+  const handleChangeComplete = useCallback(
+    (color) => {
+      setInnerColor(transformColor(color, colorMode));
+    },
+    [colorMode],
+  );
 
   const handleAccept = useCallback(() => {
-    if (typeof onChange === 'function') {
-      onChange(innerColor as string);
-    }
-  }, [innerColor, colorMode]);
+    onChange?.(innerColor as string);
+  }, [onChange, innerColor]);
 
   return (
     <PickerWrapper

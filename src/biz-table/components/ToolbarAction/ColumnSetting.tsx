@@ -29,7 +29,7 @@ const ColumnSetting: React.FC = () => {
 
   React.useEffect(() => {
     setNewColumns(columns.filter((item, index) => selectedKey.includes(columnsKey[index])));
-  }, [columns, selectedKey]);
+  }, [columns, columnsKey, selectedKey, setNewColumns]);
 
   // 当 columns 变了以后，重置 seletedKey
   React.useEffect(() => {
@@ -43,7 +43,7 @@ const ColumnSetting: React.FC = () => {
         title: item.title || '',
       };
     });
-  }, [columns]);
+  }, [columns, columnsKey]);
 
   const onCheckAllChange = React.useCallback(() => {
     if (selectedKey.length === columns.length) {
@@ -51,7 +51,7 @@ const ColumnSetting: React.FC = () => {
     } else {
       setSelectedKey(columnsKey.slice());
     }
-  }, [selectedKey, columns]);
+  }, [selectedKey.length, columns.length, columnsKey]);
 
   const onCheck = React.useCallback((checkedKeysValue: React.Key[]) => {
     setSelectedKey(checkedKeysValue);

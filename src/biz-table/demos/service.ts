@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import Mock from 'mockjs';
 
 const applyList = ({ page: { pageNum, pageSize }, data = {} }) => (
@@ -18,7 +19,6 @@ const applyList = ({ page: { pageNum, pageSize }, data = {} }) => (
   })
 );
 
-// eslint-disable-next-line import/prefer-default-export
 export function getApplyList(params) {
   return new Promise(resolve => {
     setTimeout(() => {

@@ -8,7 +8,7 @@ import './index.less';
 
 export interface SelectPopoverProps
   extends PopoverProps,
-    Pick<SelectPanelProps, 'options' | 'onSelect' | 'showSearch' | 'column'> {}
+  Pick<SelectPanelProps, 'options' | 'onSelect' | 'showSearch' | 'column'> { }
 
 const SelectPopover: React.FC<SelectPopoverProps> = ({
   trigger = 'click',
@@ -26,8 +26,8 @@ const SelectPopover: React.FC<SelectPopoverProps> = ({
 
   const handleSelect = React.useCallback((val) => {
     setVisible(false);
-    onSelect(val);
-  }, []);
+    onSelect?.(val);
+  }, [onSelect]);
 
   React.useEffect(() => {
     if (visible) {

@@ -65,7 +65,7 @@ const Freight: React.FC<FreightProps> = ({
         inputRef.current?.focus();
       }, 0);
     }
-  }, [freightValue]);
+  }, [freightValue, id, onChange]);
 
   const handleChangeFreight = React.useCallback((val) => {
     setFreightValue(val);
@@ -74,7 +74,7 @@ const Freight: React.FC<FreightProps> = ({
       freightRule,
       freight: val
     });
-  }, [freightRule]);
+  }, [freightRule, id, onChange]);
 
   return (
     <Radio.Group className={classnames(styles.wrapper, className)} onChange={handleChangeRadio} value={freightRule} {...restProps}>

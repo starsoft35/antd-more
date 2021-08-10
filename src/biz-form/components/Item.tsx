@@ -77,7 +77,7 @@ const BizFormItem: React.FC<BizFormItemProps> = ({
     if (name && transform && setFieldTransform) {
       setFieldTransform(name, transform, parentListName);
     }
-  }, []);
+  }, [name, parentListName, setFieldTransform, transform]);
 
   return (
     <Form.Item

@@ -28,7 +28,7 @@ const TimePickerRangeWrapper: React.FC<TimeRangePickerProps> = ({
 
 export interface FormItemTimeRangeProps
   extends BizFormItemProps,
-    Pick<TimeRangePickerProps, 'format'> {
+  Pick<TimeRangePickerProps, 'format'> {
   pickerProps?: TimeRangePickerProps;
   names?: [string, string];
 }
@@ -71,7 +71,7 @@ const FormItemTimeRange: React.FC<FormItemTimeRangeProps> = ({
         return transValue;
       }
     },
-    [currentFormat, currentName],
+    [currentFormat, names, transform],
   );
 
   return (

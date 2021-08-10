@@ -74,7 +74,7 @@ const FormItemPassword: React.FC<FormItemPasswordProps> = ({
       }
       inputProps?.onPaste?.(e);
     },
-    [inputProps?.onPaste, disabledPaste],
+    [disabledPaste, inputProps],
   );
 
   const handleCopy = React.useCallback(
@@ -84,7 +84,7 @@ const FormItemPassword: React.FC<FormItemPasswordProps> = ({
       }
       inputProps?.onCopy?.(e);
     },
-    [inputProps?.onCopy, disabledCopy],
+    [disabledCopy, inputProps],
   );
 
   const messageLabel = getLabel(restProps);

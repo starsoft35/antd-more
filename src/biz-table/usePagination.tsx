@@ -79,36 +79,39 @@ function usePagination<DataType = any>(
         action,
       });
     },
-    [data],
+    [actionCacheKey, data, request],
   );
 
   const refresh = useCallback(() => {
     return run();
-  }, []);
+  }, [run]);
 
   // 修改分页、筛选、排序
-  const onTableChange = useCallback((pagination, filters, sorter, extra) => {
-    pageRef.current = {
-      ...pageRef.current,
-      ...pagination,
-    };
-    paramsRef.current = {
-      ...paramsRef.current,
-      filters,
-      sorter,
-      extra,
-    };
-    if (actionCacheKey) {
-      actionCache[actionCacheKey] = extra.action;
-    }
-    return run();
-  }, []);
+  const onTableChange = useCallback(
+    (pagination, filters, sorter, extra) => {
+      pageRef.current = {
+        ...pageRef.current,
+        ...pagination,
+      };
+      paramsRef.current = {
+        ...paramsRef.current,
+        filters,
+        sorter,
+        extra,
+      };
+      if (actionCacheKey) {
+        actionCache[actionCacheKey] = extra.action;
+      }
+      return run();
+    },
+    [actionCacheKey, run],
+  );
 
   useEffect(() => {
     if (typeof autoRun === 'undefined' || autoRun) {
       run();
     }
-  }, []);
+  }, [autoRun, run]);
 
   return {
     ...request,

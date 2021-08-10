@@ -9,7 +9,7 @@ const UploadImageButton: React.FC<{
 }> = ({ loading = false, uploading = false, icon = <PlusOutlined />, title = '点击上传' }) => {
   const text = React.useMemo(() => {
     return loading ? '加载中' : uploading ? '上传中' : title; // eslint-disable-line
-  }, [loading, uploading]);
+  }, [loading, title, uploading]);
   return (
     <div>
       {loading || uploading ? <LoadingOutlined /> : icon}

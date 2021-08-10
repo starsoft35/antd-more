@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /**
  * title: 实时上传文件含默认值
  * desc: |
@@ -81,7 +82,7 @@ const Demo: React.FC = () => {
       images: await beforeTransformUploadValues(defaultFssId)
     });
     setReady(true);
-  }, []);
+  }, [initialValues]);
 
   // 上传图片
   const handleUpload = React.useCallback((file) => {
@@ -92,6 +93,7 @@ const Demo: React.FC = () => {
 
   React.useEffect(() => {
     transformInitialValues();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

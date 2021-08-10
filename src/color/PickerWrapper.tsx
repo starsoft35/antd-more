@@ -37,7 +37,7 @@ const PickerWrapper: React.FC<PickerWrapperProps> = ({
   value,
   showText = false,
   trigger = 'click',
-  onChange = () => { },
+  onChange,
   colorMode = 'hex',
   placement = 'bottomLeft',
   children,
@@ -47,9 +47,12 @@ const PickerWrapper: React.FC<PickerWrapperProps> = ({
 }) => {
   const [visible, setVisible] = useState(false);
 
-  const handleChangeComplete = useCallback((color: ColorObj) => {
-    onChange(transformColor(color, colorMode));
-  }, []);
+  const handleChangeComplete = useCallback(
+    (color: ColorObj) => {
+      onChange?.(transformColor(color, colorMode));
+    },
+    [colorMode, onChange],
+  );
 
   const photoshopAction: PhotoshopAction = {};
 

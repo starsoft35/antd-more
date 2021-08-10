@@ -84,95 +84,95 @@ const FormItemInput: React.FC<FormItemInputProps> & {
   normalize,
   ...restProps
 }) => {
-  const handleNormalize = React.useCallback(
-    (value, prevValue, allValues) => {
-      if (normalize) {
-        return normalize(value, prevValue, allValues);
-      }
+    const handleNormalize = React.useCallback(
+      (value, prevValue, allValues) => {
+        if (normalize) {
+          return normalize(value, prevValue, allValues);
+        }
 
-      if (type === 'bankCard') {
-        return normalizeBankCard(value, { symbol: security ? symbol : '' });
-      }
-      if (type === 'idCard') {
-        return normalizeIdCard(value, { symbol: security ? symbol : '' });
-      }
-      if (type === 'mobile') {
-        return normalizeMobile(value, { symbol: security ? symbol : '' });
-      }
-      if (disabledWhiteSpace || type === 'email' || type === 'userName') {
-        return normalizeWhiteSpace(value);
-      }
-      return value;
-    },
-    [disabledWhiteSpace, type, symbol, security],
-  );
-  const handleTransform = React.useCallback(
-    (val) => {
-      if (transform) {
-        return transform(val);
-      }
-      if (type === 'bankCard') {
-        return transformBankCard(val);
-      }
-      return val;
-    },
-    [transform],
-  );
+        if (type === 'bankCard') {
+          return normalizeBankCard(value, { symbol: security ? symbol : '' });
+        }
+        if (type === 'idCard') {
+          return normalizeIdCard(value, { symbol: security ? symbol : '' });
+        }
+        if (type === 'mobile') {
+          return normalizeMobile(value, { symbol: security ? symbol : '' });
+        }
+        if (disabledWhiteSpace || type === 'email' || type === 'userName') {
+          return normalizeWhiteSpace(value);
+        }
+        return value;
+      },
+      [normalize, type, disabledWhiteSpace, security, symbol],
+    );
+    const handleTransform = React.useCallback(
+      (val) => {
+        if (transform) {
+          return transform(val);
+        }
+        if (type === 'bankCard') {
+          return transformBankCard(val);
+        }
+        return val;
+      },
+      [transform, type],
+    );
 
-  const defaultInputProps = React.useMemo(() => {
-    if (maxLengthConfig[type]) {
-      return {
-        maxLength: maxLengthConfig[type],
-      };
-    }
-    return {};
-  }, [type]);
+    const defaultInputProps = React.useMemo(() => {
+      if (maxLengthConfig[type]) {
+        return {
+          maxLength: maxLengthConfig[type],
+        };
+      }
+      return {};
+    }, [type]);
 
-  const messageLabel = getLabel(restProps);
+    const messageLabel = getLabel(restProps);
 
-  return (
-    <BizFormItem
-      required={required}
-      normalize={handleNormalize}
-      rules={[
-        {
-          validator(rule, value) {
-            let errMsg = '';
-            if (!value) {
-              errMsg = required ? `请输入${messageLabel}` : '';
-            } else if (security && restProps?.initialValue === value) {
-              // 脱敏校验
-              errMsg = '';
-            } else if (type === 'userName') {
-              errMsg = validateUserName(value, { label: messageLabel }).message;
-            } else if (validateMethod[type] && !validateMethod[type](value)) {
-              errMsg = `请输入正确的${messageLabel}`;
-            }
-            if (errMsg) {
-              return Promise.reject(errMsg);
-            }
-            return Promise.resolve();
+    return (
+      <BizFormItem
+        required={required}
+        normalize={handleNormalize}
+        rules={[
+          {
+            validator(rule, value) {
+              let errMsg = '';
+              if (!value) {
+                errMsg = required ? `请输入${messageLabel}` : '';
+              } else if (security && restProps?.initialValue === value) {
+                // 脱敏校验
+                errMsg = '';
+              } else if (type === 'userName') {
+                errMsg = validateUserName(value, { label: messageLabel }).message;
+              } else if (validateMethod[type] && !validateMethod[type](value)) {
+                errMsg = `请输入正确的${messageLabel}`;
+              }
+              if (errMsg) {
+                return Promise.reject(errMsg);
+              }
+              return Promise.resolve();
+            },
+            transform: handleTransform,
           },
-          transform: handleTransform,
-        },
-      ]}
-      transform={handleTransform}
-      validateTrigger={type ? 'onBlur' : 'onChange'}
-      contentBefore={before}
-      contentAfter={after}
-      {...restProps}
-    >
-      <InputWrapper
-        placeholder="请输入"
-        allowClear
-        autoComplete="off"
-        initialTransform={normalize || type ? handleNormalize : false}
-        {...defaultInputProps}
-        {...inputProps}
-      />
-    </BizFormItem>
-  );
-};
+        ]}
+        transform={handleTransform}
+        validateTrigger={type ? 'onBlur' : 'onChange'}
+        contentBefore={before}
+        contentAfter={after}
+        {...restProps}
+      >
+        <InputWrapper
+          placeholder="请输入"
+          allowClear
+          autoComplete="off"
+          initialTransform={normalize || type ? handleNormalize : false}
+          {...defaultInputProps}
+          {...inputProps}
+        />
+      </BizFormItem>
+    );
+  };
 
 FormItemInput.TextArea = ItemTextArea;
 FormItemInput.Password = ItemInputPassword;

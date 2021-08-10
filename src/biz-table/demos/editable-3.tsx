@@ -47,7 +47,7 @@ const Demo: React.FC = () => {
     {
       title: "操作",
       width: 160,
-      render: (_, record, index) => <a onClick={() => editableActionRef.current.delete(record.id)}>删除</a>
+      render: (_, record) => <a onClick={() => editableActionRef.current.delete(record.id)}>删除</a>
     }
   ];
 

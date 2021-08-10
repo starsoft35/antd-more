@@ -175,6 +175,7 @@ const columns: BizTableColumnType<DataItem> = [
     dataIndex: "slider",
     title: "自定义滑动条",
     search: {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       render: ({ dataIndex, title }, dom, form) => (
         <BizForm.Item name={dataIndex} label={title} colProps={{ lg: 12, md: 24 }}>
           <Slider />

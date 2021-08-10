@@ -62,7 +62,7 @@ const Demo: React.FC = () => {
     {
       title: "操作",
       width: 120,
-      render: (_, record, index) => {
+      render: (_, record) => {
         return (
           <Space>
             {

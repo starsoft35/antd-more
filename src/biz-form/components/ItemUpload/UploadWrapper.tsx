@@ -108,7 +108,7 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
       actionRef.current = 'upload';
       return !!action;
     },
-    [fileList, maxCount, fileSizeMessage, fileTypeMessage, maxCountMessage, maxSize, accept],
+    [maxCount, accept, maxSize, action, maxCountMessage, fileTypeMessage, fileSizeMessage],
   );
 
   // 处理上传
@@ -177,7 +177,7 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
         });
       }
     },
-    [onChange],
+    [onChange, onUpload],
   );
 
   // 处理修改
@@ -239,7 +239,7 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
         fileList: [...fileListRef.current],
       });
     },
-    [fileList, action],
+    [maxCount, multiple, onChange, fileList, action, onUpload, handleUpload],
   );
 
   // 是否支持预览
@@ -279,7 +279,7 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
         title: file.name || getFileName(file.url),
       });
     },
-    [enabledShowPreview],
+    [enabledShowPreview, onGetPreviewUrl],
   );
 
   // 关闭预览
@@ -319,12 +319,13 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
         setTransforming(false);
       }, 0);
     }
-  }, [fileList]);
+  }, [beforeTransformValue, fileList, onChange]);
 
   React.useEffect(() => {
     if (transforming) {
       initTransform();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const Comp = React.useMemo(() => (dragger ? Upload.Dragger : Upload), [dragger]);

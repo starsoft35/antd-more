@@ -79,6 +79,7 @@ function createFormItems(options: SearchProps[], form: FormInstance) {
 
   return options
     .sort(compare)
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     .map(({ order, ...restItem }, index) =>
       createFormItem(
         { key: restItem.dataIndex || restItem.name || index.toString(), ...restItem },

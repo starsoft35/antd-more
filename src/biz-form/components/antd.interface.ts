@@ -35,5 +35,4 @@ export type { FormListProps } from 'antd/lib/form';
 
 export type { UploadFile, UploadChangeParam, RcFile } from 'antd/lib/upload/interface';
 
-// eslint-disable-next-line import/no-extraneous-dependencies
 export type { OptionCoreData, OptionGroupData } from 'rc-select/es/interface';

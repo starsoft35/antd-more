@@ -22,7 +22,7 @@ const DateRangePickerWrapper: React.FC<RangePickerProps> = ({ value, ...restProp
 
 export interface FormItemDateRangeProps
   extends BizFormItemProps,
-    Pick<RangePickerDateProps<Moment>, 'showTime'> {
+  Pick<RangePickerDateProps<Moment>, 'showTime'> {
   disabledDateBefore?: number;
   disabledDateAfter?: number;
   maxRange?: number; // 最大可选范围值，根据当前 picker 为单位。
@@ -85,7 +85,7 @@ const FormItemDateRange: React.FC<FormItemDateRangeProps> = ({
         return transValue;
       }
     },
-    [currentFormat, currentName],
+    [currentFormat, names, transform],
   );
 
   return (

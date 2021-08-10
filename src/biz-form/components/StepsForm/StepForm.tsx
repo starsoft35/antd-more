@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import * as React from 'react';
 import { isPromiseLike } from 'util-helpers';
 import { Form } from 'antd';
@@ -9,7 +10,7 @@ import type { StepsSubmitterProps } from './StepsSubmitter';
 
 export interface StepFormProps
   extends Omit<BaseFormProps, 'title' | 'onReset' | 'contentRender' | 'submitter' | 'ready'>,
-    Pick<StepProps, 'title' | 'icon' | 'subTitle' | 'description'> {
+  Pick<StepProps, 'title' | 'icon' | 'subTitle' | 'description'> {
   stepProps?: StepProps;
   submitter?: Omit<StepsSubmitterProps, 'total' | 'current' | 'form'> | false;
   readonly step?: number;
@@ -40,6 +41,7 @@ const StepForm: React.FC<StepFormProps> = ({
     }
     // modal 可能未加载时拿不到 form
     ctx?.forgetUpdate();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

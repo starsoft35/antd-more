@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /**
  * title: 上传文件含大中小图
  * desc: |
@@ -99,7 +100,7 @@ const Demo: React.FC = () => {
       images: await beforeTransformUploadValues(defaultFssId)
     });
     setReady(true);
-  }, []);
+  }, [initialValues]);
 
   // 上传图片
   const handleUpload = React.useCallback((file: File) => {
@@ -110,6 +111,7 @@ const Demo: React.FC = () => {
 
   React.useEffect(() => {
     transformInitialValues();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

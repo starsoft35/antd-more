@@ -15,8 +15,9 @@ const InputWrapper: React.FC<InputWrapperProps> = ({
   React.useEffect(() => {
     // 对第一次加载的数据格式化
     if (initialTransform && value) {
-      onChange(initialTransform(value));
+      onChange?.(initialTransform(value));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return <Input value={value} onChange={onChange} {...restProps} />;

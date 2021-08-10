@@ -66,7 +66,7 @@ const FormItemDate: React.FC<FormItemDateProps> = ({
       }
       return transformDate(val, currentFormat);
     },
-    [currentFormat],
+    [currentFormat, transform],
   );
 
   return (

@@ -28,7 +28,7 @@ const prefixCls = 'antd-more-table';
 
 export declare interface BizTableProps<RecordType = any>
   extends Omit<TableProps<RecordType>, 'columns'>,
-    Pick<SearchFormProps, 'formItems'> {
+  Pick<SearchFormProps, 'formItems'> {
   formRef?: React.MutableRefObject<FormInstance | undefined>;
   actionRef?: React.MutableRefObject<BizTableActionType | undefined>;
   columns?: BizTableColumnType<RecordType>;
@@ -138,7 +138,7 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
 
   const innerFormRef =
     (formRef as React.MutableRefObject<FormInstance | undefined>) ||
-    React.useRef<FormInstance | undefined>();
+    React.useRef<FormInstance | undefined>(); // eslint-disable-line react-hooks/rules-of-hooks
 
   const { searchItems, columns: currentColumns } = React.useMemo(() => {
     const ret = {
@@ -276,7 +276,8 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
     }
     ret.columns = processColumns(columns);
     return ret;
-  }, [rowKey, columns, editableKeys.join(','), editableForm]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [columns, nowrap, rowKey, editableKeys.join('.'), editableForm]);
 
   React.useImperativeHandle(editableKeyMapRef, () => editableKeyMap.current);
 
@@ -299,15 +300,18 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
     actionCacheKey,
   });
 
-  const handleChange = React.useCallback((page, filters, sorter, extraInfo) => {
-    onTableChange(page, filters, sorter, extraInfo);
-    typeof onChange === 'function' && onChange(page, filters, sorter, extraInfo);
-  }, []);
+  const handleChange = React.useCallback(
+    (page, filters, sorter, extraInfo) => {
+      onTableChange(page, filters, sorter, extraInfo);
+      onChange?.(page, filters, sorter, extraInfo);
+    },
+    [onChange, onTableChange],
+  );
 
   const handleReload = React.useCallback(() => {
     actionCache[actionCacheKey] = 'reload';
     run();
-  }, [run]);
+  }, [actionCacheKey, run]);
 
   const handleReset = React.useCallback(() => {
     actionCache[actionCacheKey] = 'reset';
@@ -320,7 +324,7 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
       run({}); // 触发修改分页
       actionCache[actionCacheKey] = '';
     }
-  }, [run, innerFormRef.current, hasSearch]);
+  }, [actionCacheKey, hasSearch, innerFormRef, run]);
 
   const handleSubmit = React.useCallback(() => {
     actionCache[actionCacheKey] = 'submit';
@@ -329,7 +333,7 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
     } else {
       run({}); // 触发修改分页
     }
-  }, [run, innerFormRef.current, hasSearch]);
+  }, [actionCacheKey, hasSearch, innerFormRef, run]);
 
   // 默认 onReset 中已经重置表单，这里只需触发请求
   const handleDefaultReset = React.useCallback(() => {
@@ -340,7 +344,7 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
       run({}); // 触发修改分页
       actionCache[actionCacheKey] = '';
     }
-  }, [run, innerFormRef.current, hasSearch]);
+  }, [actionCacheKey, hasSearch, innerFormRef, run]);
 
   const handleFinish = React.useCallback(
     (values) => {
@@ -352,7 +356,7 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
         actionCache[actionCacheKey] = '';
       }
     },
-    [run],
+    [actionCacheKey, run],
   );
 
   React.useImperativeHandle(actionRef, () => ({
@@ -371,14 +375,15 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
         run();
       }
     }
-  }, [ready]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [autoRequest, hasSearch, innerFormRef, ready]);
 
   // 删除缓存 action
   React.useEffect(() => {
     return () => {
       delete actionCache[actionCacheKey];
     };
-  }, []);
+  }, [actionCacheKey]);
 
   React.useEffect(() => {
     if (!toolbarActionConfig.columnSetting) {
@@ -453,10 +458,10 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
 
   const wrapperDefaultStyle = isFullScreen
     ? {
-        background: fullScreenBackgroundColor,
-        overflow: 'auto',
-        padding: !hasSearch && !extra ? 24 : 0,
-      }
+      background: fullScreenBackgroundColor,
+      overflow: 'auto',
+      padding: !hasSearch && !extra ? 24 : 0,
+    }
     : {};
 
   const finallyDom = (

@@ -33,7 +33,7 @@ const UploadAvatar: React.FC<{
 
   React.useEffect(() => {
     transformBase64();
-  }, [currentFile]);
+  }, [transformBase64]);
 
   let view = null;
 

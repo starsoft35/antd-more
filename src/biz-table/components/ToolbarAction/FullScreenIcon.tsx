@@ -10,7 +10,7 @@ const FullScreenIcon: React.FC = () => {
     rootRef.current.onfullscreenchange = (e) => {
       setFullScreen(document.fullscreenElement === e.target);
     };
-  }, []);
+  }, [rootRef, setFullScreen]);
 
   const fullScreen = React.useCallback(() => {
     return Promise.resolve(rootRef.current.requestFullscreen());

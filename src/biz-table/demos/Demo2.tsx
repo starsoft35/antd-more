@@ -101,7 +101,7 @@ const Demo: React.FC = () => {
       actionRef={actionRef}
       form={{
         submitter: {
-          render: (submitterProps, dom) => {
+          render: (submitterProps) => {
             const { submitButtonProps, resetButtonProps } = submitterProps;
             return (
               <Space>

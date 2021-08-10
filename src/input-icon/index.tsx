@@ -35,7 +35,7 @@ const InputIcon: React.FC<InputIconProps> = (props) => {
         onChange(icon[0]);
       }
     },
-    [state],
+    [onChange, setState, state],
   );
 
   const handleChange = React.useCallback(
@@ -46,7 +46,7 @@ const InputIcon: React.FC<InputIconProps> = (props) => {
       }
       onChange();
     },
-    [icons, state],
+    [icons, onChange, setState, state],
   );
 
   const IconComp = state && icons.has(state) ? icons.get(state) : null;
