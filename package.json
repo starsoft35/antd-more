@@ -6,7 +6,7 @@
   "module": "es/index.js",
   "types": "lib/index.d.ts",
   "sideEffects": [
-    "./src/**/style/**"
+    "*.less"
   ],
   "scripts": {
     "start": "dumi dev",
