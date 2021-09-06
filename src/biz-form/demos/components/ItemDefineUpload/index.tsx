@@ -1,7 +1,6 @@
 import * as React from "react";
 import { BizForm } from "antd-more";
 import type { BizFormItemUploadProps } from "antd-more";
-import Preview from "antd-more/es/biz-form/components/ItemUpload/Preview";
 
 const { ItemUpload } = BizForm;
 
@@ -30,7 +29,7 @@ const ItemDefineUpload: React.FC<BizFormItemUploadProps> = (props) => {
         }}
         {...props}
       />
-      <Preview visible={visible} title="示例图" imgUrl={imgUrl} onCancel={() => setVisible(false)} />
+      <ItemUpload.Preview visible={visible} title="示例图" imgUrl={imgUrl} onCancel={() => setVisible(false)} />
     </>
   );
 }

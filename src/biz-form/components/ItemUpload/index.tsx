@@ -8,6 +8,7 @@ import UploadImage from './UploadImage';
 import UploadAvatar from './UploadAvatar';
 import UploadDragger from './UploadDragger';
 import getLabel from '../../_util/getLabel';
+import Preview from './Preview';
 
 const normFile = (e) => {
   if (Array.isArray(e)) {
@@ -42,7 +43,9 @@ export interface FormItemUploadProps
   title?: React.ReactNode;
 }
 
-const FormItemUpload: React.FC<FormItemUploadProps> = ({
+const FormItemUpload: React.FC<FormItemUploadProps> & {
+  Preview: typeof Preview;
+} = ({
   uploadProps,
   accept,
   onUpload,
@@ -122,5 +125,7 @@ const FormItemUpload: React.FC<FormItemUploadProps> = ({
     </BizFormItem>
   );
 };
+
+FormItemUpload.Preview = Preview;
 
 export default FormItemUpload;
