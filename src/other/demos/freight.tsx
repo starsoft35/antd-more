@@ -102,9 +102,7 @@ const Freight: React.FC<FreightProps> = () => {
     },
   ];
 
-  const { data = [], refresh: refreshData, loading } = useAsync(services.getData, {
-    formatResult: res => res.data
-  });
+  const { data = [], refresh: refreshData, loading } = useAsync<DataItem[]>(() => services.getData().then(res => res.data));
   const { run: update, loading: updating } = useAsync(() => services.update(state), {
     autoRun: false
   });

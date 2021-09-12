@@ -6,12 +6,13 @@ import { useAsync } from 'rc-hooks';
 import { CaptchaButton } from 'antd-more';
 
 // 接口：发送短信验证码
-function asyncSendVerificationCode(): Promise<{ data: { requestId: string; } }> {
-  return new Promise((resolve) => {
+function asyncSendVerificationCode(mobile: string) {
+  return new Promise<{ data: { requestId: string; mobile: string; } }>((resolve) => {
     setTimeout(() => {
       resolve({
         data: {
           requestId: 'abcdefg',
+          mobile
         },
       });
     }, 1000);
@@ -52,7 +53,7 @@ const VerificateCodeInput: React.FC<VerificateCodeInputProps> = ({
   const onButtonClick = () => {
     // 校验手机号码
     form.validateFields([mobileField]).then((values) => {
-      return run({ mobile: values[mobileField] }).then((res) => {
+      return run(values[mobileField]).then((res) => {
         triggerChange({ requestId: res.data.requestId });
         setStart(true);
         inputRef.current.focus();
