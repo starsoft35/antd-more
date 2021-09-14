@@ -104,11 +104,7 @@ const EditableBizTable = <RecordType extends object = any>({
   }, [form, formName, regChildForm, unregChildForm]);
 
   const changeValue = (val) => {
-    if (
-      typeof outValue !== 'undefined' &&
-      typeof onChange === 'function' &&
-      typeof onValuesChange !== 'function'
-    ) {
+    if (typeof outValue !== 'undefined' && typeof onChange === 'function') {
       onChange?.(val);
     } else {
       setValue(val);
@@ -116,11 +112,7 @@ const EditableBizTable = <RecordType extends object = any>({
   };
 
   useUpdateEffect(() => {
-    if (
-      typeof outValue !== 'undefined' &&
-      typeof onChange === 'function' &&
-      typeof onValuesChange !== 'function'
-    ) {
+    if (typeof outValue !== 'undefined' && typeof onChange === 'function') {
       setValue(outValue);
     }
   }, [outValue]);
