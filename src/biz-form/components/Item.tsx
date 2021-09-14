@@ -40,6 +40,7 @@ const BizFormItem: React.FC<BizFormItemProps> = ({
   contentBefore,
   contentAfter,
   contentConfig,
+  shouldUpdate,
   ...restProps
 }) => {
   const {
@@ -85,11 +86,23 @@ const BizFormItem: React.FC<BizFormItemProps> = ({
       validateFirst
       rules={[...rules, ...extendRules]}
       labelCol={labelColProps}
+      shouldUpdate={shouldUpdate}
       {...restProps}
     >
-      <WrapperFormElement before={contentBefore} after={contentAfter} {...contentConfig}>
-        {renderField ? renderField(children as JSX.Element) : children}
-      </WrapperFormElement>
+      {shouldUpdate ? (
+        (...args) => {
+          const innerChildren = typeof children === 'function' ? children(...args) : children;
+          return (
+            <WrapperFormElement before={contentBefore} after={contentAfter} {...contentConfig}>
+              {renderField ? renderField(innerChildren) : innerChildren}
+            </WrapperFormElement>
+          );
+        }
+      ) : (
+        <WrapperFormElement before={contentBefore} after={contentAfter} {...contentConfig}>
+          {renderField ? renderField(children as JSX.Element) : children}
+        </WrapperFormElement>
+      )}
     </Form.Item>
   );
 };
