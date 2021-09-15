@@ -41,14 +41,14 @@ export enum Bank {
 export const BankOptions = [
   {
     name: '中国银行',
-    value: 'BOC'
+    value: Bank.BOC
   },
   {
     name: '交通银行',
-    value: 'BCM'
+    value: Bank.BCM
   },
   {
     name: '中国农业银行',
-    value: 'ABC'
+    value: Bank.ABC
   },
 ];
