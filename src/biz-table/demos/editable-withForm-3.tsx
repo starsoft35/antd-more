@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { DeleteOutlined } from '@ant-design/icons';
-import { Popconfirm } from 'antd';
+import { Popconfirm, Row, Col } from 'antd';
 import { BizForm, BizTable, BizField } from 'antd-more';
 import { formatBankCard } from 'util-helpers';
 import type { EditableBizTableActionType, BizTableColumnType } from 'antd-more';
@@ -27,10 +27,17 @@ const defaultData = Mock.mock({
 }).list;
 
 const { EditableBizTable } = BizTable;
-const { Item } = BizForm;
+const { Item, ItemInput, ItemDate, ItemNumber } = BizForm;
+
+const colspanConfig = {
+  xxl: 6,
+  lg: 8,
+  md: 12,
+  xs: 24
+}
 
 const Demo: React.FC = () => {
-  const [editableKeys, setEditableKeys] = React.useState(() => defaultData.map(item => item.id));
+  const [editableKeys, setEditableKeys] = React.useState([]);
   const editableActionRef = React.useRef<EditableBizTableActionType>();
 
   const columns: BizTableColumnType = [
@@ -53,7 +60,7 @@ const Demo: React.FC = () => {
           <>
             <div>
               {record.merchantName}
-               -
+              -
               <BizField value={record.bank} valueType="enum" valueEnum={BankOptions} />
             </div>
             <div>{formatBankCard(`${record.bankCardNo}`)}</div>
@@ -128,11 +135,22 @@ const Demo: React.FC = () => {
         render: (_, dom) => dom
       }}
     >
+      <Row gutter={16}>
+        <Col {...colspanConfig}>
+          <ItemInput label="商品编号" name="goodsNo" />
+        </Col>
+        <Col {...colspanConfig}>
+          <ItemDate label="交易日期" name="tradeDate" />
+        </Col>
+        <Col {...colspanConfig}>
+          <ItemNumber label="终端编号" name="terminalNo" />
+        </Col>
+      </Row>
       <Item
         label="付款列表"
         name="list"
         initialValue={defaultData}
-        trigger="onValuesChange"
+        // trigger="onValuesChange"
         hideLabel
       >
         <EditableBizTable

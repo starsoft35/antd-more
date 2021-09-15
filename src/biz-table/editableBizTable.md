@@ -37,15 +37,21 @@ nav:
 
 ### 结合Form使用1
 
-<code src="./demos/editable-4.tsx" />
+<code src="./demos/editable-withForm-1.tsx" />
 
 ### 结合Form使用2
 
-<code src="./demos/editable-5.tsx" />
+**注意**该示例含编辑状态切换，所以不需要设置 `trigger=onValuesChange` 。并且修改和新增只有保存成功后才会加入 form 的数据中。
+
+<code src="./demos/editable-withForm-2.tsx" />
+
+### 结合Form使用3
+
+<code src="./demos/editable-withForm-3.tsx" />
 
 ### 含查询表单和分页
 
-<code src="./demos/editable-6.tsx" background="#f5f5f5" />
+<code src="./demos/editable-request-1.tsx" background="#f5f5f5" />
 
 ## API
 
