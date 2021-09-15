@@ -123,6 +123,7 @@ const Demo: React.FC = () => {
       }}
       form={form}
       submitter={{
+        noReset: true,
         render: (_, dom) => dom
       }}
     >

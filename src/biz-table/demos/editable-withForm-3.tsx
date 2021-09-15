@@ -37,7 +37,7 @@ const colspanConfig = {
 }
 
 const Demo: React.FC = () => {
-  const [editableKeys, setEditableKeys] = React.useState([]);
+  const [editableKeys, setEditableKeys] = React.useState(() => defaultData.map(item => item.id));
   const editableActionRef = React.useRef<EditableBizTableActionType>();
 
   const columns: BizTableColumnType = [
@@ -150,7 +150,7 @@ const Demo: React.FC = () => {
         label="付款列表"
         name="list"
         initialValue={defaultData}
-        // trigger="onValuesChange"
+        trigger="onValuesChange"
         hideLabel
       >
         <EditableBizTable
