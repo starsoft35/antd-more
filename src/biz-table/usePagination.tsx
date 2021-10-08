@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { useAsync } from 'rc-hooks';
-import type { AsyncOptions, AsyncFunction } from 'rc-hooks/es/useAsync';
+import type { AsyncBaseOptions, AsyncFunction } from 'rc-hooks';
 import actionCache from './_util/actionCache';
 import type { RequestFilters, RequestSorter, RequestExtra, AsyncFnReturn } from './interface';
 
@@ -11,7 +11,7 @@ interface ParamsRef<DataType> {
   extra: RequestExtra<DataType>;
 }
 
-interface Options<DataType = any> extends AsyncOptions<DataType> {
+interface Options<DataType = any> extends AsyncBaseOptions<DataType> {
   defaultTotal?: number;
   defaultPageSize?: number;
   actionCacheKey?: string;
