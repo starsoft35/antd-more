@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Steps, Form } from 'antd';
 import classNames from 'classnames';
 import { isPromiseLike } from 'util-helpers';
-import { useIsMounted, useUpdate } from 'rc-hooks';
+import { useUnmountedRef, useUpdate } from 'rc-hooks';
 import type { StepsProps, StepProps } from '../antd.interface';
 import StepsFormContext from './StepsFormContext';
 import type { BaseFormProps } from '../BaseForm';
@@ -63,7 +63,7 @@ const StepsForm: React.FC<StepsFormProps> & {
 }) => {
   const [step, setStep] = React.useState(current);
   const [loading, setLoading] = React.useState(false);
-  const isMountedRef = useIsMounted();
+  const unmountedRef = useUnmountedRef();
   // const [stepsConfig, setStepsConfig] = React.useState([]);
   // const [submitterConfig, setSubmitterConfig] = React.useState([]);
   const formArrayRef = React.useRef([]);
@@ -75,7 +75,7 @@ const StepsForm: React.FC<StepsFormProps> & {
   const update = useUpdate();
   const forgetUpdate = () => {
     setTimeout(() => {
-      isMountedRef.current && update();
+      !unmountedRef.current && update();
     });
   };
 
