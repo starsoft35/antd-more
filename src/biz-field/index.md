@@ -42,7 +42,7 @@ formatValue  | 格式化 `value` 。<br/>在 BizTable 或 BizDescriptions ，可
 
 类型 | 描述 | 示例 |
 ------------- | ------------- | ------------- |
-text  | 默认不做处理，当值为 [Falsy](https://developer.mozilla.org/zh-CN/docs/Glossary/Falsy) 时，显示 `-` | - |
+text  | 默认不做处理，当值为 `null` `undefined` `""` 时，显示 `-` | - |
 money  | 金额 | - |
 index  | 序列号 | - |
 indexBorder  | 带 border 的序列号 | - |

@@ -62,7 +62,7 @@ export default () => {
         <Descriptions.Item label="文本">
           <BizField value="这是一段文本" valueType="text" />
           、
-          <BizField value="带颜色和文字大小" valueType="text" color="red" size={13} />
+          <BizField value="颜色和文字大小" valueType="text" color="red" size={16} />
         </Descriptions.Item>
         <Descriptions.Item label="金额">
           <BizField value={100} valueType="money" />

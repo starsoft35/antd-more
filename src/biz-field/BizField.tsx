@@ -56,14 +56,14 @@ const BizField: React.FC<BizFieldProps> = ({
 
     return (
       <span {...restTextProps} style={styles}>
-        {retValue ? (
+        {retValue === null || retValue === undefined || retValue === '' ? (
+          '-'
+        ) : (
           <>
             {prefix}
             {retValue}
             {suffix}
           </>
-        ) : (
-          '-'
         )}
       </span>
     );
