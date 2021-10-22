@@ -11,6 +11,7 @@ import * as React from "react";
 import { BizForm } from "antd-more";
 import type { UploadFile } from "antd/lib/upload/interface";
 import waitTime from "./utils/waitTime";
+import { message } from "antd";
 
 const { ItemUpload } = BizForm;
 
@@ -43,6 +44,7 @@ const Demo: React.FC = () => {
 
   // 提交时转换上传值
   const transformUploadValue = React.useCallback((uploadValues: (UploadFile & Record<string, any>)[]) => {
+    // 过滤上传失败 和 上传中
     return uploadValues ? uploadValues.filter(valItem => valItem.status !== "error" && valItem.value).map(valItem => valItem.value) : undefined;
   }, []);
 
@@ -50,6 +52,24 @@ const Demo: React.FC = () => {
     <BizForm
       name="upload-real-time"
       onFinish={async (values) => {
+        let errMsg = '';
+        if (!values.xls[0]) {
+          errMsg = '请上传xls文档';
+        } else if (!values.images[0]) {
+          errMsg = '请上传图片';
+        } else if (!values.headpic01[0]) {
+          errMsg = '请上传头像1';
+        } else if (!values.headpic02[0]) {
+          errMsg = '请上传头像2';
+        } else if (!values.dragger[0]) {
+          errMsg = '请拖拽上传文件';
+        }
+
+        if (errMsg) {
+          message.error(errMsg);
+          return;
+        }
+
         await waitTime();
         console.log(values);
       }}
