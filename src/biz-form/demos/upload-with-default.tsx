@@ -5,10 +5,8 @@
  *      将默认值转换成 `UploadFile[]` 数据格式再传入，数据通过异步获取的情况下可用 `ready` 标识位。当然你也可以再外部添加一个 `Spin` 组件用于显示加载状态。
  */
 import * as React from "react";
-import type { UploadFile } from "antd/lib/upload/interface";
 import { BizForm } from "antd-more";
 import waitTime from "./utils/waitTime";
-import { message } from "antd";
 
 const { ItemUpload } = BizForm;
 
@@ -88,13 +86,9 @@ const Demo: React.FC = () => {
 
   // 上传图片
   const handleUpload = React.useCallback((file) => {
-    return uploadImage(file).then(res => ({ value: res.fssId }));
-  }, []);
-
-  // 提交时转换上传值
-  const transformUploadValue = React.useCallback((uploadValues: (UploadFile & Record<string, any>)[]) => {
-    // 过滤上传失败 和 上传中
-    return uploadValues ? uploadValues.filter(valItem => valItem.status !== "error" && valItem.value).map(valItem => valItem.value) : undefined;
+    return uploadImage(file).then(res => {
+      return { value: res.fssId }
+    });
   }, []);
 
   React.useEffect(() => {
@@ -107,11 +101,6 @@ const Demo: React.FC = () => {
       name="upload-with-default"
       form={form}
       onFinish={async (values) => {
-        if (!values.images[0]) {
-          message.error('请上传图片');
-          return;
-        }
-
         await waitTime();
         console.log(values);
       }}
@@ -126,7 +115,6 @@ const Demo: React.FC = () => {
         onUpload={handleUpload}
         maxCount={9}
         disabled={!ready}
-        transform={transformUploadValue}
         required
       />
     </BizForm>

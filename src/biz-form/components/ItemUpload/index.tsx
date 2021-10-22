@@ -89,8 +89,9 @@ const FormItemUpload: React.FC<FormItemUploadProps> & {
         {
           validator(rules, value) {
             let errMsg = '';
+            const realValue = value && typeof transform === 'function' ? transform(value) : value;
 
-            if (!value || (Array.isArray(value) && value.length <= 0)) {
+            if (!realValue || (Array.isArray(realValue) && realValue.length <= 0)) {
               errMsg = required ? `请上传${getLabel(restProps)}` : '';
             }
             if (errMsg) {
