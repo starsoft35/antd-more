@@ -30,7 +30,7 @@ export interface StepsSubmitterProps
   render?:
     | ((
         props: StepsSubmitterProps,
-        dom: JSX.Element[], // eslint-disable-line
+        dom: React.ReactElement[],
       ) => React.ReactNode[] | React.ReactNode | false)
     | false;
 }

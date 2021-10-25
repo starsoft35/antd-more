@@ -84,7 +84,7 @@ const StepsForm: React.FC<StepsFormProps> & {
 
   // 遍历子组件提取配置
   const childs = React.Children.toArray(children);
-  childs.forEach((childItem: JSX.Element, index) => {
+  childs.forEach((childItem: React.ReactElement, index) => {
     const {
       stepProps,
       title,

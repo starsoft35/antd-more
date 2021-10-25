@@ -8,9 +8,7 @@ import createUniqueId from './_util/createUniqueId';
 import type { SearchProps } from './interface';
 
 export declare interface SearchFormProps extends QueryFormProps {
-  formItems?:
-    | JSX.Element[] // eslint-disable-line
-    | Exclude<React.ReactNode, string | number | boolean | null | undefined>[];
+  formItems?: Exclude<React.ReactNode, string | number | boolean | null | undefined>[];
   searchItems?: SearchProps[];
   cardProps?: CardProps;
   ref?: React.MutableRefObject<FormInstance | undefined> | ((instance: FormInstance<any>) => void);

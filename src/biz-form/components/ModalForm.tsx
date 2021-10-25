@@ -9,7 +9,7 @@ import type { BaseFormProps } from './BaseForm';
 export interface ModalFormProps extends Omit<BaseFormProps, 'title'> {
   title?: React.ReactNode;
   width?: ModalProps['width'];
-  trigger?: JSX.Element;
+  trigger?: React.ReactElement;
   modalProps?: Omit<ModalProps, 'visible' | 'footer'>;
   visible?: boolean;
   onVisibleChange?: (visible: boolean) => void;

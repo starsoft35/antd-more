@@ -28,7 +28,7 @@ const prefixCls = 'antd-more-table';
 
 export declare interface BizTableProps<RecordType = any>
   extends Omit<TableProps<RecordType>, 'columns'>,
-  Pick<SearchFormProps, 'formItems'> {
+    Pick<SearchFormProps, 'formItems'> {
   formRef?: React.MutableRefObject<FormInstance | undefined>;
   actionRef?: React.MutableRefObject<BizTableActionType | undefined>;
   columns?: BizTableColumnType<RecordType>;
@@ -41,13 +41,10 @@ export declare interface BizTableProps<RecordType = any>
   formCardProps?: CardProps;
   tableCardProps?: CardProps;
   toolbar?: React.ReactNode;
-  toolbarRender?: (dom: JSX.Element) => JSX.Element | React.ReactNode;
+  toolbarRender?: (dom: React.ReactElement) => React.ReactNode;
   toolbarAction?: boolean | ToolbarActionProps['config'];
   extra?: React.ReactNode;
-  tableRender?: (
-    props: BizTableProps<RecordType>,
-    dom: JSX.Element,
-  ) => JSX.Element | React.ReactNode;
+  tableRender?: (props: BizTableProps<RecordType>, dom: React.ReactElement) => React.ReactNode;
   tableClassName?: string;
   tableStyle?: React.CSSProperties;
   fullScreenBackgroundColor?: string; // 全屏时的背景颜色
@@ -458,10 +455,10 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
 
   const wrapperDefaultStyle = isFullScreen
     ? {
-      background: fullScreenBackgroundColor,
-      overflow: 'auto',
-      padding: !hasSearch && !extra ? 24 : 0,
-    }
+        background: fullScreenBackgroundColor,
+        overflow: 'auto',
+        padding: !hasSearch && !extra ? 24 : 0,
+      }
     : {};
 
   const finallyDom = (

@@ -93,7 +93,7 @@ onSubmit  | 点击提交按钮的回调 | `()=>void` | - |
 submitText  | 提交按钮文本 | `ReactNode` | `提交` |
 submitButtonProps  | 提交按钮属性，和 antd [Button](https://ant-design.gitee.io/components/button-cn/#API) 一致 | [ButtonProps](https://ant-design.gitee.io/components/button-cn/#API) | - |
 forceShowSubmit  | 强制显示提交按钮 | `boolean` | - |
-render  | 自定义操作的渲染 | `false \| (props,dom:JSX[])=>ReactNode[]` | - |
+render  | 自定义操作的渲染 | `false \| (props,dom:ReactElement[])=>ReactNode[]` | - |
 
 ### actionRef
 

@@ -196,7 +196,7 @@ valueEnum = options
 
 ```typescript
 editable: (_, record, index)=>{
-  render: (originItem, dom: JSX.Element, form: FormInstance): JSX.Element{
+  render: (originItem, dom: React.ReactElement, form: FormInstance): React.ReactElement{
     console.log(originItem, dom, form);
     // return dom;
 

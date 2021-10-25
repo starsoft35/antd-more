@@ -54,9 +54,9 @@ export interface SearchProps<RecordType = any>
   order?: number; // 定义查询项的排列顺序，越小越靠前。参照flex的order，默认都为0
   render?: (
     originItem: InternalColumnType<RecordType>,
-    dom: JSX.Element, // eslint-disable-line
+    dom: React.ReactElement,
     form: FormInstance,
-  ) => JSX.Element; // eslint-disable-line
+  ) => React.ReactElement;
 }
 
 export interface EditableProps<RecordType = any> extends Omit<SearchProps<RecordType>, 'order'> {}

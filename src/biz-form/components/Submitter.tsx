@@ -15,17 +15,17 @@ export interface SubmitterProps<T = {}> {
 
   form?: FormInstance;
   render?:
-  | ((
-    props: SubmitterProps & T,
-    dom: JSX.Element[], // eslint-disable-line
-  ) => React.ReactNode[] | React.ReactNode | false)
-  | false;
+    | ((
+        props: SubmitterProps & T,
+        dom: React.ReactElement[],
+      ) => React.ReactNode[] | React.ReactNode | false)
+    | false;
 }
 
 const Submitter: React.FC<SubmitterProps> = (props) => {
   const {
-    onSubmit = () => { },
-    onReset = () => { },
+    onSubmit = () => {},
+    onReset = () => {},
     submitText = '提交',
     resetText = '重置',
     submitButtonProps = {},

@@ -9,7 +9,7 @@ import type { BaseFormProps } from './BaseForm';
 export interface DrawerFormProps extends Omit<BaseFormProps, 'title'> {
   title?: React.ReactNode;
   width?: DrawerProps['width'];
-  trigger?: JSX.Element;
+  trigger?: React.ReactElement;
   drawerProps?: Omit<DrawerProps, 'visible' | 'footer'>;
   visible?: boolean;
   onVisibleChange?: (visible: boolean) => void;

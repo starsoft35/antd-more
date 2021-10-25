@@ -63,13 +63,13 @@ nowrap  | 单元格内容不会换行，表格宽度超过100%自动处理横向
 formItems  | 查询表单项，推荐使用 `columns.search` 配置 | `ReactNode[]` | - |
 toolbar  | 工具栏，表格内的上面区域 | `ReactNode` | - |
 toolbarAction  | 工具栏右侧显示内置工具 | `boolean \| { reload?: boolean; density?: boolean; fullScreen?: boolean; columnSetting?: boolean; }` | `false` |
-toolbarRender  | 自定义工具栏渲染。<br/>如果有设置toolbarAction，参数 dom 包含了右侧内置工具。 | `(dom: JSX.Element) => ReactNode` | - |
+toolbarRender  | 自定义工具栏渲染。<br/>如果有设置toolbarAction，参数 dom 包含了右侧内置工具。 | `(dom: ReactElement) => ReactNode` | - |
 fullScreenBackgroundColor  | 全屏时显示的背景颜色 | `string` | `#ffffff` |
 extra  | 扩展内容，表格外的上面、查询表单下面的区域 | `ReactNode` | - |
 form  | 同 [QueryForm] 配置参数 | [QueryFormProps] | - |
 formRef  | 获取查询表单的 `form` 实例  | `MutableRefObject&lt;FormInstance&gt;` | - |
 actionRef  | 常用操作引用，便于自定义触发  | `MutableRefObject&lt;ActionType&gt;` | - |
-tableRender  | 自定义表格渲染  | `(props: BizTableProps&lt;RecordType&gt;, dom: JSX.Element) => ReactNode` | - |
+tableRender  | 自定义表格渲染  | `(props: BizTableProps&lt;RecordType&gt;, dom: ReactElement) => ReactNode` | - |
 
 ### Request 请求方法
 
@@ -203,7 +203,7 @@ valueEnum = options
 
 ```typescript
 search: {
-  render: (originItem, dom: JSX.Element, form: FormInstance): JSX.Element{
+  render: (originItem, dom: ReactElement, form: FormInstance): ReactElement{
     console.log(originItem, dom, form);
     // return dom;
 
