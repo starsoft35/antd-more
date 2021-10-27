@@ -96,7 +96,9 @@ const Demo: React.FC = () => {
   React.useEffect(() => {
     // 设置查询表单值
     formRef.current.setFieldsValue({
-      approverName: '123'
+      approverName: '123',
+      createTime: '2021-10-28',
+      approveTime: ['2021-10-28 00:00:00', '2021-10-28 23:59:59']
     });
 
     // 手动发起请求
