@@ -38,11 +38,25 @@ nav:
 
 <code src="./demos/formItems.tsx" background="#f5f5f5" />
 
-### 异步初始值表格
+### 异步初始值查询表单
 
 5秒后获取到初始值再发起请求。
 
 <code src="./demos/async-initial-values.tsx" background="#f5f5f5" />
+
+### 手动设置查询表单
+
+不改变查询表单的 `initialValues`，而是通过 `formRef` 设置表单值，再进行查询。比如通过 URL 带一些默认查询参数。
+
+这样不影响查询表单的重置操作。
+
+<code src="./demos/search-form-ref-1.tsx" background="#f5f5f5" />
+
+### 运费配置
+
+仅使用表格的 `field` 转换功能，如果不使用 `request`，需将 `autoRequest` 设为 `false`。
+
+<code src="./demos/freight.tsx" background="#f5f5f5" />
 
 ### 更多查询表单项
 

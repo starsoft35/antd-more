@@ -88,12 +88,6 @@ const umiConfig = {
           'captcha-button',
           'input-icon'
         ]
-      },
-      {
-        title: '其他业务场景',
-        children: [
-          'other/table'
-        ]
       }
     ]
   }

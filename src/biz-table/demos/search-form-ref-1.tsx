@@ -30,19 +30,11 @@ const columns: BizTableColumnType<DataItem> = [
     title: "金额",
     valueType: "money",
     align: "right",
-    // 写法一，传递给 BizField的参数
+    // 传递给 BizField的参数
     field: {
       formatValue: value => divide(value, 100), // 分转元
       prefix: "¥"
     },
-    // 写法二，可关联当前数据配置
-    // field: (text, record, index) => {
-    //   console.log(text, record, index);
-    //   return {
-    //     formatValue: value => divide(value, 100), // 分转元
-    //     prefix: `${record.applicantName} `,
-    //   }
-    // },
     order: 2
   },
   {
@@ -79,8 +71,11 @@ const columns: BizTableColumnType<DataItem> = [
 ];
 
 const Demo: React.FC = () => {
+  // 查询表单实例引用
   const formRef = React.useRef<FormInstance>();
+  // 操作引用
   const actionRef = React.useRef<BizTableActionType>();
+
   const handleRequest: BizTableRequest<DataItem> = React.useCallback((params, filters, sorter, extra) => {
     const { pageSize, current, ...restParams } = params;
     console.log(params, filters, sorter, extra);
@@ -99,9 +94,12 @@ const Demo: React.FC = () => {
   }, []);
 
   React.useEffect(() => {
+    // 设置查询表单值
     formRef.current.setFieldsValue({
       approverName: '123'
     });
+
+    // 手动发起请求
     actionRef.current.submit();
   }, []);
 
@@ -111,9 +109,11 @@ const Demo: React.FC = () => {
       rowKey="applyCode"
       request={handleRequest}
       toolbarAction
+      // 关闭自动请求
       autoRequest={false}
       formRef={formRef}
       actionRef={actionRef}
+      pagination={{ pageSize: 5 }}
     />
   );
 }

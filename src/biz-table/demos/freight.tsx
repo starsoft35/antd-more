@@ -1,5 +1,10 @@
+/**
+ * title: 运费配置
+ * desc: 设置 `autoRequest=false` 仅使用 `BizTable` 的 field 能力。
+ */
 import * as React from 'react';
-import { Table, Button, message } from 'antd';
+import { Button, message } from 'antd';
+import { BizTable, BizTableColumnType } from 'antd-more';
 import { useAsync } from 'rc-hooks';
 import Mockjs from 'mockjs';
 import waitTime from './utils/waitTime';
@@ -22,7 +27,14 @@ const services = {
         'id|+1': 0,
         name: '@city'
       }]
-    });
+    }) as {
+      data: {
+        freight: number;
+        freightRule: number;
+        id: number;
+        name: string;
+      }[]
+    };
     return {
       success: true,
       data: data.map(item => {
@@ -34,14 +46,6 @@ const services = {
         }
         return item;
       })
-    } as {
-      success: boolean;
-      data: {
-        freight: number;
-        freightRule: number;
-        id: number;
-        name: string;
-      }[]
     }
   },
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -54,11 +58,10 @@ const services = {
 }
 
 function reducer(state, action) {
-  switch (action.type) {
-    case 'update':
-      // eslint-disable-next-line
-      const { type, ...rest } = action;
+  const { type, ...rest } = action;
 
+  switch (type) {
+    case 'update':
       if (state.find(item => item.id === action.id)) {
         return state.map(item => {
           if (item.id === action.id) {
@@ -83,7 +86,10 @@ export interface FreightProps { }
 const Freight: React.FC<FreightProps> = () => {
   const [state, dispatch] = React.useReducer(reducer, []);
 
-  const columns = [
+  const columns: BizTableColumnType = [
+    {
+      valueType: 'indexBorder'
+    },
     {
       title: '地区',
       dataIndex: 'name',
@@ -133,16 +139,23 @@ const Freight: React.FC<FreightProps> = () => {
   }
 
   return (
-    <>
-      <Table<DataItem>
+    <div style={{ padding: 24, backgroundColor: '#fff' }}>
+      <BizTable<DataItem>
+        autoRequest={false}
         dataSource={data}
         columns={columns}
         pagination={false}
         rowKey='id'
         loading={loading || updating}
+        toolbarAction={{
+          fullScreen: false,
+          // density: true,
+          // reload: true,
+          // columnSetting: true,
+        }}
       />
       <Button type='primary' onClick={handleUpdate} disabled={loading} loading={updating} style={{ marginTop: 24 }}>更新</Button>
-    </>
+    </div>
   );
 }
 
