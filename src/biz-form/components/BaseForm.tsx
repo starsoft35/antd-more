@@ -6,6 +6,7 @@ import { isPromiseLike } from 'util-helpers';
 import { useUpdateEffect, useUnmountedRef } from 'rc-hooks';
 import type { FormProps, FormInstance } from './antd.interface';
 import { transformFormValues } from '../_util/transform';
+import getNamePaths from '../_util/getNamePaths';
 import FieldContext from '../FieldContext';
 import type { TransformFn } from '../FieldContext';
 import ChildFormContext from '../ChildFormContext';
@@ -79,19 +80,7 @@ const BaseForm: React.FC<BaseFormProps> = ({
   const setFieldTransform = React.useCallback((name, transform, parentListName) => {
     if (name && transform) {
       if (Array.isArray(parentListName) && parentListName.length > 0) {
-        const paths: (string | number)[] = [];
-        parentListName.forEach((parentItemPath) => {
-          if (Array.isArray(parentItemPath)) {
-            paths.push(...parentItemPath);
-          } else {
-            paths.push(parentItemPath);
-          }
-        });
-        if (Array.isArray(name)) {
-          paths.push(...name);
-        } else {
-          paths.push(name);
-        }
+        const paths = getNamePaths(name, parentListName);
         transformRecordRef.current = namePathSet(transformRecordRef.current, paths, transform);
       } else if (Array.isArray(name)) {
         transformRecordRef.current = namePathSet(transformRecordRef.current, name, transform);
@@ -208,7 +197,13 @@ const BaseForm: React.FC<BaseFormProps> = ({
       }}
     >
       <FieldContext.Provider
-        value={{ setFieldTransform, layout, hideLabel, labelCol: labelColProps }}
+        value={{
+          setFieldTransform,
+          layout,
+          hideLabel,
+          labelCol: labelColProps,
+          form: formProp || form,
+        }}
       >
         <Form
           onKeyPress={(event) => {

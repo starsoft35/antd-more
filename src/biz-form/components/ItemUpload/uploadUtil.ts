@@ -12,7 +12,7 @@ export function getBase64(file): Promise<string> {
 
 // 检查文件类型
 export function checkFileType(file: File, accept?: string): boolean {
-  if (!accept || !accept.trim()) {
+  if (!accept || !accept.trim() || accept === '*') {
     return true;
   }
 

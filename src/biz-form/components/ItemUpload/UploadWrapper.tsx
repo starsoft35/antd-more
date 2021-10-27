@@ -27,6 +27,7 @@ export interface UploadWrapperProps extends UploadProps {
   beforeTransformValue?: (value: any[]) => UploadFile[] | Promise<UploadFile[]>; // 初始值转换
   onGetPreviewUrl?: (file: File) => Promise<string>; // 点击预览获取大图URL
   dragger?: boolean; // 支持拖拽
+  internalTriggeValidate?: () => void; // 外部透传的校验表单，用于异步上传 或 删除后触发
 
   // icon和title配置仅在 Dragger 和 Button 中生效
   icon?: React.ReactNode;
@@ -55,6 +56,7 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
   className,
   disabled,
   action,
+  internalTriggeValidate,
   ...restProps
 }) => {
   const actionRef = React.useRef<'normal' | 'error' | 'upload'>('normal');
@@ -111,6 +113,15 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
     [maxCount, accept, maxSize, action, maxCountMessage, fileTypeMessage, fileSizeMessage],
   );
 
+  const handleValidate = React.useCallback(
+    (file: UploadFile, force = false) => {
+      if ((file?.status && file.status !== 'uploading') || force) {
+        internalTriggeValidate?.();
+      }
+    },
+    [internalTriggeValidate],
+  );
+
   // 处理上传
   const handleUpload = React.useCallback(
     (file: UploadFile) => {
@@ -124,12 +135,14 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
           .then((res) => {
             fileListRef.current = fileListRef.current.map((item) => {
               if (item.uid === uid) {
-                return {
-                  ...item,
-                  status: 'done',
-                  percent: 100,
-                  ...res,
-                };
+                item.status = 'done';
+                item.percent = 100;
+                const resKeys = typeof res === 'object' ? Object.keys(res) : [];
+                if (resKeys.length > 0) {
+                  resKeys.forEach((resKey) => {
+                    item[resKey] = res[resKey];
+                  });
+                }
               }
               return item;
             });
@@ -139,17 +152,14 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
               file,
               fileList: [...fileListRef.current],
             });
+            handleValidate(file, true);
           })
           .catch((err) => {
             fileListRef.current = fileListRef.current.map((item) => {
               if (item.uid === uid) {
-                return {
-                  ...item,
-                  status: 'error',
-                  thumbUrl: '',
-                  percent: 0,
-                  response: err?.message || '上传错误',
-                };
+                item.status = 'error';
+                item.percent = 100;
+                item.response = err?.message || '上传错误';
               }
               return item;
             });
@@ -159,15 +169,13 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
               file,
               fileList: [...fileListRef.current],
             });
+            handleValidate(file, true);
           });
       } else {
         fileListRef.current = fileListRef.current.map((fileItem) => {
           if (fileItem.uid === uid) {
-            return {
-              ...fileItem,
-              percent: 100,
-              status: 'done',
-            };
+            fileItem.percent = 100;
+            fileItem.status = 'done';
           }
           return fileItem;
         });
@@ -175,9 +183,10 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
           file,
           fileList: [...fileListRef.current],
         });
+        handleValidate(file, true);
       }
     },
-    [onChange, onUpload],
+    [handleValidate, onChange, onUpload],
   );
 
   // 处理修改
@@ -198,6 +207,8 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
           file,
           fileList: [...fileListRef.current],
         });
+
+        handleValidate(file);
         return;
       }
 
@@ -222,11 +233,8 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
           const { uid } = file;
           fileListRef.current = fileListRef.current.map((fileItem) => {
             if (fileItem.uid === uid) {
-              return {
-                ...fileItem,
-                status: 'uploading',
-                percent: 99.9,
-              };
+              fileItem.status = 'uploading';
+              fileItem.percent = 99.9;
             }
             return fileItem;
           });
@@ -238,8 +246,9 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
         file,
         fileList: [...fileListRef.current],
       });
+      handleValidate(file);
     },
-    [maxCount, multiple, onChange, fileList, action, onUpload, handleUpload],
+    [maxCount, multiple, onChange, handleValidate, fileList, action, onUpload, handleUpload],
   );
 
   // 是否支持预览
@@ -262,10 +271,10 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
       }
       if (!file.url && !file.preview) {
         if (onGetPreviewUrl) {
-          // eslint-disable-next-line
           file.preview = await onGetPreviewUrl((file as any).originFileObj || file);
+        } else if (file.thumbUrl) {
+          file.preview = file.thumbUrl;
         } else if (file.originFileObj || file) {
-          // eslint-disable-next-line
           file.preview = await getBase64(file);
         } else {
           message.error('当前文件不支持预览！');

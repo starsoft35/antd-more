@@ -118,7 +118,7 @@ const Demo: React.FC = () => {
       //   }
       // }}
       // transform={(files) => {
-      //   return files.map(item => item?.response?.fssId).filter(item=>!!item);
+      //   return files.map(item => item?.response?.fssId).filter(item => !!item);
       // }}
       />
       <ItemUpload
@@ -140,6 +140,24 @@ const Demo: React.FC = () => {
         onUpload={handleUpload}
         transform={transformUploadValue}
       />
+      {/* <BizForm.List name='test' initialValue={[{ headpic03: [] }]}>
+        {
+          fields => fields.map(field => (
+            <ItemUpload
+              {...field}
+              key={field.key}
+              name={[field.name, 'headpic03']}
+              label="头像3"
+              type="image"
+              maxCount={1}
+              tooltip="使用image的方式，修改时需要先删除才能再上传"
+              required
+              onUpload={handleUpload}
+              transform={transformUploadValue}
+            />
+          ))
+        }
+      </BizForm.List> */}
       <ItemUpload
         name="dragger"
         label="拖拽上传"

@@ -3,7 +3,7 @@ import type { FormProps, FormItemProps } from './components/antd.interface';
 
 export type TransformFn<T = any> = (value: T) => T | any;
 
-export interface FiledContextProps extends Pick<FormProps, 'layout' | 'labelCol'> {
+export interface FiledContextProps extends Pick<FormProps, 'layout' | 'labelCol' | 'form'> {
   setFieldTransform?: (
     name: FormItemProps['name'],
     transform?: TransformFn | undefined,
