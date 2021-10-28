@@ -50,7 +50,7 @@ const beforeTransformUploadValues = async (fssIds: string[]) => {
   const ret = [];
   for (let i = 0; i < fssIds.length; i += 1) {
     try {
-      const serverPathObj = await getStaticServerPath(fssIds[i]); // eslint-disable-line
+      const serverPathObj = await getStaticServerPath(fssIds[i]);
       const url = serverPathObj.data;
       ret.push({
         uid: -i,

@@ -18,13 +18,12 @@ import './index.less';
 const prefixCls = 'antd-more-form-upload';
 
 export interface UploadWrapperProps extends UploadProps {
-  fileTypeMessage?: string; // 文件类型错误提示
-  fileSizeMessage?: string; // 文件超过最大尺寸提示
-  maxCountMessage?: string; // 上传文件超过限制数量时提示
+  fileTypeMessage?: string | false; // 文件类型错误提示
+  fileSizeMessage?: string | false; // 文件超过最大尺寸提示
+  maxCountMessage?: string | false; // 上传文件超过限制数量时提示
   onUpload?: (file: File) => Promise<object | undefined>; // 自定义文件上传
   maxSize?: number; // 单个文件最大尺寸，用于校验
   maxCount?: number; // 最多上传文件数量
-  beforeTransformValue?: (value: any[]) => UploadFile[] | Promise<UploadFile[]>; // 初始值转换
   onGetPreviewUrl?: (file: File) => Promise<string>; // 点击预览获取大图URL
   dragger?: boolean; // 支持拖拽
   internalTriggeValidate?: () => void; // 外部透传的校验表单，用于异步上传 或 删除后触发
@@ -36,12 +35,11 @@ export interface UploadWrapperProps extends UploadProps {
 
 const UploadWrapper: React.FC<UploadWrapperProps> = ({
   onUpload,
-  fileTypeMessage,
-  fileSizeMessage,
-  maxCountMessage,
+  fileTypeMessage = '只支持上传 %s 文件',
+  fileSizeMessage = '必须小于 %s！',
+  maxCountMessage = '最多上传%s个文件',
   maxSize = 1024 * 1024 * 2,
   maxCount,
-  beforeTransformValue,
   onGetPreviewUrl,
   dragger = false,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -51,7 +49,6 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
 
   multiple = false,
   onChange,
-  fileList,
   accept,
   className,
   disabled,
@@ -62,30 +59,32 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
   const fileBeforeUploadActionRef = React.useRef<
     Record<string | number, 'normal' | 'error' | 'upload'>
   >({});
-  const fileListRef = React.useRef(fileList);
+  // const fileListRef = React.useRef(fileList);
   const [previewProps, setPreviewProps] = React.useState({
     visible: false,
     title: '',
     imgUrl: '',
   });
-  const [transforming, setTransforming] = React.useState(
-    () => typeof beforeTransformValue === 'function',
-  );
   const [uploading, setUploading] = React.useState(false);
 
   // 上传前验证
   const handleBeforeUpload = React.useCallback(
-    (file: RcFile) => {
+    (file: RcFile, fileList: RcFile[]) => {
+      if (fileBeforeUploadActionRef.current[file.uid]) {
+        fileBeforeUploadActionRef.current[file.uid] = 'normal';
+      }
+
       // 验证上传文件数量
       if (
         maxCount !== 1 &&
         maxCount &&
-        Array.isArray(fileListRef.current) &&
-        fileListRef.current.length >= maxCount
+        Array.isArray(fileList) &&
+        fileList.length > maxCount &&
+        fileList.findIndex((item) => item.uid === file.uid) >= maxCount
       ) {
-        message.error(
-          maxCountMessage?.replace(/%s/g, maxCount + '') || `最多上传${maxCount}个文件`,
-        );
+        if (maxCountMessage !== false) {
+          message.error(maxCountMessage.replace(/%s/g, maxCount + ''));
+        }
         fileBeforeUploadActionRef.current[file.uid] = 'error';
         return false;
       }
@@ -93,7 +92,9 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
       // 检查是否支持文件类型
       const isSupportFileType = checkFileType(file, accept);
       if (!isSupportFileType) {
-        message.error(fileTypeMessage?.replace(/%s/g, accept) || `只支持上传 ${accept} 文件`);
+        if (fileTypeMessage !== false) {
+          message.error(fileTypeMessage.replace(/%s/g, accept));
+        }
         fileBeforeUploadActionRef.current[file.uid] = 'error';
         return false;
       }
@@ -102,9 +103,9 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
       const isLessThanFileSize = checkFileSize(file, maxSize);
       if (!isLessThanFileSize) {
         const maxFileSizeStr = bytesToSize(maxSize);
-        message.error(
-          fileSizeMessage?.replace(/%s/g, maxFileSizeStr) || `必须小于 ${maxFileSizeStr}！`,
-        );
+        if (fileSizeMessage !== false) {
+          message.error(fileSizeMessage.replace(/%s/g, maxFileSizeStr));
+        }
         fileBeforeUploadActionRef.current[file.uid] = 'error';
         return false;
       }
@@ -126,7 +127,7 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
 
   // 处理上传
   const handleUpload = React.useCallback(
-    (file: UploadFile) => {
+    (file: UploadFile, fileList: UploadFile[]) => {
       const { uid } = file;
 
       // 支持逐个上传文件
@@ -135,7 +136,7 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
         setUploading(true);
         uploadRet
           .then((res) => {
-            fileListRef.current = fileListRef.current.map((item) => {
+            const cloneFileList = fileList.map((item) => {
               if (item.uid === uid) {
                 item.status = 'done';
                 item.percent = 100;
@@ -152,12 +153,12 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
 
             onChange({
               file,
-              fileList: [...fileListRef.current],
+              fileList: cloneFileList,
             });
             handleValidate(file, true);
           })
           .catch((err) => {
-            fileListRef.current = fileListRef.current.map((item) => {
+            const cloneFileList = fileList.map((item) => {
               if (item.uid === uid) {
                 item.status = 'error';
                 item.percent = 100;
@@ -169,12 +170,12 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
 
             onChange({
               file,
-              fileList: [...fileListRef.current],
+              fileList: cloneFileList,
             });
             handleValidate(file, true);
           });
       } else {
-        fileListRef.current = fileListRef.current.map((fileItem) => {
+        const cloneFileList = fileList.map((fileItem) => {
           if (fileItem.uid === uid) {
             fileItem.percent = 100;
             fileItem.status = 'done';
@@ -183,7 +184,7 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
         });
         onChange({
           file,
-          fileList: [...fileListRef.current],
+          fileList: cloneFileList,
         });
         handleValidate(file, true);
       }
@@ -193,64 +194,37 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
 
   // 处理修改
   const handleChange = React.useCallback(
-    ({ file, fileList: currentFileList }: UploadChangeParam) => {
-      // 处理异步初始值情况
-      if (typeof fileListRef.current === 'undefined') {
-        if (Array.isArray(fileList) && fileList.length > 0) {
-          fileListRef.current = [...fileList];
-        } else {
-          fileListRef.current = [];
-        }
-      }
-
-      if (fileBeforeUploadActionRef.current[file.uid] === 'error') {
-        fileBeforeUploadActionRef.current[file.uid] = 'normal';
-        onChange({
-          file,
-          fileList: [...fileListRef.current],
-        });
-
-        handleValidate(file);
-        return;
-      }
-
-      if (maxCount === 1 && currentFileList.length > 0) {
-        // 单个头像上传
-        fileListRef.current = currentFileList.slice(-1);
-      } else if (multiple && fileBeforeUploadActionRef.current[file.uid] === 'upload') {
-        // 多选文件
-        // 添加 UploadFile
-        fileListRef.current = [
-          ...fileListRef.current,
-          currentFileList.find((item) => item.uid === file.uid),
-        ];
-      } else {
-        fileListRef.current = currentFileList || [];
-      }
+    ({ file, fileList }: UploadChangeParam) => {
+      let cloneFileList = fileList.filter(
+        (item) => fileBeforeUploadActionRef.current[item.uid] !== 'error',
+      );
 
       if (fileBeforeUploadActionRef.current[file.uid] === 'upload') {
         fileBeforeUploadActionRef.current[file.uid] = 'normal';
 
-        if (!action && typeof onUpload === 'function') {
-          const { uid } = file;
-          fileListRef.current = fileListRef.current.map((fileItem) => {
-            if (fileItem.uid === uid) {
+        if (
+          !action &&
+          typeof onUpload === 'function' &&
+          cloneFileList.find((item) => item.uid === file.uid)
+        ) {
+          cloneFileList = cloneFileList.map((fileItem) => {
+            if (fileItem.uid === file.uid) {
               fileItem.status = 'uploading';
               fileItem.percent = 99.9;
             }
             return fileItem;
           });
-          handleUpload(file);
+          handleUpload(file, cloneFileList);
         }
       }
 
       onChange({
         file,
-        fileList: [...fileListRef.current],
+        fileList: cloneFileList,
       });
       handleValidate(file);
     },
-    [maxCount, multiple, onChange, handleValidate, fileList, action, onUpload, handleUpload],
+    [onChange, handleValidate, action, onUpload, handleUpload],
   );
 
   // 是否支持预览
@@ -301,62 +275,24 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
     });
   }, [previewProps]);
 
-  // 初始转换值
-  const initTransform = React.useCallback(async () => {
-    const transformRet = beforeTransformValue(fileList);
-
-    if (isPromiseLike(transformRet)) {
-      (transformRet as Promise<UploadFile[]>)
-        .then((res) => {
-          fileListRef.current = res;
-          onChange({
-            file: null,
-            fileList: [...fileListRef.current],
-          });
-          setTimeout(() => {
-            setTransforming(false);
-          }, 0);
-        })
-        .catch(() => {
-          message.error('初始文件加载失败');
-        });
-    } else {
-      fileListRef.current = transformRet as UploadFile[];
-      onChange({
-        file: null,
-        fileList: [...fileListRef.current],
-      });
-      setTimeout(() => {
-        setTransforming(false);
-      }, 0);
-    }
-  }, [beforeTransformValue, fileList, onChange]);
-
-  React.useEffect(() => {
-    if (transforming) {
-      initTransform();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   const Comp = React.useMemo(() => (dragger ? Upload.Dragger : Upload), [dragger]);
 
   return (
-    <UploadContext.Provider value={{ transforming, uploading }}>
+    <UploadContext.Provider value={{ uploading }}>
       <Comp
         accept={accept}
         beforeUpload={handleBeforeUpload}
-        fileList={transforming ? [] : fileList}
         progress={{
           status: 'active',
           showInfo: false,
         }}
         onChange={handleChange}
         onPreview={handlePreview}
-        disabled={transforming || disabled}
+        disabled={disabled}
         className={classNames(prefixCls, className)}
         multiple={multiple}
         action={action}
+        maxCount={maxCount}
         {...restProps}
       />
       {enabledShowPreview && <Preview {...previewProps} onCancel={handlePreviewCancel} />}

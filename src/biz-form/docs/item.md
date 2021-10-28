@@ -558,8 +558,8 @@ pickerProps  | 选择器的属性 | [TimeRangePickerProps](https://ant-design.gi
 type UploadFile = {
   uid: string | number;
   name: string;
-  thumbUrl?: string; // 小图（缩略图）
-  url?: string; // 大图（预览）
+  thumbUrl?: string; // 缩略图
+  url?: string; // 下载地址
   response?: any; // 加载失败时，鼠标移入提示
   // ...
 }
@@ -571,17 +571,15 @@ type UploadFile = {
 ------------- | ------------- | ------------- | ------------- |
 type  | 上传组件内建类型样式。 | `'default' \| 'image' \| 'avatar' \| 'dragger'` | `'default'` |
 onUpload  | 自定义上传，添加文件时触发。<br/>内部自动处理上传中和失败状态。<br/>如果返回 `object` 将添加到 `UploadFile` 对象中。 | `(file: File)=>Promise<object> \| undefined>` | - |
-onGetPreviewUrl  | 获取预览图片，点击预览时触发。<br/>（仅在没有url的情况下生效，执行成功后将预览图放在file.preview，不再触发） | `(file: File)=>Promise<string>` | - |
+onGetPreviewUrl  | 获取预览图片，点击预览时触发。<br/>（仅在没有file.url的情况下生效，执行成功后将预览图放在file.preview，不再触发） | `(file: File)=>Promise<string>` | - |
 maxSize  | 单个文件限制大小，单位 `Byte`。 | `number` | `1024*1024*2` |
 maxCount  | 限制上传文件数量。<br/>当为 `1` 时，始终用最新上传的代替当前。 | `number` | - |
 accept  | 接受上传的文件类型。<br/>如果 `type` 为 `image` 或 `avatar` ，默认为 `.jpg, .jpeg, .png`  | `string` | - |
-fileTypeMessage  | 文件类型错误时提示 | `string` | `只支持上传 ${accept} 文件` |
-fileSizeMessage  | 文件超过最大尺寸时提示，包含 `%s` 会自动替换为 `maxFileSizeStr`。 | `string` | `必须小于 ${maxFileSizeStr}！` |
-maxCountMessage  | 上传文件超过限制数量时提示 | `string` | `最多上传${maxCount}个文件` |
+fileTypeMessage  | 文件类型错误时提示，包含 `%s` 会自动替换为 `accept`。 | `string \| false` | `只支持上传 ${accept} 文件` |
+fileSizeMessage  | 文件超过最大尺寸时提示，包含 `%s` 会自动替换为 `maxFileSizeStr`。 | `string \| false` | `必须小于 %s！` |
+maxCountMessage  | 上传文件超过限制数量时提示，包含 `%s` 会自动替换为 `maxCount`。 | `string \| false` | `最多上传%s个文件` |
 disabled  | 是否禁用 | `boolean` | `false` |
-multiple  | 是否支持多选文件，`ie10+` 支持。开启后按住 ctrl 可选择多个文件 | `boolean` | `false` |
-icon  | 图标 | `ReactNode` | - |
-title  | 文本 | `ReactNode` | - |
+multiple  | 是否支持多选文件，`ie10+` 支持。 | `boolean` | `false` |
 uploadProps  | 上传配置参数 | [UploadProps](https://ant-design.gitee.io/components/upload-cn/#API) | - |
 
 

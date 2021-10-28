@@ -16,7 +16,7 @@ const UploadAvatar: React.FC<{
   title?: React.ReactNode;
   icon?: React.ReactNode;
 }> = ({ fileList, icon, title }) => {
-  const { uploading, transforming } = React.useContext(UploadContext);
+  const { uploading } = React.useContext(UploadContext);
   const [imgUrl, setImgUrl] = React.useState('');
   const currentFile = React.useMemo(() => {
     return Array.isArray(fileList) && fileList.length > 0 ? fileList[0] : null;
@@ -55,10 +55,8 @@ const UploadAvatar: React.FC<{
         </div>
       </div>
     );
-  } else if (transforming || uploading || !imgUrl) {
-    view = (
-      <UploadImageButton uploading={uploading} loading={transforming} icon={icon} title={title} />
-    );
+  } else if (uploading || !imgUrl) {
+    view = <UploadImageButton uploading={uploading} icon={icon} title={title} />;
   } else {
     view = <img src={imgUrl} alt={(currentFile && currentFile.name) || ''} />;
   }
