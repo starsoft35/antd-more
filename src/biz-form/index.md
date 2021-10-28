@@ -48,6 +48,10 @@ nav:
 
 <code src='./demos/upload-no-upload.tsx' />
 
+### 上传各种类型文件预览
+
+<code src='./demos/upload-file-viewer.tsx' />
+
 ### 企业信息
 
 <code src='./demos/company-info.tsx' />

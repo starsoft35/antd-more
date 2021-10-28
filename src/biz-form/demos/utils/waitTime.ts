@@ -1,5 +1,5 @@
-function waitTime<T = any>(time = 1000) {
-  return new Promise<T>(resolve => {
+function waitTime(time = 1000) {
+  return new Promise(resolve => {
     setTimeout(resolve, time);
   });
 }

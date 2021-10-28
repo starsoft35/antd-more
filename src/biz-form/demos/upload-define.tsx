@@ -6,7 +6,7 @@ import ItemSpecialUpload from "./components/ItemSpecialUpload";
 // // 上传图片
 // function uploadImage(file: File): Promise<{ fssId: string; }> {
 //   return new Promise((resolve, reject) => {
-//     // const formData: any = new FormData();
+//     // const formData = new FormData();
 //     // formData.append("file", file);
 //     setTimeout(() => {
 //       if (Math.random() > 0.3) {
