@@ -274,10 +274,10 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
       if (!file.url && !file.preview) {
         if (onGetPreviewUrl) {
           file.preview = await onGetPreviewUrl((file as any).originFileObj || file);
-        } else if (file.thumbUrl) {
-          file.preview = file.thumbUrl;
         } else if (file.originFileObj || file) {
           file.preview = await getBase64(file);
+        } else if (file.thumbUrl) {
+          file.preview = file.thumbUrl;
         } else {
           message.error('当前文件不支持预览！');
           return;
