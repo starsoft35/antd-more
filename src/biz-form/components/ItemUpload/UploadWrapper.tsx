@@ -59,7 +59,9 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
   internalTriggeValidate,
   ...restProps
 }) => {
-  const actionRef = React.useRef<'normal' | 'error' | 'upload'>('normal');
+  const fileBeforeUploadActionRef = React.useRef<
+    Record<string | number, 'normal' | 'error' | 'upload'>
+  >({});
   const fileListRef = React.useRef(fileList);
   const [previewProps, setPreviewProps] = React.useState({
     visible: false,
@@ -84,7 +86,7 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
         message.error(
           maxCountMessage?.replace(/%s/g, maxCount + '') || `最多上传${maxCount}个文件`,
         );
-        actionRef.current = 'error';
+        fileBeforeUploadActionRef.current[file.uid] = 'error';
         return false;
       }
 
@@ -92,7 +94,7 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
       const isSupportFileType = checkFileType(file, accept);
       if (!isSupportFileType) {
         message.error(fileTypeMessage?.replace(/%s/g, accept) || `只支持上传 ${accept} 文件`);
-        actionRef.current = 'error';
+        fileBeforeUploadActionRef.current[file.uid] = 'error';
         return false;
       }
 
@@ -103,11 +105,11 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
         message.error(
           fileSizeMessage?.replace(/%s/g, maxFileSizeStr) || `必须小于 ${maxFileSizeStr}！`,
         );
-        actionRef.current = 'error';
+        fileBeforeUploadActionRef.current[file.uid] = 'error';
         return false;
       }
+      fileBeforeUploadActionRef.current[file.uid] = 'upload';
 
-      actionRef.current = 'upload';
       return !!action;
     },
     [maxCount, accept, maxSize, action, maxCountMessage, fileTypeMessage, fileSizeMessage],
@@ -201,8 +203,8 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
         }
       }
 
-      if (actionRef.current === 'error') {
-        actionRef.current = 'normal';
+      if (fileBeforeUploadActionRef.current[file.uid] === 'error') {
+        fileBeforeUploadActionRef.current[file.uid] = 'normal';
         onChange({
           file,
           fileList: [...fileListRef.current],
@@ -215,7 +217,7 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
       if (maxCount === 1 && currentFileList.length > 0) {
         // 单个头像上传
         fileListRef.current = currentFileList.slice(-1);
-      } else if (multiple && actionRef.current === 'upload') {
+      } else if (multiple && fileBeforeUploadActionRef.current[file.uid] === 'upload') {
         // 多选文件
         // 添加 UploadFile
         fileListRef.current = [
@@ -226,8 +228,8 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
         fileListRef.current = currentFileList || [];
       }
 
-      if (actionRef.current === 'upload') {
-        actionRef.current = 'normal';
+      if (fileBeforeUploadActionRef.current[file.uid] === 'upload') {
+        fileBeforeUploadActionRef.current[file.uid] = 'normal';
 
         if (!action && typeof onUpload === 'function') {
           const { uid } = file;
