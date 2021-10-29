@@ -146,19 +146,21 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
         setUploading(true);
         uploadRet
           .then((res) => {
-            const cloneFileList = fileList.map((item) => {
-              if (item.uid === uid) {
-                item.status = 'done';
-                item.percent = 100;
-                const resKeys = typeof res === 'object' ? Object.keys(res) : [];
-                if (resKeys.length > 0) {
-                  resKeys.forEach((resKey) => {
-                    item[resKey] = res[resKey];
-                  });
+            const cloneFileList = fileList
+              .filter((item) => item.status !== 'removed')
+              .map((item) => {
+                if (item.uid === uid) {
+                  item.status = 'done';
+                  item.percent = 100;
+                  const resKeys = typeof res === 'object' ? Object.keys(res) : [];
+                  if (resKeys.length > 0) {
+                    resKeys.forEach((resKey) => {
+                      item[resKey] = res[resKey];
+                    });
+                  }
                 }
-              }
-              return item;
-            });
+                return item;
+              });
             setUploading(false);
 
             onChange({
@@ -168,14 +170,16 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
             handleValidate(file, true);
           })
           .catch((err) => {
-            const cloneFileList = fileList.map((item) => {
-              if (item.uid === uid) {
-                item.status = 'error';
-                item.percent = 100;
-                item.response = err?.message || '上传错误';
-              }
-              return item;
-            });
+            const cloneFileList = fileList
+              .filter((item) => item.status !== 'removed')
+              .map((item) => {
+                if (item.uid === uid) {
+                  item.status = 'error';
+                  item.percent = 100;
+                  item.response = err?.message || '上传错误';
+                }
+                return item;
+              });
             setUploading(false);
 
             onChange({
