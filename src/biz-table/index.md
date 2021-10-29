@@ -52,7 +52,7 @@ nav:
 
 <code src="./demos/search-form-ref-1.tsx" background="#f5f5f5" />
 
-### 运费配置
+### 仅使用field转换功能
 
 仅使用表格的 `field` 转换功能，如果不使用 `request`，需将 `autoRequest` 设为 `false`。
 
