@@ -74,13 +74,14 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
         fileBeforeUploadActionRef.current[file.uid] = 'normal';
       }
 
+      const mergeFileList = [...(restProps.fileList || []), ...fileList];
+
       // 验证上传文件数量
       if (
         maxCount !== 1 &&
         maxCount &&
-        Array.isArray(fileList) &&
-        fileList.length > maxCount &&
-        fileList.findIndex((item) => item.uid === file.uid) >= maxCount
+        mergeFileList.length > maxCount &&
+        mergeFileList.findIndex((item) => item.uid === file.uid) >= maxCount
       ) {
         if (maxCountMessage !== false) {
           message.error(maxCountMessage.replace(/%s/g, maxCount + ''));
@@ -113,7 +114,16 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
 
       return !!action;
     },
-    [maxCount, accept, maxSize, action, maxCountMessage, fileTypeMessage, fileSizeMessage],
+    [
+      maxCount,
+      accept,
+      maxSize,
+      action,
+      maxCountMessage,
+      fileTypeMessage,
+      fileSizeMessage,
+      restProps?.fileList,
+    ],
   );
 
   const handleValidate = React.useCallback(
