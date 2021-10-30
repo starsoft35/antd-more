@@ -38,3 +38,15 @@ export const RakebackeCycleOptions = [
     value: RakebackeCycle.Month
   }
 ];
+
+// 收款账号选项
+export const BillAccountOptions = [
+  {
+    label: "张三",
+    value: "a"
+  },
+  {
+    label: "李四",
+    value: "b"
+  },
+];

@@ -3,15 +3,15 @@ import { BizForm } from 'antd-more';
 
 const options = [
   {
-    name: 'male',
+    label: 'male',
     value: 'male'
   },
   {
-    name: 'female',
+    label: 'female',
     value: 'female'
   },
   {
-    name: 'other',
+    label: 'other',
     value: 'other'
   }
 ];

@@ -13,21 +13,21 @@ import { Dictionary } from "antd-more";
 const BiologyCategory = [
   {
     value: 1,
-    name: '动物',
+    label: '动物',
     tag: {
       color: "orange"
     }
   },
   {
     value: 2,
-    name: '植物',
+    label: '植物',
     tag: {
       color: "green"
     }
   },
   {
     value: 3,
-    name: '微生物',
+    label: '微生物',
     custom: {
       color: "purple"
     }

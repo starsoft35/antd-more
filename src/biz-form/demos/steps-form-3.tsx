@@ -2,20 +2,10 @@ import * as React from "react";
 import { Modal, Button, message } from "antd";
 import { BizForm } from "antd-more";
 import type { StepsFormActionType } from "antd-more";
+import { BillAccountOptions } from './constants';
 import waitTime from "./utils/waitTime";
 
 const { StepsForm, ItemInput, ItemSelect, ItemNumber, ItemUpload, ItemTextArea } = BizForm;
-
-const billAccountOptions = [
-  {
-    name: "张三",
-    value: "a"
-  },
-  {
-    name: "李四",
-    value: "b"
-  },
-];
 
 const Demo: React.FC = () => {
   const [visible, setVisible] = React.useState(false);
@@ -62,7 +52,7 @@ const Demo: React.FC = () => {
           labelWidth={112}
         >
           <ItemInput label="收款账号" name="ban" required />
-          <ItemSelect label="收款账号名称" name="accountName" options={billAccountOptions} required />
+          <ItemSelect label="收款账号名称" name="accountName" options={BillAccountOptions} required />
         </StepsForm.StepForm>
         <StepsForm.StepForm
           title="填写付款信息"

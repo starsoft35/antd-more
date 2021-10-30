@@ -36,11 +36,11 @@ const treeData = [
 // 菜单类型
 const menuTypeOptions = [
   {
-    name: '菜单',
+    label: '菜单',
     value: MenuType.Menu
   },
   {
-    name: '按钮',
+    label: '按钮',
     value: MenuType.Action
   },
 ];
@@ -48,11 +48,11 @@ const menuTypeOptions = [
 // 菜单可见
 const hiddenMenuOptions = [
   {
-    name: '是',
+    label: '是',
     value: HiddenMenu.Yes
   },
   {
-    name: '否',
+    label: '否',
     value: HiddenMenu.No
   }
 ];
@@ -60,11 +60,11 @@ const hiddenMenuOptions = [
 // 菜单缓存
 const cacheMenuOptions = [
   {
-    name: '是',
+    label: '是',
     value: CacheMenu.Yes
   },
   {
-    name: '否',
+    label: '否',
     value: CacheMenu.No
   }
 ];

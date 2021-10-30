@@ -9,19 +9,19 @@ import { Dictionary } from "antd-more";
 const OrgType = [
   {
     value: '0',
-    name: '小学'
+    label: '小学'
   },
   {
     value: '1',
-    name: '初中'
+    label: '初中'
   },
   {
     value: '2',
-    name: '高中'
+    label: '高中'
   },
   {
     value: '3',
-    name: '大学',
+    label: '大学',
     disabled: true
   },
 ];

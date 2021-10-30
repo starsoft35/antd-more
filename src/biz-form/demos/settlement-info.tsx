@@ -17,26 +17,26 @@ const twoColSpan = {
 };
 
 // 结算方式
-export const settlementCycleOptions = [
+const SettlementCycleOptions = [
   {
     value: "T1",
-    name: "T+1"
+    label: "T+1"
   },
   {
     value: "D1",
-    name: "D+1"
+    label: "D+1"
   }
 ];
 
 // 结算类型
-export const settlementTypeOptions = [
+const SettlementTypeOptions = [
   {
     value: 0,
-    name: "对公账户"
+    label: "对公账户"
   },
   {
     value: 1,
-    name: "对私账户"
+    label: "对私账户"
   }
 ];
 
@@ -64,10 +64,10 @@ const SettlementInfo: React.FC = () => {
     >
       <Row>
         <Col {...oneColSpan}>
-          <ItemRadio label="结算方式" name="settlementCycle" required options={settlementCycleOptions} tooltip="T为工作日，D为自然日" />
+          <ItemRadio label="结算方式" name="settlementCycle" required options={SettlementCycleOptions} tooltip="T为工作日，D为自然日" />
         </Col>
         <Col {...oneColSpan}>
-          <ItemRadio label="结算类型" name="settlementType" required options={settlementTypeOptions} />
+          <ItemRadio label="结算类型" name="settlementType" required options={SettlementTypeOptions} />
         </Col>
         <Col {...oneColSpan}>
           <ItemInput label="账户名称" name="bankCertName" required />

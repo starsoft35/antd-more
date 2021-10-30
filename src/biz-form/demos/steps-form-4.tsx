@@ -9,20 +9,10 @@ import { PayCircleOutlined } from "@ant-design/icons";
 import { BasicLayout, FooterToolbar, PageContainer } from "@ant-design/pro-layout";
 import { BizForm } from "antd-more";
 import type { StepsFormActionType } from "antd-more";
+import { BillAccountOptions } from './constants';
 import waitTime from "./utils/waitTime";
 
 const { StepsForm, ItemInput, ItemSelect, ItemNumber, ItemUpload, ItemTextArea } = BizForm;
-
-const billAccountOptions = [
-  {
-    name: "张三",
-    value: "a"
-  },
-  {
-    name: "李四",
-    value: "b"
-  },
-];
 
 const Demo: React.FC = () => {
   const actionRef = React.useRef<StepsFormActionType>();
@@ -91,7 +81,7 @@ const Demo: React.FC = () => {
               }}
             >
               <ItemInput label="收款账号" name="ban" required />
-              <ItemSelect label="收款账号名称" name="accountName" options={billAccountOptions} required />
+              <ItemSelect label="收款账号名称" name="accountName" options={BillAccountOptions} required />
             </StepsForm.StepForm>
             <StepsForm.StepForm
               title="填写付款信息"
