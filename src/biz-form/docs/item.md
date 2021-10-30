@@ -133,13 +133,22 @@ buttonProps  | 按钮的属性 | [ButtonProps](https://ant.design/components/but
 
 <br/>
 
+```typescript
+interface Option {
+  label: string;
+  value: string;
+  disabled?: boolean;
+}
+```
+
+<br/>
+
 参数 | 说明 | 类型 | 默认值 |
 ------------- | ------------- | ------------- | ------------- |
-options  | 包含 `value` `name` 的数组 | `EnumData` | `[]` |
+options  | 配置子元素 | `Option[]` | `[]` |
 excludeValues  | 排除的值 | `any[]` | `[]` |
 all  | 是否显示全部 | `boolean` | `false` |
-allName  | 全部的名称 | `string` | `全部` |
-checkboxProps  | 多选框的属性 | [CheckboxProps](https://ant-design.gitee.io/components/checkbox-cn/#Checkbox) | - |
+allLabel | 全部的名称 | `string` | `全部` |
 checkboxGroupProps  | 多选框 Group 的属性 | [CheckboxGroupProps](https://ant-design.gitee.io/components/checkbox-cn/#Checkbox-Group) | - |
 
 
@@ -370,12 +379,9 @@ inputProps  | 密码框配置参数 | [PasswordProps](https://ant.design/compone
 
 ```typescript
 interface Option {
-    name: string;
-    value: string | number | boolean;
-    style?: React.CSSProperties;
-    disabled?: boolean;
-    onChange?: (e: CheckboxChangeEvent) => void;
-    [x: string]: any;
+  label: string;
+  value: string;
+  disabled?: boolean;
 }
 ```
 
@@ -383,13 +389,12 @@ interface Option {
 
 参数 | 说明 | 类型 | 默认值 |
 ------------- | ------------- | ------------- | ------------- |
-options  | 包含 `value` `name` 的数组 | `Option[]` | `[]` |
+options  | 配置子元素 | `Option[]` | `[]` |
 optionType  | 用于设置 Radio `options` 类型 | `'default' \| 'button'` | `'default'` |
 all  | 是否显示全部  | `boolean` | `false` |
 allValue | 全部的值 | `string` | `""` |
-allName | 全部的名称 | `string` | `全部` |
+allLabel | 全部的名称 | `string` | `全部` |
 excludeValues | 排除的值 | `any[]` | `[]` |
-radioProps  | 单选框配置参数 | [RadioProps](https://ant-design.gitee.io/components/radio-cn/#Radio/Radio.Button) | - |
 radioGroupProps  | 单选框组合配置参数 | [RadioGroupProps](https://ant-design.gitee.io/components/radio-cn/#RadioGroup) | - |
 
 
@@ -409,26 +414,12 @@ radioGroupProps  | 单选框组合配置参数 | [RadioGroupProps](https://ant-d
 
 <br/>
 
-```typescript
-interface Option {
-    value: string | number;
-    name: string;
-    key?: string | number;
-    disabled?: boolean;
-    className?: string;
-    style?: React.CSSProperties;
-    [x: string]: any;
-}
-```
-
-<br/>
-
 参数 | 说明 | 类型 | 默认值 |
 ------------- | ------------- | ------------- | ------------- |
-options  | 包含 `value` `name` 的数组 | `Option[]` | `[]` |
+options  | 配置可选项 | `{label, value}[]` | `[]` |
 all  | 是否显示全部  | `boolean` | `false` |
 allValue | 全部的值 | `string` | `""` |
-allName | 全部的名称 | `string` | `全部` |
+allLabel | 全部的名称 | `string` | `全部` |
 excludeValues | 排除的值 | `any[]` | `[]` |
 selectProps  | 选择器配置参数 | [SelectProps](https://ant-design.gitee.io/components/select-cn/#Select-props) | - |
 

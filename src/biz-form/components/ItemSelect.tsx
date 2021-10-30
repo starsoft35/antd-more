@@ -7,39 +7,37 @@ import BizFormItem from './Item';
 import type { BizFormItemProps } from './Item';
 import getLabel from '../_util/getLabel';
 
-const { Option, OptGroup } = Select;
-
-interface OptionDataExtend extends Omit<OptionCoreData, 'children' | 'title' | 'label'> {
-  name: string;
-  [x: string]: any;
-}
-
-interface OptionGroupDataExtend extends OptionGroupData {
-  options: OptionDataExtend[];
-}
-
-type OptionType = (OptionDataExtend | OptionGroupDataExtend)[];
-
 export interface FormItemSelectProps extends BizFormItemProps {
   all?: boolean;
   allValue?: any;
+  /**
+   * @deprecated Please use 'allLabel'
+   */
   allName?: string;
+  allLabel?: string;
   excludeValues?: any[];
-  options?: OptionType;
+  options?: SelectProps<any>['options'];
   selectProps?: SelectProps<any>;
 }
 
 const FormItemSelect: React.FC<FormItemSelectProps> = ({
   all = false,
   allValue = '',
-  allName = '全部',
+  allName,
+  allLabel = '全部',
   excludeValues = [],
   options = [],
   selectProps = {},
   required = false,
   ...restProps
 }) => {
-  const opts = useFilterOptions({ options, excludeValues, all, allValue, allName });
+  const opts = useFilterOptions<FormItemSelectProps['options']>({
+    options,
+    excludeValues,
+    all,
+    allValue,
+    allName: allName || allLabel,
+  });
 
   return (
     <BizFormItem
@@ -61,35 +59,7 @@ const FormItemSelect: React.FC<FormItemSelectProps> = ({
       ]}
       {...restProps}
     >
-      <Select
-        placeholder="请选择"
-        // allowClear={!required && !all}
-        {...selectProps}
-      >
-        {opts.map(({ options: itemOpts, ...restOpts }: OptionGroupDataExtend, index) => {
-          if (itemOpts) {
-            return (
-              <OptGroup key={restOpts.key || restOpts.value + index.toString()} {...restOpts}>
-                {itemOpts.map(({ name, label, ...restSubOpts }: OptionDataExtend, subIndex) => (
-                  <Option
-                    key={restSubOpts.key || restSubOpts.value + subIndex.toString()}
-                    {...restSubOpts}
-                  >
-                    {name}
-                  </Option>
-                ))}
-              </OptGroup>
-            );
-          } else {
-            const { name, label, ...rest } = restOpts as OptionDataExtend;
-            return (
-              <Option key={rest.key || rest.value + index.toString()} {...rest}>
-                {name}
-              </Option>
-            );
-          }
-        })}
-      </Select>
+      <Select placeholder="请选择" options={opts} {...selectProps} />
     </BizFormItem>
   );
 };

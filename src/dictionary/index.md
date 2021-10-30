@@ -14,7 +14,7 @@ nav:
 
 `数据字典` 显示 和 选择
 
-数据必须含有 `value` `name` 。
+数据必须含有 `value` `label` 。
 
 ## 代码演示
 
@@ -58,7 +58,7 @@ nav:
 
 ```typescript
 interface EnumItem {
-  name: string;
+  label: string;
   value: any;
   badge?: {
     status?: string;
@@ -81,7 +81,7 @@ type EnumData = EnumItem[];
 
 参数 | 说明 | 类型 | 默认值 |
 ------------- | ------------- | ------------- | ------------- |
-data  | 包含 `value` `name` 的 `数据字典` | `EnumData` | `[]` |
+data  | 包含 `value` `label` 的 `数据字典` | `EnumData` | `[]` |
 value  | 当前字典值 | `any` | `""` |
 defaultName  | 当找不到字典值对应的名称时，显示默认名称 | `string` | `-` |
 type  | 显示方式 | `'text' \| 'tag' \| 'badge'` | `'text'` |
@@ -103,11 +103,11 @@ value  | 字典值数组 | `any[]` | `[]` |
 
 参数 | 说明 | 类型 | 默认值 |
 ------------- | ------------- | ------------- | ------------- |
-data  | 包含 `value` `name` 的 `数据字典` | `EnumData` | `[]` |
+data  | 包含 `value` `label` 的 `数据字典` | `EnumData` | `[]` |
 value  | 当前字典值 | `any` | - |
 all  | 是否显示全部  | `boolean` | `true` |
 allValue | 全部的值 | `string` | `""` |
-allName | 全部的名称 | `string` | `全部` |
+allLabel | 全部的名称 | `string` | `全部` |
 excludeValues | 排除的值 | `any[]` | `[]` |
 
 ### Dictionary.Radio
@@ -116,6 +116,6 @@ excludeValues | 排除的值 | `any[]` | `[]` |
 
 参数 | 说明 | 类型 | 默认值 |
 ------------- | ------------- | ------------- | ------------- |
-data  | 包含 `value` `name` 的 `数据字典` | `EnumData` | `[]` |
+data  | 包含 `value` `label` 的 `数据字典` | `EnumData` | `[]` |
 value  | 当前字典值 | `any` | - |
 type  | `button` 表现为 `Radio.Button`，其他表示为 `Radio`  | `'default' \| 'button'` | `'defalut'` |

@@ -15,15 +15,15 @@ export enum FreightRuleType {
 // 配送规则选项
 export const FreightRuleOptions = [
   {
-    name: '包邮',
+    label: '包邮',
     value: FreightRuleType.No
   },
   {
-    name: '不包邮',
+    label: '不包邮',
     value: FreightRuleType.Need
   },
   {
-    name: '不配送',
+    label: '不配送',
     value: FreightRuleType.NoExpress
   },
 ];
@@ -82,7 +82,7 @@ const Freight: React.FC<FreightProps> = ({
         FreightRuleOptions.map(item => {
           const freightInputName = 'id' + id + (item.value + '');
           return (
-            <Radio key={item.value} value={item.value}>{item.name}
+            <Radio key={item.value} value={item.value}>{item.label}
               {
                 item.value === FreightRuleType.Need && freightRule === FreightRuleType.Need && (
                   <div className={styles.inputWrapper} style={freightRule !== FreightRuleType.Need ? { display: 'none' } : {}}>

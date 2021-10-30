@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Radio } from 'antd';
 import type { RadioGroupProps } from 'antd/lib/radio/interface';
 import type { EnumData } from './interface';
@@ -14,17 +14,8 @@ const DictionaryRadio: React.FC<DictionaryRadioProps> = ({
   type = 'default',
   ...restProps
 }) => {
-  const RadioComp = type === 'button' ? Radio.Button : Radio;
-
-  return (
-    <Radio.Group {...restProps}>
-      {data.map(({ value, name, disabled, key }, index) => (
-        <RadioComp value={value} key={key || value + index.toString()} disabled={disabled}>
-          {name}
-        </RadioComp>
-      ))}
-    </Radio.Group>
-  );
+  const opts = useMemo(() => data.map((item) => ({ label: item.name, ...item })), [data]);
+  return <Radio.Group options={opts} optionType={type} {...restProps} />;
 };
 
 export default DictionaryRadio;

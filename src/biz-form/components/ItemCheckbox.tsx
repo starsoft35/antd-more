@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Checkbox } from 'antd';
-import type { CheckboxProps, CheckboxOptionType, CheckboxGroupProps } from './antd.interface';
+import type { CheckboxOptionType, CheckboxGroupProps } from './antd.interface';
 import useFilterOptions from '../_util/useFilterOptions';
 import BizFormItem from './Item';
 import type { BizFormItemProps } from './Item';
@@ -10,10 +10,13 @@ export interface CheckboxWrapperProps {
   value?: any;
   onChange?: (checkValue: any) => void;
   all?: boolean;
+  /**
+   * @deprecated Please use 'allLabel'
+   */
   allName?: string;
+  allLabel?: string;
   excludeValues?: any[];
-  options?: OptionData[];
-  checkboxProps?: CheckboxProps;
+  options?: CheckboxOptionType[];
   checkboxGroupProps?: CheckboxGroupProps;
 }
 
@@ -21,13 +24,18 @@ const CheckboxWrapper: React.FC<CheckboxWrapperProps> = ({
   value,
   onChange = () => {},
   all = false,
-  allName = '全部',
+  allName,
+  allLabel = '全部',
   excludeValues = [],
   options = [],
-  checkboxProps = {},
   checkboxGroupProps = {},
 }) => {
-  const opts = useFilterOptions({ options, excludeValues, all: false, allName });
+  const opts = useFilterOptions<CheckboxWrapperProps['options']>({
+    options,
+    excludeValues,
+    all: false,
+    allName: allName || allLabel,
+  });
 
   const [indeterminate, setIndeterminate] = React.useState(
     () => !!value && !!value.length && value.length < opts.length,
@@ -55,42 +63,31 @@ const CheckboxWrapper: React.FC<CheckboxWrapperProps> = ({
   return (
     <>
       {allDom}
-      <Checkbox.Group {...checkboxGroupProps} value={value} onChange={onChangeValue}>
-        {opts.map(({ value: internalValue, name, ...restOpts }, index) => (
-          <Checkbox
-            {...checkboxProps}
-            key={internalValue + index.toString()}
-            value={internalValue}
-            {...restOpts}
-          >
-            {name}
-          </Checkbox>
-        ))}
-      </Checkbox.Group>
+      <Checkbox.Group
+        value={value}
+        onChange={onChangeValue}
+        options={opts}
+        {...checkboxGroupProps}
+      />
     </>
   );
 };
-
-interface OptionData extends Omit<CheckboxOptionType, 'label'> {
-  name: string;
-  [x: string]: any;
-}
 
 export interface FormItemCheckboxProps extends BizFormItemProps, CheckboxWrapperProps {}
 
 const FormItemCheckbox: React.FC<FormItemCheckboxProps> = ({
   all = false,
-  allName = '全部',
+  allName,
+  allLabel = '全部',
   excludeValues = [],
   options = [],
-  checkboxProps = {},
   checkboxGroupProps = {},
   required = false,
   ...restProps
 }) => {
   const checkboxWrapperProps = React.useMemo(
-    () => ({ all, allName, excludeValues, options, checkboxProps, checkboxGroupProps }),
-    [all, allName, excludeValues, options, checkboxProps, checkboxGroupProps],
+    () => ({ all, allName: allName || allLabel, excludeValues, options, checkboxGroupProps }),
+    [all, allName, allLabel, excludeValues, options, checkboxGroupProps],
   );
 
   return (

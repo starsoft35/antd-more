@@ -134,7 +134,7 @@ submit | 点击查询 或 调用 `actionRef.current.submit` |
 ------------- | ------------- | ------------- | ------------- |
 tooltip  | 表头标题后面的补充提示 | `ReactNode` | - |
 valueType  | 值类型。同 BizField 的 valueType，用于列展示 或 查询表单项 或 可编辑表格项。 | [ValueType](/components/biz-field#valuetype-值) | - |
-valueEnum  | 包含 `value` `name` 的数据字典。<br/>当 `valueType` 为 `enum` `enumTag` `enumBadge` 时生效。 | `EnumData` | - |
+valueEnum  | 包含 `value` `label` 的数据字典。<br/>当 `valueType` 为 `enum` `enumTag` `enumBadge` 时生效。 | `EnumData` | - |
 field  | 展示字段的配置。同 BizField 的配置项，支持 object 和 function 方式。<br/>function 方式默认参数和render一样，需返回 BizField 的配置。 | `object \| (text: any, record: RecordType, index: number)=>object` | - |
 search  | 配置查询表单项 | `SearchProps` | - |
 order  | 查询表单项排序，数值越小越靠前 | `number` | `0` |

@@ -23,7 +23,7 @@ const Dictionary: React.FC<DictionaryProps> = ({
     ...restProps,
     style: { ...restOptions?.style, ...restProps?.style },
   };
-  const name = alias || ret.name;
+  const name = alias || ret.label || ret.name;
 
   if (type === 'tag') {
     return <Tag {...props}>{name}</Tag>;

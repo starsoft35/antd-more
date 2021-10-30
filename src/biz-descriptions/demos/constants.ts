@@ -9,7 +9,7 @@ export enum ApproveStatus {
 export const ApproveStatusOptions = [
   {
     value: ApproveStatus.Processing,
-    name: "审核中",
+    label: "审核中",
     badge: {
       status: "processing"
     },
@@ -20,7 +20,7 @@ export const ApproveStatusOptions = [
   },
   {
     value: ApproveStatus.Success,
-    name: "审核通过",
+    label: "审核通过",
     text: {
       style: {
         color: "green"
@@ -35,7 +35,7 @@ export const ApproveStatusOptions = [
   },
   {
     value: ApproveStatus.Error,
-    name: "审核不通过",
+    label: "审核不通过",
     text: {
       style: {
         color: "red"

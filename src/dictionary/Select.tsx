@@ -9,7 +9,11 @@ export interface DictionarySelectProps extends SelectProps<SelectValue> {
   excludeValues?: any[];
   all?: boolean;
   allValue?: any;
-  allName?: any;
+  /**
+   * @deprecated Please use 'allLabel'
+   */
+  allName?: string;
+  allLabel?: string;
 }
 
 const DictionarySelect: React.FC<DictionarySelectProps> = ({
@@ -17,24 +21,27 @@ const DictionarySelect: React.FC<DictionarySelectProps> = ({
   excludeValues = [],
   all = true,
   allValue = '',
-  allName = '全部',
+  allName,
+  allLabel = '全部',
   ...restProps
 }) => {
-  const dataRet = useMemo(
-    () => data.slice().filter((item) => excludeValues.indexOf(item.value) === -1),
-    [data, excludeValues],
-  );
+  const opts = useMemo(() => {
+    const ret = [];
+    if (all) {
+      ret.push({ value: allValue, label: allName || allLabel });
+    }
+    data.forEach((item) => {
+      if (!excludeValues.includes(item?.value)) {
+        ret.push({
+          label: item.name,
+          ...item,
+        });
+      }
+    });
+    return ret;
+  }, [all, allLabel, allName, allValue, data, excludeValues]);
 
-  return (
-    <Select placeholder="请选择" {...restProps}>
-      {all ? <Select.Option value={allValue}>{allName}</Select.Option> : null}
-      {dataRet.map((item, index) => (
-        <Select.Option key={item.key || item.value + index.toString()} value={item.value}>
-          {item.name}
-        </Select.Option>
-      ))}
-    </Select>
-  );
+  return <Select placeholder="请选择" options={opts} {...restProps} />;
 };
 
 export default DictionarySelect;

@@ -1,5 +1,9 @@
 interface EnumItem {
-  name: string;
+  /**
+   * @deprecated Please use 'label'
+   */
+  name?: string;
+  label?: string;
   value: any;
   badge?: {
     status?: string;

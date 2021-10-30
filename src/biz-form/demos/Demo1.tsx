@@ -3,6 +3,7 @@ import "moment/locale/zh-cn";
 import { Switch, Row, Col } from "antd";
 import { BizForm } from "antd-more";
 import { getPCA } from "lcn";
+import { CycleOptions } from './constants';
 import waitTime from "./utils/waitTime";
 
 const pcaInlandData = getPCA({ inland: true, formatForm: true });
@@ -39,28 +40,6 @@ const specialColSpan = {
   lg: 12,
   xxl: 6
 }
-
-enum Cycle {
-  Day,
-  Month,
-  Quarter
-}
-
-// 周期
-const cycleOptions = [
-  {
-    name: "按日",
-    value: Cycle.Day
-  },
-  {
-    name: "按月",
-    value: Cycle.Month
-  },
-  {
-    name: "按季度",
-    value: Cycle.Quarter
-  },
-];
 
 const Demo: React.FC = () => {
   const [required, setRequired] = React.useState(false);
@@ -171,16 +150,16 @@ const Demo: React.FC = () => {
             <ItemTextArea label="TextArea" name="textarea" required={required} />
           </Col>
           <Col {...specialColSpan}>
-            <ItemRadio label="Radio" name="radio" options={cycleOptions} required={required} />
+            <ItemRadio label="Radio" name="radio" options={CycleOptions} required={required} />
           </Col>
           <Col {...specialColSpan}>
-            <ItemRadio label="RadioButton" name="radioButton" optionType="button" options={cycleOptions} required={required} />
+            <ItemRadio label="RadioButton" name="radioButton" optionType="button" options={CycleOptions} required={required} />
           </Col>
           <Col {...specialColSpan}>
-            <ItemSelect label="Select" name="select" options={cycleOptions} required={required} />
+            <ItemSelect label="Select" name="select" options={CycleOptions} required={required} />
           </Col>
           <Col {...specialColSpan}>
-            <ItemCheckbox label="Checkbox" name="checkbox" options={cycleOptions} all required={required} />
+            <ItemCheckbox label="Checkbox" name="checkbox" options={CycleOptions} all required={required} />
           </Col>
           <Col {...colSpan}>
             <ItemSwitch label="Switch" name="switch" required={required} />
