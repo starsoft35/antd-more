@@ -1,6 +1,6 @@
 /**
  * title: 字典值
- * desc: 自动将 `value` 对应的 `name` 显示
+ * desc: 自动将 `value` 对应的 `label` 显示
  */
 
 import React from "react";
