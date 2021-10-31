@@ -76,20 +76,6 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
 
       const mergeFileList = [...(restProps.fileList || []), ...fileList];
 
-      // 验证上传文件数量
-      if (
-        maxCount !== 1 &&
-        maxCount &&
-        mergeFileList.length > maxCount &&
-        mergeFileList.findIndex((item) => item.uid === file.uid) >= maxCount
-      ) {
-        if (maxCountMessage !== false) {
-          message.error(maxCountMessage.replace(/%s/g, maxCount + ''));
-        }
-        fileBeforeUploadActionRef.current[file.uid] = 'error';
-        return false;
-      }
-
       // 检查是否支持文件类型
       const isSupportFileType = checkFileType(file, accept);
       if (!isSupportFileType) {
@@ -110,6 +96,21 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
         fileBeforeUploadActionRef.current[file.uid] = 'error';
         return false;
       }
+
+      // 验证上传文件数量
+      if (
+        maxCount !== 1 &&
+        maxCount &&
+        mergeFileList.length > maxCount &&
+        mergeFileList.findIndex((item) => item.uid === file.uid) >= maxCount
+      ) {
+        if (maxCountMessage !== false) {
+          message.error(maxCountMessage.replace(/%s/g, maxCount + ''));
+        }
+        fileBeforeUploadActionRef.current[file.uid] = 'error';
+        return false;
+      }
+
       fileBeforeUploadActionRef.current[file.uid] = 'upload';
 
       return !!action;
