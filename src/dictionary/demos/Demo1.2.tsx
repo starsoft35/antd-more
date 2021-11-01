@@ -3,7 +3,7 @@
  * desc: |
  *  外层包裹 `Space` 组件，可配置 `align` `direction` `size`。
  * 
- *  其中 `value` 变为一个字段值数组，`defaultName` 仅在 `value` 为非数组或长度小于0时显示。其他参数用于配置和 `Dictionary`。
+ *  其中 `value` 变为一个字段值数组，`defaultLabel` 仅在 `value` 为非数组或长度小于0时显示。其他参数用于配置和 `Dictionary`。
  */
 
 import React from "react";
@@ -38,10 +38,10 @@ export default () => {
   return (
     <>
       <Divider orientation="left">empty</Divider>
-      <p>当 value 为空或长度小于0，显示 defaultName。</p>
+      <p>当 value 为空或长度小于0，显示 defaultLabel。</p>
       <Dictionary.List data={BiologyCategory} value={[]} />
       <br />
-      <Dictionary.List data={BiologyCategory} value={[]} defaultName="empty" />
+      <Dictionary.List data={BiologyCategory} value={[]} defaultLabel="empty" />
       <Divider orientation="left">text</Divider>
       <Dictionary.List data={BiologyCategory} value={[1, 2]} />
       <br />

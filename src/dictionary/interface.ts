@@ -1,3 +1,8 @@
+import type { HtmlHTMLAttributes } from 'react';
+import type { TagProps, BadgeProps } from 'antd';
+
+type AliasType = { alias?: string };
+
 interface EnumItem {
   /**
    * @deprecated Please use 'label'
@@ -5,22 +10,9 @@ interface EnumItem {
   name?: string;
   label?: string;
   value: any;
-  badge?: {
-    status?: string;
-    color?: string;
-    [key: string]: any;
-  };
-  tag?: {
-    color?: string;
-    [key: string]: any;
-  };
-  text?: {
-    style?: {
-      color?: string;
-      [key: string]: any;
-    };
-    [key: string]: any;
-  };
+  badge?: Omit<BadgeProps, 'status'> & AliasType & { status?: string };
+  tag?: TagProps & AliasType;
+  text?: HtmlHTMLAttributes<HTMLSpanElement> & AliasType;
   [key: string]: any;
 }
 
@@ -28,7 +20,11 @@ export type EnumData = EnumItem[];
 export interface DictionaryProps {
   data: EnumData;
   value?: any;
+  /**
+   * @deprecated Please use 'defaultLabel'
+   */
   defaultName?: any;
+  defaultLabel?: any;
   type?: 'text' | 'tag' | 'badge';
   optionName?: string;
   [key: string]: any;

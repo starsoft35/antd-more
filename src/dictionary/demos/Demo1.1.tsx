@@ -3,7 +3,7 @@
  * desc: |
  *  通过 `type` 设置展示方式，支持 `text` `tag` `badge` ，默认为 `text` 。
  * 
- *  在数据字典中配置 `props`，默认读取 `type` 对应的配置项，也可以传入 `optionName` 自定义读取配置名。还有个特别的属性 `alias` 可以替换 `name`。当然也支持在组件中传入 `props`，而且这个优先级是最高的。
+ *  在数据字典中配置 `props`，默认读取 `type` 对应的配置项，也可以传入 `optionName` 自定义读取配置名。还有个特别的属性 `alias` 可以替换 `label`。当然也支持在组件中传入 `props`，而且这个优先级是最高的。
  * 
  *  *注意：如果展示 `badge`，一定要有 `status` 或 `color`，不然可能显示不了。*
  * 
@@ -66,7 +66,7 @@ export default () => {
       <Divider orientation="left">empty or noMatch</Divider>
       <Dictionary data={ApproveStatus} value={5} />
       <br />
-      <Dictionary data={ApproveStatus} value={5} defaultName="noMatch value" />
+      <Dictionary data={ApproveStatus} value={5} defaultLabel="noMatch value" />
       <br />
       <Divider orientation="left">text</Divider>
       <Dictionary data={ApproveStatus} value={1} />

@@ -140,7 +140,7 @@ bordered  | 显示边框。以正方形方式呈现，图片根据最长的宽�
 参数 | 说明 | 类型 | 默认值 |
 ------------- | ------------- | ------------- | ------------- |
 value  | 字典值 | `ReactText \| ReactText[]` | - |
-defaultName  | 当找不到值对应的名称时，显示默认名称 | `string` | `-` |
+defaultLabel  | 当找不到值对应的名称时，显示默认名称 | `string` | `-` |
 align  | 对齐方式 | `'start' \| 'end' \| 'center' \| 'baseline'` | `'start'` |
 direction  | 间距方向 `vertical` `horizontal` | `string` | `horizontal` |
 size  | 间距大小 | `'small' \| 'middle' \| 'large' \| number` | `'small'` |

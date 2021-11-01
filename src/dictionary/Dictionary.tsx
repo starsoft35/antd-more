@@ -5,7 +5,8 @@ import type { DictionaryProps } from './interface';
 const Dictionary: React.FC<DictionaryProps> = ({
   data = [],
   value = '',
-  defaultName = '-',
+  defaultName,
+  defaultLabel = '-',
   type = 'text',
   optionName = '',
   ...restProps
@@ -13,7 +14,7 @@ const Dictionary: React.FC<DictionaryProps> = ({
   const ret = data.find((item) => item.value === value);
 
   if (!ret) {
-    return defaultName;
+    return defaultName || defaultLabel;
   }
 
   const options = (optionName ? ret[optionName] : ret[type]) || {};
@@ -23,7 +24,7 @@ const Dictionary: React.FC<DictionaryProps> = ({
     ...restProps,
     style: { ...restOptions?.style, ...restProps?.style },
   };
-  const name = alias || ret.label || ret.name;
+  const name = alias || ret.name || ret.label;
 
   if (type === 'tag') {
     return <Tag {...props}>{name}</Tag>;

@@ -17,7 +17,8 @@ const DictionaryList: React.FC<DictionaryListProps> = ({
   value = [],
   type = 'text',
   style = {},
-  defaultName = '-',
+  defaultName,
+  defaultLabel = '-',
   align = 'start',
   direction = 'horizontal',
   size = 'small',
@@ -29,13 +30,13 @@ const DictionaryList: React.FC<DictionaryListProps> = ({
   );
 
   if (!Array.isArray(value) || value.length <= 0) {
-    return defaultName;
+    return defaultName || defaultLabel;
   }
 
   const dom = value.map((itemVal, index) => (
     <Dictionary
       key={itemVal + index.toString()}
-      defaultName=""
+      defaultName={defaultName || defaultLabel}
       value={itemVal}
       style={styles}
       type={type}

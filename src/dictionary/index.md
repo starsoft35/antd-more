@@ -83,7 +83,7 @@ type EnumData = EnumItem[];
 ------------- | ------------- | ------------- | ------------- |
 data  | 包含 `value` `label` 的 `数据字典` | `EnumData` | `[]` |
 value  | 当前字典值 | `any` | `""` |
-defaultName  | 当找不到字典值对应的名称时，显示默认名称 | `string` | `-` |
+defaultLabel  | 当找不到字典值对应的名称时，显示默认名称 | `string` | `-` |
 type  | 显示方式 | `'text' \| 'tag' \| 'badge'` | `'text'` |
 
 ### Dictionary.List

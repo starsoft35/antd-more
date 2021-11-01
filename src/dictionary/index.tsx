@@ -16,8 +16,17 @@ export type {
   EnumData,
 };
 
+/**
+ * @deprecated Please use 'BizField' 'BizForm.Select' 'BizForm.Radio'
+ */
 const DictionaryWrapper: React.FC<DictionaryProps> & {
+  /**
+   * @deprecated Please use 'BizForm.Select'
+   */
   Select: typeof Select;
+  /**
+   * @deprecated Please use 'BizForm.Radio'
+   */
   Radio: typeof Radio;
   List: typeof List;
 } = (props) => {

@@ -49,7 +49,7 @@ const columns: BizTableColumnType<DataItem> = [
   {
     dataIndex: "approveResult",
     title: "审核状态",
-    filters: ApproveStatusOptions.map(item => ({ text: item.name, ...item })),
+    filters: ApproveStatusOptions.map(item => ({ text: item.label, ...item })),
     valueType: 'enumBadge',
     valueEnum: ApproveStatusOptions,
     search: {
