@@ -94,6 +94,15 @@ const umiConfig = {
 };
 
 if (process.env.NODE_ENV === 'production') {
+  umiConfig.headScripts = [
+    { src: 'https://www.googletagmanager.com/gtag/js?id=G-N328Y9JJTL', async: true },
+    {
+      content: `window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-N328Y9JJTL');
+    `}
+  ];
   umiConfig.chunks = ['vendors', 'umi'];
   umiConfig.chainWebpack = function (config, { webpack }) {
     config.merge({
