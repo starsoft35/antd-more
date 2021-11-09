@@ -20,11 +20,11 @@ const ColumnSetting: React.FC = () => {
 
   const checkAll = React.useMemo(
     () => selectedKey.length === columns.length,
-    [selectedKey, columns],
+    [selectedKey, columns]
   );
   const indeterminate = React.useMemo(
     () => selectedKey.length > 0 && selectedKey.length !== columns.length,
-    [selectedKey, columns],
+    [selectedKey, columns]
   );
 
   React.useEffect(() => {
@@ -40,7 +40,7 @@ const ColumnSetting: React.FC = () => {
     return columns.map((item, index) => {
       return {
         key: columnsKey[index],
-        title: item.title || '',
+        title: item.title || ''
       };
     });
   }, [columns, columnsKey]);

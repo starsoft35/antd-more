@@ -1,6 +1,6 @@
-import * as React from "react";
-import { BizForm } from "antd-more";
-import { getPCA } from "lcn";
+import * as React from 'react';
+import { BizForm } from 'antd-more';
+import { getPCA } from 'lcn';
 
 const pcaInlandData = getPCA({ inland: true, formatForm: true });
 
@@ -13,7 +13,7 @@ const formLayout = {
     xs: { span: 24 },
     sm: { span: 16 }
   }
-}
+};
 
 // const initialValues = {
 //   arr1: [
@@ -53,8 +53,8 @@ const Demo: React.FC = () => {
         <BizForm.ItemInput name="email" label="邮箱" type="email" />
         <BizForm.ItemAddress
           label="地址"
-          names={["location", "address"]}
-          labels={["省/市/区", "详细地址"]}
+          names={['location', 'address']}
+          labels={['省/市/区', '详细地址']}
           options={pcaInlandData}
         />
         <BizForm.ItemInput label="银行卡号" name="bankCardNo" type="bankCard" />
@@ -101,12 +101,16 @@ const Demo: React.FC = () => {
         </BizForm.List>
         <BizForm.ItemInput label="银行卡号4" name={["test", "bankCardNo"]} type="bankCard" /> */}
         <BizForm.ItemDate label="日期" name="date" />
-        <BizForm.ItemDate label="周" name="week" pickerProps={{ picker: "week" }} />
-        <BizForm.ItemDate label="月" name="month" pickerProps={{ picker: "month" }} />
-        <BizForm.ItemDate label="年" name="year" pickerProps={{ picker: "year" }} />
+        <BizForm.ItemDate label="周" name="week" pickerProps={{ picker: 'week' }} />
+        <BizForm.ItemDate label="月" name="month" pickerProps={{ picker: 'month' }} />
+        <BizForm.ItemDate label="年" name="year" pickerProps={{ picker: 'year' }} />
         <BizForm.ItemDate label="日期时间" name="dateTime" pickerProps={{ showTime: true }} />
         <BizForm.ItemDateRange label="日期区间" name="dateRange" />
-        <BizForm.ItemDateRange label="日期时间区间" name="dateTimeRange" pickerProps={{ showTime: true }} />
+        <BizForm.ItemDateRange
+          label="日期时间区间"
+          name="dateTimeRange"
+          pickerProps={{ showTime: true }}
+        />
         <BizForm.ItemInput label="身份证号" name="idCard" type="idCard" />
         <BizForm.ItemInput label="Input" name="input" />
         <BizForm.ItemPassword label="Input.Password" name="inputPassword" validated={false} />
@@ -119,6 +123,6 @@ const Demo: React.FC = () => {
       </div>
     </>
   );
-}
+};
 
 export default Demo;

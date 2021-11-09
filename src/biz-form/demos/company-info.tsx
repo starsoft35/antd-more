@@ -1,9 +1,9 @@
-import * as React from "react";
-import { Row, Col } from "antd";
-import { BizForm } from "antd-more";
-import { isSocialCreditCode, isBusinessLicense } from "util-helpers";
-import { getPCA } from "lcn";
-import waitTime from "./utils/waitTime";
+import * as React from 'react';
+import { Row, Col } from 'antd';
+import { BizForm } from 'antd-more';
+import { isSocialCreditCode, isBusinessLicense } from 'util-helpers';
+import { getPCA } from 'lcn';
+import waitTime from './utils/waitTime';
 
 const pcaInlandData = getPCA({ inland: true, formatForm: true });
 
@@ -26,25 +26,30 @@ const CompanyInfo: React.FC = () => {
         console.log(values);
       }}
       initialValues={{
-        businessRegno: "93410526MA45RDU53U"
+        businessRegno: '93410526MA45RDU53U'
       }}
       submitter={{
-        submitText: "提交",
+        submitText: '提交',
         submitButtonProps: {
-          size: "large",
+          size: 'large',
           style: {
-            padding: "0 40px"
+            padding: '0 40px'
           }
         },
         noReset: true,
         // 提交按钮居中
-        render: (_, dom) => <div style={{ display: "flex", justifyContent: "center" }}>{dom}</div>,
+        render: (_, dom) => <div style={{ display: 'flex', justifyContent: 'center' }}>{dom}</div>
       }}
       labelWidth={120}
     >
       <Row>
         <Col {...oneColSpan}>
-          <ItemInput label="公司名称" name="companyName" required inputProps={{ placeholder: "请输入公司营业执照上的商户全称" }} />
+          <ItemInput
+            label="公司名称"
+            name="companyName"
+            required
+            inputProps={{ placeholder: '请输入公司营业执照上的商户全称' }}
+          />
         </Col>
         <Col {...twoColSpan}>
           <ItemInput
@@ -52,16 +57,16 @@ const CompanyInfo: React.FC = () => {
             name="businessRegno"
             required
             inputProps={{
-              placeholder: "请输入统一社会信用代码或营业执照号"
+              placeholder: '请输入统一社会信用代码或营业执照号'
             }}
             rules={[
               {
                 validator(rules, value) {
-                  let errMsg = "";
+                  let errMsg = '';
                   if (!value) {
-                    errMsg = "请输入统一社会信用代码或营业执照号";
+                    errMsg = '请输入统一社会信用代码或营业执照号';
                   } else if (!isBusinessLicense(value) && !isSocialCreditCode(value)) {
-                    errMsg = "请输入正确的营业执照号";
+                    errMsg = '请输入正确的营业执照号';
                   }
                   if (errMsg) {
                     return Promise.reject(errMsg);
@@ -82,11 +87,17 @@ const CompanyInfo: React.FC = () => {
           <ItemInput label="法人手机号码" name="legalMobile" type="mobile" required />
         </Col>
         <Col {...oneColSpan}>
-          <ItemAddress label="公司地址" names={["location", "address"]} labels={["省/市/区", "详细地址"]} options={pcaInlandData} required />
+          <ItemAddress
+            label="公司地址"
+            names={['location', 'address']}
+            labels={['省/市/区', '详细地址']}
+            options={pcaInlandData}
+            required
+          />
         </Col>
       </Row>
     </BizForm>
   );
-}
+};
 
 export default CompanyInfo;

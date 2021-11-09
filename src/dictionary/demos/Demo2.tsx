@@ -2,8 +2,8 @@
  * title: 选择字典值
  */
 
-import React, { useState } from "react";
-import { Dictionary } from "antd-more";
+import React, { useState } from 'react';
+import { Dictionary } from 'antd-more';
 
 const ApproveStatus = [
   {
@@ -17,7 +17,7 @@ const ApproveStatus = [
   {
     value: 3,
     label: '审核不通过'
-  },
+  }
 ];
 
 export default () => {
@@ -25,7 +25,13 @@ export default () => {
 
   return (
     <>
-      <Dictionary.Select data={ApproveStatus} value={value} onChange={setValue} all={false} style={{ width: 200 }} />
+      <Dictionary.Select
+        data={ApproveStatus}
+        value={value}
+        onChange={setValue}
+        all={false}
+        style={{ width: 200 }}
+      />
       <br />
       <br />
       <div>
@@ -33,5 +39,5 @@ export default () => {
         {value}
       </div>
     </>
-  )
-}
+  );
+};

@@ -61,8 +61,8 @@ const FormItemNumber: React.FC<FormItemNumberProps> = ({
               return Promise.reject(errMsg);
             }
             return Promise.resolve();
-          },
-        },
+          }
+        }
       ]}
       contentBefore={before}
       contentAfter={after}

@@ -51,7 +51,7 @@ const PickerWrapper: React.FC<PickerWrapperProps> = ({
     (color: ColorObj) => {
       onChange?.(transformColor(color, colorMode));
     },
-    [colorMode, onChange],
+    [colorMode, onChange]
   );
 
   const photoshopAction: PhotoshopAction = {};
@@ -74,7 +74,7 @@ const PickerWrapper: React.FC<PickerWrapperProps> = ({
           onChangeComplete: handleChangeComplete,
           color: value || 'transparent',
           ...childrenProps,
-          ...photoshopAction,
+          ...photoshopAction
         })}
         trigger={trigger}
         visible={visible}
@@ -86,7 +86,7 @@ const PickerWrapper: React.FC<PickerWrapperProps> = ({
       >
         <span
           className={classNames(`${prefixCls}-outer`, `${prefixCls}-select`, {
-            [`${prefixCls}-active`]: visible,
+            [`${prefixCls}-active`]: visible
           })}
           title={value}
         >

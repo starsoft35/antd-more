@@ -2,36 +2,36 @@
  * title: 多个枚举
  * desc: |
  *  外层包裹 `Space` 组件，可配置 `align` `direction` `size`。
- * 
+ *
  *  其中 `value` 变为一个字段值数组，`defaultLabel` 仅在 `value` 为非数组或长度小于0时显示。其他参数用于配置和 `Dictionary`。
  */
 
-import React from "react";
-import { Divider } from "antd";
-import { Dictionary } from "antd-more";
+import React from 'react';
+import { Divider } from 'antd';
+import { Dictionary } from 'antd-more';
 
 const BiologyCategory = [
   {
     value: 1,
     label: '动物',
     tag: {
-      color: "orange"
+      color: 'orange'
     }
   },
   {
     value: 2,
     label: '植物',
     tag: {
-      color: "green"
+      color: 'green'
     }
   },
   {
     value: 3,
     label: '微生物',
     custom: {
-      color: "purple"
+      color: 'purple'
     }
-  },
+  }
 ];
 
 export default () => {
@@ -56,5 +56,5 @@ export default () => {
       <br />
       <Dictionary.List data={BiologyCategory} value={[1, 2, 3]} type="tag" />
     </>
-  )
-}
+  );
+};

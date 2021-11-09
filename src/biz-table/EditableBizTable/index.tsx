@@ -131,8 +131,8 @@ const EditableBizTable = <RecordType extends object = any>({
       onValuesChange(
         Object.keys(ret).map((item) => ({
           ...editableKeyMapRef.current[item]?.record,
-          ...ret[item],
-        })),
+          ...ret[item]
+        }))
       );
     }
   };
@@ -145,8 +145,8 @@ const EditableBizTable = <RecordType extends object = any>({
       onValuesChange(
         Object.keys(ret).map((item) => ({
           ...editableKeyMapRef.current[item]?.record,
-          ...ret[item],
-        })),
+          ...ret[item]
+        }))
       );
     }
   };
@@ -172,7 +172,7 @@ const EditableBizTable = <RecordType extends object = any>({
         const values = form.getFieldsValue(editableKeyMapRef.current[rowKey]?.nameList);
         const transformValues = transformFormValues(
           values,
-          transformRecordActionRef?.current?.get(),
+          transformRecordActionRef?.current?.get()
         );
         const retValue = (Object.values(transformValues) as object[])[0];
         return { ...editableKeyMapRef.current[rowKey]?.record, ...retValue };
@@ -180,7 +180,7 @@ const EditableBizTable = <RecordType extends object = any>({
         return value.find((item) => getCurentRowKey(item) === rowKey);
       }
     },
-    [editable?.editableKeys, form, getCurentRowKey, value],
+    [editable?.editableKeys, form, getCurentRowKey, value]
   );
 
   const getConcatValue = React.useCallback(() => {
@@ -201,8 +201,8 @@ const EditableBizTable = <RecordType extends object = any>({
     const retValue = getConcatValue().filter(
       (item) =>
         !newRecords.find(
-          (nrItem) => getCurentRowKey(item) === nrItem.rowKey && getCurentRowKey(item) !== rowKey,
-        ),
+          (nrItem) => getCurentRowKey(item) === nrItem.rowKey && getCurentRowKey(item) !== rowKey
+        )
     );
     const retIndex = retValue.findIndex((item) => getCurentRowKey(item) === rowKey);
     return retIndex;
@@ -262,7 +262,7 @@ const EditableBizTable = <RecordType extends object = any>({
       newValue = [...value];
       newValue.splice(getRealIndex(currentNewRecord.rowKey), 0, {
         ...currentNewRecord.recordConfig,
-        ...fieldsValue,
+        ...fieldsValue
       });
     } else {
       newValue = value.map((item) => (getCurentRowKey(item) === rowKey ? fieldsValue : item));
@@ -270,7 +270,7 @@ const EditableBizTable = <RecordType extends object = any>({
     changeValue(newValue);
     editable?.onChange?.(
       editable?.editableKeys.filter((item) => item !== rowKey),
-      fieldsValue,
+      fieldsValue
     );
     handleReset(rowKey);
   };
@@ -293,7 +293,7 @@ const EditableBizTable = <RecordType extends object = any>({
               newItem.index -= 1;
             }
             return newItem;
-          }),
+          })
       );
     } else {
       const newValue = value.filter((item) => getCurentRowKey(item) !== rowKey);
@@ -301,7 +301,7 @@ const EditableBizTable = <RecordType extends object = any>({
     }
     editable?.onChange?.(
       editable?.editableKeys.filter((item) => item !== rowKey),
-      fieldsValue,
+      fieldsValue
     );
     clearFieldsByRowKey(rowKey);
   };
@@ -319,7 +319,7 @@ const EditableBizTable = <RecordType extends object = any>({
     const fieldsValue = getFieldsByRowKey(rowKey);
     editable?.onChange?.(
       editable?.editableKeys.filter((item) => item !== rowKey),
-      fieldsValue,
+      fieldsValue
     );
     handleReset(rowKey);
   };
@@ -354,8 +354,8 @@ const EditableBizTable = <RecordType extends object = any>({
       {
         index: currentIndex,
         rowKey: currentRowKey,
-        recordConfig: record,
-      },
+        recordConfig: record
+      }
     ]);
     editable?.onChange?.([...editable?.editableKeys, currentRowKey], record);
     setTimeout(() => triggerValuesChange(), 0); // dom渲染后再触发更新
@@ -388,7 +388,7 @@ const EditableBizTable = <RecordType extends object = any>({
     clearNewRecords,
     getNewRecords,
 
-    setDataSource: handleDataSourceChange,
+    setDataSource: handleDataSourceChange
   }));
 
   const concatValue = React.useMemo(getConcatValue, [getConcatValue]);

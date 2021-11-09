@@ -40,9 +40,9 @@ const CaptchaButton: React.FC<CaptchaButtonProps> = ({
         onEnd: () => {
           setStatus(2);
           onEnd();
-        },
+        }
       }),
-    [onEnd, second],
+    [onEnd, second]
   );
 
   useEffect(() => {

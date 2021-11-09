@@ -13,8 +13,8 @@ export interface BizDescriptionsItemProps<DataType extends object = any>
   valueEnum?: EnumData;
   tooltip?: WithTooltipProps['tooltip'];
   field?:
-  | Partial<BizFieldProps>
-  | ((text: any, record?: DataType, index?: number) => Partial<BizFieldProps>);
+    | Partial<BizFieldProps>
+    | ((text: any, record?: DataType, index?: number) => Partial<BizFieldProps>);
   key?: React.ReactText;
   dataSource?: DataType;
   index?: number;
@@ -51,8 +51,8 @@ type DataIndex = string | number;
 export interface BizDescriptionsColumnItemProps<DataType extends object = any>
   extends Omit<BizDescriptionsItemProps<DataType>, 'children' | 'field'> {
   field?:
-  | Partial<BizFieldProps>
-  | ((text: any, record: DataType, index: number) => Partial<BizFieldProps>);
+    | Partial<BizFieldProps>
+    | ((text: any, record: DataType, index: number) => Partial<BizFieldProps>);
   dataIndex?: DataIndex | DataIndex[];
   title?: React.ReactNode;
   render?: (value: any, dataSource: DataType, index: number) => React.ReactNode;
@@ -76,13 +76,13 @@ function BizDescriptions<DataType extends object = any>({
   const defaultProps = React.useMemo(
     () => ({
       title: title && tooltip ? <WithTooltip label={title} tooltip={tooltip} /> : title,
-      column: column || { xs: 1, md: 2, lg: 3, xxl: 4 },
+      column: column || { xs: 1, md: 2, lg: 3, xxl: 4 }
     }),
-    [title, tooltip, column],
+    [title, tooltip, column]
   );
 
   const currentDom = React.Children.map(children, (item: any) =>
-    createDescriptionsItem(item.props),
+    createDescriptionsItem(item.props)
   );
 
   if (
@@ -97,7 +97,7 @@ function BizDescriptions<DataType extends object = any>({
         {columns.map(
           (
             { title: internalTitle, label: internalLabel, dataIndex, render, ...restColItem },
-            index,
+            index
           ) => {
             let currentDataValue;
             if (Array.isArray(dataIndex)) {
@@ -119,9 +119,9 @@ function BizDescriptions<DataType extends object = any>({
               children: child,
               dataSource,
               index,
-              ...restColItem,
+              ...restColItem
             });
-          },
+          }
         )}
       </Descriptions>
     );

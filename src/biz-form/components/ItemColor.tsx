@@ -10,7 +10,7 @@ export enum ColorPicker {
   chrome = 'ChromePicker',
   compact = 'CompactPicker',
   photoshop = 'PhotoshopPicker',
-  sketch = 'SketchPicker',
+  sketch = 'SketchPicker'
 }
 
 export interface FormItemColorProps extends BizFormItemProps {
@@ -49,8 +49,8 @@ const FormItemColor: React.FC<FormItemColorProps> = ({
               return Promise.reject(errMsg);
             }
             return Promise.resolve();
-          },
-        },
+          }
+        }
       ]}
       {...restProps}
     >

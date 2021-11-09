@@ -5,7 +5,7 @@ import type {
   DatePickerProps,
   TimePickerProps,
   MonthPickerProps,
-  WeekPickerProps,
+  WeekPickerProps
 } from './antd.interface';
 import { createDisabledDate, transformMomentValue, getDateFormat } from '../_util/dateUtil';
 import type { Picker } from '../_util/dateUtil';
@@ -46,18 +46,18 @@ const FormItemDate: React.FC<FormItemDateProps> = ({
 }) => {
   const currentPicker = React.useMemo(
     () => pickerProps.picker || picker,
-    [pickerProps.picker, picker],
+    [pickerProps.picker, picker]
   );
   const currentFormat = React.useMemo(() => {
     return getDateFormat(
       pickerProps.format || format,
       currentPicker,
-      pickerProps.showTime || showTime,
+      pickerProps.showTime || showTime
     );
   }, [format, pickerProps.format, currentPicker, pickerProps.showTime, showTime]);
   const disabledDate = React.useMemo(
     () => createDisabledDate(currentPicker, { disabledDateBefore, disabledDateAfter }),
-    [disabledDateBefore, disabledDateAfter, currentPicker],
+    [disabledDateBefore, disabledDateAfter, currentPicker]
   );
   const handleTransform = React.useCallback(
     (val) => {
@@ -66,7 +66,7 @@ const FormItemDate: React.FC<FormItemDateProps> = ({
       }
       return transformDate(val, currentFormat);
     },
-    [currentFormat, transform],
+    [currentFormat, transform]
   );
 
   return (
@@ -83,8 +83,8 @@ const FormItemDate: React.FC<FormItemDateProps> = ({
               return Promise.reject(errMsg);
             }
             return Promise.resolve();
-          },
-        },
+          }
+        }
       ]}
       className={classNames(prefixCls, className)}
       transform={handleTransform}

@@ -8,16 +8,16 @@ import { Color } from 'antd-more';
 
 const formItemLayouts = {
   labelCol: { span: 6 },
-  wrapperCol: { span: 16 },
+  wrapperCol: { span: 16 }
 };
 
 const buttonItemLayouts = {
-  wrapperCol: { span: 16, offset: 6 },
+  wrapperCol: { span: 16, offset: 6 }
 };
 
 const initialValues = {
   color1: '#e60000',
-  color2: 'rgba(255,127,0,1)',
+  color2: 'rgba(255,127,0,1)'
 };
 
 export default () => {
@@ -48,4 +48,4 @@ export default () => {
       </div>
     </>
   );
-}
+};

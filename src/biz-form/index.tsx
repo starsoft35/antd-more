@@ -6,7 +6,7 @@ import type {
   StepsFormProps,
   StepFormProps,
   ActionType as StepsFormActionType,
-  StepsSubmitterProps as StepsFormSubmitterProps,
+  StepsSubmitterProps as StepsFormSubmitterProps
 } from './components/StepsForm';
 import ModalForm from './components/ModalForm';
 import type { ModalFormProps } from './components/ModalForm';
@@ -81,7 +81,7 @@ export type {
   FormItemUploadProps as ItemUploadProps,
   StepFormProps,
   StepsFormActionType,
-  StepsFormSubmitterProps,
+  StepsFormSubmitterProps
 };
 
 export {
@@ -107,7 +107,7 @@ export {
   ItemTextArea,
   ItemTime,
   ItemTimeRange,
-  ItemUpload,
+  ItemUpload
 };
 
 export default BizForm;

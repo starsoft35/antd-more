@@ -87,7 +87,7 @@ import {
   VerifiedOutlined,
   VideoCameraOutlined,
   WalletOutlined,
-  WifiOutlined,
+  WifiOutlined
 } from '@ant-design/icons';
 
 export type IconProp = [string, FC];
@@ -185,5 +185,5 @@ export default new Map([
   ['Verified', VerifiedOutlined],
   ['VideoCamera', VideoCameraOutlined],
   ['Wallet', WalletOutlined],
-  ['Wifi', WifiOutlined],
+  ['Wifi', WifiOutlined]
 ]);

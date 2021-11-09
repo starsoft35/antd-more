@@ -20,7 +20,7 @@ const DateType = [
   'dateTimeRange',
   'time',
   'timeRange',
-  'fromNow',
+  'fromNow'
 ];
 const IndexType = ['index', 'indexBorder'];
 const EnumType = ['enum', 'enumTag', 'enumBadge'];
@@ -28,7 +28,7 @@ const EnumType = ['enum', 'enumTag', 'enumBadge'];
 const DectionaryTypeMap = {
   enum: 'text',
   enumBadge: 'badge',
-  enumTag: 'tag',
+  enumTag: 'tag'
 };
 
 const BizField: React.FC<BizFieldProps> = ({
@@ -88,7 +88,7 @@ const BizField: React.FC<BizFieldProps> = ({
     const enumProps = {
       value: realValue,
       type: DectionaryTypeMap[valueType as string],
-      data: valueEnum,
+      data: valueEnum
     };
     return Array.isArray(realValue) ? (
       <Dictionary.List {...enumProps} {...restProps} />

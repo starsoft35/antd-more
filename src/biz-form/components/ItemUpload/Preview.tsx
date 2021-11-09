@@ -9,7 +9,7 @@ export default ({ imgUrl = '', style = {}, ...restProps }) => {
       centered
       style={{
         maxWidth: '80%',
-        ...style,
+        ...style
       }}
       {...restProps}
     >

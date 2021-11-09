@@ -2,10 +2,10 @@
  * title: 基础用法
  */
 
-import React from "react";
-import "moment/locale/zh-cn";
-import { Descriptions } from "antd";
-import { BizField } from "antd-more";
+import React from 'react';
+import 'moment/locale/zh-cn';
+import { Descriptions } from 'antd';
+import { BizField } from 'antd-more';
 
 // 枚举数据
 const ApproveStatus = [
@@ -13,11 +13,11 @@ const ApproveStatus = [
     value: 1,
     label: '审核中',
     badge: {
-      status: "processing"
+      status: 'processing'
     },
     tag: {
-      alias: "待审核",
-      color: "orange"
+      alias: '待审核',
+      color: 'orange'
     }
   },
   {
@@ -25,14 +25,14 @@ const ApproveStatus = [
     label: '审核通过',
     text: {
       style: {
-        color: "green"
+        color: 'green'
       }
     },
     badge: {
-      status: "success"
+      status: 'success'
     },
     tag: {
-      color: "green"
+      color: 'green'
     }
   },
   {
@@ -40,16 +40,16 @@ const ApproveStatus = [
     label: '审核不通过',
     text: {
       style: {
-        color: "red"
+        color: 'red'
       }
     },
     badge: {
-      status: "error"
+      status: 'error'
     },
     tag: {
-      color: "red"
+      color: 'red'
     }
-  },
+  }
 ];
 
 export default () => {
@@ -109,19 +109,45 @@ export default () => {
           <BizField value="blue" valueType="color" showText />
         </Descriptions.Item>
         <Descriptions.Item label="图片">
-          <BizField value="https://gw.alipayobjects.com/zos/antfincdn/aPkFc8Sj7n/method-draw-image.svg" valueType="image" />
+          <BizField
+            value="https://gw.alipayobjects.com/zos/antfincdn/aPkFc8Sj7n/method-draw-image.svg"
+            valueType="image"
+          />
         </Descriptions.Item>
         <Descriptions.Item label="图片（名称）">
-          <BizField value={{ src: "https://gw.alipayobjects.com/zos/antfincdn/aPkFc8Sj7n/method-draw-image.svg", name: "测试名称测试名称测试名称" }} valueType="image" />
+          <BizField
+            value={{
+              src: 'https://gw.alipayobjects.com/zos/antfincdn/aPkFc8Sj7n/method-draw-image.svg',
+              name: '测试名称测试名称测试名称'
+            }}
+            valueType="image"
+          />
         </Descriptions.Item>
         <Descriptions.Item label="图片(边框/名称)">
-          <BizField value={{ src: "https://gw.alipayobjects.com/zos/antfincdn/aPkFc8Sj7n/method-draw-image.svg", name: "测试名称" }} valueType="image" bordered />
+          <BizField
+            value={{
+              src: 'https://gw.alipayobjects.com/zos/antfincdn/aPkFc8Sj7n/method-draw-image.svg',
+              name: '测试名称'
+            }}
+            valueType="image"
+            bordered
+          />
         </Descriptions.Item>
         <Descriptions.Item label="多张图片">
-          <BizField value={["https://dummyimage.com/200x300", "https://dummyimage.com/300x100"]} valueType="image" />
+          <BizField
+            value={['https://dummyimage.com/200x300', 'https://dummyimage.com/300x100']}
+            valueType="image"
+          />
         </Descriptions.Item>
         <Descriptions.Item label="多张图片(边框/名称)">
-          <BizField value={[{ src: "https://dummyimage.com/300x600", name: "测试名称" }, { src: "https://dummyimage.com/600x200", name: "测试名称测试名称测试名称测试名称" }]} valueType="image" bordered />
+          <BizField
+            value={[
+              { src: 'https://dummyimage.com/300x600', name: '测试名称' },
+              { src: 'https://dummyimage.com/600x200', name: '测试名称测试名称测试名称测试名称' }
+            ]}
+            valueType="image"
+            bordered
+          />
         </Descriptions.Item>
       </Descriptions>
       <Descriptions title="日期">
@@ -147,16 +173,16 @@ export default () => {
           <BizField value="10:00:00" valueType="time" />
         </Descriptions.Item>
         <Descriptions.Item label="时间区间">
-          <BizField value={["10:00:00", "12:00:00"]} valueType="timeRange" />
+          <BizField value={['10:00:00', '12:00:00']} valueType="timeRange" />
         </Descriptions.Item>
         <Descriptions.Item label="相对当前时间">
           <BizField value="2020-10-10" valueType="fromNow" />
         </Descriptions.Item>
         <Descriptions.Item label="日期区间">
-          <BizField value={["2020-10-10", "2020-12-12"]} valueType="dateRange" />
+          <BizField value={['2020-10-10', '2020-12-12']} valueType="dateRange" />
         </Descriptions.Item>
         <Descriptions.Item label="日期时间区间">
-          <BizField value={["2020-10-10", "2020-12-12"]} valueType="dateTimeRange" />
+          <BizField value={['2020-10-10', '2020-12-12']} valueType="dateTimeRange" />
         </Descriptions.Item>
       </Descriptions>
       <Descriptions title="枚举">
@@ -180,5 +206,5 @@ export default () => {
         </Descriptions.Item>
       </Descriptions>
     </>
-  )
-}
+  );
+};

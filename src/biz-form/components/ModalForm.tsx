@@ -75,7 +75,7 @@ const ModalForm: React.FC<ModalFormProps> = ({
           submitText: modalProps?.okText || '确认',
           resetText: modalProps?.cancelText || '取消',
           submitButtonProps: {
-            type: (modalProps?.okType as 'text') || 'primary',
+            type: (modalProps?.okType as 'text') || 'primary'
           },
           ...submitter,
           resetButtonProps: {
@@ -85,14 +85,14 @@ const ModalForm: React.FC<ModalFormProps> = ({
               modalProps?.onCancel?.(e);
               changeVisible(false);
               submitter && submitter?.resetButtonProps?.onClick?.(e);
-            },
+            }
           },
           render: (submitterProps, submitterDom) => {
             if (submitter && typeof submitter?.render === 'function') {
               return submitter.render(submitterProps, submitterDom.reverse());
             }
             return submitterDom.reverse();
-          },
+          }
         }}
         formRender={(formDom, submitterDom) => (
           <Modal
@@ -120,7 +120,7 @@ const ModalForm: React.FC<ModalFormProps> = ({
           onClick: (e) => {
             changeVisible(true);
             trigger.props?.onClick?.(e);
-          },
+          }
         })}
     </>
   );

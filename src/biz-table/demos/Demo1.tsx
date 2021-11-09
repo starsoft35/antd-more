@@ -11,27 +11,27 @@ type DataItem = {
   createTime: string;
   approveTime: string;
   money: number;
-}
+};
 
 const columns: BizTableColumnType<DataItem> = [
   {
-    valueType: "indexBorder"
+    valueType: 'indexBorder'
   },
   {
-    dataIndex: "applyCode",
-    title: "申请编号",
-    tooltip: "提示文字",
+    dataIndex: 'applyCode',
+    title: '申请编号',
+    tooltip: '提示文字',
     search: true
   },
   {
-    dataIndex: "money",
-    title: "金额",
-    valueType: "money",
-    align: "right",
+    dataIndex: 'money',
+    title: '金额',
+    valueType: 'money',
+    align: 'right',
     // 写法一，传递给 BizField的参数
     field: {
-      formatValue: value => divide(value, 100), // 分转元
-      prefix: "¥"
+      formatValue: (value) => divide(value, 100), // 分转元
+      prefix: '¥'
     },
     // 写法二，可关联当前数据配置
     // field: (text, record, index) => {
@@ -44,56 +44,59 @@ const columns: BizTableColumnType<DataItem> = [
     order: 2
   },
   {
-    dataIndex: "createTime",
-    title: "提交时间",
-    valueType: "dateTime",
+    dataIndex: 'createTime',
+    title: '提交时间',
+    valueType: 'dateTime',
     search: {
-      valueType: "date"
+      valueType: 'date'
     },
     order: 2
   },
   {
-    dataIndex: "applicantName",
-    title: "经办员"
+    dataIndex: 'applicantName',
+    title: '经办员'
   },
   {
-    dataIndex: "approveTime",
-    title: "审核时间",
-    tooltip: "提示文字",
+    dataIndex: 'approveTime',
+    title: '审核时间',
+    tooltip: '提示文字',
     sorter: true,
-    valueType: "dateTime",
+    valueType: 'dateTime',
     search: {
-      valueType: "dateTimeRange",
-      names: ["startTime", "endTime"],
+      valueType: 'dateTimeRange',
+      names: ['startTime', 'endTime'],
       colProps: { lg: 12, md: 24 }
     },
     order: 10
   },
   {
-    dataIndex: "approverName",
-    title: "审核员",
+    dataIndex: 'approverName',
+    title: '审核员',
     search: true
   }
 ];
 
 const Demo: React.FC = () => {
-  const handleRequest: BizTableRequest<DataItem> = React.useCallback((params, filters, sorter, extra) => {
-    const { pageSize, current, ...restParams } = params;
-    console.log(params, filters, sorter, extra);
+  const handleRequest: BizTableRequest<DataItem> = React.useCallback(
+    (params, filters, sorter, extra) => {
+      const { pageSize, current, ...restParams } = params;
+      console.log(params, filters, sorter, extra);
 
-    return getApplyList({
-      page: {
-        pageSize,
-        pageNum: current
-      },
-      data: restParams
-    }).then((res: any) => {
-      return {
-        total: res.pageInfo.total,
-        ...res
-      }
-    });
-  }, []);
+      return getApplyList({
+        page: {
+          pageSize,
+          pageNum: current
+        },
+        data: restParams
+      }).then((res: any) => {
+        return {
+          total: res.pageInfo.total,
+          ...res
+        };
+      });
+    },
+    []
+  );
 
   return (
     <BizTable<DataItem>
@@ -103,6 +106,6 @@ const Demo: React.FC = () => {
       toolbarAction
     />
   );
-}
+};
 
 export default Demo;

@@ -82,14 +82,14 @@ const DrawerForm: React.FC<DrawerFormProps> = ({
               drawerProps?.onClose?.(e);
               changeVisible(false);
               submitter && submitter?.resetButtonProps?.onClick?.(e);
-            },
+            }
           },
           render: (submitterProps, submitterDom) => {
             if (submitter && typeof submitter?.render === 'function') {
               return submitter.render(submitterProps, submitterDom.reverse());
             }
             return submitterDom.reverse();
-          },
+          }
         }}
         formRender={(formDom, submitterDom) => (
           <Drawer
@@ -101,7 +101,7 @@ const DrawerForm: React.FC<DrawerFormProps> = ({
               <div
                 style={{
                   display: 'flex',
-                  justifyContent: 'flex-end',
+                  justifyContent: 'flex-end'
                 }}
               >
                 {submitterDom}
@@ -125,7 +125,7 @@ const DrawerForm: React.FC<DrawerFormProps> = ({
           onClick: (e) => {
             changeVisible(true);
             trigger.props?.onClick?.(e);
-          },
+          }
         })}
     </>
   );

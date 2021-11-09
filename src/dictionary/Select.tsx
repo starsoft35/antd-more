@@ -34,7 +34,7 @@ const DictionarySelect: React.FC<DictionarySelectProps> = ({
       if (!excludeValues.includes(item?.value)) {
         ret.push({
           label: item.name,
-          ...item,
+          ...item
         });
       }
     });

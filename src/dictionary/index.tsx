@@ -13,7 +13,7 @@ export type {
   DictionaryListProps,
   DictionaryRadioProps,
   DictionarySelectProps,
-  EnumData,
+  EnumData
 };
 
 /**

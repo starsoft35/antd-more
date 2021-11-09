@@ -24,9 +24,9 @@ const WrapperFormElement: React.FC<WrapperFormElementProps> = ({
           ...restProps,
           style: {
             flex: 1,
-            ...restProps?.style,
-          },
-        },
+            ...restProps?.style
+          }
+        }
       )
     : (children as any);
 
@@ -36,7 +36,7 @@ const WrapperFormElement: React.FC<WrapperFormElementProps> = ({
 
   const styles = align
     ? {
-        alignItems: align,
+        alignItems: align
       }
     : {};
 

@@ -22,7 +22,7 @@ export type {
   DrawerProps,
   ColProps,
   CascaderProps,
-  TooltipProps,
+  TooltipProps
 } from 'antd';
 
 export type { CheckboxGroupProps } from 'antd/lib/checkbox';

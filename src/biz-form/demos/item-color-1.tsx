@@ -1,5 +1,5 @@
-import * as React from "react";
-import { BizForm } from "antd-more";
+import * as React from 'react';
+import { BizForm } from 'antd-more';
 
 const { ItemColor } = BizForm;
 
@@ -7,7 +7,7 @@ const Demo: React.FC = () => {
   return (
     <BizForm
       name="form-item-color-1"
-      onFinish={values => {
+      onFinish={(values) => {
         console.log(values);
       }}
       labelWidth={98}
@@ -22,6 +22,6 @@ const Demo: React.FC = () => {
       <ItemColor label="photoshop" name="color8" showText picker="photoshop" />
     </BizForm>
   );
-}
+};
 
 export default Demo;

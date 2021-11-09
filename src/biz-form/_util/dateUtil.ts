@@ -11,7 +11,7 @@ export enum MomentScale {
   week = 'weeks',
   month = 'months',
   quarter = 'months',
-  year = 'years',
+  year = 'years'
 }
 
 // 中文单位
@@ -21,7 +21,7 @@ export enum DateUnit {
   week = '周',
   month = '月',
   quarter = '季',
-  year = '年',
+  year = '年'
 }
 
 // 日期格式
@@ -30,7 +30,7 @@ export enum DateFormat {
   week = 'YYYY-wo',
   month = 'YYYY-MM',
   quarter = 'YYYY-\\QQ',
-  year = 'YYYY',
+  year = 'YYYY'
 }
 
 // 获取日期格式

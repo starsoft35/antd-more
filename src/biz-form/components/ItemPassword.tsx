@@ -52,7 +52,7 @@ const FormItemPassword: React.FC<FormItemPasswordProps> = ({
     let ret: Validated = {
       len: true,
       level: true,
-      special: true,
+      special: true
     };
     if (typeof validated === 'boolean') {
       if (!validated) {
@@ -61,7 +61,7 @@ const FormItemPassword: React.FC<FormItemPasswordProps> = ({
     } else {
       ret = {
         ...ret,
-        ...validated,
+        ...validated
       };
     }
     return ret;
@@ -74,7 +74,7 @@ const FormItemPassword: React.FC<FormItemPasswordProps> = ({
       }
       inputProps?.onPaste?.(e);
     },
-    [disabledPaste, inputProps],
+    [disabledPaste, inputProps]
   );
 
   const handleCopy = React.useCallback(
@@ -84,7 +84,7 @@ const FormItemPassword: React.FC<FormItemPasswordProps> = ({
       }
       inputProps?.onCopy?.(e);
     },
-    [disabledCopy, inputProps],
+    [disabledCopy, inputProps]
   );
 
   const messageLabel = getLabel(restProps);
@@ -117,8 +117,8 @@ const FormItemPassword: React.FC<FormItemPasswordProps> = ({
               return Promise.reject(errMsg);
             }
             return Promise.resolve();
-          },
-        },
+          }
+        }
       ]}
       {...restProps}
     >

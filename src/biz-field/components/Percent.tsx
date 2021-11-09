@@ -28,7 +28,7 @@ const Percent: React.FC<BizFieldProps> = React.memo(
     const ret = symbol + realValue.toFixed(precision) + suffix;
 
     return <span style={styles}>{ret}</span>;
-  },
+  }
 );
 
 export default Percent;

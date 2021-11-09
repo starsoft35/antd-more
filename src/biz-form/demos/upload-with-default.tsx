@@ -4,14 +4,14 @@
  * desc: |
  *      将默认值转换成 `UploadFile[]` 数据格式再传入，数据通过异步获取的情况下可用 `ready` 标识位。当然你也可以再外部添加一个 `Spin` 组件用于显示加载状态。
  */
-import * as React from "react";
-import { BizForm } from "antd-more";
-import waitTime from "./utils/waitTime";
+import * as React from 'react';
+import { BizForm } from 'antd-more';
+import waitTime from './utils/waitTime';
 
 const { ItemUpload } = BizForm;
 
 // 通过fssId获取图片地址
-function getStaticServerPath(fssId: string): Promise<{ data: string; }> {
+function getStaticServerPath(fssId: string): Promise<{ data: string }> {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (Math.random() > 0.3) {
@@ -22,11 +22,11 @@ function getStaticServerPath(fssId: string): Promise<{ data: string; }> {
         reject();
       }
     }, 2000);
-  })
+  });
 }
 
 // 上传图片
-function uploadImage(file: File): Promise<{ fssId: string; }> {
+function uploadImage(file: File): Promise<{ fssId: string }> {
   return new Promise((resolve, reject) => {
     // const formData = new FormData();
     // formData.append("file", file);
@@ -39,11 +39,15 @@ function uploadImage(file: File): Promise<{ fssId: string; }> {
         reject();
       }
     }, 2000);
-  })
+  });
 }
 
 // 默认初始值 fssId
-const defaultFssId = ["jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ", "jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ", "jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ"];
+const defaultFssId = [
+  'jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ',
+  'jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ',
+  'jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ'
+];
 
 // 将值转换为 UploadFile 对象
 const beforeTransformUploadValues = async (fssIds: string[]) => {
@@ -54,15 +58,15 @@ const beforeTransformUploadValues = async (fssIds: string[]) => {
       const url = serverPathObj.data;
       ret.push({
         uid: -i,
-        name: url.substring(url.lastIndexOf("/") + 1),
+        name: url.substring(url.lastIndexOf('/') + 1),
         url,
         value: fssIds[i] // 用于在提交时获取真实的value
       });
     } catch (err) {
       ret.push({
         uid: -i,
-        status: "error",
-        response: "加载失败",
+        status: 'error',
+        response: '加载失败',
         value: fssIds[i] // 用于在提交时获取真实的value
       });
     }
@@ -86,8 +90,8 @@ const Demo: React.FC = () => {
 
   // 上传图片
   const handleUpload = React.useCallback((file) => {
-    return uploadImage(file).then(res => {
-      return { value: res.fssId }
+    return uploadImage(file).then((res) => {
+      return { value: res.fssId };
     });
   }, []);
 
@@ -119,6 +123,6 @@ const Demo: React.FC = () => {
       />
     </BizForm>
   );
-}
+};
 
 export default Demo;

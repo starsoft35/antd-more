@@ -1,7 +1,7 @@
-import * as React from "react";
-import { BizForm } from "antd-more";
+import * as React from 'react';
+import { BizForm } from 'antd-more';
 // import { UploadFile } from "antd/lib/upload/interface";
-import ItemSpecialUpload from "./components/ItemSpecialUpload";
+import ItemSpecialUpload from './components/ItemSpecialUpload';
 
 // // 上传图片
 // function uploadImage(file: File): Promise<{ fssId: string; }> {
@@ -45,18 +45,18 @@ const Demo: React.FC = () => {
         name="upload"
         label="材料文件"
         uploadProps={{
-          action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
-          name: "file",
+          action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
+          name: 'file',
           headers: {
-            authorization: "authorization-text",
+            authorization: 'authorization-text'
           }
         }}
         transform={(files) => {
-          return files.map(item => item?.response?.url).filter(item => !!item); // 项目中可能没有url，而是一个文件id
+          return files.map((item) => item?.response?.url).filter((item) => !!item); // 项目中可能没有url，而是一个文件id
         }}
       />
     </BizForm>
   );
-}
+};
 
 export default Demo;

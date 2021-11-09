@@ -6,13 +6,15 @@ import Mock from 'mockjs';
 import { ApproveStatusOptions } from './constants';
 
 const defaultData = Mock.mock({
-  'list|2-5': [{
-    'id|+1': 1,
-    'age|1-99': 20,
-    'name': '@cname',
-    'birthday': '@DATE',
-    'status|1-3': 1
-  }]
+  'list|2-5': [
+    {
+      'id|+1': 1,
+      'age|1-99': 20,
+      name: '@cname',
+      birthday: '@DATE',
+      'status|1-3': 1
+    }
+  ]
 }).list;
 
 const { EditableBizTable } = BizTable;
@@ -24,35 +26,39 @@ const Demo: React.FC = () => {
 
   const columns: BizTableColumnType = [
     {
-      valueType: "indexBorder",
-      title: "序号",
+      valueType: 'indexBorder',
+      title: '序号',
       width: 50
     },
     {
-      dataIndex: "name",
-      title: "名字",
+      dataIndex: 'name',
+      title: '名字',
       width: 150,
-      valueType: "text",
-      tooltip: "第一行自定义渲染",
+      valueType: 'text',
+      tooltip: '第一行自定义渲染',
       editable: (_, record, index) => {
         if (index !== 0) {
-          return {}
+          return {};
         }
 
         return {
           // 自定义渲染
           render: () => (
-            <BizForm.ItemTextArea name={[record.id, "name"]} initialValue={record.name} label="名字" />
+            <BizForm.ItemTextArea
+              name={[record.id, 'name']}
+              initialValue={record.name}
+              label="名字"
+            />
           )
-        }
+        };
       }
     },
     {
-      dataIndex: "age",
-      title: "年龄",
+      dataIndex: 'age',
+      title: '年龄',
       width: 150,
       editable: {
-        itemType: "number",
+        itemType: 'number',
         precision: 0,
         required: true,
         gte: 1,
@@ -60,39 +66,55 @@ const Demo: React.FC = () => {
       }
     },
     {
-      dataIndex: "status",
-      title: "审核状态",
-      tooltip: "单数行编辑时为选择器",
-      valueType: "enumBadge",
+      dataIndex: 'status',
+      title: '审核状态',
+      tooltip: '单数行编辑时为选择器',
+      valueType: 'enumBadge',
       valueEnum: ApproveStatusOptions,
       editable: (_, record, index) => ({
-        itemType: index % 2 === 0 ? "select" : "radio"
+        itemType: index % 2 === 0 ? 'select' : 'radio'
       })
     },
     {
-      title: "操作",
+      title: '操作',
       width: 160,
       render: (_, record, index) => {
         return (
           <Space>
-            {
-              editableKeys.includes(record.id) ? (
-                <>
-                  <a onClick={() => editableActionRef.current.save(record.id)}>保存</a>
-                  <a onClick={() => { editableActionRef.current.setFields(record.id, { name: "test", age: 18 }) }}>赋值</a>
-                  <a onClick={() => { editableActionRef.current.reset(record.id) }}>重置</a>
-                  <a onClick={() => editableActionRef.current.cancel(record.id)}>取消</a>
-                </>
-              ) : (
-                <>
-                  <a onClick={() => editableActionRef.current.edit(record.id)}>编辑</a>
-                  <a onClick={() => { editableActionRef.current.add({ id: Date.now() }, index + 1) }}>插入</a>
-                  <a onClick={() => editableActionRef.current.delete(record.id)}>删除</a>
-                </>
-              )
-            }
+            {editableKeys.includes(record.id) ? (
+              <>
+                <a onClick={() => editableActionRef.current.save(record.id)}>保存</a>
+                <a
+                  onClick={() => {
+                    editableActionRef.current.setFields(record.id, { name: 'test', age: 18 });
+                  }}
+                >
+                  赋值
+                </a>
+                <a
+                  onClick={() => {
+                    editableActionRef.current.reset(record.id);
+                  }}
+                >
+                  重置
+                </a>
+                <a onClick={() => editableActionRef.current.cancel(record.id)}>取消</a>
+              </>
+            ) : (
+              <>
+                <a onClick={() => editableActionRef.current.edit(record.id)}>编辑</a>
+                <a
+                  onClick={() => {
+                    editableActionRef.current.add({ id: Date.now() }, index + 1);
+                  }}
+                >
+                  插入
+                </a>
+                <a onClick={() => editableActionRef.current.delete(record.id)}>删除</a>
+              </>
+            )}
           </Space>
-        )
+        );
       }
     }
   ];
@@ -105,15 +127,22 @@ const Demo: React.FC = () => {
       rowKey="id"
       size="middle"
       bordered
-      toolbar={(
+      toolbar={
         <Space>
-          <Button type="primary" onClick={() => editableActionRef.current.add({ id: Date.now() }, 0)}>顶部新增</Button>
-          <Button type="primary" onClick={() => editableActionRef.current.add({ id: Date.now() })}>底部新增</Button>
+          <Button
+            type="primary"
+            onClick={() => editableActionRef.current.add({ id: Date.now() }, 0)}
+          >
+            顶部新增
+          </Button>
+          <Button type="primary" onClick={() => editableActionRef.current.add({ id: Date.now() })}>
+            底部新增
+          </Button>
           <Button onClick={() => editableActionRef.current.reset()}>重置表单</Button>
         </Space>
-      )}
+      }
       onChange={(values) => {
-        console.log("onChange ", values);
+        console.log('onChange ', values);
         setDataSource(values);
       }}
       editable={{
@@ -121,17 +150,17 @@ const Demo: React.FC = () => {
         editableActionRef,
         onChange: setEditableKeys,
         onSave: async (rowKey, record, isNewRecord) => {
-          console.log(`保存${isNewRecord ? "新增" : "已保存"}的数据`, rowKey, record);
+          console.log(`保存${isNewRecord ? '新增' : '已保存'}的数据`, rowKey, record);
           // return Promise.reject(); // 如果返回Project.reject即保存失败，自动保留当前的状态
         },
         onDelete: async (rowKey, record, isNewRecord) => {
           // 新增的数据如果没有保存过，取消时会触发删除
-          console.log(`删除${isNewRecord ? "新增" : "已保存"}的数据`, rowKey, record);
+          console.log(`删除${isNewRecord ? '新增' : '已保存'}的数据`, rowKey, record);
           // return Promise.reject(); // 如果返回Project.reject即删除失败，自动保留当前的状态
         }
       }}
     />
   );
-}
+};
 
 export default Demo;

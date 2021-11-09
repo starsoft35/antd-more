@@ -7,7 +7,7 @@ import type {
   EditableActionType,
   EditableBizTableActionType,
   EditableOptions,
-  EditableBizTableEditable,
+  EditableBizTableEditable
 } from './EditableBizTable';
 import type {
   ActionType,
@@ -15,7 +15,7 @@ import type {
   Request,
   BizTableRequest,
   BizColumnType,
-  BizTableColumnType,
+  BizTableColumnType
 } from './interface';
 
 function BizTableWrap<RecordType extends object = any>(props: BizTableProps<RecordType>) {
@@ -36,7 +36,7 @@ export type {
   BizTableProps,
   EditableBizTableProps,
   EditableBizTableActionType,
-  EditableBizTableEditable,
+  EditableBizTableEditable
 };
 
 export default BizTableWrap;

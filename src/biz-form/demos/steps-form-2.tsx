@@ -1,16 +1,14 @@
-import * as React from "react";
-import { message } from "antd";
-import { SafetyCertificateOutlined, MobileOutlined, LockOutlined } from "@ant-design/icons";
-import { BizForm } from "antd-more";
-import waitTime from "./utils/waitTime";
+import * as React from 'react';
+import { message } from 'antd';
+import { SafetyCertificateOutlined, MobileOutlined, LockOutlined } from '@ant-design/icons';
+import { BizForm } from 'antd-more';
+import waitTime from './utils/waitTime';
 
 const { StepsForm, ItemInput, ItemCaptcha, ItemPassword } = BizForm;
 
 const TipText: React.FC = ({ children }) => {
-  return (
-    <div style={{ textAlign: "center", marginBottom: 24, fontSize: 16 }}>{children}</div>
-  )
-}
+  return <div style={{ textAlign: 'center', marginBottom: 24, fontSize: 16 }}>{children}</div>;
+};
 
 const Demo: React.FC = () => {
   const [sent, setSent] = React.useState(false);
@@ -19,14 +17,14 @@ const Demo: React.FC = () => {
 
   return (
     <StepsForm
-      onFinish={values => {
+      onFinish={(values) => {
         console.log(values);
-        message.success("设置成功");
+        message.success('设置成功');
       }}
       stepsFormRender={(stepsDom, formDom, submitterDom) => (
         <>
-          <div style={{ width: "80%", minWidth: 375, margin: "0 auto" }}>{stepsDom}</div>
-          <div style={{ maxWidth: 375, width: "100%", margin: "0 auto" }}>
+          <div style={{ width: '80%', minWidth: 375, margin: '0 auto' }}>{stepsDom}</div>
+          <div style={{ maxWidth: 375, width: '100%', margin: '0 auto' }}>
             {formDom}
             {submitterDom}
           </div>
@@ -34,11 +32,11 @@ const Demo: React.FC = () => {
       )}
       submitter={{
         nextButtonProps: {
-          size: "large",
+          size: 'large',
           block: true
         },
         submitButtonProps: {
-          size: "large",
+          size: 'large',
           block: true
         }
       }}
@@ -60,7 +58,7 @@ const Demo: React.FC = () => {
           type="mobile"
           inputProps={{
             prefix: <MobileOutlined />,
-            placeholder: "请输入手机号码"
+            placeholder: '请输入手机号码'
           }}
           validateTrigger="onChange"
           required
@@ -70,9 +68,15 @@ const Demo: React.FC = () => {
           name="verifyCode"
           inputProps={{
             prefix: <SafetyCertificateOutlined />,
-            placeholder: "请输入图片验证码"
+            placeholder: '请输入图片验证码'
           }}
-          contentAfter={<img src="data:image/jpg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAoHBwkHBgoJCAkLCwoMDxkQDw4ODx4WFxIZJCAmJSMgIyIoLTkwKCo2KyIjMkQyNjs9QEBAJjBGS0U+Sjk/QD3/2wBDAQsLCw8NDx0QEB09KSMpPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT3/wgARCAAoAIsDAREAAhEBAxEB/8QAGQABAAMBAQAAAAAAAAAAAAAAAAUGBwQD/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEAMQAAAA2UAAFdPQngRhwlhAAAAABlZoZIg8ChGiAiziLCACCM8NPJEopegCJKgaKDyM/NFABVivltJwAAAAz8ly0gAHIdYAAAAAAP/EADkQAAEDAQMGCwYHAAAAAAAAAAMCBAUTAAYSAQcQICIjERQwMjM0QlJiksIVFiVyhLIXJDZDUVSi/9oACAEBAAE/ANY18oRq9KyI74XTfpRCCQlLyos0vZEujjbgKeqTYRwtCo9OmWmmcOIa3xCox9wJCfZaNvnCy50Cjntcq9jdiJg8+DlYB8dhnRvattGu39Sn1anu/OtNox8Z+EizR7tnt8xzT9C1aXfVi/JbMn+g/qSaZe8EVB0/aj8DOp0dWwr83aOUYQTTJZSbCN7q3sXLogXK4EYiPsG7qejx2L7r+7Q1xjl37fr7vo+P16nbR89oZT8kU3XKjEN9+7kHouxDvmecS8z9y1KNq7p0i9/UmZFbIGwwePKmNH5an61ptmwHI3ehBxD+FfoKs5CVdin9+ki0DHlWvmIsYf4jTTVYRUoOLc1Buf7RE9zwat/gzJ7puEQPT9vv4PB47P310l3B4kz+mai65X7GxzseO11RyoLvNkTxAkfdun/nks5GWUJliGjJq7cRpy/EeLCXUppWju7dmF5WIxCaAjJgQtgY/hpx63EGaCY0NQ5CfzS5f//EABQRAQAAAAAAAAAAAAAAAAAAAGD/2gAIAQIBAT8ANf/EABQRAQAAAAAAAAAAAAAAAAAAAGD/2gAIAQMBAT8ANf/Z" style={{ height: 40, margin: 0 }} alt="" />}
+          contentAfter={
+            <img
+              src="data:image/jpg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAoHBwkHBgoJCAkLCwoMDxkQDw4ODx4WFxIZJCAmJSMgIyIoLTkwKCo2KyIjMkQyNjs9QEBAJjBGS0U+Sjk/QD3/2wBDAQsLCw8NDx0QEB09KSMpPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT3/wgARCAAoAIsDAREAAhEBAxEB/8QAGQABAAMBAQAAAAAAAAAAAAAAAAUGBwQD/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEAMQAAAA2UAAFdPQngRhwlhAAAAABlZoZIg8ChGiAiziLCACCM8NPJEopegCJKgaKDyM/NFABVivltJwAAAAz8ly0gAHIdYAAAAAAP/EADkQAAEDAQMGCwYHAAAAAAAAAAMCBAUTAAYSAQcQICIjERQwMjM0QlJiksIVFiVyhLIXJDZDUVSi/9oACAEBAAE/ANY18oRq9KyI74XTfpRCCQlLyos0vZEujjbgKeqTYRwtCo9OmWmmcOIa3xCox9wJCfZaNvnCy50Cjntcq9jdiJg8+DlYB8dhnRvattGu39Sn1anu/OtNox8Z+EizR7tnt8xzT9C1aXfVi/JbMn+g/qSaZe8EVB0/aj8DOp0dWwr83aOUYQTTJZSbCN7q3sXLogXK4EYiPsG7qejx2L7r+7Q1xjl37fr7vo+P16nbR89oZT8kU3XKjEN9+7kHouxDvmecS8z9y1KNq7p0i9/UmZFbIGwwePKmNH5an61ptmwHI3ehBxD+FfoKs5CVdin9+ki0DHlWvmIsYf4jTTVYRUoOLc1Buf7RE9zwat/gzJ7puEQPT9vv4PB47P310l3B4kz+mai65X7GxzseO11RyoLvNkTxAkfdun/nks5GWUJliGjJq7cRpy/EeLCXUppWju7dmF5WIxCaAjJgQtgY/hpx63EGaCY0NQ5CfzS5f//EABQRAQAAAAAAAAAAAAAAAAAAAGD/2gAIAQIBAT8ANf/EABQRAQAAAAAAAAAAAAAAAAAAAGD/2gAIAQMBAT8ANf/Z"
+              style={{ height: 40, margin: 0 }}
+              alt=""
+            />
+          }
           required
         />
       </StepsForm.StepForm>
@@ -87,25 +91,27 @@ const Demo: React.FC = () => {
         submitter={{
           noPrev: true,
           nextButtonProps: {
-            size: "large",
+            size: 'large',
             block: true,
             disabled: !sent
           }
         }}
       >
-        <TipText>{sent ? `验证码已发送至 ${form1.getFieldValue("mobile")}` : "请点击获取验证码"}</TipText>
+        <TipText>
+          {sent ? `验证码已发送至 ${form1.getFieldValue('mobile')}` : '请点击获取验证码'}
+        </TipText>
         <ItemCaptcha
           label="短信验证码"
           name="code"
           type="inline"
-          normalize={(val) => val.replace(/[^\d]/g, "")}
+          normalize={(val) => val.replace(/[^\d]/g, '')}
           onGetCaptcha={async () => {
             await waitTime(2000);
             setSent(true);
           }}
           inputProps={{
             prefix: <SafetyCertificateOutlined />,
-            placeholder: "短信验证码",
+            placeholder: '短信验证码',
             maxLength: 6
           }}
           required
@@ -130,26 +136,26 @@ const Demo: React.FC = () => {
           name="password"
           inputProps={{
             prefix: <LockOutlined />,
-            placeholder: "请输入新密码"
+            placeholder: '请输入新密码'
           }}
           required
         />
         <ItemPassword
           label="确认密码"
           name="repeatPassword"
-          dependencies={["password"]}
+          dependencies={['password']}
           inputProps={{
             prefix: <LockOutlined />,
-            placeholder: "请再次输入新密码"
+            placeholder: '请再次输入新密码'
           }}
           rules={[
             {
               validator(rules, value) {
-                let errMsg = "";
+                let errMsg = '';
                 if (!value) {
-                  errMsg = "请再次输入新密码";
-                } else if (value !== form3.getFieldValue("password")) {
-                  errMsg = "两次输入的密码不一致";
+                  errMsg = '请再次输入新密码';
+                } else if (value !== form3.getFieldValue('password')) {
+                  errMsg = '两次输入的密码不一致';
                 }
                 if (errMsg) {
                   return Promise.reject(errMsg);
@@ -162,6 +168,6 @@ const Demo: React.FC = () => {
       </StepsForm.StepForm>
     </StepsForm>
   );
-}
+};
 
 export default Demo;

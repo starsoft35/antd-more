@@ -13,7 +13,7 @@ function useFilterOptions<T extends Record<string, any>[] = any[]>({
   excludeValues = [],
   all,
   allValue,
-  allName,
+  allName
 }: Params<T>) {
   const result = React.useMemo(() => {
     const ret = [] as T;
@@ -25,7 +25,7 @@ function useFilterOptions<T extends Record<string, any>[] = any[]>({
         if (!excludeValues.includes(item?.value)) {
           ret.push({
             label: item?.name,
-            ...item,
+            ...item
           });
         }
       });

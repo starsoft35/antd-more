@@ -1,10 +1,10 @@
-import * as React from "react";
-import "moment/locale/zh-cn";
-import { Switch, Row, Col } from "antd";
-import { BizForm } from "antd-more";
-import { getPCA } from "lcn";
+import * as React from 'react';
+import 'moment/locale/zh-cn';
+import { Switch, Row, Col } from 'antd';
+import { BizForm } from 'antd-more';
+import { getPCA } from 'lcn';
 import { CycleOptions } from './constants';
-import waitTime from "./utils/waitTime";
+import waitTime from './utils/waitTime';
 
 const pcaInlandData = getPCA({ inland: true, formatForm: true });
 
@@ -33,13 +33,13 @@ const colSpan = {
   md: 12,
   lg: 8,
   xxl: 6
-}
+};
 
 const specialColSpan = {
   xs: 24,
   lg: 12,
   xxl: 6
-}
+};
 
 const Demo: React.FC = () => {
   const [required, setRequired] = React.useState(false);
@@ -48,7 +48,7 @@ const Demo: React.FC = () => {
     <>
       <div style={{ marginBottom: 24 }}>
         必填
-        <Switch defaultChecked={required} onChange={val => setRequired(val)} />
+        <Switch defaultChecked={required} onChange={(val) => setRequired(val)} />
       </div>
       <BizForm
         name="biz-form-demo1"
@@ -98,8 +98,8 @@ const Demo: React.FC = () => {
             <ItemAddress
               label="地址"
               tooltip="组合组件"
-              names={["location", "address"]}
-              labels={["省/市/区", "详细地址"]}
+              names={['location', 'address']}
+              labels={['省/市/区', '详细地址']}
               options={pcaInlandData}
               // formItemProps={[
               //   {
@@ -153,13 +153,25 @@ const Demo: React.FC = () => {
             <ItemRadio label="Radio" name="radio" options={CycleOptions} required={required} />
           </Col>
           <Col {...specialColSpan}>
-            <ItemRadio label="RadioButton" name="radioButton" optionType="button" options={CycleOptions} required={required} />
+            <ItemRadio
+              label="RadioButton"
+              name="radioButton"
+              optionType="button"
+              options={CycleOptions}
+              required={required}
+            />
           </Col>
           <Col {...specialColSpan}>
             <ItemSelect label="Select" name="select" options={CycleOptions} required={required} />
           </Col>
           <Col {...specialColSpan}>
-            <ItemCheckbox label="Checkbox" name="checkbox" options={CycleOptions} all required={required} />
+            <ItemCheckbox
+              label="Checkbox"
+              name="checkbox"
+              options={CycleOptions}
+              all
+              required={required}
+            />
           </Col>
           <Col {...colSpan}>
             <ItemSwitch label="Switch" name="switch" required={required} />
@@ -174,6 +186,6 @@ const Demo: React.FC = () => {
       </BizForm>
     </>
   );
-}
+};
 
 export default Demo;

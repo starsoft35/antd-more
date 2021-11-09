@@ -64,7 +64,7 @@ const BizForm: React.FC<BaseFormProps> & {
               {Array.isArray(dom) && dom.length > 1 ? <Space>{dom}</Space> : dom}
             </Form.Item>
           ),
-          ...submitterProps,
+          ...submitterProps
         }
       : false;
 

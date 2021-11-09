@@ -9,21 +9,23 @@ import { BankOptions, ApproveStatusOptions } from './constants';
 
 Mock.Random.extend({
   bank() {
-    return this.pick(BankOptions.map(item => item.value))
+    return this.pick(BankOptions.map((item) => item.value));
   }
 });
 
 const defaultData = Mock.mock({
-  'list|2-5': [{
-    'id|+1': 1,
-    'merchantName|2-5': '@cword',
-    'bank': '@bank',
-    'bankCardNo|100000000-10000000000000000': 1,
-    'money|0-10000.2': null,
-    'materials': [],
-    'remark': null, // '@cparagraph'
-    'status|1-3': null, // 1
-  }]
+  'list|2-5': [
+    {
+      'id|+1': 1,
+      'merchantName|2-5': '@cword',
+      bank: '@bank',
+      'bankCardNo|100000000-10000000000000000': 1,
+      'money|0-10000.2': null,
+      materials: [],
+      remark: null, // '@cparagraph'
+      'status|1-3': null // 1
+    }
+  ]
 }).list;
 
 const { EditableBizTable } = BizTable;
@@ -34,10 +36,10 @@ const colspanConfig = {
   lg: 8,
   md: 12,
   xs: 24
-}
+};
 
 const Demo: React.FC = () => {
-  const [editableKeys, setEditableKeys] = React.useState(() => defaultData.map(item => item.id));
+  const [editableKeys, setEditableKeys] = React.useState(() => defaultData.map((item) => item.id));
   const editableActionRef = React.useRef<EditableBizTableActionType>();
 
   const columns: BizTableColumnType = [
@@ -54,7 +56,7 @@ const Demo: React.FC = () => {
       )
     },
     {
-      title: "收款方",
+      title: '收款方',
       render: (_, record) => {
         return (
           <>
@@ -65,13 +67,13 @@ const Demo: React.FC = () => {
             </div>
             <div>{formatBankCard(`${record.bankCardNo}`)}</div>
           </>
-        )
+        );
       }
     },
     {
-      dataIndex: "status",
-      title: "审核状态",
-      valueType: "enumBadge",
+      dataIndex: 'status',
+      title: '审核状态',
+      valueType: 'enumBadge',
       valueEnum: ApproveStatusOptions,
       width: 120,
       editable: {
@@ -82,20 +84,20 @@ const Demo: React.FC = () => {
       }
     },
     {
-      dataIndex: "money",
-      title: "金额",
+      dataIndex: 'money',
+      title: '金额',
       editable: {
-        itemType: "number",
+        itemType: 'number',
         gt: 0,
         required: true
       }
     },
     {
-      dataIndex: "materials",
-      title: "材料文件",
+      dataIndex: 'materials',
+      title: '材料文件',
       width: 200,
       editable: {
-        itemType: "upload",
+        itemType: 'upload',
         required: true,
         style: {
           width: 184
@@ -103,11 +105,11 @@ const Demo: React.FC = () => {
       }
     },
     {
-      dataIndex: "remark",
-      title: "备注（选填）",
-      valueType: "text",
+      dataIndex: 'remark',
+      title: '备注（选填）',
+      valueType: 'text',
       editable: {
-        itemType: "textarea",
+        itemType: 'textarea',
         inputProps: {
           autoSize: true,
           maxLength: 100
@@ -127,8 +129,8 @@ const Demo: React.FC = () => {
   return (
     <BizForm
       name="editable-5"
-      onFinish={values => {
-        console.log("onFinish ", values);
+      onFinish={(values) => {
+        console.log('onFinish ', values);
       }}
       submitter={{
         noReset: true,
@@ -166,6 +168,6 @@ const Demo: React.FC = () => {
       </Item>
     </BizForm>
   );
-}
+};
 
 export default Demo;

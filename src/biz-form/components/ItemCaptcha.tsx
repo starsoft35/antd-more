@@ -74,22 +74,22 @@ const VerificateCodeInput: React.FC<VerificateCodeInputProps> = ({
     let inputStyle: Record<string, any> = {
       flex: 1,
       transition: 'width 0.3s ease 0s',
-      marginRight: '8px',
+      marginRight: '8px'
     };
     let buttonStyle = {};
 
     if (type === 'inline') {
       inputStyle = {
-        flex: 1,
+        flex: 1
       };
       buttonStyle = {
         height: 'auto',
-        padding: '0 4px 0 6px',
+        padding: '0 4px 0 6px'
       };
     }
     return {
       input: inputStyle,
-      button: buttonStyle,
+      button: buttonStyle
     };
   }, [type]);
 
@@ -103,7 +103,7 @@ const VerificateCodeInput: React.FC<VerificateCodeInputProps> = ({
       {...buttonProps}
       style={{
         ...defaultStyle.button,
-        ...buttonProps?.style,
+        ...buttonProps?.style
       }}
     />
   );
@@ -121,7 +121,7 @@ const VerificateCodeInput: React.FC<VerificateCodeInputProps> = ({
         {...inputProps}
         style={{
           ...defaultStyle.input,
-          ...inputProps?.style,
+          ...inputProps?.style
         }}
         suffix={
           type === 'inline' ? (
@@ -176,8 +176,8 @@ const FormItemCaptcha: React.FC<FormItemCaptchaProps> = ({
               return Promise.reject(errMsg);
             }
             return Promise.resolve();
-          },
-        },
+          }
+        }
       ]}
       {...restProps}
     >
@@ -191,7 +191,7 @@ const FormItemCaptcha: React.FC<FormItemCaptchaProps> = ({
           runText,
           resetText,
           second,
-          ...buttonProps,
+          ...buttonProps
         }}
       />
     </BizFormItem>

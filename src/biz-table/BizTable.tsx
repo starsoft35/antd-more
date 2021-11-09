@@ -14,7 +14,7 @@ import type {
   BizTableRequest,
   BizTableActionType,
   BizTableColumnType,
-  ToolbarActionProps,
+  ToolbarActionProps
 } from './interface';
 import { createFormItem } from './_util/createFormItems';
 import getRowKey from './_util/getRowKey';
@@ -106,13 +106,13 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
       reload: true,
       density: true,
       fullScreen: true,
-      columnSetting: true,
+      columnSetting: true
     };
 
     if (typeof toolbarAction === 'object') {
       return {
         ...defaultConfig,
-        ...toolbarAction,
+        ...toolbarAction
       };
     }
 
@@ -130,7 +130,7 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
 
   const hasToolbarAction = React.useMemo(
     () => Object.values(toolbarActionConfig).filter((item) => item).length > 0,
-    [toolbarActionConfig],
+    [toolbarActionConfig]
   );
 
   const innerFormRef =
@@ -140,7 +140,7 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
   const { searchItems, columns: currentColumns } = React.useMemo(() => {
     const ret = {
       searchItems: [],
-      columns: [],
+      columns: []
     };
 
     editableKeyMap.current = {}; // 重置
@@ -178,7 +178,7 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
               valueEnum,
               order,
               search,
-              originItem: item,
+              originItem: item
             });
           }
 
@@ -188,9 +188,9 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
             title: title && tooltip ? <WithTooltip label={title} tooltip={tooltip} /> : title,
             className: classnames(
               { [`${prefixCls}-cell-wrap`]: nowrap && cellNowrap === false },
-              cellClassName,
+              cellClassName
             ),
-            ...restItem,
+            ...restItem
           };
 
           if (Array.isArray(newItem.children) && newItem.children.length > 0) {
@@ -204,7 +204,7 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
 
               const currentNamePath = [
                 currentRowKey,
-                ...(Array.isArray(dataIndex) ? dataIndex : [dataIndex]),
+                ...(Array.isArray(dataIndex) ? dataIndex : [dataIndex])
               ];
 
               // 缓存namePath
@@ -215,7 +215,7 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
                     dataIndexs: [],
                     record,
                     index,
-                    rowKey: currentRowKey,
+                    rowKey: currentRowKey
                   };
                 }
 
@@ -241,11 +241,11 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
                     search: {
                       initialValue: text,
                       ...(typeof realEditable === 'object' ? realEditable : {}),
-                      style: { marginTop: -5, marginBottom: -5, ...realEditable?.style },
+                      style: { marginTop: -5, marginBottom: -5, ...realEditable?.style }
                     },
-                    originItem: item,
+                    originItem: item
                   },
-                  editableForm,
+                  editableForm
                 );
               }
 
@@ -290,11 +290,11 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
     loading,
     run,
     onTableChange,
-    pagination: pageRet,
+    pagination: pageRet
   } = usePagination<RecordType>(request, {
     autoRun: false,
     defaultPageSize: (pagination && pagination?.pageSize) || 10,
-    actionCacheKey,
+    actionCacheKey
   });
 
   const handleChange = React.useCallback(
@@ -302,7 +302,7 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
       onTableChange(page, filters, sorter, extraInfo);
       onChange?.(page, filters, sorter, extraInfo);
     },
-    [onChange, onTableChange],
+    [onChange, onTableChange]
   );
 
   const handleReload = React.useCallback(() => {
@@ -353,13 +353,13 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
         actionCache[actionCacheKey] = '';
       }
     },
-    [actionCacheKey, run],
+    [actionCacheKey, run]
   );
 
   React.useImperativeHandle(actionRef, () => ({
     reload: handleReload,
     reset: handleReset,
-    submit: handleSubmit,
+    submit: handleSubmit
   }));
 
   React.useEffect(() => {
@@ -413,11 +413,11 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
   const tableCardStyle = React.useMemo(() => {
     if (!hasSearch && !extra) {
       return {
-        padding: 0,
+        padding: 0
       };
     } else if (pagination !== false) {
       return {
-        paddingBottom: 8,
+        paddingBottom: 8
       };
     } else {
       return {};
@@ -457,7 +457,7 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
     ? {
         background: fullScreenBackgroundColor,
         overflow: 'auto',
-        padding: !hasSearch && !extra ? 24 : 0,
+        padding: !hasSearch && !extra ? 24 : 0
       }
     : {};
 
@@ -471,7 +471,7 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
         isFullScreen,
         setFullScreen,
         columns: currentColumns,
-        setColumns: setNewColumns,
+        setColumns: setNewColumns
       }}
     >
       <div
@@ -479,7 +479,7 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
         className={classnames(
           prefixCls,
           { [`${prefixCls}-nowrap`]: nowrap, [`${prefixCls}-fullscreen`]: isFullScreen },
-          className,
+          className
         )}
         style={{ ...wrapperDefaultStyle, ...style }}
       >

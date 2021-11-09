@@ -36,7 +36,7 @@ export type BizTableRequest<RecordType = any> = (
   params: RequestParams,
   filters: RequestFilters,
   sorter: RequestSorter<RecordType>,
-  extra: RequestExtra<RecordType>,
+  extra: RequestExtra<RecordType>
 ) => Promise<AsyncFnReturn<RecordType>>;
 
 /**
@@ -55,7 +55,7 @@ export interface SearchProps<RecordType = any>
   render?: (
     originItem: InternalColumnType<RecordType>,
     dom: React.ReactElement,
-    form: FormInstance,
+    form: FormInstance
   ) => React.ReactElement;
 }
 

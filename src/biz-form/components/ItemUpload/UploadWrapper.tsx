@@ -8,7 +8,7 @@ import {
   checkFileSize,
   checkFileType,
   isPromiseLike,
-  getFileName,
+  getFileName
 } from './uploadUtil';
 import Preview from './Preview';
 import UploadContext from './UploadContext';
@@ -63,7 +63,7 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
   const [previewProps, setPreviewProps] = React.useState({
     visible: false,
     title: '',
-    imgUrl: '',
+    imgUrl: ''
   });
   const [uploading, setUploading] = React.useState(false);
 
@@ -123,8 +123,8 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
       maxCountMessage,
       fileTypeMessage,
       fileSizeMessage,
-      restProps?.fileList,
-    ],
+      restProps?.fileList
+    ]
   );
 
   const handleValidate = React.useCallback(
@@ -133,7 +133,7 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
         internalTriggeValidate?.();
       }
     },
-    [internalTriggeValidate],
+    [internalTriggeValidate]
   );
 
   // 处理上传
@@ -166,7 +166,7 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
 
             onChange({
               file,
-              fileList: cloneFileList,
+              fileList: cloneFileList
             });
             handleValidate(file, true);
           })
@@ -185,7 +185,7 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
 
             onChange({
               file,
-              fileList: cloneFileList,
+              fileList: cloneFileList
             });
             handleValidate(file, true);
           });
@@ -199,19 +199,19 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
         });
         onChange({
           file,
-          fileList: cloneFileList,
+          fileList: cloneFileList
         });
         handleValidate(file, true);
       }
     },
-    [handleValidate, onChange, onUpload],
+    [handleValidate, onChange, onUpload]
   );
 
   // 处理修改
   const handleChange = React.useCallback(
     ({ file, fileList }: UploadChangeParam) => {
       let cloneFileList = fileList.filter(
-        (item) => fileBeforeUploadActionRef.current[item.uid] !== 'error',
+        (item) => fileBeforeUploadActionRef.current[item.uid] !== 'error'
       );
 
       if (fileBeforeUploadActionRef.current[file.uid] === 'upload') {
@@ -235,11 +235,11 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
 
       onChange({
         file,
-        fileList: cloneFileList,
+        fileList: cloneFileList
       });
       handleValidate(file);
     },
-    [onChange, handleValidate, action, onUpload, handleUpload],
+    [onChange, handleValidate, action, onUpload, handleUpload]
   );
 
   // 是否支持预览
@@ -276,17 +276,17 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
       setPreviewProps({
         visible: true,
         imgUrl: file.url || file.preview,
-        title: file.name || getFileName(file.url),
+        title: file.name || getFileName(file.url)
       });
     },
-    [enabledShowPreview, onGetPreviewUrl],
+    [enabledShowPreview, onGetPreviewUrl]
   );
 
   // 关闭预览
   const handlePreviewCancel = React.useCallback(() => {
     setPreviewProps({
       ...previewProps,
-      visible: false,
+      visible: false
     });
   }, [previewProps]);
 
@@ -299,7 +299,7 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
         beforeUpload={handleBeforeUpload}
         progress={{
           status: 'active',
-          showInfo: false,
+          showInfo: false
         }}
         onChange={handleChange}
         onPreview={handlePreview}

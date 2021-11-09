@@ -1,7 +1,7 @@
-import * as React from "react";
+import * as React from 'react';
 import { Modal, ModalProps } from 'antd';
 import { getFileType } from '../../utils/utils';
-import FileViewer from "../FileViewer";
+import FileViewer from '../FileViewer';
 
 interface PreviewFileProps extends ModalProps {
   visible?: boolean;
@@ -10,7 +10,10 @@ interface PreviewFileProps extends ModalProps {
 }
 
 const Demo: React.FC<PreviewFileProps> = ({ file, visible, ...restProps }) => {
-  const previewUrl = React.useMemo(() => file && visible ? URL.createObjectURL(file) : '', [file, visible]);
+  const previewUrl = React.useMemo(
+    () => (file && visible ? URL.createObjectURL(file) : ''),
+    [file, visible]
+  );
   const fileType = React.useMemo(() => getFileType(file), [file]);
 
   const revokeObjectURL = React.useCallback(() => {
@@ -27,7 +30,7 @@ const Demo: React.FC<PreviewFileProps> = ({ file, visible, ...restProps }) => {
     }
     return () => {
       revokeObjectURL();
-    }
+    };
   }, [revokeObjectURL, visible]);
 
   return (
@@ -43,6 +46,6 @@ const Demo: React.FC<PreviewFileProps> = ({ file, visible, ...restProps }) => {
       <FileViewer filePath={previewUrl} fileType={fileType} fileName={file?.name} />
     </Modal>
   );
-}
+};
 
 export default Demo;

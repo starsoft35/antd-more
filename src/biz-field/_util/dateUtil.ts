@@ -12,7 +12,7 @@ export enum DateFormat {
   dateTime = 'YYYY-MM-DD HH:mm:ss',
   dateTimeRange = 'YYYY-MM-DD HH:mm:ss',
   time = 'HH:mm:ss',
-  timeRange = 'HH:mm:ss',
+  timeRange = 'HH:mm:ss'
 }
 
 function transformDateString(value, type, fmt) {

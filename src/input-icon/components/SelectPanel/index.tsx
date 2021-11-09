@@ -11,8 +11,8 @@ const prefixCls = 'antd-more-input-icon';
 
 export interface SelectPanelProps
   extends Omit<
-  React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>,
-  'onSelect'
+    React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>,
+    'onSelect'
   > {
   options: IconProp[];
   onSelect: (icon: IconProp) => void;
@@ -38,9 +38,12 @@ const SelectPanel: React.FC<SelectPanelProps> = ({
       ? options.filter((opt) => opt[0].toLowerCase().indexOf(realValue) > -1)
       : options;
   }, [options, throttleValue]);
-  const handleSelect = React.useCallback((icon) => {
-    onSelect?.(icon);
-  }, [onSelect]);
+  const handleSelect = React.useCallback(
+    (icon) => {
+      onSelect?.(icon);
+    },
+    [onSelect]
+  );
   const handleChange = React.useCallback((e) => {
     setFilterValue(e.target.value);
   }, []);

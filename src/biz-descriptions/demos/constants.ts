@@ -9,43 +9,43 @@ export enum ApproveStatus {
 export const ApproveStatusOptions = [
   {
     value: ApproveStatus.Processing,
-    label: "审核中",
+    label: '审核中',
     badge: {
-      status: "processing"
+      status: 'processing'
     },
     tag: {
-      alias: "待审核",
-      color: "orange"
+      alias: '待审核',
+      color: 'orange'
     }
   },
   {
     value: ApproveStatus.Success,
-    label: "审核通过",
+    label: '审核通过',
     text: {
       style: {
-        color: "green"
+        color: 'green'
       }
     },
     badge: {
-      status: "success"
+      status: 'success'
     },
     tag: {
-      color: "green"
+      color: 'green'
     }
   },
   {
     value: ApproveStatus.Error,
-    label: "审核不通过",
+    label: '审核不通过',
     text: {
       style: {
-        color: "red"
+        color: 'red'
       }
     },
     badge: {
-      status: "error"
+      status: 'error'
     },
     tag: {
-      color: "red"
+      color: 'red'
     }
-  },
+  }
 ];

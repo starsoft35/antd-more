@@ -6,13 +6,15 @@ import Mock from 'mockjs';
 import { ApproveStatusOptions } from './constants';
 
 const defaultData = Mock.mock({
-  'list|2-5': [{
-    'id|+1': 1,
-    'age|1-99': 20,
-    'name': '@cname',
-    'birthday': '@DATE',
-    'status|1-3': 1
-  }]
+  'list|2-5': [
+    {
+      'id|+1': 1,
+      'age|1-99': 20,
+      name: '@cname',
+      birthday: '@DATE',
+      'status|1-3': 1
+    }
+  ]
 }).list;
 
 const { EditableBizTable } = BizTable;
@@ -24,23 +26,23 @@ const Demo: React.FC = () => {
 
   const columns: BizTableColumnType = [
     {
-      valueType: "indexBorder",
-      title: "序号",
-      width: 50,
+      valueType: 'indexBorder',
+      title: '序号',
+      width: 50
     },
     {
-      dataIndex: "name",
-      title: "名字",
-      tooltip: "第一行名字不可编辑",
+      dataIndex: 'name',
+      title: '名字',
+      tooltip: '第一行名字不可编辑',
       width: 150,
       editable: (text, record, index) => index !== 0
     },
     {
-      dataIndex: "age",
-      title: "年龄",
+      dataIndex: 'age',
+      title: '年龄',
       width: 150,
       editable: {
-        itemType: "number",
+        itemType: 'number',
         precision: 0,
         required: true,
         gte: 1,
@@ -48,38 +50,36 @@ const Demo: React.FC = () => {
       }
     },
     {
-      dataIndex: "birthday",
-      title: "生日",
-      valueType: "date"
+      dataIndex: 'birthday',
+      title: '生日',
+      valueType: 'date'
     },
     {
-      dataIndex: "status",
-      title: "审核状态",
-      valueType: "enumBadge",
+      dataIndex: 'status',
+      title: '审核状态',
+      valueType: 'enumBadge',
       valueEnum: ApproveStatusOptions,
       width: 150
     },
     {
-      title: "操作",
+      title: '操作',
       width: 120,
       render: (_, record) => {
         return (
           <Space>
-            {
-              editableKeys.includes(record.id) ? (
-                <>
-                  <a onClick={() => editableActionRef.current.save(record.id)}>保存</a>
-                  <a onClick={() => editableActionRef.current.cancel(record.id)}>取消</a>
-                </>
-              ) : (
-                <>
-                  <a onClick={() => editableActionRef.current.edit(record.id)}>编辑</a>
-                  <a onClick={() => editableActionRef.current.delete(record.id)}>删除</a>
-                </>
-              )
-            }
+            {editableKeys.includes(record.id) ? (
+              <>
+                <a onClick={() => editableActionRef.current.save(record.id)}>保存</a>
+                <a onClick={() => editableActionRef.current.cancel(record.id)}>取消</a>
+              </>
+            ) : (
+              <>
+                <a onClick={() => editableActionRef.current.edit(record.id)}>编辑</a>
+                <a onClick={() => editableActionRef.current.delete(record.id)}>删除</a>
+              </>
+            )}
           </Space>
-        )
+        );
       }
     }
   ];
@@ -91,7 +91,7 @@ const Demo: React.FC = () => {
         columns={columns}
         value={dataSource}
         onChange={(values) => {
-          console.log("onChange ", values);
+          console.log('onChange ', values);
           setDataSource(values);
         }}
         editable={{
@@ -99,19 +99,26 @@ const Demo: React.FC = () => {
           onChange: setEditableKeys,
           editableActionRef,
           onSave: async (rowKey, record, isNewRecord) => {
-            console.log(`保存${isNewRecord ? "新增" : "已保存"}的数据`, rowKey, record);
+            console.log(`保存${isNewRecord ? '新增' : '已保存'}的数据`, rowKey, record);
             // return Promise.reject(); // 如果返回Project.reject即保存失败，自动保留当前的状态
           },
           onDelete: async (rowKey, record, isNewRecord) => {
             // 新增的数据如果没有保存过，取消时会触发删除
-            console.log(`删除${isNewRecord ? "新增" : "已保存"}的数据`, rowKey, record);
+            console.log(`删除${isNewRecord ? '新增' : '已保存'}的数据`, rowKey, record);
             // return Promise.reject(); // 如果返回Project.reject即删除失败，自动保留当前的状态
           }
         }}
       />
-      <Button type="dashed" block onClick={() => editableActionRef.current.add({ id: Date.now() })} style={{ margin: "10px 0" }}>添加一行数据</Button>
+      <Button
+        type="dashed"
+        block
+        onClick={() => editableActionRef.current.add({ id: Date.now() })}
+        style={{ margin: '10px 0' }}
+      >
+        添加一行数据
+      </Button>
     </>
   );
-}
+};
 
 export default Demo;

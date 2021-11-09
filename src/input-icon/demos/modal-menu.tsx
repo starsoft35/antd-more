@@ -13,7 +13,7 @@ const treeData = [
     children: [
       {
         title: '首页',
-        value: 1,
+        value: 1
       },
       {
         title: '系统管理',
@@ -21,14 +21,14 @@ const treeData = [
         children: [
           {
             title: '用户管理',
-            value: 3,
+            value: 3
           },
           {
             title: '角色管理',
-            value: 4,
-          },
-        ],
-      },
+            value: 4
+          }
+        ]
+      }
     ]
   }
 ];
@@ -42,7 +42,7 @@ const menuTypeOptions = [
   {
     label: '按钮',
     value: MenuType.Action
-  },
+  }
 ];
 
 // 菜单可见
@@ -74,16 +74,18 @@ const { ModalForm, Item, ItemRadio, ItemInput, ItemNumber } = BizForm;
 const Demo: React.FC = () => {
   const [form] = BizForm.useForm();
   const [currentMenuType, setCurrentMenuType] = React.useState(MenuType.Menu);
-  const menuTypeName = menuTypeOptions.find(item => item.value === (form.getFieldValue('menuType') || MenuType.Menu))?.name || '';
+  const menuTypeName =
+    menuTypeOptions.find((item) => item.value === (form.getFieldValue('menuType') || MenuType.Menu))
+      ?.name || '';
   const onValuesChange = (_, { menuType }: { menuType: MenuType }) => {
     setCurrentMenuType(menuType);
-  }
+  };
   const onVisibleChange = (visibility) => {
     if (!visibility) {
       form.resetFields();
       setCurrentMenuType(MenuType.Menu);
     }
-  }
+  };
 
   return (
     <ModalForm
@@ -106,7 +108,14 @@ const Demo: React.FC = () => {
         centered: false
       }}
     >
-      <ItemRadio name="menuType" label="菜单类型" options={menuTypeOptions} optionType="button" radioGroupProps={{ buttonStyle: "solid" }} required />
+      <ItemRadio
+        name="menuType"
+        label="菜单类型"
+        options={menuTypeOptions}
+        optionType="button"
+        radioGroupProps={{ buttonStyle: 'solid' }}
+        required
+      />
       <Item name="parent" label="上级类目">
         <TreeSelect treeData={treeData} treeDefaultExpandAll placeholder="请选择" />
       </Item>
@@ -121,25 +130,37 @@ const Demo: React.FC = () => {
           <ItemNumber name="sort" label="排序" precision={0} inputProps={{ min: 0 }} />
         </Col>
       </Row>
-      {
-        currentMenuType === MenuType.Menu && (
-          <>
-            <Item label="菜单图标" name="icon">
-              <InputIcon iconData={icons} />
-            </Item>
-            <Row>
-              <Col span={12}>
-                <ItemRadio name="hidden" label="是否可见" options={hiddenMenuOptions} optionType="button" radioGroupProps={{ buttonStyle: "solid" }} required />
-              </Col>
-              <Col span={12}>
-                <ItemRadio name="cache" label="是否缓存" options={cacheMenuOptions} optionType="button" radioGroupProps={{ buttonStyle: "solid" }} required />
-              </Col>
-            </Row>
-          </>
-        )
-      }
+      {currentMenuType === MenuType.Menu && (
+        <>
+          <Item label="菜单图标" name="icon">
+            <InputIcon iconData={icons} />
+          </Item>
+          <Row>
+            <Col span={12}>
+              <ItemRadio
+                name="hidden"
+                label="是否可见"
+                options={hiddenMenuOptions}
+                optionType="button"
+                radioGroupProps={{ buttonStyle: 'solid' }}
+                required
+              />
+            </Col>
+            <Col span={12}>
+              <ItemRadio
+                name="cache"
+                label="是否缓存"
+                options={cacheMenuOptions}
+                optionType="button"
+                radioGroupProps={{ buttonStyle: 'solid' }}
+                required
+              />
+            </Col>
+          </Row>
+        </>
+      )}
     </ModalForm>
   );
-}
+};
 
 export default Demo;

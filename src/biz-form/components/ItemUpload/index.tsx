@@ -121,13 +121,13 @@ const FormItemUpload: React.FC<FormItemUploadProps> & {
               return Promise.reject(errMsg);
             }
             return Promise.resolve();
-          },
-        },
+          }
+        }
       ]}
       {...restProps}
       contentConfig={{
         align: 'flex-start',
-        ...restProps.contentConfig,
+        ...restProps.contentConfig
       }}
     >
       <Comp

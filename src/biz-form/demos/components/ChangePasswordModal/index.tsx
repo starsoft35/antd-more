@@ -1,12 +1,13 @@
-import * as React from "react";
-import { message } from "antd";
-import { BizForm } from "antd-more";
-import type { ModalFormProps } from "antd-more";
-import waitTime from "../../utils/waitTime";
+import * as React from 'react';
+import { message } from 'antd';
+import { BizForm } from 'antd-more';
+import type { ModalFormProps } from 'antd-more';
+import waitTime from '../../utils/waitTime';
 
 const { ModalForm, ItemPassword } = BizForm;
 
-export interface ChangePasswordModalProps extends Pick<ModalFormProps, "visible" | "onVisibleChange"> { }
+export interface ChangePasswordModalProps
+  extends Pick<ModalFormProps, 'visible' | 'onVisibleChange'> {}
 
 const ChangePasswordModal: React.FC<ChangePasswordModalProps> = ({
   visible = false,
@@ -20,13 +21,13 @@ const ChangePasswordModal: React.FC<ChangePasswordModalProps> = ({
       width={520}
       labelWidth={112}
       submitter={{
-        submitText: "确定修改"
+        submitText: '确定修改'
       }}
       onFinish={async (values) => {
         console.log(values);
 
         await waitTime();
-        message.success("修改成功，请重新登录！");
+        message.success('修改成功，请重新登录！');
       }}
       visible={visible}
       onVisibleChange={onVisibleChange}
@@ -40,7 +41,7 @@ const ChangePasswordModal: React.FC<ChangePasswordModalProps> = ({
         name="oldPassword"
         label="旧密码"
         inputProps={{
-          placeholder: "请输入旧密码"
+          placeholder: '请输入旧密码'
         }}
         required
         validated={false}
@@ -51,7 +52,7 @@ const ChangePasswordModal: React.FC<ChangePasswordModalProps> = ({
         min={6}
         max={16}
         inputProps={{
-          placeholder: "请输入6-16位新密码"
+          placeholder: '请输入6-16位新密码'
         }}
         required
         validateTrigger="onChange"
@@ -60,20 +61,20 @@ const ChangePasswordModal: React.FC<ChangePasswordModalProps> = ({
         name="repeatPassword"
         label="新密码确认"
         inputProps={{
-          placeholder: "请再次输入新密码"
+          placeholder: '请再次输入新密码'
         }}
         required
         validateTrigger="onChange"
-        dependencies={["password"]}
+        dependencies={['password']}
         rules={[
           {
             validator(rules, value) {
-              let errMsg = "";
+              let errMsg = '';
 
               if (!value) {
-                errMsg = "请再次输入新密码";
-              } else if (value !== form.getFieldValue("password")) {
-                errMsg = "两次输入的密码不一致";
+                errMsg = '请再次输入新密码';
+              } else if (value !== form.getFieldValue('password')) {
+                errMsg = '两次输入的密码不一致';
               }
 
               if (errMsg) {
@@ -86,6 +87,6 @@ const ChangePasswordModal: React.FC<ChangePasswordModalProps> = ({
       />
     </ModalForm>
   );
-}
+};
 
 export default ChangePasswordModal;

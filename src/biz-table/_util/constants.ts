@@ -15,7 +15,7 @@ export enum ItemTypes {
   time = 'ItemTime',
   timeRange = 'ItemTimeRange',
   switch = 'ItemSwitch',
-  slider = 'ItemSlider',
+  slider = 'ItemSlider'
 }
 
 export enum ValueTypeToItemType {
@@ -37,12 +37,12 @@ export enum ValueTypeToItemType {
   dateTime = 'date',
   dateTimeRange = 'dateRange',
   time = 'time',
-  timeRange = 'timeRange',
+  timeRange = 'timeRange'
 }
 
 export enum DatePickerMap {
   dateWeek = 'week',
   dateMonth = 'month',
   dateQuarter = 'quarter',
-  dateYear = 'year',
+  dateYear = 'year'
 }

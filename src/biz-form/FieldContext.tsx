@@ -7,14 +7,14 @@ export interface FiledContextProps extends Pick<FormProps, 'layout' | 'labelCol'
   setFieldTransform?: (
     name: FormItemProps['name'],
     transform?: TransformFn | undefined,
-    parentList?: FormItemProps['name'][],
+    parentList?: FormItemProps['name'][]
   ) => void;
   hideLabel?: boolean;
 }
 
 const FieldContext = React.createContext<FiledContextProps>({
   setFieldTransform: () => {},
-  hideLabel: false,
+  hideLabel: false
 });
 
 export default FieldContext;

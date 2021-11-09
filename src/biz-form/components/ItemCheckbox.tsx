@@ -28,17 +28,17 @@ const CheckboxWrapper: React.FC<CheckboxWrapperProps> = ({
   allLabel = '全部',
   excludeValues = [],
   options = [],
-  checkboxGroupProps = {},
+  checkboxGroupProps = {}
 }) => {
   const opts = useFilterOptions<CheckboxWrapperProps['options']>({
     options,
     excludeValues,
     all: false,
-    allName: allName || allLabel,
+    allName: allName || allLabel
   });
 
   const [indeterminate, setIndeterminate] = React.useState(
-    () => !!value && !!value.length && value.length < opts.length,
+    () => !!value && !!value.length && value.length < opts.length
   );
   const [checkAll, setCheckAll] = React.useState(() => !!value && value.length === opts.length);
 
@@ -87,7 +87,7 @@ const FormItemCheckbox: React.FC<FormItemCheckboxProps> = ({
 }) => {
   const checkboxWrapperProps = React.useMemo(
     () => ({ all, allName: allName || allLabel, excludeValues, options, checkboxGroupProps }),
-    [all, allName, allLabel, excludeValues, options, checkboxGroupProps],
+    [all, allName, allLabel, excludeValues, options, checkboxGroupProps]
   );
 
   return (
@@ -104,8 +104,8 @@ const FormItemCheckbox: React.FC<FormItemCheckboxProps> = ({
               return Promise.reject(errMsg);
             }
             return Promise.resolve();
-          },
-        },
+          }
+        }
       ]}
       {...restProps}
     >

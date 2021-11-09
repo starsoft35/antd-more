@@ -2,21 +2,21 @@
  * title: 实时上传文件图片
  * desc: |
  *      设置 `onUpload` 后，添加上传文件自动调用并处理上传中状态和失败状态。上传成功的返回值将自动添加到 `UploadFile` 对象。
- *      
+ *
  *      这里通过 `value` 标识对应文件的 `fssId` ，提交时再获取该值。
- * 
+ *
  *      如果设置 `transform` 可以帮助内置的规则进行校验。
  */
-import * as React from "react";
-import { BizForm } from "antd-more";
-import type { UploadFile } from "antd/lib/upload/interface";
-import waitTime from "./utils/waitTime";
+import * as React from 'react';
+import { BizForm } from 'antd-more';
+import type { UploadFile } from 'antd/lib/upload/interface';
+import waitTime from './utils/waitTime';
 
 const { ItemUpload } = BizForm;
 
 // 上传图片
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-function uploadImage(file: File): Promise<{ fssId: string; }> {
+function uploadImage(file: File): Promise<{ fssId: string }> {
   return new Promise((resolve, reject) => {
     // const formData = new FormData();
     // formData.append("file", file);
@@ -29,22 +29,29 @@ function uploadImage(file: File): Promise<{ fssId: string; }> {
         reject();
       }
     }, 2000);
-  })
+  });
 }
 
 const Demo: React.FC = () => {
   // 上传图片
   const handleUpload = React.useCallback((file) => {
-    return uploadImage(file).then(res => {
+    return uploadImage(file).then((res) => {
       // 返回值自动添加到 file 中
-      return { value: res.fssId }
+      return { value: res.fssId };
     });
   }, []);
 
   // 提交时转换上传值
-  const transformUploadValue = React.useCallback((uploadValues: (UploadFile & Record<string, any>)[]) => {
-    return uploadValues ? uploadValues.filter(valItem => valItem.status !== "error" && valItem.value).map(valItem => valItem.value) : undefined;
-  }, []);
+  const transformUploadValue = React.useCallback(
+    (uploadValues: (UploadFile & Record<string, any>)[]) => {
+      return uploadValues
+        ? uploadValues
+            .filter((valItem) => valItem.status !== 'error' && valItem.value)
+            .map((valItem) => valItem.value)
+        : undefined;
+    },
+    []
+  );
 
   return (
     <BizForm
@@ -65,17 +72,17 @@ const Demo: React.FC = () => {
         onUpload={handleUpload}
         transform={transformUploadValue}
 
-      // 使用 action 上传
-      // uploadProps={{
-      //   name: "file",
-      //   action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
-      //   headers: {
-      //     authorization: "authorization-text",
-      //   }
-      // }}
-      // transform={(files) => {
-      //   return files.map(item => item?.response?.fssId).filter(item=>!!item);
-      // }}
+        // 使用 action 上传
+        // uploadProps={{
+        //   name: "file",
+        //   action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
+        //   headers: {
+        //     authorization: "authorization-text",
+        //   }
+        // }}
+        // transform={(files) => {
+        //   return files.map(item => item?.response?.fssId).filter(item=>!!item);
+        // }}
       />
       <ItemUpload
         name="xls"
@@ -87,17 +94,17 @@ const Demo: React.FC = () => {
         onUpload={handleUpload}
         transform={transformUploadValue}
 
-      // 使用 action 上传
-      // uploadProps={{
-      //   name: "file",
-      //   action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
-      //   headers: {
-      //     authorization: "authorization-text",
-      //   }
-      // }}
-      // transform={(files) => {
-      //   return files.map(item => item?.response?.fssId).filter(item=>!!item);
-      // }}
+        // 使用 action 上传
+        // uploadProps={{
+        //   name: "file",
+        //   action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
+        //   headers: {
+        //     authorization: "authorization-text",
+        //   }
+        // }}
+        // transform={(files) => {
+        //   return files.map(item => item?.response?.fssId).filter(item=>!!item);
+        // }}
       />
       <ItemUpload
         name="images"
@@ -109,17 +116,17 @@ const Demo: React.FC = () => {
         onUpload={handleUpload}
         transform={transformUploadValue}
 
-      // 使用 action 上传
-      // uploadProps={{
-      //   name: "file",
-      //   action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
-      //   headers: {
-      //     authorization: "authorization-text",
-      //   }
-      // }}
-      // transform={(files) => {
-      //   return files.map(item => item?.response?.fssId).filter(item => !!item);
-      // }}
+        // 使用 action 上传
+        // uploadProps={{
+        //   name: "file",
+        //   action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
+        //   headers: {
+        //     authorization: "authorization-text",
+        //   }
+        // }}
+        // transform={(files) => {
+        //   return files.map(item => item?.response?.fssId).filter(item => !!item);
+        // }}
       />
       <ItemUpload
         name="headpic01"
@@ -169,6 +176,6 @@ const Demo: React.FC = () => {
       />
     </BizForm>
   );
-}
+};
 
 export default Demo;

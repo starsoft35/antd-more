@@ -1,7 +1,7 @@
-import * as React from "react";
-import { Card, message } from "antd";
-import { BizForm } from "antd-more";
-import waitTime from "./utils/waitTime";
+import * as React from 'react';
+import { Card, message } from 'antd';
+import { BizForm } from 'antd-more';
+import waitTime from './utils/waitTime';
 
 const { StepsForm, ItemInput, ItemCaptcha, ItemPassword } = BizForm;
 
@@ -13,16 +13,18 @@ const Demo: React.FC = () => {
     <Card
       title="忘记密码"
       extra={<a>返回登录</a>}
-      style={{ width: "100%", maxWidth: 680, margin: "0 auto" }}
+      style={{ width: '100%', maxWidth: 680, margin: '0 auto' }}
     >
       <StepsForm
         onFinish={async (values) => {
           console.log(values);
           // 整个表单提交时
           await waitTime();
-          message.success("设置新密码成功");
+          message.success('设置新密码成功');
         }}
-        stepsRender={(_, stepsDom) => <div style={{ width: "80%", margin: "0 auto" }}>{stepsDom}</div>}
+        stepsRender={(_, stepsDom) => (
+          <div style={{ width: '80%', margin: '0 auto' }}>{stepsDom}</div>
+        )}
       >
         <StepsForm.StepForm
           title="验证手机号"
@@ -32,7 +34,7 @@ const Demo: React.FC = () => {
               block: true
             }
           }}
-          style={{ width: "75%", margin: "0 auto" }}
+          style={{ width: '75%', margin: '0 auto' }}
           requiredMark={false}
           form={form1}
           onFinish={async (values) => {
@@ -45,7 +47,7 @@ const Demo: React.FC = () => {
             name="mobile"
             type="mobile"
             inputProps={{
-              placeholder: "请输入11位手机号"
+              placeholder: '请输入11位手机号'
             }}
             label="手机号"
             required
@@ -55,7 +57,10 @@ const Demo: React.FC = () => {
             validateTrigger="onBlur"
             label="图形验证码"
             contentAfter={
-              <img src="data:image/jpg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAoHBwkHBgoJCAkLCwoMDxkQDw4ODx4WFxIZJCAmJSMgIyIoLTkwKCo2KyIjMkQyNjs9QEBAJjBGS0U+Sjk/QD3/2wBDAQsLCw8NDx0QEB09KSMpPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT3/wgARCAAoAIsDAREAAhEBAxEB/8QAGQABAAMBAQAAAAAAAAAAAAAAAAUGBwQD/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEAMQAAAA2UAAFdPQngRhwlhAAAAABlZoZIg8ChGiAiziLCACCM8NPJEopegCJKgaKDyM/NFABVivltJwAAAAz8ly0gAHIdYAAAAAAP/EADkQAAEDAQMGCwYHAAAAAAAAAAMCBAUTAAYSAQcQICIjERQwMjM0QlJiksIVFiVyhLIXJDZDUVSi/9oACAEBAAE/ANY18oRq9KyI74XTfpRCCQlLyos0vZEujjbgKeqTYRwtCo9OmWmmcOIa3xCox9wJCfZaNvnCy50Cjntcq9jdiJg8+DlYB8dhnRvattGu39Sn1anu/OtNox8Z+EizR7tnt8xzT9C1aXfVi/JbMn+g/qSaZe8EVB0/aj8DOp0dWwr83aOUYQTTJZSbCN7q3sXLogXK4EYiPsG7qejx2L7r+7Q1xjl37fr7vo+P16nbR89oZT8kU3XKjEN9+7kHouxDvmecS8z9y1KNq7p0i9/UmZFbIGwwePKmNH5an61ptmwHI3ehBxD+FfoKs5CVdin9+ki0DHlWvmIsYf4jTTVYRUoOLc1Buf7RE9zwat/gzJ7puEQPT9vv4PB47P310l3B4kz+mai65X7GxzseO11RyoLvNkTxAkfdun/nks5GWUJliGjJq7cRpy/EeLCXUppWju7dmF5WIxCaAjJgQtgY/hpx63EGaCY0NQ5CfzS5f//EABQRAQAAAAAAAAAAAAAAAAAAAGD/2gAIAQIBAT8ANf/EABQRAQAAAAAAAAAAAAAAAAAAAGD/2gAIAQMBAT8ANf/Z" alt="图形验证码" />
+              <img
+                src="data:image/jpg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAoHBwkHBgoJCAkLCwoMDxkQDw4ODx4WFxIZJCAmJSMgIyIoLTkwKCo2KyIjMkQyNjs9QEBAJjBGS0U+Sjk/QD3/2wBDAQsLCw8NDx0QEB09KSMpPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT3/wgARCAAoAIsDAREAAhEBAxEB/8QAGQABAAMBAQAAAAAAAAAAAAAAAAUGBwQD/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEAMQAAAA2UAAFdPQngRhwlhAAAAABlZoZIg8ChGiAiziLCACCM8NPJEopegCJKgaKDyM/NFABVivltJwAAAAz8ly0gAHIdYAAAAAAP/EADkQAAEDAQMGCwYHAAAAAAAAAAMCBAUTAAYSAQcQICIjERQwMjM0QlJiksIVFiVyhLIXJDZDUVSi/9oACAEBAAE/ANY18oRq9KyI74XTfpRCCQlLyos0vZEujjbgKeqTYRwtCo9OmWmmcOIa3xCox9wJCfZaNvnCy50Cjntcq9jdiJg8+DlYB8dhnRvattGu39Sn1anu/OtNox8Z+EizR7tnt8xzT9C1aXfVi/JbMn+g/qSaZe8EVB0/aj8DOp0dWwr83aOUYQTTJZSbCN7q3sXLogXK4EYiPsG7qejx2L7r+7Q1xjl37fr7vo+P16nbR89oZT8kU3XKjEN9+7kHouxDvmecS8z9y1KNq7p0i9/UmZFbIGwwePKmNH5an61ptmwHI3ehBxD+FfoKs5CVdin9+ki0DHlWvmIsYf4jTTVYRUoOLc1Buf7RE9zwat/gzJ7puEQPT9vv4PB47P310l3B4kz+mai65X7GxzseO11RyoLvNkTxAkfdun/nks5GWUJliGjJq7cRpy/EeLCXUppWju7dmF5WIxCaAjJgQtgY/hpx63EGaCY0NQ5CfzS5f//EABQRAQAAAAAAAAAAAAAAAAAAAGD/2gAIAQIBAT8ANf/EABQRAQAAAAAAAAAAAAAAAAAAAGD/2gAIAQMBAT8ANf/Z"
+                alt="图形验证码"
+              />
             }
             required
           />
@@ -63,13 +68,13 @@ const Demo: React.FC = () => {
             name="smsCode"
             validateTrigger="onBlur"
             label="验证码"
-            normalize={(val) => val.replace(/[^\d]/g, "")}
+            normalize={(val) => val.replace(/[^\d]/g, '')}
             inputProps={{ maxLength: 6 }}
             onGetCaptcha={async () => {
               try {
-                await form1.validateFields(["mobile", "code"]);
+                await form1.validateFields(['mobile', 'code']);
               } catch (err) {
-                message.error("请输入正确的手机号和图形验证码");
+                message.error('请输入正确的手机号和图形验证码');
                 return false;
               }
 
@@ -90,12 +95,12 @@ const Demo: React.FC = () => {
           size="large"
           submitter={{
             noPrev: true,
-            submitText: "确认",
+            submitText: '确认',
             submitButtonProps: {
               block: true
             }
           }}
-          style={{ width: "75%", margin: "0 auto" }}
+          style={{ width: '75%', margin: '0 auto' }}
           requiredMark={false}
           form={form2}
         >
@@ -104,7 +109,7 @@ const Demo: React.FC = () => {
             min={6}
             max={16}
             inputProps={{
-              placeholder: "6-16位密码，区分大小写"
+              placeholder: '6-16位密码，区分大小写'
             }}
             label="新密码"
             validateTrigger="onBlur"
@@ -113,19 +118,19 @@ const Demo: React.FC = () => {
           <ItemPassword
             name="oldPassword"
             inputProps={{
-              placeholder: "再次输入新密码"
+              placeholder: '再次输入新密码'
             }}
-            dependencies={["password"]}
+            dependencies={['password']}
             validateTrigger="onBlur"
             label="确定密码"
             rules={[
               {
                 validator(rules, value) {
-                  let errMsg = "";
+                  let errMsg = '';
                   if (!value) {
-                    errMsg = "请再次输入新密码";
-                  } else if (value !== form2.getFieldValue("password")) {
-                    errMsg = "两次输入的密码不一致";
+                    errMsg = '请再次输入新密码';
+                  } else if (value !== form2.getFieldValue('password')) {
+                    errMsg = '两次输入的密码不一致';
                   }
                   if (errMsg) {
                     return Promise.reject(errMsg);
@@ -139,6 +144,6 @@ const Demo: React.FC = () => {
       </StepsForm>
     </Card>
   );
-}
+};
 
 export default Demo;

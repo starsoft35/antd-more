@@ -29,7 +29,7 @@ const FieldProgress: React.FC<ProgressProps & { value: any }> = ({
       typeof value === 'string' && (value as string).includes('%')
         ? parseFloat((value as string).replace('%', ''))
         : parseFloat(value),
-    [value],
+    [value]
   );
   const status = React.useMemo(() => getProgressStatus(realValue), [realValue]);
 

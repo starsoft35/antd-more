@@ -47,7 +47,7 @@ const UploadAvatar: React.FC<{
             padding: '0 8px',
             whiteSpace: 'nowrap',
             overflow: 'hidden',
-            textOverflow: 'ellipsis',
+            textOverflow: 'ellipsis'
           }}
           title={currentFile.name || ''}
         >
@@ -64,7 +64,7 @@ const UploadAvatar: React.FC<{
   const dom = (
     <div
       className={classNames(`${prefixCls}-box`, {
-        [`${prefixCls}-box-error`]: currentFile && currentFile.status === 'error',
+        [`${prefixCls}-box-error`]: currentFile && currentFile.status === 'error'
       })}
     >
       {view}

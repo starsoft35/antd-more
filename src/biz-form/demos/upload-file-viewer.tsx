@@ -3,18 +3,18 @@
  * desc: |
  *      上传图片、pdf、audio、video等类型的文件自定义缩略图及预览。关于文件预览可以参考 [react-file-viewer](https://www.npmjs.com/package/react-file-viewer) 。
  */
-import * as React from "react";
-import { BizForm } from "antd-more";
-import type { UploadFile } from "antd/lib/upload/interface";
+import * as React from 'react';
+import { BizForm } from 'antd-more';
+import type { UploadFile } from 'antd/lib/upload/interface';
 import PreviewFile from './components/PreviewFile';
 import { getThumbUrl } from './utils/utils';
-import waitTime from "./utils/waitTime";
+import waitTime from './utils/waitTime';
 
 const { ItemUpload } = BizForm;
 
 // 上传文件
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-function upload(file: File): Promise<{ fssId: string; }> {
+function upload(file: File): Promise<{ fssId: string }> {
   return new Promise((resolve, reject) => {
     // const formData = new FormData();
     // formData.append("file", file);
@@ -28,7 +28,7 @@ function upload(file: File): Promise<{ fssId: string; }> {
         reject();
       }
     }, 2000);
-  })
+  });
 }
 
 const Demo: React.FC = () => {
@@ -37,16 +37,23 @@ const Demo: React.FC = () => {
 
   // 上传
   const handleUpload = React.useCallback((file) => {
-    return upload(file).then(res => {
+    return upload(file).then((res) => {
       // 返回值自动添加到 file 中，thumbUrl 为自定义缩略图
-      return { value: res.fssId, thumbUrl: getThumbUrl(file) }
+      return { value: res.fssId, thumbUrl: getThumbUrl(file) };
     });
   }, []);
 
   // 提交时转换上传值
-  const transformUploadValue = React.useCallback((uploadValues: (UploadFile & Record<string, any>)[]) => {
-    return uploadValues ? uploadValues.filter(valItem => valItem.status !== "error" && valItem.value).map(valItem => valItem.value) : undefined;
-  }, []);
+  const transformUploadValue = React.useCallback(
+    (uploadValues: (UploadFile & Record<string, any>)[]) => {
+      return uploadValues
+        ? uploadValues
+            .filter((valItem) => valItem.status !== 'error' && valItem.value)
+            .map((valItem) => valItem.value)
+        : undefined;
+    },
+    []
+  );
 
   return (
     <div>
@@ -62,7 +69,7 @@ const Demo: React.FC = () => {
           name="files"
           label="任意文件"
           type="image"
-          accept='*'
+          accept="*"
           maxCount={9}
           maxSize={1024 * 1024 * 10}
           multiple
@@ -81,6 +88,6 @@ const Demo: React.FC = () => {
       <PreviewFile visible={visible} onCancel={() => setVisible(false)} file={file} />
     </div>
   );
-}
+};
 
 export default Demo;

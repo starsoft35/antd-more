@@ -8,7 +8,7 @@ import {
   DateUnit,
   createDisabledDate,
   transformMomentValue,
-  getDateFormat,
+  getDateFormat
 } from '../_util/dateUtil';
 import type { Picker } from '../_util/dateUtil';
 import BizFormItem from './Item';
@@ -22,7 +22,7 @@ const DateRangePickerWrapper: React.FC<RangePickerProps> = ({ value, ...restProp
 
 export interface FormItemDateRangeProps
   extends BizFormItemProps,
-  Pick<RangePickerDateProps<Moment>, 'showTime'> {
+    Pick<RangePickerDateProps<Moment>, 'showTime'> {
   disabledDateBefore?: number;
   disabledDateAfter?: number;
   maxRange?: number; // 最大可选范围值，根据当前 picker 为单位。
@@ -53,18 +53,18 @@ const FormItemDateRange: React.FC<FormItemDateRangeProps> = ({
   const currentName = React.useMemo(() => name || `${names[0]}_${names[1]}`, [name, names]);
   const currentPicker = React.useMemo(
     () => pickerProps.picker || picker,
-    [pickerProps.picker, picker],
+    [pickerProps.picker, picker]
   );
   const currentFormat = React.useMemo(() => {
     return getDateFormat(
       pickerProps.format || format,
       currentPicker,
-      pickerProps.showTime || showTime,
+      pickerProps.showTime || showTime
     );
   }, [format, pickerProps.format, currentPicker, pickerProps.showTime, showTime]);
   const disabledDate = React.useMemo(
     () => createDisabledDate(currentPicker, { disabledDateBefore, disabledDateAfter }),
-    [disabledDateBefore, disabledDateAfter, currentPicker],
+    [disabledDateBefore, disabledDateAfter, currentPicker]
   );
   const handleTransform = React.useCallback(
     (val, currentPathValues) => {
@@ -85,7 +85,7 @@ const FormItemDateRange: React.FC<FormItemDateRangeProps> = ({
         return transValue;
       }
     },
-    [currentFormat, names, transform],
+    [currentFormat, names, transform]
   );
 
   return (
@@ -110,8 +110,8 @@ const FormItemDateRange: React.FC<FormItemDateRangeProps> = ({
               return Promise.reject(errMsg);
             }
             return Promise.resolve();
-          },
-        },
+          }
+        }
       ]}
       className={classNames(prefixCls, className)}
       transform={handleTransform}

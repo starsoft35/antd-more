@@ -24,11 +24,11 @@ export type TransformRecordActionType = {
 export interface BaseFormProps extends Omit<FormProps, 'onFinish'> {
   contentRender?: (
     items: React.ReactNode[],
-    submitter: React.ReactElement<Omit<SubmitterProps, 'form'>> | undefined,
+    submitter: React.ReactElement<Omit<SubmitterProps, 'form'>> | undefined
   ) => React.ReactNode;
   formRender?: (
     formDom: React.ReactElement,
-    submitter: React.ReactElement<Omit<SubmitterProps, 'form'>> | undefined,
+    submitter: React.ReactElement<Omit<SubmitterProps, 'form'>> | undefined
   ) => React.ReactElement | undefined;
   ready?: boolean; // false 时，禁止触发 submit 。 true 时，会对表单初始值重新赋值。
   loading?: boolean;
@@ -110,7 +110,7 @@ const BaseForm: React.FC<BaseFormProps> = ({
     return {
       values: { ...err1.values, ...err2.values },
       errorFields: [...err1.errorFields, err2.errorFields],
-      outOfDate: err1.outOfDate || err2.outOfDate,
+      outOfDate: err1.outOfDate || err2.outOfDate
     };
   };
 
@@ -147,11 +147,11 @@ const BaseForm: React.FC<BaseFormProps> = ({
       submitButtonProps={{
         loading,
         disabled: !ready,
-        ...submitterProps?.submitButtonProps,
+        ...submitterProps?.submitButtonProps
       }}
       resetButtonProps={{
         disabled: loading || !ready,
-        ...submitterProps?.resetButtonProps,
+        ...submitterProps?.resetButtonProps
       }}
     />
   ) : null;
@@ -168,14 +168,14 @@ const BaseForm: React.FC<BaseFormProps> = ({
     return {
       ...labelFlex,
       ...labelCol,
-      ...labelStyle,
+      ...labelStyle
     };
   }, [hideLabel, layout, labelWidth, labelCol]);
 
   // 将转换记录传给外部
   // 这里不能直接将transformRecordRef.current传给外部ref，因为无法获取到最新的值，所以通过方法获取。
   React.useImperativeHandle(transformRecordActionRef, () => ({
-    get: () => transformRecordRef.current,
+    get: () => transformRecordRef.current
   }));
 
   useUpdateEffect(() => {
@@ -193,7 +193,7 @@ const BaseForm: React.FC<BaseFormProps> = ({
     <ChildFormContext.Provider
       value={{
         regChildForm,
-        unregChildForm,
+        unregChildForm
       }}
     >
       <FieldContext.Provider
@@ -202,7 +202,7 @@ const BaseForm: React.FC<BaseFormProps> = ({
           layout,
           hideLabel,
           labelCol: labelColProps,
-          form: formProp || form,
+          form: formProp || form
         }}
       >
         <Form
@@ -263,7 +263,7 @@ const BaseForm: React.FC<BaseFormProps> = ({
           <input
             type="text"
             style={{
-              display: 'none',
+              display: 'none'
             }}
           />
           <Form.Item noStyle shouldUpdate>

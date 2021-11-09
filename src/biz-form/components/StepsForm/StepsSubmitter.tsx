@@ -30,7 +30,7 @@ export interface StepsSubmitterProps
   render?:
     | ((
         props: StepsSubmitterProps,
-        dom: React.ReactElement[],
+        dom: React.ReactElement[]
       ) => React.ReactNode[] | React.ReactNode | false)
     | false;
 }
@@ -59,7 +59,7 @@ const StepsSubmitter: React.FC<StepsSubmitterProps> = (props) => {
     forceShowSubmit = false,
 
     form,
-    render,
+    render
   } = props;
 
   const handlePrev = (e) => {

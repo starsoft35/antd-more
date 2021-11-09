@@ -1,6 +1,6 @@
-import * as React from "react";
-import { BizForm } from "antd-more";
-import waitTime from "./utils/waitTime";
+import * as React from 'react';
+import { BizForm } from 'antd-more';
+import waitTime from './utils/waitTime';
 
 const { QueryForm, ItemInput, ItemDate, ItemDateRange } = BizForm;
 
@@ -22,6 +22,6 @@ const Demo: React.FC = () => {
       <ItemDateRange label="时间" name="time" showTime colProps={{ xs: 24, md: 24, lg: 14 }} />
     </QueryForm>
   );
-}
+};
 
 export default Demo;

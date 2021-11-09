@@ -7,19 +7,21 @@ import { BankOptions } from './constants';
 
 Mock.Random.extend({
   bank() {
-    return this.pick(BankOptions.map(item => item.value))
+    return this.pick(BankOptions.map((item) => item.value));
   }
 });
 
 const defaultData = Mock.mock({
-  'list|2-5': [{
-    'id|+1': 1,
-    'shopsName|5-10': '@cword',
-    'bank': ['@bank'],
-    'money|0-10000.2': 1,
-    'startDate': '@date',
-    'endDate': '@date',
-  }]
+  'list|2-5': [
+    {
+      'id|+1': 1,
+      'shopsName|5-10': '@cword',
+      bank: ['@bank'],
+      'money|0-10000.2': 1,
+      startDate: '@date',
+      endDate: '@date'
+    }
+  ]
 }).list;
 
 const { EditableBizTable } = BizTable;
@@ -30,69 +32,69 @@ const colspanConfig = {
   lg: 8,
   md: 12,
   xs: 24
-}
+};
 
 const Demo: React.FC = () => {
   const [form] = BizForm.useForm();
-  const [editableKeys, setEditableKeys] = React.useState(() => defaultData.map(item => item.id));
+  const [editableKeys, setEditableKeys] = React.useState(() => defaultData.map((item) => item.id));
   const editableActionRef = React.useRef<EditableBizTableActionType>();
 
   const columns: BizTableColumnType = [
     {
-      dataIndex: "shopsName",
-      title: "商品名称",
+      dataIndex: 'shopsName',
+      title: '商品名称'
     },
     {
-      dataIndex: "bank",
-      title: "银行",
-      valueType: "enum",
+      dataIndex: 'bank',
+      title: '银行',
+      valueType: 'enum',
       valueEnum: BankOptions,
       width: 300,
       editable: {
         selectProps: {
           showSearch: true,
-          mode: "multiple"
+          mode: 'multiple'
         }
       }
     },
     {
-      dataIndex: "money",
-      title: "金额",
+      dataIndex: 'money',
+      title: '金额',
       editable: {
-        itemType: "number"
+        itemType: 'number'
       }
     },
     {
-      title: "交易时间",
+      title: '交易时间',
       children: [
         {
-          dataIndex: "startDate",
-          title: "开始时间",
-          valueType: "date"
+          dataIndex: 'startDate',
+          title: '开始时间',
+          valueType: 'date'
         },
         {
-          dataIndex: "endDate",
-          title: "结束时间",
-          valueType: "date"
-        },
+          dataIndex: 'endDate',
+          title: '结束时间',
+          valueType: 'date'
+        }
       ]
     },
     {
-      dataIndex: "tempId", // 任意的唯一值
-      title: "日期区间",
-      valueType: "dateRange",
+      dataIndex: 'tempId', // 任意的唯一值
+      title: '日期区间',
+      valueType: 'dateRange',
       width: 300,
       field: (text, record) => ({
         formatValue: () => [record.startDate, record.endDate]
       }),
       editable: (text, record) => ({
         initialValue: [record.startDate, record.endDate],
-        names: ["d1", "d2"]
+        names: ['d1', 'd2']
       })
     },
     {
-      title: "操作",
-      fixed: "right",
+      title: '操作',
+      fixed: 'right',
       width: 80,
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       render: (_, record, index) => (
@@ -111,8 +113,8 @@ const Demo: React.FC = () => {
   return (
     <BizForm
       name="editable-4"
-      onFinish={values => {
-        console.log("onFinish ", values);
+      onFinish={(values) => {
+        console.log('onFinish ', values);
       }}
       onReset={() => {
         editableActionRef.current.clearNewRecords(); // 删除新增项
@@ -156,9 +158,16 @@ const Demo: React.FC = () => {
           }}
         />
       </Item>
-      <Button type="dashed" block onClick={() => editableActionRef.current.add({ id: Date.now() })} style={{ margin: "0 0 24px" }}>添加一行数据</Button>
+      <Button
+        type="dashed"
+        block
+        onClick={() => editableActionRef.current.add({ id: Date.now() })}
+        style={{ margin: '0 0 24px' }}
+      >
+        添加一行数据
+      </Button>
     </BizForm>
   );
-}
+};
 
 export default Demo;

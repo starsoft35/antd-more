@@ -30,7 +30,7 @@ const SketchPickerWrapper: React.FC<SketchPickerProps> = ({
     showText,
     onChange,
     colorMode,
-    placement,
+    placement
   };
 
   return (

@@ -41,7 +41,7 @@ export interface StepsFormProps {
   stepsFormRender?: (
     stepsDom: React.ReactNode,
     formDom: React.ReactNode,
-    submitterDom: React.ReactNode,
+    submitterDom: React.ReactNode
   ) => React.ReactNode;
 }
 
@@ -59,7 +59,7 @@ const StepsForm: React.FC<StepsFormProps> & {
   onFinish,
   stepsRender,
   stepFormRender,
-  stepsFormRender,
+  stepsFormRender
 }) => {
   const [step, setStep] = React.useState(current);
   const [loading, setLoading] = React.useState(false);
@@ -91,7 +91,7 @@ const StepsForm: React.FC<StepsFormProps> & {
       subTitle,
       icon,
       description,
-      submitter: childSubmitter,
+      submitter: childSubmitter
     } = childItem.props as StepFormProps;
     stepsConfigRef.current[index] = {
       title,
@@ -99,7 +99,7 @@ const StepsForm: React.FC<StepsFormProps> & {
       icon,
       description,
       key: `${index}`,
-      ...stepProps,
+      ...stepProps
     };
 
     if (childSubmitter === false || childSubmitter === null) {
@@ -134,7 +134,7 @@ const StepsForm: React.FC<StepsFormProps> & {
     if (typeof onFinish === 'function') {
       const values = Object.values<typeof formDataRef.current>(formDataRef.current).reduce(
         (pre, cur) => ({ ...pre, ...cur }),
-        {},
+        {}
       );
       const ret = onFinish(values);
       if (isPromiseLike(ret)) {
@@ -169,17 +169,17 @@ const StepsForm: React.FC<StepsFormProps> & {
     const internalProps = {
       prevButtonProps: {
         disabled: loading || !ready,
-        ...currentSubmitter?.prevButtonProps,
+        ...currentSubmitter?.prevButtonProps
       },
       nextButtonProps: {
         loading,
         disabled: !ready,
-        ...currentSubmitter?.nextButtonProps,
+        ...currentSubmitter?.nextButtonProps
       },
       submitButtonProps: {
         loading,
         disabled: !ready,
-        ...currentSubmitter?.submitButtonProps,
+        ...currentSubmitter?.submitButtonProps
       },
       onPrev: (e) => {
         actionCache.set('prev');
@@ -193,7 +193,7 @@ const StepsForm: React.FC<StepsFormProps> & {
       onSubmit: (e) => {
         actionCache.set('submit');
         currentSubmitter?.onSubmit?.(e);
-      },
+      }
     };
 
     return (
@@ -242,7 +242,7 @@ const StepsForm: React.FC<StepsFormProps> & {
             </Form.Item>
           ) : null}
         </>
-      ),
+      )
     };
 
     return (
@@ -255,7 +255,7 @@ const StepsForm: React.FC<StepsFormProps> & {
           ...formProps,
           ...config,
           step: index,
-          name,
+          name
         })}
       </div>
     );
@@ -265,7 +265,7 @@ const StepsForm: React.FC<StepsFormProps> & {
     () => () => {
       actionCache.clear();
     },
-    [actionCache],
+    [actionCache]
   );
 
   React.useImperativeHandle(actionRef, () => ({
@@ -315,7 +315,7 @@ const StepsForm: React.FC<StepsFormProps> & {
       formArrayRef.current.forEach((item) => {
         item?.resetFields();
       });
-    },
+    }
   }));
 
   return (
@@ -330,14 +330,14 @@ const StepsForm: React.FC<StepsFormProps> & {
           submit,
           onFormFinish,
           actionCache,
-          forgetUpdate,
+          forgetUpdate
         }}
       >
         {stepsFormRender ? (
           stepsFormRender(
             stepsDom,
             <div className={`${prefixCls}-container`}>{formDom}</div>,
-            submitterDom,
+            submitterDom
           )
         ) : (
           <>

@@ -9,7 +9,7 @@ export type {
   StepFormProps,
   StepsFormContextProps,
   ActionType,
-  StepsSubmitterProps,
+  StepsSubmitterProps
 };
 
 export default StepsForm;

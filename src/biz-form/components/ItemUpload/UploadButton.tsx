@@ -5,7 +5,7 @@ import UploadWrapper from './UploadWrapper';
 import type { UploadWrapperProps } from './UploadWrapper';
 
 const defaultShowUploadList = {
-  showPreviewIcon: false,
+  showPreviewIcon: false
 };
 
 const UploadButton: React.FC<UploadWrapperProps> = ({
@@ -21,7 +21,7 @@ const UploadButton: React.FC<UploadWrapperProps> = ({
     if (typeof showUploadList === 'object') {
       return {
         ...defaultShowUploadList,
-        ...showUploadList,
+        ...showUploadList
       };
     }
     // 为 true 或 undefined 时

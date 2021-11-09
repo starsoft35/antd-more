@@ -52,7 +52,7 @@ const FormItemTime: React.FC<FormItemTimeProps> = ({
       }
       return transformDate(val, currentFormat);
     },
-    [currentFormat, transform],
+    [currentFormat, transform]
   );
 
   return (
@@ -70,8 +70,8 @@ const FormItemTime: React.FC<FormItemTimeProps> = ({
               return Promise.reject(errMsg);
             }
             return Promise.resolve();
-          },
-        },
+          }
+        }
       ]}
       className={classNames(prefixCls, className)}
       transform={handleTransform}

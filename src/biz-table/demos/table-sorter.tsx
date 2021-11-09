@@ -5,20 +5,16 @@ type DataType = {
   name: string;
 };
 
-const mockData = [
-  { name: '' },
-  { name: '张三' },
-  { name: '李四' },
-];
+const mockData = [{ name: '' }, { name: '张三' }, { name: '李四' }];
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const request = (params) => {
   // const { current, pageSize, ...restParams } = params;
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     // console.log(restParams);
     setTimeout(() => resolve({ data: mockData }), 2000);
-  })
-}
+  });
+};
 
 const Demo: React.FC = () => {
   return (
@@ -26,18 +22,18 @@ const Demo: React.FC = () => {
       dataSource={mockData}
       columns={[
         {
-          title: "序号",
+          title: '序号',
           render: (_, r, i) => i.toString(),
           filters: [
             {
-              text: "1",
-              value: "1"
+              text: '1',
+              value: '1'
             }
           ]
         },
         {
-          dataIndex: "name",
-          title: "名字",
+          dataIndex: 'name',
+          title: '名字',
           sorter: true
         }
       ]}
@@ -50,6 +46,6 @@ const Demo: React.FC = () => {
       }}
     />
   );
-}
+};
 
 export default Demo;

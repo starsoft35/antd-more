@@ -16,7 +16,7 @@ const FieldIndex: React.FC<BizFieldProps> = ({
     <span
       className={classnames(prefixCls, className, {
         [`${prefixCls}-border`]: type === 'indexBorder',
-        'top-three': (value as number) > 3,
+        'top-three': (value as number) > 3
       })}
       {...restProps}
     >

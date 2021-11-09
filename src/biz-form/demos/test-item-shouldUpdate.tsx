@@ -16,15 +16,19 @@ const options = [
   }
 ];
 
-interface DemoProps {
-
-}
+interface DemoProps {}
 
 const Demo: React.FC<DemoProps> = () => {
   return (
     <BizForm>
-      <BizForm.ItemInput name='note' label='Note' required />
-      <BizForm.ItemSelect name='gender' label='Gender' options={options} required selectProps={{ allowClear: true }} />
+      <BizForm.ItemInput name="note" label="Note" required />
+      <BizForm.ItemSelect
+        name="gender"
+        label="Gender"
+        options={options}
+        required
+        selectProps={{ allowClear: true }}
+      />
       <BizForm.Item
         noStyle
         shouldUpdate={(prevValues, currentValues) => prevValues.gender !== currentValues.gender}
@@ -33,11 +37,11 @@ const Demo: React.FC<DemoProps> = () => {
           console.log('111');
           return getFieldValue('gender') === 'other' ? (
             <BizForm.ItemInput name="customizeGender" label="Customize Gender" required />
-          ) : null
+          ) : null;
         }}
       </BizForm.Item>
     </BizForm>
   );
-}
+};
 
 export default Demo;

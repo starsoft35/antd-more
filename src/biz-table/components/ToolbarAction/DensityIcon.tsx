@@ -16,7 +16,7 @@ const DensityIcon: React.FC = () => {
             setSize?.(key as TableContextProps['size']);
           }}
           style={{
-            width: 80,
+            width: 80
           }}
         >
           <Menu.Item key="default">默认</Menu.Item>

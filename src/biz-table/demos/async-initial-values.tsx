@@ -14,7 +14,7 @@ function getAsyncInitialValues(): Promise<{
   createTime: string;
   approveResult: ApproveStatus;
 }> {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     setTimeout(() => {
       resolve({
         applyCode: '123456',
@@ -27,22 +27,22 @@ function getAsyncInitialValues(): Promise<{
 
 const columns: BizTableColumnType = [
   {
-    dataIndex: "applyCode",
-    title: "申请编号",
+    dataIndex: 'applyCode',
+    title: '申请编号',
     search: true
   },
   {
-    dataIndex: "createTime",
-    title: "提交时间",
+    dataIndex: 'createTime',
+    title: '提交时间',
     sorter: true,
     search: {
-      valueType: "date"
+      valueType: 'date'
     }
   },
   {
-    dataIndex: "approveResult",
-    title: "审核状态",
-    filters: ApproveStatusOptions.map(item => ({ text: item.label, ...item })),
+    dataIndex: 'approveResult',
+    title: '审核状态',
+    filters: ApproveStatusOptions.map((item) => ({ text: item.label, ...item })),
     valueType: 'enumBadge',
     valueEnum: ApproveStatusOptions,
     search: {
@@ -68,13 +68,13 @@ const Demo: React.FC = () => {
       return {
         total: res.pageInfo.total,
         ...res
-      }
+      };
     });
   }, []);
 
   React.useEffect(() => {
     // 异步获取表单初始值
-    getAsyncInitialValues().then(res => {
+    getAsyncInitialValues().then((res) => {
       setInitialValues(res);
       setReady(true);
     });
@@ -91,6 +91,6 @@ const Demo: React.FC = () => {
       request={handleRequest}
     />
   );
-}
+};
 
 export default Demo;

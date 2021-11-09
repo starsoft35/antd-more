@@ -1,15 +1,15 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import * as React from "react";
-import { message } from "antd";
-import { BizForm } from "antd-more";
-import waitTime from "./utils/waitTime";
+import * as React from 'react';
+import { message } from 'antd';
+import { BizForm } from 'antd-more';
+import waitTime from './utils/waitTime';
 
 function sendCaptcha(mobile) {
-  return new Promise<void>(resolve => {
+  return new Promise<void>((resolve) => {
     setTimeout(() => {
       resolve();
     }, 2000);
-  })
+  });
 }
 
 const { ItemCaptcha, ItemPassword, ItemInput } = BizForm;
@@ -25,7 +25,7 @@ const ForgetPassword: React.FC = () => {
         console.log(values);
       }}
       submitter={{
-        submitText: "确定",
+        submitText: '确定',
         noReset: true
       }}
       form={form}
@@ -36,19 +36,19 @@ const ForgetPassword: React.FC = () => {
         label="验证码"
         name="captcha"
         required
-        normalize={(val) => val.replace(/[^\d]/g, "")}
+        normalize={(val) => val.replace(/[^\d]/g, '')}
         inputProps={{ maxLength: 6 }}
         onGetCaptcha={async () => {
           try {
             // 验证手机号码或邮箱是否正确
-            await form.validateFields(["mobile"]);
+            await form.validateFields(['mobile']);
           } catch (err) {
-            message.error("请输入正确的手机号码");
+            message.error('请输入正确的手机号码');
             return false;
           }
 
           // 发送验证码
-          return sendCaptcha(form.getFieldValue("mobile"));
+          return sendCaptcha(form.getFieldValue('mobile'));
         }}
       />
       <ItemPassword label="新密码" name="password" required inputProps={{ allowClear: false }} />
@@ -56,16 +56,16 @@ const ForgetPassword: React.FC = () => {
         label="重复新密码"
         name="repeatPassword"
         required
-        dependencies={["password"]}
+        dependencies={['password']}
         validateTrigger="onBlur"
         rules={[
           {
             validator(rules, value) {
-              let errMsg = "";
+              let errMsg = '';
               if (!value) {
-                errMsg = "请再次输入新密码";
-              } else if (value !== form.getFieldValue("password")) {
-                errMsg = "两次输入的密码不一致";
+                errMsg = '请再次输入新密码';
+              } else if (value !== form.getFieldValue('password')) {
+                errMsg = '两次输入的密码不一致';
               }
               if (errMsg) {
                 return Promise.reject(errMsg);
@@ -77,6 +77,6 @@ const ForgetPassword: React.FC = () => {
       />
     </BizForm>
   );
-}
+};
 
 export default ForgetPassword;

@@ -27,7 +27,7 @@ export const ApproveStatusOptions = [
     badge: {
       status: 'error'
     }
-  },
+  }
 ];
 
 // 银行
@@ -50,5 +50,5 @@ export const BankOptions = [
   {
     label: '中国农业银行',
     value: Bank.ABC
-  },
+  }
 ];

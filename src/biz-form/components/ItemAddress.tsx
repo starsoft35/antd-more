@@ -28,7 +28,7 @@ const FormItemAddress: React.FC<FormItemAddressProps> = ({
 }) => {
   const [
     { colProps: cascaderColProps, ...cascaderFormItemProps },
-    { colProps: inputColProps, ...inputFormItemProps },
+    { colProps: inputColProps, ...inputFormItemProps }
   ] = formItemProps;
 
   return (
@@ -48,8 +48,8 @@ const FormItemAddress: React.FC<FormItemAddressProps> = ({
                     return Promise.reject(errMsg);
                   }
                   return Promise.resolve();
-                },
-              },
+                }
+              }
             ]}
             {...cascaderFormItemProps}
           >
@@ -71,8 +71,8 @@ const FormItemAddress: React.FC<FormItemAddressProps> = ({
                     return Promise.reject(errMsg);
                   }
                   return Promise.resolve();
-                },
-              },
+                }
+              }
             ]}
             {...inputFormItemProps}
           >

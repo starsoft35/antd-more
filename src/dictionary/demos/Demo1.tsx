@@ -3,8 +3,8 @@
  * desc: 自动将 `value` 对应的 `label` 显示
  */
 
-import React from "react";
-import { Dictionary } from "antd-more";
+import React from 'react';
+import { Dictionary } from 'antd-more';
 
 const ApproveStatus = [
   {
@@ -18,9 +18,9 @@ const ApproveStatus = [
   {
     value: 3,
     label: '审核不通过'
-  },
+  }
 ];
 
 export default () => {
-  return <Dictionary data={ApproveStatus} value={1} />
-}
+  return <Dictionary data={ApproveStatus} value={1} />;
+};

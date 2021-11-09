@@ -17,7 +17,7 @@ export interface SubmitterProps<T = {}> {
   render?:
     | ((
         props: SubmitterProps & T,
-        dom: React.ReactElement[],
+        dom: React.ReactElement[]
       ) => React.ReactNode[] | React.ReactNode | false)
     | false;
 }
@@ -32,7 +32,7 @@ const Submitter: React.FC<SubmitterProps> = (props) => {
     resetButtonProps = {},
     noReset = false,
     form,
-    render,
+    render
   } = props;
   const handleReset = (e) => {
     form?.resetFields();
@@ -69,7 +69,7 @@ const Submitter: React.FC<SubmitterProps> = (props) => {
         }}
       >
         {resetText}
-      </Button>,
+      </Button>
     ];
     if (noReset) {
       return ret.slice(0, 1);

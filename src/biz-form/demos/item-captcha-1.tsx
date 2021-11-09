@@ -1,10 +1,10 @@
-import * as React from "react";
-import { BizForm } from "antd-more";
+import * as React from 'react';
+import { BizForm } from 'antd-more';
 
 const { ItemCaptcha } = BizForm;
 
 function sendCode() {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     setTimeout(() => {
       resolve(true);
     }, 2000);
@@ -15,7 +15,7 @@ const Demo: React.FC = () => {
   return (
     <BizForm
       name="form-item-captcha-1"
-      onFinish={values => {
+      onFinish={(values) => {
         console.log(values);
       }}
       labelWidth={98}
@@ -44,12 +44,12 @@ const Demo: React.FC = () => {
         runText="倒计时%ss"
         resetText="重新倒计时"
         inputProps={{
-          placeholder: "6位数验证码",
+          placeholder: '6位数验证码',
           maxLength: 6
         }}
       />
     </BizForm>
   );
-}
+};
 
 export default Demo;

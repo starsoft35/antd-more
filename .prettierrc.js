@@ -1,15 +1,19 @@
 module.exports = {
   singleQuote: true,
-  trailingComma: 'all',
+  tabWidth: 2,
+  trailingComma: 'none',
   printWidth: 100,
+  useTabs: false,
+  semi: true,
+  bracketSpacing: true,
+  arrowParens: 'always',
   proseWrap: 'never',
-  endOfLine: 'lf',
   overrides: [
     {
       files: '.prettierrc',
       options: {
-        parser: 'json',
-      },
+        parser: 'json'
+      }
     }
-  ],
+  ]
 };

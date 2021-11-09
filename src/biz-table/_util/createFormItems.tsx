@@ -25,7 +25,7 @@ export function createFormItem({ search, ...restProps }: SearchProps, form: Form
   if (typeof search === 'object') {
     options = {
       ...options,
-      ...search,
+      ...search
     };
   }
 
@@ -77,15 +77,17 @@ function createFormItems(options: SearchProps[], form: FormInstance) {
     return null;
   }
 
-  return options
-    .sort(compare)
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    .map(({ order, ...restItem }, index) =>
-      createFormItem(
-        { key: restItem.dataIndex || restItem.name || index.toString(), ...restItem },
-        form,
-      ),
-    );
+  return (
+    options
+      .sort(compare)
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      .map(({ order, ...restItem }, index) =>
+        createFormItem(
+          { key: restItem.dataIndex || restItem.name || index.toString(), ...restItem },
+          form
+        )
+      )
+  );
 }
 
 export default createFormItems;

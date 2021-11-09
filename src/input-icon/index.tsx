@@ -35,7 +35,7 @@ const InputIcon: React.FC<InputIconProps> = (props) => {
         onChange(icon[0]);
       }
     },
-    [onChange, setState, state],
+    [onChange, setState, state]
   );
 
   const handleChange = React.useCallback(
@@ -46,7 +46,7 @@ const InputIcon: React.FC<InputIconProps> = (props) => {
       }
       onChange();
     },
-    [icons, onChange, setState, state],
+    [icons, onChange, setState, state]
   );
 
   const IconComp = state && icons.has(state) ? icons.get(state) : null;
@@ -60,7 +60,7 @@ const InputIcon: React.FC<InputIconProps> = (props) => {
     >
       <div
         className={classnames(`${prefixCls}-input`, {
-          [`${prefixCls}-input-no-empty`]: state,
+          [`${prefixCls}-input-no-empty`]: state
         })}
       >
         <Input

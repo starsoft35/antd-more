@@ -7,13 +7,13 @@ import { CaptchaButton } from 'antd-more';
 
 // 接口：发送短信验证码
 function asyncSendVerificationCode(mobile: string) {
-  return new Promise<{ data: { requestId: string; mobile: string; } }>((resolve) => {
+  return new Promise<{ data: { requestId: string; mobile: string } }>((resolve) => {
     setTimeout(() => {
       resolve({
         data: {
           requestId: 'abcdefg',
           mobile
-        },
+        }
       });
     }, 1000);
   });
@@ -31,7 +31,7 @@ const VerificateCodeInput: React.FC<VerificateCodeInputProps> = ({
   mobileField = 'mobile',
   form,
   value,
-  onChange = () => { },
+  onChange = () => {}
 }) => {
   const inputRef = useRef(null);
   const [start, setStart] = useState(false); // 倒计时按钮状态
@@ -89,15 +89,15 @@ const VerificateCodeInput: React.FC<VerificateCodeInputProps> = ({
       </Col>
     </Row>
   );
-}
+};
 
 // 初始值
 const initialValues = {
   mobile: '',
   code: {
     requestId: '',
-    validateCode: '',
-  },
+    validateCode: ''
+  }
 };
 
 // 规整化参数
@@ -105,16 +105,16 @@ const normalizeValues = ({ mobile, code: { validateCode, requestId } }) => {
   return {
     mobile,
     validateCode,
-    requestId,
+    requestId
   };
 };
 
 const formItemLayout = {
   labelCol: { span: 5 },
-  wrapperCol: { span: 16 },
+  wrapperCol: { span: 16 }
 };
 const buttonItemLayout = {
-  wrapperCol: { sm: { offset: 5 }, span: 16 },
+  wrapperCol: { sm: { offset: 5 }, span: 16 }
 };
 
 export default () => {
@@ -150,8 +150,8 @@ export default () => {
                 }
 
                 return Promise.resolve();
-              },
-            },
+              }
+            }
           ]}
         >
           <Input placeholder="请输入手机号码" allowClear />
@@ -176,8 +176,8 @@ export default () => {
                 }
 
                 return Promise.resolve();
-              },
-            },
+              }
+            }
           ]}
         >
           <VerificateCodeInput form={form} />

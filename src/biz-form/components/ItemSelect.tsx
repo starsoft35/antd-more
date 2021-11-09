@@ -36,7 +36,7 @@ const FormItemSelect: React.FC<FormItemSelectProps> = ({
     excludeValues,
     all,
     allValue,
-    allName: allName || allLabel,
+    allName: allName || allLabel
   });
 
   return (
@@ -54,8 +54,8 @@ const FormItemSelect: React.FC<FormItemSelectProps> = ({
               return Promise.reject(errMsg);
             }
             return Promise.resolve();
-          },
-        },
+          }
+        }
       ]}
       {...restProps}
     >

@@ -1,8 +1,8 @@
-import * as React from "react";
-import { Row, Col } from "antd";
-import { BizForm } from "antd-more";
-import { getPC } from "lcn";
-import waitTime from "./utils/waitTime";
+import * as React from 'react';
+import { Row, Col } from 'antd';
+import { BizForm } from 'antd-more';
+import { getPC } from 'lcn';
+import waitTime from './utils/waitTime';
 
 const pcInlandData = getPC({ inland: true, formatForm: true });
 
@@ -19,12 +19,12 @@ const twoColSpan = {
 // 结算方式
 const SettlementCycleOptions = [
   {
-    value: "T1",
-    label: "T+1"
+    value: 'T1',
+    label: 'T+1'
   },
   {
-    value: "D1",
-    label: "D+1"
+    value: 'D1',
+    label: 'D+1'
   }
 ];
 
@@ -32,11 +32,11 @@ const SettlementCycleOptions = [
 const SettlementTypeOptions = [
   {
     value: 0,
-    label: "对公账户"
+    label: '对公账户'
   },
   {
     value: 1,
-    label: "对私账户"
+    label: '对私账户'
   }
 ];
 
@@ -49,25 +49,36 @@ const SettlementInfo: React.FC = () => {
         console.log(values);
       }}
       submitter={{
-        submitText: "提交",
+        submitText: '提交',
         submitButtonProps: {
-          size: "large",
+          size: 'large',
           style: {
-            padding: "0 40px"
+            padding: '0 40px'
           }
         },
         noReset: true,
         // 提交按钮居中
-        render: (_, dom) => <div style={{ display: "flex", justifyContent: "center" }}>{dom}</div>,
+        render: (_, dom) => <div style={{ display: 'flex', justifyContent: 'center' }}>{dom}</div>
       }}
       labelWidth={112}
     >
       <Row>
         <Col {...oneColSpan}>
-          <ItemRadio label="结算方式" name="settlementCycle" required options={SettlementCycleOptions} tooltip="T为工作日，D为自然日" />
+          <ItemRadio
+            label="结算方式"
+            name="settlementCycle"
+            required
+            options={SettlementCycleOptions}
+            tooltip="T为工作日，D为自然日"
+          />
         </Col>
         <Col {...oneColSpan}>
-          <ItemRadio label="结算类型" name="settlementType" required options={SettlementTypeOptions} />
+          <ItemRadio
+            label="结算类型"
+            name="settlementType"
+            required
+            options={SettlementTypeOptions}
+          />
         </Col>
         <Col {...oneColSpan}>
           <ItemInput label="账户名称" name="bankCertName" required />
@@ -79,11 +90,17 @@ const SettlementInfo: React.FC = () => {
           <ItemInput label="开户银行名称" name="bankName" required />
         </Col>
         <Col {...oneColSpan}>
-          <ItemAddress label="开户支行" names={["branchLocation", "branchName"]} labels={["省/市", "支行名称"]} required options={pcInlandData} />
+          <ItemAddress
+            label="开户支行"
+            names={['branchLocation', 'branchName']}
+            labels={['省/市', '支行名称']}
+            required
+            options={pcInlandData}
+          />
         </Col>
       </Row>
     </BizForm>
   );
-}
+};
 
 export default SettlementInfo;

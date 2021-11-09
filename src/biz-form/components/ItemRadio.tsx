@@ -37,7 +37,7 @@ const FormItemRadio: React.FC<FormItemRadioProps> = ({
     excludeValues,
     all,
     allValue,
-    allName: allName || allLabel,
+    allName: allName || allLabel
   });
 
   return (
@@ -55,8 +55,8 @@ const FormItemRadio: React.FC<FormItemRadioProps> = ({
               return Promise.reject(errMsg);
             }
             return Promise.resolve();
-          },
-        },
+          }
+        }
       ]}
       {...restProps}
     >

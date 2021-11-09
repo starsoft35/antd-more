@@ -12,13 +12,11 @@ const Demo: React.FC = () => {
     <>
       <p>
         当前选择的图标：
-        {
-          hasIcon ? <IconComp /> : '-'
-        }
+        {hasIcon ? <IconComp /> : '-'}
       </p>
       <InputIcon iconData={icons} onChange={setValue} column={4} />
     </>
   );
-}
+};
 
 export default Demo;

@@ -1,8 +1,8 @@
-import * as React from "react";
-import { Row, Col } from "antd";
-import { BizForm } from "antd-more";
+import * as React from 'react';
+import { Row, Col } from 'antd';
+import { BizForm } from 'antd-more';
 import { RakebackeCycleOptions } from './constants';
-import waitTime from "./utils/waitTime";
+import waitTime from './utils/waitTime';
 
 const { ItemRadio, ItemNumber } = BizForm;
 
@@ -24,37 +24,78 @@ const RakebackeInfo: React.FC = () => {
         console.log(values);
       }}
       submitter={{
-        submitText: "提交",
+        submitText: '提交',
         submitButtonProps: {
-          size: "large",
+          size: 'large',
           style: {
-            padding: "0 40px"
+            padding: '0 40px'
           }
         },
         noReset: true,
         // 提交按钮居中
-        render: (_, dom) => <div style={{ display: "flex", justifyContent: "center" }}>{dom}</div>,
+        render: (_, dom) => <div style={{ display: 'flex', justifyContent: 'center' }}>{dom}</div>
       }}
       labelWidth={112}
     >
       <Row>
         <Col {...oneColSpan}>
-          <ItemRadio label="返佣周期" name="rakebackeCycle" required options={RakebackeCycleOptions} />
+          <ItemRadio
+            label="返佣周期"
+            name="rakebackeCycle"
+            required
+            options={RakebackeCycleOptions}
+          />
         </Col>
         <Col {...oneColSpan}>
           <BizForm.Item label="普通刷卡" colon={false}>
             <Row>
               <Col {...threeColSpan}>
-                <ItemNumber label="借记卡" name="costpriceCp" labelWidth={98} required precision={2} contentAfter="%" gt={0} lt={100} />
+                <ItemNumber
+                  label="借记卡"
+                  name="costpriceCp"
+                  labelWidth={98}
+                  required
+                  precision={2}
+                  contentAfter="%"
+                  gt={0}
+                  lt={100}
+                />
               </Col>
               <Col {...threeColSpan}>
-                <ItemNumber label="借记卡封顶" name="costpriceCpMaxFee" labelWidth={98} required precision={2} contentAfter="元" gt={0} />
+                <ItemNumber
+                  label="借记卡封顶"
+                  name="costpriceCpMaxFee"
+                  labelWidth={98}
+                  required
+                  precision={2}
+                  contentAfter="元"
+                  gt={0}
+                />
               </Col>
               <Col {...threeColSpan}>
-                <ItemNumber label="贷记卡" name="costpriceCpCredit" labelWidth={98} required precision={2} contentAfter="%" gt={0} lt={100} />
+                <ItemNumber
+                  label="贷记卡"
+                  name="costpriceCpCredit"
+                  labelWidth={98}
+                  required
+                  precision={2}
+                  contentAfter="%"
+                  gt={0}
+                  lt={100}
+                />
               </Col>
               <Col {...threeColSpan}>
-                <ItemNumber label="IC卡小额" name="costpriceIC" labelWidth={98} required precision={2} tooltip="IC卡小额双免优惠费率" contentAfter="%" gt={0} lt={100} />
+                <ItemNumber
+                  label="IC卡小额"
+                  name="costpriceIC"
+                  labelWidth={98}
+                  required
+                  precision={2}
+                  tooltip="IC卡小额双免优惠费率"
+                  contentAfter="%"
+                  gt={0}
+                  lt={100}
+                />
               </Col>
             </Row>
           </BizForm.Item>
@@ -63,13 +104,41 @@ const RakebackeInfo: React.FC = () => {
           <BizForm.Item label="扫码支付" colon={false}>
             <Row>
               <Col {...threeColSpan}>
-                <ItemNumber label="支付宝" name="costpriceAlipay" labelWidth={98} required precision={2} contentAfter="%" gt={0} lt={100} />
+                <ItemNumber
+                  label="支付宝"
+                  name="costpriceAlipay"
+                  labelWidth={98}
+                  required
+                  precision={2}
+                  contentAfter="%"
+                  gt={0}
+                  lt={100}
+                />
               </Col>
               <Col {...threeColSpan}>
-                <ItemNumber label="微信" name="costpriceWechat" labelWidth={98} required precision={2} contentAfter="%" gt={0} lt={100} />
+                <ItemNumber
+                  label="微信"
+                  name="costpriceWechat"
+                  labelWidth={98}
+                  required
+                  precision={2}
+                  contentAfter="%"
+                  gt={0}
+                  lt={100}
+                />
               </Col>
               <Col {...threeColSpan}>
-                <ItemNumber label="银二小额" name="costpriceUionpay" labelWidth={98} required precision={2} tooltip="银联二维码小额优惠费率" contentAfter="%" gt={0} lt={100} />
+                <ItemNumber
+                  label="银二小额"
+                  name="costpriceUionpay"
+                  labelWidth={98}
+                  required
+                  precision={2}
+                  tooltip="银联二维码小额优惠费率"
+                  contentAfter="%"
+                  gt={0}
+                  lt={100}
+                />
               </Col>
             </Row>
           </BizForm.Item>
@@ -78,7 +147,15 @@ const RakebackeInfo: React.FC = () => {
           <BizForm.Item label="结算" colon={false}>
             <Row>
               <Col {...threeColSpan}>
-                <ItemNumber label="结算手续费" name="settlementFee" labelWidth={98} required precision={2} contentAfter="元/笔" gte={0} />
+                <ItemNumber
+                  label="结算手续费"
+                  name="settlementFee"
+                  labelWidth={98}
+                  required
+                  precision={2}
+                  contentAfter="元/笔"
+                  gte={0}
+                />
               </Col>
             </Row>
           </BizForm.Item>
@@ -86,6 +163,6 @@ const RakebackeInfo: React.FC = () => {
       </Row>
     </BizForm>
   );
-}
+};
 
 export default RakebackeInfo;

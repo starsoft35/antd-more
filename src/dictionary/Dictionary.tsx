@@ -22,7 +22,7 @@ const Dictionary: React.FC<DictionaryProps> = ({
   const props = {
     ...restOptions,
     ...restProps,
-    style: { ...restOptions?.style, ...restProps?.style },
+    style: { ...restOptions?.style, ...restProps?.style }
   };
   const name = alias || ret.name || ret.label;
 

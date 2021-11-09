@@ -25,7 +25,7 @@ const BlockPickerWrapper: React.FC<BlockPickerProps> = ({
     showText,
     onChange,
     colorMode,
-    placement,
+    placement
   };
 
   return (

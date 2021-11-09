@@ -12,7 +12,7 @@ export type {
   ChromePickerProps,
   CompactPickerProps,
   PhotoshopPickerProps,
-  SketchPickerProps,
+  SketchPickerProps
 };
 
 export default Color;

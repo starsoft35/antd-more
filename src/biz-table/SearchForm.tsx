@@ -27,7 +27,7 @@ const SearchForm: React.FC<SearchFormProps> = React.forwardRef(
 
     const formName = React.useMemo(
       () => name || `biz_table_search_form_${createUniqueId()}`,
-      [name],
+      [name]
     );
     React.useImperativeHandle(ref, () => form, [form]);
 
@@ -44,13 +44,13 @@ const SearchForm: React.FC<SearchFormProps> = React.forwardRef(
         <QueryForm form={form} name={formName} {...restProps}>
           {items.map((item: any, index) =>
             React.cloneElement(item, {
-              key: item?.key || item?.props?.key || index.toString(),
-            }),
+              key: item?.key || item?.props?.key || index.toString()
+            })
           )}
         </QueryForm>
       </Card>
     );
-  },
+  }
 );
 
 export default SearchForm;

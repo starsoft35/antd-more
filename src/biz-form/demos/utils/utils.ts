@@ -18,10 +18,19 @@ export function isPdfType(file?: File) {
   return file?.type === 'application/pdf' || file?.name.lastIndexOf('.pdf') > -1;
 }
 export function isWordType(file?: File) {
-  return file?.type === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' || file?.name.lastIndexOf('.doc') > -1 || file?.name.lastIndexOf('.docx') > -1;
+  return (
+    file?.type === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' ||
+    file?.name.lastIndexOf('.doc') > -1 ||
+    file?.name.lastIndexOf('.docx') > -1
+  );
 }
 export function isExcelType(file?: File) {
-  return file?.type === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' || file?.type === 'application/vnd.ms-excel' || file?.name.lastIndexOf('.xls') > -1 || file?.name.lastIndexOf('.xlsx') > -1;
+  return (
+    file?.type === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' ||
+    file?.type === 'application/vnd.ms-excel' ||
+    file?.name.lastIndexOf('.xls') > -1 ||
+    file?.name.lastIndexOf('.xlsx') > -1
+  );
 }
 
 export function getFileType(file?: File) {

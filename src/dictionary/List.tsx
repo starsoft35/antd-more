@@ -6,7 +6,7 @@ import type { DictionaryProps } from './interface';
 
 // tag 类型默认样式
 const tagDefaultStyle = {
-  margin: 0,
+  margin: 0
 };
 
 export interface DictionaryListProps extends DictionaryProps, SpaceProps {
@@ -26,7 +26,7 @@ const DictionaryList: React.FC<DictionaryListProps> = ({
 }) => {
   const styles = useMemo(
     () => (type === 'tag' ? { ...tagDefaultStyle, ...style } : { ...style }),
-    [type, style],
+    [type, style]
   );
 
   if (!Array.isArray(value) || value.length <= 0) {

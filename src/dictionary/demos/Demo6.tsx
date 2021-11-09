@@ -3,8 +3,8 @@
  * desc: 数据中包含 `disabled` 将禁止选择该项。还可以通过指定 `type='button'` 修改显示。
  */
 
-import React, { useState, useCallback } from "react";
-import { Dictionary } from "antd-more";
+import React, { useState, useCallback } from 'react';
+import { Dictionary } from 'antd-more';
 
 const OrgType = [
   {
@@ -23,7 +23,7 @@ const OrgType = [
     value: '3',
     label: '大学',
     disabled: true
-  },
+  }
 ];
 
 export default () => {
@@ -40,5 +40,5 @@ export default () => {
       <br />
       <Dictionary.Radio data={OrgType} value={value} onChange={handleChange} type="button" />
     </>
-  )
-}
+  );
+};

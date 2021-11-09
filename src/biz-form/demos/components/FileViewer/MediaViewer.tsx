@@ -15,7 +15,7 @@ const MediaViewer: React.FunctionComponent<MediaViewerProps> = ({ filePath, medi
       if (target && target.played) {
         target.pause();
       }
-    }
+    };
   }, []);
 
   return React.createElement(mediaType, {
@@ -25,6 +25,6 @@ const MediaViewer: React.FunctionComponent<MediaViewerProps> = ({ filePath, medi
     className: styles.viewer,
     ref: mediaRef
   });
-}
+};
 
 export default MediaViewer;

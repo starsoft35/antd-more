@@ -1,19 +1,19 @@
-import * as React from "react";
-import { BizForm } from "antd-more";
-import moment from "moment";
+import * as React from 'react';
+import { BizForm } from 'antd-more';
+import moment from 'moment';
 
 const { ItemTime } = BizForm;
 
 const initialValues = {
-  time4: "14:59:45",
-  time5: moment("14:59:45", "HH:mm:ss")
-}
+  time4: '14:59:45',
+  time5: moment('14:59:45', 'HH:mm:ss')
+};
 
 const Demo: React.FC = () => {
   return (
     <BizForm
       name="item-time-1"
-      onFinish={value => console.log(value)}
+      onFinish={(value) => console.log(value)}
       initialValues={initialValues}
       labelWidth={98}
     >
@@ -24,6 +24,6 @@ const Demo: React.FC = () => {
       <ItemTime label="默认值2" name="time5" tooltip="moment格式" />
     </BizForm>
   );
-}
+};
 
 export default Demo;

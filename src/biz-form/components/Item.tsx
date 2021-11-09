@@ -47,7 +47,7 @@ const BizFormItem: React.FC<BizFormItemProps> = ({
     setFieldTransform,
     layout,
     hideLabel: formHideLabel,
-    labelCol: formLabelCol,
+    labelCol: formLabelCol
   } = React.useContext(FieldContext);
   const { parentListName } = React.useContext(ListFieldContext);
 
@@ -63,14 +63,14 @@ const BizFormItem: React.FC<BizFormItemProps> = ({
         ...formLabelStyle,
         ...(formHideLabel && hideLabel === false ? { display: 'block' } : {}),
         ...(hideLabel ? { display: 'none' } : {}),
-        ...labelCol?.style,
-      },
+        ...labelCol?.style
+      }
     };
     return {
       ...restFormLabelCol,
       ...labelFlex,
       ...labelCol,
-      ...labelStyle,
+      ...labelStyle
     };
   }, [layout, labelWidth, hideLabel, labelCol, formHideLabel, formLabelCol]);
 

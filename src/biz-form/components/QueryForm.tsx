@@ -20,7 +20,7 @@ const Collapse: React.FC<CollapseProps> = React.memo(({ collapsed, onToggle = ()
         style={{
           marginLeft: '0.5em',
           transition: '0.3s all',
-          transform: `rotate(${collapsed ? 0 : 0.5}turn)`,
+          transform: `rotate(${collapsed ? 0 : 0.5}turn)`
         }}
       />
     </a>
@@ -40,7 +40,7 @@ const colSpan = {
   xs: 24,
   md: 12,
   lg: 8,
-  xxl: 6,
+  xxl: 6
 };
 
 const QueryForm: React.FC<QueryFormProps> = (props) => {
@@ -61,7 +61,7 @@ const QueryForm: React.FC<QueryFormProps> = (props) => {
         submitText,
         resetText,
         // render: (_, dom) => dom.reverse(),
-        ...submitter,
+        ...submitter
       }}
       layout={layout}
       contentRender={(items, internalSubmitter) => {
@@ -81,7 +81,7 @@ const QueryForm: React.FC<QueryFormProps> = (props) => {
                 >
                   {React.cloneElement(item, {
                     hidden,
-                    ...restItemProps,
+                    ...restItemProps
                   })}
                 </Col>
               );
@@ -92,7 +92,7 @@ const QueryForm: React.FC<QueryFormProps> = (props) => {
                 flex: 'auto',
                 flexWrap: 'nowrap',
                 alignItems: 'flex-start',
-                justifyContent: 'flex-end',
+                justifyContent: 'flex-end'
               }}
             >
               <Form.Item

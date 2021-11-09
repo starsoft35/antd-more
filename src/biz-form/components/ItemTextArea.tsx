@@ -24,7 +24,7 @@ const FormItemTextArea: React.FC<FormItemTextAreaProps> = ({
       }
       return val;
     },
-    [disabledWhiteSpace],
+    [disabledWhiteSpace]
   );
 
   return (
@@ -42,8 +42,8 @@ const FormItemTextArea: React.FC<FormItemTextAreaProps> = ({
               return Promise.reject(errMsg);
             }
             return Promise.resolve();
-          },
-        },
+          }
+        }
       ]}
       {...restProps}
     >
