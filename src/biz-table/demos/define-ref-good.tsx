@@ -37,7 +37,7 @@ const DefineTable: React.FC<BizTableProps> = ({ actionRef, ...restProps }) => {
       }
       // eslint-disable-next-line react-hooks/exhaustive-deps
     ],
-    []
+    [actionRef]
   );
 
   return (
