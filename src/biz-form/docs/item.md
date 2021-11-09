@@ -32,24 +32,24 @@ const { Item } = BizForm;
 
 除了以下参数，其余和 antd Form.Item 一样。
 
-参数 | 说明 | 类型 | 默认值 |
-------------- | ------------- | ------------- | ------------- |
-labelWidth  | label 宽度。默认继承 `BizForm` 的 `labelWidth`。 | `number \| 'auto'` | - |
-hideLabel  | 隐藏 label 。默认继承 `BizForm` 的 `hideLabel`。 | `boolean` | - |
-transform  | 转换该字段值，表单提交时执行。 | `(value)=>any` | - |
-extendRules  | 扩展校验规则。如果需要覆盖，请使用 `rules` | [Rule[]](https://ant-design.gitee.io/components/form-cn/#Rule) | - |
-renderField  | 自定义内部表单渲染。要注意透传 `props` ，可参考 `ItemUpload` 的示例。 | `(dom: React.ReactElement) => React.ReactElement` | - |
-colProps  | 设置该表单项 Col 属性。部分场景下生效，如 QueryForm 下、ItemCaptcha、ItemAddress 等。  | [ColProps](https://ant-design.gitee.io/components/grid-cn/#Col) | - |
-contentBefore  | 表单前面的内容 | `ReactNode` | - |
-contentAfter  | 表单后面的内容 | `ReactNode` | - |
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| labelWidth | label 宽度。默认继承 `BizForm` 的 `labelWidth`。 | `number \| 'auto'` | - |
+| hideLabel | 隐藏 label 。默认继承 `BizForm` 的 `hideLabel`。 | `boolean` | - |
+| transform | 转换该字段值，表单提交时执行。 | `(value)=>any` | - |
+| extendRules | 扩展校验规则。如果需要覆盖，请使用 `rules` | [Rule[]](https://ant-design.gitee.io/components/form-cn/#Rule) | - |
+| renderField | 自定义内部表单渲染。要注意透传 `props` ，可参考 `ItemUpload` 的示例。 | `(dom: React.ReactElement) => React.ReactElement` | - |
+| colProps | 设置该表单项 Col 属性。部分场景下生效，如 QueryForm 下、ItemCaptcha、ItemAddress 等。 | [ColProps](https://ant-design.gitee.io/components/grid-cn/#Col) | - |
+| contentBefore | 表单前面的内容 | `ReactNode` | - |
+| contentAfter | 表单后面的内容 | `ReactNode` | - |
 
-### 其它Item
+### 其它 Item
 
 以下 ItemX 组件都是基于 BizForm.Item 扩展，仅列出扩展的参数。如果为必填项，仅需设置 `required` 即可。
 
 ### ItemAddress
 
-地址选择和输入框，该表单项由2个表单项组合而成，所以不要配置 `name`，但必须配置 `names` `labels` 。
+地址选择和输入框，该表单项由 2 个表单项组合而成，所以不要配置 `name`，但必须配置 `names` `labels` 。
 
 默认级联框的 `colProps` 为 `{ md: 12, lg: 8 }` ， 输入框的 `colProps` 为 `{ md: 12, lg: 16 }` 。
 
@@ -79,15 +79,14 @@ interface Option {
 
 <br/>
 
-参数 | 说明 | 类型 | 默认值 |
-------------- | ------------- | ------------- | ------------- |
-names  | 级联选项和输入框的字段名 | `[NamePath, NamePath]` | - |
-labels  | 级联选项和输入框的标签名，仅用于提示 | `[string, string]` | - |
-options  | 级联选项数据 | `Option[]` | - |
-formItemProps  | 级联选项和输入框的 Item 属性。如果要修改宽度，可以分别传入 `colProps` 进行设置。 | `[BizFormItemProps, BizFormItemProps]` | `[]` |
-inputProps  | 输入框的属性 | [InputProps](https://ant-design.gitee.io/components/input-cn/#API) | - |
-cascaderProps  | 级联选项的属性 | [CascaderProps](https://ant-design.gitee.io/components/cascader-cn/#API) | - |
-
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| names | 级联选项和输入框的字段名 | `[NamePath, NamePath]` | - |
+| labels | 级联选项和输入框的标签名，仅用于提示 | `[string, string]` | - |
+| options | 级联选项数据 | `Option[]` | - |
+| formItemProps | 级联选项和输入框的 Item 属性。如果要修改宽度，可以分别传入 `colProps` 进行设置。 | `[BizFormItemProps, BizFormItemProps]` | `[]` |
+| inputProps | 输入框的属性 | [InputProps](https://ant-design.gitee.io/components/input-cn/#API) | - |
+| cascaderProps | 级联选项的属性 | [CascaderProps](https://ant-design.gitee.io/components/cascader-cn/#API) | - |
 
 ### ItemCaptcha
 
@@ -105,17 +104,16 @@ cascaderProps  | 级联选项的属性 | [CascaderProps](https://ant-design.gite
 
 <br/>
 
-参数 | 说明 | 类型 | 默认值 |
-------------- | ------------- | ------------- | ------------- |
-type  | 显示类型 | `'default' \| 'inline'` | `'default'` |
-onGetCaptcha  | 点击按钮触发。用于验证手机号码或邮箱，请求获取验证码。如果返回 `false` 或 `Promise.reject()` 表示验证失败。 | `()=>boolean \| ()=>Promise<any>` | `()=>true` |
-initText  | 按钮初始显示文本 | `string` | `获取验证码` |
-runText  | 按钮倒计时显示文本，包含 `%s` 会自动替换为秒数 | `string` | `%s秒后重新获取` |
-resetText  | 按钮倒计时结束显示文本 | `string` | `重新获取验证码` |
-second  | 按钮倒计时时长，单位秒 | `number` | `60` |
-inputProps  | 输入框的属性 | [InputProps](https://ant-design.gitee.io/components/input-cn/#API) | - |
-buttonProps  | 按钮的属性 | [ButtonProps](https://ant.design/components/button-cn/#API) | - |
-
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| type | 显示类型 | `'default' \| 'inline'` | `'default'` |
+| onGetCaptcha | 点击按钮触发。用于验证手机号码或邮箱，请求获取验证码。如果返回 `false` 或 `Promise.reject()` 表示验证失败。 | `()=>boolean \| ()=>Promise<any>` | `()=>true` |
+| initText | 按钮初始显示文本 | `string` | `获取验证码` |
+| runText | 按钮倒计时显示文本，包含 `%s` 会自动替换为秒数 | `string` | `%s秒后重新获取` |
+| resetText | 按钮倒计时结束显示文本 | `string` | `重新获取验证码` |
+| second | 按钮倒计时时长，单位秒 | `number` | `60` |
+| inputProps | 输入框的属性 | [InputProps](https://ant-design.gitee.io/components/input-cn/#API) | - |
+| buttonProps | 按钮的属性 | [ButtonProps](https://ant.design/components/button-cn/#API) | - |
 
 ### ItemCheckbox
 
@@ -143,14 +141,13 @@ interface Option {
 
 <br/>
 
-参数 | 说明 | 类型 | 默认值 |
-------------- | ------------- | ------------- | ------------- |
-options  | 配置子元素 | `Option[]` | `[]` |
-excludeValues  | 排除的值 | `any[]` | `[]` |
-all  | 是否显示全部 | `boolean` | `false` |
-allLabel | 全部的名称 | `string` | `全部` |
-checkboxGroupProps  | 多选框 Group 的属性 | [CheckboxGroupProps](https://ant-design.gitee.io/components/checkbox-cn/#Checkbox-Group) | - |
-
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| options | 配置子元素 | `Option[]` | `[]` |
+| excludeValues | 排除的值 | `any[]` | `[]` |
+| all | 是否显示全部 | `boolean` | `false` |
+| allLabel | 全部的名称 | `string` | `全部` |
+| checkboxGroupProps | 多选框 Group 的属性 | [CheckboxGroupProps](https://ant-design.gitee.io/components/checkbox-cn/#Checkbox-Group) | - |
 
 ### ItemColor
 
@@ -164,46 +161,46 @@ checkboxGroupProps  | 多选框 Group 的属性 | [CheckboxGroupProps](https://a
 
 <br/>
 
-参数 | 说明 | 类型 | 默认值 |
-------------- | ------------- | ------------- | ------------- |
-showText  | 显示颜色值文本 | `boolean` | `false` |
-picker  | 颜色选择样式 | `block` `chrome` `compact` `photoshop` `sketch` | `sketch` |
-trigger  | 触发行为 | `hover` `click` | `click` |
-colorMode  | 颜色模式 | `hex` `rgb` | `hex` |
-placement  | 颜色选择浮层位置 | `top` `left` `right` `bottom` `topLeft` `topRight` `bottomLeft` `bottomRight` `leftTop` `leftBottom` `rightTop` `rightBottom` | `bottomLeft` |
-colorProps  | 其他颜色选择器配置，不同 picker 有不同的配置项 | `any` | - |
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| showText | 显示颜色值文本 | `boolean` | `false` |
+| picker | 颜色选择样式 | `block` `chrome` `compact` `photoshop` `sketch` | `sketch` |
+| trigger | 触发行为 | `hover` `click` | `click` |
+| colorMode | 颜色模式 | `hex` `rgb` | `hex` |
+| placement | 颜色选择浮层位置 | `top` `left` `right` `bottom` `topLeft` `topRight` `bottomLeft` `bottomRight` `leftTop` `leftBottom` `rightTop` `rightBottom` | `bottomLeft` |
+| colorProps | 其他颜色选择器配置，不同 picker 有不同的配置项 | `any` | - |
 
 #### colorProps
 
 `picker=block` 时：
 
-参数 | 说明 | 类型 | 默认值 |
-------------- | ------------- | ------------- | ------------- |
-width  | 颜色选择浮层宽度 | `string`        | `170px` |
-colors | 预置快捷选择颜色 | `string[]` | -       |
+| 参数   | 说明             | 类型       | 默认值  |
+| ------ | ---------------- | ---------- | ------- |
+| width  | 颜色选择浮层宽度 | `string`   | `170px` |
+| colors | 预置快捷选择颜色 | `string[]` | -       |
 
 `picker=compact` 时：
 
-参数 | 说明 | 类型 | 默认值 |
-------------- | ------------- | ------------- | ------------- |
-colors | 预置快捷选择颜色 | `string[]` | -      |
+| 参数   | 说明             | 类型       | 默认值 |
+| ------ | ---------------- | ---------- | ------ |
+| colors | 预置快捷选择颜色 | `string[]` | -      |
 
 `picker=photoshop` 时：
 
-参数 | 说明 | 类型 | 默认值 |
-------------- | ------------- | ------------- | ------------- |
-header | 颜色选择浮层标题 | `string` | `Color Picker` |
+| 参数   | 说明             | 类型     | 默认值         |
+| ------ | ---------------- | -------- | -------------- |
+| header | 颜色选择浮层标题 | `string` | `Color Picker` |
 
 `picker=sketch` 时：
 
 ```javascript
-type PresetColor = { color: string; title: string; } | string;
+type PresetColor = { color: string, title: string } | string;
 ```
 
-参数 | 说明 | 类型 | 默认值 |
-------------- | ------------- | ------------- | ------------- |
-width        | 颜色选择浮层宽度 | `string` | `200px` |
-presetColors | 预置快捷选择颜色 | `PresetColor[]` | - |
+| 参数         | 说明             | 类型            | 默认值  |
+| ------------ | ---------------- | --------------- | ------- |
+| width        | 颜色选择浮层宽度 | `string`        | `200px` |
+| presetColors | 预置快捷选择颜色 | `PresetColor[]` | -       |
 
 ### ItemDate
 
@@ -223,15 +220,14 @@ presetColors | 预置快捷选择颜色 | `PresetColor[]` | - |
 
 <br/>
 
-参数 | 说明 | 类型 | 默认值 |
-------------- | ------------- | ------------- | ------------- |
-disabledDateBefore  | 配置不可选基于当天增加/减少之前的日期。 | `number` | - |
-disabledDateAfter  | 配置不可选基于当天增加/减少之后的日期。 | `number` | - |
-showTime  | 显示时间选择 | `boolean` | `false` |
-format  | 设置日期格式，默认值会根据 `picker` 调整。 | `string` | `YYYY-MM-DD` |
-picker  | 设置选择器类型 | `date` `week` `month` `quarter` `year` | `date` |
-pickerProps  | 选择器的属性 | [DatePickerProps](https://ant-design.gitee.io/components/date-picker-cn/#API) | - |
-
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| disabledDateBefore | 配置不可选基于当天增加/减少之前的日期。 | `number` | - |
+| disabledDateAfter | 配置不可选基于当天增加/减少之后的日期。 | `number` | - |
+| showTime | 显示时间选择 | `boolean` | `false` |
+| format | 设置日期格式，默认值会根据 `picker` 调整。 | `string` | `YYYY-MM-DD` |
+| picker | 设置选择器类型 | `date` `week` `month` `quarter` `year` | `date` |
+| pickerProps | 选择器的属性 | [DatePickerProps](https://ant-design.gitee.io/components/date-picker-cn/#API) | - |
 
 ### ItemDateRange
 
@@ -254,18 +250,16 @@ pickerProps  | 选择器的属性 | [DatePickerProps](https://ant-design.gitee.i
 
 <br/>
 
-参数 | 说明 | 类型 | 默认值 |
-------------- | ------------- | ------------- | ------------- |
-maxRange  | 最大可选范围值，用于校验，根据当前 picker 为单位。 | `number` | - |
-names  | 开始和结束的字段名，配置该值后，原来的 `name` 将失效。如 `['startDate', 'endDate']` | `[NamePath, NamePath]` | - |
-disabledDateBefore  | 配置不可选基于当天增加/减少之前的日期。 | `number` | - |
-disabledDateAfter  | 配置不可选基于当天增加/减少之后的日期。 | `number` | - |
-showTime  | 显示时间选择 | `boolean` | `false` |
-format  | 设置日期格式，默认值会根据 `picker` 调整。 | `string` | `YYYY-MM-DD` |
-picker  | 设置选择器类型 | `date` `week` `month` `quarter` `year` | `date` |
-pickerProps  | 选择器的属性 | [DateRangePickerProps](https://ant-design.gitee.io/components/date-picker-cn/#RangePicker) | - |
-
-
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| maxRange | 最大可选范围值，用于校验，根据当前 picker 为单位。 | `number` | - |
+| names | 开始和结束的字段名，配置该值后，原来的 `name` 将失效。如 `['startDate', 'endDate']` | `[NamePath, NamePath]` | - |
+| disabledDateBefore | 配置不可选基于当天增加/减少之前的日期。 | `number` | - |
+| disabledDateAfter | 配置不可选基于当天增加/减少之后的日期。 | `number` | - |
+| showTime | 显示时间选择 | `boolean` | `false` |
+| format | 设置日期格式，默认值会根据 `picker` 调整。 | `string` | `YYYY-MM-DD` |
+| picker | 设置选择器类型 | `date` `week` `month` `quarter` `year` | `date` |
+| pickerProps | 选择器的属性 | [DateRangePickerProps](https://ant-design.gitee.io/components/date-picker-cn/#RangePicker) | - |
 
 ### ItemInput
 
@@ -292,14 +286,13 @@ Input 输入框
 
 <br/>
 
-参数 | 说明 | 类型 | 默认值 |
-------------- | ------------- | ------------- | ------------- |
-type  | 输入框类型。 | `'mobile' \| 'bankCard' \| 'idCard' \| 'email' \| 'userName'` | - |
-disabledWhiteSpace  | 禁止输入空白符。 `Password` 组件不支持该项。 | `boolean` | `false` |
-security  | 开启脱敏校验。为 `ture` 时，必须传入 `initialValue` 。 | `boolean` | `false` |
-symbol  | 脱敏符号 | `string` | `*` |
-inputProps  | 输入框的属性 | [InputProps](https://ant-design.gitee.io/components/input-cn/#API) | - |
-
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| type | 输入框类型。 | `'mobile' \| 'bankCard' \| 'idCard' \| 'email' \| 'userName'` | - |
+| disabledWhiteSpace | 禁止输入空白符。 `Password` 组件不支持该项。 | `boolean` | `false` |
+| security | 开启脱敏校验。为 `ture` 时，必须传入 `initialValue` 。 | `boolean` | `false` |
+| symbol | 脱敏符号 | `string` | `*` |
+| inputProps | 输入框的属性 | [InputProps](https://ant-design.gitee.io/components/input-cn/#API) | - |
 
 ### ItemNumber
 
@@ -322,15 +315,14 @@ inputProps  | 输入框的属性 | [InputProps](https://ant-design.gitee.io/comp
 
 <br/>
 
-参数 | 说明 | 类型 | 默认值 |
-------------- | ------------- | ------------- | ------------- |
-precision  | 数值精度 | `number` | - |
-lt  | 最大值 | `number` | - |
-lte  | 最大值（允许等于） | `number` | - |
-gt  | 最小值 | `number` | - |
-gte  | 最小值（允许等于） | `number` | - |
-inputProps  | 数字输入框的属性 | [InputNumberProps](https://ant-design.gitee.io/components/input-number-cn/#API) | - |
-
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| precision | 数值精度 | `number` | - |
+| lt | 最大值 | `number` | - |
+| lte | 最大值（允许等于） | `number` | - |
+| gt | 最小值 | `number` | - |
+| gte | 最小值（允许等于） | `number` | - |
+| inputProps | 数字输入框的属性 | [InputNumberProps](https://ant-design.gitee.io/components/input-number-cn/#API) | - |
 
 ### ItemPassword
 
@@ -348,18 +340,17 @@ inputProps  | 数字输入框的属性 | [InputNumberProps](https://ant-design.g
 
 <br/>
 
-参数 | 说明 | 类型 | 默认值 |
-------------- | ------------- | ------------- | ------------- |
-validated  | 开启验证。为 `false` 时则为普通密码框，不验证长度、强度、特殊字符。 | `boolean \| { len: boolean; level: boolean; special: boolean; }` | `true` |
-min  | 最小长度 | `number` | `8` |
-max  | 最大长度 | `number` | `16` |
-level  | 密码强度。可选 `1` `2` `3` | `number` | `2` |
-ignoreCase | 忽略大小写。为 `ture` 时，大小写字母视为一种字符 | `boolean` | `false` |
-special  | 支持的特殊字符 | `string` | `!@#$%^&*()-=_+[]\|{},./?<>~` |
-disabledPaste  | 禁止粘贴 | `boolean` | `false` |
-disabledCopy  | 禁止复制 | `boolean` | `true` |
-inputProps  | 密码框配置参数 | [PasswordProps](https://ant.design/components/input-cn/#Input.Password) | - |
-
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| validated | 开启验证。为 `false` 时则为普通密码框，不验证长度、强度、特殊字符。 | `boolean \| { len: boolean; level: boolean; special: boolean; }` | `true` |
+| min | 最小长度 | `number` | `8` |
+| max | 最大长度 | `number` | `16` |
+| level | 密码强度。可选 `1` `2` `3` | `number` | `2` |
+| ignoreCase | 忽略大小写。为 `ture` 时，大小写字母视为一种字符 | `boolean` | `false` |
+| special | 支持的特殊字符 | `string` | `!@#$%^&*()-=_+[]\|{},./?<>~` |
+| disabledPaste | 禁止粘贴 | `boolean` | `false` |
+| disabledCopy | 禁止复制 | `boolean` | `true` |
+| inputProps | 密码框配置参数 | [PasswordProps](https://ant.design/components/input-cn/#Input.Password) | - |
 
 ### ItemRadio
 
@@ -387,16 +378,15 @@ interface Option {
 
 <br/>
 
-参数 | 说明 | 类型 | 默认值 |
-------------- | ------------- | ------------- | ------------- |
-options  | 配置子元素 | `Option[]` | `[]` |
-optionType  | 用于设置 Radio `options` 类型 | `'default' \| 'button'` | `'default'` |
-all  | 是否显示全部  | `boolean` | `false` |
-allValue | 全部的值 | `string` | `""` |
-allLabel | 全部的名称 | `string` | `全部` |
-excludeValues | 排除的值 | `any[]` | `[]` |
-radioGroupProps  | 单选框组合配置参数 | [RadioGroupProps](https://ant-design.gitee.io/components/radio-cn/#RadioGroup) | - |
-
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| options | 配置子元素 | `Option[]` | `[]` |
+| optionType | 用于设置 Radio `options` 类型 | `'default' \| 'button'` | `'default'` |
+| all | 是否显示全部 | `boolean` | `false` |
+| allValue | 全部的值 | `string` | `""` |
+| allLabel | 全部的名称 | `string` | `全部` |
+| excludeValues | 排除的值 | `any[]` | `[]` |
+| radioGroupProps | 单选框组合配置参数 | [RadioGroupProps](https://ant-design.gitee.io/components/radio-cn/#RadioGroup) | - |
 
 ### ItemSelect
 
@@ -414,15 +404,14 @@ radioGroupProps  | 单选框组合配置参数 | [RadioGroupProps](https://ant-d
 
 <br/>
 
-参数 | 说明 | 类型 | 默认值 |
-------------- | ------------- | ------------- | ------------- |
-options  | 配置可选项 | `{label, value}[]` | `[]` |
-all  | 是否显示全部  | `boolean` | `false` |
-allValue | 全部的值 | `string` | `""` |
-allLabel | 全部的名称 | `string` | `全部` |
-excludeValues | 排除的值 | `any[]` | `[]` |
-selectProps  | 选择器配置参数 | [SelectProps](https://ant-design.gitee.io/components/select-cn/#Select-props) | - |
-
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| options | 配置可选项 | `{label, value}[]` | `[]` |
+| all | 是否显示全部 | `boolean` | `false` |
+| allValue | 全部的值 | `string` | `""` |
+| allLabel | 全部的名称 | `string` | `全部` |
+| excludeValues | 排除的值 | `any[]` | `[]` |
+| selectProps | 选择器配置参数 | [SelectProps](https://ant-design.gitee.io/components/select-cn/#Select-props) | - |
 
 ### ItemSlider
 
@@ -432,14 +421,13 @@ selectProps  | 选择器配置参数 | [SelectProps](https://ant-design.gitee.io
 
 <br/>
 
-参数 | 说明 | 类型 | 默认值 |
-------------- | ------------- | ------------- | ------------- |
-min  | 最小值 | `number` | 0 |
-max  | 最大值 | `number` | 100 |
-step  | 步长，取值必须大于 0，并且可被 (max - min) 整除。当 `marks` 不为空对象时，可以设置 `step` 为 null，此时 Slider 的可选值仅有 marks 标出来的部分 | `number \| null` | - |
-marks  | 刻度标记，key 的类型必须为 `number` 且取值在闭区间 [min, max] 内，每个标签可以单独设置样式 | `object` | - |
-sliderProps  | 滑块输入条配置参数 | [SliderProps](https://ant-design.gitee.io/components/slider-cn/#API) | - |
-
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| min | 最小值 | `number` | 0 |
+| max | 最大值 | `number` | 100 |
+| step | 步长，取值必须大于 0，并且可被 (max - min) 整除。当 `marks` 不为空对象时，可以设置 `step` 为 null，此时 Slider 的可选值仅有 marks 标出来的部分 | `number \| null` | - |
+| marks | 刻度标记，key 的类型必须为 `number` 且取值在闭区间 [min, max] 内，每个标签可以单独设置样式 | `object` | - |
+| sliderProps | 滑块输入条配置参数 | [SliderProps](https://ant-design.gitee.io/components/slider-cn/#API) | - |
 
 ### ItemSwitch
 
@@ -449,13 +437,11 @@ sliderProps  | 滑块输入条配置参数 | [SliderProps](https://ant-design.gi
 
 <br/>
 
-参数 | 说明 | 类型 | 默认值 |
-------------- | ------------- | ------------- | ------------- |
-checkedChildren  | 选中时的内容 | `ReactNode` | - |
-unCheckedChildren  | 非选中时的内容 | `ReactNode` | - |
-switchProps  | 开关选择器配置参数 | [SwitchProps](https://ant-design.gitee.io/components/switch-cn/#API) | - |
-
-
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| checkedChildren | 选中时的内容 | `ReactNode` | - |
+| unCheckedChildren | 非选中时的内容 | `ReactNode` | - |
+| switchProps | 开关选择器配置参数 | [SwitchProps](https://ant-design.gitee.io/components/switch-cn/#API) | - |
 
 ### ItemTextArea
 
@@ -473,11 +459,10 @@ TextArea 输入框
 
 <br/>
 
-参数 | 说明 | 类型 | 默认值 |
-------------- | ------------- | ------------- | ------------- |
-disabledWhiteSpace  | 禁止输入空白符 | `boolean` | `false` |
-inputProps  | 输入框的属性 | [TextAreaProps](https://ant-design.gitee.io/components/input-cn/#Input.TextArea) | - |
-
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| disabledWhiteSpace | 禁止输入空白符 | `boolean` | `false` |
+| inputProps | 输入框的属性 | [TextAreaProps](https://ant-design.gitee.io/components/input-cn/#Input.TextArea) | - |
 
 ### ItemTime
 
@@ -496,11 +481,10 @@ inputProps  | 输入框的属性 | [TextAreaProps](https://ant-design.gitee.io/c
 
 <br/>
 
-参数 | 说明 | 类型 | 默认值 |
-------------- | ------------- | ------------- | ------------- |
-format  | 设置时间格式 | `string` | `HH:mm:ss` |
-pickerProps  | 选择器的属性 | [TimePickerProps](https://ant-design.gitee.io/components/time-picker-cn/#API) | - |
-
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| format | 设置时间格式 | `string` | `HH:mm:ss` |
+| pickerProps | 选择器的属性 | [TimePickerProps](https://ant-design.gitee.io/components/time-picker-cn/#API) | - |
 
 ### ItemTimeRange
 
@@ -520,12 +504,11 @@ pickerProps  | 选择器的属性 | [TimePickerProps](https://ant-design.gitee.i
 
 <br/>
 
-参数 | 说明 | 类型 | 默认值 |
-------------- | ------------- | ------------- | ------------- |
-names  | 开始和结束的字段名，配置该值后，原来的 `name` 将失效。如 `['startTime', 'endTime']` | `[NamePath, NamePath]` | - |
-format  | 设置日期格式 | `string` | `HH:mm:ss` |
-pickerProps  | 选择器的属性 | [TimeRangePickerProps](https://ant-design.gitee.io/components/time-picker-cn/#RangePicker) | - |
-
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| names | 开始和结束的字段名，配置该值后，原来的 `name` 将失效。如 `['startTime', 'endTime']` | `[NamePath, NamePath]` | - |
+| format | 设置日期格式 | `string` | `HH:mm:ss` |
+| pickerProps | 选择器的属性 | [TimeRangePickerProps](https://ant-design.gitee.io/components/time-picker-cn/#RangePicker) | - |
 
 ### ItemUpload
 
@@ -553,30 +536,28 @@ type UploadFile = {
   url?: string; // 下载地址
   response?: any; // 加载失败时，鼠标移入提示
   // ...
-}
+};
 ```
 
 <br/>
 
-参数 | 说明 | 类型 | 默认值 |
-------------- | ------------- | ------------- | ------------- |
-type  | 上传组件内建类型样式。 | `'default' \| 'image' \| 'avatar' \| 'dragger'` | `'default'` |
-onUpload  | 自定义上传，添加文件时触发。<br/>内部自动处理上传中和失败状态。<br/>如果返回 `object` 将添加到 `UploadFile` 对象中。 | `(file: File)=>Promise<object> \| undefined>` | - |
-onGetPreviewUrl  | 获取预览图片，点击预览时触发。<br/>（仅在没有file.url的情况下生效，执行成功后将预览图放在file.preview，不再触发） | `(file: File)=>Promise<string>` | - |
-maxSize  | 单个文件限制大小，单位 `Byte`。 | `number` | `1024*1024*2` |
-maxCount  | 限制上传文件数量。<br/>当为 `1` 时，始终用最新上传的代替当前。 | `number` | - |
-accept  | 接受上传的文件类型。<br/>如果 `type` 为 `image` 或 `avatar` ，默认为 `.jpg, .jpeg, .png`  | `string` | - |
-fileTypeMessage  | 文件类型错误时提示，包含 `%s` 会自动替换为 `accept`。 | `string \| false` | `只支持上传 ${accept} 文件` |
-fileSizeMessage  | 文件超过最大尺寸时提示，包含 `%s` 会自动替换为 `maxFileSizeStr`。 | `string \| false` | `必须小于 %s！` |
-maxCountMessage  | 上传文件超过限制数量时提示，包含 `%s` 会自动替换为 `maxCount`。 | `string \| false` | `最多上传%s个文件` |
-disabled  | 是否禁用 | `boolean` | `false` |
-multiple  | 是否支持多选文件，`ie10+` 支持。 | `boolean` | `false` |
-uploadProps  | 上传配置参数 | [UploadProps](https://ant-design.gitee.io/components/upload-cn/#API) | - |
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| type | 上传组件内建类型样式。 | `'default' \| 'image' \| 'avatar' \| 'dragger'` | `'default'` |
+| onUpload | 自定义上传，添加文件时触发。<br/>内部自动处理上传中和失败状态。<br/>如果返回 `object` 将添加到 `UploadFile` 对象中。 | `(file: File)=>Promise<object> \| undefined>` | - |
+| onGetPreviewUrl | 获取预览图片，点击预览时触发。<br/>（仅在没有 file.url 的情况下生效，执行成功后将预览图放在 file.preview，不再触发） | `(file: File)=>Promise<string>` | - |
+| maxSize | 单个文件限制大小，单位 `Byte`。 | `number` | `1024*1024*2` |
+| maxCount | 限制上传文件数量。<br/>当为 `1` 时，始终用最新上传的代替当前。 | `number` | - |
+| accept | 接受上传的文件类型。<br/>如果 `type` 为 `image` 或 `avatar` ，默认为 `.jpg, .jpeg, .png` | `string` | - |
+| fileTypeMessage | 文件类型错误时提示，包含 `%s` 会自动替换为 `accept`。 | `string \| false` | `只支持上传 ${accept} 文件` |
+| fileSizeMessage | 文件超过最大尺寸时提示，包含 `%s` 会自动替换为 `maxFileSizeStr`。 | `string \| false` | `必须小于 %s！` |
+| maxCountMessage | 上传文件超过限制数量时提示，包含 `%s` 会自动替换为 `maxCount`。 | `string \| false` | `最多上传%s个文件` |
+| disabled | 是否禁用 | `boolean` | `false` |
+| multiple | 是否支持多选文件，`ie10+` 支持。 | `boolean` | `false` |
+| uploadProps | 上传配置参数 | [UploadProps](https://ant-design.gitee.io/components/upload-cn/#API) | - |
 
-
-
-[isMobile]: https://doly-dev.github.io/util-helpers/module-Validator.html#.isMobile
-[isBankCard]: https://doly-dev.github.io/util-helpers/module-Validator.html#.isBankCard
-[isEmail]: https://doly-dev.github.io/util-helpers/module-Validator.html#.isEmail
-[isIdCard]: https://doly-dev.github.io/util-helpers/module-Validator.html#.isIdCard
-[validatePassword]: https://doly-dev.github.io/util-helpers/module-Validator.html#.validatePassword
+[ismobile]: https://doly-dev.github.io/util-helpers/module-Validator.html#.isMobile
+[isbankcard]: https://doly-dev.github.io/util-helpers/module-Validator.html#.isBankCard
+[isemail]: https://doly-dev.github.io/util-helpers/module-Validator.html#.isEmail
+[isidcard]: https://doly-dev.github.io/util-helpers/module-Validator.html#.isIdCard
+[validatepassword]: https://doly-dev.github.io/util-helpers/module-Validator.html#.validatePassword

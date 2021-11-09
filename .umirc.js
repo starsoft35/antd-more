@@ -8,7 +8,8 @@ const preVersionSiteRoot = `refs/heads/v${preMajorVersionNumber}`;
 
 const version = process.env.BUIDL_DOC_VERSION ? versionSiteRoot : 'latest';
 
-const serverRootDirect = process.env.NODE_ENV === 'production' ? 'https://doly-dev.github.io/antd-more/' : '/';
+const serverRootDirect =
+  process.env.NODE_ENV === 'production' ? 'https://doly-dev.github.io/antd-more/' : '/';
 const logo = 'https://www.caijinfeng.com/assets/images/logo-doly@3x.png';
 const favicon = 'https://www.caijinfeng.com/assets/images/doly-touch-icon_48x48.png';
 
@@ -22,9 +23,9 @@ const umiConfig = {
       {
         libraryName: 'antd',
         libraryDirectory: 'es',
-        style: true,
-      },
-    ],
+        style: true
+      }
+    ]
   ],
   mode: 'site',
   history: {
@@ -35,39 +36,37 @@ const umiConfig = {
   publicPath,
   outputPath,
   hash: true,
-  locales: [['zh-CN', '中文'], ['en-US', 'English']],
+  locales: [
+    ['zh-CN', '中文'],
+    ['en-US', 'English']
+  ],
   nodeModulesTransform: {
     type: 'none',
-    exclude: [],
+    exclude: []
   },
   theme: {
-    '@s-site-menu-width': '258px',
+    '@s-site-menu-width': '258px'
   },
   navs: [
     null, // null 值代表保留约定式生成的导航，只做增量配置
     {
       title: `v${preMajorVersionNumber}.x`,
-      path: `https://doly-dev.github.io/antd-more/${preVersionSiteRoot}/index.html`,
+      path: `https://doly-dev.github.io/antd-more/${preVersionSiteRoot}/index.html`
     },
     {
       title: 'GitHub',
-      path: 'https://github.com/doly-dev/antd-more',
+      path: 'https://github.com/doly-dev/antd-more'
     },
     {
       title: '更新日志',
-      path: 'https://github.com/doly-dev/antd-more/releases',
-    },
+      path: 'https://github.com/doly-dev/antd-more/releases'
+    }
   ],
   menus: {
     '/components': [
       {
         title: '数据展示',
-        children: [
-          'biz-field',
-          'biz-descriptions',
-          'biz-table/index',
-          'biz-table'
-        ]
+        children: ['biz-field', 'biz-descriptions', 'biz-table/index', 'biz-table']
       },
       {
         title: '数据录入',
@@ -77,17 +76,12 @@ const umiConfig = {
           'biz-form/docs/list',
           'biz-form/docs/modalForm',
           'biz-form/docs/queryForm',
-          'biz-form/docs/stepsForm',
+          'biz-form/docs/stepsForm'
         ]
       },
       {
         title: '通用',
-        children: [
-          'color',
-          'dictionary',
-          'captcha-button',
-          'input-icon'
-        ]
+        children: ['color', 'dictionary', 'captcha-button', 'input-icon']
       }
     ]
   }
@@ -101,7 +95,8 @@ if (process.env.NODE_ENV === 'production') {
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-N328Y9JJTL');
-    `}
+    `
+    }
   ];
   umiConfig.chunks = ['vendors', 'umi'];
   umiConfig.chainWebpack = function (config, { webpack }) {
@@ -112,8 +107,8 @@ gtag('config', 'G-N328Y9JJTL');
           cacheGroups: {
             vendor: {
               test: /node_modules/,
-              chunks: "all",
-              name: "vendors",
+              chunks: 'all',
+              name: 'vendors',
               priority: -10,
               enforce: true
             }
@@ -121,7 +116,7 @@ gtag('config', 'G-N328Y9JJTL');
         }
       }
     });
-  }
+  };
 }
 
 export default umiConfig;

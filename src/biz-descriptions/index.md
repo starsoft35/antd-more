@@ -30,7 +30,6 @@ nav:
 
 <code src="./demos/Demo3.tsx" />
 
-
 ## API
 
 ```typescript
@@ -41,11 +40,11 @@ import { BizDescriptions } from 'antd-more';
 
 除了以下参数，其余和 [antd Descriptions](https://ant-design.gitee.io/components/descriptions-cn/#Descriptions) 组件一样。
 
-参数 | 说明 | 类型 | 默认值 |
-------------- | ------------- | ------------- | ------------- |
-dataSource  | 数据 | `object` | - |
-columns  | 列的配置描述 | `ColumnItem[]` | - |
-tooltip  | 标题后面的补充提示，需有标题才生效 | `ReactNode` | - |
+| 参数       | 说明                               | 类型           | 默认值 |
+| ---------- | ---------------------------------- | -------------- | ------ |
+| dataSource | 数据                               | `object`       | -      |
+| columns    | 列的配置描述                       | `ColumnItem[]` | -      |
+| tooltip    | 标题后面的补充提示，需有标题才生效 | `ReactNode`    | -      |
 
 ### BizDescriptions.Item
 
@@ -53,11 +52,9 @@ tooltip  | 标题后面的补充提示，需有标题才生效 | `ReactNode` | -
 
 `ValueType` `EnumData` 请参考 `BizField` 组件 API 说明。
 
-参数 | 说明 | 类型 | 默认值 |
-------------- | ------------- | ------------- | ------------- |
-valueType  | 值类型 | [ValueType](/components/biz-field#valuetype-值) | - |
-valueEnum  | 包含 `value` `label` 的数据字典。<br/>当 `valueType` 为 `enum` `enumTag` `enumBadge` 时生效。 | `EnumData` | - |
-field  | 展示字段的配置。同 BizField 的配置项，支持 object 和 function 方式。<br/>function 方式默认参数为当前值，需返回 BizField 的配置。 | `object \| (text: any, record?: DataType, index?: number)=>object` | - |
-tooltip  | 标签后面的补充提示，需有标签才生效 | `ReactNode` | - |
-
-
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| valueType | 值类型 | [ValueType](/components/biz-field#valuetype-值) | - |
+| valueEnum | 包含 `value` `label` 的数据字典。<br/>当 `valueType` 为 `enum` `enumTag` `enumBadge` 时生效。 | `EnumData` | - |
+| field | 展示字段的配置。同 BizField 的配置项，支持 object 和 function 方式。<br/>function 方式默认参数为当前值，需返回 BizField 的配置。 | `object \| (text: any, record?: DataType, index?: number)=>object` | - |
+| tooltip | 标签后面的补充提示，需有标签才生效 | `ReactNode` | - |

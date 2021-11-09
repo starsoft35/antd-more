@@ -19,7 +19,7 @@ nav:
 - 内部保存了两套数据，分别为 `已存在的数据`和`新增数据`。外部只能在同时设置 `value` 和 `onChange` 时控制已存在的数据。
 - `onValuesChange` 在新增和已存在数据编辑状态下有变动时触发。当存在 `onValuesChange` 时，已存在的数据将变为`不可控`。
 - 新增数据在 `editableActionRef.current.save` 之后才会变成已存在的数据。
-- 如果单行保存/删除需要同步服务端，请保证不要有同时触发多个异步保存或删除数据的情况（通过loading 或 判断操作数据数量），不然编辑状态可能会产生偏差。
+- 如果单行保存/删除需要同步服务端，请保证不要有同时触发多个异步保存或删除数据的情况（通过 loading 或 判断操作数据数量），不然编辑状态可能会产生偏差。
 
 ## 代码演示
 
@@ -35,17 +35,17 @@ nav:
 
 <code src="./demos/editable-3.tsx" />
 
-### 结合Form使用1
+### 结合 Form 使用 1
 
 <code src="./demos/editable-withForm-1.tsx" />
 
-### 结合Form使用2
+### 结合 Form 使用 2
 
 **注意**该示例含编辑状态切换，所以不需要设置 `trigger=onValuesChange` 。并且修改和新增只有保存成功后才会加入 form 的数据中。
 
 <code src="./demos/editable-withForm-2.tsx" />
 
-### 结合Form使用3
+### 结合 Form 使用 3
 
 <code src="./demos/editable-withForm-3.tsx" />
 
@@ -67,40 +67,38 @@ const { EditableBizTable } = BizTable;
 
 除了以下参数，其余和 BizTable 一样。
 
-参数 | 说明 | 类型 | 默认值 |
-------------- | ------------- | ------------- | ------------- |
-value  | 当前已存在的数据，同表格的 `dataSource` | `T[]` | - |
-onChange  | dataSource 修改时，已存在的数据保存和删除时触发。<br/>如果设置了`value`，并且没有`onValuesChange`，将变为一个受控组件。 | `(values: T[])=>void` | - |
-onValuesChange  | 新增和已存在数据编辑状态下有变动时触发，可用于实时数据 或 表单中。<br/>设置该方法后，已存在的数据将变成不可控。 | `(values: T[])=>void` | - |
-editable  | 编辑表格的配置 | `EditableOptions` | - |
-
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| value | 当前已存在的数据，同表格的 `dataSource` | `T[]` | - |
+| onChange | dataSource 修改时，已存在的数据保存和删除时触发。<br/>如果设置了`value`，并且没有`onValuesChange`，将变为一个受控组件。 | `(values: T[])=>void` | - |
+| onValuesChange | 新增和已存在数据编辑状态下有变动时触发，可用于实时数据 或 表单中。<br/>设置该方法后，已存在的数据将变成不可控。 | `(values: T[])=>void` | - |
+| editable | 编辑表格的配置 | `EditableOptions` | - |
 
 ### editable 配置
 
-参数 | 说明 | 类型 | 默认值 |
-------------- | ------------- | ------------- | ------------- |
-editableKeys  | 正在编辑的行，受控属性。必须使用 `rowKey` 值配置。 | `Key[]` | - |
-onChange  | 行数据切换编辑状态时触发 | `(editableKeys: Key[], editableRows: T[]) => void` | - |
-onSave  | 保存时触发。<br/>保存成功后退出编辑状态，如果返回 `Promise.reject` 表示保存失败状态不变。 | `(key: Key, row: T,isNewRecord:boolean) => Promise<any>` | - |
-onDelete  | 删除时触发。<br/>删除成功后退出编辑状态，如果返回 `Promise.reject` 表示删除失败状态不变。 | `(key: Key, row: T,isNewRecord:boolean) => Promise<any>` | - |
-editableActionRef  | 编辑表格的常用操作 | `MutableRefObject<EditableActionType>` | - |
-formProps  | 编辑表格的 form 配置项 | `BizFormProps` | - |
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| editableKeys | 正在编辑的行，受控属性。必须使用 `rowKey` 值配置。 | `Key[]` | - |
+| onChange | 行数据切换编辑状态时触发 | `(editableKeys: Key[], editableRows: T[]) => void` | - |
+| onSave | 保存时触发。<br/>保存成功后退出编辑状态，如果返回 `Promise.reject` 表示保存失败状态不变。 | `(key: Key, row: T,isNewRecord:boolean) => Promise<any>` | - |
+| onDelete | 删除时触发。<br/>删除成功后退出编辑状态，如果返回 `Promise.reject` 表示删除失败状态不变。 | `(key: Key, row: T,isNewRecord:boolean) => Promise<any>` | - |
+| editableActionRef | 编辑表格的常用操作 | `MutableRefObject<EditableActionType>` | - |
+| formProps | 编辑表格的 form 配置项 | `BizFormProps` | - |
 
 ### editableActionRef 说明
 
-参数 | 说明 | 类型 |
-------------- | ------------- | ------------- |
-save  | 保存 | `(rowKey: Key) => void` |
-delete  | 删除 | `(rowKey: Key) => void` |
-cancel  | 取消编辑 | `(rowKey: Key) => void` |
-add  | 新增数据，可指定新增数据的位置，默认添加到最后。 | `(rowKey: Key, index?: number) => void` |
-edit  | 进入编辑 | `(rowKey: Key) => void` |
-setFields  | 设置单行表单值 | `(rowKey: Key, record: Partial<T>) => void` |
-reset  | 重置表单值，不指定 `rowKey` 表示全部重置。 | `(rowKey?: Key) => void` |
-clearNewRecords  | 清除未保存的新增数据 | `() => void` |
-getNewRecords  | 获取未保存的新增数据 | `() => void` |
-setDataSource  | 手动设置数据源，该操作会清除全部数据。 | `(records: T[]) => void` |
-
+| 参数 | 说明 | 类型 |
+| --- | --- | --- |
+| save | 保存 | `(rowKey: Key) => void` |
+| delete | 删除 | `(rowKey: Key) => void` |
+| cancel | 取消编辑 | `(rowKey: Key) => void` |
+| add | 新增数据，可指定新增数据的位置，默认添加到最后。 | `(rowKey: Key, index?: number) => void` |
+| edit | 进入编辑 | `(rowKey: Key) => void` |
+| setFields | 设置单行表单值 | `(rowKey: Key, record: Partial<T>) => void` |
+| reset | 重置表单值，不指定 `rowKey` 表示全部重置。 | `(rowKey?: Key) => void` |
+| clearNewRecords | 清除未保存的新增数据 | `() => void` |
+| getNewRecords | 获取未保存的新增数据 | `() => void` |
+| setDataSource | 手动设置数据源，该操作会清除全部数据。 | `(records: T[]) => void` |
 
 ### Columns 列定义
 
@@ -133,25 +131,25 @@ valueEnum = options
 
 <br/>
 
-| valueType | itemType | BizForm表单项
-| ----- | ----- | ----- 
-| `text` | `input` | [ItemInput]
-| `money` `progress` `percent` | `number` | [ItemNumber]
-| `color` | `color` | [ItemColor]
-| `enum` `enumTag` `enumBadge` | `select` | [ItemSelect]
-| `date` `formNow` `dateWeek` `dateMonth` `dateQuarter` `dateYear` | `date` | [ItemDate]
-| `dateRange` | `dateRange` | [ItemDateRange]
-| `time` | `time` | [ItemTime]
-| `timeRange` | `timeRange` | [ItemTimeRange]
-| - | `address` | [ItemAddress]
-| - | `captcha` | [ItemCaptcha]
-| - | `checkbox` | [ItemCheckbox]
-| - | `textarea` | [ItemTextArea]
-| - | `password` | [ItemPassword]
-| - | `radio` | [ItemRadio]
-| - | `upload` | [ItemUpload]
-| - | `slider` | [ItemSlider]
-| - | `switch` | [ItemSwitch]
+| valueType                                                        | itemType    | BizForm 表单项  |
+| ---------------------------------------------------------------- | ----------- | --------------- |
+| `text`                                                           | `input`     | [ItemInput]     |
+| `money` `progress` `percent`                                     | `number`    | [ItemNumber]    |
+| `color`                                                          | `color`     | [ItemColor]     |
+| `enum` `enumTag` `enumBadge`                                     | `select`    | [ItemSelect]    |
+| `date` `formNow` `dateWeek` `dateMonth` `dateQuarter` `dateYear` | `date`      | [ItemDate]      |
+| `dateRange`                                                      | `dateRange` | [ItemDateRange] |
+| `time`                                                           | `time`      | [ItemTime]      |
+| `timeRange`                                                      | `timeRange` | [ItemTimeRange] |
+| -                                                                | `address`   | [ItemAddress]   |
+| -                                                                | `captcha`   | [ItemCaptcha]   |
+| -                                                                | `checkbox`  | [ItemCheckbox]  |
+| -                                                                | `textarea`  | [ItemTextArea]  |
+| -                                                                | `password`  | [ItemPassword]  |
+| -                                                                | `radio`     | [ItemRadio]     |
+| -                                                                | `upload`    | [ItemUpload]    |
+| -                                                                | `slider`    | [ItemSlider]    |
+| -                                                                | `switch`    | [ItemSwitch]    |
 
 以下几种配置结果都是一样的:
 
@@ -210,22 +208,20 @@ editable: (_, record, index)=>{
 }
 ```
 
-
-
-[ItemAddress]: /components/item#itemaddress
-[ItemCaptcha]: /components/item#itemcaptcha
-[ItemCheckbox]: /components/item#itemcheckbox
-[ItemColor]: /components/item#itemcolor
-[ItemDate]: /components/item#itemdate
-[ItemDateRange]: /components/item#itemdaterange
-[ItemInput]: /components/item#iteminput
-[ItemNumber]: /components/item#itemnumber
-[ItemPassword]: /components/item#itempassword
-[ItemRadio]: /components/item#itemradio
-[ItemSelect]: /components/item#itemselect
-[ItemSlider]: /components/item#itemslider
-[ItemSwitch]: /components/item#itemswitch
-[ItemTextArea]: /components/item#itemtextarea
-[ItemTime]: /components/item#itemtime
-[ItemTimeRange]: /components/item#itemtimerange
-[ItemUpload]: /components/item#itemupload
+[itemaddress]: /components/item#itemaddress
+[itemcaptcha]: /components/item#itemcaptcha
+[itemcheckbox]: /components/item#itemcheckbox
+[itemcolor]: /components/item#itemcolor
+[itemdate]: /components/item#itemdate
+[itemdaterange]: /components/item#itemdaterange
+[iteminput]: /components/item#iteminput
+[itemnumber]: /components/item#itemnumber
+[itempassword]: /components/item#itempassword
+[itemradio]: /components/item#itemradio
+[itemselect]: /components/item#itemselect
+[itemslider]: /components/item#itemslider
+[itemswitch]: /components/item#itemswitch
+[itemtextarea]: /components/item#itemtextarea
+[itemtime]: /components/item#itemtime
+[itemtimerange]: /components/item#itemtimerange
+[itemupload]: /components/item#itemupload

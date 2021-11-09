@@ -13,11 +13,12 @@
     "doc": "dumi build",
     "doc-version": "cross-env BUIDL_DOC_VERSION=version npm run doc",
     "build": "father-build",
-    "lint": "eslint src --ext ts,tsx",
-    "lint:fix": "eslint src --ext ts,tsx --fix",
-    "prettier": "prettier --write 'src/**/*.tsx' && prettier --write 'src/**/*.ts'",
+    "lint": "eslint src --ext .ts,.tsx",
+    "lint:fix": "eslint src --ext .ts,.tsx --fix",
+    "prettier": "prettier --write 'src/**/*'",
     "lint-staged": "lint-staged",
     "lint-staged:prettier": "prettier --write",
+    "lint-staged:js": "eslint --ext .ts,.tsx,.js,.jsx",
     "precommit": "lint-staged",
     "commit": "cz"
   },
@@ -87,8 +88,8 @@
     "util-helpers": "^4.0.1"
   },
   "lint-staged": {
-    "src/**/*.{ts,tsx,js,jsx}": "eslint",
-    "**/*.{ts,tsx,js,jsx,less,md}": "prettier --write"
+    "**/*.{ts,tsx,js,jsx}": "npm run lint-staged:js",
+    "**/*.{ts,tsx,js,jsx,less,md}": "npm run lint-staged:prettier"
   },
   "husky": {
     "hooks": {

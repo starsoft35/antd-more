@@ -22,7 +22,7 @@ nav:
 
 ### 复杂列表页
 
-自定义查询表单操作，表单默认值，默认展示1个表单项，扩展区域，工具栏区域。
+自定义查询表单操作，表单默认值，默认展示 1 个表单项，扩展区域，工具栏区域。
 
 <code src="./demos/Demo2.tsx" background="#f5f5f5" />
 
@@ -30,7 +30,7 @@ nav:
 
 <code src="./demos/Demo3.tsx" background="#f5f5f5" />
 
-### formItems配置
+### formItems 配置
 
 不推荐使用该方式，更推荐 `columns` 中配置 `search` 。
 
@@ -40,7 +40,7 @@ nav:
 
 ### 异步初始值查询表单
 
-5秒后获取到初始值再发起请求。
+5 秒后获取到初始值再发起请求。
 
 <code src="./demos/async-initial-values.tsx" background="#f5f5f5" />
 
@@ -52,7 +52,7 @@ nav:
 
 <code src="./demos/search-form-ref-1.tsx" background="#f5f5f5" />
 
-### 仅使用field转换功能
+### 仅使用 field 转换功能
 
 仅使用表格的 `field` 转换功能，如果不使用 `request`，需将 `autoRequest` 设为 `false`。
 
@@ -68,22 +68,22 @@ nav:
 
 除了以下参数，其余和 antd [Table](https://ant-design.gitee.io/components/table-cn/#API) 组件一样。
 
-参数 | 说明 | 类型 | 默认值 |
-------------- | ------------- | ------------- | ------------- |
-request  | 获取 `dataSource` 的方法 | `Request` | - |
-autoRequest  | 初始化时自动触发 `request` | `boolean` | `true` |
-ready  | 为 `false` 时，禁止提交/重置表单，不触发 `request` 。<br/>为 `true` 时，会重新设置表单初始值，如果 `autoRequest=true` 则自动请求。 | `boolean` | `true` |
-nowrap  | 单元格内容不会换行，表格宽度超过100%自动处理横向滚动条。<br />如果要设置单元格宽度，请关闭该配置 或 `column` 的 `nowrap` 设置为 `false`。 | `boolean` | `true` |
-formItems  | 查询表单项，推荐使用 `columns.search` 配置 | `ReactNode[]` | - |
-toolbar  | 工具栏，表格内的上面区域 | `ReactNode` | - |
-toolbarAction  | 工具栏右侧显示内置工具 | `boolean \| { reload?: boolean; density?: boolean; fullScreen?: boolean; columnSetting?: boolean; }` | `false` |
-toolbarRender  | 自定义工具栏渲染。<br/>如果有设置toolbarAction，参数 dom 包含了右侧内置工具。 | `(dom: ReactElement) => ReactNode` | - |
-fullScreenBackgroundColor  | 全屏时显示的背景颜色 | `string` | `#ffffff` |
-extra  | 扩展内容，表格外的上面、查询表单下面的区域 | `ReactNode` | - |
-form  | 同 [QueryForm] 配置参数 | [QueryFormProps] | - |
-formRef  | 获取查询表单的 `form` 实例  | `MutableRefObject&lt;FormInstance&gt;` | - |
-actionRef  | 常用操作引用，便于自定义触发  | `MutableRefObject&lt;ActionType&gt;` | - |
-tableRender  | 自定义表格渲染  | `(props: BizTableProps&lt;RecordType&gt;, dom: ReactElement) => ReactNode` | - |
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| request | 获取 `dataSource` 的方法 | `Request` | - |
+| autoRequest | 初始化时自动触发 `request` | `boolean` | `true` |
+| ready | 为 `false` 时，禁止提交/重置表单，不触发 `request` 。<br/>为 `true` 时，会重新设置表单初始值，如果 `autoRequest=true` 则自动请求。 | `boolean` | `true` |
+| nowrap | 单元格内容不会换行，表格宽度超过 100%自动处理横向滚动条。<br />如果要设置单元格宽度，请关闭该配置 或 `column` 的 `nowrap` 设置为 `false`。 | `boolean` | `true` |
+| formItems | 查询表单项，推荐使用 `columns.search` 配置 | `ReactNode[]` | - |
+| toolbar | 工具栏，表格内的上面区域 | `ReactNode` | - |
+| toolbarAction | 工具栏右侧显示内置工具 | `boolean \| { reload?: boolean; density?: boolean; fullScreen?: boolean; columnSetting?: boolean; }` | `false` |
+| toolbarRender | 自定义工具栏渲染。<br/>如果有设置 toolbarAction，参数 dom 包含了右侧内置工具。 | `(dom: ReactElement) => ReactNode` | - |
+| fullScreenBackgroundColor | 全屏时显示的背景颜色 | `string` | `#ffffff` |
+| extra | 扩展内容，表格外的上面、查询表单下面的区域 | `ReactNode` | - |
+| form | 同 [QueryForm] 配置参数 | [QueryFormProps] | - |
+| formRef | 获取查询表单的 `form` 实例 | `MutableRefObject&lt;FormInstance&gt;` | - |
+| actionRef | 常用操作引用，便于自定义触发 | `MutableRefObject&lt;ActionType&gt;` | - |
+| tableRender | 自定义表格渲染 | `(props: BizTableProps&lt;RecordType&gt;, dom: ReactElement) => ReactNode` | - |
 
 ### Request 请求方法
 
@@ -99,10 +99,10 @@ type BizTableRequest = (
   filters: Record<string, (string | number)[] | null>,
   sorter: SorterResult<RecordType> | SorterResult<RecordType>[],
   extra: {
-    currentDataSource,
-    action: "paginate" | "sort" | "filter" | "reload" | "reset" | "submit"
+    currentDataSource;
+    action: 'paginate' | 'sort' | 'filter' | 'reload' | 'reset' | 'submit';
   }
-) => Promise<{ data: object[]; total?: number; }>;
+) => Promise<{ data: object[]; total?: number }>;
 ```
 
 **参数**
@@ -115,14 +115,14 @@ type BizTableRequest = (
 
 **第四个参数中的 action 说明**
 
-值 | 说明 |
----- | ---- |
-paginate | 点击分页 |
-sort | 点击排序 |
-filter | 点击筛选 |
-reload | 调用 `actionRef.current.reload` |
-reset | 点击重置 或 调用 `actionRef.current.reset` |
-submit | 点击查询 或 调用 `actionRef.current.submit` |
+| 值       | 说明                                        |
+| -------- | ------------------------------------------- |
+| paginate | 点击分页                                    |
+| sort     | 点击排序                                    |
+| filter   | 点击筛选                                    |
+| reload   | 调用 `actionRef.current.reload`             |
+| reset    | 点击重置 或 调用 `actionRef.current.reset`  |
+| submit   | 点击查询 或 调用 `actionRef.current.submit` |
 
 如果手动使用 `formRef.current.submit()` 触发表单提交，会导致 `action` 不准确，`formRef` 一般在处理赋值时使用。常用操作推荐使用 `actionRef` 。
 
@@ -130,15 +130,15 @@ submit | 点击查询 或 调用 `actionRef.current.submit` |
 
 列描述数据对象，在原来 antd Table [Column](https://ant-design.gitee.io/components/table-cn/#Column) 的基础上扩展了以下配置：
 
-参数 | 说明 | 类型 | 默认值 |
-------------- | ------------- | ------------- | ------------- |
-tooltip  | 表头标题后面的补充提示 | `ReactNode` | - |
-valueType  | 值类型。同 BizField 的 valueType，用于列展示 或 查询表单项 或 可编辑表格项。 | [ValueType](/components/biz-field#valuetype-值) | - |
-valueEnum  | 包含 `value` `label` 的数据字典。<br/>当 `valueType` 为 `enum` `enumTag` `enumBadge` 时生效。 | `EnumData` | - |
-field  | 展示字段的配置。同 BizField 的配置项，支持 object 和 function 方式。<br/>function 方式默认参数和render一样，需返回 BizField 的配置。 | `object \| (text: any, record: RecordType, index: number)=>object` | - |
-search  | 配置查询表单项 | `SearchProps` | - |
-order  | 查询表单项排序，数值越小越靠前 | `number` | `0` |
-table  | 是否在表格中显示，适用于部分字段只有查询表单，但表格中不显示 | `boolean` | `true` |
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| tooltip | 表头标题后面的补充提示 | `ReactNode` | - |
+| valueType | 值类型。同 BizField 的 valueType，用于列展示 或 查询表单项 或 可编辑表格项。 | [ValueType](/components/biz-field#valuetype-值) | - |
+| valueEnum | 包含 `value` `label` 的数据字典。<br/>当 `valueType` 为 `enum` `enumTag` `enumBadge` 时生效。 | `EnumData` | - |
+| field | 展示字段的配置。同 BizField 的配置项，支持 object 和 function 方式。<br/>function 方式默认参数和 render 一样，需返回 BizField 的配置。 | `object \| (text: any, record: RecordType, index: number)=>object` | - |
+| search | 配置查询表单项 | `SearchProps` | - |
+| order | 查询表单项排序，数值越小越靠前 | `number` | `0` |
+| table | 是否在表格中显示，适用于部分字段只有查询表单，但表格中不显示 | `boolean` | `true` |
 
 - `valueType` 用于字段展示时，如果没有 `render`，将使用 [BizField] 渲染。
 - `valueType` 用于查询表单项 或 可编辑表格项时，转换为下表中的 `itemType` 。
@@ -164,25 +164,25 @@ valueEnum = options
 
 <br/>
 
-| valueType | itemType | BizForm表单项
-| ----- | ----- | ----- 
-| `text` | `input` | [ItemInput]
-| `money` `progress` `percent` | `number` | [ItemNumber]
-| `color` | `color` | [ItemColor]
-| `enum` `enumTag` `enumBadge` | `select` | [ItemSelect]
-| `date` `formNow` `dateWeek` `dateMonth` `dateQuarter` `dateYear` | `date` | [ItemDate]
-| `dateRange` | `dateRange` | [ItemDateRange]
-| `time` | `time` | [ItemTime]
-| `timeRange` | `timeRange` | [ItemTimeRange]
-| - | `address` | [ItemAddress]
-| - | `captcha` | [ItemCaptcha]
-| - | `checkbox` | [ItemCheckbox]
-| - | `textarea` | [ItemTextArea]
-| - | `password` | [ItemPassword]
-| - | `radio` | [ItemRadio]
-| - | `upload` | [ItemUpload]
-| - | `slider` | [ItemSlider]
-| - | `switch` | [ItemSwitch]
+| valueType                                                        | itemType    | BizForm 表单项  |
+| ---------------------------------------------------------------- | ----------- | --------------- |
+| `text`                                                           | `input`     | [ItemInput]     |
+| `money` `progress` `percent`                                     | `number`    | [ItemNumber]    |
+| `color`                                                          | `color`     | [ItemColor]     |
+| `enum` `enumTag` `enumBadge`                                     | `select`    | [ItemSelect]    |
+| `date` `formNow` `dateWeek` `dateMonth` `dateQuarter` `dateYear` | `date`      | [ItemDate]      |
+| `dateRange`                                                      | `dateRange` | [ItemDateRange] |
+| `time`                                                           | `time`      | [ItemTime]      |
+| `timeRange`                                                      | `timeRange` | [ItemTimeRange] |
+| -                                                                | `address`   | [ItemAddress]   |
+| -                                                                | `captcha`   | [ItemCaptcha]   |
+| -                                                                | `checkbox`  | [ItemCheckbox]  |
+| -                                                                | `textarea`  | [ItemTextArea]  |
+| -                                                                | `password`  | [ItemPassword]  |
+| -                                                                | `radio`     | [ItemRadio]     |
+| -                                                                | `upload`    | [ItemUpload]    |
+| -                                                                | `slider`    | [ItemSlider]    |
+| -                                                                | `switch`    | [ItemSwitch]    |
 
 以下几种配置结果都是一样的:
 
@@ -259,41 +259,36 @@ ref.current.submit();
 
 ## 常见问题
 
-### 在全屏下的Modal不会展示？
+### 在全屏下的 Modal 不会展示？
 
-> 问题参考: [proTable在全屏下的modal不会展示]
+> 问题参考: [proTable 在全屏下的 modal 不会展示]
 
 可查看具体示例：[修改和新增共用表单](/components/modal-form#修改和新增共用表单)
 
 ```typescript
-<ConfigProvider
-  getPopupContainer={() => document.querySelector(".antd-more-table")}
->
+<ConfigProvider getPopupContainer={() => document.querySelector('.antd-more-table')}>
   // modal
-</ConfigProvider>;
+</ConfigProvider>
 ```
 
-
-[BizField]: /components/biz-field#api
-[QueryFormProps]: /components/query-form#queryform
-[QueryForm]: /components/query-form
-
-[ItemAddress]: /components/item#itemaddress
-[ItemCaptcha]: /components/item#itemcaptcha
-[ItemCheckbox]: /components/item#itemcheckbox
-[ItemColor]: /components/item#itemcolor
-[ItemDate]: /components/item#itemdate
-[ItemDateRange]: /components/item#itemdaterange
-[ItemInput]: /components/item#iteminput
-[ItemNumber]: /components/item#itemnumber
-[ItemPassword]: /components/item#itempassword
-[ItemRadio]: /components/item#itemradio
-[ItemSelect]: /components/item#itemselect
-[ItemSlider]: /components/item#itemslider
-[ItemSwitch]: /components/item#itemswitch
-[ItemTextArea]: /components/item#itemtextarea
-[ItemTime]: /components/item#itemtime
-[ItemTimeRange]: /components/item#itemtimerange
-[ItemUpload]: /components/item#itemupload
-
-[proTable在全屏下的modal不会展示]: https://github.com/ant-design/pro-components/issues/922
+[bizfield]: /components/biz-field#api
+[queryformprops]: /components/query-form#queryform
+[queryform]: /components/query-form
+[itemaddress]: /components/item#itemaddress
+[itemcaptcha]: /components/item#itemcaptcha
+[itemcheckbox]: /components/item#itemcheckbox
+[itemcolor]: /components/item#itemcolor
+[itemdate]: /components/item#itemdate
+[itemdaterange]: /components/item#itemdaterange
+[iteminput]: /components/item#iteminput
+[itemnumber]: /components/item#itemnumber
+[itempassword]: /components/item#itempassword
+[itemradio]: /components/item#itemradio
+[itemselect]: /components/item#itemselect
+[itemslider]: /components/item#itemslider
+[itemswitch]: /components/item#itemswitch
+[itemtextarea]: /components/item#itemtextarea
+[itemtime]: /components/item#itemtime
+[itemtimerange]: /components/item#itemtimerange
+[itemupload]: /components/item#itemupload
+[protable在全屏下的modal不会展示]: https://github.com/ant-design/pro-components/issues/922
