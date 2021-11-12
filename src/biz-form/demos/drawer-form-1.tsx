@@ -6,7 +6,7 @@ import waitTime from './utils/waitTime';
 
 const { DrawerForm, ItemInput, ItemSelect, ItemNumber, ItemUpload, ItemTextArea } = BizForm;
 
-const Demo: React.FC = () => {
+const Demo = () => {
   return (
     <DrawerForm
       title="创建付款单"

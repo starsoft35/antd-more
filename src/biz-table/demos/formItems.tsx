@@ -29,7 +29,7 @@ const columns: BizTableColumnType = [
   }
 ];
 
-const Demo: React.FC = () => {
+const Demo = () => {
   const formItems = [
     <BizForm.ItemInput key="applyCode" name="applyCode" label="申请编号" />,
     <BizForm.ItemDate key="createTime" name="createTime" label="提交时间" />,

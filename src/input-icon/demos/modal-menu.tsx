@@ -71,7 +71,7 @@ const cacheMenuOptions = [
 
 const { ModalForm, Item, ItemRadio, ItemInput, ItemNumber } = BizForm;
 
-const Demo: React.FC = () => {
+const Demo = () => {
   const [form] = BizForm.useForm();
   const [currentMenuType, setCurrentMenuType] = React.useState(MenuType.Menu);
   const menuTypeName =

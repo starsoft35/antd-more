@@ -34,7 +34,7 @@ const colspanConfig = {
   xs: 24
 };
 
-const Demo: React.FC = () => {
+const Demo = () => {
   const [form] = BizForm.useForm();
   const [editableKeys, setEditableKeys] = React.useState(() => defaultData.map((item) => item.id));
   const editableActionRef = React.useRef<EditableBizTableActionType>();

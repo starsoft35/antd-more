@@ -4,7 +4,7 @@ import { ColumnHeightOutlined } from '@ant-design/icons';
 import TableContext from '../../TableContext';
 import type { TableContextProps } from '../../TableContext';
 
-const DensityIcon: React.FC = () => {
+const DensityIcon = () => {
   const { size, setSize } = React.useContext(TableContext);
 
   return (

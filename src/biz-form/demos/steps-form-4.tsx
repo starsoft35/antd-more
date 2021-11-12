@@ -14,7 +14,7 @@ import waitTime from './utils/waitTime';
 
 const { StepsForm, ItemInput, ItemSelect, ItemNumber, ItemUpload, ItemTextArea } = BizForm;
 
-const Demo: React.FC = () => {
+const Demo = () => {
   const actionRef = React.useRef<StepsFormActionType>();
 
   return (

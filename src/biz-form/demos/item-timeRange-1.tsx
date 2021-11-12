@@ -20,7 +20,7 @@ function isAllDay(times) {
   return false;
 }
 
-const Demo: React.FC = () => {
+const Demo = () => {
   const [form] = BizForm.useForm();
   const [allDay, setAllDay] = React.useState(false);
 

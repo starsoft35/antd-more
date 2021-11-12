@@ -6,7 +6,7 @@ import waitTime from './utils/waitTime';
 
 const { ModalForm, ItemInput, ItemSelect, ItemNumber, ItemUpload, ItemTextArea } = BizForm;
 
-const Demo: React.FC = () => {
+const Demo = () => {
   return (
     <ModalForm
       title="创建付款单"

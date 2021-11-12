@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Button } from 'antd';
 import ChangePasswordModal from './components/ChangePasswordModal';
 
-const Demo: React.FC = () => {
+const Demo = () => {
   const [visible, setVisible] = React.useState(false);
 
   return (

@@ -142,7 +142,7 @@ const columns: BizDescriptionsColumnItemProps<typeof data>[] = [
   }
 ];
 
-const Demo: React.FC = () => {
+const Demo = () => {
   return (
     <BizDescriptions title="标题" tooltip="标题提示文字" dataSource={data} columns={columns} />
   );

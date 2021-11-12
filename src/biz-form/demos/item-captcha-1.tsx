@@ -11,7 +11,7 @@ function sendCode() {
   });
 }
 
-const Demo: React.FC = () => {
+const Demo = () => {
   return (
     <BizForm
       name="form-item-captcha-1"

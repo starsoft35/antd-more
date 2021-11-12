@@ -3,7 +3,7 @@ import { BizForm } from 'antd-more';
 
 const { ItemSlider } = BizForm;
 
-const Demo: React.FC = () => {
+const Demo = () => {
   return (
     <BizForm
       name="form-item-slider-1"

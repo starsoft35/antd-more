@@ -4,7 +4,7 @@ import { Cycle, CycleOptions } from './constants';
 
 const { ItemRadio } = BizForm;
 
-const Demo: React.FC = () => {
+const Demo = () => {
   return (
     <BizForm
       name="form-item-radio-1"

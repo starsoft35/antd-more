@@ -16,7 +16,7 @@ const request = (params) => {
   });
 };
 
-const Demo: React.FC = () => {
+const Demo = () => {
   return (
     <Table<DataType>
       dataSource={mockData}

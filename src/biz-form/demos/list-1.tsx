@@ -6,7 +6,7 @@ import waitTime from './utils/waitTime';
 
 const { List, Item, ItemInput } = BizForm;
 
-const Demo: React.FC = () => {
+const Demo = () => {
   return (
     <BizForm
       onFinish={async (values) => {

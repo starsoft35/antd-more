@@ -51,7 +51,7 @@ const columns: BizTableColumnType = [
   }
 ];
 
-const Demo: React.FC = () => {
+const Demo = () => {
   const [ready, setReady] = React.useState(false);
   const [initialValues, setInitialValues] = React.useState<any>();
   const handleRequest: BizTableRequest = React.useCallback((params, filters, sorter, extra) => {

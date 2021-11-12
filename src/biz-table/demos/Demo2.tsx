@@ -60,7 +60,7 @@ const columns: BizTableColumnType<DataItem> = [
   }
 ];
 
-const Demo: React.FC = () => {
+const Demo = () => {
   const formRef = React.useRef<FormInstance | undefined>();
   const actionRef = React.useRef<BizTableActionType | undefined>();
   const handleRequest: BizTableRequest<DataItem> = React.useCallback(

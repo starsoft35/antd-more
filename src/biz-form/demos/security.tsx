@@ -29,7 +29,7 @@ const defaultValues = {
   bankCardNo: '563058*******277'
 };
 
-const Demo: React.FC = () => {
+const Demo = () => {
   const [ready, setReady] = React.useState(false);
   const [initialValues, setInitialValues] = React.useState<Partial<FormValuesType>>({});
 

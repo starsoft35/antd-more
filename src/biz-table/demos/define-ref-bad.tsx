@@ -62,7 +62,7 @@ const DefineTable: React.FC<DefineTableProps> = React.forwardRef((props, ref) =>
 });
 
 // 页面
-const Demo: React.FC = () => {
+const Demo = () => {
   const actionRef = React.useRef<BizTableActionType | undefined>();
 
   // 额外的ref使用，不推荐

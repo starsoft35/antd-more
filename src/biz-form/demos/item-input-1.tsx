@@ -3,7 +3,7 @@ import { BizForm } from 'antd-more';
 
 const { ItemInput } = BizForm;
 
-const Demo: React.FC = () => {
+const Demo = () => {
   return (
     <BizForm
       name="form-item-input-1"

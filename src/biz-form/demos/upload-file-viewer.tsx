@@ -31,7 +31,7 @@ function upload(file: File): Promise<{ fssId: string }> {
   });
 }
 
-const Demo: React.FC = () => {
+const Demo = () => {
   const [file, setFile] = React.useState<File>();
   const [visible, setVisible] = React.useState(false);
 

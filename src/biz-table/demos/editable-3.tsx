@@ -17,7 +17,7 @@ const defaultData = Mock.mock({
 
 const { EditableBizTable } = BizTable;
 
-const Demo: React.FC = () => {
+const Demo = () => {
   const [editableKeys, setEditableKeys] = React.useState(() => defaultData.map((item) => item.id));
   const editableActionRef = React.useRef<EditableBizTableActionType>();
 

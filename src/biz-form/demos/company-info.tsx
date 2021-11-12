@@ -17,7 +17,7 @@ const twoColSpan = {
   lg: 12
 };
 
-const CompanyInfo: React.FC = () => {
+const CompanyInfo = () => {
   return (
     <BizForm
       name="form-company-info"

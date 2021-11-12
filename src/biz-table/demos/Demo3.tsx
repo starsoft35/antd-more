@@ -35,7 +35,7 @@ const columns: BizTableColumnType<DataItem> = [
   }
 ];
 
-const Demo: React.FC = () => {
+const Demo = () => {
   const handleRequest: BizTableRequest<DataItem> = React.useCallback(
     (params, filters, sorter, extra): Promise<{ data: any[]; total: number }> => {
       const { pageSize, current, ...restParams } = params;

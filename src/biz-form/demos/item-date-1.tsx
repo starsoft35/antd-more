@@ -9,7 +9,7 @@ const initialValues = {
   date8: moment('2020-10-10')
 };
 
-const Demo: React.FC = () => {
+const Demo = () => {
   return (
     <BizForm
       name="form-item-date-1"

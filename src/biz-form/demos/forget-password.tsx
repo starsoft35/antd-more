@@ -14,7 +14,7 @@ function sendCaptcha(mobile) {
 
 const { ItemCaptcha, ItemPassword, ItemInput } = BizForm;
 
-const ForgetPassword: React.FC = () => {
+const ForgetPassword = () => {
   const [form] = BizForm.useForm();
 
   return (

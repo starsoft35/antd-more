@@ -36,7 +36,7 @@ const formLayout = {
 //   date: "2020-10-10 10:00:00"
 // };
 
-const Demo: React.FC = () => {
+const Demo = () => {
   const [result, setResult] = React.useState();
   const onFinish = React.useCallback((values) => {
     setResult(values);

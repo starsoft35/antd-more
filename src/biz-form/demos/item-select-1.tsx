@@ -4,7 +4,7 @@ import { Cycle, CycleOptions } from './constants';
 
 const { ItemSelect } = BizForm;
 
-const Demo: React.FC = () => {
+const Demo = () => {
   return (
     <BizForm
       name="form-item-select-1"

@@ -16,7 +16,7 @@ const colspan = {
 
 const { List, Item, ItemInput, ItemNumber, ItemDate, ItemAddress } = BizForm;
 
-const Demo: React.FC = () => {
+const Demo = () => {
   return (
     <BizForm
       onFinish={async (values) => {

@@ -5,7 +5,7 @@ import waitTime from './utils/waitTime';
 
 const { StepsForm, ItemInput, ItemCaptcha, ItemPassword } = BizForm;
 
-const Demo: React.FC = () => {
+const Demo = () => {
   const [form1] = BizForm.useForm();
   const [form2] = BizForm.useForm();
 

@@ -3,7 +3,7 @@ import { FullscreenExitOutlined, FullscreenOutlined } from '@ant-design/icons';
 import { message, Tooltip } from 'antd';
 import TableContext from '../../TableContext';
 
-const FullScreenIcon: React.FC = () => {
+const FullScreenIcon = () => {
   const { rootRef, isFullScreen, setFullScreen } = React.useContext(TableContext);
 
   React.useEffect(() => {

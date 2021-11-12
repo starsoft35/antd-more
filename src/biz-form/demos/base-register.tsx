@@ -7,7 +7,7 @@ const pcaInlandData = getPCA({ inland: true, formatForm: true });
 
 const { ItemInput, ItemAddress, ItemPassword } = BizForm;
 
-const RegisterDemo: React.FC = () => {
+const RegisterDemo = () => {
   return (
     <BizForm
       name="base-register"

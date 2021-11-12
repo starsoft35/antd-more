@@ -70,7 +70,7 @@ const columns: BizTableColumnType<DataItem> = [
   }
 ];
 
-const Demo: React.FC = () => {
+const Demo = () => {
   // 查询表单实例引用
   const formRef = React.useRef<FormInstance>();
   // 操作引用

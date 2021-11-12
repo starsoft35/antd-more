@@ -2,7 +2,7 @@ import * as React from 'react';
 import { InputIcon } from 'antd-more';
 import icons from 'antd-more/es/input-icon/icons';
 
-const Demo: React.FC = () => {
+const Demo = () => {
   const [value, setValue] = React.useState<string>('');
 
   const hasIcon = value && icons.has(value);

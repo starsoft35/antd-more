@@ -4,7 +4,7 @@ import waitTime from './utils/waitTime';
 
 const { QueryForm, ItemInput, ItemDate, ItemDateRange } = BizForm;
 
-const Demo: React.FC = () => {
+const Demo = () => {
   return (
     <QueryForm
       name="query-form-2"

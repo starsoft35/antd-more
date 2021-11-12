@@ -9,7 +9,7 @@ const initialValues = {
   date8: ['2020-10-10', '2020-12-12']
 };
 
-const Demo: React.FC = () => {
+const Demo = () => {
   return (
     <BizForm
       name="form-item-dateRange-1"

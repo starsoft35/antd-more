@@ -12,7 +12,7 @@ function getColumnKey(column: TableColumnType<any>, index: number) {
   return `${column.dataIndex || ''}-${column.key || ''}-${index}`;
 }
 
-const ColumnSetting: React.FC = () => {
+const ColumnSetting = () => {
   const { columns, setColumns: setNewColumns } = React.useContext(TableContext);
 
   const columnsKey = React.useMemo(() => columns.map(getColumnKey), [columns]); // 全部列的 key

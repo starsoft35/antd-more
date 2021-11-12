@@ -40,7 +40,7 @@ const SettlementTypeOptions = [
   }
 ];
 
-const SettlementInfo: React.FC = () => {
+const SettlementInfo = () => {
   return (
     <BizForm
       name="form-settlement-info"

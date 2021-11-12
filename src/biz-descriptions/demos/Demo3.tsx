@@ -35,7 +35,7 @@ const columns: BizDescriptionsColumnItemProps<typeof data>[] = [
   }
 ];
 
-const Demo: React.FC = () => {
+const Demo = () => {
   return (
     <BizDescriptions dataSource={data} columns={columns}>
       <BizDescriptions.Item label="Label1" valueType="text">

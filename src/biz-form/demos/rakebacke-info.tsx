@@ -15,7 +15,7 @@ const threeColSpan = {
   xl: 8
 };
 
-const RakebackeInfo: React.FC = () => {
+const RakebackeInfo = () => {
   return (
     <BizForm
       name="form-rakebacke-info"

@@ -7,7 +7,7 @@ const pcInlandData = getPC({ inland: true, formatForm: true });
 
 const { ItemAddress } = BizForm;
 
-const Demo: React.FC = () => {
+const Demo = () => {
   return (
     <BizForm
       name="form-item-address-1"

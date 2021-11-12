@@ -3,7 +3,7 @@ import { Tooltip } from 'antd';
 import { ReloadOutlined } from '@ant-design/icons';
 import TableContext from '../../TableContext';
 
-const DensityIcon: React.FC = () => {
+const DensityIcon = () => {
   const { reload } = React.useContext(TableContext);
 
   return (

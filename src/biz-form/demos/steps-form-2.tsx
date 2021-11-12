@@ -6,11 +6,11 @@ import waitTime from './utils/waitTime';
 
 const { StepsForm, ItemInput, ItemCaptcha, ItemPassword } = BizForm;
 
-const TipText: React.FC = ({ children }) => {
+const TipText = ({ children }) => {
   return <div style={{ textAlign: 'center', marginBottom: 24, fontSize: 16 }}>{children}</div>;
 };
 
-const Demo: React.FC = () => {
+const Demo = () => {
   const [sent, setSent] = React.useState(false);
   const [form1] = BizForm.useForm();
   const [form3] = BizForm.useForm();

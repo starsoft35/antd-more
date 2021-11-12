@@ -3,7 +3,7 @@ import { BizForm } from 'antd-more';
 
 const { ItemColor } = BizForm;
 
-const Demo: React.FC = () => {
+const Demo = () => {
   return (
     <BizForm
       name="form-item-color-1"

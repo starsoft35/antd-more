@@ -9,7 +9,7 @@ import waitTime from './utils/waitTime';
 
 const { ItemUpload } = BizForm;
 
-const Demo: React.FC = () => {
+const Demo = () => {
   return (
     <BizForm
       name="upload-no-upload"

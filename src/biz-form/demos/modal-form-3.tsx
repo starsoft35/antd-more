@@ -6,7 +6,7 @@ import waitTime from './utils/waitTime';
 
 const { ModalForm, ItemInput, ItemSelect, ItemNumber, ItemUpload, ItemTextArea } = BizForm;
 
-const Demo: React.FC = () => {
+const Demo = () => {
   const [form] = BizForm.useForm();
 
   return (

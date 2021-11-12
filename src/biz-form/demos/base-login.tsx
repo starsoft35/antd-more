@@ -21,7 +21,7 @@ function sendCaptcha(mobile) {
   });
 }
 
-const LoginDemo: React.FC = () => {
+const LoginDemo = () => {
   const [form] = BizForm.useForm();
 
   return (

@@ -3,7 +3,7 @@ import { BizForm } from 'antd-more';
 
 const { ItemPassword } = BizForm;
 
-const Demo: React.FC = () => {
+const Demo = () => {
   return (
     <BizForm
       name="form-item-password-1"

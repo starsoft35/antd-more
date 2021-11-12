@@ -7,7 +7,7 @@ import waitTime from './utils/waitTime';
 const { ModalForm, DrawerForm, ItemInput, ItemSelect, ItemNumber, ItemUpload, ItemTextArea } =
   BizForm;
 
-const Demo: React.FC = () => {
+const Demo = () => {
   const [visibleModal, setVisibleModal] = React.useState(false);
   const [visibleDrawer, setVisibleDrawer] = React.useState(false);
 

@@ -3,7 +3,7 @@ import { BizForm } from 'antd-more';
 
 const { ItemSwitch } = BizForm;
 
-const Demo: React.FC = () => {
+const Demo = () => {
   return (
     <BizForm
       name="form-item-switch-1"

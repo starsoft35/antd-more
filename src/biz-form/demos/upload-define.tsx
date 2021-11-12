@@ -20,7 +20,7 @@ import ItemSpecialUpload from './components/ItemSpecialUpload';
 //   })
 // }
 
-const Demo: React.FC = () => {
+const Demo = () => {
   // // 上传图片
   // const handleUpload = React.useCallback((file: File) => {
   //   return uploadImage(file).then(res => {

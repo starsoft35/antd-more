@@ -53,7 +53,7 @@ const DefineTable: React.FC<BizTableProps> = ({ actionRef, ...restProps }) => {
 };
 
 // 页面
-const Demo: React.FC = () => {
+const Demo = () => {
   const actionRef = React.useRef<BizTableActionType | undefined>();
 
   // 正常使用 actionRef

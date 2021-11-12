@@ -22,7 +22,7 @@ const data = {
   ]
 };
 
-const Demo: React.FC = () => {
+const Demo = () => {
   return (
     <BizDescriptions title="标题" tooltip="标题提示文字">
       <BizDescriptions.Item label="空字符串" valueType="text" tooltip="空字符串显示 -">

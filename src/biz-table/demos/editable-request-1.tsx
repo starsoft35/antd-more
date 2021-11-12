@@ -14,7 +14,7 @@ type DataItem = {
 
 const { EditableBizTable } = BizTable;
 
-const Demo: React.FC = () => {
+const Demo = () => {
   const [editableKeys, setEditableKeys] = React.useState([]);
   const editableActionRef = React.useRef<EditableBizTableActionType>();
 

@@ -74,7 +74,7 @@ const beforeTransformUploadValues = async (fssIds: string[]) => {
   return ret;
 };
 
-const Demo: React.FC = () => {
+const Demo = () => {
   const [ready, setReady] = React.useState(false);
   const [initialValues, setInitialValues] = React.useState({});
   const [form] = BizForm.useForm();

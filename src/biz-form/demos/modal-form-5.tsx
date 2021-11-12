@@ -30,7 +30,7 @@ const getDataApi = async ({ pageSize, pageNum }) => {
   };
 };
 
-const Demo: React.FC = () => {
+const Demo = () => {
   const [visible, setVisible] = React.useState(false);
   const [editableRecord, setEditablRecord] = React.useState<DataItem>();
 

@@ -9,7 +9,7 @@ const initialValues = {
   time5: moment('14:59:45', 'HH:mm:ss')
 };
 
-const Demo: React.FC = () => {
+const Demo = () => {
   return (
     <BizForm
       name="item-time-1"

@@ -41,7 +41,7 @@ const specialColSpan = {
   xxl: 6
 };
 
-const Demo: React.FC = () => {
+const Demo = () => {
   const [required, setRequired] = React.useState(false);
 
   return (
