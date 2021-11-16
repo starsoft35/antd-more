@@ -7,13 +7,5 @@ module.exports = {
   semi: true,
   bracketSpacing: true,
   arrowParens: 'always',
-  proseWrap: 'never',
-  overrides: [
-    {
-      files: '.prettierrc',
-      options: {
-        parser: 'json'
-      }
-    }
-  ]
+  proseWrap: 'never'
 };

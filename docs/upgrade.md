@@ -20,6 +20,6 @@ nav:
 
 - BizField
   - `valueType` 改为仅支持 `string` 形式的枚举值，如有使用 `object` 或 `function` ，请改为 `string`
-- BizDescriptions 和 BizTable 
-  - 添加 `field` 配置项，用于透传给 BizField 
+- BizDescriptions 和 BizTable
+  - 添加 `field` 配置项，用于透传给 BizField
   - 如果原来 `valueType` 使用 `object` 或 `function` ，请改为 `string`

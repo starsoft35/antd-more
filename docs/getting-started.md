@@ -10,8 +10,7 @@ nav:
 
 # 快速上手
 
-[![npm][npm]][npm-url]
-![GitHub](https://img.shields.io/github/license/doly-dev/util-helpers.svg)
+[![npm][npm]][npm-url] ![GitHub](https://img.shields.io/github/license/doly-dev/util-helpers.svg)
 
 ## 使用
 
@@ -38,11 +37,11 @@ ReactDon.render(<BizField value="red" valueType="color" />, mountNode);
 
 ## 对应版本
 
- antd-more | antd |
- --------- | ---- |
- v0.x      | v4.x |
- v1.x      | v4.x |
- v2.x      | v4.x |
+| antd-more | antd |
+| --------- | ---- |
+| v0.x      | v4.x |
+| v1.x      | v4.x |
+| v2.x      | v4.x |
 
 ## API
 
@@ -63,32 +62,24 @@ ReactDon.render(<BizField value="red" valueType="color" />, mountNode);
 - [qrcode.react] - 生成二维码
 - [wangeditor] - 轻量级 web 富文本编辑器
 
-
-
 [npm]: https://img.shields.io/npm/v/antd-more.svg
 [npm-url]: https://npmjs.com/package/antd-more
-
 [site]: https://doly-dev.github.io/antd-more/latest/index.html
 [babel-plugin-import]: https://www.npmjs.com/package/babel-plugin-import
-
 [doly]: https://www.npmjs.com/package/doly-cli
 [umi]: https://umijs.org/zh-CN
 [antd]: https://ant-design.gitee.io
-
-[CaptchaButton]: /components/captcha-button
-[Color]: /components/color
-[Dictionary]: /components/dictionary
-
-[BizDescriptions]: /components/biz-descriptions
-[BizField]: /components/biz-field
-[BizTable]: /components/biz-table
-[EditableBizTable]: /components/editable-biz-table
-
-[BizForm]: /components/biz-form
-[Item]: /components/item
-[Modal/Drawer]: /components/modal-form
-[QueryForm]: /components/query-form
-[StepsForm]: /components/steps-form
-
+[captchabutton]: /components/captcha-button
+[color]: /components/color
+[dictionary]: /components/dictionary
+[bizdescriptions]: /components/biz-descriptions
+[bizfield]: /components/biz-field
+[biztable]: /components/biz-table
+[editablebiztable]: /components/editable-biz-table
+[bizform]: /components/biz-form
+[item]: /components/item
+[modal/drawer]: /components/modal-form
+[queryform]: /components/query-form
+[stepsform]: /components/steps-form
 [qrcode.react]: https://www.npmjs.com/package/qrcode.react
 [wangeditor]: https://www.npmjs.com/package/wangeditor
