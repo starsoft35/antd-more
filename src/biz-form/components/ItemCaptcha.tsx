@@ -60,7 +60,7 @@ const VerificateCodeInput: React.FC<VerificateCodeInputProps> = ({
 
       setStart(true);
       setLoading(false);
-      type !== 'inline' && inputRef.current.focus();
+      inputRef.current.focus();
     } catch (err) {
       setLoading(false);
     }
@@ -101,6 +101,10 @@ const VerificateCodeInput: React.FC<VerificateCodeInputProps> = ({
       loading={loading}
       type={type === 'inline' ? 'link' : 'default'}
       {...buttonProps}
+      onMouseUp={(e) => {
+        e.stopPropagation();
+        buttonProps?.onMouseUp?.(e);
+      }}
       style={{
         ...defaultStyle.button,
         ...buttonProps?.style
