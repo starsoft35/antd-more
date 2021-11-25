@@ -106,7 +106,7 @@ interface Option {
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| type | 显示类型 | `'default' \| 'inline'` | `'default'` |
+| type | 显示类型。<br/>值为 `'default'` 时，，`onGetCaptcha` 异步执行成功后，输入框触发 `focus`。<br/>值为 `'inline'` 时，点击后输入框触发`focus`。 | `'default' \| 'inline'` | `'default'` |
 | onGetCaptcha | 点击按钮触发。用于验证手机号码或邮箱，请求获取验证码。如果返回 `false` 或 `Promise.reject()` 表示验证失败。 | `()=>boolean \| ()=>Promise<any>` | `()=>true` |
 | initText | 按钮初始显示文本 | `string` | `获取验证码` |
 | runText | 按钮倒计时显示文本，包含 `%s` 会自动替换为秒数 | `string` | `%s秒后重新获取` |

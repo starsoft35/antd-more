@@ -60,7 +60,7 @@ const VerificateCodeInput: React.FC<VerificateCodeInputProps> = ({
 
       setStart(true);
       setLoading(false);
-      inputRef.current.focus();
+      type !== 'inline' && inputRef.current.focus();
     } catch (err) {
       setLoading(false);
     }
