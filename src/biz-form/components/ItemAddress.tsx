@@ -5,13 +5,14 @@ import { normalizeWhiteSpace } from '../_util/normalize';
 import BizFormItem from './Item';
 import type { BizFormItemProps } from './Item';
 
-export interface FormItemAddressProps extends Omit<BizFormItemProps, 'name' | 'transform'> {
-  options?: CascaderProps['options'];
+export interface FormItemAddressProps<DataNodeType = any>
+  extends Omit<BizFormItemProps, 'name' | 'transform'> {
+  options?: CascaderProps<DataNodeType>['options'];
   names: [FormItemProps['name'], FormItemProps['name']]; // 如 ['location', 'address']
   labels: [string, string]; // 如 ['省/市/区', '详细地址']
   formItemProps?: [BizFormItemProps, BizFormItemProps];
   inputProps?: InputProps;
-  cascaderProps?: CascaderProps;
+  cascaderProps?: CascaderProps<DataNodeType>;
 }
 
 const FormItemAddress: React.FC<FormItemAddressProps> = ({

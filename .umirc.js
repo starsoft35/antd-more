@@ -1,6 +1,6 @@
 const pkg = require('./package.json');
 
-const MajorVersionNumber = pkg.version.split('.')[0];
+const MajorVersionNumber = Number(pkg.version.split('.')[0]);
 const versionSiteRoot = `refs/heads/v${MajorVersionNumber}`;
 
 const preMajorVersionNumber = MajorVersionNumber - 1;
