@@ -46,9 +46,9 @@ nav:
 
 ### 手动设置查询表单
 
-不改变查询表单的 `initialValues`，而是通过 `formRef` 设置表单值，再进行查询。比如通过 URL 带一些默认查询参数。
+不改变查询表单的 `initialValues`，而是通过 `formRef` 设置表单值，再进行查询，这样不影响查询表单的重置操作。比如通过 URL 带一些默认查询参数。
 
-这样不影响查询表单的重置操作。
+> 如果需要自动获取 URL 的 search 并且支持 keep-alive 激活时调用，可参考 [未展示示例](https://github.com/doly-dev/antd-more/blob/master/src/biz-table/demos/search-form-ref-2.tsx#L107) 的 init 方法。
 
 <code src="./demos/search-form-ref-1.tsx" background="#f5f5f5" />
 
