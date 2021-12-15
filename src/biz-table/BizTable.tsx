@@ -20,7 +20,7 @@ import { createFormItem } from './_util/createFormItems';
 import getRowKey from './_util/getRowKey';
 import TableContext from './TableContext';
 import ToolbarAction from './components/ToolbarAction';
-import omit from '../biz-form/_util/omit';
+import omit from '../utils/omit';
 
 import './index.less';
 

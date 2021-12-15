@@ -19,6 +19,8 @@ export type {
 export { default as Dictionary } from './dictionary';
 export type { InputIconProps } from './input-icon';
 export { default as InputIcon } from './input-icon';
+export { default as TreeTable } from './tree-table';
+export type { TreeTableData, TreeTableDataItem } from './tree-table';
 
 export type {
   BizFormProps,

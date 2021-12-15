@@ -81,7 +81,7 @@ const umiConfig = {
       },
       {
         title: '通用',
-        children: ['color', 'dictionary', 'captcha-button', 'input-icon']
+        children: ['color', 'dictionary', 'captcha-button', 'input-icon', 'tree-table']
       }
     ]
   }

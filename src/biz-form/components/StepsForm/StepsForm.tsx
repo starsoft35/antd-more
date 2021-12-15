@@ -10,7 +10,7 @@ import StepForm from './StepForm';
 import type { StepFormProps } from './StepForm';
 import StepsSubmitter from './StepsSubmitter';
 import type { StepsSubmitterProps } from './StepsSubmitter';
-import SyncMemoryStore from '../../_util/SyncMemoryStore';
+import SyncMemoryStore from '../../../utils/SyncMemoryStore';
 
 import './index.less';
 
