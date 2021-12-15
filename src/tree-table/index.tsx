@@ -3,18 +3,10 @@ import { Checkbox, Table, TableProps } from 'antd';
 import { useControllableValue, useUpdate } from 'rc-hooks';
 import omit from '../utils/omit';
 import uniqueArray from '../utils/uniqueArray';
+import transformFieldNames from './fieldNames';
+import { ValueType, TreeTableDataItem, TreeTableData, TreeTableFieldNames } from './type';
 
-type ValueType = string | number;
-
-export type TreeTableDataItem = {
-  title?: React.ReactNode;
-  label?: React.ReactNode;
-  value: ValueType;
-  disabled?: boolean;
-  children?: TreeTableDataItem[];
-};
-
-export type TreeTableData = TreeTableDataItem[];
+export type { TreeTableDataItem, TreeTableData, TreeTableFieldNames };
 
 // 计算树型数据层级
 const flatTree = (data: TreeTableData, fieldName = 'children') => {
@@ -259,6 +251,8 @@ interface TreeTableProps<RecordType = any>
   treeData: TreeTableData;
   value?: ValueType[];
   onChange?: (values: ValueType[]) => void;
+  labelRender?: (nodeData: TreeTableDataItem) => React.ReactNode;
+  fieldNames?: TreeTableFieldNames;
 }
 
 const TreeTable: React.FunctionComponent<TreeTableProps> = (props) => {
@@ -271,6 +265,8 @@ const TreeTable: React.FunctionComponent<TreeTableProps> = (props) => {
     value: outValue,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     onChange,
+    labelRender,
+    fieldNames,
     ...restProps
   } = props;
   const [checkList, setCheckList] = useControllableValue<ValueType[]>({
@@ -280,12 +276,16 @@ const TreeTable: React.FunctionComponent<TreeTableProps> = (props) => {
   const extraCheckListRef = React.useRef<ValueType[]>([]);
   const indeterminateListRef = React.useRef<ValueType[]>([]);
   const update = useUpdate();
+  const realTreeData = React.useMemo(
+    () => (fieldNames ? transformFieldNames(treeData, fieldNames) : treeData),
+    [treeData, fieldNames]
+  );
   const { columns, list } = React.useMemo(
-    () => transformTreeToList(treeData, lastColumnMerged),
-    [lastColumnMerged, treeData]
+    () => transformTreeToList(realTreeData, lastColumnMerged),
+    [lastColumnMerged, realTreeData]
   );
 
-  const compactData = React.useMemo(() => compactTree(treeData), [treeData]);
+  const compactData = React.useMemo(() => compactTree(realTreeData), [realTreeData]);
 
   const processParentChecked = React.useCallback(
     (value?: ValueType, checks?: ValueType[], indeterminates?: ValueType[]) => {
@@ -350,7 +350,7 @@ const TreeTable: React.FunctionComponent<TreeTableProps> = (props) => {
       const newIndetermaniteList = new Set(indeterminateListRef.current);
       const newCheckList = new Set(checkList);
 
-      const childValues = getChildrenValue(treeData, dataItem.value, true);
+      const childValues = getChildrenValue(realTreeData, dataItem.value, true);
 
       // 已选中
       if (checkList.includes(dataItem.value)) {
@@ -384,7 +384,7 @@ const TreeTable: React.FunctionComponent<TreeTableProps> = (props) => {
       indeterminateListRef.current = indeterminates;
       setCheckList(checks);
     },
-    [checkList, processParentChecked, setCheckList, treeData]
+    [checkList, processParentChecked, setCheckList, realTreeData]
   );
 
   React.useEffect(() => {
@@ -443,7 +443,7 @@ const TreeTable: React.FunctionComponent<TreeTableProps> = (props) => {
                   disabled={subItem.disabled}
                   key={subItem.value}
                 >
-                  {subItem.title || subItem.label}
+                  {labelRender ? labelRender(subItem) : subItem.label || subItem.value}
                 </Checkbox>
               ))
             : '-',
@@ -454,7 +454,7 @@ const TreeTable: React.FunctionComponent<TreeTableProps> = (props) => {
         return obj;
       }
     }));
-  }, [checkList, columnTitles, columns, handleChange]);
+  }, [checkList, columnTitles, columns, handleChange, labelRender]);
 
   return (
     <Table columns={realColumns} dataSource={list} pagination={false} bordered {...restProps} />

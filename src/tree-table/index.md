@@ -22,17 +22,21 @@ nav:
 
 <code src='./demos/bizform-1.tsx' />
 
+### 自定义节点 fieldNames
+
+<code src='./demos/fieldNames.tsx' />
+
 ### 菜单权限配置
 
 <code src='./demos/menu-authorize.tsx' />
 
-### 不限数据层级
-
-<code src='./demos/multiple.tsx' />
-
 ### 异步获取数据
 
 <code src='./demos/async.tsx' />
+
+### 不限数据层级
+
+<code src='./demos/multiple.tsx' />
 
 ## API
 
@@ -40,11 +44,11 @@ nav:
 type ValueType = string | number;
 
 export type TreeTableDataItem = {
-  title?: React.ReactNode;
   label?: React.ReactNode;
   value: ValueType;
   disabled?: boolean;
   children?: TreeTableDataItem[];
+  [key: string]: any;
 };
 
 export type TreeTableData = TreeTableDataItem[];
@@ -57,6 +61,8 @@ export type TreeTableData = TreeTableDataItem[];
 | treeData | 树型结构数据，其中 `value` 必须保持唯一。 | `TreeTableData` | - |
 | columnTitles | 表格列标题 | `ReactNode[]` | - |
 | value | 值，有该值表示为受控模式。 | `ValueType[]` | `-` |
-| onChange | 修改选项时触发 | `(values: ValueType[])=>void` | `-` |
+| onChange | 修改选项时触发 | `(values: ValueType[]) => void` | `-` |
 | halfToChecked | 半勾选转换为勾选状态，会影响 `onChange` 的参数值。 | `boolean` | `false` |
 | lastColumnMerged | 最后一列是否合并展示 | `boolean` | `false` |
+| fieldNames | 自定义节点 `title`、`value`、`children` 的字段 | `{ label: string; value: string; children: string; }` | - |
+| labelRender | 自定义渲染节点 | `(nodeData: TreeTableDataItem) => ReactNode` | - |
