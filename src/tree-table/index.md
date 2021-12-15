@@ -55,4 +55,4 @@ export type TreeTableData = TreeTableDataItem[];
 | value | 值，有该值表示为受控模式。 | `ValueType[]` | `-` |
 | onChange | 修改选项时触发 | `(values: ValueType[])=>void` | `-` |
 | halfToChecked | 半勾选转换为勾选状态，会影响 `onChange` 的参数值。 | `boolean` | `false` |
-| lastColumnMerged | 最后一列是否合并 | `boolean` | `false` |
+| lastColumnMerged | 最后一列是否合并展示 | `boolean` | `false` |

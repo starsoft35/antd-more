@@ -266,7 +266,12 @@ const TreeTable: React.FunctionComponent<TreeTableProps> = (props) => {
     columnTitles = [],
     treeData = [],
     lastColumnMerged = false,
-    halfToChecked = false
+    halfToChecked = false,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    value: outValue,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    onChange,
+    ...restProps
   } = props;
   const [checkList, setCheckList] = useControllableValue<ValueType[]>({
     defaultValue: [],
@@ -451,7 +456,9 @@ const TreeTable: React.FunctionComponent<TreeTableProps> = (props) => {
     }));
   }, [checkList, columnTitles, columns, handleChange]);
 
-  return <Table columns={realColumns} dataSource={list} pagination={false} bordered />;
+  return (
+    <Table columns={realColumns} dataSource={list} pagination={false} bordered {...restProps} />
+  );
 };
 
 export default TreeTable;
