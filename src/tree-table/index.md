@@ -30,6 +30,10 @@ nav:
 
 <code src='./demos/multiple.tsx' />
 
+### 异步获取数据
+
+<code src='./demos/async.tsx' />
+
 ## API
 
 ```typescript

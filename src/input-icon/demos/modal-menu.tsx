@@ -76,7 +76,7 @@ const Demo = () => {
   const [currentMenuType, setCurrentMenuType] = React.useState(MenuType.Menu);
   const menuTypeName =
     menuTypeOptions.find((item) => item.value === (form.getFieldValue('menuType') || MenuType.Menu))
-      ?.name || '';
+      ?.label || '';
   const onValuesChange = (_, { menuType }: { menuType: MenuType }) => {
     setCurrentMenuType(menuType);
   };

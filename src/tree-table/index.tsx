@@ -333,7 +333,7 @@ const TreeTable: React.FunctionComponent<TreeTableProps> = (props) => {
       }
 
       const currItem = compactData.find((item) => item.value === value);
-      if (currItem.parent) {
+      if (currItem?.parent) {
         recursion(currItem.parent);
       }
 
