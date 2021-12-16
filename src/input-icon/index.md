@@ -18,6 +18,14 @@ nav:
 
 <code src="./demos/Demo1.tsx" />
 
+### BizForm 中使用
+
+<code src="./demos/bizform-1.tsx" />
+
+### 自定义图标
+
+<code src="./demos/define-icon.tsx" />
+
 ### 菜单配置
 
 <code src="./demos/modal-menu.tsx" />
@@ -31,4 +39,5 @@ nav:
 | iconData | 图标名称和组件的 Map 键值对。<br/>推荐使用内置图标：<br/>`import icons from 'antd-more/es/input-icon/icons';` | `Map<string, React.FC>` | `new Map([])` |
 | showSearch | 显示图标搜索框 | `boolean` | `true` |
 | column | 一行显示图标数量。<br/>如果不能被 24 整除，自动向下取整。 | `number` | `3` |
-| onChange | 图标修改时触发 | `(iconName: string)=>void` | `-` |
+| value | 图标名称 | `string` | - |
+| onChange | 图标修改时触发 | `(iconName: string)=>void` | - |
