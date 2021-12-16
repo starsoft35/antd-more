@@ -16,7 +16,6 @@ components/**/*.css
 .DS_Store
 
 # editor
-/.vscode
 .idea
 
 .umi
