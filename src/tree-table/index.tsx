@@ -8,18 +8,21 @@ import { ValueType, TreeTableDataItem, TreeTableData, TreeTableFieldNames } from
 
 export type { TreeTableDataItem, TreeTableData, TreeTableFieldNames };
 
+function hasLength(childs: any[]) {
+  return Array.isArray(childs) && childs.length > 0;
+}
+
 // 计算树型数据层级
 const flatTree = (data: TreeTableData, fieldName = 'children') => {
   const ret = [];
 
-  // 递归处理
   function recursion(childs: TreeTableData, prevArray: TreeTableData = []) {
     childs.forEach((item) => {
       const newValue = [...prevArray, omit(item, [fieldName]) as any];
-      if (!Array.isArray(item.children) || item.children.length <= 0) {
-        ret.push(newValue);
-      } else {
+      if (hasLength(item.children)) {
         recursion(item.children, newValue);
+      } else {
+        ret.push(newValue);
       }
     });
   }
@@ -45,7 +48,7 @@ const compactTree = (data: TreeTableData) => {
           ) || null
       });
 
-      if (Array.isArray(children) && children.length > 0) {
+      if (hasLength(children)) {
         recursion(children, rest);
       }
     });
@@ -120,7 +123,7 @@ function transformTreeToList(data: TreeTableData, lastColumnMerged = false) {
         };
       }
 
-      if (!Array.isArray(item.children) || item.children.length <= 0) {
+      if (!hasLength(item.children)) {
         list.push({
           ...newValue,
           key: `row_${parentValue}_${item.value}`
@@ -204,7 +207,7 @@ function findChildrenByValue(data: TreeTableData, value: ValueType) {
 
       if (item.value === value) {
         child = item.children || [];
-      } else if (Array.isArray(item.children) && item.children.length > 0) {
+      } else if (hasLength(item.children)) {
         recursion(item.children);
       }
 
@@ -223,7 +226,7 @@ function getChildrenValue(data: TreeTableData, value: ValueType, deep = false) {
   function recursion(list: TreeTableData) {
     list.forEach((item) => {
       ret.push(omit(item, ['children']) as Omit<TreeTableDataItem, 'children'>);
-      if (Array.isArray(item.children) && item.children.length > 0) {
+      if (hasLength(item.children)) {
         recursion(item.children);
       }
     });
@@ -345,6 +348,7 @@ const TreeTable: React.FunctionComponent<TreeTableProps> = (props) => {
     [compactData, halfToChecked]
   );
 
+  // TODO: 是否可通过模型处理
   const handleChange = React.useCallback(
     (dataItem) => {
       const newIndetermaniteList = new Set(indeterminateListRef.current);
@@ -387,6 +391,7 @@ const TreeTable: React.FunctionComponent<TreeTableProps> = (props) => {
     [checkList, processParentChecked, setCheckList, realTreeData]
   );
 
+  // TODO: 优化计算，通过建模每一层级只关注自身变化
   React.useEffect(() => {
     let cacheChecks = [];
     let cacheIndeterminates = [];
