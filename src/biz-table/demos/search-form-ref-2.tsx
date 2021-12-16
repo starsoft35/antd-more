@@ -105,6 +105,7 @@ const Demo = () => {
   );
 
   // 适用于 初次加载 和 keep-alive激活时 调用
+  // 注意：如果查询表单是日期范围，URL上带的参数为 qs.stringify({dates: [startDate, endDate]})
   const init = () => {
     const search = window.location.search.substr(1);
     const queries = qs.parse(search);
