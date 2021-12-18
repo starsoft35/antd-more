@@ -3,7 +3,7 @@
  * desc: 设置 `autoRequest=false` 仅使用 `BizTable` 的 field 能力。
  */
 import * as React from 'react';
-import { Button, message } from 'antd';
+import { Card, Button, message } from 'antd';
 import { BizTable, BizTableColumnType } from 'antd-more';
 import { useAsync } from 'rc-hooks';
 import Mockjs from 'mockjs';
@@ -145,7 +145,7 @@ const Freight: React.FC<FreightProps> = () => {
   };
 
   return (
-    <div style={{ padding: 24, backgroundColor: '#fff' }}>
+    <Card>
       <BizTable<DataItem>
         autoRequest={false}
         dataSource={data}
@@ -169,7 +169,7 @@ const Freight: React.FC<FreightProps> = () => {
       >
         更新
       </Button>
-    </div>
+    </Card>
   );
 };
 
