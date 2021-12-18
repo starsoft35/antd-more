@@ -9,7 +9,7 @@ export function loadDarkStyle() {
     const oStyle = document.createElement('link');
     oStyle.setAttribute('id', DARK_STYLE_ID);
     oStyle.setAttribute('rel', 'stylesheet');
-    oStyle.setAttribute('href', 'https://unpkg.com/browse/antd@4/dist/antd.dark.css');
+    oStyle.setAttribute('href', 'https://unpkg.com/antd@4/dist/antd.dark.css');
     document.head.appendChild(oStyle);
   }
 }
