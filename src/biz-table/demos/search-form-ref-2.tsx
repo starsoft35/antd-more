@@ -107,7 +107,13 @@ const Demo = () => {
   // 适用于 初次加载 和 keep-alive激活时 调用
   // 注意：如果查询表单是日期范围，URL上带的参数为 qs.stringify({dates: [startDate, endDate]})
   const init = () => {
-    const search = window.location.search.substr(1);
+    // hash路由下通过hash获取search部分
+    const hash = window.location.hash;
+    const search = hash.split('?')[1] || '';
+
+    // 非hash路由通过search获取
+    // const search = window.location.search.substring(1);
+
     const queries = qs.parse(search);
 
     if (search) {
