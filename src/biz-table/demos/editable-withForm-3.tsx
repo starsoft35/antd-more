@@ -1,9 +1,14 @@
 import * as React from 'react';
 import { DeleteOutlined } from '@ant-design/icons';
 import { Popconfirm, Row, Col } from 'antd';
-import { BizForm, BizTable, BizField } from 'antd-more';
+import {
+  BizForm,
+  BizTable,
+  BizField,
+  EditableBizTableActionType,
+  BizTableColumnType
+} from 'antd-more';
 import { formatBankCard } from 'util-helpers';
-import type { EditableBizTableActionType, BizTableColumnType } from 'antd-more';
 import Mock from 'mockjs';
 import { BankOptions, ApproveStatusOptions } from './constants';
 

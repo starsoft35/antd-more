@@ -1,6 +1,5 @@
 import React, { useCallback, useState, useRef } from 'react';
-import { Form, Input, Row, Col, Button } from 'antd';
-import type { FormInstance } from 'antd';
+import { Form, Input, Row, Col, Button, FormInstance } from 'antd';
 import { isMobile } from 'util-helpers';
 import { useAsync } from 'rc-hooks';
 import { CaptchaButton } from 'antd-more';
@@ -31,7 +30,7 @@ const VerificateCodeInput: React.FC<VerificateCodeInputProps> = ({
   mobileField = 'mobile',
   form,
   value,
-  onChange = () => {}
+  onChange
 }) => {
   const inputRef = useRef(null);
   const [start, setStart] = useState(false); // 倒计时按钮状态
@@ -39,7 +38,7 @@ const VerificateCodeInput: React.FC<VerificateCodeInputProps> = ({
   const { run, loading } = useAsync(asyncSendVerificationCode, { autoRun: false });
 
   const triggerChange = (changeValue) => {
-    onChange({ ...value, ...changeValue });
+    onChange?.({ ...value, ...changeValue });
   };
 
   const onCodeBlur = () => {

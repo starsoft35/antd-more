@@ -3,11 +3,9 @@
  *      异步获取表单初始值再进行查询
  */
 import * as React from 'react';
-import { BizTable } from 'antd-more';
-import type { BizTableRequest, BizTableColumnType } from 'antd-more';
+import { BizTable, BizTableRequest, BizTableColumnType } from 'antd-more';
 import { getApplyList } from './service';
-import { ApproveStatusOptions } from './constants';
-import type { ApproveStatus } from './constants';
+import { ApproveStatusOptions, ApproveStatus } from './constants';
 
 function getAsyncInitialValues(): Promise<{
   applyCode: string;

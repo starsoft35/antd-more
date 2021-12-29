@@ -1,7 +1,11 @@
 import * as React from 'react';
 import { Space } from 'antd';
-import { BizTable } from 'antd-more';
-import type { BizTableRequest, BizTableColumnType, EditableBizTableActionType } from 'antd-more';
+import {
+  BizTable,
+  BizTableRequest,
+  BizTableColumnType,
+  EditableBizTableActionType
+} from 'antd-more';
 import { getApplyList } from './service';
 
 type DataItem = {

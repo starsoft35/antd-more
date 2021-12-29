@@ -1,12 +1,11 @@
 // 基于 search-form-ref-1.tsx 进行调整，抽象一个初始化方法，自动获取 URL 的 search。适用于 `首次加载` 和 `keep-alive 激活时` 调用。
 
 import * as React from 'react';
-import { BizTable } from 'antd-more';
-import type { BizTableRequest, BizTableColumnType } from 'antd-more';
+import { FormInstance } from 'antd';
+import { BizTable, BizTableRequest, BizTableColumnType } from 'antd-more';
 import qs from 'qs';
 import { divide } from 'util-helpers';
 import { getApplyList } from './service';
-import { FormInstance } from 'antd';
 import { BizTableActionType } from '..';
 
 // 缓存上一次进入页面的search值

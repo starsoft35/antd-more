@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Button, ConfigProvider } from 'antd';
-import { BizTable } from 'antd-more';
-import type { BizTableRequest, BizTableColumnType, BizTableActionType } from 'antd-more';
+import { BizTable, BizTableRequest, BizTableColumnType, BizTableActionType } from 'antd-more';
 import Mock from 'mockjs';
 import UpdateModal from './components/UpdateModal';
 import waitTime from './utils/waitTime';

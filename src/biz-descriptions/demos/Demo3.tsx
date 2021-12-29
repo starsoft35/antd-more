@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { BizDescriptions } from 'antd-more';
-import type { BizDescriptionsColumnItemProps } from 'antd-more';
+import { BizDescriptions, BizDescriptionsColumnItemProps } from 'antd-more';
 
 const data = {
   text1: '',
@@ -37,7 +36,7 @@ const columns: BizDescriptionsColumnItemProps<typeof data>[] = [
 
 const Demo = () => {
   return (
-    <BizDescriptions dataSource={data} columns={columns}>
+    <BizDescriptions<typeof data> dataSource={data} columns={columns}>
       <BizDescriptions.Item label="Label1" valueType="text">
         {}
       </BizDescriptions.Item>

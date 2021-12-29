@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Row, Col, Space, Button } from 'antd';
-import { BizForm, BizTable } from 'antd-more';
-import type { EditableBizTableActionType, BizTableColumnType } from 'antd-more';
+import { BizForm, BizTable, EditableBizTableActionType, BizTableColumnType } from 'antd-more';
 import Mock from 'mockjs';
 import { BankOptions } from './constants';
 

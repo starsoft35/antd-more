@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { BizDescriptions } from 'antd-more';
-import type { BizDescriptionsColumnItemProps } from 'antd-more';
+import { BizDescriptions, BizDescriptionsColumnItemProps } from 'antd-more';
 import { ApproveStatusOptions } from './constants';
 
 const data = {

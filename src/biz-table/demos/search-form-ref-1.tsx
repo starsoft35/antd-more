@@ -1,9 +1,8 @@
 import * as React from 'react';
-import { BizTable } from 'antd-more';
-import type { BizTableRequest, BizTableColumnType } from 'antd-more';
+import { FormInstance } from 'antd';
+import { BizTable, BizTableRequest, BizTableColumnType } from 'antd-more';
 import { divide } from 'util-helpers';
 import { getApplyList } from './service';
-import { FormInstance } from 'antd';
 import { BizTableActionType } from '..';
 
 type DataItem = {

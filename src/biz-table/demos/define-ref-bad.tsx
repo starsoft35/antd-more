@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { BizTable } from 'antd-more';
-import type {
+import {
+  BizTable,
   BizTableActionType,
   BizTableProps,
   BizTableRequest,
@@ -9,7 +9,6 @@ import type {
 
 const mockData = [{ name: '' }, { name: '张三' }, { name: '李四' }];
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const request: BizTableRequest = (params) => {
   // const { current, pageSize, ...restParams } = params;
   return new Promise((resolve) => {
@@ -20,13 +19,11 @@ const request: BizTableRequest = (params) => {
 
 // 外部封装的BizTable 含 ref ，不推荐
 export interface DefineTableProps extends BizTableProps {
-  ref?:
-    | React.MutableRefObject<BizTableActionType | undefined>
-    | ((actionRef: BizTableActionType) => void);
+  ref?: React.MutableRefObject<BizTableActionType> | ((actionRef: BizTableActionType) => void);
 }
 
 const DefineTable: React.FC<DefineTableProps> = React.forwardRef((props, ref) => {
-  const innerActionRef = React.useRef<BizTableActionType | undefined>();
+  const innerActionRef = React.useRef<BizTableActionType>();
 
   React.useImperativeHandle(ref, () => innerActionRef.current);
 
@@ -63,7 +60,7 @@ const DefineTable: React.FC<DefineTableProps> = React.forwardRef((props, ref) =>
 
 // 页面
 const Demo = () => {
-  const actionRef = React.useRef<BizTableActionType | undefined>();
+  const actionRef = React.useRef<BizTableActionType>();
 
   // 额外的ref使用，不推荐
   // React.useEffect(() => {

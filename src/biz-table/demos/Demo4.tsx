@@ -1,10 +1,8 @@
 import * as React from 'react';
 import { Slider } from 'antd';
-import { BizTable, BizForm } from 'antd-more';
-import type { BizTableRequest, BizTableColumnType } from 'antd-more';
+import { BizTable, BizForm, BizTableRequest, BizTableColumnType } from 'antd-more';
 import { getApplyList } from './service';
-import { ApproveStatusOptions } from './constants';
-import type { ApproveStatus } from './constants';
+import { ApproveStatusOptions, ApproveStatus } from './constants';
 
 type DataItem = {
   applyCode: string;

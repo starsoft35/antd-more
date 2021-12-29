@@ -1,6 +1,7 @@
 // 周期
+// 1-日 2-月 3-季
 export enum Cycle {
-  Day,
+  Day = 1,
   Month,
   Quarter
 }
@@ -22,8 +23,9 @@ export const CycleOptions = [
 ];
 
 // 返佣周期
+// 1-日 2-月
 export enum RakebackeCycle {
-  Day,
+  Day = 1,
   Month
 }
 

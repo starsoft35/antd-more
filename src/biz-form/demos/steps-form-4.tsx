@@ -7,8 +7,7 @@ import * as React from 'react';
 import { Card, Result, Space, Button, Popconfirm } from 'antd';
 import { PayCircleOutlined } from '@ant-design/icons';
 import { BasicLayout, FooterToolbar, PageContainer } from '@ant-design/pro-layout';
-import { BizForm } from 'antd-more';
-import type { StepsFormActionType } from 'antd-more';
+import { BizForm, StepsFormActionType } from 'antd-more';
 import { BillAccountOptions } from './constants';
 import waitTime from './utils/waitTime';
 

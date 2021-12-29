@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Button, Space } from 'antd';
-import { BizTable, BizForm } from 'antd-more';
-import type { EditableBizTableActionType, BizTableColumnType } from 'antd-more';
+import { BizTable, BizForm, EditableBizTableActionType, BizTableColumnType } from 'antd-more';
 import Mock from 'mockjs';
 import { ApproveStatusOptions } from './constants';
 

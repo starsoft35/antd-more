@@ -16,9 +16,7 @@ const options = [
   }
 ];
 
-interface DemoProps {}
-
-const Demo: React.FC<DemoProps> = () => {
+const Demo = () => {
   return (
     <BizForm>
       <BizForm.ItemInput name="note" label="Note" required />

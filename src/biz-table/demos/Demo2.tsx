@@ -1,11 +1,8 @@
 import * as React from 'react';
-import { Button, Card, Space } from 'antd';
-import type { FormInstance } from 'antd';
-import { BizTable } from 'antd-more';
-import type { BizTableActionType, BizTableRequest, BizTableColumnType } from 'antd-more';
+import { Button, Card, Space, message, FormInstance } from 'antd';
+import { BizTable, BizTableActionType, BizTableRequest, BizTableColumnType } from 'antd-more';
 import { getApplyList } from './service';
-import { ApproveStatusOptions } from './constants';
-import type { ApproveStatus } from './constants';
+import { ApproveStatusOptions, ApproveStatus } from './constants';
 
 type DataItem = {
   applyCode: string;
@@ -61,8 +58,8 @@ const columns: BizTableColumnType<DataItem> = [
 ];
 
 const Demo = () => {
-  const formRef = React.useRef<FormInstance | undefined>();
-  const actionRef = React.useRef<BizTableActionType | undefined>();
+  const formRef = React.useRef<FormInstance>();
+  const actionRef = React.useRef<BizTableActionType>();
   const handleRequest: BizTableRequest<DataItem> = React.useCallback(
     (params, filters, sorter, extra) => {
       const { pageSize, current, ...restParams } = params;
@@ -93,21 +90,21 @@ const Demo = () => {
           <Space size="middle">
             <a
               onClick={() => {
-                actionRef.current.reload();
+                actionRef.current?.reload();
               }}
             >
               reload
             </a>
             <a
               onClick={() => {
-                actionRef.current.submit();
+                actionRef.current?.submit();
               }}
             >
               submit
             </a>
             <a
               onClick={() => {
-                actionRef.current.reset();
+                actionRef.current?.reset();
               }}
             >
               reset
@@ -125,30 +122,13 @@ const Demo = () => {
       actionRef={actionRef}
       form={{
         submitter: {
-          render: (submitterProps) => {
-            const { submitButtonProps, resetButtonProps } = submitterProps;
+          render: (_, submitterDom) => {
             return (
               <Space>
-                <Button
-                  key="search"
-                  type="primary"
-                  onClick={() => {
-                    actionRef.current.submit();
-                  }}
-                  {...submitButtonProps}
-                >
-                  查询
+                {submitterDom}
+                <Button key="export" onClick={() => message.success('点击导出按钮')}>
+                  导出
                 </Button>
-                <Button
-                  key="reset"
-                  onClick={() => {
-                    actionRef.current.reset();
-                  }}
-                  {...resetButtonProps}
-                >
-                  重置
-                </Button>
-                <Button key="export">导出</Button>
               </Space>
             );
           }
@@ -157,7 +137,9 @@ const Demo = () => {
       }}
       toolbar={
         <Space>
-          <Button type="primary">新增</Button>
+          <Button type="primary" onClick={() => message.success('点击新增按钮')}>
+            新增
+          </Button>
           <Button
             onClick={() => {
               formRef.current.setFieldsValue({ applyCode: '12345' });

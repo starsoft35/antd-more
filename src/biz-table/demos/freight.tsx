@@ -83,9 +83,7 @@ function reducer(state, action) {
   }
 }
 
-export interface FreightProps {}
-
-const Freight: React.FC<FreightProps> = () => {
+const Freight = () => {
   const [state, dispatch] = React.useReducer(reducer, []);
 
   const columns: BizTableColumnType = [

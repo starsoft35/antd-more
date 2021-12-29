@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { BizForm, BizTable } from 'antd-more';
-import type { BizTableRequest, BizTableColumnType } from 'antd-more';
+import { BizForm, BizTable, BizTableRequest, BizTableColumnType } from 'antd-more';
 import { getApplyList } from './service';
 
 const columns: BizTableColumnType = [
