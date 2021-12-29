@@ -70,8 +70,8 @@ const { Item } = BizForm;
 type CascaderValue = string[] | number[];
 
 interface Option {
-  value: string | number;
-  label: ReactNode;
+  value?: string | number;
+  label?: ReactNode;
   disabled?: boolean;
   children?: Option[];
 }
@@ -83,7 +83,7 @@ interface Option {
 | --- | --- | --- | --- |
 | names | 级联选项和输入框的字段名 | `[NamePath, NamePath]` | - |
 | labels | 级联选项和输入框的标签名，仅用于提示 | `[string, string]` | - |
-| options | 级联选项数据 | `Option[]` | - |
+| options | 级联选项数据，同 antd 的 [Cascader API 的 options](https://ant-design.gitee.io/components/cascader-cn/#API) | `Option[]` | - |
 | formItemProps | 级联选项和输入框的 Item 属性。如果要修改宽度，可以分别传入 `colProps` 进行设置。 | `[BizFormItemProps, BizFormItemProps]` | `[]` |
 | inputProps | 输入框的属性 | [InputProps](https://ant-design.gitee.io/components/input-cn/#API) | - |
 | cascaderProps | 级联选项的属性 | [CascaderProps](https://ant-design.gitee.io/components/cascader-cn/#API) | - |
@@ -406,7 +406,7 @@ interface Option {
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| options | 配置可选项 | `{label, value}[]` | `[]` |
+| options | 配置可选项，同 antd 的 [Select API 的 options](https://ant-design.gitee.io/components/select-cn/#API) | `{label, value}[]` | `[]` |
 | all | 是否显示全部 | `boolean` | `false` |
 | allValue | 全部的值 | `string` | `""` |
 | allLabel | 全部的名称 | `string` | `全部` |
