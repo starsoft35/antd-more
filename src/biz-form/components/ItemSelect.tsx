@@ -1,10 +1,8 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import * as React from 'react';
 import { Select } from 'antd';
-import type { SelectProps, OptionCoreData, OptionGroupData } from './antd.interface';
+import type { SelectProps } from './antd.interface';
 import useFilterOptions from '../_util/useFilterOptions';
-import BizFormItem from './Item';
-import type { BizFormItemProps } from './Item';
+import BizFormItem, { BizFormItemProps } from './Item';
 import getLabel from '../_util/getLabel';
 
 export interface FormItemSelectProps extends BizFormItemProps {

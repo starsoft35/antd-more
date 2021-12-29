@@ -1,5 +1,4 @@
-import moment from 'moment';
-import type { Moment } from 'moment';
+import moment, { Moment } from 'moment';
 
 // DatePicker picker值
 export type Picker = 'time' | 'date' | 'week' | 'month' | 'quarter' | 'year';

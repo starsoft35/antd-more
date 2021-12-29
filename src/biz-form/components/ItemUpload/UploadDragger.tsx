@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { InboxOutlined } from '@ant-design/icons';
-import UploadWrapper from './UploadWrapper';
-import type { UploadWrapperProps } from './UploadWrapper';
+import UploadWrapper, { UploadWrapperProps } from './UploadWrapper';
 
 const defaultShowUploadList = {
   showPreviewIcon: false

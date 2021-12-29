@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { Button } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
-import UploadWrapper from './UploadWrapper';
-import type { UploadWrapperProps } from './UploadWrapper';
+import UploadWrapper, { UploadWrapperProps } from './UploadWrapper';
 
 const defaultShowUploadList = {
   showPreviewIcon: false

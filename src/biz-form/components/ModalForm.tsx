@@ -3,8 +3,7 @@ import { Modal, Form } from 'antd';
 import { useUpdateEffect } from 'rc-hooks';
 import { isPromiseLike } from 'util-helpers';
 import type { ModalProps } from './antd.interface';
-import BaseForm from './BaseForm';
-import type { BaseFormProps } from './BaseForm';
+import BaseForm, { BaseFormProps } from './BaseForm';
 
 export interface ModalFormProps extends Omit<BaseFormProps, 'title'> {
   title?: React.ReactNode;
@@ -21,7 +20,7 @@ const ModalForm: React.FC<ModalFormProps> = ({
   trigger,
   modalProps,
   visible: outVisible,
-  onVisibleChange = () => {},
+  onVisibleChange,
   children,
   submitter,
   onFinish,

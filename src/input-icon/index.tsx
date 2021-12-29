@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { Input } from 'antd';
-import type { InputProps } from 'antd/lib/input';
+import { Input, InputProps } from 'antd';
 import { useControllableValue } from 'rc-hooks';
 import classnames from 'classnames';
 import type { IconProp } from './icons';

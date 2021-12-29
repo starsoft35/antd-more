@@ -1,8 +1,6 @@
 import * as React from 'react';
-import { Card } from 'antd';
-import type { CardProps, FormInstance } from 'antd';
-import BizForm, { QueryForm } from '../biz-form';
-import type { QueryFormProps } from '../biz-form';
+import { Card, CardProps, FormInstance } from 'antd';
+import BizForm, { QueryForm, QueryFormProps } from '../biz-form';
 import createFormItems from './_util/createFormItems';
 import createUniqueId from './_util/createUniqueId';
 import type { SearchProps } from './interface';
@@ -11,7 +9,7 @@ export declare interface SearchFormProps extends QueryFormProps {
   formItems?: Exclude<React.ReactNode, string | number | boolean | null | undefined>[];
   searchItems?: SearchProps[];
   cardProps?: CardProps;
-  ref?: React.MutableRefObject<FormInstance | undefined> | ((instance: FormInstance<any>) => void);
+  ref?: React.MutableRefObject<FormInstance> | ((instance: FormInstance<any>) => void);
 }
 
 const SearchForm: React.FC<SearchFormProps> = React.forwardRef(

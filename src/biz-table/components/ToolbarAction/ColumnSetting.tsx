@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { Tooltip, Popover, Tree, Checkbox } from 'antd';
-import type { TableColumnType } from 'antd';
+import { Tooltip, Popover, Tree, Checkbox, TableColumnType } from 'antd';
 import { SettingOutlined } from '@ant-design/icons';
 import TableContext from '../../TableContext';
 

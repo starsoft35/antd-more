@@ -2,8 +2,7 @@ import * as React from 'react';
 import { Radio } from 'antd';
 import type { CheckboxOptionType, RadioGroupProps } from './antd.interface';
 import useFilterOptions from '../_util/useFilterOptions';
-import BizFormItem from './Item';
-import type { BizFormItemProps } from './Item';
+import BizFormItem, { BizFormItemProps } from './Item';
 import getLabel from '../_util/getLabel';
 
 export interface FormItemRadioProps extends BizFormItemProps {

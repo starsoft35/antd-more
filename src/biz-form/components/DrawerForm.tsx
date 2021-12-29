@@ -3,8 +3,7 @@ import { Drawer, Form } from 'antd';
 import { useUpdateEffect } from 'rc-hooks';
 import { isPromiseLike } from 'util-helpers';
 import type { DrawerProps } from './antd.interface';
-import BaseForm from './BaseForm';
-import type { BaseFormProps } from './BaseForm';
+import BaseForm, { BaseFormProps } from './BaseForm';
 
 export interface DrawerFormProps extends Omit<BaseFormProps, 'title'> {
   title?: React.ReactNode;
@@ -21,7 +20,7 @@ const DrawerForm: React.FC<DrawerFormProps> = ({
   trigger,
   drawerProps,
   visible: outVisible,
-  onVisibleChange = () => {},
+  onVisibleChange,
   children,
   submitter,
   onFinish,

@@ -1,17 +1,16 @@
 import * as React from 'react';
 import { Form, Row, Col, Space } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
-import BaseForm from './BaseForm';
-import type { BaseFormProps } from './BaseForm';
+import BaseForm, { BaseFormProps } from './BaseForm';
 
 export interface CollapseProps {
   collapsed: boolean;
   onToggle?: (collapsed: boolean) => void;
 }
 
-const Collapse: React.FC<CollapseProps> = React.memo(({ collapsed, onToggle = () => {} }) => {
+const Collapse: React.FC<CollapseProps> = React.memo(({ collapsed, onToggle }) => {
   const handleToggle = () => {
-    onToggle(!collapsed);
+    onToggle?.(!collapsed);
   };
   return (
     <a onClick={handleToggle}>

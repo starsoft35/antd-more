@@ -1,11 +1,9 @@
 import * as React from 'react';
 import { useUpdateEffect } from 'rc-hooks';
-import BizForm from '../../biz-form';
-import type { BizFormProps } from '../../biz-form';
+import BizForm, { BizFormProps } from '../../biz-form';
 import { transformFormValues } from '../../biz-form/_util/transform';
 import ChildFormContext from '../../biz-form/ChildFormContext';
-import BizTable from '../BizTable';
-import type { BizTableProps } from '../BizTable';
+import BizTable, { BizTableProps } from '../BizTable';
 import createUniqueId from '../_util/createUniqueId';
 import getRowKey from '../_util/getRowKey';
 
@@ -51,7 +49,7 @@ export interface EditableBizTableEditable<RecordType = any> {
   onDelete?: (rowKey: Key, record: RecordType, isNewRecord: boolean) => Promise<any>;
   editableKeys?: Key[];
   onChange?: (editableKeys: Key[], editableRow: Partial<RecordType>) => void;
-  editableActionRef?: React.MutableRefObject<EditableBizTableActionType<RecordType> | undefined>;
+  editableActionRef?: React.MutableRefObject<EditableBizTableActionType<RecordType>>;
   formProps?: Omit<
     BizFormProps,
     'form' | 'name' | 'onValuesChange' | 'transformRecordActionRef' | 'component'

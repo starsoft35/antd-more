@@ -8,11 +8,10 @@ import {
   DateUnit,
   createDisabledDate,
   transformMomentValue,
-  getDateFormat
+  getDateFormat,
+  Picker
 } from '../_util/dateUtil';
-import type { Picker } from '../_util/dateUtil';
-import BizFormItem from './Item';
-import type { BizFormItemProps } from './Item';
+import BizFormItem, { BizFormItemProps } from './Item';
 import { transformDate, invalidDateRangeNameValue } from '../_util/transform';
 import getLabel from '../_util/getLabel';
 

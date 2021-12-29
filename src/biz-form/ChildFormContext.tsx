@@ -8,4 +8,4 @@ type ChildFormContextType = {
   unregChildForm: (name: string) => void;
 };
 
-export default React.createContext<ChildFormContextType | undefined>(undefined);
+export default React.createContext<ChildFormContextType>(undefined);

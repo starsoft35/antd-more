@@ -1,7 +1,6 @@
 import React from 'react';
 import { CompactPicker } from 'react-color';
-import PickerWrapper from './PickerWrapper';
-import type { PickerCommonProps } from './PickerWrapper';
+import PickerWrapper, { PickerCommonProps } from './PickerWrapper';
 
 export interface CompactPickerProps extends PickerCommonProps {
   colors?: string[];

@@ -3,8 +3,7 @@ import { Table, Card, Space, ConfigProvider } from 'antd';
 import type { TableProps, SpaceProps, CardProps, FormInstance } from 'antd';
 import classnames from 'classnames';
 import { useUpdateEffect } from 'rc-hooks';
-import SearchForm from './SearchForm';
-import type { SearchFormProps } from './SearchForm';
+import SearchForm, { SearchFormProps } from './SearchForm';
 import type { QueryFormProps } from '../biz-form';
 import usePagination from './usePagination';
 import BizField from '../biz-field';
@@ -29,8 +28,8 @@ const prefixCls = 'antd-more-table';
 export declare interface BizTableProps<RecordType = any>
   extends Omit<TableProps<RecordType>, 'columns'>,
     Pick<SearchFormProps, 'formItems'> {
-  formRef?: React.MutableRefObject<FormInstance | undefined>;
-  actionRef?: React.MutableRefObject<BizTableActionType | undefined>;
+  formRef?: React.MutableRefObject<FormInstance>;
+  actionRef?: React.MutableRefObject<BizTableActionType>;
   columns?: BizTableColumnType<RecordType>;
   ready?: boolean;
   autoRequest?: boolean;
@@ -134,8 +133,7 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
   );
 
   const innerFormRef =
-    (formRef as React.MutableRefObject<FormInstance | undefined>) ||
-    React.useRef<FormInstance | undefined>(); // eslint-disable-line react-hooks/rules-of-hooks
+    (formRef as React.MutableRefObject<FormInstance>) || React.useRef<FormInstance>(); // eslint-disable-line react-hooks/rules-of-hooks
 
   const { searchItems, columns: currentColumns } = React.useMemo(() => {
     const ret = {

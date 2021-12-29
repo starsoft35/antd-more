@@ -1,7 +1,6 @@
 import React from 'react';
 import { ChromePicker } from 'react-color';
-import PickerWrapper from './PickerWrapper';
-import type { PickerCommonProps } from './PickerWrapper';
+import PickerWrapper, { PickerCommonProps } from './PickerWrapper';
 
 export interface ChromePickerProps extends PickerCommonProps {
   renderers?: {

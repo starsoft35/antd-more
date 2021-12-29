@@ -45,7 +45,7 @@ type ValueType = string | number;
 
 export type TreeTableDataItem = {
   label?: React.ReactNode;
-  value: ValueType;
+  value?: ValueType;
   disabled?: boolean;
   children?: TreeTableDataItem[];
   [key: string]: any;

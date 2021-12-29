@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { InputNumber } from 'antd';
-import BizFormItem from './Item';
-import type { BizFormItemProps } from './Item';
+import BizFormItem, { BizFormItemProps } from './Item';
 import type { InputNumberProps } from './antd.interface';
 import getLabel from '../_util/getLabel';
 

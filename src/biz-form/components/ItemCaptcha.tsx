@@ -1,10 +1,8 @@
 import * as React from 'react';
 import { Input, Divider } from 'antd';
 import type { InputProps } from './antd.interface';
-import CaptchaButton from '../../captcha-button';
-import type { CaptchaButtonProps } from '../../captcha-button';
-import BizFormItem from './Item';
-import type { BizFormItemProps } from './Item';
+import CaptchaButton, { CaptchaButtonProps } from '../../captcha-button';
+import BizFormItem, { BizFormItemProps } from './Item';
 import getLabel from '../_util/getLabel';
 
 interface VerificateCodeInputProps extends Record<number | string, any> {
@@ -35,7 +33,7 @@ const checkResult = async (fn) => {
 
 const VerificateCodeInput: React.FC<VerificateCodeInputProps> = ({
   value,
-  onChange = () => {},
+  onChange,
   check = () => true,
   onGetCaptcha = () => true,
   inputProps = {},

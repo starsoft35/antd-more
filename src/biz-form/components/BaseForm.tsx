@@ -7,11 +7,9 @@ import { useUpdateEffect, useUnmountedRef } from 'rc-hooks';
 import type { FormProps, FormInstance } from './antd.interface';
 import { transformFormValues } from '../_util/transform';
 import getNamePaths from '../_util/getNamePaths';
-import FieldContext from '../FieldContext';
-import type { TransformFn } from '../FieldContext';
+import FieldContext, { TransformFn } from '../FieldContext';
 import ChildFormContext from '../ChildFormContext';
-import Submitter from './Submitter';
-import type { SubmitterProps } from './Submitter';
+import Submitter, { SubmitterProps } from './Submitter';
 
 import '../index.less';
 
@@ -24,11 +22,11 @@ export type TransformRecordActionType = {
 export interface BaseFormProps extends Omit<FormProps, 'onFinish'> {
   contentRender?: (
     items: React.ReactNode[],
-    submitter: React.ReactElement<Omit<SubmitterProps, 'form'>> | undefined
+    submitter?: React.ReactElement<Omit<SubmitterProps, 'form'>>
   ) => React.ReactNode;
   formRender?: (
     formDom: React.ReactElement,
-    submitter: React.ReactElement<Omit<SubmitterProps, 'form'>> | undefined
+    submitter?: React.ReactElement<Omit<SubmitterProps, 'form'>>
   ) => React.ReactElement | undefined;
   ready?: boolean; // false 时，禁止触发 submit 。 true 时，会对表单初始值重新赋值。
   loading?: boolean;

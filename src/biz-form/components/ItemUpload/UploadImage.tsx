@@ -1,6 +1,5 @@
 import * as React from 'react';
-import UploadWrapper from './UploadWrapper';
-import type { UploadWrapperProps } from './UploadWrapper';
+import UploadWrapper, { UploadWrapperProps } from './UploadWrapper';
 import UploadImageButton from './UploadImageButton';
 
 const UploadImage: React.FC<UploadWrapperProps> = ({

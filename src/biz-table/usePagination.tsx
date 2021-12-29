@@ -1,6 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
-import { useAsync } from 'rc-hooks';
-import type { AsyncBaseOptions, AsyncFunction } from 'rc-hooks';
+import { useAsync, AsyncBaseOptions, AsyncFunction } from 'rc-hooks';
 import actionCache from './_util/actionCache';
 import type { RequestFilters, RequestSorter, RequestExtra, AsyncFnReturn } from './interface';
 

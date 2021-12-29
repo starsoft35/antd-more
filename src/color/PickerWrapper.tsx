@@ -1,9 +1,7 @@
 import React, { useCallback, useState, cloneElement } from 'react';
-import { Popover } from 'antd';
-import type { PopoverProps, TooltipProps } from 'antd';
+import { Popover, PopoverProps, TooltipProps } from 'antd';
 import classNames from 'classnames';
-import { transformColor } from './utils';
-import type { ColorObj } from './utils';
+import { transformColor, ColorObj } from './utils';
 
 import './index.less';
 

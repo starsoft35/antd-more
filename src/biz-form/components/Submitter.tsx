@@ -3,7 +3,7 @@ import { Button, Space } from 'antd';
 import type { ButtonProps, FormInstance } from './antd.interface';
 import omit from '../../utils/omit';
 
-export interface SubmitterProps<T = {}> {
+export interface SubmitterProps {
   resetText?: React.ReactNode;
   resetButtonProps?: ButtonProps & { preventDefault?: boolean };
   onReset?: (event: React.FormEvent<HTMLFormElement>) => void;
@@ -16,7 +16,7 @@ export interface SubmitterProps<T = {}> {
   form?: FormInstance;
   render?:
     | ((
-        props: SubmitterProps & T,
+        props: SubmitterProps,
         dom: React.ReactElement[]
       ) => React.ReactNode[] | React.ReactNode | false)
     | false;

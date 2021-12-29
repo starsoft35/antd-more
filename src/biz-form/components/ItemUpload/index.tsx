@@ -1,9 +1,8 @@
 import * as React from 'react';
 import type { UploadProps } from '../antd.interface';
-import BizFormItem from '../Item';
+import BizFormItem, { BizFormItemProps } from '../Item';
 import ListFieldContext from '../../ListFieldContext';
 import FieldContext from '../../FieldContext';
-import type { BizFormItemProps } from '../Item';
 import type { UploadWrapperProps } from './UploadWrapper';
 import UploadButton from './UploadButton';
 import UploadImage from './UploadImage';
