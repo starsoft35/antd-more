@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { Button, ButtonProps } from 'antd';
+import type { ButtonProps } from 'antd';
+import { Button } from 'antd';
 import CountDown from 'countdown-pro';
 
 export interface CaptchaButtonProps extends ButtonProps {

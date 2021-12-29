@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { Modal, ModalProps } from 'antd';
+import type { ModalProps } from 'antd';
+import { Modal } from 'antd';
 import { getFileType } from '../../utils/utils';
 import FileViewer from '../FileViewer';
 

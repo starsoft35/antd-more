@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { Image, ImageProps } from 'antd';
+import type { ImageProps } from 'antd';
+import { Image } from 'antd';
 import classNames from 'classnames';
 
 import './Image.less';

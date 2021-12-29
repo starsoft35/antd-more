@@ -1,5 +1,6 @@
 import React, { useCallback, useState, useRef } from 'react';
-import { Form, Input, Row, Col, Button, FormInstance } from 'antd';
+import type { FormInstance } from 'antd';
+import { Form, Input, Row, Col, Button } from 'antd';
 import { isMobile } from 'util-helpers';
 import { useAsync } from 'rc-hooks';
 import { CaptchaButton } from 'antd-more';

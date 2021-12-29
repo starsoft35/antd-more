@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { BizForm, BizFormItemUploadProps } from 'antd-more';
+import type { BizFormItemUploadProps } from 'antd-more';
+import { BizForm } from 'antd-more';
 import './style.less';
 
 const { ItemUpload } = BizForm;

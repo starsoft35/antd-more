@@ -3,7 +3,8 @@ import * as React from 'react';
 import { isPromiseLike } from 'util-helpers';
 import { Form } from 'antd';
 import type { StepProps } from '../antd.interface';
-import BaseForm, { BaseFormProps } from '../BaseForm';
+import type { BaseFormProps } from '../BaseForm';
+import BaseForm from '../BaseForm';
 import StepsFormContext from './StepsFormContext';
 import type { StepsSubmitterProps } from './StepsSubmitter';
 

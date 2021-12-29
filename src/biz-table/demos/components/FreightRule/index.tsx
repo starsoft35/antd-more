@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { Radio, InputNumber, RadioGroupProps } from 'antd';
+import type { RadioGroupProps } from 'antd';
+import { Radio, InputNumber } from 'antd';
 import classnames from 'classnames';
 import styles from './index.less';
 

@@ -6,8 +6,10 @@ import { useUnmountedRef, useUpdate } from 'rc-hooks';
 import type { StepsProps, StepProps } from '../antd.interface';
 import StepsFormContext from './StepsFormContext';
 import type { BaseFormProps } from '../BaseForm';
-import StepForm, { StepFormProps } from './StepForm';
-import StepsSubmitter, { StepsSubmitterProps } from './StepsSubmitter';
+import type { StepFormProps } from './StepForm';
+import StepForm from './StepForm';
+import type { StepsSubmitterProps } from './StepsSubmitter';
+import StepsSubmitter from './StepsSubmitter';
 import SyncMemoryStore from '../../../utils/SyncMemoryStore';
 
 import './index.less';

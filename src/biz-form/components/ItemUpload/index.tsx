@@ -1,6 +1,7 @@
 import * as React from 'react';
 import type { UploadProps } from '../antd.interface';
-import BizFormItem, { BizFormItemProps } from '../Item';
+import type { BizFormItemProps } from '../Item';
+import BizFormItem from '../Item';
 import ListFieldContext from '../../ListFieldContext';
 import FieldContext from '../../FieldContext';
 import type { UploadWrapperProps } from './UploadWrapper';

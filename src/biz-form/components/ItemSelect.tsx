@@ -2,7 +2,8 @@ import * as React from 'react';
 import { Select } from 'antd';
 import type { SelectProps } from './antd.interface';
 import useFilterOptions from '../_util/useFilterOptions';
-import BizFormItem, { BizFormItemProps } from './Item';
+import type { BizFormItemProps } from './Item';
+import BizFormItem from './Item';
 import getLabel from '../_util/getLabel';
 
 export interface FormItemSelectProps extends BizFormItemProps {

@@ -1,5 +1,6 @@
 import * as React from 'react';
-import ItemPassword, { FormItemPasswordProps } from './ItemPassword';
+import type { FormItemPasswordProps } from './ItemPassword';
+import ItemPassword from './ItemPassword';
 
 const ItemInputPassword: React.FC<FormItemPasswordProps> = (props) => {
   return <ItemPassword validated={false} {...props} />;

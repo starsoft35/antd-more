@@ -1,9 +1,11 @@
 import * as React from 'react';
 import { useUpdateEffect } from 'rc-hooks';
-import BizForm, { BizFormProps } from '../../biz-form';
+import type { BizFormProps } from '../../biz-form';
+import BizForm from '../../biz-form';
 import { transformFormValues } from '../../biz-form/_util/transform';
 import ChildFormContext from '../../biz-form/ChildFormContext';
-import BizTable, { BizTableProps } from '../BizTable';
+import type { BizTableProps } from '../BizTable';
+import BizTable from '../BizTable';
 import createUniqueId from '../_util/createUniqueId';
 import getRowKey from '../_util/getRowKey';
 

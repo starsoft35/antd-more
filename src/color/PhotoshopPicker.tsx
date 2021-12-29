@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { PhotoshopPicker } from 'react-color';
-import PickerWrapper, { PickerCommonProps } from './PickerWrapper';
+import type { PickerCommonProps } from './PickerWrapper';
+import PickerWrapper from './PickerWrapper';
 import { transformColor } from './utils';
 
 export interface PhotoshopPickerProps extends PickerCommonProps {

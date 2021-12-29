@@ -7,9 +7,11 @@ import { useUpdateEffect, useUnmountedRef } from 'rc-hooks';
 import type { FormProps, FormInstance } from './antd.interface';
 import { transformFormValues } from '../_util/transform';
 import getNamePaths from '../_util/getNamePaths';
-import FieldContext, { TransformFn } from '../FieldContext';
+import type { TransformFn } from '../FieldContext';
+import FieldContext from '../FieldContext';
 import ChildFormContext from '../ChildFormContext';
-import Submitter, { SubmitterProps } from './Submitter';
+import type { SubmitterProps } from './Submitter';
+import Submitter from './Submitter';
 
 import '../index.less';
 

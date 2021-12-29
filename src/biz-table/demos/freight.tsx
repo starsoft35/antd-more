@@ -4,7 +4,8 @@
  */
 import * as React from 'react';
 import { Card, Button, message } from 'antd';
-import { BizTable, BizTableColumnType } from 'antd-more';
+import type { BizTableColumnType } from 'antd-more';
+import { BizTable } from 'antd-more';
 import { useAsync } from 'rc-hooks';
 import Mockjs from 'mockjs';
 import waitTime from './utils/waitTime';

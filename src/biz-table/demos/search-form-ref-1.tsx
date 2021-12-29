@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { FormInstance } from 'antd';
-import { BizTable, BizTableRequest, BizTableColumnType } from 'antd-more';
+import type { FormInstance } from 'antd';
+import type { BizTableRequest, BizTableColumnType, BizTableActionType } from 'antd-more';
+import { BizTable } from 'antd-more';
 import { divide } from 'util-helpers';
 import { getApplyList } from './service';
-import { BizTableActionType } from '..';
 
 type DataItem = {
   applyCode: string;

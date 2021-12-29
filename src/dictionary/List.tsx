@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
-import { Space, SpaceProps } from 'antd';
+import type { SpaceProps } from 'antd';
+import { Space } from 'antd';
 import Dictionary from './Dictionary';
 import type { DictionaryProps } from './interface';
 

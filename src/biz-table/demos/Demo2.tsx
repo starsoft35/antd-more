@@ -1,8 +1,11 @@
 import * as React from 'react';
-import { Button, Card, Space, message, FormInstance } from 'antd';
-import { BizTable, BizTableActionType, BizTableRequest, BizTableColumnType } from 'antd-more';
+import type { FormInstance } from 'antd';
+import { Button, Card, Space, message } from 'antd';
+import type { BizTableActionType, BizTableRequest, BizTableColumnType } from 'antd-more';
+import { BizTable } from 'antd-more';
 import { getApplyList } from './service';
-import { ApproveStatusOptions, ApproveStatus } from './constants';
+import type { ApproveStatus } from './constants';
+import { ApproveStatusOptions } from './constants';
 
 type DataItem = {
   applyCode: string;

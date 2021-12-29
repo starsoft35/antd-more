@@ -1,7 +1,8 @@
 import * as React from 'react';
 import type { TooltipProps } from './antd.interface';
 import Color from '../../color';
-import BizFormItem, { BizFormItemProps } from './Item';
+import type { BizFormItemProps } from './Item';
+import BizFormItem from './Item';
 import getLabel from '../_util/getLabel';
 
 export enum ColorPicker {

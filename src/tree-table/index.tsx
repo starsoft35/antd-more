@@ -1,10 +1,11 @@
 import * as React from 'react';
-import { Checkbox, Table, TableProps } from 'antd';
+import type { TableProps } from 'antd';
+import { Checkbox, Table } from 'antd';
 import { useControllableValue, useUpdate } from 'rc-hooks';
 import omit from '../utils/omit';
 import uniqueArray from '../utils/uniqueArray';
 import transformFieldNames from './fieldNames';
-import { ValueType, TreeTableDataItem, TreeTableData, TreeTableFieldNames } from './type';
+import type { ValueType, TreeTableDataItem, TreeTableData, TreeTableFieldNames } from './type';
 
 export type { TreeTableDataItem, TreeTableData, TreeTableFieldNames };
 

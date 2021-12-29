@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Button } from 'antd';
-import { BizTable, EditableBizTableActionType, BizTableColumnType } from 'antd-more';
+import type { EditableBizTableActionType, BizTableColumnType } from 'antd-more';
+import { BizTable } from 'antd-more';
 import Mock from 'mockjs';
 
 const defaultData = Mock.mock({

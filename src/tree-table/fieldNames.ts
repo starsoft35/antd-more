@@ -1,5 +1,5 @@
 import omit from '../utils/omit';
-import { TreeTableDataItem, TreeTableFieldNames } from './type';
+import type { TreeTableDataItem, TreeTableFieldNames } from './type';
 
 function fieldNames(data: any[], options: TreeTableFieldNames = {}) {
   const labelKey = options.label || 'label';

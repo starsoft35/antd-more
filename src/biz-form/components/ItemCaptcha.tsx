@@ -1,8 +1,10 @@
 import * as React from 'react';
 import { Input, Divider } from 'antd';
 import type { InputProps } from './antd.interface';
-import CaptchaButton, { CaptchaButtonProps } from '../../captcha-button';
-import BizFormItem, { BizFormItemProps } from './Item';
+import type { CaptchaButtonProps } from '../../captcha-button';
+import CaptchaButton from '../../captcha-button';
+import type { BizFormItemProps } from './Item';
+import BizFormItem from './Item';
 import getLabel from '../_util/getLabel';
 
 interface VerificateCodeInputProps extends Record<number | string, any> {

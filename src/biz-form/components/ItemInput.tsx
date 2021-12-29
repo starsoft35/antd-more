@@ -9,7 +9,8 @@ import {
 import { transformBankCard } from '../_util/transform';
 import ItemTextArea from './ItemTextArea';
 import ItemInputPassword from './ItemInputPassword';
-import BizFormItem, { BizFormItemProps } from './Item';
+import type { BizFormItemProps } from './Item';
+import BizFormItem from './Item';
 import InputWrapper from './form/InputWrapper';
 import getLabel from '../_util/getLabel';
 import type { InputProps } from './antd.interface';

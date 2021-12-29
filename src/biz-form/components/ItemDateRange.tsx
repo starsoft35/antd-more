@@ -3,15 +3,16 @@ import { DatePicker } from 'antd';
 import classNames from 'classnames';
 import type { Moment } from 'moment';
 import type { RangePickerProps, RangePickerDateProps } from './antd.interface';
+import type { Picker } from '../_util/dateUtil';
 import {
   MomentScale,
   DateUnit,
   createDisabledDate,
   transformMomentValue,
-  getDateFormat,
-  Picker
+  getDateFormat
 } from '../_util/dateUtil';
-import BizFormItem, { BizFormItemProps } from './Item';
+import type { BizFormItemProps } from './Item';
+import BizFormItem from './Item';
 import { transformDate, invalidDateRangeNameValue } from '../_util/transform';
 import getLabel from '../_util/getLabel';
 

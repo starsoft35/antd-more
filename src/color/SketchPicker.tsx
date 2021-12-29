@@ -1,6 +1,7 @@
 import React from 'react';
 import { SketchPicker } from 'react-color';
-import PickerWrapper, { PickerCommonProps } from './PickerWrapper';
+import type { PickerCommonProps } from './PickerWrapper';
+import PickerWrapper from './PickerWrapper';
 
 export type PresetColor = { color: string; title: string } | string;
 

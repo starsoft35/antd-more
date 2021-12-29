@@ -2,7 +2,8 @@ import * as React from 'react';
 import { Input } from 'antd';
 import type { TextAreaProps } from './antd.interface';
 import { normalizeWhiteSpace } from '../_util/normalize';
-import BizFormItem, { BizFormItemProps } from './Item';
+import type { BizFormItemProps } from './Item';
+import BizFormItem from './Item';
 import getLabel from '../_util/getLabel';
 
 export interface FormItemTextAreaProps extends BizFormItemProps {

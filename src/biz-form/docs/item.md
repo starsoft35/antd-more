@@ -66,8 +66,6 @@ const { Item } = BizForm;
 
 <br/>
 
-> 如果要使用 antd 的 fieldNames，请在 `cascaderProps` 中设置 options 和 fieldNames
-
 ```typescript
 type CascaderValue = string[] | number[];
 

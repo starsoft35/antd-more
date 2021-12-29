@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { BizTable, BizTableRequest, BizTableColumnType } from 'antd-more';
+import type { BizTableRequest, BizTableColumnType } from 'antd-more';
+import { BizTable } from 'antd-more';
 import { getApplyList } from './service';
 
 type DataItem = {

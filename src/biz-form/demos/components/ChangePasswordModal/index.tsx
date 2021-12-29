@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { message } from 'antd';
-import { BizForm, ModalFormProps } from 'antd-more';
+import type { ModalFormProps } from 'antd-more';
+import { BizForm } from 'antd-more';
 import waitTime from '../../utils/waitTime';
 
 const { ModalForm, ItemPassword } = BizForm;
