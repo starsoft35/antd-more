@@ -23,30 +23,3 @@ antd-more 是脱胎于所在公司内部业务场景，目前主要应用于国�
 ## 2.2.x 升 2.3.x 说明
 
 无需再用 `babel-plugin-import` 引入，安装后即可使用，支持 Tree-shaking 。
-
-## 调整 splitChunks 策略，减少整体尺寸
-
-> 参考 [调整 splitChunks 策略，减少整体尺寸](https://umijs.org/zh-CN/guide/boost-compile-speed#%E8%B0%83%E6%95%B4-splitchunks-%E7%AD%96%E7%95%A5%EF%BC%8C%E5%87%8F%E5%B0%91%E6%95%B4%E4%BD%93%E5%B0%BA%E5%AF%B8)
-
-```typescript
-chunks: ['vendors', 'umi'],
-chainWebpack: function (config) {
-  config.merge({
-    optimization: {
-      splitChunks: {
-        chunks: 'all',
-        minSize: 30000,
-        minChunks: 3,
-        automaticNameDelimiter: '.',
-        cacheGroups: {
-          vendor: {
-            name: 'vendors',
-            test: /[\\/]node_modules[\\/]/,
-            priority: 10,
-          },
-        },
-      },
-    }
-  });
-}
-```
