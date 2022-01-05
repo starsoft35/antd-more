@@ -41,6 +41,7 @@ const BizFormItem: React.FC<BizFormItemProps> = ({
   contentAfter,
   contentConfig,
   shouldUpdate,
+  trigger = 'onChange',
   ...restProps
 }) => {
   const {
@@ -87,19 +88,30 @@ const BizFormItem: React.FC<BizFormItemProps> = ({
       rules={[...rules, ...extendRules]}
       labelCol={labelColProps}
       shouldUpdate={shouldUpdate}
+      trigger={trigger}
       {...restProps}
     >
       {shouldUpdate ? (
         (...args) => {
           const innerChildren = typeof children === 'function' ? children(...args) : children;
           return (
-            <WrapperFormElement before={contentBefore} after={contentAfter} {...contentConfig}>
+            <WrapperFormElement
+              before={contentBefore}
+              after={contentAfter}
+              trigger={trigger}
+              {...contentConfig}
+            >
               {renderField ? renderField(innerChildren) : innerChildren}
             </WrapperFormElement>
           );
         }
       ) : (
-        <WrapperFormElement before={contentBefore} after={contentAfter} {...contentConfig}>
+        <WrapperFormElement
+          before={contentBefore}
+          after={contentAfter}
+          trigger={trigger}
+          {...contentConfig}
+        >
           {renderField ? renderField(children as React.ReactElement) : children}
         </WrapperFormElement>
       )}
