@@ -165,7 +165,6 @@ interface Option {
 | --- | --- | --- | --- |
 | showText | 显示颜色值文本 | `boolean` | `false` |
 | picker | 颜色选择样式 | `block` `chrome` `compact` `photoshop` `sketch` | `sketch` |
-| trigger | 触发行为 | `hover` `click` | `click` |
 | colorMode | 颜色模式 | `hex` `rgb` | `hex` |
 | placement | 颜色选择浮层位置 | `top` `left` `right` `bottom` `topLeft` `topRight` `bottomLeft` `bottomRight` `leftTop` `leftBottom` `rightTop` `rightBottom` | `bottomLeft` |
 | colorProps | 其他颜色选择器配置，不同 picker 有不同的配置项 | `any` | - |

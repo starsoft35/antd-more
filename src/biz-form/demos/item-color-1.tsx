@@ -14,7 +14,7 @@ const Demo = () => {
     >
       <ItemColor label="颜色" name="color1" showText />
       <ItemColor label="rgb" name="color2" showText colorMode="rgb" />
-      <ItemColor label="hover" name="color3" trigger="hover" showText />
+      <ItemColor label="hover" name="color3" showText colorProps={{ trigger: 'hover' }} />
       <ItemColor label="颜色必选" name="color4" showText required />
       <ItemColor label="block" name="color5" showText picker="block" />
       <ItemColor label="chrome" name="color6" showText picker="chrome" />

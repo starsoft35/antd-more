@@ -16,7 +16,6 @@ export enum ColorPicker {
 export interface FormItemColorProps extends BizFormItemProps {
   showText?: boolean;
   picker?: keyof typeof ColorPicker;
-  trigger?: 'hover' | 'click' | string;
   colorMode?: 'rgb' | 'hex';
   placement?: TooltipProps['placement'];
   colorProps?: any;
@@ -27,7 +26,6 @@ const FormItemColor: React.FC<FormItemColorProps> = ({
 
   picker = 'sketch',
   showText,
-  trigger,
   colorMode,
   placement,
   colorProps,
@@ -54,13 +52,7 @@ const FormItemColor: React.FC<FormItemColorProps> = ({
       ]}
       {...restProps}
     >
-      <Comp
-        showText={showText}
-        trigger={trigger}
-        colorMode={colorMode}
-        placement={placement}
-        {...colorProps}
-      />
+      <Comp showText={showText} colorMode={colorMode} placement={placement} {...colorProps} />
     </BizFormItem>
   );
 };
