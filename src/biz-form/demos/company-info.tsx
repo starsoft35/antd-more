@@ -26,7 +26,7 @@ const CompanyInfo = () => {
         console.log(values);
       }}
       initialValues={{
-        businessRegno: '93410526MA45RDU53U'
+        businessRegno: '91110000JF7YGXPE8R'
       }}
       submitter={{
         submitText: '提交',
@@ -40,7 +40,7 @@ const CompanyInfo = () => {
         // 提交按钮居中
         render: (_, dom) => <div style={{ display: 'flex', justifyContent: 'center' }}>{dom}</div>
       }}
-      labelWidth={120}
+      labelWidth={126}
     >
       <Row>
         <Col {...oneColSpan}>
@@ -48,6 +48,7 @@ const CompanyInfo = () => {
             label="公司名称"
             name="companyName"
             required
+            disabledWhiteSpace
             inputProps={{ placeholder: '请输入公司营业执照上的商户全称' }}
           />
         </Col>
