@@ -32,21 +32,21 @@ const DefineDateRange: React.FC<DefineDateRangeProps> = ({ internalTrigger, ...r
   const endDatePickerRef = React.useRef<any>();
 
   const disabledStartDate = (currentDate: Moment) => {
-    if (state?.date?.[1]) {
+    if (state?.date[1]) {
       return currentDate >= state?.date[1];
     }
     return false;
   };
 
   const disabledEndDate = (currentDate: Moment) => {
-    if (state?.date?.[0]) {
+    if (state?.date[0]) {
       return currentDate <= state?.date[0];
     }
     return false;
   };
 
   const changeStartDate = (date: Moment) => {
-    setState({ ...state, date: [date, state?.date?.[1]] });
+    setState({ ...state, date: [date, state?.date[1]] });
     if (!state?.infinite) {
       setStartDateOpened(false);
       setEndDateOpened(true);
@@ -57,7 +57,7 @@ const DefineDateRange: React.FC<DefineDateRangeProps> = ({ internalTrigger, ...r
   };
 
   const changeEndDate = (date: Moment) => {
-    setState({ ...state, date: [state?.date?.[0], date] });
+    setState({ ...state, date: [state?.date[0], date] });
     if (!state?.date[0]) {
       setStartDateOpened(true);
       setEndDateOpened(false);
@@ -68,7 +68,7 @@ const DefineDateRange: React.FC<DefineDateRangeProps> = ({ internalTrigger, ...r
   };
 
   const changeChecked = (e: CheckboxChangeEvent) => {
-    setState({ date: [state?.date?.[0], undefined], infinite: e.target.checked });
+    setState({ date: [state?.date[0], undefined], infinite: e.target.checked });
     internalTrigger?.();
   };
 
@@ -76,7 +76,7 @@ const DefineDateRange: React.FC<DefineDateRangeProps> = ({ internalTrigger, ...r
     <>
       <DatePicker
         disabledDate={disabledStartDate}
-        value={state?.[0]}
+        value={state?.date[0]}
         onChange={changeStartDate}
         open={startDateOpened}
         onOpenChange={setStartDateOpened}
@@ -84,7 +84,7 @@ const DefineDateRange: React.FC<DefineDateRangeProps> = ({ internalTrigger, ...r
       {' - '}
       <DatePicker
         disabledDate={disabledEndDate}
-        value={state?.[1]}
+        value={state?.date[1]}
         onChange={changeEndDate}
         disabled={state?.infinite}
         open={endDateOpened}
