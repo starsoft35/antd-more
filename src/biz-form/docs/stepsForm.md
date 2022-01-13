@@ -20,6 +20,10 @@ nav:
 
 <code src="../demos/steps-form-1.tsx" />
 
+### 分步表单 - 中间步骤提交
+
+<code src="../demos/steps-form-1.1.tsx" />
+
 ### 分步表单-忘记密码 1
 
 <code src="../demos/steps-form-2.tsx" />
