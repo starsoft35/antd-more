@@ -16,13 +16,14 @@ export function checkFileType(file: File, accept?: string): boolean {
     return true;
   }
 
-  const types = accept.split(/,(?:\s+)?/);
+  const types = accept.toLowerCase().split(/,(?:\s+)?/);
   let ret = false;
   types.some((type) => {
     // .doc .docx .jpg .png
     if (
       file.type === type ||
-      (type.indexOf('.') === 0 && file.name.substr(file.name.length - type.length) === type)
+      (type.indexOf('.') === 0 &&
+        file.name.toLowerCase().substring(file.name.length - type.length) === type)
     ) {
       ret = true;
     }
