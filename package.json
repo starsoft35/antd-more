@@ -22,6 +22,7 @@
     "prettier": "prettier --write **/*",
     "lint-staged": "lint-staged",
     "precommit": "lint-staged",
+    "prepublishOnly": "npm run build",
     "commit": "cz"
   },
   "repository": {
