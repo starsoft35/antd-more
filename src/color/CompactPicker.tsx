@@ -15,6 +15,8 @@ const CompactPickerWrapper: React.FC<CompactPickerProps> = ({
   onChange,
   colorMode,
   placement,
+  changeMethod,
+  size,
   ...restProps
 }) => {
   const wrapperProps = {
@@ -24,7 +26,9 @@ const CompactPickerWrapper: React.FC<CompactPickerProps> = ({
     showText,
     onChange,
     colorMode,
-    placement
+    placement,
+    changeMethod,
+    size
   };
 
   return (

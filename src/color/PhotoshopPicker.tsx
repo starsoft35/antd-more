@@ -16,6 +16,8 @@ const PhotoshopPickerWrapper: React.FC<PhotoshopPickerProps> = ({
   onChange,
   colorMode,
   placement,
+  changeMethod = 'onChangeComplete',
+  size,
   ...restProps
 }) => {
   const wrapperProps = {
@@ -25,7 +27,9 @@ const PhotoshopPickerWrapper: React.FC<PhotoshopPickerProps> = ({
     showText,
     onChange,
     colorMode,
-    placement
+    placement,
+    changeMethod,
+    size
   };
   const [innerColor, setInnerColor] = useState(value);
 

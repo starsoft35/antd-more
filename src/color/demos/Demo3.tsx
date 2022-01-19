@@ -33,7 +33,7 @@ export default () => {
           <Color.BlockPicker showText />
         </Form.Item>
         <Form.Item label="颜色2" name="color2">
-          <Color.SketchPicker colorMode="rgb" placement="topLeft" />
+          <Color.SketchPicker colorMode="rgb" placement="topLeft" size="middle" />
         </Form.Item>
         <Form.Item {...buttonItemLayouts}>
           <Button type="primary" htmlType="submit">

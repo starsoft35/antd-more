@@ -12,6 +12,10 @@ export default () => {
       <Color value="#e60000" />
       <br />
       <Color value="#e60000" showText />
+      <br />
+      <Color value="#e60000" size="middle" />
+      <br />
+      <Color value="#e60000" size="middle" showText />
     </>
   );
 };

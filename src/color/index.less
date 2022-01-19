@@ -33,10 +33,20 @@
   }
 
   &-select {
-    &-active,
-    &:hover {
-      cursor: pointer;
-    }
+    cursor: pointer;
+  }
+
+  &-middle &-outer {
+    padding: 4px;
+  }
+
+  &-middle &-inner {
+    width: 22px;
+    height: 22px;
+  }
+
+  &-middle &-text {
+    font-size: 14px;
   }
 
   &-overlay-normalize {
@@ -53,7 +63,8 @@
 
     .sketch-picker input,
     .compact-picker input {
-      box-sizing: content-box;
+      box-sizing: border-box;
+      width: 100% !important;
     }
 
     .sketch-picker input,

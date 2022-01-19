@@ -23,6 +23,8 @@ export interface PickerCommonProps {
   onChange?: (colorStr: string) => void;
   colorMode?: 'hex' | 'rgb';
   placement?: TooltipProps['placement'];
+  changeMethod?: 'onChange' | 'onChangeComplete';
+  size?: 'small' | 'middle';
 }
 
 export interface PickerWrapperProps extends PickerCommonProps, PopoverProps {
@@ -43,11 +45,13 @@ const PickerWrapper: React.FC<PickerWrapperProps> = ({
   children,
   childrenProps = {},
   photoshop = false,
+  changeMethod = 'onChange',
+  size = 'small',
   ...restProps
 }) => {
   const [visible, setVisible] = useState(false);
 
-  const handleChangeComplete = useCallback(
+  const handleChange = useCallback(
     (color: ColorObj) => {
       onChange?.(transformColor(color, colorMode));
     },
@@ -71,7 +75,7 @@ const PickerWrapper: React.FC<PickerWrapperProps> = ({
     <span className={classNames(className, prefixCls)}>
       <Popover
         content={cloneElement(children, {
-          onChangeComplete: handleChangeComplete,
+          [changeMethod]: handleChange,
           color: value || 'transparent',
           ...childrenProps,
           ...photoshopAction
@@ -85,9 +89,11 @@ const PickerWrapper: React.FC<PickerWrapperProps> = ({
         {...restProps}
       >
         <span
-          className={classNames(`${prefixCls}-outer`, `${prefixCls}-select`, {
-            [`${prefixCls}-active`]: visible
-          })}
+          className={classNames(
+            `${prefixCls}-outer`,
+            `${prefixCls}-select`,
+            `${prefixCls}-${size}`
+          )}
           title={value}
         >
           <span className={`${prefixCls}-inner`} style={value ? { backgroundColor: value } : {}} />

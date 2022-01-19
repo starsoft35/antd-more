@@ -17,6 +17,8 @@ const ChromePickerWrapper: React.FC<ChromePickerProps> = ({
   onChange,
   colorMode,
   placement,
+  changeMethod,
+  size,
   ...restProps
 }) => {
   const wrapperProps = {
@@ -26,7 +28,9 @@ const ChromePickerWrapper: React.FC<ChromePickerProps> = ({
     showText,
     onChange,
     colorMode,
-    placement
+    placement,
+    changeMethod,
+    size
   };
 
   return (

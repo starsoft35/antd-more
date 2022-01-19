@@ -21,6 +21,8 @@ const SketchPickerWrapper: React.FC<SketchPickerProps> = ({
   onChange,
   colorMode,
   placement,
+  changeMethod,
+  size,
   ...restProps
 }) => {
   const wrapperProps = {
@@ -30,7 +32,9 @@ const SketchPickerWrapper: React.FC<SketchPickerProps> = ({
     showText,
     onChange,
     colorMode,
-    placement
+    placement,
+    changeMethod,
+    size
   };
 
   return (
