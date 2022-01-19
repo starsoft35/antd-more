@@ -21,7 +21,6 @@ components/**/*.css
 .umi
 .umi-production
 package-lock.json
-yarn.lock
 .cache
 public
 .rpt2_cache
