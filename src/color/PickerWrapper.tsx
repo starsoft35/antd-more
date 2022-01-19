@@ -72,7 +72,7 @@ const PickerWrapper: React.FC<PickerWrapperProps> = ({
   }
 
   return (
-    <span className={classNames(className, prefixCls)}>
+    <span className={classNames(className, prefixCls, `${prefixCls}-${size}`)}>
       <Popover
         content={cloneElement(children, {
           [changeMethod]: handleChange,
@@ -88,14 +88,7 @@ const PickerWrapper: React.FC<PickerWrapperProps> = ({
         overlayClassName={`${prefixCls}-overlay-normalize`}
         {...restProps}
       >
-        <span
-          className={classNames(
-            `${prefixCls}-outer`,
-            `${prefixCls}-select`,
-            `${prefixCls}-${size}`
-          )}
-          title={value}
-        >
+        <span className={classNames(`${prefixCls}-outer`, `${prefixCls}-select`)} title={value}>
           <span className={`${prefixCls}-inner`} style={value ? { backgroundColor: value } : {}} />
         </span>
       </Popover>
