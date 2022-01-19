@@ -30,7 +30,7 @@ const Color: React.FC<ColorProps> & {
       <span className={`${prefixCls}-outer`} title={value}>
         <span className={`${prefixCls}-inner`} style={{ backgroundColor: value }} />
       </span>
-      {showText && <span className={`${prefixCls}-text`}>{value}</span>}
+      {showText && value && <span className={`${prefixCls}-text`}>{value}</span>}
     </span>
   );
 };

@@ -30,8 +30,9 @@
     &::after {
       position: absolute;
       z-index: 0;
-      background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAADFJREFUOE9jZGBgEGHAD97gk2YcNYBhmIQBgWSAP52AwoAQwJvQRg1gACckQoC2gQgAIF8IscwEtKYAAAAASUVORK5CYII=')
-        left center;
+      background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAADFJREFUOE9jZGBgEGHAD97gk2YcNYBhmIQBgWSAP52AwoAQwJvQRg1gACckQoC2gQgAIF8IscwEtKYAAAAASUVORK5CYII=');
+      background-position: 0 0;
+      background-size: 8px;
       content: '';
       inset: 3px;
     }
@@ -56,6 +57,7 @@
     padding: 4px;
 
     &::after {
+      background-size: 9px;
       inset: 4px;
     }
   }

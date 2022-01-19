@@ -92,7 +92,7 @@ const PickerWrapper: React.FC<PickerWrapperProps> = ({
           <span className={`${prefixCls}-inner`} style={value ? { backgroundColor: value } : {}} />
         </span>
       </Popover>
-      {showText && <span className={`${prefixCls}-text`}>{value}</span>}
+      {showText && value && <span className={`${prefixCls}-text`}>{value}</span>}
     </span>
   );
 };
