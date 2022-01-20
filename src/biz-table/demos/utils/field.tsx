@@ -16,7 +16,7 @@ export const renderDateTime = (dateTimeStr?: string) => {
 export const renderLongOmitted = (str?: string) => {
   if (str && str.length > 10) {
     const before = str.substring(0, 3);
-    const after = str.substring(str.length - 2, str.length);
+    const after = str.substring(str.length - 2);
     return `${before}...${after}`;
   }
   return str;
@@ -26,7 +26,7 @@ export const renderLongOmitted = (str?: string) => {
 // 如果有特殊需求，比如前后加其他字段，可以使用 BizTable 的第二个参数 record
 export const renderMoney = (num?: number | string) => {
   if ((typeof num === 'number' && !isNaN(num)) || (num && typeof num === 'string')) {
-    return `¥${formatMoney(divide(num || 0, 100))}`;
+    return `¥${formatMoney(divide(num, 100))}`;
   }
   return '-';
 };
