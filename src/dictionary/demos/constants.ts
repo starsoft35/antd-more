@@ -47,6 +47,9 @@ export const ApproveStatusOptions = [
     },
     tag: {
       color: 'red'
+    },
+    custom: {
+      color: 'purple'
     }
   }
 ];

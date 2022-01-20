@@ -6,7 +6,7 @@
 import React, { useState, useCallback } from 'react';
 import { Dictionary } from 'antd-more';
 
-const OrgType = [
+const OrgTypeOptions = [
   {
     value: '0',
     label: '小学'
@@ -27,7 +27,7 @@ const OrgType = [
 ];
 
 export default () => {
-  const [value, setValue] = useState(OrgType[0].value);
+  const [value, setValue] = useState(OrgTypeOptions[0].value);
 
   const handleChange = useCallback((e) => {
     setValue(e.target.value);
@@ -35,10 +35,10 @@ export default () => {
 
   return (
     <>
-      <Dictionary.Radio data={OrgType} value={value} onChange={handleChange} />
+      <Dictionary.Radio data={OrgTypeOptions} value={value} onChange={handleChange} />
       <br />
       <br />
-      <Dictionary.Radio data={OrgType} value={value} onChange={handleChange} type="button" />
+      <Dictionary.Radio data={OrgTypeOptions} value={value} onChange={handleChange} type="button" />
     </>
   );
 };

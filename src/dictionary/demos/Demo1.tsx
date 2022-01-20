@@ -6,7 +6,7 @@
 import React from 'react';
 import { Dictionary } from 'antd-more';
 
-const ApproveStatus = [
+const ApproveStatusOptions = [
   {
     value: 1,
     label: '审核中'
@@ -22,5 +22,5 @@ const ApproveStatus = [
 ];
 
 export default () => {
-  return <Dictionary data={ApproveStatus} value={1} />;
+  return <Dictionary data={ApproveStatusOptions} value={1} />;
 };

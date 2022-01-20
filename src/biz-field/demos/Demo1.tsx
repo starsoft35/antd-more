@@ -6,51 +6,7 @@ import React from 'react';
 import 'moment/locale/zh-cn';
 import { Descriptions } from 'antd';
 import { BizField } from 'antd-more';
-
-// 枚举数据
-const ApproveStatus = [
-  {
-    value: 1,
-    label: '审核中',
-    badge: {
-      status: 'processing'
-    },
-    tag: {
-      alias: '待审核',
-      color: 'orange'
-    }
-  },
-  {
-    value: 2,
-    label: '审核通过',
-    text: {
-      style: {
-        color: 'green'
-      }
-    },
-    badge: {
-      status: 'success'
-    },
-    tag: {
-      color: 'green'
-    }
-  },
-  {
-    value: 3,
-    label: '审核不通过',
-    text: {
-      style: {
-        color: 'red'
-      }
-    },
-    badge: {
-      status: 'error'
-    },
-    tag: {
-      color: 'red'
-    }
-  }
-];
+import { ApproveStatusOptions } from './constants';
 
 export default () => {
   return (
@@ -187,22 +143,22 @@ export default () => {
       </Descriptions>
       <Descriptions title="枚举">
         <Descriptions.Item label="文本">
-          <BizField value={1} valueType="enum" valueEnum={ApproveStatus} />
+          <BizField value={1} valueType="enum" valueEnum={ApproveStatusOptions} />
         </Descriptions.Item>
         <Descriptions.Item label="标签">
-          <BizField value={1} valueType="enumTag" valueEnum={ApproveStatus} />
+          <BizField value={1} valueType="enumTag" valueEnum={ApproveStatusOptions} />
         </Descriptions.Item>
         <Descriptions.Item label="徽章">
-          <BizField value={1} valueType="enumBadge" valueEnum={ApproveStatus} />
+          <BizField value={1} valueType="enumBadge" valueEnum={ApproveStatusOptions} />
         </Descriptions.Item>
         <Descriptions.Item label="多个文本">
-          <BizField value={[1, 2]} valueType="enum" valueEnum={ApproveStatus} />
+          <BizField value={[1, 2]} valueType="enum" valueEnum={ApproveStatusOptions} />
         </Descriptions.Item>
         <Descriptions.Item label="多个标签">
-          <BizField value={[1, 2]} valueType="enumTag" valueEnum={ApproveStatus} />
+          <BizField value={[1, 2]} valueType="enumTag" valueEnum={ApproveStatusOptions} />
         </Descriptions.Item>
         <Descriptions.Item label="多个徽章">
-          <BizField value={[1, 2]} valueType="enumBadge" valueEnum={ApproveStatus} />
+          <BizField value={[1, 2]} valueType="enumBadge" valueEnum={ApproveStatusOptions} />
         </Descriptions.Item>
       </Descriptions>
     </>

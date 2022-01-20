@@ -12,89 +12,43 @@
 import React from 'react';
 import { Divider } from 'antd';
 import { Dictionary } from 'antd-more';
-
-const ApproveStatus = [
-  {
-    value: 1,
-    label: '审核中',
-    badge: {
-      status: 'processing'
-    },
-    tag: {
-      alias: '待审核',
-      color: 'orange'
-    }
-  },
-  {
-    value: 2,
-    label: '审核通过',
-    text: {
-      style: {
-        color: 'green'
-      }
-    },
-    badge: {
-      status: 'success'
-    },
-    tag: {
-      color: 'green'
-    }
-  },
-  {
-    value: 3,
-    label: '审核不通过',
-    text: {
-      style: {
-        color: 'red'
-      }
-    },
-    badge: {
-      status: 'error'
-    },
-    tag: {
-      color: 'red'
-    },
-    custom: {
-      color: 'purple'
-    }
-  }
-];
+import { ApproveStatusOptions } from './constants';
 
 export default () => {
   return (
     <>
       <Divider orientation="left">empty or noMatch</Divider>
-      <Dictionary data={ApproveStatus} value={5} />
+      <Dictionary data={ApproveStatusOptions} value={5} />
       <br />
-      <Dictionary data={ApproveStatus} value={5} defaultLabel="noMatch value" />
+      <Dictionary data={ApproveStatusOptions} value={5} defaultLabel="noMatch value" />
       <br />
       <Divider orientation="left">text</Divider>
-      <Dictionary data={ApproveStatus} value={1} />
+      <Dictionary data={ApproveStatusOptions} value={1} />
       <br />
-      <Dictionary data={ApproveStatus} value={2} />
+      <Dictionary data={ApproveStatusOptions} value={2} />
       <br />
-      <Dictionary data={ApproveStatus} value={3} />
+      <Dictionary data={ApproveStatusOptions} value={3} />
       <br />
       <Divider orientation="left">tag</Divider>
-      <Dictionary data={ApproveStatus} value={1} type="tag" />
+      <Dictionary data={ApproveStatusOptions} value={1} type="tag" />
       <br />
-      <Dictionary data={ApproveStatus} value={2} type="tag" />
+      <Dictionary data={ApproveStatusOptions} value={2} type="tag" />
       <br />
-      <Dictionary data={ApproveStatus} value={3} type="tag" />
+      <Dictionary data={ApproveStatusOptions} value={3} type="tag" />
       <br />
       <Divider orientation="left">badge</Divider>
-      <Dictionary data={ApproveStatus} value={1} type="badge" />
+      <Dictionary data={ApproveStatusOptions} value={1} type="badge" />
       <br />
-      <Dictionary data={ApproveStatus} value={2} type="badge" />
+      <Dictionary data={ApproveStatusOptions} value={2} type="badge" />
       <br />
-      <Dictionary data={ApproveStatus} value={3} type="badge" />
+      <Dictionary data={ApproveStatusOptions} value={3} type="badge" />
       <br />
       <Divider orientation="left">自定义</Divider>
-      <Dictionary data={ApproveStatus} value={3} optionName="custom" />
+      <Dictionary data={ApproveStatusOptions} value={3} optionName="custom" />
       <br />
-      <Dictionary data={ApproveStatus} value={3} type="tag" optionName="custom" />
+      <Dictionary data={ApproveStatusOptions} value={3} type="tag" optionName="custom" />
       <br />
-      <Dictionary data={ApproveStatus} value={3} type="badge" optionName="custom" />
+      <Dictionary data={ApproveStatusOptions} value={3} type="badge" optionName="custom" />
     </>
   );
 };

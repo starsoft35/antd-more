@@ -5,7 +5,7 @@
 import React, { useState } from 'react';
 import { Dictionary } from 'antd-more';
 
-const ApproveStatus = [
+const ApproveStatusOptions = [
   {
     value: 1,
     label: '审核中'
@@ -26,7 +26,7 @@ export default () => {
   return (
     <>
       <Dictionary.Select
-        data={ApproveStatus}
+        data={ApproveStatusOptions}
         value={value}
         onChange={setValue}
         all={false}

@@ -6,7 +6,7 @@ import React, { useState, useCallback } from 'react';
 import { Form, Button } from 'antd';
 import { Dictionary } from 'antd-more';
 
-const OrgType = [
+const OrgTypeOptions = [
   {
     value: '0',
     label: '小学'
@@ -35,7 +35,7 @@ const buttonItemLayouts = {
   wrapperCol: { span: 16, offset: 6 }
 };
 
-const initialValues = { school: OrgType[0].value };
+const initialValues = { school: OrgTypeOptions[0].value };
 
 export default () => {
   const [result, setResult] = useState(initialValues);
@@ -47,7 +47,7 @@ export default () => {
     <>
       <Form {...formItemLayouts} initialValues={initialValues} onFinish={onFinish} name="radio_1">
         <Form.Item label="学校" name="school">
-          <Dictionary.Radio data={OrgType} />
+          <Dictionary.Radio data={OrgTypeOptions} />
         </Form.Item>
         <Form.Item {...buttonItemLayouts}>
           <Button type="primary" htmlType="submit">

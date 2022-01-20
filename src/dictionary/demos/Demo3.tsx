@@ -7,7 +7,7 @@ import React, { useState, useCallback } from 'react';
 import { Form, Button } from 'antd';
 import { Dictionary } from 'antd-more';
 
-const ApproveStatus = [
+const ApproveStatusOptions = [
   {
     value: 1,
     label: '审核中'
@@ -43,7 +43,7 @@ export default () => {
     <>
       <Form {...formItemLayouts} initialValues={initialValues} onFinish={onFinish} name="select_1">
         <Form.Item label="审核状态" name="status">
-          <Dictionary.Select data={ApproveStatus} />
+          <Dictionary.Select data={ApproveStatusOptions} />
         </Form.Item>
         <Form.Item {...buttonItemLayouts}>
           <Button type="primary" htmlType="submit">
