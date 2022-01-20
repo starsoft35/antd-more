@@ -26,6 +26,12 @@ nav:
 
 <code src="./demos/Demo2.tsx" background="#f5f5f5" />
 
+### 自定义渲染字段
+
+将 BizField 不支持的展示字段，抽象到 `utils/field.tsx` 文件。如：日期时间换行、金额分转元、base64 图片、超长省略展示
+
+<code src="./demos/define-render.tsx" background="#f5f5f5" />
+
 ### 普通表格
 
 <code src="./demos/Demo3.tsx" background="#f5f5f5" />

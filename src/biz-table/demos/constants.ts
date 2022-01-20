@@ -2,8 +2,8 @@
 // 1-待审核 2-审核通过 3-审核拒绝
 export enum ApproveStatus {
   Processing = 1,
-  Success,
-  Error
+  Approve,
+  Refused
 }
 
 // 审核状态选项
@@ -17,14 +17,14 @@ export const ApproveStatusOptions = [
   },
   {
     label: '审核通过',
-    value: 2,
+    value: ApproveStatus.Approve,
     badge: {
       status: 'success'
     }
   },
   {
     label: '审核拒绝',
-    value: 3,
+    value: ApproveStatus.Refused,
     badge: {
       status: 'error'
     }

@@ -3,17 +3,8 @@ import { Slider } from 'antd';
 import type { BizTableRequest, BizTableColumnType } from 'antd-more';
 import { BizTable, BizForm } from 'antd-more';
 import { getApplyList } from './service';
-import type { ApproveStatus } from './constants';
+import type { DataItem } from './service';
 import { ApproveStatusOptions } from './constants';
-
-type DataItem = {
-  applyCode: string;
-  applicantName: string;
-  approverName: string;
-  createTime: string;
-  approveTime: string;
-  approveResult: ApproveStatus;
-};
 
 const columns: BizTableColumnType<DataItem> = [
   {
@@ -188,26 +179,23 @@ const columns: BizTableColumnType<DataItem> = [
 ];
 
 const Demo = () => {
-  const handleRequest: BizTableRequest<DataItem> = React.useCallback(
-    (params, filters, sorter, extra) => {
-      const { pageSize, current, ...restParams } = params;
-      console.log(params, filters, sorter, extra);
+  const handleRequest: BizTableRequest<DataItem> = (params, filters, sorter, extra) => {
+    const { pageSize, current, ...restParams } = params;
+    console.log(params, filters, sorter, extra);
 
-      return getApplyList({
-        page: {
-          pageSize,
-          pageNum: current
-        },
-        data: restParams
-      }).then((res: any) => {
-        return {
-          total: res.pageInfo.total,
-          ...res
-        };
-      });
-    },
-    []
-  );
+    return getApplyList({
+      page: {
+        pageSize,
+        pageNum: current
+      },
+      data: restParams
+    }).then((res) => {
+      return {
+        total: res.pageInfo.total,
+        data: res.data
+      };
+    });
+  };
 
   return (
     <BizTable<DataItem>

@@ -28,10 +28,10 @@ const Demo = () => {
         pageNum: current
       },
       data: restParams
-    }).then((res: any) => {
+    }).then((res) => {
       return {
         total: res.pageInfo.total,
-        ...res
+        data: res.data
       };
     });
   };

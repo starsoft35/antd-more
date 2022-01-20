@@ -54,7 +54,7 @@ const columns: BizTableColumnType = [
 const Demo = () => {
   const [ready, setReady] = React.useState(false);
   const [initialValues, setInitialValues] = React.useState<any>();
-  const handleRequest: BizTableRequest = React.useCallback((params, filters, sorter, extra) => {
+  const handleRequest: BizTableRequest = (params, filters, sorter, extra) => {
     const { pageSize, current, ...restParams } = params;
     console.log(params, filters, sorter, extra);
 
@@ -64,13 +64,13 @@ const Demo = () => {
         pageNum: current
       },
       data: restParams
-    }).then((res: any) => {
+    }).then((res) => {
       return {
         total: res.pageInfo.total,
-        ...res
+        data: res.data
       };
     });
-  }, []);
+  };
 
   React.useEffect(() => {
     // 异步获取表单初始值

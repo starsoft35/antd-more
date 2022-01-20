@@ -1,10 +1,10 @@
 import * as React from 'react';
-import type { FormInstance } from 'antd';
-import type { BizTableRequest, BizTableColumnType, BizTableActionType } from 'antd-more';
-import { BizTable } from 'antd-more';
-import { divide } from 'util-helpers';
+import type { BizTableRequest, BizTableColumnType } from 'antd-more';
+import { BizTable, BizField } from 'antd-more';
+import { renderMoney, renderDateTime } from './utils/field';
 import { getApplyList } from './service';
 import type { DataItem } from './service';
+import { ApproveStatus, ApproveStatusOptions } from './constants';
 
 const columns: BizTableColumnType<DataItem> = [
   {
@@ -13,25 +13,19 @@ const columns: BizTableColumnType<DataItem> = [
   {
     dataIndex: 'applyCode',
     title: '申请编号',
-    tooltip: '提示文字',
-    search: true
+    tooltip: '提示文字'
   },
   {
     dataIndex: 'money',
     title: '金额',
-    valueType: 'money',
     align: 'right',
-    // 传递给 BizField的参数
-    field: {
-      formatValue: (value) => divide(value, 100), // 分转元
-      prefix: '¥'
-    },
-    order: 2
+    render: renderMoney
   },
   {
     dataIndex: 'createTime',
     title: '提交时间',
     valueType: 'dateTime',
+    render: renderDateTime,
     search: {
       valueType: 'date'
     },
@@ -39,7 +33,8 @@ const columns: BizTableColumnType<DataItem> = [
   },
   {
     dataIndex: 'applicantName',
-    title: '经办员'
+    title: '经办员',
+    search: true
   },
   {
     dataIndex: 'approveTime',
@@ -47,29 +42,41 @@ const columns: BizTableColumnType<DataItem> = [
     tooltip: '提示文字',
     sorter: true,
     valueType: 'dateTime',
-    search: {
-      valueType: 'dateTimeRange',
-      names: ['startTime', 'endTime'],
-      colProps: { lg: 12, md: 24 }
-    },
-    order: 10
+    render: renderDateTime
   },
   {
-    dataIndex: 'approverName',
-    title: '审核员',
-    search: true
+    dataIndex: 'approveResult',
+    title: '审核状态',
+    render: (text, record) => {
+      const view = <BizField valueType="enumBadge" valueEnum={ApproveStatusOptions} value={text} />;
+
+      // 如果审核拒绝，加上失败原因
+      if (text === ApproveStatus.Refused) {
+        return (
+          <>
+            {view}
+            <div style={{ color: 'red' }}>失败原因: {record.applicantName}xxx</div>
+          </>
+        );
+      } else if (text === ApproveStatus.Approve) {
+        // 如果审核通过，加上备注描述
+        return (
+          <>
+            {view}
+            <div>备注描述xxx</div>
+          </>
+        );
+      }
+      return view;
+    }
   }
 ];
 
 const Demo = () => {
-  // 查询表单实例引用
-  const formRef = React.useRef<FormInstance>();
-  // 操作引用
-  const actionRef = React.useRef<BizTableActionType>();
-
   const handleRequest: BizTableRequest<DataItem> = (params, filters, sorter, extra) => {
     const { pageSize, current, ...restParams } = params;
     console.log(params, filters, sorter, extra);
+
     return getApplyList({
       page: {
         pageSize,
@@ -84,28 +91,11 @@ const Demo = () => {
     });
   };
 
-  React.useEffect(() => {
-    // 设置查询表单值
-    formRef.current.setFieldsValue({
-      approverName: '123',
-      createTime: '2021-10-28',
-      approveTime: ['2021-10-28 00:00:00', '2021-10-28 23:59:59']
-    });
-
-    // 手动发起请求
-    actionRef.current.submit();
-  }, []);
-
   return (
     <BizTable<DataItem>
       columns={columns}
       rowKey="applyCode"
       request={handleRequest}
-      toolbarAction
-      // 关闭自动请求
-      autoRequest={false}
-      formRef={formRef}
-      actionRef={actionRef}
       pagination={{ pageSize: 5 }}
     />
   );

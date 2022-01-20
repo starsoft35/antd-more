@@ -8,18 +8,10 @@ import type { BizTableActionType } from 'antd-more';
 import qs from 'qs';
 import { divide } from 'util-helpers';
 import { getApplyList } from './service';
+import type { DataItem } from './service';
 
 // 缓存上一次进入页面的search值
 let prevSearch = '';
-
-type DataItem = {
-  applyCode: string;
-  applicantName: string;
-  approverName: string;
-  createTime: string;
-  approveTime: string;
-  money: number;
-};
 
 const columns: BizTableColumnType<DataItem> = [
   {
@@ -84,25 +76,22 @@ const Demo = () => {
 
   const mountedRef = React.useRef(false);
 
-  const handleRequest: BizTableRequest<DataItem> = React.useCallback(
-    (params, filters, sorter, extra) => {
-      const { pageSize, current, ...restParams } = params;
-      console.log(params, filters, sorter, extra);
-      return getApplyList({
-        page: {
-          pageSize,
-          pageNum: current
-        },
-        data: restParams
-      }).then((res: any) => {
-        return {
-          total: res.pageInfo.total,
-          ...res
-        };
-      });
-    },
-    []
-  );
+  const handleRequest: BizTableRequest<DataItem> = (params, filters, sorter, extra) => {
+    const { pageSize, current, ...restParams } = params;
+    console.log(params, filters, sorter, extra);
+    return getApplyList({
+      page: {
+        pageSize,
+        pageNum: current
+      },
+      data: restParams
+    }).then((res) => {
+      return {
+        total: res.pageInfo.total,
+        data: res.data
+      };
+    });
+  };
 
   // 适用于 初次加载 和 keep-alive激活时 调用
   // 注意：如果查询表单是日期范围，URL上带的参数为 qs.stringify({dates: [startDate, endDate]})

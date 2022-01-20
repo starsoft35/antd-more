@@ -3,15 +3,7 @@ import type { BizTableRequest, BizTableColumnType } from 'antd-more';
 import { BizTable } from 'antd-more';
 import { divide } from 'util-helpers';
 import { getApplyList } from './service';
-
-type DataItem = {
-  applyCode: string;
-  applicantName: string;
-  approverName: string;
-  createTime: string;
-  approveTime: string;
-  money: number;
-};
+import type { DataItem } from './service';
 
 const columns: BizTableColumnType<DataItem> = [
   {
@@ -32,7 +24,7 @@ const columns: BizTableColumnType<DataItem> = [
     field: {
       formatValue: (value) => divide(value, 100), // 分转元
       prefix: '¥'
-    },
+    }
     // 写法二，可关联当前数据配置
     // field: (text, record, index) => {
     //   console.log(text, record, index);
@@ -40,8 +32,7 @@ const columns: BizTableColumnType<DataItem> = [
     //     formatValue: value => divide(value, 100), // 分转元
     //     prefix: `${record.applicantName} `,
     //   }
-    // },
-    order: 2
+    // }
   },
   {
     dataIndex: 'createTime',
@@ -77,26 +68,23 @@ const columns: BizTableColumnType<DataItem> = [
 ];
 
 const Demo = () => {
-  const handleRequest: BizTableRequest<DataItem> = React.useCallback(
-    (params, filters, sorter, extra) => {
-      const { pageSize, current, ...restParams } = params;
-      console.log(params, filters, sorter, extra);
+  const handleRequest: BizTableRequest<DataItem> = (params, filters, sorter, extra) => {
+    const { pageSize, current, ...restParams } = params;
+    console.log(params, filters, sorter, extra);
 
-      return getApplyList({
-        page: {
-          pageSize,
-          pageNum: current
-        },
-        data: restParams
-      }).then((res: any) => {
-        return {
-          total: res.pageInfo.total,
-          ...res
-        };
-      });
-    },
-    []
-  );
+    return getApplyList({
+      page: {
+        pageSize,
+        pageNum: current
+      },
+      data: restParams
+    }).then((res) => {
+      return {
+        total: res.pageInfo.total,
+        data: res.data
+      };
+    });
+  };
 
   return (
     <BizTable<DataItem>

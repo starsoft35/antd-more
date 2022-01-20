@@ -2,8 +2,9 @@ import * as React from 'react';
 import type { BizTableRequest, BizTableColumnType } from 'antd-more';
 import { BizForm, BizTable } from 'antd-more';
 import { getApplyList } from './service';
+import type { DataItem } from './service';
 
-const columns: BizTableColumnType = [
+const columns: BizTableColumnType<DataItem> = [
   {
     dataIndex: 'applyCode',
     title: '申请编号',
@@ -44,7 +45,7 @@ const Demo = () => {
     />
   ];
 
-  const handleRequest: BizTableRequest = React.useCallback((params, filters, sorter, extra) => {
+  const handleRequest: BizTableRequest<DataItem> = (params, filters, sorter, extra) => {
     const { pageSize, current, ...restParams } = params;
     console.log(params, filters, sorter, extra);
 
@@ -54,16 +55,21 @@ const Demo = () => {
         pageNum: current
       },
       data: restParams
-    }).then((res: any) => {
+    }).then((res) => {
       return {
         total: res.pageInfo.total,
-        ...res
+        data: res.data
       };
     });
-  }, []);
+  };
 
   return (
-    <BizTable formItems={formItems} columns={columns} rowKey="applyCode" request={handleRequest} />
+    <BizTable<DataItem>
+      formItems={formItems}
+      columns={columns}
+      rowKey="applyCode"
+      request={handleRequest}
+    />
   );
 };
 
