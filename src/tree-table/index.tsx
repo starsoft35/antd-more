@@ -4,7 +4,6 @@ import { Checkbox, Table } from 'antd';
 import { useControllableValue, useUpdate } from 'rc-hooks';
 import omit from '../utils/omit';
 import uniqueArray from '../utils/uniqueArray';
-import transformFieldNames from './fieldNames';
 import type { ValueType, TreeTableDataItem, TreeTableData, TreeTableFieldNames } from './type';
 
 export type { TreeTableDataItem, TreeTableData, TreeTableFieldNames };
@@ -14,14 +13,14 @@ function hasLength(childs: any[]) {
 }
 
 // 计算树型数据层级
-const flatTree = (data: TreeTableData, fieldName = 'children') => {
+const flatTree = (data: TreeTableData, childrenKey = 'children') => {
   const ret = [];
 
   function recursion(childs: TreeTableData, prevArray: TreeTableData = []) {
     childs.forEach((item) => {
-      const newValue = [...prevArray, omit(item, [fieldName]) as any];
-      if (hasLength(item.children)) {
-        recursion(item.children, newValue);
+      const newValue = [...prevArray, omit(item, [childrenKey]) as any];
+      if (hasLength(item[childrenKey])) {
+        recursion(item[childrenKey], newValue);
       } else {
         ret.push(newValue);
       }
@@ -32,25 +31,26 @@ const flatTree = (data: TreeTableData, fieldName = 'children') => {
   return ret;
 };
 
-const compactTree = (data: TreeTableData) => {
+const compactTree = (data: TreeTableData, fieldNames: TreeTableFieldNames) => {
+  const { value: valueKey, children: childrenKey } = fieldNames;
   const ret: (Omit<TreeTableDataItem, 'children'> & {
-    children: Omit<TreeTableDataItem, 'children'>[];
+    children?: Omit<TreeTableDataItem, 'children'>[];
     parent: ValueType;
   })[] = [];
 
   function recursion(list: TreeTableData, parent: TreeTableDataItem = null) {
-    list.forEach(({ children, ...rest }) => {
+    list.forEach((item) => {
       ret.push({
-        ...rest,
-        parent: parent?.value || null,
-        children:
-          children?.map(
-            (item) => omit(item, ['children']) as Omit<TreeTableDataItem, 'children'>
+        ...item,
+        parent: parent?.[valueKey] || null,
+        [childrenKey]:
+          item?.[childrenKey]?.map(
+            (item) => omit(item, [childrenKey]) as Omit<TreeTableDataItem, 'children'>
           ) || null
       });
 
-      if (hasLength(children)) {
-        recursion(children, rest);
+      if (hasLength(item[childrenKey])) {
+        recursion(item[childrenKey], omit(item, [childrenKey]));
       }
     });
   }
@@ -95,9 +95,15 @@ function processRowSpan(data: object) {
   return cloneData;
 }
 
-function transformTreeToList(data: TreeTableData, lastColumnMerged = false) {
+function transformTreeToList(
+  data: TreeTableData,
+  lastColumnMerged = false,
+  fieldNames: TreeTableFieldNames
+) {
+  const { value: valueKey, children: childrenKey } = fieldNames;
+
   // 先处理一次扁平数据得到最大层级
-  const flatData = flatTree(data);
+  const flatData = flatTree(data, childrenKey);
 
   const lastColumnIndex = Math.max(...flatData.map((item) => item.length - 1));
 
@@ -111,41 +117,41 @@ function transformTreeToList(data: TreeTableData, lastColumnMerged = false) {
       const newValue: any = {
         ...prevData,
         [`col${index}`]: {
-          value: item.value,
+          [valueKey]: item[valueKey],
           parent: parentValue,
-          data: [omit(item, ['children'])]
+          data: [omit(item, [childrenKey])]
         }
       };
 
-      if (!rowSpanCache[item.value]) {
-        rowSpanCache[item.value] = {
-          len: item.children?.length || 1,
+      if (!rowSpanCache[item[valueKey]]) {
+        rowSpanCache[item[valueKey]] = {
+          len: item[childrenKey]?.length || 1,
           parent: parentValue
         };
       }
 
-      if (!hasLength(item.children)) {
+      if (!hasLength(item[childrenKey])) {
         list.push({
           ...newValue,
-          key: `row_${parentValue}_${item.value}`
+          key: `row_${parentValue}_${item[valueKey]}`
         });
-        rowSpanCache[item.value].hasChildren = false;
+        rowSpanCache[item[valueKey]].hasChildren = false;
       } else if (lastColumnMerged && lastColumnIndex - 1 === index) {
-        rowSpanCache[item.value].len = 1;
-        rowSpanCache[item.value].hasChildren = false;
+        rowSpanCache[item[valueKey]].len = 1;
+        rowSpanCache[item[valueKey]].hasChildren = false;
 
         list.push({
           ...newValue,
-          key: `row_${parentValue}_${item.value}`,
+          key: `row_${parentValue}_${item[valueKey]}`,
           [`col${index + 1}`]: {
-            value: item.value,
+            [valueKey]: item[valueKey],
             parent: parentValue,
-            data: item.children
+            data: item[childrenKey]
           }
         });
       } else {
-        rowSpanCache[item.value].hasChildren = true;
-        recursion(item.children, newValue, item.value, index + 1);
+        rowSpanCache[item[valueKey]].hasChildren = true;
+        recursion(item[childrenKey], newValue, item[valueKey], index + 1);
       }
     });
   }
@@ -171,12 +177,12 @@ function transformTreeToList(data: TreeTableData, lastColumnMerged = false) {
     for (let j = 0; j < list.length; j++) {
       if (!list[j][`col${i}`]) {
         list[j][`col${i}`] = {
-          value: null,
+          [valueKey]: null,
           data: [],
           rowSpan: 1
         };
       } else {
-        const currValue = list[j][`col${i}`].value;
+        const currValue = list[j][`col${i}`][valueKey];
         let currRowSpan = 1;
 
         if (!recordRowSpanValues.includes(currValue)) {
@@ -197,7 +203,12 @@ function transformTreeToList(data: TreeTableData, lastColumnMerged = false) {
 }
 
 // 查找当前项的子项
-function findChildrenByValue(data: TreeTableData, value: ValueType) {
+function findChildrenByValue(
+  data: TreeTableData,
+  value: ValueType,
+  fieldNames: TreeTableFieldNames
+) {
+  const { value: valueKey, children: childrenKey } = fieldNames;
   let child: TreeTableData;
 
   function recursion(list: TreeTableData) {
@@ -206,10 +217,10 @@ function findChildrenByValue(data: TreeTableData, value: ValueType) {
         return true;
       }
 
-      if (item.value === value) {
-        child = item.children || [];
-      } else if (hasLength(item.children)) {
-        recursion(item.children);
+      if (item[valueKey] === value) {
+        child = item[childrenKey] || [];
+      } else if (hasLength(item[childrenKey])) {
+        recursion(item[childrenKey]);
       }
 
       return !!child;
@@ -220,15 +231,21 @@ function findChildrenByValue(data: TreeTableData, value: ValueType) {
 }
 
 // 查找子项的value
-function getChildrenValue(data: TreeTableData, value: ValueType, deep = false) {
+function getChildrenValue(
+  data: TreeTableData,
+  value: ValueType,
+  deep = false,
+  fieldNames: TreeTableFieldNames
+) {
+  const { children: childrenKey } = fieldNames;
   const ret: Omit<TreeTableDataItem, 'children'>[] = [];
-  const currChild = findChildrenByValue(data, value);
+  const currChild = findChildrenByValue(data, value, fieldNames);
 
   function recursion(list: TreeTableData) {
     list.forEach((item) => {
-      ret.push(omit(item, ['children']) as Omit<TreeTableDataItem, 'children'>);
-      if (hasLength(item.children)) {
-        recursion(item.children);
+      ret.push(omit(item, [childrenKey]) as Omit<TreeTableDataItem, 'children'>);
+      if (hasLength(item[childrenKey])) {
+        recursion(item[childrenKey]);
       }
     });
   }
@@ -237,7 +254,7 @@ function getChildrenValue(data: TreeTableData, value: ValueType, deep = false) {
     recursion(currChild);
   } else {
     currChild.forEach((item) => {
-      ret.push(omit(item, ['children']) as Omit<TreeTableDataItem, 'children'>);
+      ret.push(omit(item, [childrenKey]) as Omit<TreeTableDataItem, 'children'>);
     });
   }
 
@@ -246,8 +263,8 @@ function getChildrenValue(data: TreeTableData, value: ValueType, deep = false) {
 
 interface TreeTableProps<RecordType = any>
   extends Omit<
-    TableProps<RecordType>,
-    'columns' | 'dataSource' | 'pagination' | 'rowKey' | 'onChange'
+  TableProps<RecordType>,
+  'columns' | 'dataSource' | 'pagination' | 'rowKey' | 'onChange'
   > {
   columnTitles: React.ReactNode[];
   lastColumnMerged?: boolean;
@@ -270,26 +287,37 @@ const TreeTable: React.FunctionComponent<TreeTableProps> = (props) => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     onChange,
     labelRender,
-    fieldNames,
+    fieldNames: outFieldNames,
     ...restProps
   } = props;
   const [checkList, setCheckList] = useControllableValue<ValueType[]>({
     defaultValue: [],
     ...props
   });
+  const fieldNames = React.useMemo(
+    () => ({
+      label: 'label',
+      value: 'value',
+      children: 'children',
+      ...outFieldNames
+    }),
+    [outFieldNames]
+  );
+
+  const { value: valueKey, label: labelKey, children: childrenKey } = fieldNames;
+
   const extraCheckListRef = React.useRef<ValueType[]>([]);
   const indeterminateListRef = React.useRef<ValueType[]>([]);
   const update = useUpdate();
-  const realTreeData = React.useMemo(
-    () => (fieldNames ? transformFieldNames(treeData, fieldNames) : treeData),
-    [treeData, fieldNames]
-  );
   const { columns, list } = React.useMemo(
-    () => transformTreeToList(realTreeData, lastColumnMerged),
-    [lastColumnMerged, realTreeData]
+    () => transformTreeToList(treeData, lastColumnMerged, fieldNames),
+    [lastColumnMerged, treeData, fieldNames]
   );
 
-  const compactData = React.useMemo(() => compactTree(realTreeData), [realTreeData]);
+  const compactData = React.useMemo(
+    () => compactTree(treeData, fieldNames),
+    [treeData, fieldNames]
+  );
 
   const processParentChecked = React.useCallback(
     (value?: ValueType, checks?: ValueType[], indeterminates?: ValueType[]) => {
@@ -298,19 +326,19 @@ const TreeTable: React.FunctionComponent<TreeTableProps> = (props) => {
 
       // 递归处理父级勾选/半勾选
       function recursion(val: ValueType) {
-        const currItem = compactData.find((item) => item.value === val);
+        const currItem = compactData.find((item) => item[valueKey] === val);
         if (currItem) {
           let childHasChecked = false;
           let childHasIndetermanite = false;
           let childAllChecked = true;
 
-          currItem.children?.forEach((item) => {
+          currItem[childrenKey]?.forEach((item) => {
             if (!item.disabled) {
-              if (newChecks.has(item.value)) {
+              if (newChecks.has(item[valueKey])) {
                 childHasChecked = true;
               } else {
                 childAllChecked = false;
-                if (newIndetermanites.has(item.value)) {
+                if (newIndetermanites.has(item[valueKey])) {
                   childHasIndetermanite = true;
                 }
               }
@@ -336,7 +364,7 @@ const TreeTable: React.FunctionComponent<TreeTableProps> = (props) => {
         }
       }
 
-      const currItem = compactData.find((item) => item.value === value);
+      const currItem = compactData.find((item) => item[valueKey] === value);
       if (currItem?.parent) {
         recursion(currItem.parent);
       }
@@ -346,7 +374,7 @@ const TreeTable: React.FunctionComponent<TreeTableProps> = (props) => {
         indeterminates: Array.from(newIndetermanites)
       };
     },
-    [compactData, halfToChecked]
+    [childrenKey, compactData, halfToChecked, valueKey]
   );
 
   // TODO: 是否可通过模型处理
@@ -355,32 +383,32 @@ const TreeTable: React.FunctionComponent<TreeTableProps> = (props) => {
       const newIndetermaniteList = new Set(indeterminateListRef.current);
       const newCheckList = new Set(checkList);
 
-      const childValues = getChildrenValue(realTreeData, dataItem.value, true);
+      const childValues = getChildrenValue(treeData, dataItem[valueKey], true, fieldNames);
 
       // 已选中
-      if (checkList.includes(dataItem.value)) {
+      if (checkList.includes(dataItem[valueKey])) {
         checkList.forEach((item) => {
           if (
-            item === dataItem.value ||
-            childValues.find((childItem) => childItem.value === item)
+            item === dataItem[valueKey] ||
+            childValues.find((childItem) => childItem[valueKey] === item)
           ) {
             newCheckList.delete(item);
           }
         });
       } else {
-        newCheckList.add(dataItem.value);
-        newIndetermaniteList.delete(dataItem.value);
+        newCheckList.add(dataItem[valueKey]);
+        newIndetermaniteList.delete(dataItem[valueKey]);
         childValues.forEach((item) => {
           if (!item.disabled) {
-            newCheckList.add(item.value);
-            newIndetermaniteList.delete(item.value);
+            newCheckList.add(item[valueKey]);
+            newIndetermaniteList.delete(item[valueKey]);
           }
         });
       }
 
       // 处理父级勾选/半勾选
       const { checks, indeterminates } = processParentChecked(
-        dataItem.value,
+        dataItem[valueKey],
         Array.from(newCheckList),
         Array.from(newIndetermaniteList)
       );
@@ -389,7 +417,7 @@ const TreeTable: React.FunctionComponent<TreeTableProps> = (props) => {
       indeterminateListRef.current = indeterminates;
       setCheckList(checks);
     },
-    [checkList, processParentChecked, setCheckList, realTreeData]
+    [checkList, fieldNames, processParentChecked, setCheckList, treeData, valueKey]
   );
 
   // TODO: 优化计算，通过建模每一层级只关注自身变化
@@ -431,36 +459,37 @@ const TreeTable: React.FunctionComponent<TreeTableProps> = (props) => {
     return columns.map((item, i) => ({
       ...item,
       title: columnTitles[i] || '-',
+      // ref: https://github.com/ant-design/ant-design/issues/33093
+      onCell: (record) => {
+        const col = record[item.dataIndex];
+        return {
+          rowSpan: col.rowSpan
+        };
+      },
       render: (_, record) => {
         const col = record[item.dataIndex];
 
-        const obj = {
-          children: col.value
-            ? col.data.map((subItem) => (
-                <Checkbox
-                  checked={
-                    checkList.includes(subItem.value) ||
-                    extraCheckListRef.current.includes(subItem.value)
-                  }
-                  indeterminate={indeterminateListRef.current.includes(subItem.value)}
-                  onChange={() => {
-                    handleChange(subItem);
-                  }}
-                  disabled={subItem.disabled}
-                  key={subItem.value}
-                >
-                  {labelRender ? labelRender(subItem) : subItem.label || subItem.value}
-                </Checkbox>
-              ))
-            : '-',
-          props: {
-            rowSpan: col.rowSpan
-          }
-        };
-        return obj;
+        return col[valueKey]
+          ? col.data.map((subItem) => (
+            <Checkbox
+              checked={
+                checkList.includes(subItem[valueKey]) ||
+                extraCheckListRef.current.includes(subItem[valueKey])
+              }
+              indeterminate={indeterminateListRef.current.includes(subItem[valueKey])}
+              onChange={() => {
+                handleChange(subItem);
+              }}
+              disabled={subItem.disabled}
+              key={subItem[valueKey]}
+            >
+              {labelRender ? labelRender(subItem) : subItem[labelKey] || subItem[valueKey]}
+            </Checkbox>
+          ))
+          : '-';
       }
     }));
-  }, [checkList, columnTitles, columns, handleChange, labelRender]);
+  }, [checkList, columnTitles, columns, handleChange, labelKey, labelRender, valueKey]);
 
   return (
     <Table columns={realColumns} dataSource={list} pagination={false} bordered {...restProps} />

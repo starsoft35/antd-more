@@ -14,5 +14,4 @@ export type TreeTableFieldNames = {
   label?: string;
   value?: string;
   children?: string;
-  [key: string]: any;
 };
