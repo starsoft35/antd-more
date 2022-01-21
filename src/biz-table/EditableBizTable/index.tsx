@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useUpdateEffect } from 'rc-hooks';
 import type { BizFormProps } from '../../biz-form';
+import type { TransformRecordActionType } from '../../biz-form/components/BaseForm';
 import BizForm from '../../biz-form';
 import { transformFormValues } from '../../biz-form/_util/transform';
 import ChildFormContext from '../../biz-form/ChildFormContext';
@@ -51,7 +52,7 @@ export interface EditableBizTableEditable<RecordType = any> {
   onDelete?: (rowKey: Key, record: RecordType, isNewRecord: boolean) => Promise<any>;
   editableKeys?: Key[];
   onChange?: (editableKeys: Key[], editableRow: Partial<RecordType>) => void;
-  editableActionRef?: React.MutableRefObject<EditableBizTableActionType<RecordType>>;
+  editableActionRef?: React.MutableRefObject<EditableBizTableActionType<RecordType> | undefined>;
   formProps?: Omit<
     BizFormProps,
     'form' | 'name' | 'onValuesChange' | 'transformRecordActionRef' | 'component'
@@ -124,10 +125,10 @@ const EditableBizTable = <RecordType extends object = any>({
   }, [value]);
 
   // 转换值
-  const transformRecordActionRef = React.useRef<any>();
+  const transformRecordActionRef = React.useRef<TransformRecordActionType>();
   const handleValuesChange = (val, allValue) => {
     if (typeof onValuesChange === 'function') {
-      const ret = transformFormValues(allValue, transformRecordActionRef?.current?.get());
+      const ret = transformFormValues(allValue, transformRecordActionRef.current?.get());
       onValuesChange(
         Object.keys(ret).map((item) => ({
           ...editableKeyMapRef.current[item]?.record,
@@ -141,7 +142,7 @@ const EditableBizTable = <RecordType extends object = any>({
   const triggerValuesChange = () => {
     if (typeof onValuesChange === 'function') {
       const values = form.getFieldsValue();
-      const ret = transformFormValues(values, transformRecordActionRef?.current?.get());
+      const ret = transformFormValues(values, transformRecordActionRef.current?.get());
       onValuesChange(
         Object.keys(ret).map((item) => ({
           ...editableKeyMapRef.current[item]?.record,
@@ -172,7 +173,7 @@ const EditableBizTable = <RecordType extends object = any>({
         const values = form.getFieldsValue(editableKeyMapRef.current[rowKey]?.nameList);
         const transformValues = transformFormValues(
           values,
-          transformRecordActionRef?.current?.get()
+          transformRecordActionRef.current?.get()
         );
         const retValue = (Object.values(transformValues) as object[])[0];
         return { ...editableKeyMapRef.current[rowKey]?.record, ...retValue };

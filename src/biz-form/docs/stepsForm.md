@@ -61,7 +61,7 @@ const { StepsForm } = BizForm;
 | stepsProps | `StepsForm` 自带的 `Steps` 的 `props`，使用方式与 antd 相同，但是去掉了 `current` 和 `onChange` | [StepsProps](https://ant.design/components/steps-cn/#API) | - |
 | formProps | `StepsForm.StepForm` 的属性，除了没有 `onReset` 和 `submitter` | `BizFormProps` | - |
 | submitter | 上一步、下一步、提交按钮的配置 | `StepsSubmitterProps` | - |
-| actionRef | 常用操作引用，便于自定义触发 | `MutableRefObject<ActionType>` | - |
+| actionRef | 常用操作引用，便于自定义触发 | `MutableRefObject<ActionType \| undefined>` | - |
 | stepsRender | 自定义步骤器 | `(stepsProps: StepsProps,stepsDom: ReactNode)=>ReactNode` | - |
 | stepFormRender | 自定义每个表单 | `(formDom: ReactNode)=>ReactNode` | - |
 | stepsFormRender | 自定义整个表单 | `(stepsDom: ReactNode, formDom: ReactNode, submitterDom: ReactNode)=>ReactNode` | - |

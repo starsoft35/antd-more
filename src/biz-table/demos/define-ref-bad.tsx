@@ -19,7 +19,9 @@ const request: BizTableRequest = (params) => {
 
 // 外部封装的BizTable 含 ref ，不推荐
 export interface DefineTableProps extends BizTableProps {
-  ref?: React.MutableRefObject<BizTableActionType> | ((actionRef: BizTableActionType) => void);
+  ref?:
+    | React.MutableRefObject<BizTableActionType | undefined>
+    | ((actionRef: BizTableActionType) => void);
 }
 
 const DefineTable: React.FC<DefineTableProps> = React.forwardRef((props, ref) => {

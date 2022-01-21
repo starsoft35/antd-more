@@ -39,7 +39,7 @@ export interface BaseFormProps extends Omit<FormProps, 'onFinish'> {
   labelWidth?: number | 'auto';
   hideLabel?: boolean;
   onFinish?: (values) => any;
-  transformRecordActionRef?: React.MutableRefObject<TransformRecordActionType>;
+  transformRecordActionRef?: React.MutableRefObject<TransformRecordActionType | undefined>;
 }
 
 const BaseForm: React.FC<BaseFormProps> = ({

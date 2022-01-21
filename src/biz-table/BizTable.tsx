@@ -29,8 +29,8 @@ const prefixCls = 'antd-more-table';
 export declare interface BizTableProps<RecordType = any>
   extends Omit<TableProps<RecordType>, 'columns'>,
     Pick<SearchFormProps, 'formItems'> {
-  formRef?: React.MutableRefObject<FormInstance>;
-  actionRef?: React.MutableRefObject<BizTableActionType>;
+  formRef?: React.MutableRefObject<FormInstance | undefined>;
+  actionRef?: React.MutableRefObject<BizTableActionType | undefined>;
   columns?: BizTableColumnType<RecordType>;
   ready?: boolean;
   autoRequest?: boolean;

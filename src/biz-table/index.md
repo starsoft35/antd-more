@@ -87,9 +87,9 @@ nav:
 | fullScreenBackgroundColor | 全屏时显示的背景颜色 | `string` | `#ffffff` |
 | extra | 扩展内容，表格外的上面、查询表单下面的区域 | `ReactNode` | - |
 | form | 同 [QueryForm] 配置参数 | [QueryFormProps] | - |
-| formRef | 获取查询表单的 `form` 实例 | `MutableRefObject&lt;FormInstance&gt;` | - |
-| actionRef | 常用操作引用，便于自定义触发 | `MutableRefObject&lt;ActionType&gt;` | - |
-| tableRender | 自定义表格渲染 | `(props: BizTableProps&lt;RecordType&gt;, dom: ReactElement) => ReactNode` | - |
+| formRef | 获取查询表单的 `form` 实例 | `MutableRefObject<FormInstance \| undefined>` | - |
+| actionRef | 常用操作引用，便于自定义触发 | `MutableRefObject<ActionType \| undefined>` | - |
+| tableRender | 自定义表格渲染 | `(props: BizTableProps<RecordType>, dom: ReactElement) => ReactNode` | - |
 
 ### Request 请求方法
 

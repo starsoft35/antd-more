@@ -3,7 +3,7 @@ import { Steps, Form } from 'antd';
 import classNames from 'classnames';
 import { isPromiseLike } from 'util-helpers';
 import { useUnmountedRef, useUpdate } from 'rc-hooks';
-import type { StepsProps, StepProps } from '../antd.interface';
+import type { StepsProps, StepProps, FormInstance } from '../antd.interface';
 import StepsFormContext from './StepsFormContext';
 import type { BaseFormProps } from '../BaseForm';
 import type { StepFormProps } from './StepForm';
@@ -66,7 +66,7 @@ const StepsForm: React.FC<StepsFormProps> & {
   const unmountedRef = useUnmountedRef();
   // const [stepsConfig, setStepsConfig] = React.useState([]);
   // const [submitterConfig, setSubmitterConfig] = React.useState([]);
-  const formArrayRef = React.useRef([]);
+  const formArrayRef = React.useRef<FormInstance[]>([]);
   const formSubmitterRef = React.useRef([]); // 操作配置
   const stepsConfigRef = React.useRef([]); // 步骤条配置
   const formDataRef = React.useRef({}); // 全部表单数据
