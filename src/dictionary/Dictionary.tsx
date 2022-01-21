@@ -14,7 +14,7 @@ const Dictionary: React.FC<DictionaryProps> = ({
   const ret = data.find((item) => item.value === value);
 
   if (!ret) {
-    return defaultName || defaultLabel;
+    return <>{defaultName || defaultLabel}</>;
   }
 
   const options = (optionName ? ret[optionName] : ret[type]) || {};

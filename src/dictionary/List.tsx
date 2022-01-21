@@ -30,7 +30,7 @@ const DictionaryList: React.FC<DictionaryListProps> = ({
   );
 
   if (!Array.isArray(value) || value.length <= 0) {
-    return defaultName || defaultLabel;
+    return <>{defaultName || defaultLabel}</>;
   }
 
   const dom = value.map((itemVal, index) => (
@@ -45,7 +45,7 @@ const DictionaryList: React.FC<DictionaryListProps> = ({
   ));
 
   if (value.length === 1) {
-    return dom;
+    return <>{dom}</>;
   }
 
   return (

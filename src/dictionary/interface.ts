@@ -1,14 +1,14 @@
-import type { HtmlHTMLAttributes } from 'react';
+import type { HtmlHTMLAttributes, ReactNode } from 'react';
 import type { TagProps, BadgeProps } from 'antd';
 
-type AliasType = { alias?: string };
+type AliasType = { alias?: ReactNode };
 
 interface EnumItem {
   /**
    * @deprecated Please use 'label'
    */
-  name?: string;
-  label?: string;
+  name?: ReactNode;
+  label?: ReactNode;
   value: any;
   badge?: Omit<BadgeProps, 'status'> & AliasType & { status?: string };
   tag?: TagProps & AliasType;
@@ -23,8 +23,8 @@ export interface DictionaryProps {
   /**
    * @deprecated Please use 'defaultLabel'
    */
-  defaultName?: any;
-  defaultLabel?: any;
+  defaultName?: ReactNode;
+  defaultLabel?: ReactNode;
   type?: 'text' | 'tag' | 'badge';
   optionName?: string;
   [key: string]: any;

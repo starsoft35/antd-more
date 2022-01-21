@@ -12,8 +12,8 @@ export interface FormItemRadioProps extends BizFormItemProps {
   /**
    * @deprecated Please use 'allLabel'
    */
-  allName?: string;
-  allLabel?: string;
+  allName?: React.ReactNode;
+  allLabel?: React.ReactNode;
   excludeValues?: any[];
   options?: CheckboxOptionType[];
   optionType?: RadioGroupProps['optionType'];

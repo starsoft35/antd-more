@@ -12,8 +12,8 @@ export interface DictionarySelectProps extends SelectProps<SelectValue> {
   /**
    * @deprecated Please use 'allLabel'
    */
-  allName?: string;
-  allLabel?: string;
+  allName?: React.ReactNode;
+  allLabel?: React.ReactNode;
 }
 
 const DictionarySelect: React.FC<DictionarySelectProps> = ({

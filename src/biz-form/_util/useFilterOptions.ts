@@ -5,7 +5,7 @@ type Params<T = any[]> = {
   excludeValues?: any[];
   all?: boolean;
   allValue?: any;
-  allName?: string;
+  allName?: React.ReactNode;
 };
 
 function useFilterOptions<T extends Record<string, any>[] = any[]>({

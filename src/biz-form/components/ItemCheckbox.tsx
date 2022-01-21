@@ -13,8 +13,8 @@ export interface CheckboxWrapperProps {
   /**
    * @deprecated Please use 'allLabel'
    */
-  allName?: string;
-  allLabel?: string;
+  allName?: React.ReactNode;
+  allLabel?: React.ReactNode;
   excludeValues?: any[];
   options?: CheckboxOptionType[];
   checkboxGroupProps?: CheckboxGroupProps;

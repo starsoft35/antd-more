@@ -133,8 +133,8 @@ interface Option {
 
 ```typescript
 interface Option {
-  label: string;
-  value: string;
+  label: ReactNode;
+  value: string | number | boolean;
   disabled?: boolean;
 }
 ```
@@ -146,7 +146,7 @@ interface Option {
 | options | 配置子元素 | `Option[]` | `[]` |
 | excludeValues | 排除的值 | `any[]` | `[]` |
 | all | 是否显示全部 | `boolean` | `false` |
-| allLabel | 全部的名称 | `string` | `全部` |
+| allLabel | 全部的名称 | `ReactNode` | `全部` |
 | checkboxGroupProps | 多选框 Group 的属性 | [CheckboxGroupProps](https://ant-design.gitee.io/components/checkbox-cn/#Checkbox-Group) | - |
 
 ### ItemColor
@@ -373,8 +373,8 @@ Input 输入框
 
 ```typescript
 interface Option {
-  label: string;
-  value: string;
+  label: ReactNode;
+  value: string | number | boolean;
   disabled?: boolean;
 }
 ```
@@ -386,8 +386,8 @@ interface Option {
 | options | 配置子元素 | `Option[]` | `[]` |
 | optionType | 用于设置 Radio `options` 类型 | `'default' \| 'button'` | `'default'` |
 | all | 是否显示全部 | `boolean` | `false` |
-| allValue | 全部的值 | `string` | `""` |
-| allLabel | 全部的名称 | `string` | `全部` |
+| allValue | 全部的值 | `any` | `""` |
+| allLabel | 全部的名称 | `ReactNode` | `全部` |
 | excludeValues | 排除的值 | `any[]` | `[]` |
 | radioGroupProps | 单选框组合配置参数 | [RadioGroupProps](https://ant-design.gitee.io/components/radio-cn/#RadioGroup) | - |
 
@@ -411,8 +411,8 @@ interface Option {
 | --- | --- | --- | --- |
 | options | 配置可选项，同 antd 的 [Select API 的 options](https://ant-design.gitee.io/components/select-cn/#API) | `{label, value}[]` | `[]` |
 | all | 是否显示全部 | `boolean` | `false` |
-| allValue | 全部的值 | `string` | `""` |
-| allLabel | 全部的名称 | `string` | `全部` |
+| allValue | 全部的值 | `any` | `""` |
+| allLabel | 全部的名称 | `ReactNode` | `全部` |
 | excludeValues | 排除的值 | `any[]` | `[]` |
 | selectProps | 选择器配置参数 | [SelectProps](https://ant-design.gitee.io/components/select-cn/#Select-props) | - |
 

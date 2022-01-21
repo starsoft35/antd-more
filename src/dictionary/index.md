@@ -58,7 +58,7 @@ nav:
 
 ```typescript
 interface EnumItem {
-  label: string;
+  label: ReactNode;
   value: any;
   badge?: {
     status?: string;
@@ -83,7 +83,7 @@ type EnumData = EnumItem[];
 | --- | --- | --- | --- |
 | data | 包含 `value` `label` 的 `数据字典` | `EnumData` | `[]` |
 | value | 当前字典值 | `any` | `""` |
-| defaultLabel | 当找不到字典值对应的名称时，显示默认名称 | `string` | `-` |
+| defaultLabel | 当找不到字典值对应的名称时，显示默认名称 | `ReactNode` | `-` |
 | type | 显示方式 | `'text' \| 'tag' \| 'badge'` | `'text'` |
 
 ### Dictionary.List
@@ -101,14 +101,14 @@ type EnumData = EnumItem[];
 
 除了以下参数，其余和 antd [Select](https://ant.design/components/select-cn/) 组件一样。如需支持多选，可设置 `mode`。
 
-| 参数          | 说明                               | 类型       | 默认值 |
-| ------------- | ---------------------------------- | ---------- | ------ |
-| data          | 包含 `value` `label` 的 `数据字典` | `EnumData` | `[]`   |
-| value         | 当前字典值                         | `any`      | -      |
-| all           | 是否显示全部                       | `boolean`  | `true` |
-| allValue      | 全部的值                           | `string`   | `""`   |
-| allLabel      | 全部的名称                         | `string`   | `全部` |
-| excludeValues | 排除的值                           | `any[]`    | `[]`   |
+| 参数          | 说明                               | 类型        | 默认值 |
+| ------------- | ---------------------------------- | ----------- | ------ |
+| data          | 包含 `value` `label` 的 `数据字典` | `EnumData`  | `[]`   |
+| value         | 当前字典值                         | `any`       | -      |
+| all           | 是否显示全部                       | `boolean`   | `true` |
+| allValue      | 全部的值                           | `string`    | `""`   |
+| allLabel      | 全部的名称                         | `ReactNode` | `全部` |
+| excludeValues | 排除的值                           | `any[]`     | `[]`   |
 
 ### Dictionary.Radio
 
