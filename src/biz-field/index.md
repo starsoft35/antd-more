@@ -70,7 +70,7 @@ import { BizField } from 'antd-more';
 
 ```typescript
 interface EnumItem {
-  label: string;
+  label: ReactNode;
   value: any;
   // 配置badge
   badge?: {
@@ -140,7 +140,7 @@ type EnumData = EnumItem[];
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | value | 字典值 | `ReactText \| ReactText[]` | - |
-| defaultLabel | 当找不到值对应的名称时，显示默认名称 | `string` | `-` |
+| defaultLabel | 当找不到值对应的名称时，显示默认名称 | `ReactNode` | `-` |
 | align | 对齐方式 | `'start' \| 'end' \| 'center' \| 'baseline'` | `'start'` |
 | direction | 间距方向 `vertical` `horizontal` | `string` | `horizontal` |
 | size | 间距大小 | `'small' \| 'middle' \| 'large' \| number` | `'small'` |

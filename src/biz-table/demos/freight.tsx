@@ -153,9 +153,9 @@ const Freight = () => {
         rowKey="id"
         loading={loading || updating}
         toolbarAction={{
-          fullScreen: false
+          // fullScreen: true,
           // density: true,
-          // reload: true,
+          reload: false // 没有请求
           // columnSetting: true,
         }}
       />
