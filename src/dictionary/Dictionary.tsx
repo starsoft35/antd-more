@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Badge, Tag } from 'antd';
 import type { DictionaryProps } from './interface';
 
@@ -9,9 +9,18 @@ const Dictionary: React.FC<DictionaryProps> = ({
   defaultLabel = '-',
   type = 'text',
   optionName = '',
+  fieldNames: outFieldNames,
   ...restProps
 }) => {
-  const ret = data.find((item) => item.value === value);
+  const { label: labelKey, value: valueKey } = useMemo(
+    () => ({
+      label: 'label',
+      value: 'value',
+      ...outFieldNames
+    }),
+    [outFieldNames]
+  );
+  const ret = data.find((item) => item[valueKey] === value);
 
   if (!ret) {
     return <>{defaultName || defaultLabel}</>;
@@ -24,7 +33,7 @@ const Dictionary: React.FC<DictionaryProps> = ({
     ...restProps,
     style: { ...restOptions?.style, ...restProps?.style }
   };
-  const name = alias || ret.name || ret.label;
+  const name = alias || ret[labelKey] || ret.name;
 
   if (type === 'tag') {
     return <Tag {...props}>{name}</Tag>;

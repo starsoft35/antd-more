@@ -9,12 +9,18 @@ interface EnumItem {
    */
   name?: ReactNode;
   label?: ReactNode;
-  value: any;
+  value?: any;
   badge?: Omit<BadgeProps, 'status'> & AliasType & { status?: string };
   tag?: TagProps & AliasType;
   text?: HtmlHTMLAttributes<HTMLSpanElement> & AliasType;
   [key: string]: any;
 }
+
+export type DictionaryFieldNames = {
+  label?: string;
+  value?: string;
+  [key: string]: any;
+};
 
 export type EnumData = EnumItem[];
 export interface DictionaryProps {
@@ -27,5 +33,6 @@ export interface DictionaryProps {
   defaultLabel?: ReactNode;
   type?: 'text' | 'tag' | 'badge';
   optionName?: string;
+  fieldNames?: DictionaryFieldNames;
   [key: string]: any;
 }

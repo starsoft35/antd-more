@@ -21,6 +21,12 @@ nav:
 
 <code src="./demos/Demo1.tsx" />
 
+### fieldNames
+
+枚举类型 `enum` `enumTag` `enumBadge` 可设置 `fieldNames` 自定义字段名。
+
+<code src="./demos/fieldNames.tsx" />
+
 ## API
 
 ```typescript
@@ -35,7 +41,7 @@ import { BizField } from 'antd-more';
 | --- | --- | --- | --- |
 | value | 值 | `any` | - |
 | valueType | 值类型 | `ValueType` | - |
-| valueEnum | 包含 `value` `label` 的数据字典。<br/>当 `valueType` 为 `enum` `enumTag` `enumBadge` 时生效。 | `EnumData` | - |
+| valueEnum | 包含 `value` `label` 的数据字典，或通过 `fieldNames` 自定义字段名。<br/>当 `valueType` 为 `enum` `enumTag` `enumBadge` 时生效。 | `EnumData` | - |
 | formatValue | 格式化 `value` 。<br/>在 BizTable 或 BizDescriptions ，可对数据进行转换，如金额单位、图片等。 | `(value: any)=>any` | - |
 
 ### ValueType 值
@@ -70,8 +76,8 @@ import { BizField } from 'antd-more';
 
 ```typescript
 interface EnumItem {
-  label: ReactNode;
-  value: any;
+  label?: ReactNode;
+  value?: any;
   // 配置badge
   badge?: {
     status?: string;
@@ -140,6 +146,7 @@ type EnumData = EnumItem[];
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | value | 字典值 | `ReactText \| ReactText[]` | - |
+| fieldNames | 自定义节点 `label`、`value` 的字段 | `{ label: string; value: string; }` |
 | defaultLabel | 当找不到值对应的名称时，显示默认名称 | `ReactNode` | `-` |
 | align | 对齐方式 | `'start' \| 'end' \| 'center' \| 'baseline'` | `'start'` |
 | direction | 间距方向 `vertical` `horizontal` | `string` | `horizontal` |

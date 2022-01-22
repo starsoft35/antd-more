@@ -23,15 +23,25 @@ const DictionarySelect: React.FC<DictionarySelectProps> = ({
   allValue = '',
   allName,
   allLabel = '全部',
+  fieldNames,
   ...restProps
 }) => {
+  const { label: labelKey, value: valueKey } = useMemo(
+    () => ({
+      label: 'label',
+      value: 'value',
+      children: 'children',
+      ...fieldNames
+    }),
+    [fieldNames]
+  );
   const opts = useMemo(() => {
     const ret = [];
     if (all) {
-      ret.push({ value: allValue, label: allName || allLabel });
+      ret.push({ [valueKey]: allValue, [labelKey]: allName || allLabel });
     }
     data.forEach((item) => {
-      if (!excludeValues.includes(item?.value)) {
+      if (!excludeValues.includes(item[valueKey])) {
         ret.push({
           label: item.name,
           ...item
@@ -39,9 +49,9 @@ const DictionarySelect: React.FC<DictionarySelectProps> = ({
       }
     });
     return ret;
-  }, [all, allLabel, allName, allValue, data, excludeValues]);
+  }, [all, allLabel, allName, allValue, data, excludeValues, labelKey, valueKey]);
 
-  return <Select placeholder="请选择" options={opts} {...restProps} />;
+  return <Select placeholder="请选择" options={opts} fieldNames={fieldNames} {...restProps} />;
 };
 
 export default DictionarySelect;
