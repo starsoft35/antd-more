@@ -29,7 +29,7 @@ const prefixCls = 'antd-more-table';
 export declare interface BizTableProps<RecordType = any>
   extends Omit<TableProps<RecordType>, 'columns'>,
     Pick<SearchFormProps, 'formItems'> {
-  formRef?: React.MutableRefObject<FormInstance | undefined>;
+  formRef?: React.MutableRefObject<FormInstance | undefined> | ((ref: FormInstance) => void);
   actionRef?: React.MutableRefObject<BizTableActionType | undefined>;
   columns?: BizTableColumnType<RecordType>;
   ready?: boolean;
@@ -133,8 +133,21 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
     [toolbarActionConfig]
   );
 
-  const innerFormRef =
-    (formRef as React.MutableRefObject<FormInstance>) || React.useRef<FormInstance>(); // eslint-disable-line react-hooks/rules-of-hooks
+  const innerFormRef = React.useRef<FormInstance>();
+  const handleInnerFormRef = React.useCallback(
+    (refValue: FormInstance) => {
+      innerFormRef.current = refValue;
+
+      if (formRef) {
+        if (typeof formRef === 'function') {
+          formRef(refValue);
+        } else {
+          formRef.current = refValue;
+        }
+      }
+    },
+    [formRef]
+  );
 
   const { searchItems, columns: currentColumns } = React.useMemo(() => {
     const ret = {
@@ -491,7 +504,7 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
           <SearchForm
             formItems={formItems}
             searchItems={searchItems}
-            ref={innerFormRef}
+            ref={handleInnerFormRef}
             loading={loading}
             onFinish={handleFinish}
             onReset={handleDefaultReset}
