@@ -9,12 +9,9 @@ import waitTime from './utils/waitTime';
 
 const { ItemInput } = BizForm;
 
-function getNameApi(): Promise<string> {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve('李四');
-    }, 2000);
-  });
+async function getNameApi() {
+  await waitTime(2000);
+  return '李四';
 }
 
 const Demo = () => {

@@ -2,22 +2,17 @@ import * as React from 'react';
 import { BizForm } from 'antd-more';
 // import { UploadFile } from "antd/lib/upload/interface";
 import ItemSpecialUpload from './components/ItemSpecialUpload';
+import waitTime from './utils/waitTime';
 
 // // 上传图片
-// function uploadImage(file: File): Promise<{ fssId: string; }> {
-//   return new Promise((resolve, reject) => {
-//     // const formData = new FormData();
-//     // formData.append("file", file);
-//     setTimeout(() => {
-//       if (Math.random() > 0.3) {
-//         resolve({
-//           fssId: `${Math.random()}`
-//         });
-//       } else {
-//         reject();
-//       }
-//     }, 2000);
-//   })
+// async function uploadImage(file: File) {
+//   await waitTime(2000);
+//   if (Math.random() > 0.3) {
+//     return {
+//       fssId: `${Math.random()}`
+//     };
+//   }
+//   throw new Error('error');
 // }
 
 const Demo = () => {

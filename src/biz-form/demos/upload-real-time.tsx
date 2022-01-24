@@ -15,21 +15,14 @@ import waitTime from './utils/waitTime';
 const { ItemUpload } = BizForm;
 
 // 上传图片
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-function uploadImage(file: File): Promise<{ fssId: string }> {
-  return new Promise((resolve, reject) => {
-    // const formData = new FormData();
-    // formData.append("file", file);
-    setTimeout(() => {
-      if (Math.random() > 0.3) {
-        resolve({
-          fssId: `${Math.random()}`
-        });
-      } else {
-        reject();
-      }
-    }, 2000);
-  });
+async function uploadImage(file: File): Promise<{ fssId: string }> {
+  await waitTime(2000);
+  if (Math.random() > 0.3) {
+    return {
+      fssId: `${Math.random()}`
+    };
+  }
+  throw new Error('errro');
 }
 
 const Demo = () => {

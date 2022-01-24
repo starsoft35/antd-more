@@ -11,37 +11,27 @@ import waitTime from './utils/waitTime';
 const { ItemUpload } = BizForm;
 
 // 通过fssId获取图片地址
-function getStaticServerPath(fssId: string): Promise<{ bigImg: string; thumbImg: string }> {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (Math.random() > 0.3) {
-        resolve({
-          bigImg: `https://zos.alipayobjects.com/rmsportal/${fssId}.png`,
-          thumbImg: `https://www.caijinfeng.com/assets/images/logo-doly@3x.png`
-        });
-      } else {
-        reject();
-      }
-    }, 2000);
-  });
+async function getStaticServerPath(fssId: string) {
+  await waitTime(2000);
+  if (Math.random() > 0.3) {
+    return {
+      bigImg: `https://zos.alipayobjects.com/rmsportal/${fssId}.png`,
+      thumbImg: `https://www.caijinfeng.com/assets/images/logo-doly@3x.png`
+    };
+  }
+  throw new Error('error');
 }
 
 // 上传图片
-function uploadImage(file: File): Promise<{ thumbImgId: string; bigImgId: string }> {
-  return new Promise((resolve, reject) => {
-    // const formData = new FormData();
-    // formData.append("file", file);
-    setTimeout(() => {
-      if (Math.random() > 0.5) {
-        resolve({
-          thumbImgId: `${Math.random()}`,
-          bigImgId: `${Math.random()}`
-        });
-      } else {
-        reject();
-      }
-    }, 2000);
-  });
+async function uploadImage(file: File) {
+  await waitTime(2000);
+  if (Math.random() > 0.5) {
+    return {
+      thumbImgId: `${Math.random()}`,
+      bigImgId: `${Math.random()}`
+    };
+  }
+  throw new Error('error');
 }
 
 // 默认初始值 fssId

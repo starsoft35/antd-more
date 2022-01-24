@@ -11,35 +11,25 @@ import waitTime from './utils/waitTime';
 const { ItemUpload } = BizForm;
 
 // 通过fssId获取图片地址
-function getStaticServerPath(fssId: string): Promise<{ data: string }> {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (Math.random() > 0.3) {
-        resolve({
-          data: `https://zos.alipayobjects.com/rmsportal/${fssId}.png`
-        });
-      } else {
-        reject();
-      }
-    }, 2000);
-  });
+async function getStaticServerPath(fssId: string) {
+  await waitTime(2000);
+  if (Math.random() > 0.3) {
+    return {
+      data: `https://zos.alipayobjects.com/rmsportal/${fssId}.png`
+    };
+  }
+  throw new Error('error');
 }
 
 // 上传图片
-function uploadImage(file: File): Promise<{ fssId: string }> {
-  return new Promise((resolve, reject) => {
-    // const formData = new FormData();
-    // formData.append("file", file);
-    setTimeout(() => {
-      if (Math.random() > 0.5) {
-        resolve({
-          fssId: `${Math.random()}`
-        });
-      } else {
-        reject();
-      }
-    }, 2000);
-  });
+async function uploadImage(file: File) {
+  await waitTime(2000);
+  if (Math.random() > 0.5) {
+    return {
+      fssId: `${Math.random()}`
+    };
+  }
+  throw new Error('error');
 }
 
 // 默认初始值 fssId

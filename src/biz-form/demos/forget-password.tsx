@@ -4,12 +4,9 @@ import { message } from 'antd';
 import { BizForm } from 'antd-more';
 import waitTime from './utils/waitTime';
 
-function sendCaptcha(mobile) {
-  return new Promise<void>((resolve) => {
-    setTimeout(() => {
-      resolve();
-    }, 2000);
-  });
+async function sendCaptcha(mobile: string) {
+  await waitTime(2000);
+  return;
 }
 
 const { ItemCaptcha, ItemPassword, ItemInput } = BizForm;

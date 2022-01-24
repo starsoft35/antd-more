@@ -1,14 +1,12 @@
 import * as React from 'react';
 import { BizForm } from 'antd-more';
+import waitTime from './utils/waitTime';
 
 const { ItemCaptcha } = BizForm;
 
-function sendCode() {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(true);
-    }, 2000);
-  });
+async function sendCode() {
+  await waitTime();
+  return true;
 }
 
 const Demo = () => {
