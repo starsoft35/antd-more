@@ -4,14 +4,12 @@
 
 import React, { useCallback, useState } from 'react';
 import { CaptchaButton } from 'antd-more';
+import waitTime from '../../utils/waitTime';
 
 // 接口请求
-function getValidateCode() {
-  return new Promise<void>((resolve) => {
-    setTimeout(() => {
-      resolve();
-    }, 1000);
-  });
+async function getValidateCode() {
+  await waitTime();
+  return;
 }
 
 export default () => {

@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { message } from 'antd';
 import { BizForm } from 'antd-more';
-import waitTime from './utils/waitTime';
+import waitTime from '../../utils/waitTime';
 
 async function sendCaptcha(mobile: string) {
   await waitTime(2000);

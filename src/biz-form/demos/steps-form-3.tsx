@@ -3,7 +3,7 @@ import { Modal, Button, message } from 'antd';
 import type { StepsFormActionType } from 'antd-more';
 import { BizForm } from 'antd-more';
 import { BillAccountOptions } from './constants';
-import waitTime from './utils/waitTime';
+import waitTime from '../../utils/waitTime';
 
 const { StepsForm, ItemInput, ItemSelect, ItemNumber, ItemUpload, ItemTextArea } = BizForm;
 

@@ -3,7 +3,7 @@ import { BizForm } from 'antd-more';
 import { Button, Card, Space, Row, Col, Popconfirm } from 'antd';
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 import { getPCA } from 'lcn';
-import waitTime from './utils/waitTime';
+import waitTime from '../../utils/waitTime';
 
 const pcaInlandData = getPCA({ inland: true, formatForm: true });
 
@@ -62,27 +62,18 @@ const Demo = () => {
                 >
                   <Row gutter={{ xs: 8, sm: 16, md: 24 }}>
                     <Col {...colspan}>
-                      <ItemInput
-                        label="姓名"
-                        name={[field.name, 'name']}
-                        fieldKey={[field.fieldKey, 'name']}
-                      />
+                      <ItemInput label="姓名" name={[field.name, 'name']} />
                     </Col>
                     <Col {...colspan}>
                       <ItemNumber
                         label="年龄"
                         name={[field.name, 'age']}
-                        fieldKey={[field.fieldKey, 'age']}
                         precision={0}
                         inputProps={{ min: 1 }}
                       />
                     </Col>
                     <Col {...colspan}>
-                      <ItemDate
-                        label="生日"
-                        name={[field.name, 'birthday']}
-                        fieldKey={[field.fieldKey, 'birthday']}
-                      />
+                      <ItemDate label="生日" name={[field.name, 'birthday']} />
                     </Col>
                     <Col {...colspan}>
                       <List name={[field.name, 'mobile']}>

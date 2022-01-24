@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Card, message } from 'antd';
 import { BizForm } from 'antd-more';
-import waitTime from './utils/waitTime';
+import waitTime from '../../utils/waitTime';
 
 const { StepsForm, ItemInput, ItemCaptcha, ItemPassword } = BizForm;
 

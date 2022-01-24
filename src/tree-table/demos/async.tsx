@@ -1,12 +1,7 @@
 import * as React from 'react';
 import { TreeTable } from 'antd-more';
 import jsonData from './data1';
-
-function waitTime(time = 1000) {
-  return new Promise((resolve) => {
-    setTimeout(resolve, time);
-  });
-}
+import waitTime from '../../utils/waitTime';
 
 const Demo = () => {
   const [data, setData] = React.useState([]);

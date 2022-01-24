@@ -4,7 +4,7 @@ import { Switch, Row, Col } from 'antd';
 import { BizForm } from 'antd-more';
 import { getPCA } from 'lcn';
 import { CycleOptions } from './constants';
-import waitTime from './utils/waitTime';
+import waitTime from '../../utils/waitTime';
 
 const pcaInlandData = getPCA({ inland: true, formatForm: true });
 

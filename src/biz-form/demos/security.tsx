@@ -10,7 +10,7 @@
 import * as React from 'react';
 import { BizForm } from 'antd-more';
 import { useAsync } from 'rc-hooks';
-import waitTime from './utils/waitTime';
+import waitTime from '../../utils/waitTime';
 
 const { ItemInput } = BizForm;
 

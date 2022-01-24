@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Table } from 'antd';
+import waitTime from '../../utils/waitTime';
 
 type DataType = {
   name: string;
@@ -8,12 +9,10 @@ type DataType = {
 const mockData = [{ name: '' }, { name: '张三' }, { name: '李四' }];
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const request = (params) => {
+const request = async (params) => {
   // const { current, pageSize, ...restParams } = params;
-  return new Promise((resolve) => {
-    // console.log(restParams);
-    setTimeout(() => resolve({ data: mockData }), 2000);
-  });
+  await waitTime();
+  return { data: mockData };
 };
 
 const Demo = () => {

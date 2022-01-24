@@ -6,15 +6,14 @@ import type {
   BizTableColumnType
 } from 'antd-more';
 import { BizTable } from 'antd-more';
+import waitTime from '../../utils/waitTime';
 
 const mockData = [{ name: '' }, { name: '张三' }, { name: '李四' }];
 
-const request: BizTableRequest = (params) => {
+const request: BizTableRequest = async (params) => {
   // const { current, pageSize, ...restParams } = params;
-  return new Promise((resolve) => {
-    // console.log(restParams);
-    setTimeout(() => resolve({ data: mockData }), 2000);
-  });
+  await waitTime();
+  return { data: mockData };
 };
 
 // 外部封装的BizTable 含 ref ，不推荐

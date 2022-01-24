@@ -10,7 +10,7 @@ import {
   MailOutlined
 } from '@ant-design/icons';
 import IdentifyCode from './components/IdentifyCode';
-import waitTime from './utils/waitTime';
+import waitTime from '../../utils/waitTime';
 
 const { ItemInput, ItemCaptcha, ItemPassword, Item } = BizForm;
 

@@ -4,7 +4,7 @@ import type { BizTableRequest, BizTableColumnType, BizTableActionType } from 'an
 import { BizTable } from 'antd-more';
 import Mock from 'mockjs';
 import UpdateModal from './components/UpdateModal';
-import waitTime from './utils/waitTime';
+import waitTime from '../../utils/waitTime';
 
 type DataItem = {
   id: number;

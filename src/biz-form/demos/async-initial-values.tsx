@@ -5,7 +5,7 @@
  */
 import * as React from 'react';
 import { BizForm } from 'antd-more';
-import waitTime from './utils/waitTime';
+import waitTime from '../../utils/waitTime';
 
 const { ItemInput } = BizForm;
 

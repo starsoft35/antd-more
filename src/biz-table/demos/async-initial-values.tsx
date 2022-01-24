@@ -8,21 +8,15 @@ import { BizTable } from 'antd-more';
 import { getApplyList } from './service';
 import type { ApproveStatus } from './constants';
 import { ApproveStatusOptions } from './constants';
+import waitTime from '../../utils/waitTime';
 
-function getAsyncInitialValues(): Promise<{
-  applyCode: string;
-  createTime: string;
-  approveResult: ApproveStatus;
-}> {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve({
-        applyCode: '123456',
-        createTime: '2020-10-10',
-        approveResult: 1
-      });
-    }, 5000);
-  });
+async function getAsyncInitialValues() {
+  await waitTime(5000);
+  return {
+    applyCode: '123456',
+    createTime: '2020-10-10',
+    approveResult: 1 as ApproveStatus
+  };
 }
 
 const columns: BizTableColumnType = [

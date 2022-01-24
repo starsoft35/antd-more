@@ -3,7 +3,7 @@ import { Row, Col } from 'antd';
 import { BizForm } from 'antd-more';
 import { isSocialCreditCode, isBusinessLicense } from 'util-helpers';
 import { getPCA } from 'lcn';
-import waitTime from './utils/waitTime';
+import waitTime from '../../utils/waitTime';
 
 const pcaInlandData = getPCA({ inland: true, formatForm: true });
 

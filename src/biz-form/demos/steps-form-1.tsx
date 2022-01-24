@@ -2,7 +2,7 @@ import * as React from 'react';
 import { message } from 'antd';
 import { BizForm } from 'antd-more';
 import { BillAccountOptions } from './constants';
-import waitTime from './utils/waitTime';
+import waitTime from '../../utils/waitTime';
 
 const { StepsForm, ItemInput, ItemSelect, ItemNumber, ItemUpload, ItemTextArea } = BizForm;
 

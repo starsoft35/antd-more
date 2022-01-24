@@ -10,7 +10,7 @@
 import * as React from 'react';
 import { BizForm } from 'antd-more';
 import type { UploadFile } from 'antd/lib/upload/interface';
-import waitTime from './utils/waitTime';
+import waitTime from '../../utils/waitTime';
 
 const { ItemUpload } = BizForm;
 

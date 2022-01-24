@@ -8,7 +8,7 @@ import type { BizTableColumnType } from 'antd-more';
 import { BizTable } from 'antd-more';
 import { useAsync } from 'rc-hooks';
 import Mockjs from 'mockjs';
-import waitTime from './utils/waitTime';
+import waitTime from '../../utils/waitTime';
 import FreightRule, { FreightRuleType } from './components/FreightRule';
 
 type DataItem = {

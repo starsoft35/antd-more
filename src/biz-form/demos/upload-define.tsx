@@ -2,7 +2,7 @@ import * as React from 'react';
 import { BizForm } from 'antd-more';
 // import { UploadFile } from "antd/lib/upload/interface";
 import ItemSpecialUpload from './components/ItemSpecialUpload';
-import waitTime from './utils/waitTime';
+import waitTime from '../../utils/waitTime';
 
 // // 上传图片
 // async function uploadImage(file: File) {

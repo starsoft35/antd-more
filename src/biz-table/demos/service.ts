@@ -1,5 +1,6 @@
 import Mock from 'mockjs';
 import type { ApproveStatus } from './constants';
+import waitTime from '../../utils/waitTime';
 
 export type DataItem = {
   applyCode: string;
@@ -39,10 +40,7 @@ const applyList = ({ page: { pageNum, pageSize }, data = {} }) =>
     }
   }) as ApplyListResponse;
 
-export function getApplyList(params) {
-  return new Promise<ApplyListResponse>((resolve) => {
-    setTimeout(() => {
-      resolve(applyList(params));
-    }, 1000);
-  });
+export async function getApplyList(params) {
+  await waitTime();
+  return applyList(params);
 }

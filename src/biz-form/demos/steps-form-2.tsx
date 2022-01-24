@@ -2,7 +2,7 @@ import * as React from 'react';
 import { message } from 'antd';
 import { SafetyCertificateOutlined, MobileOutlined, LockOutlined } from '@ant-design/icons';
 import { BizForm } from 'antd-more';
-import waitTime from './utils/waitTime';
+import waitTime from '../../utils/waitTime';
 
 const { StepsForm, ItemInput, ItemCaptcha, ItemPassword } = BizForm;
 

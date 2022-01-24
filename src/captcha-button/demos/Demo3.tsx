@@ -4,19 +4,17 @@ import { Form, Input, Row, Col, Button } from 'antd';
 import { isMobile } from 'util-helpers';
 import { useAsync } from 'rc-hooks';
 import { CaptchaButton } from 'antd-more';
+import waitTime from '../../utils/waitTime';
 
 // 接口：发送短信验证码
-function asyncSendVerificationCode(mobile: string) {
-  return new Promise<{ data: { requestId: string; mobile: string } }>((resolve) => {
-    setTimeout(() => {
-      resolve({
-        data: {
-          requestId: 'abcdefg',
-          mobile
-        }
-      });
-    }, 1000);
-  });
+async function asyncSendVerificationCode(mobile: string) {
+  await waitTime();
+  return {
+    data: {
+      requestId: 'abcdefg',
+      mobile
+    }
+  };
 }
 
 interface VerificateCodeInputProps {
