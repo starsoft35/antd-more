@@ -85,11 +85,7 @@ const FormItemInput: React.FC<FormItemInputProps> & {
   ...restProps
 }) => {
   const handleNormalize = React.useCallback(
-    (value, prevValue, allValues) => {
-      if (normalize) {
-        return normalize(value, prevValue, allValues);
-      }
-
+    (value) => {
       if (type === 'bankCard') {
         return normalizeBankCard(value, { symbol: security ? symbol : '' });
       }
@@ -104,7 +100,7 @@ const FormItemInput: React.FC<FormItemInputProps> & {
       }
       return value;
     },
-    [normalize, type, disabledWhiteSpace, security, symbol]
+    [type, disabledWhiteSpace, security, symbol]
   );
   const handleTransform = React.useCallback(
     (val) => {
@@ -133,7 +129,7 @@ const FormItemInput: React.FC<FormItemInputProps> & {
   return (
     <BizFormItem
       required={required}
-      normalize={handleNormalize}
+      normalize={normalize}
       rules={[
         {
           validator(rule, value) {
@@ -166,7 +162,7 @@ const FormItemInput: React.FC<FormItemInputProps> & {
         placeholder="请输入"
         allowClear
         autoComplete="off"
-        initialTransform={normalize || type ? handleNormalize : false}
+        normalize={!normalize || type ? handleNormalize : undefined}
         {...defaultInputProps}
         {...inputProps}
       />

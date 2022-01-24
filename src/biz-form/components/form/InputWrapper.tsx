@@ -3,24 +3,37 @@ import { Input } from 'antd';
 import type { InputProps } from '../antd.interface';
 
 export interface InputWrapperProps extends InputProps {
-  initialTransform?: false | ((value, prevValue?, allValues?) => any);
+  normalize?: (value) => any;
 }
 
 const InputWrapper: React.FC<InputWrapperProps> = ({
-  initialTransform,
+  normalize,
   value,
   onChange,
   ...restProps
 }) => {
   React.useEffect(() => {
-    // 对第一次加载的数据格式化
-    if (initialTransform && value) {
-      onChange?.(initialTransform(value));
+    // fix: 异步初始值没有规整化问题
+    if (value && normalize) {
+      if (normalize(value) !== value) {
+        onChange?.(normalize(value));
+      }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [normalize, onChange, value]);
 
-  return <Input value={value} onChange={onChange} {...restProps} />;
+  const handleChange = React.useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      // 数据格式化
+      if (normalize) {
+        onChange?.(normalize(e.target.value));
+      } else {
+        onChange?.(e);
+      }
+    },
+    [normalize, onChange]
+  );
+
+  return <Input value={value} onChange={handleChange} {...restProps} />;
 };
 
 export default InputWrapper;
