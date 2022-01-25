@@ -262,9 +262,9 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
       }
       if (!file.url && !file.preview) {
         if (onGetPreviewUrl) {
-          file.preview = await onGetPreviewUrl((file as any).originFileObj || file);
+          file.preview = await onGetPreviewUrl((file?.originFileObj || file) as File);
         } else if (file.originFileObj || file) {
-          file.preview = await getBase64(file);
+          file.preview = await getBase64((file?.originFileObj || file) as File);
         } else if (file.thumbUrl) {
           file.preview = file.thumbUrl;
         } else {
