@@ -1,14 +1,6 @@
 export type { CaptchaButtonProps } from './captcha-button';
 export { default as CaptchaButton } from './captcha-button';
-export type {
-  ColorProps,
-  BlockPickerProps as BlockPickerColorProps,
-  ChromePickerProps as ChromePickerColorProps,
-  CompactPickerProps as CompactPickerColorProps,
-  PhotoshopPickerProps as PhotoshopPickerColorProps,
-  SketchPickerProps as SketchPickerColorProps
-} from './color';
-export { default as Color } from './color';
+export * from './color';
 export type {
   DictionaryProps,
   DictionaryListProps,

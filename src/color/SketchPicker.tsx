@@ -1,19 +1,13 @@
 import React from 'react';
+import type { SketchPickerProps } from 'react-color';
 import { SketchPicker } from 'react-color';
 import type { PickerCommonProps } from './PickerWrapper';
 import PickerWrapper from './PickerWrapper';
 
-export type PresetColor = { color: string; title: string } | string;
+export type ColorSketchPickerProps = Omit<SketchPickerProps, 'onChange' | 'onChangeComplete'> &
+  PickerCommonProps;
 
-export interface SketchPickerProps extends PickerCommonProps {
-  width?: string;
-  renderers?: {
-    canvas?: HTMLCanvasElement;
-  };
-  presetColors?: PresetColor[];
-}
-
-const SketchPickerWrapper: React.FC<SketchPickerProps> = ({
+const ColorSketchPicker: React.FC<ColorSketchPickerProps> = ({
   className,
   value,
   trigger,
@@ -38,10 +32,10 @@ const SketchPickerWrapper: React.FC<SketchPickerProps> = ({
   };
 
   return (
-    <PickerWrapper placement="topLeft" {...wrapperProps}>
+    <PickerWrapper {...wrapperProps}>
       <SketchPicker {...restProps} disableAlpha={colorMode !== 'rgb'} />
     </PickerWrapper>
   );
 };
 
-export default SketchPickerWrapper;
+export default ColorSketchPicker;

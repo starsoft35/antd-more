@@ -1,15 +1,13 @@
 import React from 'react';
+import type { ChromePickerProps } from 'react-color';
 import { ChromePicker } from 'react-color';
 import type { PickerCommonProps } from './PickerWrapper';
 import PickerWrapper from './PickerWrapper';
 
-export interface ChromePickerProps extends PickerCommonProps {
-  renderers?: {
-    canvas?: HTMLCanvasElement;
-  };
-}
+export type ColorChromePickerProps = Omit<ChromePickerProps, 'onChange' | 'onChangeComplete'> &
+  PickerCommonProps;
 
-const ChromePickerWrapper: React.FC<ChromePickerProps> = ({
+const ColorChromePicker: React.FC<ColorChromePickerProps> = ({
   className,
   value,
   trigger,
@@ -40,4 +38,4 @@ const ChromePickerWrapper: React.FC<ChromePickerProps> = ({
   );
 };
 
-export default ChromePickerWrapper;
+export default ColorChromePicker;

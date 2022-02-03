@@ -1,13 +1,13 @@
 import React from 'react';
+import type { CompactPickerProps } from 'react-color';
 import { CompactPicker } from 'react-color';
 import type { PickerCommonProps } from './PickerWrapper';
 import PickerWrapper from './PickerWrapper';
 
-export interface CompactPickerProps extends PickerCommonProps {
-  colors?: string[];
-}
+export type ColorCompactPickerProps = Omit<CompactPickerProps, 'onChange' | 'onChangeComplete'> &
+  PickerCommonProps;
 
-const CompactPickerWrapper: React.FC<CompactPickerProps> = ({
+const CompactPickerWrapper: React.FC<ColorCompactPickerProps> = ({
   className,
   value,
   trigger,

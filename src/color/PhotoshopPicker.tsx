@@ -1,14 +1,19 @@
 import React, { useState, useCallback } from 'react';
+import type { PhotoshopPickerProps } from 'react-color';
 import { PhotoshopPicker } from 'react-color';
 import type { PickerCommonProps } from './PickerWrapper';
 import PickerWrapper from './PickerWrapper';
 import { transformColor } from './utils';
 
-export interface PhotoshopPickerProps extends PickerCommonProps {
-  header?: string;
-}
+export type ColorPhotoshopPickerProps = Omit<
+  PhotoshopPickerProps,
+  'onChange' | 'onChangeComplete'
+> &
+  Omit<PickerCommonProps, 'changeMethod'> & {
+    changeMethod?: 'onChangeComplete' | 'onAccept';
+  };
 
-const PhotoshopPickerWrapper: React.FC<PhotoshopPickerProps> = ({
+const ColorPhotoshopPicker: React.FC<ColorPhotoshopPickerProps> = ({
   className,
   value,
   trigger,
@@ -16,24 +21,25 @@ const PhotoshopPickerWrapper: React.FC<PhotoshopPickerProps> = ({
   onChange,
   colorMode,
   placement,
-  changeMethod = 'onChangeComplete',
   size,
+  changeMethod = 'onAccept',
   ...restProps
 }) => {
+  const [visible, setVisible] = useState(false);
   const wrapperProps = {
     className,
     value,
     trigger,
     showText,
-    onChange,
     colorMode,
     placement,
-    changeMethod,
-    size
+    size,
+    visible,
+    onVisibleChange: setVisible
   };
   const [innerColor, setInnerColor] = useState(value);
 
-  const handleChangeComplete = useCallback(
+  const handleChange = useCallback(
     (color) => {
       setInnerColor(transformColor(color, colorMode));
     },
@@ -42,23 +48,28 @@ const PhotoshopPickerWrapper: React.FC<PhotoshopPickerProps> = ({
 
   const handleAccept = useCallback(() => {
     onChange?.(innerColor as string);
+    setVisible(false);
   }, [onChange, innerColor]);
 
+  const handleCancel = useCallback(() => {
+    setVisible(false);
+  }, []);
+
+  const changeMethodProps = {
+    [changeMethod]: handleAccept
+  };
+
   return (
-    <PickerWrapper
-      placement="topLeft"
-      {...wrapperProps}
-      childrenProps={{
-        color: innerColor,
-        onChangeComplete: handleChangeComplete,
-        onAccept: handleAccept,
-        cancelable: true
-      }}
-      photoshop
-    >
-      <PhotoshopPicker {...restProps} />
+    <PickerWrapper {...wrapperProps} defined>
+      <PhotoshopPicker
+        color={innerColor}
+        onChange={handleChange}
+        onCancel={handleCancel}
+        {...changeMethodProps}
+        {...restProps}
+      />
     </PickerWrapper>
   );
 };
 
-export default PhotoshopPickerWrapper;
+export default ColorPhotoshopPicker;

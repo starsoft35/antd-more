@@ -164,46 +164,9 @@ interface Option {
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | showText | 显示颜色值文本 | `boolean` | `false` |
-| picker | 颜色选择样式 | `block` `chrome` `compact` `photoshop` `sketch` | `sketch` |
 | colorMode | 颜色模式 | `hex` `rgb` | `hex` |
 | placement | 颜色选择浮层位置 | `top` `left` `right` `bottom` `topLeft` `topRight` `bottomLeft` `bottomRight` `leftTop` `leftBottom` `rightTop` `rightBottom` | `bottomLeft` |
-| colorProps | 其他颜色选择器配置，不同 picker 有不同的配置项 | `any` | - |
-
-#### colorProps
-
-`picker=block` 时：
-
-| 参数   | 说明             | 类型                  | 默认值    |
-| ------ | ---------------- | --------------------- | --------- |
-| size   | 颜色块大小       | `'small' \| 'middle'` | `'small'` |
-| width  | 颜色选择浮层宽度 | `string`              | `170px`   |
-| colors | 预置快捷选择颜色 | `string[]`            | -         |
-
-`picker=compact` 时：
-
-| 参数   | 说明             | 类型                  | 默认值    |
-| ------ | ---------------- | --------------------- | --------- |
-| size   | 颜色块大小       | `'small' \| 'middle'` | `'small'` |
-| colors | 预置快捷选择颜色 | `string[]`            | -         |
-
-`picker=photoshop` 时：
-
-| 参数   | 说明             | 类型                  | 默认值         |
-| ------ | ---------------- | --------------------- | -------------- |
-| size   | 颜色块大小       | `'small' \| 'middle'` | `'small'`      |
-| header | 颜色选择浮层标题 | `string`              | `Color Picker` |
-
-`picker=sketch` 时：
-
-```javascript
-type PresetColor = { color: string, title: string } | string;
-```
-
-| 参数         | 说明             | 类型                  | 默认值    |
-| ------------ | ---------------- | --------------------- | --------- |
-| size         | 颜色块大小       | `'small' \| 'middle'` | `'small'` |
-| width        | 颜色选择浮层宽度 | `string`              | `200px`   |
-| presetColors | 预置快捷选择颜色 | `PresetColor[]`       | -         |
+| colorProps | 其他颜色选择器配置，不同 picker 有不同的配置项 | [`ColorSketchPickerProps`](/components/color#picker-共同的-api) | - |
 
 ### ItemDate
 

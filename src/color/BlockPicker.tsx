@@ -1,14 +1,13 @@
 import React from 'react';
+import type { BlockPickerProps } from 'react-color';
 import { BlockPicker } from 'react-color';
 import type { PickerCommonProps } from './PickerWrapper';
 import PickerWrapper from './PickerWrapper';
 
-export interface BlockPickerProps extends PickerCommonProps {
-  width?: string;
-  colors?: string[];
-}
+export type ColorBlockPickerProps = Omit<BlockPickerProps, 'onChange' | 'onChangeComplete'> &
+  PickerCommonProps;
 
-const BlockPickerWrapper: React.FC<BlockPickerProps> = ({
+const ColorBlockPicker: React.FC<ColorBlockPickerProps> = ({
   className,
   value,
   trigger,
@@ -39,4 +38,4 @@ const BlockPickerWrapper: React.FC<BlockPickerProps> = ({
   );
 };
 
-export default BlockPickerWrapper;
+export default ColorBlockPicker;

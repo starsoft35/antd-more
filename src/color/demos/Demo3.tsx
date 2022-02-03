@@ -4,7 +4,7 @@
 
 import React, { useState, useCallback } from 'react';
 import { Form, Button } from 'antd';
-import { Color } from 'antd-more';
+import { ColorBlockPicker, ColorSketchPicker } from 'antd-more';
 
 const formItemLayouts = {
   labelCol: { span: 6 },
@@ -30,10 +30,10 @@ export default () => {
     <>
       <Form {...formItemLayouts} initialValues={initialValues} onFinish={onFinish}>
         <Form.Item label="颜色1" name="color1">
-          <Color.BlockPicker showText />
+          <ColorBlockPicker showText />
         </Form.Item>
         <Form.Item label="颜色2" name="color2">
-          <Color.SketchPicker colorMode="rgb" placement="topLeft" size="middle" />
+          <ColorSketchPicker colorMode="rgb" placement="topLeft" size="middle" />
         </Form.Item>
         <Form.Item {...buttonItemLayouts}>
           <Button type="primary" htmlType="submit">

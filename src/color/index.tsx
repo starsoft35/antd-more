@@ -1,18 +1,32 @@
-import Color from './Color';
 import type { ColorProps } from './Color';
-import type { BlockPickerProps } from './BlockPicker';
-import type { ChromePickerProps } from './ChromePicker';
-import type { CompactPickerProps } from './CompactPicker';
-import type { PhotoshopPickerProps } from './PhotoshopPicker';
-import type { SketchPickerProps } from './SketchPicker';
+import Color from './Color';
+import type { ColorBlockPickerProps } from './BlockPicker';
+import ColorBlockPicker from './BlockPicker';
+import type { ColorChromePickerProps } from './ChromePicker';
+import ColorChromePicker from './ChromePicker';
+import type { ColorCompactPickerProps } from './CompactPicker';
+import ColorCompactPicker from './CompactPicker';
+import type { ColorPhotoshopPickerProps } from './PhotoshopPicker';
+import ColorPhotoshopPicker from './PhotoshopPicker';
+import type { ColorSketchPickerProps } from './SketchPicker';
+import ColorSketchPicker from './SketchPicker';
 
 export type {
   ColorProps,
-  BlockPickerProps,
-  ChromePickerProps,
-  CompactPickerProps,
-  PhotoshopPickerProps,
-  SketchPickerProps
+  ColorBlockPickerProps,
+  ColorChromePickerProps,
+  ColorCompactPickerProps,
+  ColorPhotoshopPickerProps,
+  ColorSketchPickerProps
+};
+
+export {
+  Color,
+  ColorBlockPicker,
+  ColorChromePicker,
+  ColorCompactPicker,
+  ColorPhotoshopPicker,
+  ColorSketchPicker
 };
 
 export default Color;

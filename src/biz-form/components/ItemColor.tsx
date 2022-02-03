@@ -1,6 +1,7 @@
 import * as React from 'react';
 import type { TooltipProps } from './antd.interface';
-import Color from '../../color';
+import type { ColorSketchPickerProps } from '../../color';
+import { ColorSketchPicker } from '../../color';
 import type { BizFormItemProps } from './Item';
 import BizFormItem from './Item';
 import getLabel from '../_util/getLabel';
@@ -15,24 +16,19 @@ export enum ColorPicker {
 
 export interface FormItemColorProps extends BizFormItemProps {
   showText?: boolean;
-  picker?: keyof typeof ColorPicker;
   colorMode?: 'rgb' | 'hex';
   placement?: TooltipProps['placement'];
-  colorProps?: any;
+  colorProps?: ColorSketchPickerProps;
 }
 
 const FormItemColor: React.FC<FormItemColorProps> = ({
   required = false,
-
-  picker = 'sketch',
   showText,
   colorMode,
   placement,
   colorProps,
   ...restProps
 }) => {
-  const Comp = Color[ColorPicker[picker]];
-
   return (
     <BizFormItem
       required={required}
@@ -52,7 +48,12 @@ const FormItemColor: React.FC<FormItemColorProps> = ({
       ]}
       {...restProps}
     >
-      <Comp showText={showText} colorMode={colorMode} placement={placement} {...colorProps} />
+      <ColorSketchPicker
+        showText={showText}
+        colorMode={colorMode}
+        placement={placement}
+        {...colorProps}
+      />
     </BizFormItem>
   );
 };

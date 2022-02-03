@@ -5,7 +5,7 @@ import FieldProgress from './components/Progress';
 import FieldIndex from './components/Index';
 import FieldImage from './components/Image';
 import Dictionary from '../dictionary';
-import Color from '../color';
+import { Color } from '../color';
 import Percent from './components/Percent';
 import { getDateStr } from './_util/dateUtil';
 
