@@ -1926,6 +1926,11 @@
   resolved "https://registry.npmjs.org/@types/json-schema/-/json-schema-7.0.9.tgz#97edc9037ea0c38585320b28964dde3b39e4660d"
   integrity sha512-qcUXuemtEu+E5wZSJHNxUXeCZhAfXKQ41D+duX+VYPde7xyEVZci+/oXKJL13tnRs9lR2pr4fod59GT6/X1/yQ==
 
+"@types/lodash@^4.14.178":
+  version "4.14.178"
+  resolved "https://registry.npmjs.org/@types/lodash/-/lodash-4.14.178.tgz#341f6d2247db528d4a13ddbb374bcdc80406f4f8"
+  integrity sha512-0d5Wd09ItQWH1qFbEyQ7oTQ3GZrMfth5JkbN3EvTKLXcHLRDSXeLnlvlOn0wvxVIwK5o2M8JzP/OWz7T3NRsbw==
+
 "@types/mathjax@^0.0.36":
   version "0.0.36"
   resolved "https://registry.npmjs.org/@types/mathjax/-/mathjax-0.0.36.tgz#18cf766f88ac0cd4e7ee8282b1286049bb6aa682"
@@ -10082,13 +10087,13 @@ rc-field-form@~1.22.0-2:
     async-validator "^4.0.2"
     rc-util "^5.8.0"
 
-rc-hooks@^1.8.1:
-  version "1.8.3"
-  resolved "https://registry.npmjs.org/rc-hooks/-/rc-hooks-1.8.3.tgz#1e5b45dc200ef8e1c7b193c90ceb157d7ce8b243"
-  integrity sha512-C1BBEhUzTFZCEzBODqOlmeaO4+vcN8RVXQm99Wi2U7pnQUe/4d8N8rWJrVRCkaH/KXFxcO1euOu6Tp4kLSP9Vg==
+rc-hooks@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.npmjs.org/rc-hooks/-/rc-hooks-2.0.2.tgz#40306a5bf2818688e9af2efc913344232efb3b32"
+  integrity sha512-UI4SKq34KAqS/bd3uxrxF2IILe93hRAf8+oJ3SV027lKAUqKSfWkN54BQTGdRxe+GuLKpM3rDefHGbDa2aGrcA==
   dependencies:
-    lodash.debounce "^4.0.8"
-    lodash.throttle "^4.1.1"
+    "@types/lodash" "^4.14.178"
+    lodash "^4.17.21"
     tslib "^2.2.0"
 
 rc-image@~5.2.5:
