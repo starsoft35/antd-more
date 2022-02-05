@@ -1,20 +1,18 @@
 import type { HtmlHTMLAttributes, ReactNode } from 'react';
-import type { TagProps, BadgeProps } from 'antd';
+import type { TagProps, BadgeProps, SpaceProps } from 'antd';
 
 type AliasType = { alias?: ReactNode };
 
-interface EnumItem {
-  /**
-   * @deprecated Please use 'label'
-   */
-  name?: ReactNode;
+type EnumItem<ValueType = any> = {
   label?: ReactNode;
-  value?: any;
+  value?: ValueType;
   badge?: Omit<BadgeProps, 'status'> & AliasType & { status?: string };
   tag?: TagProps & AliasType;
   text?: HtmlHTMLAttributes<HTMLSpanElement> & AliasType;
   [key: string]: any;
-}
+};
+
+export type EnumData<ValueType = any> = EnumItem<ValueType>[];
 
 export type DictionaryFieldNames = {
   label?: string;
@@ -22,17 +20,12 @@ export type DictionaryFieldNames = {
   [key: string]: any;
 };
 
-export type EnumData = EnumItem[];
-export interface DictionaryProps {
-  data: EnumData;
-  value?: any;
-  /**
-   * @deprecated Please use 'defaultLabel'
-   */
-  defaultName?: ReactNode;
+export interface DictionaryProps<ValueType = any> extends SpaceProps {
+  valueEnum: EnumData<ValueType>;
+  value?: ValueType | ValueType[];
   defaultLabel?: ReactNode;
   type?: 'text' | 'tag' | 'badge';
   optionName?: string;
   fieldNames?: DictionaryFieldNames;
-  [key: string]: any;
+  match?: (itemValue: ValueType, currentValue: ValueType) => boolean;
 }

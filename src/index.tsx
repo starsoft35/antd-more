@@ -1,14 +1,12 @@
 export type { CaptchaButtonProps } from './captcha-button';
 export { default as CaptchaButton } from './captcha-button';
+
+export { default as Color } from './color';
 export * from './color';
-export type {
-  DictionaryProps,
-  DictionaryListProps,
-  DictionaryRadioProps,
-  DictionarySelectProps,
-  EnumData as DictionaryEnumData
-} from './dictionary';
+
 export { default as Dictionary } from './dictionary';
+export * from './dictionary';
+
 export type { InputIconProps } from './input-icon';
 export { default as InputIcon } from './input-icon';
 export { default as TreeTable } from './tree-table';

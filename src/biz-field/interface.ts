@@ -29,7 +29,7 @@ export type { EnumData, ValueType };
 export interface BizFieldProps<T = any> {
   value: T;
   valueType?: ValueType;
-  valueEnum?: EnumData;
+  valueEnum?: EnumData<T>;
   formatValue?: (value: any) => T;
   [x: string]: any;
 }

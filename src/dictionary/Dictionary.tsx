@@ -1,17 +1,22 @@
-import React, { useMemo } from 'react';
-import { Badge, Tag } from 'antd';
+import React, { useCallback, useMemo } from 'react';
+import { Badge, Tag, Space } from 'antd';
+import classnames from 'classnames';
 import type { DictionaryProps } from './interface';
+import './index.less';
 
-const Dictionary: React.FC<DictionaryProps> = ({
-  data = [],
-  value = '',
-  defaultName,
+const prefixCls = 'antd-more-dictionary';
+
+function Dictionary<ValueType = any>({
+  valueEnum = [],
+  value,
   defaultLabel = '-',
   type = 'text',
   optionName = '',
   fieldNames: outFieldNames,
+  match,
+  className,
   ...restProps
-}) => {
+}: DictionaryProps<ValueType>) {
   const { label: labelKey, value: valueKey } = useMemo(
     () => ({
       label: 'label',
@@ -20,30 +25,54 @@ const Dictionary: React.FC<DictionaryProps> = ({
     }),
     [outFieldNames]
   );
-  const ret = data.find((item) => item[valueKey] === value);
+  const values = Array.isArray(value) ? value : [value];
+  const realOptionName = optionName || type;
+  const matchMethod = useCallback(
+    (itemValue, currentValue) => {
+      return typeof match === 'function'
+        ? match(itemValue, currentValue)
+        : itemValue === currentValue;
+    },
+    [match]
+  );
 
-  if (!ret) {
-    return <>{defaultName || defaultLabel}</>;
+  const ret = valueEnum.filter((item) => values.find((curr) => matchMethod(item[valueKey], curr)));
+  let view: JSX.Element;
+
+  if (!Array.isArray(ret) || ret.length <= 0) {
+    view = <span>{defaultLabel}</span>;
+  } else {
+    view = (
+      <>
+        {ret.map((item) => {
+          const options = item[realOptionName] || {};
+          const { alias, ...restOptions } = options;
+          const label = alias || item[labelKey];
+          const itemProps = {
+            key: item[valueKey],
+            ...restOptions
+          };
+
+          if (type === 'tag') {
+            return <Tag {...itemProps}>{label}</Tag>;
+          }
+
+          if (type === 'badge') {
+            return <Badge text={label} {...itemProps} />;
+          }
+
+          // eslint-disable-next-line react/jsx-key
+          return <span {...itemProps}>{label}</span>;
+        })}
+      </>
+    );
   }
 
-  const options = (optionName ? ret[optionName] : ret[type]) || {};
-  const { alias, ...restOptions } = options;
-  const props = {
-    ...restOptions,
-    ...restProps,
-    style: { ...restOptions?.style, ...restProps?.style }
-  };
-  const name = alias || ret[labelKey] || ret.name;
-
-  if (type === 'tag') {
-    return <Tag {...props}>{name}</Tag>;
-  }
-
-  if (type === 'badge') {
-    return <Badge text={name} {...props} />;
-  }
-
-  return <span {...props}>{name}</span>;
-};
+  return (
+    <Space className={classnames(prefixCls, className)} {...restProps}>
+      {view}
+    </Space>
+  );
+}
 
 export default Dictionary;

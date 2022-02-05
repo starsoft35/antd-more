@@ -22,5 +22,5 @@ const ApproveStatusOptions = [
 ];
 
 export default () => {
-  return <Dictionary data={ApproveStatusOptions} value={1} />;
+  return <Dictionary valueEnum={ApproveStatusOptions} value={1} />;
 };

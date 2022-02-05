@@ -1,61 +1,59 @@
 /**
- * title: antd Form 中使用
- * desc: 全部的值默认为 `""`，可通过 `allValue` 进行设置
+ * title: 多个枚举
+ * desc: |
+ *  外层包裹 `Space` 组件，可配置 `align` `direction` `size`。
+ *
+ *  其中 `value` 变为一个字段值数组，`defaultLabel` 仅在 `value` 为非数组或长度小于0时显示。其他参数用于配置和 `Dictionary`。
  */
 
-import React, { useState, useCallback } from 'react';
-import { Form, Button } from 'antd';
+import React from 'react';
+import { Divider } from 'antd';
 import { Dictionary } from 'antd-more';
 
-const ApproveStatusOptions = [
+const BiologyCategoryOtions = [
   {
     value: 1,
-    label: '审核中'
+    label: '动物',
+    tag: {
+      color: 'orange'
+    }
   },
   {
     value: 2,
-    label: '审核通过'
+    label: '植物',
+    tag: {
+      color: 'green'
+    }
   },
   {
     value: 3,
-    label: '审核不通过'
+    label: '微生物',
+    custom: {
+      color: 'purple'
+    }
   }
 ];
 
-const formItemLayouts = {
-  labelCol: { span: 6 },
-  wrapperCol: { span: 16 }
-};
-
-const buttonItemLayouts = {
-  wrapperCol: { span: 16, offset: 6 }
-};
-
-const initialValues = {};
-
 export default () => {
-  const [result, setResult] = useState(initialValues);
-  const onFinish = useCallback((values) => {
-    setResult(values);
-  }, []);
-
   return (
     <>
-      <Form {...formItemLayouts} initialValues={initialValues} onFinish={onFinish} name="select_1">
-        <Form.Item label="审核状态" name="status">
-          <Dictionary.Select data={ApproveStatusOptions} />
-        </Form.Item>
-        <Form.Item {...buttonItemLayouts}>
-          <Button type="primary" htmlType="submit">
-            Submit
-          </Button>
-        </Form.Item>
-      </Form>
+      <Divider orientation="left">empty</Divider>
+      <Dictionary valueEnum={BiologyCategoryOtions} value={[]} />
       <br />
-      <div>
-        form values:
-        {JSON.stringify(result)}
-      </div>
+      <Dictionary valueEnum={BiologyCategoryOtions} value={[]} defaultLabel="empty" />
+      <Divider orientation="left">text</Divider>
+      <Dictionary valueEnum={BiologyCategoryOtions} value={[1, 2]} />
+      <br />
+      <Dictionary valueEnum={BiologyCategoryOtions} value={[2, 3]} />
+      <br />
+      <Dictionary valueEnum={BiologyCategoryOtions} value={[1, 2, 3]} />
+      <br />
+      <Divider orientation="left">tag</Divider>
+      <Dictionary valueEnum={BiologyCategoryOtions} value={[1, 2]} type="tag" />
+      <br />
+      <Dictionary valueEnum={BiologyCategoryOtions} value={[2, 3]} type="tag" />
+      <br />
+      <Dictionary valueEnum={BiologyCategoryOtions} value={[1, 2, 3]} type="tag" />
     </>
   );
 };

@@ -88,13 +88,9 @@ const BizField: React.FC<BizFieldProps> = ({
     const enumProps = {
       value: realValue,
       type: DectionaryTypeMap[valueType as string],
-      data: valueEnum
+      valueEnum
     };
-    return Array.isArray(realValue) ? (
-      <Dictionary.List {...enumProps} {...restProps} />
-    ) : (
-      <Dictionary {...enumProps} {...restProps} />
-    );
+    return <Dictionary {...enumProps} {...restProps} />;
   } else if (valueType === 'color') {
     // 颜色
     return <Color value={realValue} {...restProps} />;
