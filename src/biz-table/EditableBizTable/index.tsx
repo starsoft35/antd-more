@@ -343,21 +343,28 @@ const EditableBizTable = <RecordType extends object = any>({
     const currentIndex = getAddRecordIndex(index, value.length + newRecords.length);
     const currentRowKey = getCurentRowKey(record);
 
-    const tmpNewRecords = newRecords.map((item) => {
-      const newItem = { ...item };
-      if (item.index >= currentIndex) {
-        newItem.index += 1;
-      }
-      return newItem;
-    });
-    setNewRecords([
-      ...tmpNewRecords,
-      {
-        index: currentIndex,
-        rowKey: currentRowKey,
-        recordConfig: record
-      }
-    ]);
+    // 如果通过外部值实时变化，无需使用新增记录
+    if (outValue && typeof onValuesChange === 'function') {
+      const newValue = value.slice();
+      newValue.splice(currentIndex, 0, record as any);
+      setValue(newValue);
+    } else {
+      const tmpNewRecords = newRecords.map((item) => {
+        const newItem = { ...item };
+        if (item.index >= currentIndex) {
+          newItem.index += 1;
+        }
+        return newItem;
+      });
+      setNewRecords([
+        ...tmpNewRecords,
+        {
+          index: currentIndex,
+          rowKey: currentRowKey,
+          recordConfig: record
+        }
+      ]);
+    }
     editable?.onChange?.([...editable?.editableKeys, currentRowKey], record);
     setTimeout(() => triggerValuesChange(), 0); // dom渲染后再触发更新
   };
