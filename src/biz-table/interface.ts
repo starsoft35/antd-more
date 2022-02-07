@@ -1,6 +1,6 @@
 import type { TableColumnType, FormInstance } from 'antd';
 import type { SorterResult, TableCurrentDataSource } from 'antd/lib/table/interface';
-import type { ValueType, EnumData, BizFieldProps } from '../biz-field';
+import type { BizFieldValueType, EnumData, BizFieldProps } from '../biz-field';
 import type { BizFormItemProps } from '../biz-form';
 import type { ItemTypes } from './_util/constants';
 import type { WithTooltipProps } from '../biz-descriptions/WithTooltip';
@@ -38,7 +38,7 @@ export interface SearchProps<RecordType = any>
   extends Partial<Pick<TableColumnType<RecordType>, 'dataIndex' | 'title'>>,
     Partial<BizFormItemProps>,
     Record<string | number, any> {
-  valueType?: ValueType;
+  valueType?: BizFieldValueType;
   valueEnum?: EnumData;
   itemType?: keyof typeof ItemTypes;
   order?: number; // 定义查询项的排列顺序，越小越靠前。参照flex的order，默认都为0
@@ -54,7 +54,7 @@ interface EditableProps<RecordType = any> extends Omit<SearchProps<RecordType>, 
 interface InternalColumnType<RecordType = any>
   extends Omit<TableColumnType<RecordType>, 'dataIndex'> {
   dataIndex?: string | number | (string | number)[];
-  valueType?: ValueType;
+  valueType?: BizFieldValueType;
   valueEnum?: EnumData;
   tooltip?: WithTooltipProps['tooltip'];
   nowrap?: boolean;

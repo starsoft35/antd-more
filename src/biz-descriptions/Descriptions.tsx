@@ -3,13 +3,13 @@ import { Descriptions } from 'antd';
 import type { DescriptionsProps } from 'antd';
 import type { DescriptionsItemProps } from 'antd/lib/descriptions/Item';
 import BizField from '../biz-field';
-import type { ValueType, EnumData, BizFieldProps } from '../biz-field';
+import type { BizFieldValueType, EnumData, BizFieldProps } from '../biz-field';
 import WithTooltip from './WithTooltip';
 import type { WithTooltipProps } from './WithTooltip';
 
 export interface BizDescriptionsItemProps<DataType extends object = any>
   extends DescriptionsItemProps {
-  valueType?: ValueType;
+  valueType?: BizFieldValueType;
   valueEnum?: EnumData;
   tooltip?: WithTooltipProps['tooltip'];
   field?:

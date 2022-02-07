@@ -261,10 +261,10 @@ function getChildrenValue(
   return ret;
 }
 
-interface TreeTableProps<RecordType = any>
+export interface TreeTableProps<RecordType = any>
   extends Omit<
-  TableProps<RecordType>,
-  'columns' | 'dataSource' | 'pagination' | 'rowKey' | 'onChange'
+    TableProps<RecordType>,
+    'columns' | 'dataSource' | 'pagination' | 'rowKey' | 'onChange'
   > {
   columnTitles: React.ReactNode[];
   lastColumnMerged?: boolean;
@@ -276,7 +276,7 @@ interface TreeTableProps<RecordType = any>
   fieldNames?: TreeTableFieldNames;
 }
 
-const TreeTable: React.FunctionComponent<TreeTableProps> = (props) => {
+const TreeTable: React.FC<TreeTableProps> = (props) => {
   const {
     columnTitles = [],
     treeData = [],
@@ -471,21 +471,21 @@ const TreeTable: React.FunctionComponent<TreeTableProps> = (props) => {
 
         return col[valueKey]
           ? col.data.map((subItem) => (
-            <Checkbox
-              checked={
-                checkList.includes(subItem[valueKey]) ||
-                extraCheckListRef.current.includes(subItem[valueKey])
-              }
-              indeterminate={indeterminateListRef.current.includes(subItem[valueKey])}
-              onChange={() => {
-                handleChange(subItem);
-              }}
-              disabled={subItem.disabled}
-              key={subItem[valueKey]}
-            >
-              {labelRender ? labelRender(subItem) : subItem[labelKey] || subItem[valueKey]}
-            </Checkbox>
-          ))
+              <Checkbox
+                checked={
+                  checkList.includes(subItem[valueKey]) ||
+                  extraCheckListRef.current.includes(subItem[valueKey])
+                }
+                indeterminate={indeterminateListRef.current.includes(subItem[valueKey])}
+                onChange={() => {
+                  handleChange(subItem);
+                }}
+                disabled={subItem.disabled}
+                key={subItem[valueKey]}
+              >
+                {labelRender ? labelRender(subItem) : subItem[labelKey] || subItem[valueKey]}
+              </Checkbox>
+            ))
           : '-';
       }
     }));

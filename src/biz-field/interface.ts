@@ -1,6 +1,6 @@
 import type { EnumData } from '../dictionary';
 
-type ValueType =
+type BizFieldValueType =
   | 'text'
   | 'date'
   | 'dateWeek'
@@ -24,11 +24,11 @@ type ValueType =
   | 'image'
   | 'color';
 
-export type { EnumData, ValueType };
+export type { EnumData, BizFieldValueType };
 
 export interface BizFieldProps<T = any> {
   value: T;
-  valueType?: ValueType;
+  valueType?: BizFieldValueType;
   valueEnum?: EnumData<T>;
   formatValue?: (value: any) => T;
   [x: string]: any;
