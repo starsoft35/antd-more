@@ -1,8 +1,6 @@
 import * as React from 'react';
-import { BizForm } from 'antd-more';
+import { BizForm, BizFormItemSelect } from 'antd-more';
 import { Cycle, CycleOptions } from './constants';
-
-const { ItemSelect } = BizForm;
 
 const Demo = () => {
   return (
@@ -13,9 +11,9 @@ const Demo = () => {
       }}
       labelWidth={98}
     >
-      <ItemSelect label="选择器1" name="select1" options={CycleOptions} />
-      <ItemSelect label="选择器2" name="select2" options={CycleOptions} required all />
-      <ItemSelect
+      <BizFormItemSelect label="选择器1" name="select1" options={CycleOptions} />
+      <BizFormItemSelect label="选择器2" name="select2" options={CycleOptions} required all />
+      <BizFormItemSelect
         label="排除项"
         name="select3"
         options={CycleOptions}

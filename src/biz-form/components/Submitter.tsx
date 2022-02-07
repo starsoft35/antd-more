@@ -3,7 +3,7 @@ import { Button, Space } from 'antd';
 import type { ButtonProps, FormInstance } from './antd.interface';
 import omit from '../../utils/omit';
 
-export interface SubmitterProps {
+export interface BizFormSubmitterProps {
   resetText?: React.ReactNode;
   resetButtonProps?: ButtonProps & { preventDefault?: boolean };
   onReset?: (event: React.FormEvent<HTMLFormElement>) => void;
@@ -16,13 +16,13 @@ export interface SubmitterProps {
   form?: FormInstance;
   render?:
     | ((
-        props: SubmitterProps,
+        props: BizFormSubmitterProps,
         dom: React.ReactElement[]
       ) => React.ReactNode[] | React.ReactNode | false)
     | false;
 }
 
-const Submitter: React.FC<SubmitterProps> = (props) => {
+const BizFormSubmitter: React.FC<BizFormSubmitterProps> = (props) => {
   const {
     onSubmit = () => {},
     onReset = () => {},
@@ -96,4 +96,4 @@ const Submitter: React.FC<SubmitterProps> = (props) => {
   return renderDom as React.ReactElement;
 };
 
-export default Submitter;
+export default BizFormSubmitter;

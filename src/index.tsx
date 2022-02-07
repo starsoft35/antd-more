@@ -7,42 +7,15 @@ export * from './color';
 export { default as Dictionary } from './dictionary';
 export * from './dictionary';
 
-export type { InputIconProps } from './input-icon';
 export { default as InputIcon } from './input-icon';
+export * from './input-icon';
+
 export { default as TreeTable } from './tree-table';
 export type { TreeTableData, TreeTableDataItem, TreeTableFieldNames } from './tree-table';
 
-export type {
-  BizFormProps,
-  BizFormSubmitterProps,
-  BizFormListProps,
-  BizFormItemProps,
-  QueryFormProps,
-  StepsFormProps,
-  ModalFormProps,
-  DrawerFormProps,
-  ItemAddressProps as BizFormItemAddressProps,
-  ItemCaptchaProps as BizFormItemCaptchaProps,
-  ItemCheckboxProps as BizFormItemCheckboxProps,
-  ItemColorProps as BizFormItemColorProps,
-  ItemDateProps as BizFormItemDateProps,
-  ItemDateRangeProps as BizFormItemDateRangeProps,
-  ItemInputProps as BizFormItemInputProps,
-  ItemNumberProps as BizFormItemNumberProps,
-  ItemPasswordProps as BizFormItemPasswordProps,
-  ItemRadioProps as BizFormItemRadioProps,
-  ItemSelectProps as BizFormItemSelectProps,
-  ItemSliderProps as BizFormItemSliderProps,
-  ItemSwitchProps as BizFormItemSwitchProps,
-  ItemTextAreaProps as BizFormItemTextAreaProps,
-  ItemTimeProps as BizFormItemTimeProps,
-  ItemTimeRangeProps as BizFormItemTimeRangeProps,
-  ItemUploadProps as BizFormItemUploadProps,
-  StepFormProps,
-  StepsFormActionType,
-  StepsFormSubmitterProps
-} from './biz-form';
 export { default as BizForm } from './biz-form';
+export * from './biz-form';
+
 export type {
   BizFieldProps,
   ValueType as BizFieldValueType,

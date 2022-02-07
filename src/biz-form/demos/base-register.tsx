@@ -1,11 +1,9 @@
 import * as React from 'react';
-import { BizForm } from 'antd-more';
+import { BizForm, BizFormItemInput, BizFormItemAddress, BizFormItemPassword } from 'antd-more';
 import { getPCA } from 'lcn';
 import waitTime from '../../utils/waitTime';
 
 const pcaInlandData = getPCA({ inland: true, formatForm: true });
-
-const { ItemInput, ItemAddress, ItemPassword } = BizForm;
 
 const RegisterDemo = () => {
   return (
@@ -16,7 +14,7 @@ const RegisterDemo = () => {
         console.log(values);
       }}
     >
-      <ItemInput
+      <BizFormItemInput
         label="用户名"
         name="userName"
         type="userName"
@@ -29,16 +27,16 @@ const RegisterDemo = () => {
           }
         ]}
       />
-      <ItemInput label="手机号码" name="mobile" type="mobile" required />
-      <ItemInput label="身份证号" name="idCard" type="idCard" required />
-      <ItemInput
+      <BizFormItemInput label="手机号码" name="mobile" type="mobile" required />
+      <BizFormItemInput label="身份证号" name="idCard" type="idCard" required />
+      <BizFormItemInput
         label="邮箱"
         name="email"
         type="email"
         inputProps={{ placeholder: '请输入（选填）' }}
       />
-      <ItemPassword label="密码" name="password" required />
-      <ItemAddress
+      <BizFormItemPassword label="密码" name="password" required />
+      <BizFormItemAddress
         label="地址"
         names={['location', 'address']}
         labels={['省/市/区', '详细地址']}

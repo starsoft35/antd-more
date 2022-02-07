@@ -7,8 +7,6 @@ import {
   normalizeMobile
 } from '../_util/normalize';
 import { transformBankCard } from '../_util/transform';
-import ItemTextArea from './ItemTextArea';
-import ItemInputPassword from './ItemInputPassword';
 import type { BizFormItemProps } from './Item';
 import BizFormItem from './Item';
 import InputWrapper from './form/InputWrapper';
@@ -45,15 +43,7 @@ const maxLengthConfig = {
   mobile: 11
 };
 
-export interface FormItemInputProps extends BizFormItemProps {
-  /**
-   * @deprecated Please use 'contentBefore'
-   */
-  before?: React.ReactNode;
-  /**
-   * @deprecated Please use 'contentAfter'
-   */
-  after?: React.ReactNode;
+export interface BizFormItemInputProps extends BizFormItemProps {
   security?: boolean; // 脱敏。 为 true 时，必须传入 initialValue
   symbol?: string; // 脱敏符号
   type?: InputType;
@@ -61,20 +51,8 @@ export interface FormItemInputProps extends BizFormItemProps {
   inputProps?: InputProps;
 }
 
-const FormItemInput: React.FC<FormItemInputProps> & {
-  /**
-   * @deprecated Please use `ItemTextArea`
-   */
-  TextArea: typeof ItemTextArea;
-
-  /**
-   * @deprecated Please use `ItemPassword` validated=false
-   */
-  Password: typeof ItemInputPassword;
-} = ({
+const BizFormItemInput: React.FC<BizFormItemInputProps> = ({
   type,
-  before,
-  after,
   security = false,
   symbol = '*',
   disabledWhiteSpace = false,
@@ -154,8 +132,6 @@ const FormItemInput: React.FC<FormItemInputProps> & {
       ]}
       transform={handleTransform}
       validateTrigger={type ? 'onBlur' : 'onChange'}
-      contentBefore={before}
-      contentAfter={after}
       {...restProps}
     >
       <InputWrapper
@@ -170,7 +146,4 @@ const FormItemInput: React.FC<FormItemInputProps> & {
   );
 };
 
-FormItemInput.TextArea = ItemTextArea;
-FormItemInput.Password = ItemInputPassword;
-
-export default FormItemInput;
+export default BizFormItemInput;

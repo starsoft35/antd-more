@@ -8,11 +8,9 @@
  *      如果设置 `transform` 可以帮助内置的规则进行校验。
  */
 import * as React from 'react';
-import { BizForm } from 'antd-more';
+import { BizForm, BizFormList, BizFormItemUpload } from 'antd-more';
 import type { UploadFile } from 'antd/lib/upload/interface';
 import waitTime from '../../utils/waitTime';
-
-const { ItemUpload } = BizForm;
 
 // 上传图片
 async function uploadImage(file: File): Promise<{ fssId: string }> {
@@ -55,7 +53,7 @@ const Demo = () => {
       }}
       labelWidth={98}
     >
-      <ItemUpload
+      <BizFormItemUpload
         name="doc"
         label="doc文档"
         maxCount={1}
@@ -77,7 +75,7 @@ const Demo = () => {
         //   return files.map(item => item?.response?.fssId).filter(item=>!!item);
         // }}
       />
-      <ItemUpload
+      <BizFormItemUpload
         name="xls"
         label="xls文档"
         accept=".xls,.xlsx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
@@ -99,7 +97,7 @@ const Demo = () => {
         //   return files.map(item => item?.response?.fssId).filter(item=>!!item);
         // }}
       />
-      <ItemUpload
+      <BizFormItemUpload
         name="images"
         label="图片"
         type="image"
@@ -121,7 +119,7 @@ const Demo = () => {
         //   return files.map(item => item?.response?.fssId).filter(item => !!item);
         // }}
       />
-      <ItemUpload
+      <BizFormItemUpload
         name="headpic01"
         label="头像1"
         type="avatar"
@@ -130,7 +128,7 @@ const Demo = () => {
         onUpload={handleUpload}
         transform={transformUploadValue}
       />
-      <ItemUpload
+      <BizFormItemUpload
         name="headpic02"
         label="头像2"
         type="image"
@@ -140,10 +138,10 @@ const Demo = () => {
         onUpload={handleUpload}
         transform={transformUploadValue}
       />
-      {/* <BizForm.List name='test' initialValue={[{ headpic03: [] }]}>
+      {/* <BizFormList name='test' initialValue={[{ headpic03: [] }]}>
         {
           fields => fields.map(field => (
-            <ItemUpload
+            <BizFormItemUpload
               {...field}
               key={field.key}
               name={[field.name, 'headpic03']}
@@ -157,8 +155,8 @@ const Demo = () => {
             />
           ))
         }
-      </BizForm.List> */}
-      <ItemUpload
+      </BizFormList> */}
+      <BizFormItemUpload
         name="dragger"
         label="拖拽上传"
         type="dragger"

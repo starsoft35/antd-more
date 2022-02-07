@@ -1,9 +1,7 @@
 import * as React from 'react';
 import type { ModalFormProps } from 'antd-more';
-import { BizForm } from 'antd-more';
+import { BizForm, ModalForm, BizFormItemInput, BizFormItemTextArea } from 'antd-more';
 import waitTime from '../../../../utils/waitTime';
-
-const { ModalForm, ItemInput, ItemTextArea } = BizForm;
 
 export interface UpdateModalProps extends ModalFormProps {
   data?: any;
@@ -39,8 +37,8 @@ const UpdateModal: React.FC<UpdateModalProps> = ({ data, onChange, visible, ...r
       }}
       {...restProps}
     >
-      <ItemInput label="姓名" name="name" required />
-      <ItemTextArea
+      <BizFormItemInput label="姓名" name="name" required />
+      <BizFormItemTextArea
         label="简介"
         name="resume"
         required

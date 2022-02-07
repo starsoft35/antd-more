@@ -1,8 +1,6 @@
 import * as React from 'react';
 import type { FormInstance } from 'antd';
 import type { NamePath } from 'antd/lib/form/interface';
-import BizForm from '../../biz-form';
-import type { BizFormItemProps } from '../../biz-form/components/Item';
 import type { SearchProps } from '../interface';
 import { DateFormat } from '../../biz-field/_util/dateUtil';
 import { ItemTypes, ValueTypeToItemType, DatePickerMap } from './constants';
@@ -44,17 +42,15 @@ export function createFormItem({ search, ...restProps }: SearchProps, form: Form
 
   const type: string = itemType || valueType;
 
-  const formItemType = ValueTypeToItemType[type]
+  const FormItemComp = ValueTypeToItemType[type]
     ? ItemTypes[ValueTypeToItemType[type]]
-    : ItemTypes[type] || 'ItemInput';
+    : ItemTypes[type] || ItemTypes.input;
   const pickerProps = DatePickerMap[type] ? { picker: DatePickerMap[type] } : {};
   const formatProps = DateFormat[type] ? { format: DateFormat[type] } : {};
   const showTimeProps = type === 'dateTime' || type === 'dateTimeRange' ? { showTime: true } : {};
 
-  const Comp: React.FC<BizFormItemProps & Record<number | string, any>> = BizForm[formItemType];
-
   const dom = (
-    <Comp
+    <FormItemComp
       label={label || title}
       name={name || (dataIndex as NamePath)}
       options={valueEnum}

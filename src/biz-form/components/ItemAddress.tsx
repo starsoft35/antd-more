@@ -5,7 +5,7 @@ import { normalizeWhiteSpace } from '../_util/normalize';
 import type { BizFormItemProps } from './Item';
 import BizFormItem from './Item';
 
-export interface FormItemAddressProps<DataNodeType = any>
+export interface BizFormItemAddressProps<DataNodeType = any>
   extends Omit<BizFormItemProps, 'name' | 'transform'> {
   options?: CascaderProps<DataNodeType>['options'];
   names: [FormItemProps['name'], FormItemProps['name']]; // 如 ['location', 'address']
@@ -15,7 +15,7 @@ export interface FormItemAddressProps<DataNodeType = any>
   cascaderProps?: CascaderProps<DataNodeType>;
 }
 
-const FormItemAddress: React.FC<FormItemAddressProps> = ({
+const BizFormItemAddress: React.FC<BizFormItemAddressProps> = ({
   names,
   labels,
   options = [],
@@ -90,4 +90,4 @@ const FormItemAddress: React.FC<FormItemAddressProps> = ({
   );
 };
 
-export default FormItemAddress;
+export default BizFormItemAddress;

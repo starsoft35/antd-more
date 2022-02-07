@@ -4,13 +4,11 @@
  *      上传图片、pdf、audio、video等类型的文件自定义缩略图及预览。关于文件预览可以参考 [react-file-viewer](https://www.npmjs.com/package/react-file-viewer) 。
  */
 import * as React from 'react';
-import { BizForm } from 'antd-more';
+import { BizForm, BizFormItemUpload } from 'antd-more';
 import type { UploadFile } from 'antd/lib/upload/interface';
 import PreviewFile from './components/PreviewFile';
 import { getThumbUrl } from './utils/utils';
 import waitTime from '../../utils/waitTime';
-
-const { ItemUpload } = BizForm;
 
 // 上传文件
 async function upload(file: File): Promise<{ fssId: string }> {
@@ -57,7 +55,7 @@ const Demo = () => {
         }}
         labelWidth={98}
       >
-        <ItemUpload
+        <BizFormItemUpload
           name="files"
           label="任意文件"
           type="image"

@@ -8,11 +8,16 @@ import { Card, Result, Space, Button, Popconfirm } from 'antd';
 import { PayCircleOutlined } from '@ant-design/icons';
 import { BasicLayout, FooterToolbar, PageContainer } from '@ant-design/pro-layout';
 import type { StepsFormActionType } from 'antd-more';
-import { BizForm } from 'antd-more';
+import {
+  StepsForm,
+  BizFormItemInput,
+  BizFormItemSelect,
+  BizFormItemNumber,
+  BizFormItemUpload,
+  BizFormItemTextArea
+} from 'antd-more';
 import { BillAccountOptions } from './constants';
 import waitTime from '../../utils/waitTime';
-
-const { StepsForm, ItemInput, ItemSelect, ItemNumber, ItemUpload, ItemTextArea } = BizForm;
 
 const Demo = () => {
   const actionRef = React.useRef<StepsFormActionType>();
@@ -80,8 +85,8 @@ const Demo = () => {
                 )
               }}
             >
-              <ItemInput label="收款账号" name="ban" required />
-              <ItemSelect
+              <BizFormItemInput label="收款账号" name="ban" required />
+              <BizFormItemSelect
                 label="收款账号名称"
                 name="accountName"
                 options={BillAccountOptions}
@@ -123,15 +128,21 @@ const Demo = () => {
                 )
               }}
             >
-              <ItemNumber label="付款金额" name="money" required precision={2} contentAfter="¥" />
-              <ItemUpload
+              <BizFormItemNumber
+                label="付款金额"
+                name="money"
+                required
+                precision={2}
+                contentAfter="¥"
+              />
+              <BizFormItemUpload
                 label="材料文件"
                 name="files"
                 required
                 title="上传文件"
                 transform={(values) => values.map((val) => val.name)}
               />
-              <ItemTextArea
+              <BizFormItemTextArea
                 label="备注（选填）"
                 name="remark"
                 disabledWhiteSpace

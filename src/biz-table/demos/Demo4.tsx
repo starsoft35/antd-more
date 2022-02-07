@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Slider } from 'antd';
 import type { BizTableRequest, BizTableColumnType } from 'antd-more';
-import { BizTable, BizForm } from 'antd-more';
+import { BizTable, BizFormItem } from 'antd-more';
 import { getApplyList } from './service';
 import type { DataItem } from './service';
 import { ApproveStatusOptions } from './constants';
@@ -168,9 +168,9 @@ const columns: BizTableColumnType<DataItem> = [
     search: {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       render: ({ dataIndex, title }, dom, form) => (
-        <BizForm.Item name={dataIndex} label={title} colProps={{ lg: 12, md: 24 }}>
+        <BizFormItem name={dataIndex} label={title} colProps={{ lg: 12, md: 24 }}>
           <Slider />
-        </BizForm.Item>
+        </BizFormItem>
       )
     },
     table: false,

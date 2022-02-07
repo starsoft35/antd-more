@@ -1,5 +1,14 @@
 import * as React from 'react';
-import { BizForm } from 'antd-more';
+import {
+  BizForm,
+  BizFormList,
+  BizFormItemInput,
+  BizFormItemAddress,
+  BizFormItemDate,
+  BizFormItemDateRange,
+  BizFormItemPassword,
+  BizFormItemTextArea
+} from 'antd-more';
 import { getPCA } from 'lcn';
 
 const pcaInlandData = getPCA({ inland: true, formatForm: true });
@@ -50,15 +59,15 @@ const Demo = () => {
         // initialValues={initialValues}
         {...formLayout}
       >
-        <BizForm.ItemInput name="email" label="邮箱" type="email" />
-        <BizForm.ItemAddress
+        <BizFormItemInput name="email" label="邮箱" type="email" />
+        <BizFormItemAddress
           label="地址"
           names={['location', 'address']}
           labels={['省/市/区', '详细地址']}
           options={pcaInlandData}
         />
-        <BizForm.ItemInput label="银行卡号" name="bankCardNo" type="bankCard" />
-        {/* <BizForm.List name="arr1">
+        <BizFormItemInput label="银行卡号" name="bankCardNo" type="bankCard" />
+        {/* <BizFormList name="arr1">
           {fields => {
             return fields.map(field => {
               // console.log(field);
@@ -67,12 +76,12 @@ const Demo = () => {
                   {
                     field.name !== 0 && (
                       <>
-                        <BizForm.ItemInput label="嵌套银行卡号2" {...field} name={[field.name, "bankCardNo"]} type="bankCard" />
-                        <BizForm.ItemInput name={[field.name, "email"]} label="嵌套邮箱" transform={(val) => val + "xxx"} type="email" />
+                        <BizFormItemInput label="嵌套银行卡号2" {...field} name={[field.name, "bankCardNo"]} type="bankCard" />
+                        <BizFormItemInput name={[field.name, "email"]} label="嵌套邮箱" transform={(val) => val + "xxx"} type="email" />
                       </>
                     )
                   }
-                  <BizForm.ItemAddress
+                  <BizFormItemAddress
                     label="嵌套地址"
                     names={[[field.name, "location"], [field.name, "address"]]}
                     labels={["省/市/区", "详细地址"]}
@@ -82,40 +91,40 @@ const Demo = () => {
               )
             })
           }}
-        </BizForm.List>
-        <BizForm.List name="arr2">
+        </BizFormList>
+        <BizFormList name="arr2">
           {fields => {
             // console.log(fields);
             return fields.map(field => {
               return (
-                <BizForm.List {...field} name={[field.name, "subArr2"]}>
+                <BizFormList {...field} name={[field.name, "subArr2"]}>
                   {(subFields) => {
                     return subFields.map(subField => (
-                      <BizForm.ItemInput type="bankCard" security initialValue={initialValues.arr2[field.name].subArr2[subField.name].bankCardNo} label="嵌套银行卡号3" {...subField} fieldKey={[subField.fieldKey, "bankCardNo"]} name={[subField.name, "bankCardNo"]} />
+                      <BizFormItemInput type="bankCard" security initialValue={initialValues.arr2[field.name].subArr2[subField.name].bankCardNo} label="嵌套银行卡号3" {...subField} fieldKey={[subField.fieldKey, "bankCardNo"]} name={[subField.name, "bankCardNo"]} />
                     ))
                   }}
-                </BizForm.List>
+                </BizFormList>
               )
             })
           }}
-        </BizForm.List>
-        <BizForm.ItemInput label="银行卡号4" name={["test", "bankCardNo"]} type="bankCard" /> */}
-        <BizForm.ItemDate label="日期" name="date" />
-        <BizForm.ItemDate label="周" name="week" pickerProps={{ picker: 'week' }} />
-        <BizForm.ItemDate label="月" name="month" pickerProps={{ picker: 'month' }} />
-        <BizForm.ItemDate label="年" name="year" pickerProps={{ picker: 'year' }} />
-        <BizForm.ItemDate label="日期时间" name="dateTime" pickerProps={{ showTime: true }} />
-        <BizForm.ItemDateRange label="日期区间" name="dateRange" />
-        <BizForm.ItemDateRange
+        </BizFormList>
+        <BizFormItemInput label="银行卡号4" name={["test", "bankCardNo"]} type="bankCard" /> */}
+        <BizFormItemDate label="日期" name="date" />
+        <BizFormItemDate label="周" name="week" pickerProps={{ picker: 'week' }} />
+        <BizFormItemDate label="月" name="month" pickerProps={{ picker: 'month' }} />
+        <BizFormItemDate label="年" name="year" pickerProps={{ picker: 'year' }} />
+        <BizFormItemDate label="日期时间" name="dateTime" pickerProps={{ showTime: true }} />
+        <BizFormItemDateRange label="日期区间" name="dateRange" />
+        <BizFormItemDateRange
           label="日期时间区间"
           name="dateTimeRange"
           pickerProps={{ showTime: true }}
         />
-        <BizForm.ItemInput label="身份证号" name="idCard" type="idCard" />
-        <BizForm.ItemInput label="Input" name="input" />
-        <BizForm.ItemPassword label="Input.Password" name="inputPassword" validated={false} />
-        <BizForm.ItemTextArea label="Input.TextArea" name="inputTextArea" />
-        <BizForm.ItemInput label="手机号码" name="mobile" type="mobile" />
+        <BizFormItemInput label="身份证号" name="idCard" type="idCard" />
+        <BizFormItemInput label="Input" name="input" />
+        <BizFormItemPassword label="Input.Password" name="inputPassword" validated={false} />
+        <BizFormItemTextArea label="Input.TextArea" name="inputTextArea" />
+        <BizFormItemInput label="手机号码" name="mobile" type="mobile" />
       </BizForm>
       <div>
         result:

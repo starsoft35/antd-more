@@ -1,9 +1,13 @@
 import * as React from 'react';
 import { Card, message } from 'antd';
-import { BizForm } from 'antd-more';
+import {
+  BizForm,
+  StepsForm,
+  BizFormItemInput,
+  BizFormItemCaptcha,
+  BizFormItemPassword
+} from 'antd-more';
 import waitTime from '../../utils/waitTime';
-
-const { StepsForm, ItemInput, ItemCaptcha, ItemPassword } = BizForm;
 
 const Demo = () => {
   const [form1] = BizForm.useForm();
@@ -43,7 +47,7 @@ const Demo = () => {
             await waitTime();
           }}
         >
-          <ItemInput
+          <BizFormItemInput
             name="mobile"
             type="mobile"
             inputProps={{
@@ -52,7 +56,7 @@ const Demo = () => {
             label="手机号"
             required
           />
-          <ItemInput
+          <BizFormItemInput
             name="code"
             validateTrigger="onBlur"
             label="图形验证码"
@@ -64,7 +68,7 @@ const Demo = () => {
             }
             required
           />
-          <ItemCaptcha
+          <BizFormItemCaptcha
             name="smsCode"
             validateTrigger="onBlur"
             label="验证码"
@@ -104,7 +108,7 @@ const Demo = () => {
           requiredMark={false}
           form={form2}
         >
-          <ItemPassword
+          <BizFormItemPassword
             name="password"
             min={6}
             max={16}
@@ -115,7 +119,7 @@ const Demo = () => {
             validateTrigger="onBlur"
             required
           />
-          <ItemPassword
+          <BizFormItemPassword
             name="oldPassword"
             inputProps={{
               placeholder: '再次输入新密码'

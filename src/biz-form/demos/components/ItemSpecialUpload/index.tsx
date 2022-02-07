@@ -1,9 +1,7 @@
 import * as React from 'react';
 import type { BizFormItemUploadProps } from 'antd-more';
-import { BizForm } from 'antd-more';
+import { BizFormItemUpload } from 'antd-more';
 import './style.less';
-
-const { ItemUpload } = BizForm;
 
 const ItemSpecialUpload: React.FC<BizFormItemUploadProps> = ({
   uploadProps = {},
@@ -13,7 +11,7 @@ const ItemSpecialUpload: React.FC<BizFormItemUploadProps> = ({
 
   return (
     <div id={uniqueId}>
-      <ItemUpload
+      <BizFormItemUpload
         maxCount={1}
         className="item-special-upload"
         renderField={(dom) => {

@@ -6,12 +6,12 @@ import type { BizFormItemProps } from './Item';
 import BizFormItem from './Item';
 import getLabel from '../_util/getLabel';
 
-export interface FormItemTextAreaProps extends BizFormItemProps {
+export interface BizFormItemTextAreaProps extends BizFormItemProps {
   disabledWhiteSpace?: boolean;
   inputProps?: TextAreaProps;
 }
 
-const FormItemTextArea: React.FC<FormItemTextAreaProps> = ({
+const BizFormItemTextArea: React.FC<BizFormItemTextAreaProps> = ({
   disabledWhiteSpace = false,
   inputProps = {},
   required = false,
@@ -57,4 +57,4 @@ const FormItemTextArea: React.FC<FormItemTextAreaProps> = ({
   );
 };
 
-export default FormItemTextArea;
+export default BizFormItemTextArea;

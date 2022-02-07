@@ -10,10 +10,6 @@ import getLabel from '../_util/getLabel';
 interface VerificateCodeInputProps extends Record<number | string, any> {
   value?: any;
   onChange?: (value: any) => void;
-  /**
-   * @deprecated Please use `onGetCaptcha`
-   */
-  check?: () => boolean | Promise<any>;
   // 发送验证码
   onGetCaptcha?: () => boolean | Promise<any>;
   inputProps?: InputProps;
@@ -21,7 +17,7 @@ interface VerificateCodeInputProps extends Record<number | string, any> {
   type?: 'default' | 'inline'; // 显示类型
 }
 
-const checkResult = async (fn) => {
+const checkResult = async (fn: () => boolean | Promise<boolean>) => {
   try {
     const ret = await fn();
     if (ret !== false) {
@@ -36,7 +32,6 @@ const checkResult = async (fn) => {
 const VerificateCodeInput: React.FC<VerificateCodeInputProps> = ({
   value,
   onChange,
-  check = () => true,
   onGetCaptcha = () => true,
   inputProps = {},
   buttonProps = {},
@@ -55,7 +50,6 @@ const VerificateCodeInput: React.FC<VerificateCodeInputProps> = ({
     try {
       // 验证手机号码/邮箱是否正确
       // 发送验证码
-      await checkResult(check);
       await checkResult(onGetCaptcha);
 
       setStart(true);
@@ -144,7 +138,7 @@ const VerificateCodeInput: React.FC<VerificateCodeInputProps> = ({
   );
 };
 
-export interface FormItemCaptchaProps
+export interface BizFormItemCaptchaProps
   extends BizFormItemProps,
     Pick<
       VerificateCodeInputProps,
@@ -152,7 +146,7 @@ export interface FormItemCaptchaProps
     >,
     Pick<CaptchaButtonProps, 'initText' | 'runText' | 'resetText' | 'second'> {}
 
-const FormItemCaptcha: React.FC<FormItemCaptchaProps> = ({
+const BizFormItemCaptcha: React.FC<BizFormItemCaptchaProps> = ({
   check,
   type,
   onGetCaptcha,
@@ -202,4 +196,4 @@ const FormItemCaptcha: React.FC<FormItemCaptchaProps> = ({
   );
 };
 
-export default FormItemCaptcha;
+export default BizFormItemCaptcha;

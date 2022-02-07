@@ -21,7 +21,7 @@ const DatePickerWrapper: React.FC<DatePickerProps | MonthPickerProps | WeekPicke
   return <DatePicker value={transformMomentValue(value)} {...restProps} />;
 };
 
-export interface FormItemDateProps extends BizFormItemProps {
+export interface BizFormItemDateProps extends BizFormItemProps {
   disabledDateBefore?: number;
   disabledDateAfter?: number;
   showTime?: TimePickerProps | boolean;
@@ -32,7 +32,7 @@ export interface FormItemDateProps extends BizFormItemProps {
 
 const prefixCls = 'antd-more-form-item-date';
 
-const FormItemDate: React.FC<FormItemDateProps> = ({
+const BizFormItemDate: React.FC<BizFormItemDateProps> = ({
   disabledDateBefore,
   disabledDateAfter,
   showTime = false,
@@ -101,4 +101,4 @@ const FormItemDate: React.FC<FormItemDateProps> = ({
   );
 };
 
-export default FormItemDate;
+export default BizFormItemDate;

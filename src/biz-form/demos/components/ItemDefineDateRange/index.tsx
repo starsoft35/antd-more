@@ -1,6 +1,6 @@
 import * as React from 'react';
 import type { BizFormItemProps } from 'antd-more';
-import { BizForm } from 'antd-more';
+import { BizFormItem } from 'antd-more';
 import FieldContext from 'antd-more/es/biz-form/FieldContext';
 import ListFieldContext from 'antd-more/es/biz-form/ListFieldContext';
 import getNamePaths from 'antd-more/es/biz-form/_util/getNamePaths';
@@ -25,7 +25,7 @@ const ItemDefineDateRange: React.FC<BizFormItemProps> = ({
   }, [form, name, parentListName]);
 
   return (
-    <BizForm.Item
+    <BizFormItem
       label={label}
       name={name}
       validateTrigger={false}
@@ -63,7 +63,7 @@ const ItemDefineDateRange: React.FC<BizFormItemProps> = ({
       {...restProps}
     >
       <DefineDateRange internalTrigger={triggeValidate} />
-    </BizForm.Item>
+    </BizFormItem>
   );
 };
 

@@ -90,14 +90,14 @@ import { BizForm } from 'antd-more';
 | --- | --- | --- | --- |
 | onFinish | 提交数据时触发，和 antd Form 一样。如果返回异步，会自动管理 loading 。 | `(values)=>any` | - |
 | onReset | 点击重置按钮的回调 | `(e)=>void` | - |
-| submitter | 提交、重置按钮相关配置 | `false \| SubmitterProps` | - |
+| submitter | 提交、重置按钮相关配置 | `false \| BizFormSubmitterProps` | - |
 | pressEnterSubmit | 是否开启回车键提交，注意不要与自定义的 `htmlType='submit'` 的按钮冲突。 | `boolean` | `true` |
 | ready | 为 `false` 时，禁止提交/重置表单。<br/>为 `true` 时，会重新设置表单初始值。 | `boolean` | `true` |
 | loading | 设置提交、重置的加载/禁止状态。<br/>如果 `onFinish` 返回异步则无需设置，内部会自动更新。 | `boolean` | `false` |
 | labelWidth | label 宽度 | `number \| 'auto'` | `84` |
 | hideLabel | 隐藏 label | `boolean` | `false` |
 
-### SubmitterProps
+### BizFormSubmitterProps
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |

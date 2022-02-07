@@ -1,15 +1,12 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import * as React from 'react';
 import { message } from 'antd';
-import { BizForm } from 'antd-more';
+import { BizForm, BizFormItemCaptcha, BizFormItemPassword, BizFormItemInput } from 'antd-more';
 import waitTime from '../../utils/waitTime';
 
 async function sendCaptcha(mobile: string) {
   await waitTime(2000);
   return;
 }
-
-const { ItemCaptcha, ItemPassword, ItemInput } = BizForm;
 
 const ForgetPassword = () => {
   const [form] = BizForm.useForm();
@@ -28,8 +25,8 @@ const ForgetPassword = () => {
       form={form}
       labelWidth={98}
     >
-      <ItemInput label="手机号码" name="mobile" type="mobile" required />
-      <ItemCaptcha
+      <BizFormItemInput label="手机号码" name="mobile" type="mobile" required />
+      <BizFormItemCaptcha
         label="验证码"
         name="captcha"
         required
@@ -48,8 +45,13 @@ const ForgetPassword = () => {
           return sendCaptcha(form.getFieldValue('mobile'));
         }}
       />
-      <ItemPassword label="新密码" name="password" required inputProps={{ allowClear: false }} />
-      <ItemPassword
+      <BizFormItemPassword
+        label="新密码"
+        name="password"
+        required
+        inputProps={{ allowClear: false }}
+      />
+      <BizFormItemPassword
         label="重复新密码"
         name="repeatPassword"
         required

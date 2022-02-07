@@ -5,30 +5,17 @@ import BizFormItem from './Item';
 import type { InputNumberProps } from './antd.interface';
 import getLabel from '../_util/getLabel';
 
-interface InputNumberWrapperProps extends InputNumberProps {
-  /**
-   * @deprecated Please use 'contentBefore'
-   */
-  before?: React.ReactNode;
-  /**
-   * @deprecated Please use 'contentAfter'
-   */
-  after?: React.ReactNode;
-}
-
-export interface FormItemNumberProps
+export interface BizFormItemNumberProps
   extends BizFormItemProps,
-    Pick<InputNumberWrapperProps, 'before' | 'after' | 'precision'> {
+    Pick<InputNumberProps, 'precision'> {
   lt?: number;
   gt?: number;
   lte?: number;
   gte?: number;
-  inputProps?: InputNumberWrapperProps;
+  inputProps?: InputNumberProps;
 }
 
-const FormItemNumber: React.FC<FormItemNumberProps> = ({
-  before,
-  after,
+const BizFormItemNumber: React.FC<BizFormItemNumberProps> = ({
   lt,
   gt,
   lte,
@@ -64,8 +51,6 @@ const FormItemNumber: React.FC<FormItemNumberProps> = ({
           }
         }
       ]}
-      contentBefore={before}
-      contentAfter={after}
       {...restProps}
     >
       <InputNumber placeholder="请输入" precision={precision} {...inputProps} />
@@ -73,4 +58,4 @@ const FormItemNumber: React.FC<FormItemNumberProps> = ({
   );
 };
 
-export default FormItemNumber;
+export default BizFormItemNumber;

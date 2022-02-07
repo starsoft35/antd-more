@@ -1,10 +1,8 @@
 import * as React from 'react';
 import { Row, Col } from 'antd';
-import { BizForm } from 'antd-more';
+import { BizForm, BizFormItem, BizFormItemRadio, BizFormItemNumber } from 'antd-more';
 import { RakebackeCycleOptions } from './constants';
 import waitTime from '../../utils/waitTime';
-
-const { ItemRadio, ItemNumber } = BizForm;
 
 const oneColSpan = {
   span: 24
@@ -39,7 +37,7 @@ const RakebackeInfo = () => {
     >
       <Row>
         <Col {...oneColSpan}>
-          <ItemRadio
+          <BizFormItemRadio
             label="返佣周期"
             name="rakebackeCycle"
             required
@@ -47,10 +45,10 @@ const RakebackeInfo = () => {
           />
         </Col>
         <Col {...oneColSpan}>
-          <BizForm.Item label="普通刷卡" colon={false}>
+          <BizFormItem label="普通刷卡" colon={false}>
             <Row>
               <Col {...threeColSpan}>
-                <ItemNumber
+                <BizFormItemNumber
                   label="借记卡"
                   name="costpriceCp"
                   labelWidth={98}
@@ -62,7 +60,7 @@ const RakebackeInfo = () => {
                 />
               </Col>
               <Col {...threeColSpan}>
-                <ItemNumber
+                <BizFormItemNumber
                   label="借记卡封顶"
                   name="costpriceCpMaxFee"
                   labelWidth={98}
@@ -73,7 +71,7 @@ const RakebackeInfo = () => {
                 />
               </Col>
               <Col {...threeColSpan}>
-                <ItemNumber
+                <BizFormItemNumber
                   label="贷记卡"
                   name="costpriceCpCredit"
                   labelWidth={98}
@@ -85,7 +83,7 @@ const RakebackeInfo = () => {
                 />
               </Col>
               <Col {...threeColSpan}>
-                <ItemNumber
+                <BizFormItemNumber
                   label="IC卡小额"
                   name="costpriceIC"
                   labelWidth={98}
@@ -98,13 +96,13 @@ const RakebackeInfo = () => {
                 />
               </Col>
             </Row>
-          </BizForm.Item>
+          </BizFormItem>
         </Col>
         <Col {...oneColSpan}>
-          <BizForm.Item label="扫码支付" colon={false}>
+          <BizFormItem label="扫码支付" colon={false}>
             <Row>
               <Col {...threeColSpan}>
-                <ItemNumber
+                <BizFormItemNumber
                   label="支付宝"
                   name="costpriceAlipay"
                   labelWidth={98}
@@ -116,7 +114,7 @@ const RakebackeInfo = () => {
                 />
               </Col>
               <Col {...threeColSpan}>
-                <ItemNumber
+                <BizFormItemNumber
                   label="微信"
                   name="costpriceWechat"
                   labelWidth={98}
@@ -128,7 +126,7 @@ const RakebackeInfo = () => {
                 />
               </Col>
               <Col {...threeColSpan}>
-                <ItemNumber
+                <BizFormItemNumber
                   label="银二小额"
                   name="costpriceUionpay"
                   labelWidth={98}
@@ -141,13 +139,13 @@ const RakebackeInfo = () => {
                 />
               </Col>
             </Row>
-          </BizForm.Item>
+          </BizFormItem>
         </Col>
         <Col {...oneColSpan}>
-          <BizForm.Item label="结算" colon={false}>
+          <BizFormItem label="结算" colon={false}>
             <Row>
               <Col {...threeColSpan}>
-                <ItemNumber
+                <BizFormItemNumber
                   label="结算手续费"
                   name="settlementFee"
                   labelWidth={98}
@@ -158,7 +156,7 @@ const RakebackeInfo = () => {
                 />
               </Col>
             </Row>
-          </BizForm.Item>
+          </BizFormItem>
         </Col>
       </Row>
     </BizForm>

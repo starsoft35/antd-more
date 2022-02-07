@@ -28,14 +28,10 @@ nav:
 
 ## API
 
-```typescript
-import { BizForm } from 'antd-more';
-```
-
 ### QueryForm
 
 ```typescript
-const { QueryForm } = BizForm;
+import { QueryForm } from 'antd-more';
 ```
 
 除了以下参数，其余和 BizForm 一样。
@@ -49,4 +45,4 @@ const { QueryForm } = BizForm;
 
 #### 支持响应式
 
-QueryForm 下的 Col 默认设置 `{ xs: 24, md: 12, lg: 8, xxl: 6 }` ，可以通过 BizForm.Item 的 `colProps` 重置。
+QueryForm 下的 Col 默认设置 `{ xs: 24, md: 12, lg: 8, xxl: 6 }` ，可以通过 BizFormItem 的 `colProps` 重置。

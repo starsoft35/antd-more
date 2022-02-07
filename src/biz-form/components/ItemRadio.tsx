@@ -6,13 +6,9 @@ import type { BizFormItemProps } from './Item';
 import BizFormItem from './Item';
 import getLabel from '../_util/getLabel';
 
-export interface FormItemRadioProps extends BizFormItemProps {
+export interface BizFormItemRadioProps extends BizFormItemProps {
   all?: boolean;
   allValue?: any;
-  /**
-   * @deprecated Please use 'allLabel'
-   */
-  allName?: React.ReactNode;
   allLabel?: React.ReactNode;
   excludeValues?: any[];
   options?: CheckboxOptionType[];
@@ -20,10 +16,9 @@ export interface FormItemRadioProps extends BizFormItemProps {
   radioGroupProps?: RadioGroupProps;
 }
 
-const FormItemRadio: React.FC<FormItemRadioProps> = ({
+const BizFormItemRadio: React.FC<BizFormItemRadioProps> = ({
   all = false,
   allValue = '',
-  allName,
   allLabel = '全部',
   excludeValues = [],
   options = [],
@@ -32,12 +27,12 @@ const FormItemRadio: React.FC<FormItemRadioProps> = ({
   required = false,
   ...restProps
 }) => {
-  const opts = useFilterOptions<FormItemRadioProps['options']>({
+  const opts = useFilterOptions<BizFormItemRadioProps['options']>({
     options,
     excludeValues,
     all,
     allValue,
-    allName: allName || allLabel
+    allName: allLabel
   });
 
   return (
@@ -65,4 +60,4 @@ const FormItemRadio: React.FC<FormItemRadioProps> = ({
   );
 };
 
-export default FormItemRadio;
+export default BizFormItemRadio;

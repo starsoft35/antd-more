@@ -4,13 +4,13 @@ import type { SliderSingleProps, SliderRangeProps } from './antd.interface';
 import type { BizFormItemProps } from './Item';
 import BizFormItem from './Item';
 
-export interface FormItemSliderProps
+export interface BizFormItemSliderProps
   extends BizFormItemProps,
     Pick<SliderSingleProps, 'min' | 'max' | 'step' | 'marks'> {
   sliderProps?: SliderSingleProps | SliderRangeProps;
 }
 
-const FormItemSlider: React.FC<FormItemSliderProps> = ({
+const BizFormItemSlider: React.FC<BizFormItemSliderProps> = ({
   min,
   max,
   step,
@@ -25,4 +25,4 @@ const FormItemSlider: React.FC<FormItemSliderProps> = ({
   );
 };
 
-export default FormItemSlider;
+export default BizFormItemSlider;

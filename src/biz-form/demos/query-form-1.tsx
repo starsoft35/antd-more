@@ -1,8 +1,12 @@
 import * as React from 'react';
-import { BizForm } from 'antd-more';
+import {
+  BizForm,
+  QueryForm,
+  BizFormItemInput,
+  BizFormItemDate,
+  BizFormItemDateRange
+} from 'antd-more';
 import waitTime from '../../utils/waitTime';
-
-const { QueryForm, ItemInput, ItemDate, ItemDateRange } = BizForm;
 
 const Demo = () => {
   const [form] = BizForm.useForm();
@@ -16,10 +20,10 @@ const Demo = () => {
         console.log(values);
       }}
     >
-      <ItemInput label="商品编号" name="goodsNo" />
-      <ItemDate label="交易日期" name="tradeDate" />
-      <ItemInput label="手机号码" name="mobile" type="mobile" />
-      <ItemDateRange
+      <BizFormItemInput label="商品编号" name="goodsNo" />
+      <BizFormItemDate label="交易日期" name="tradeDate" />
+      <BizFormItemInput label="手机号码" name="mobile" type="mobile" />
+      <BizFormItemDateRange
         label="时间"
         name="time"
         names={['startTime', 'endTime']}

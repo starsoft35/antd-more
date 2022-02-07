@@ -1,6 +1,14 @@
 import * as React from 'react';
 import { Button, Row, Col, TreeSelect } from 'antd';
-import { BizForm, InputIcon } from 'antd-more';
+import {
+  BizForm,
+  ModalForm,
+  BizFormItem,
+  BizFormItemRadio,
+  BizFormItemInput,
+  BizFormItemNumber,
+  InputIcon
+} from 'antd-more';
 import icons from 'antd-more/es/input-icon/icons';
 import { MenuType, HiddenMenu, CacheMenu } from './type';
 
@@ -69,8 +77,6 @@ const cacheMenuOptions = [
   }
 ];
 
-const { ModalForm, Item, ItemRadio, ItemInput, ItemNumber } = BizForm;
-
 const Demo = () => {
   const [form] = BizForm.useForm();
   const [currentMenuType, setCurrentMenuType] = React.useState(MenuType.Menu);
@@ -108,7 +114,7 @@ const Demo = () => {
         centered: false
       }}
     >
-      <ItemRadio
+      <BizFormItemRadio
         name="menuType"
         label="菜单类型"
         options={menuTypeOptions}
@@ -116,28 +122,28 @@ const Demo = () => {
         radioGroupProps={{ buttonStyle: 'solid' }}
         required
       />
-      <Item name="parent" label="上级类目">
+      <BizFormItem name="parent" label="上级类目">
         <TreeSelect treeData={treeData} treeDefaultExpandAll placeholder="请选择" />
-      </Item>
+      </BizFormItem>
       <Row>
         <Col span={12}>
-          <ItemInput name="name" label={`${menuTypeName}名称`} required />
+          <BizFormItemInput name="name" label={`${menuTypeName}名称`} required />
         </Col>
         <Col span={12}>
-          <ItemInput name="code" label={`${menuTypeName}编号`} required />
+          <BizFormItemInput name="code" label={`${menuTypeName}编号`} required />
         </Col>
         <Col span={12}>
-          <ItemNumber name="sort" label="排序" precision={0} inputProps={{ min: 0 }} />
+          <BizFormItemNumber name="sort" label="排序" precision={0} inputProps={{ min: 0 }} />
         </Col>
       </Row>
       {currentMenuType === MenuType.Menu && (
         <>
-          <Item label="菜单图标" name="icon">
+          <BizFormItem label="菜单图标" name="icon">
             <InputIcon iconData={icons} />
-          </Item>
+          </BizFormItem>
           <Row>
             <Col span={12}>
-              <ItemRadio
+              <BizFormItemRadio
                 name="hidden"
                 label="是否可见"
                 options={hiddenMenuOptions}
@@ -147,7 +153,7 @@ const Demo = () => {
               />
             </Col>
             <Col span={12}>
-              <ItemRadio
+              <BizFormItemRadio
                 name="cache"
                 label="是否缓存"
                 options={cacheMenuOptions}

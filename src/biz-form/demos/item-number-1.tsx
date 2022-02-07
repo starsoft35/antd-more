@@ -1,7 +1,5 @@
 import * as React from 'react';
-import { BizForm } from 'antd-more';
-
-const { ItemNumber } = BizForm;
+import { BizForm, BizFormItemNumber } from 'antd-more';
 
 const Demo = () => {
   return (
@@ -12,9 +10,9 @@ const Demo = () => {
       }}
       labelWidth={98}
     >
-      <ItemNumber label="number1" name="number1" />
-      <ItemNumber label="number2" name="number2" required />
-      <ItemNumber
+      <BizFormItemNumber label="number1" name="number1" />
+      <BizFormItemNumber label="number2" name="number2" required />
+      <BizFormItemNumber
         label="金额"
         name="number3"
         precision={2}
@@ -24,7 +22,7 @@ const Demo = () => {
         tooltip="大于等于0，小于等于100"
         required
       />
-      <ItemNumber
+      <BizFormItemNumber
         label="费率"
         name="number4"
         precision={2}

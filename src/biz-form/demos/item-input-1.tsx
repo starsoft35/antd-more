@@ -1,10 +1,8 @@
 import * as React from 'react';
-import { BizForm } from 'antd-more';
+import { BizForm, BizFormItemInput } from 'antd-more';
 import { useAsync } from 'rc-hooks';
 import IdentifyCode from './components/IdentifyCode';
 import waitTime from '../../utils/waitTime';
-
-const { ItemInput } = BizForm;
 
 async function getGraphValidateCode() {
   await waitTime();
@@ -22,10 +20,10 @@ const Demo = () => {
       }}
       labelWidth={112}
     >
-      <ItemInput label="Input" name="input1" />
-      <ItemInput label="必填项" name="input2" required />
-      <ItemInput label="禁止空格" name="input3" disabledWhiteSpace />
-      <ItemInput
+      <BizFormItemInput label="Input" name="input1" />
+      <BizFormItemInput label="必填项" name="input2" required />
+      <BizFormItemInput label="禁止空格" name="input3" disabledWhiteSpace />
+      <BizFormItemInput
         label="图片验证码"
         name="code"
         required
@@ -41,11 +39,11 @@ const Demo = () => {
           />
         }
       />
-      <ItemInput label="银行卡号" name="bankCardNo" type="bankCard" />
-      <ItemInput label="手机号码" name="phone" type="mobile" />
-      <ItemInput label="身份证号" name="idc" type="idCard" />
-      <ItemInput label="邮箱" name="ema" type="email" />
-      <ItemInput
+      <BizFormItemInput label="银行卡号" name="bankCardNo" type="bankCard" />
+      <BizFormItemInput label="手机号码" name="phone" type="mobile" />
+      <BizFormItemInput label="身份证号" name="idc" type="idCard" />
+      <BizFormItemInput label="邮箱" name="ema" type="email" />
+      <BizFormItemInput
         label="用户名"
         name="username"
         type="userName"

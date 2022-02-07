@@ -6,13 +6,13 @@ import type { StepProps } from '../antd.interface';
 import type { BaseFormProps } from '../BaseForm';
 import BaseForm from '../BaseForm';
 import StepsFormContext from './StepsFormContext';
-import type { StepsSubmitterProps } from './StepsSubmitter';
+import type { StepsFormSubmitterProps } from './StepsSubmitter';
 
 export interface StepFormProps
   extends Omit<BaseFormProps, 'title' | 'onReset' | 'contentRender' | 'submitter' | 'ready'>,
     Pick<StepProps, 'title' | 'icon' | 'subTitle' | 'description'> {
   stepProps?: StepProps;
-  submitter?: Omit<StepsSubmitterProps, 'total' | 'current' | 'form'> | false;
+  submitter?: Omit<StepsFormSubmitterProps, 'total' | 'current' | 'form'> | false;
   readonly step?: number;
 }
 

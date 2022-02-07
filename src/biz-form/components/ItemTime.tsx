@@ -24,11 +24,11 @@ const TimePickerWrapper: React.FC<TimePickerProps> = ({
   );
 };
 
-export interface FormItemTimeProps extends BizFormItemProps, Pick<TimePickerProps, 'format'> {
+export interface BizFormItemTimeProps extends BizFormItemProps, Pick<TimePickerProps, 'format'> {
   pickerProps?: TimePickerProps;
 }
 
-const FormItemTime: React.FC<FormItemTimeProps> = ({
+const BizFormItemTime: React.FC<BizFormItemTimeProps> = ({
   format,
   pickerProps,
 
@@ -82,4 +82,4 @@ const FormItemTime: React.FC<FormItemTimeProps> = ({
   );
 };
 
-export default FormItemTime;
+export default BizFormItemTime;

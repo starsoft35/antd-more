@@ -1,10 +1,14 @@
 import * as React from 'react';
 import { message } from 'antd';
 import { SafetyCertificateOutlined, MobileOutlined, LockOutlined } from '@ant-design/icons';
-import { BizForm } from 'antd-more';
+import {
+  BizForm,
+  StepsForm,
+  BizFormItemInput,
+  BizFormItemCaptcha,
+  BizFormItemPassword
+} from 'antd-more';
 import waitTime from '../../utils/waitTime';
-
-const { StepsForm, ItemInput, ItemCaptcha, ItemPassword } = BizForm;
 
 const TipText = ({ children }) => {
   return <div style={{ textAlign: 'center', marginBottom: 24, fontSize: 16 }}>{children}</div>;
@@ -52,7 +56,7 @@ const Demo = () => {
         }}
       >
         <TipText>请输入登录时的手机号码</TipText>
-        <ItemInput
+        <BizFormItemInput
           label="手机号码"
           name="mobile"
           type="mobile"
@@ -63,7 +67,7 @@ const Demo = () => {
           validateTrigger="onChange"
           required
         />
-        <ItemInput
+        <BizFormItemInput
           label="图片验证码"
           name="verifyCode"
           inputProps={{
@@ -100,7 +104,7 @@ const Demo = () => {
         <TipText>
           {sent ? `验证码已发送至 ${form1.getFieldValue('mobile')}` : '请点击获取验证码'}
         </TipText>
-        <ItemCaptcha
+        <BizFormItemCaptcha
           label="短信验证码"
           name="code"
           type="inline"
@@ -131,7 +135,7 @@ const Demo = () => {
         }}
       >
         <TipText>设置新密码</TipText>
-        <ItemPassword
+        <BizFormItemPassword
           label="新密码"
           name="password"
           inputProps={{
@@ -140,7 +144,7 @@ const Demo = () => {
           }}
           required
         />
-        <ItemPassword
+        <BizFormItemPassword
           label="确认密码"
           name="repeatPassword"
           dependencies={['password']}

@@ -1,113 +1,54 @@
 import BizForm from './components/BizForm';
-import QueryForm from './components/QueryForm';
-import type { QueryFormProps } from './components/QueryForm';
-import StepsForm from './components/StepsForm';
-import type {
-  StepsFormProps,
-  StepFormProps,
-  ActionType as StepsFormActionType,
-  StepsSubmitterProps as StepsFormSubmitterProps
-} from './components/StepsForm';
-import ModalForm from './components/ModalForm';
-import type { ModalFormProps } from './components/ModalForm';
-import DrawerForm from './components/DrawerForm';
-import type { DrawerFormProps } from './components/DrawerForm';
-import List from './components/List';
-import type { BizFormListProps } from './components/List';
-import Item from './components/Item';
-import type { BizFormItemProps } from './components/Item';
-import ItemAddress from './components/ItemAddress';
-import type { FormItemAddressProps } from './components/ItemAddress';
-import ItemCaptcha from './components/ItemCaptcha';
-import type { FormItemCaptchaProps } from './components/ItemCaptcha';
-import ItemCheckbox from './components/ItemCheckbox';
-import type { FormItemCheckboxProps } from './components/ItemCheckbox';
-import ItemColor from './components/ItemColor';
-import type { FormItemColorProps } from './components/ItemColor';
-import ItemDate from './components/ItemDate';
-import type { FormItemDateProps } from './components/ItemDate';
-import ItemDateRange from './components/ItemDateRange';
-import type { FormItemDateRangeProps } from './components/ItemDateRange';
-import ItemInput from './components/ItemInput';
-import type { FormItemInputProps } from './components/ItemInput';
-import ItemNumber from './components/ItemNumber';
-import type { FormItemNumberProps } from './components/ItemNumber';
-import ItemPassword from './components/ItemPassword';
-import type { FormItemPasswordProps } from './components/ItemPassword';
-import ItemRadio from './components/ItemRadio';
-import type { FormItemRadioProps } from './components/ItemRadio';
-import ItemSelect from './components/ItemSelect';
-import type { FormItemSelectProps } from './components/ItemSelect';
-import ItemSlider from './components/ItemSlider';
-import type { FormItemSliderProps } from './components/ItemSlider';
-import ItemSwitch from './components/ItemSwitch';
-import type { FormItemSwitchProps } from './components/ItemSwitch';
-import ItemTextArea from './components/ItemTextArea';
-import type { FormItemTextAreaProps } from './components/ItemTextArea';
-import ItemTime from './components/ItemTime';
-import type { FormItemTimeProps } from './components/ItemTime';
-import ItemTimeRange from './components/ItemTimeRange';
-import type { FormItemTimeRangeProps } from './components/ItemTimeRange';
-import ItemUpload from './components/ItemUpload';
-import type { FormItemUploadProps } from './components/ItemUpload';
-import type { BaseFormProps } from './components/BaseForm';
-import type { SubmitterProps as BizFormSubmitterProps } from './components/Submitter';
+export { BizForm };
+export * from './components/BizForm';
+export { default as BizFormList } from './components/List';
+export * from './components/List';
+export { default as BizFormItem } from './components/Item';
+export * from './components/Item';
 
-export type {
-  BaseFormProps as BizFormProps,
-  BizFormSubmitterProps,
-  BizFormListProps,
-  BizFormItemProps,
-  QueryFormProps,
-  StepsFormProps,
-  ModalFormProps,
-  DrawerFormProps,
-  FormItemAddressProps as ItemAddressProps,
-  FormItemCaptchaProps as ItemCaptchaProps,
-  FormItemCheckboxProps as ItemCheckboxProps,
-  FormItemColorProps as ItemColorProps,
-  FormItemDateProps as ItemDateProps,
-  FormItemDateRangeProps as ItemDateRangeProps,
-  FormItemInputProps as ItemInputProps,
-  FormItemNumberProps as ItemNumberProps,
-  FormItemPasswordProps as ItemPasswordProps,
-  FormItemRadioProps as ItemRadioProps,
-  FormItemSelectProps as ItemSelectProps,
-  FormItemSliderProps as ItemSliderProps,
-  FormItemSwitchProps as ItemSwitchProps,
-  FormItemTextAreaProps as ItemTextAreaProps,
-  FormItemTimeProps as ItemTimeProps,
-  FormItemTimeRangeProps as ItemTimeRangeProps,
-  FormItemUploadProps as ItemUploadProps,
-  StepFormProps,
-  StepsFormActionType,
-  StepsFormSubmitterProps
-};
+export { default as QueryForm } from './components/QueryForm';
+export * from './components/QueryForm';
+export { default as StepsForm } from './components/StepsForm';
+export * from './components/StepsForm';
+export { default as ModalForm } from './components/ModalForm';
+export * from './components/ModalForm';
+export { default as DrawerForm } from './components/DrawerForm';
+export * from './components/DrawerForm';
 
-export {
-  QueryForm,
-  StepsForm,
-  ModalForm,
-  DrawerForm,
-  List,
-  Item,
-  ItemAddress,
-  ItemCaptcha,
-  ItemCheckbox,
-  ItemColor,
-  ItemDate,
-  ItemDateRange,
-  ItemInput,
-  ItemNumber,
-  ItemPassword,
-  ItemRadio,
-  ItemSelect,
-  ItemSlider,
-  ItemSwitch,
-  ItemTextArea,
-  ItemTime,
-  ItemTimeRange,
-  ItemUpload
-};
+export { default as BizFormItemAddress } from './components/ItemAddress';
+export * from './components/ItemAddress';
+export { default as BizFormItemCaptcha } from './components/ItemCaptcha';
+export * from './components/ItemCaptcha';
+export { default as BizFormItemCheckbox } from './components/ItemCheckbox';
+export * from './components/ItemCheckbox';
+export { default as BizFormItemColor } from './components/ItemColor';
+export * from './components/ItemColor';
+export { default as BizFormItemDate } from './components/ItemDate';
+export * from './components/ItemDate';
+export { default as BizFormItemDateRange } from './components/ItemDateRange';
+export * from './components/ItemDateRange';
+export { default as BizFormItemInput } from './components/ItemInput';
+export * from './components/ItemInput';
+export { default as BizFormItemNumber } from './components/ItemNumber';
+export * from './components/ItemNumber';
+export { default as BizFormItemPassword } from './components/ItemPassword';
+export * from './components/ItemPassword';
+export { default as BizFormItemRadio } from './components/ItemRadio';
+export * from './components/ItemRadio';
+export { default as BizFormItemSelect } from './components/ItemSelect';
+export * from './components/ItemSelect';
+export { default as BizFormItemSlider } from './components/ItemSlider';
+export * from './components/ItemSlider';
+export { default as BizFormItemSwitch } from './components/ItemSwitch';
+export * from './components/ItemSwitch';
+export { default as BizFormItemTextArea } from './components/ItemTextArea';
+export * from './components/ItemTextArea';
+export { default as BizFormItemTime } from './components/ItemTime';
+export * from './components/ItemTime';
+export { default as BizFormItemTimeRange } from './components/ItemTimeRange';
+export * from './components/ItemTimeRange';
+export { default as BizFormItemUpload } from './components/ItemUpload';
+export * from './components/ItemUpload';
+export type { BizFormSubmitterProps } from './components/Submitter';
 
 export default BizForm;

@@ -14,14 +14,14 @@ export enum ColorPicker {
   sketch = 'SketchPicker'
 }
 
-export interface FormItemColorProps extends BizFormItemProps {
+export interface BizFormItemColorProps extends BizFormItemProps {
   showText?: boolean;
   colorMode?: 'rgb' | 'hex';
   placement?: TooltipProps['placement'];
   colorProps?: ColorSketchPickerProps;
 }
 
-const FormItemColor: React.FC<FormItemColorProps> = ({
+const BizFormItemColor: React.FC<BizFormItemColorProps> = ({
   required = false,
   showText,
   colorMode,
@@ -58,4 +58,4 @@ const FormItemColor: React.FC<FormItemColorProps> = ({
   );
 };
 
-export default FormItemColor;
+export default BizFormItemColor;

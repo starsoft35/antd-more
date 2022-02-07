@@ -1,7 +1,5 @@
 import * as React from 'react';
-import { BizForm } from 'antd-more';
-
-const { ItemTextArea } = BizForm;
+import { BizForm, BizFormItemTextArea } from 'antd-more';
 
 const Demo = () => {
   return (
@@ -12,9 +10,9 @@ const Demo = () => {
       }}
       labelWidth={112}
     >
-      <ItemTextArea label="TextArea" name="textarea1" />
-      <ItemTextArea label="必填项" name="textarea2" required />
-      <ItemTextArea
+      <BizFormItemTextArea label="TextArea" name="textarea1" />
+      <BizFormItemTextArea label="必填项" name="textarea2" required />
+      <BizFormItemTextArea
         label="自定义"
         name="textarea4"
         disabledWhiteSpace

@@ -8,11 +8,9 @@
  *      **注意这里支持输入 `*`，可通过 `symbol` 自定义脱敏符号**
  */
 import * as React from 'react';
-import { BizForm } from 'antd-more';
+import { BizForm, BizFormItemInput } from 'antd-more';
 import { useAsync } from 'rc-hooks';
 import waitTime from '../../utils/waitTime';
-
-const { ItemInput } = BizForm;
 
 const getUserDataApi = async () => {
   await waitTime(2000);
@@ -51,8 +49,8 @@ const Demo = () => {
       }}
       labelWidth={98}
     >
-      <ItemInput label="姓名" name="name" required />
-      <ItemInput
+      <BizFormItemInput label="姓名" name="name" required />
+      <BizFormItemInput
         label="身份证号"
         name="idCard"
         type="idCard"
@@ -60,7 +58,7 @@ const Demo = () => {
         security
         initialValue={data?.idCard}
       />
-      <ItemInput
+      <BizFormItemInput
         label="手机号码"
         name="mobile"
         type="mobile"
@@ -68,7 +66,7 @@ const Demo = () => {
         security
         initialValue={data?.mobile}
       />
-      <ItemInput
+      <BizFormItemInput
         label="邮箱"
         name="email"
         type="email"
@@ -76,7 +74,7 @@ const Demo = () => {
         security
         initialValue={data?.email}
       />
-      <ItemInput
+      <BizFormItemInput
         label="银行卡号"
         name="bankCardNo"
         type="bankCard"

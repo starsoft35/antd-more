@@ -1,5 +1,5 @@
 ---
-title: Item - 表单项
+title: BizFormItem - 表单项
 order: 2
 group:
   path: /
@@ -8,7 +8,7 @@ nav:
   path: /components
 ---
 
-# Item - 表单项
+# BizFormItem - 表单项
 
 提供了一系列的业务表单项，包含转换、校验等功能。
 
@@ -20,14 +20,10 @@ nav:
 
 ## API
 
-```typescript
-import { BizForm } from 'antd-more';
-```
-
-### Item
+### BizFormItem
 
 ```typescript
-const { Item } = BizForm;
+import { BizFormItem } from 'antd-more';
 ```
 
 除了以下参数，其余和 antd Form.Item 一样。
@@ -43,11 +39,11 @@ const { Item } = BizForm;
 | contentBefore | 表单前面的内容 | `ReactNode` | - |
 | contentAfter | 表单后面的内容 | `ReactNode` | - |
 
-### 其它 Item
+### 其它 BizFormItem
 
-以下 ItemX 组件都是基于 BizForm.Item 扩展，仅列出扩展的参数。如果为必填项，仅需设置 `required` 即可。
+以下 BizFormItemX 组件都是基于 BizFormItem 扩展，仅列出扩展的参数。如果为必填项，仅需设置 `required` 即可。
 
-### ItemAddress
+### Address
 
 地址选择和输入框，该表单项由 2 个表单项组合而成，所以不要配置 `name`，但必须配置 `names` `labels` 。
 
@@ -88,7 +84,7 @@ interface Option {
 | inputProps | 输入框的属性 | [InputProps](https://ant-design.gitee.io/components/input-cn/#API) | - |
 | cascaderProps | 级联选项的属性 | [CascaderProps](https://ant-design.gitee.io/components/cascader-cn/#API) | - |
 
-### ItemCaptcha
+### Captcha
 
 验证码输入框和按钮。
 
@@ -115,7 +111,7 @@ interface Option {
 | inputProps | 输入框的属性 | [InputProps](https://ant-design.gitee.io/components/input-cn/#API) | - |
 | buttonProps | 按钮的属性 | [ButtonProps](https://ant.design/components/button-cn/#API) | - |
 
-### ItemCheckbox
+### Checkbox
 
 多选框
 
@@ -149,7 +145,7 @@ interface Option {
 | allLabel | 全部的名称 | `ReactNode` | `全部` |
 | checkboxGroupProps | 多选框 Group 的属性 | [CheckboxGroupProps](https://ant-design.gitee.io/components/checkbox-cn/#Checkbox-Group) | - |
 
-### ItemColor
+### Color
 
 颜色选择
 
@@ -168,7 +164,7 @@ interface Option {
 | placement | 颜色选择浮层位置 | `top` `left` `right` `bottom` `topLeft` `topRight` `bottomLeft` `bottomRight` `leftTop` `leftBottom` `rightTop` `rightBottom` | `bottomLeft` |
 | colorProps | 其他颜色选择器配置，不同 picker 有不同的配置项 | [`ColorSketchPickerProps`](/components/color#picker-共同的-api) | - |
 
-### ItemDate
+### Date
 
 日期选择框
 
@@ -195,7 +191,7 @@ interface Option {
 | picker | 设置选择器类型 | `date` `week` `month` `quarter` `year` | `date` |
 | pickerProps | 选择器的属性 | [DatePickerProps](https://ant-design.gitee.io/components/date-picker-cn/#API) | - |
 
-### ItemDateRange
+### DateRange
 
 日期区间选择框
 
@@ -227,7 +223,7 @@ interface Option {
 | picker | 设置选择器类型 | `date` `week` `month` `quarter` `year` | `date` |
 | pickerProps | 选择器的属性 | [DateRangePickerProps](https://ant-design.gitee.io/components/date-picker-cn/#RangePicker) | - |
 
-### ItemInput
+### Input
 
 Input 输入框
 
@@ -260,7 +256,7 @@ Input 输入框
 | symbol | 脱敏符号 | `string` | `*` |
 | inputProps | 输入框的属性 | [InputProps](https://ant-design.gitee.io/components/input-cn/#API) | - |
 
-### ItemNumber
+### Number
 
 数字输入框
 
@@ -290,7 +286,7 @@ Input 输入框
 | gte | 最小值（允许等于） | `number` | - |
 | inputProps | 数字输入框的属性 | [InputNumberProps](https://ant-design.gitee.io/components/input-number-cn/#API) | - |
 
-### ItemPassword
+### Password
 
 密码输入框
 
@@ -318,7 +314,7 @@ Input 输入框
 | disabledCopy | 禁止复制 | `boolean` | `true` |
 | inputProps | 密码框配置参数 | [PasswordProps](https://ant.design/components/input-cn/#Input.Password) | - |
 
-### ItemRadio
+### Radio
 
 单选框
 
@@ -354,7 +350,7 @@ interface Option {
 | excludeValues | 排除的值 | `any[]` | `[]` |
 | radioGroupProps | 单选框组合配置参数 | [RadioGroupProps](https://ant-design.gitee.io/components/radio-cn/#RadioGroup) | - |
 
-### ItemSelect
+### Select
 
 下拉选择器
 
@@ -379,7 +375,7 @@ interface Option {
 | excludeValues | 排除的值 | `any[]` | `[]` |
 | selectProps | 选择器配置参数 | [SelectProps](https://ant-design.gitee.io/components/select-cn/#Select-props) | - |
 
-### ItemSlider
+### Slider
 
 滑块输入条
 
@@ -395,7 +391,7 @@ interface Option {
 | marks | 刻度标记，key 的类型必须为 `number` 且取值在闭区间 [min, max] 内，每个标签可以单独设置样式 | `object` | - |
 | sliderProps | 滑块输入条配置参数 | [SliderProps](https://ant-design.gitee.io/components/slider-cn/#API) | - |
 
-### ItemSwitch
+### Switch
 
 开关
 
@@ -409,7 +405,7 @@ interface Option {
 | unCheckedChildren | 非选中时的内容 | `ReactNode` | - |
 | switchProps | 开关选择器配置参数 | [SwitchProps](https://ant-design.gitee.io/components/switch-cn/#API) | - |
 
-### ItemTextArea
+### TextArea
 
 TextArea 输入框
 
@@ -430,7 +426,7 @@ TextArea 输入框
 | disabledWhiteSpace | 禁止输入空白符 | `boolean` | `false` |
 | inputProps | 输入框的属性 | [TextAreaProps](https://ant-design.gitee.io/components/input-cn/#Input.TextArea) | - |
 
-### ItemTime
+### Time
 
 日期选择框
 
@@ -452,7 +448,7 @@ TextArea 输入框
 | format | 设置时间格式 | `string` | `HH:mm:ss` |
 | pickerProps | 选择器的属性 | [TimePickerProps](https://ant-design.gitee.io/components/time-picker-cn/#API) | - |
 
-### ItemTimeRange
+### TimeRange
 
 时间区间选择框
 
@@ -476,7 +472,7 @@ TextArea 输入框
 | format | 设置日期格式 | `string` | `HH:mm:ss` |
 | pickerProps | 选择器的属性 | [TimeRangePickerProps](https://ant-design.gitee.io/components/time-picker-cn/#RangePicker) | - |
 
-### ItemUpload
+### Upload
 
 上传。支持 `uploadProps.action` 默认上传 或 `onUpload` 自定义上传。
 

@@ -1,5 +1,5 @@
 ---
-title: List - 表单数组
+title: BizFormList - 表单数组
 order: 3
 group:
   path: /
@@ -8,9 +8,9 @@ nav:
   path: /components
 ---
 
-# List - 表单数组
+# BizFormList - 表单数组
 
-为 [BizForm.Item](/components/item) 数组化管理，提供转换、校验等功能。
+为 [BizFormItem](/components/item) 数组化管理，提供转换、校验等功能。
 
 ## 代码演示
 
@@ -27,9 +27,7 @@ nav:
 ## API
 
 ```typescript
-import { BizForm } from 'antd-more';
-
-const { List } = BizForm;
+import { BizFormList } from 'antd-more';
 ```
 
 同 antd 的 [Form.List](https://ant-design.gitee.io/components/form-cn/#Form.List)

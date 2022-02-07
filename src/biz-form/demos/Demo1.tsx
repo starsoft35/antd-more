@@ -1,32 +1,31 @@
 import * as React from 'react';
 import 'moment/locale/zh-cn';
 import { Switch, Row, Col } from 'antd';
-import { BizForm } from 'antd-more';
+import {
+  BizForm,
+  BizFormItemInput,
+  BizFormItemRadio,
+  BizFormItemSelect,
+  BizFormItemSlider,
+  BizFormItemSwitch,
+  BizFormItemAddress,
+  BizFormItemDate,
+  BizFormItemDateRange,
+  BizFormItemNumber,
+  BizFormItemPassword,
+  BizFormItemColor,
+  BizFormItemCaptcha,
+  BizFormItemCheckbox,
+  BizFormItemUpload,
+  BizFormItemTextArea,
+  BizFormItemTime,
+  BizFormItemTimeRange
+} from 'antd-more';
 import { getPCA } from 'lcn';
 import { CycleOptions } from './constants';
 import waitTime from '../../utils/waitTime';
 
 const pcaInlandData = getPCA({ inland: true, formatForm: true });
-
-const {
-  ItemInput,
-  ItemRadio,
-  ItemSelect,
-  ItemSlider,
-  ItemSwitch,
-  ItemAddress,
-  ItemDate,
-  ItemDateRange,
-  ItemNumber,
-  ItemPassword,
-  ItemColor,
-  ItemCaptcha,
-  ItemCheckbox,
-  ItemUpload,
-  ItemTextArea,
-  ItemTime,
-  ItemTimeRange
-} = BizForm;
 
 const colSpan = {
   xs: 24,
@@ -61,31 +60,36 @@ const Demo = () => {
         <h3>业务组件</h3>
         <Row gutter={16}>
           <Col {...colSpan}>
-            <ItemNumber label="数字" name="number" tooltip="提示文字" required={required} />
+            <BizFormItemNumber label="数字" name="number" tooltip="提示文字" required={required} />
           </Col>
           <Col {...colSpan}>
-            <ItemInput label="邮箱" name="email" type="email" required={required} />
+            <BizFormItemInput label="邮箱" name="email" type="email" required={required} />
           </Col>
           <Col {...colSpan}>
-            <ItemInput label="身份证号" name="idCard" type="idCard" required={required} />
+            <BizFormItemInput label="身份证号" name="idCard" type="idCard" required={required} />
           </Col>
           <Col {...colSpan}>
-            <ItemInput label="手机号码" name="mobile" type="mobile" required={required} />
+            <BizFormItemInput label="手机号码" name="mobile" type="mobile" required={required} />
           </Col>
           <Col {...colSpan}>
-            <ItemInput label="用户名" name="userName" type="userName" required={required} />
+            <BizFormItemInput label="用户名" name="userName" type="userName" required={required} />
           </Col>
           <Col {...colSpan}>
-            <ItemPassword label="密码" name="password" required={required} />
+            <BizFormItemPassword label="密码" name="password" required={required} />
           </Col>
           <Col {...colSpan}>
-            <ItemInput label="银行卡号" name="bankCardNo" type="bankCard" required={required} />
+            <BizFormItemInput
+              label="银行卡号"
+              name="bankCardNo"
+              type="bankCard"
+              required={required}
+            />
           </Col>
           <Col {...colSpan}>
-            <ItemColor label="颜色" name="color" required={required} />
+            <BizFormItemColor label="颜色" name="color" required={required} />
           </Col>
           <Col {...specialColSpan}>
-            <ItemCaptcha
+            <BizFormItemCaptcha
               label="验证码"
               name="code"
               onGetCaptcha={async () => {
@@ -95,7 +99,7 @@ const Demo = () => {
             />
           </Col>
           <Col xs={24}>
-            <ItemAddress
+            <BizFormItemAddress
               label="地址"
               tooltip="组合组件"
               names={['location', 'address']}
@@ -114,46 +118,56 @@ const Demo = () => {
         <h3>基础组件</h3>
         <Row gutter={16}>
           <Col {...colSpan}>
-            <ItemDate label="日期" name="date" required={required} />
+            <BizFormItemDate label="日期" name="date" required={required} />
           </Col>
           <Col {...colSpan}>
-            <ItemDate label="周" name="week" picker="week" required={required} />
+            <BizFormItemDate label="周" name="week" picker="week" required={required} />
           </Col>
           <Col {...colSpan}>
-            <ItemDate label="月" name="month" picker="month" required={required} />
+            <BizFormItemDate label="月" name="month" picker="month" required={required} />
           </Col>
           <Col {...colSpan}>
-            <ItemDate label="季" name="quarter" picker="quarter" required={required} />
+            <BizFormItemDate label="季" name="quarter" picker="quarter" required={required} />
           </Col>
           <Col {...colSpan}>
-            <ItemDate label="年" name="year" picker="year" required={required} />
+            <BizFormItemDate label="年" name="year" picker="year" required={required} />
           </Col>
           <Col {...colSpan}>
-            <ItemDate label="日期时间" name="dateTime" showTime required={required} />
+            <BizFormItemDate label="日期时间" name="dateTime" showTime required={required} />
           </Col>
           <Col {...colSpan}>
-            <ItemDateRange label="日期区间" name="dateRange" required={required} />
+            <BizFormItemDateRange label="日期区间" name="dateRange" required={required} />
           </Col>
           <Col {...specialColSpan}>
-            <ItemDateRange label="日期时间区间" name="dateTimeRange" showTime required={required} />
+            <BizFormItemDateRange
+              label="日期时间区间"
+              name="dateTimeRange"
+              showTime
+              required={required}
+            />
           </Col>
           <Col {...colSpan}>
-            <ItemTime label="时间" name="time" required={required} />
+            <BizFormItemTime label="时间" name="time" required={required} />
           </Col>
           <Col {...specialColSpan}>
-            <ItemTimeRange label="时间区间" name="timeRange" required={required} />
+            <BizFormItemTimeRange label="时间区间" name="timeRange" required={required} />
           </Col>
           <Col {...colSpan}>
-            <ItemInput label="Input" name="input" required={required} />
+            <BizFormItemInput label="Input" name="input" required={required} />
           </Col>
           <Col {...specialColSpan}>
-            <ItemTextArea label="TextArea" name="textarea" required={required} />
+            <BizFormItemTextArea label="TextArea" name="textarea" required={required} />
           </Col>
           <Col {...specialColSpan}>
-            <ItemRadio label="Radio" name="radio" options={CycleOptions} required={required} />
+            <BizFormItemRadio
+              label="Radio"
+              name="radio"
+              options={CycleOptions}
+              required={required}
+            />
           </Col>
           <Col {...specialColSpan}>
-            <ItemRadio
+            <BizFormItemRadio
               label="RadioButton"
               name="radioButton"
               optionType="button"
@@ -162,10 +176,15 @@ const Demo = () => {
             />
           </Col>
           <Col {...specialColSpan}>
-            <ItemSelect label="Select" name="select" options={CycleOptions} required={required} />
+            <BizFormItemSelect
+              label="Select"
+              name="select"
+              options={CycleOptions}
+              required={required}
+            />
           </Col>
           <Col {...specialColSpan}>
-            <ItemCheckbox
+            <BizFormItemCheckbox
               label="Checkbox"
               name="checkbox"
               options={CycleOptions}
@@ -174,13 +193,13 @@ const Demo = () => {
             />
           </Col>
           <Col {...colSpan}>
-            <ItemSwitch label="Switch" name="switch" required={required} />
+            <BizFormItemSwitch label="Switch" name="switch" required={required} />
           </Col>
           <Col {...colSpan}>
-            <ItemSlider label="Slider" name="slider" required={required} />
+            <BizFormItemSlider label="Slider" name="slider" required={required} />
           </Col>
           <Col {...colSpan}>
-            <ItemUpload label="Upload" name="upload" required={required} />
+            <BizFormItemUpload label="Upload" name="upload" required={required} />
           </Col>
         </Row>
       </BizForm>

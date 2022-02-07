@@ -1,6 +1,6 @@
 import * as React from 'react';
 import type { BizTableRequest, BizTableColumnType } from 'antd-more';
-import { BizForm, BizTable } from 'antd-more';
+import { BizFormItemInput, BizFormItemDate, BizFormItemDateRange, BizTable } from 'antd-more';
 import { getApplyList } from './service';
 import type { DataItem } from './service';
 
@@ -32,10 +32,10 @@ const columns: BizTableColumnType<DataItem> = [
 
 const Demo = () => {
   const formItems = [
-    <BizForm.ItemInput key="applyCode" name="applyCode" label="申请编号" />,
-    <BizForm.ItemDate key="createTime" name="createTime" label="提交时间" />,
-    <BizForm.ItemInput key="approveName" name="approverName" label="审核员" />,
-    <BizForm.ItemDateRange
+    <BizFormItemInput key="applyCode" name="applyCode" label="申请编号" />,
+    <BizFormItemDate key="createTime" name="createTime" label="提交时间" />,
+    <BizFormItemInput key="approveName" name="approverName" label="审核员" />,
+    <BizFormItemDateRange
       key="approveTime"
       name="approveTime"
       names={['startTime', 'endTime']}

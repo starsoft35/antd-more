@@ -1,5 +1,13 @@
 import * as React from 'react';
-import { BizForm } from 'antd-more';
+import {
+  BizForm,
+  BizFormList,
+  BizFormItem,
+  BizFormItemInput,
+  BizFormItemNumber,
+  BizFormItemDate,
+  BizFormItemAddress
+} from 'antd-more';
 import { Button, Card, Space, Row, Col, Popconfirm } from 'antd';
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 import { getPCA } from 'lcn';
@@ -14,8 +22,6 @@ const colspan = {
   xs: 24
 };
 
-const { List, Item, ItemInput, ItemNumber, ItemDate, ItemAddress } = BizForm;
-
 const Demo = () => {
   return (
     <BizForm
@@ -27,14 +33,14 @@ const Demo = () => {
         render: (_, dom) => dom
       }}
     >
-      <ItemInput label="公司名称" name="companyName" />
-      <ItemAddress
+      <BizFormItemInput label="公司名称" name="companyName" />
+      <BizFormItemAddress
         label="公司地址"
         labels={['省/市/区', '详细地址']}
         names={['locals', 'address']}
         options={pcaInlandData}
       />
-      <List name="contacts">
+      <BizFormList name="contacts">
         {(fields, { add, remove, move }) => {
           return (
             <Space size="middle" direction="vertical" style={{ display: 'flex', width: '100%' }}>
@@ -62,10 +68,10 @@ const Demo = () => {
                 >
                   <Row gutter={{ xs: 8, sm: 16, md: 24 }}>
                     <Col {...colspan}>
-                      <ItemInput label="姓名" name={[field.name, 'name']} />
+                      <BizFormItemInput label="姓名" name={[field.name, 'name']} />
                     </Col>
                     <Col {...colspan}>
-                      <ItemNumber
+                      <BizFormItemNumber
                         label="年龄"
                         name={[field.name, 'age']}
                         precision={0}
@@ -73,15 +79,15 @@ const Demo = () => {
                       />
                     </Col>
                     <Col {...colspan}>
-                      <ItemDate label="生日" name={[field.name, 'birthday']} />
+                      <BizFormItemDate label="生日" name={[field.name, 'birthday']} />
                     </Col>
                     <Col {...colspan}>
-                      <List name={[field.name, 'mobile']}>
+                      <BizFormList name={[field.name, 'mobile']}>
                         {(mobileFields, mobileFieldAction) => (
                           <>
                             {mobileFields.map((mobileField, mobileFieldIndex) => (
                               <div style={{ display: 'flex' }} key={mobileField.key}>
-                                <ItemInput
+                                <BizFormItemInput
                                   {...mobileField}
                                   type="mobile"
                                   label={mobileFieldIndex === 0 ? '手机号码' : ' '}
@@ -96,7 +102,7 @@ const Demo = () => {
                               </div>
                             ))}
                             {mobileFields.length < 3 && (
-                              <Item label=" " colon={false}>
+                              <BizFormItem label=" " colon={false}>
                                 <Button
                                   type="dashed"
                                   block
@@ -106,11 +112,11 @@ const Demo = () => {
                                 >
                                   添加手机号码
                                 </Button>
-                              </Item>
+                              </BizFormItem>
                             )}
                           </>
                         )}
-                      </List>
+                      </BizFormList>
                     </Col>
                   </Row>
                 </Card>
@@ -127,7 +133,7 @@ const Demo = () => {
             </Space>
           );
         }}
-      </List>
+      </BizFormList>
     </BizForm>
   );
 };

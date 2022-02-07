@@ -1,10 +1,16 @@
 import * as React from 'react';
 import { Button, Space } from 'antd';
-import { BizForm } from 'antd-more';
+import {
+  BizForm,
+  ModalForm,
+  BizFormItemInput,
+  BizFormItemSelect,
+  BizFormItemNumber,
+  BizFormItemUpload,
+  BizFormItemTextArea
+} from 'antd-more';
 import { BillAccountOptions } from './constants';
 import waitTime from '../../utils/waitTime';
-
-const { ModalForm, ItemInput, ItemSelect, ItemNumber, ItemUpload, ItemTextArea } = BizForm;
 
 const Demo = () => {
   const [form] = BizForm.useForm();
@@ -29,17 +35,22 @@ const Demo = () => {
           ]
         }}
       >
-        <ItemInput label="收款账号" name="ban" required />
-        <ItemSelect label="收款账号名称" name="accountName" options={BillAccountOptions} required />
-        <ItemNumber label="付款金额" name="money" required precision={2} contentAfter="¥" />
-        <ItemUpload
+        <BizFormItemInput label="收款账号" name="ban" required />
+        <BizFormItemSelect
+          label="收款账号名称"
+          name="accountName"
+          options={BillAccountOptions}
+          required
+        />
+        <BizFormItemNumber label="付款金额" name="money" required precision={2} contentAfter="¥" />
+        <BizFormItemUpload
           label="材料文件"
           name="files"
           required
           title="上传文件"
           transform={(values) => values.map((val) => val.name)}
         />
-        <ItemTextArea
+        <BizFormItemTextArea
           label="备注（选填）"
           name="remark"
           disabledWhiteSpace
@@ -60,17 +71,22 @@ const Demo = () => {
           noReset: true
         }}
       >
-        <ItemInput label="收款账号" name="ban" required />
-        <ItemSelect label="收款账号名称" name="accountName" options={BillAccountOptions} required />
-        <ItemNumber label="付款金额" name="money" required precision={2} contentAfter="¥" />
-        <ItemUpload
+        <BizFormItemInput label="收款账号" name="ban" required />
+        <BizFormItemSelect
+          label="收款账号名称"
+          name="accountName"
+          options={BillAccountOptions}
+          required
+        />
+        <BizFormItemNumber label="付款金额" name="money" required precision={2} contentAfter="¥" />
+        <BizFormItemUpload
           label="材料文件"
           name="files"
           required
           title="上传文件"
           transform={(values) => values.map((val) => val.name)}
         />
-        <ItemTextArea
+        <BizFormItemTextArea
           label="备注（选填）"
           name="remark"
           disabledWhiteSpace

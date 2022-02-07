@@ -1,22 +1,42 @@
-export enum ItemTypes {
-  upload = 'ItemUpload',
-  address = 'ItemAddress',
-  captcha = 'ItemCaptcha',
-  checkbox = 'ItemCheckbox',
-  color = 'ItemColor',
-  date = 'ItemDate',
-  dateRange = 'ItemDateRange',
-  input = 'ItemInput',
-  textarea = 'ItemTextArea',
-  number = 'ItemNumber',
-  password = 'ItemPassword',
-  radio = 'ItemRadio',
-  select = 'ItemSelect',
-  time = 'ItemTime',
-  timeRange = 'ItemTimeRange',
-  switch = 'ItemSwitch',
-  slider = 'ItemSlider'
-}
+import {
+  BizFormItemUpload,
+  BizFormItemAddress,
+  BizFormItemCaptcha,
+  BizFormItemCheckbox,
+  BizFormItemColor,
+  BizFormItemDate,
+  BizFormItemDateRange,
+  BizFormItemInput,
+  BizFormItemTextArea,
+  BizFormItemNumber,
+  BizFormItemPassword,
+  BizFormItemRadio,
+  BizFormItemSelect,
+  BizFormItemTime,
+  BizFormItemTimeRange,
+  BizFormItemSwitch,
+  BizFormItemSlider
+} from '../../biz-form';
+
+export const ItemTypes = {
+  upload: BizFormItemUpload,
+  address: BizFormItemAddress,
+  captcha: BizFormItemCaptcha,
+  checkbox: BizFormItemCheckbox,
+  color: BizFormItemColor,
+  date: BizFormItemDate,
+  dateRange: BizFormItemDateRange,
+  input: BizFormItemInput,
+  textarea: BizFormItemTextArea,
+  number: BizFormItemNumber,
+  password: BizFormItemPassword,
+  radio: BizFormItemRadio,
+  select: BizFormItemSelect,
+  time: BizFormItemTime,
+  timeRange: BizFormItemTimeRange,
+  switch: BizFormItemSwitch,
+  slider: BizFormItemSlider
+};
 
 export enum ValueTypeToItemType {
   text = 'input',

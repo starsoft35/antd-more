@@ -1,10 +1,8 @@
 import * as React from 'react';
 import { message } from 'antd';
 import type { ModalFormProps } from 'antd-more';
-import { BizForm } from 'antd-more';
+import { BizForm, ModalForm, BizFormItemPassword } from 'antd-more';
 import waitTime from '../../../../utils/waitTime';
-
-const { ModalForm, ItemPassword } = BizForm;
 
 export interface ChangePasswordModalProps
   extends Pick<ModalFormProps, 'visible' | 'onVisibleChange'> {}
@@ -37,7 +35,7 @@ const ChangePasswordModal: React.FC<ChangePasswordModalProps> = ({
       }}
       form={form}
     >
-      <ItemPassword
+      <BizFormItemPassword
         name="oldPassword"
         label="旧密码"
         inputProps={{
@@ -46,7 +44,7 @@ const ChangePasswordModal: React.FC<ChangePasswordModalProps> = ({
         required
         validated={false}
       />
-      <ItemPassword
+      <BizFormItemPassword
         name="password"
         label="新密码"
         min={6}
@@ -57,7 +55,7 @@ const ChangePasswordModal: React.FC<ChangePasswordModalProps> = ({
         required
         validateTrigger="onChange"
       />
-      <ItemPassword
+      <BizFormItemPassword
         name="repeatPassword"
         label="新密码确认"
         inputProps={{

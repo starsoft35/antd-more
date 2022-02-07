@@ -1,7 +1,5 @@
 import * as React from 'react';
-import { BizForm } from 'antd-more';
-
-const { ItemColor } = BizForm;
+import { BizForm, BizFormItemColor } from 'antd-more';
 
 const Demo = () => {
   return (
@@ -12,14 +10,11 @@ const Demo = () => {
       }}
       labelWidth={98}
     >
-      <ItemColor label="颜色" name="color1" showText />
-      <ItemColor label="rgb" name="color2" showText colorMode="rgb" />
-      <ItemColor label="hover" name="color3" showText colorProps={{ trigger: 'hover' }} />
-      <ItemColor label="颜色必选" name="color4" showText required />
-      <ItemColor label="block" name="color5" showText picker="block" />
-      <ItemColor label="chrome" name="color6" showText picker="chrome" />
-      <ItemColor label="compact" name="color7" showText picker="compact" />
-      <ItemColor label="photoshop" name="color8" showText picker="photoshop" />
+      <BizFormItemColor label="颜色" name="color1" showText />
+      <BizFormItemColor label="rgb" name="color2" showText colorMode="rgb" />
+      <BizFormItemColor label="hover" name="color3" colorProps={{ trigger: 'hover' }} />
+      <BizFormItemColor label="颜色必选" name="color4" required />
+      <BizFormItemColor label="不同尺寸" name="color5" colorProps={{ size: 'middle' }} />
     </BizForm>
   );
 };

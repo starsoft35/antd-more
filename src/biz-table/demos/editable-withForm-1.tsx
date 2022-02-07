@@ -1,7 +1,14 @@
 import * as React from 'react';
 import { Row, Col, Space, Button } from 'antd';
 import type { EditableBizTableActionType, BizTableColumnType } from 'antd-more';
-import { BizForm, BizTable } from 'antd-more';
+import {
+  BizForm,
+  BizFormItem,
+  BizFormItemInput,
+  BizFormItemDate,
+  BizFormItemNumber,
+  BizTable
+} from 'antd-more';
 import Mock from 'mockjs';
 import { BankOptions } from './constants';
 
@@ -25,7 +32,6 @@ const defaultData = Mock.mock({
 }).list;
 
 const { EditableBizTable } = BizTable;
-const { Item, ItemInput, ItemDate, ItemNumber } = BizForm;
 
 const colspanConfig = {
   xxl: 6,
@@ -127,16 +133,16 @@ const Demo = () => {
     >
       <Row gutter={16}>
         <Col {...colspanConfig}>
-          <ItemInput label="商品编号" name="goodsNo" />
+          <BizFormItemInput label="商品编号" name="goodsNo" />
         </Col>
         <Col {...colspanConfig}>
-          <ItemDate label="交易日期" name="tradeDate" />
+          <BizFormItemDate label="交易日期" name="tradeDate" />
         </Col>
         <Col {...colspanConfig}>
-          <ItemNumber label="终端编号" name="terminalNo" />
+          <BizFormItemNumber label="终端编号" name="terminalNo" />
         </Col>
       </Row>
-      <Item
+      <BizFormItem
         label="数据列表"
         name="list"
         initialValue={defaultData}
@@ -157,7 +163,7 @@ const Demo = () => {
             x: 1500
           }}
         />
-      </Item>
+      </BizFormItem>
       <Button
         type="dashed"
         block

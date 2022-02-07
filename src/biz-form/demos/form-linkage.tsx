@@ -5,7 +5,7 @@
 import * as React from 'react';
 import { Row, Col } from 'antd';
 import { isBusinessLicense, isSocialCreditCode } from 'util-helpers';
-import { BizForm } from 'antd-more';
+import { BizForm, BizFormItemRadio, BizFormItemInput, BizFormItemAddress } from 'antd-more';
 import { getPCA } from 'lcn';
 
 const pcaInlandData = getPCA({ inland: true, formatForm: true });
@@ -28,8 +28,6 @@ const OrgTypeOptions = [
     value: OrgType.Person
   }
 ];
-
-const { ItemRadio, ItemInput, ItemAddress } = BizForm;
 
 const oneColSpan = {
   span: 24
@@ -85,7 +83,7 @@ const BaseInfo = () => {
     >
       <Row>
         <Col {...oneColSpan}>
-          <ItemRadio
+          <BizFormItemRadio
             label="机构类型"
             name="orgType"
             options={OrgTypeOptions}
@@ -94,7 +92,7 @@ const BaseInfo = () => {
           />
         </Col>
         <Col {...oneColSpan}>
-          <ItemInput
+          <BizFormItemInput
             label="机构名称"
             name="orgName"
             inputProps={{ placeholder: orgNamePlaceholder }}
@@ -105,7 +103,7 @@ const BaseInfo = () => {
         {isCompany && (
           <>
             <Col {...twoColSpan}>
-              <ItemInput
+              <BizFormItemInput
                 label="营业执照号"
                 name="businessRegno"
                 inputProps={{ placeholder: '请输入统一社会信用代码或营业执照号', maxLength: 18 }}
@@ -129,12 +127,12 @@ const BaseInfo = () => {
               />
             </Col>
             <Col {...twoColSpan}>
-              <ItemInput label="法人姓名" name="legalName" required disabledWhiteSpace />
+              <BizFormItemInput label="法人姓名" name="legalName" required disabledWhiteSpace />
             </Col>
           </>
         )}
         <Col {...twoColSpan}>
-          <ItemInput
+          <BizFormItemInput
             label={legalIdCardLabel}
             // 用于修改默认验证信息
             messageVariables={{ label: '身份证号' }}
@@ -144,7 +142,7 @@ const BaseInfo = () => {
           />
         </Col>
         <Col {...twoColSpan}>
-          <ItemInput
+          <BizFormItemInput
             label={legalMobileLabel}
             // 用于修改默认验证信息
             messageVariables={{ label: '手机号码' }}
@@ -154,7 +152,7 @@ const BaseInfo = () => {
           />
         </Col>
         <Col {...oneColSpan}>
-          <ItemAddress
+          <BizFormItemAddress
             label="机构所在地址"
             labels={['省/市/区', '详细地址']}
             names={['location', 'address']}

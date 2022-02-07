@@ -10,7 +10,7 @@ import getNamePaths from '../_util/getNamePaths';
 import type { TransformFn } from '../FieldContext';
 import FieldContext from '../FieldContext';
 import ChildFormContext from '../ChildFormContext';
-import type { SubmitterProps } from './Submitter';
+import type { BizFormSubmitterProps } from './Submitter';
 import Submitter from './Submitter';
 
 import '../index.less';
@@ -24,15 +24,15 @@ export type TransformRecordActionType = {
 export interface BaseFormProps extends Omit<FormProps, 'onFinish'> {
   contentRender?: (
     items: React.ReactNode[],
-    submitter?: React.ReactElement<Omit<SubmitterProps, 'form'>>
+    submitter?: React.ReactElement<Omit<BizFormSubmitterProps, 'form'>>
   ) => React.ReactNode;
   formRender?: (
     formDom: React.ReactElement,
-    submitter?: React.ReactElement<Omit<SubmitterProps, 'form'>>
+    submitter?: React.ReactElement<Omit<BizFormSubmitterProps, 'form'>>
   ) => React.ReactElement | undefined;
   ready?: boolean; // false 时，禁止触发 submit 。 true 时，会对表单初始值重新赋值。
   loading?: boolean;
-  submitter?: false | Omit<SubmitterProps, 'form'>;
+  submitter?: false | Omit<BizFormSubmitterProps, 'form'>;
   onReset?: (event: React.FormEvent<HTMLFormElement>) => void;
   pressEnterSubmit?: boolean;
   children?: React.ReactNode;

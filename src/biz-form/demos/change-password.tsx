@@ -2,10 +2,8 @@
  * title: 修改密码
  */
 import * as React from 'react';
-import { BizForm } from 'antd-more';
+import { BizForm, BizFormItem, BizFormItemPassword } from 'antd-more';
 import waitTime from '../../utils/waitTime';
-
-const { ItemPassword, Item } = BizForm;
 
 const Demo = () => {
   const [form] = BizForm.useForm();
@@ -24,10 +22,10 @@ const Demo = () => {
       labelWidth={98}
       name="form-change-password"
     >
-      <Item label="手机号码">13000000000</Item>
-      <Item label="用户名">guest</Item>
-      <ItemPassword label="原密码" name="oldPassword" required validated={false} />
-      <ItemPassword
+      <BizFormItem label="手机号码">13000000000</BizFormItem>
+      <BizFormItem label="用户名">guest</BizFormItem>
+      <BizFormItemPassword label="原密码" name="oldPassword" required validated={false} />
+      <BizFormItemPassword
         label="新密码"
         name="password"
         required
@@ -49,7 +47,7 @@ const Demo = () => {
           }
         ]}
       />
-      <ItemPassword
+      <BizFormItemPassword
         label="重复新密码"
         name="repeatPassword"
         required

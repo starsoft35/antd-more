@@ -16,11 +16,6 @@ export type BizTableActionType = {
   submit: () => void;
 };
 
-/**
- * @deprecated Please use `BizTableActionType` instead.
- */
-export type ActionType = BizTableActionType;
-
 export interface RequestParams extends Record<string | number, any> {
   pageSize: number;
   current: number;
@@ -38,11 +33,6 @@ export type BizTableRequest<RecordType = any> = (
   sorter: RequestSorter<RecordType>,
   extra: RequestExtra<RecordType>
 ) => Promise<AsyncFnReturn<RecordType>>;
-
-/**
- * @deprecated Please use `BizTableRequest` instead.
- */
-export type Request<RecordType = any> = BizTableRequest<RecordType>;
 
 export interface SearchProps<RecordType = any>
   extends Partial<Pick<TableColumnType<RecordType>, 'dataIndex' | 'title'>>,
@@ -88,11 +78,6 @@ export type BizTableColumnType<RecordType = any> = (
   | ColumnGroupType<RecordType>
   | InternalColumnType<RecordType>
 )[];
-
-/**
- * @deprecated Please use `BizTableColumnType` instead.
- */
-export type BizColumnType<RecordType = any> = BizTableColumnType<RecordType>;
 
 type ToolbarActionConfig = {
   fullScreen?: boolean;

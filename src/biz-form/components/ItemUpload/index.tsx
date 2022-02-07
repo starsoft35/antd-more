@@ -20,7 +20,7 @@ const normFile = (e) => {
   return e && e.fileList;
 };
 
-export interface FormItemUploadProps
+export interface BizFormItemUploadProps
   extends BizFormItemProps,
     Pick<
       UploadWrapperProps,
@@ -37,16 +37,11 @@ export interface FormItemUploadProps
   uploadProps?: UploadProps;
   disabled?: boolean;
   multiple?: boolean;
-
-  /**
-   * @deprecated Please use `maxCount`
-   */
-  max?: number;
   icon?: React.ReactNode;
   title?: React.ReactNode;
 }
 
-const FormItemUpload: React.FC<FormItemUploadProps> & {
+const BizFormItemUpload: React.FC<BizFormItemUploadProps> & {
   Preview: typeof Preview;
 } = ({
   name,
@@ -58,7 +53,6 @@ const FormItemUpload: React.FC<FormItemUploadProps> & {
   fileSizeMessage,
   maxCountMessage,
   maxSize,
-  max,
   maxCount,
   type = 'default',
   disabled = false,
@@ -137,7 +131,7 @@ const FormItemUpload: React.FC<FormItemUploadProps> & {
         fileTypeMessage={fileTypeMessage}
         fileSizeMessage={fileSizeMessage}
         maxSize={maxSize}
-        maxCount={maxCount || max}
+        maxCount={maxCount}
         maxCountMessage={maxCountMessage}
         disabled={disabled}
         multiple={multiple}
@@ -150,6 +144,6 @@ const FormItemUpload: React.FC<FormItemUploadProps> & {
   );
 };
 
-FormItemUpload.Preview = Preview;
+BizFormItemUpload.Preview = Preview;
 
-export default FormItemUpload;
+export default BizFormItemUpload;

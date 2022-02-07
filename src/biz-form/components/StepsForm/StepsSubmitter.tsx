@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { Space, Button } from 'antd';
 import type { ButtonProps } from '../antd.interface';
-import type { SubmitterProps } from '../Submitter';
+import type { BizFormSubmitterProps } from '../Submitter';
 
-export interface StepsSubmitterProps
+export interface StepsFormSubmitterProps
   extends Omit<
-    SubmitterProps,
+    BizFormSubmitterProps,
     'render' | 'resetText' | 'resetButtonProps' | 'onReset' | 'noReset' | 'onSubmit'
   > {
   total: number;
@@ -29,13 +29,13 @@ export interface StepsSubmitterProps
 
   render?:
     | ((
-        props: StepsSubmitterProps,
+        props: StepsFormSubmitterProps,
         dom: React.ReactElement[]
       ) => React.ReactNode[] | React.ReactNode | false)
     | false;
 }
 
-const StepsSubmitter: React.FC<StepsSubmitterProps> = (props) => {
+const StepsFormSubmitter: React.FC<StepsFormSubmitterProps> = (props) => {
   const {
     total = 0,
     current = 0,
@@ -135,4 +135,4 @@ const StepsSubmitter: React.FC<StepsSubmitterProps> = (props) => {
   return renderDom as React.ReactElement;
 };
 
-export default StepsSubmitter;
+export default StepsFormSubmitter;

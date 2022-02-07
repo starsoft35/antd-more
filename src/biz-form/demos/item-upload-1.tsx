@@ -1,11 +1,9 @@
 import * as React from 'react';
-import { BizForm } from 'antd-more';
+import { BizForm, BizFormItemUpload } from 'antd-more';
 import type { UploadFile } from 'antd/lib/upload/interface';
 import ItemSpecialUpload from './components/ItemSpecialUpload';
 import ItemDefineUpload from './components/ItemDefineUpload';
 import waitTime from '../../utils/waitTime';
-
-const { ItemUpload } = BizForm;
 
 // 上传图片
 async function uploadImage(file: File): Promise<{ fssId: string }> {
@@ -48,22 +46,22 @@ const Demo = () => {
       }}
       labelWidth={112}
     >
-      <ItemUpload name="upload" label="Upload" />
-      <ItemUpload
+      <BizFormItemUpload name="upload" label="Upload" />
+      <BizFormItemUpload
         name="doc"
         label="doc文档"
         maxCount={1}
         accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
         fileTypeMessage="不支持文件类型"
       />
-      <ItemUpload
+      <BizFormItemUpload
         name="xls"
         label="xls文档"
         accept=".xls,.xlsx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
         // required
         fileTypeMessage="不支持文件类型"
       />
-      <ItemUpload
+      <BizFormItemUpload
         name="images"
         label="图片"
         type="image"
@@ -87,14 +85,14 @@ const Demo = () => {
         //   return files.map(item => item?.response?.fssId).filter(item=>!!item);
         // }}
       />
-      <ItemUpload
+      <BizFormItemUpload
         name="headpic01"
         label="头像1"
         type="avatar"
         tooltip="点击图片区域上传替换，常用于头像或封面，不支持预览"
         // required
       />
-      <ItemUpload
+      <BizFormItemUpload
         name="headpic02"
         label="头像2"
         type="image"
@@ -102,7 +100,7 @@ const Demo = () => {
         tooltip="使用image的方式，修改时需要先删除才能再上传"
         // required
       />
-      <ItemUpload
+      <BizFormItemUpload
         name="dragger"
         label="拖拽上传"
         type="dragger"

@@ -1,7 +1,5 @@
 import * as React from 'react';
-import { BizForm } from 'antd-more';
-
-const { ItemSwitch } = BizForm;
+import { BizForm, BizFormItemSwitch } from 'antd-more';
 
 const Demo = () => {
   return (
@@ -11,8 +9,13 @@ const Demo = () => {
         console.log(values);
       }}
     >
-      <ItemSwitch label="开关1" name="switch1" />
-      <ItemSwitch label="开关2" name="switch3" checkedChildren="开启" unCheckedChildren="关闭" />
+      <BizFormItemSwitch label="开关1" name="switch1" />
+      <BizFormItemSwitch
+        label="开关2"
+        name="switch3"
+        checkedChildren="开启"
+        unCheckedChildren="关闭"
+      />
     </BizForm>
   );
 };

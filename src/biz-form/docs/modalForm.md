@@ -40,14 +40,10 @@ nav:
 
 ## API
 
-```typescript
-import { BizForm } from 'antd-more';
-```
-
 ### ModalForm
 
 ```typescript
-const { ModalForm } = BizForm;
+import { ModalForm } from 'antd-more';
 ```
 
 除了以下参数，其余和 BizForm 一样。
@@ -65,7 +61,7 @@ const { ModalForm } = BizForm;
 ### DrawerForm
 
 ```typescript
-const { DrawerForm } = BizForm;
+import { DrawerForm } from 'antd-more';
 ```
 
 除了以下参数，其余和 BizForm 一样。

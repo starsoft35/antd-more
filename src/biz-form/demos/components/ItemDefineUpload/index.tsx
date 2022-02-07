@@ -1,8 +1,6 @@
 import * as React from 'react';
 import type { BizFormItemUploadProps } from 'antd-more';
-import { BizForm } from 'antd-more';
-
-const { ItemUpload } = BizForm;
+import { BizFormItemUpload } from 'antd-more';
 
 const ItemDefineUpload: React.FC<BizFormItemUploadProps> = (props) => {
   const [visible, setVisible] = React.useState(false);
@@ -10,7 +8,7 @@ const ItemDefineUpload: React.FC<BizFormItemUploadProps> = (props) => {
 
   return (
     <>
-      <ItemUpload
+      <BizFormItemUpload
         renderField={(dom) => {
           const InnerComp = (internalProps) => (
             <div style={{ display: 'flex' }}>
@@ -29,7 +27,7 @@ const ItemDefineUpload: React.FC<BizFormItemUploadProps> = (props) => {
         }}
         {...props}
       />
-      <ItemUpload.Preview
+      <BizFormItemUpload.Preview
         visible={visible}
         title="示例图"
         imgUrl={imgUrl}

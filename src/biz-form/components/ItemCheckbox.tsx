@@ -10,10 +10,6 @@ export interface CheckboxWrapperProps {
   value?: any;
   onChange?: (checkValue: any) => void;
   all?: boolean;
-  /**
-   * @deprecated Please use 'allLabel'
-   */
-  allName?: React.ReactNode;
   allLabel?: React.ReactNode;
   excludeValues?: any[];
   options?: CheckboxOptionType[];
@@ -24,7 +20,6 @@ const CheckboxWrapper: React.FC<CheckboxWrapperProps> = ({
   value,
   onChange,
   all = false,
-  allName,
   allLabel = '全部',
   excludeValues = [],
   options = [],
@@ -33,8 +28,7 @@ const CheckboxWrapper: React.FC<CheckboxWrapperProps> = ({
   const opts = useFilterOptions<CheckboxWrapperProps['options']>({
     options,
     excludeValues,
-    all: false,
-    allName: allName || allLabel
+    all: false
   });
 
   const [indeterminate, setIndeterminate] = React.useState(
@@ -56,7 +50,7 @@ const CheckboxWrapper: React.FC<CheckboxWrapperProps> = ({
 
   const allDom = all ? (
     <Checkbox indeterminate={indeterminate} onChange={onCheckAllChange} checked={checkAll}>
-      {allName}
+      {allLabel}
     </Checkbox>
   ) : null;
 
@@ -73,11 +67,10 @@ const CheckboxWrapper: React.FC<CheckboxWrapperProps> = ({
   );
 };
 
-export interface FormItemCheckboxProps extends BizFormItemProps, CheckboxWrapperProps {}
+export interface BizFormItemCheckboxProps extends BizFormItemProps, CheckboxWrapperProps {}
 
-const FormItemCheckbox: React.FC<FormItemCheckboxProps> = ({
+const BizFormItemCheckbox: React.FC<BizFormItemCheckboxProps> = ({
   all = false,
-  allName,
   allLabel = '全部',
   excludeValues = [],
   options = [],
@@ -86,8 +79,8 @@ const FormItemCheckbox: React.FC<FormItemCheckboxProps> = ({
   ...restProps
 }) => {
   const checkboxWrapperProps = React.useMemo(
-    () => ({ all, allName: allName || allLabel, excludeValues, options, checkboxGroupProps }),
-    [all, allName, allLabel, excludeValues, options, checkboxGroupProps]
+    () => ({ all, allName: allLabel, excludeValues, options, checkboxGroupProps }),
+    [all, allLabel, excludeValues, options, checkboxGroupProps]
   );
 
   return (
@@ -114,4 +107,4 @@ const FormItemCheckbox: React.FC<FormItemCheckboxProps> = ({
   );
 };
 
-export default FormItemCheckbox;
+export default BizFormItemCheckbox;

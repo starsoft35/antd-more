@@ -1,14 +1,11 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /**
  * title: 上传文件含大中小图
  * desc: |
  *      将默认值转换成 `UploadFile[]` 数据格式再传入，数据通过异步获取的情况下可用 `ready` 标识位。当然你也可以再外部添加一个 `Spin` 组件用于显示加载状态。
  */
 import * as React from 'react';
-import { BizForm } from 'antd-more';
+import { BizForm, BizFormItemUpload } from 'antd-more';
 import waitTime from '../../utils/waitTime';
-
-const { ItemUpload } = BizForm;
 
 // 通过fssId获取图片地址
 async function getStaticServerPath(fssId: string) {
@@ -116,7 +113,7 @@ const Demo = () => {
       initialValues={initialValues}
       labelWidth={98}
     >
-      <ItemUpload
+      <BizFormItemUpload
         name="images"
         label="图片"
         type="image"

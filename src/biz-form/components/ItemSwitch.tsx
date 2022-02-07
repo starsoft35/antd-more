@@ -4,13 +4,13 @@ import type { SwitchProps } from './antd.interface';
 import type { BizFormItemProps } from './Item';
 import BizFormItem from './Item';
 
-export interface FormItemSwitchProps
+export interface BizFormItemSwitchProps
   extends BizFormItemProps,
     Pick<SwitchProps, 'checkedChildren' | 'unCheckedChildren'> {
   switchProps?: SwitchProps;
 }
 
-const FormItemSwitch: React.FC<FormItemSwitchProps> = ({
+const BizFormItemSwitch: React.FC<BizFormItemSwitchProps> = ({
   checkedChildren,
   unCheckedChildren,
   switchProps = {},
@@ -27,4 +27,4 @@ const FormItemSwitch: React.FC<FormItemSwitchProps> = ({
   );
 };
 
-export default FormItemSwitch;
+export default BizFormItemSwitch;

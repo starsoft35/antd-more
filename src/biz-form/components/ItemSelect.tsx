@@ -6,23 +6,18 @@ import type { BizFormItemProps } from './Item';
 import BizFormItem from './Item';
 import getLabel from '../_util/getLabel';
 
-export interface FormItemSelectProps extends BizFormItemProps {
+export interface BizFormItemSelectProps extends BizFormItemProps {
   all?: boolean;
   allValue?: any;
-  /**
-   * @deprecated Please use 'allLabel'
-   */
-  allName?: React.ReactNode;
   allLabel?: React.ReactNode;
   excludeValues?: any[];
   options?: SelectProps<any>['options'];
   selectProps?: SelectProps<any>;
 }
 
-const FormItemSelect: React.FC<FormItemSelectProps> = ({
+const BizFormItemSelect: React.FC<BizFormItemSelectProps> = ({
   all = false,
   allValue = '',
-  allName,
   allLabel = '全部',
   excludeValues = [],
   options = [],
@@ -30,12 +25,12 @@ const FormItemSelect: React.FC<FormItemSelectProps> = ({
   required = false,
   ...restProps
 }) => {
-  const opts = useFilterOptions<FormItemSelectProps['options']>({
+  const opts = useFilterOptions<BizFormItemSelectProps['options']>({
     options,
     excludeValues,
     all,
     allValue,
-    allName: allName || allLabel
+    allName: allLabel
   });
 
   return (
@@ -63,4 +58,4 @@ const FormItemSelect: React.FC<FormItemSelectProps> = ({
   );
 };
 
-export default FormItemSelect;
+export default BizFormItemSelect;

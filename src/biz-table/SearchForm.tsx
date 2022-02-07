@@ -2,7 +2,7 @@ import * as React from 'react';
 import type { CardProps, FormInstance } from 'antd';
 import { Card } from 'antd';
 import type { QueryFormProps } from '../biz-form';
-import BizForm, { QueryForm } from '../biz-form';
+import { BizForm, QueryForm } from '../biz-form';
 import createFormItems from './_util/createFormItems';
 import createUniqueId from './_util/createUniqueId';
 import type { SearchProps } from './interface';

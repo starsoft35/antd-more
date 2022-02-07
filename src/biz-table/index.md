@@ -170,25 +170,25 @@ valueEnum = options
 
 <br/>
 
-| valueType                                                        | itemType    | BizForm 表单项  |
-| ---------------------------------------------------------------- | ----------- | --------------- |
-| `text`                                                           | `input`     | [ItemInput]     |
-| `money` `progress` `percent`                                     | `number`    | [ItemNumber]    |
-| `color`                                                          | `color`     | [ItemColor]     |
-| `enum` `enumTag` `enumBadge`                                     | `select`    | [ItemSelect]    |
-| `date` `formNow` `dateWeek` `dateMonth` `dateQuarter` `dateYear` | `date`      | [ItemDate]      |
-| `dateRange`                                                      | `dateRange` | [ItemDateRange] |
-| `time`                                                           | `time`      | [ItemTime]      |
-| `timeRange`                                                      | `timeRange` | [ItemTimeRange] |
-| -                                                                | `address`   | [ItemAddress]   |
-| -                                                                | `captcha`   | [ItemCaptcha]   |
-| -                                                                | `checkbox`  | [ItemCheckbox]  |
-| -                                                                | `textarea`  | [ItemTextArea]  |
-| -                                                                | `password`  | [ItemPassword]  |
-| -                                                                | `radio`     | [ItemRadio]     |
-| -                                                                | `upload`    | [ItemUpload]    |
-| -                                                                | `slider`    | [ItemSlider]    |
-| -                                                                | `switch`    | [ItemSwitch]    |
+| valueType | itemType | BizFormItem 表单项 |
+| --- | --- | --- |
+| `text` | `input` | [BizFormItemInput] |
+| `money` `progress` `percent` | `number` | [BizFormItemNumber] |
+| `color` | `color` | [BizFormItemColor] |
+| `enum` `enumTag` `enumBadge` | `select` | [BizFormItemSelect] |
+| `date` `formNow` `dateWeek` `dateMonth` `dateQuarter` `dateYear` | `date` | [BizFormItemDate] |
+| `dateRange` | `dateRange` | [BizFormItemDateRange] |
+| `time` | `time` | [BizFormItemTime] |
+| `timeRange` | `timeRange` | [BizFormItemTimeRange] |
+| - | `address` | [BizFormItemAddress] |
+| - | `captcha` | [BizFormItemCaptcha] |
+| - | `checkbox` | [BizFormItemCheckbox] |
+| - | `textarea` | [BizFormItemTextArea] |
+| - | `password` | [BizFormItemPassword] |
+| - | `radio` | [BizFormItemRadio] |
+| - | `upload` | [BizFormItemUpload] |
+| - | `slider` | [BizFormItemSlider] |
+| - | `switch` | [BizFormItemSwitch] |
 
 以下几种配置结果都是一样的:
 
@@ -229,10 +229,10 @@ search: {
 
     const { dataIndex, title } = originItem;
     return (
-      <BizForm.Item name={dataIndex} label={title}>
+      <BizFormItem name={dataIndex} label={title}>
         {/* some form, example Rate Slider Switch ... */}
         <AutoComplete />
-      </BizForm.Item>
+      </BizFormItem>
     )
   }
 }
@@ -280,21 +280,21 @@ ref.current.submit();
 [bizfield]: /components/biz-field#api
 [queryformprops]: /components/query-form#queryform
 [queryform]: /components/query-form
-[itemaddress]: /components/item#itemaddress
-[itemcaptcha]: /components/item#itemcaptcha
-[itemcheckbox]: /components/item#itemcheckbox
-[itemcolor]: /components/item#itemcolor
-[itemdate]: /components/item#itemdate
-[itemdaterange]: /components/item#itemdaterange
-[iteminput]: /components/item#iteminput
-[itemnumber]: /components/item#itemnumber
-[itempassword]: /components/item#itempassword
-[itemradio]: /components/item#itemradio
-[itemselect]: /components/item#itemselect
-[itemslider]: /components/item#itemslider
-[itemswitch]: /components/item#itemswitch
-[itemtextarea]: /components/item#itemtextarea
-[itemtime]: /components/item#itemtime
-[itemtimerange]: /components/item#itemtimerange
-[itemupload]: /components/item#itemupload
+[bizformitemaddress]: /components/item#address
+[bizformitemcaptcha]: /components/item#captcha
+[bizformitemcheckbox]: /components/item#checkbox
+[bizformitemcolor]: /components/item#color
+[bizformitemdate]: /components/item#date
+[bizformitemdaterange]: /components/item#daterange
+[bizformiteminput]: /components/item#input
+[bizformitemnumber]: /components/item#number
+[bizformitempassword]: /components/item#password
+[bizformitemradio]: /components/item#radio
+[bizformitemselect]: /components/item#select
+[bizformitemslider]: /components/item#slider
+[bizformitemswitch]: /components/item#switch
+[bizformitemtextarea]: /components/item#textarea
+[bizformitemtime]: /components/item#time
+[bizformitemtimerange]: /components/item#timerange
+[bizformitemupload]: /components/item#upload
 [protable在全屏下的modal不会展示]: https://github.com/ant-design/pro-components/issues/922

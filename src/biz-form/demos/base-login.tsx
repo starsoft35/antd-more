@@ -1,6 +1,12 @@
 import * as React from 'react';
 import { message, Checkbox } from 'antd';
-import { BizForm } from 'antd-more';
+import {
+  BizForm,
+  BizFormItem,
+  BizFormItemInput,
+  BizFormItemCaptcha,
+  BizFormItemPassword
+} from 'antd-more';
 import { useAsync } from 'rc-hooks';
 import {
   UserOutlined,
@@ -11,8 +17,6 @@ import {
 } from '@ant-design/icons';
 import IdentifyCode from './components/IdentifyCode';
 import waitTime from '../../utils/waitTime';
-
-const { ItemInput, ItemCaptcha, ItemPassword, Item } = BizForm;
 
 async function sendCaptcha(mobile) {
   await waitTime(2000);
@@ -50,7 +54,7 @@ const LoginDemo = () => {
         hideLabel
         size="large"
       >
-        <ItemInput
+        <BizFormItemInput
           name="userName"
           inputProps={{
             prefix: <UserOutlined />,
@@ -59,7 +63,7 @@ const LoginDemo = () => {
           label="用户名"
           required
         />
-        <ItemPassword
+        <BizFormItemPassword
           name="password"
           inputProps={{
             prefix: <LockOutlined />,
@@ -69,7 +73,7 @@ const LoginDemo = () => {
           required
           validated={false}
         />
-        <ItemInput
+        <BizFormItemInput
           name="email"
           type="email"
           inputProps={{
@@ -80,7 +84,7 @@ const LoginDemo = () => {
           label="邮箱"
           required
         />
-        <ItemInput
+        <BizFormItemInput
           name="mobile"
           type="mobile"
           inputProps={{
@@ -91,7 +95,7 @@ const LoginDemo = () => {
           label="手机号码"
           required
         />
-        <ItemCaptcha
+        <BizFormItemCaptcha
           name="captcha"
           normalize={(val) => val.replace(/[^\d]/g, '')}
           inputProps={{
@@ -114,7 +118,7 @@ const LoginDemo = () => {
             return sendCaptcha(form.getFieldValue('mobile'));
           }}
         />
-        <ItemInput
+        <BizFormItemInput
           name="verifyCode"
           inputProps={{
             prefix: <SafetyCertificateOutlined />,
@@ -126,12 +130,12 @@ const LoginDemo = () => {
           label="图片验证码"
           required
         />
-        <Item>
-          <Item noStyle name="autoLogin" valuePropName="checked">
+        <BizFormItem>
+          <BizFormItem noStyle name="autoLogin" valuePropName="checked">
             <Checkbox>自动登录</Checkbox>
-          </Item>
+          </BizFormItem>
           <a style={{ float: 'right' }}>忘记密码</a>
-        </Item>
+        </BizFormItem>
       </BizForm>
     </div>
   );

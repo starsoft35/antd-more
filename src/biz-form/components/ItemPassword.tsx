@@ -12,7 +12,7 @@ type Validated = {
   special?: boolean;
 };
 
-export interface FormItemPasswordProps extends BizFormItemProps {
+export interface BizFormItemPasswordProps extends BizFormItemProps {
   level?: 1 | 2 | 3;
   min?: number;
   max?: number;
@@ -33,7 +33,7 @@ export interface FormItemPasswordProps extends BizFormItemProps {
 // 数字
 const numMap = ['零', '一', '两', '三'];
 
-const FormItemPassword: React.FC<FormItemPasswordProps> = ({
+const BizFormItemPassword: React.FC<BizFormItemPasswordProps> = ({
   level = 2,
   min = 8,
   max = 16,
@@ -134,4 +134,4 @@ const FormItemPassword: React.FC<FormItemPasswordProps> = ({
   );
 };
 
-export default FormItemPassword;
+export default BizFormItemPassword;

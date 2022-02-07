@@ -1,12 +1,10 @@
 import * as React from 'react';
 import { Row, Col } from 'antd';
-import { BizForm } from 'antd-more';
+import { BizForm, BizFormItemInput, BizFormItemAddress, BizFormItemRadio } from 'antd-more';
 import { getPC } from 'lcn';
 import waitTime from '../../utils/waitTime';
 
 const pcInlandData = getPC({ inland: true, formatForm: true });
-
-const { ItemInput, ItemAddress, ItemRadio } = BizForm;
 
 const oneColSpan = {
   span: 24
@@ -64,7 +62,7 @@ const SettlementInfo = () => {
     >
       <Row>
         <Col {...oneColSpan}>
-          <ItemRadio
+          <BizFormItemRadio
             label="结算方式"
             name="settlementCycle"
             required
@@ -73,7 +71,7 @@ const SettlementInfo = () => {
           />
         </Col>
         <Col {...oneColSpan}>
-          <ItemRadio
+          <BizFormItemRadio
             label="结算类型"
             name="settlementType"
             required
@@ -81,16 +79,16 @@ const SettlementInfo = () => {
           />
         </Col>
         <Col {...oneColSpan}>
-          <ItemInput label="账户名称" name="bankCertName" required />
+          <BizFormItemInput label="账户名称" name="bankCertName" required />
         </Col>
         <Col {...twoColSpan}>
-          <ItemInput label="银行卡号" name="bankCardNo" type="bankCard" required />
+          <BizFormItemInput label="银行卡号" name="bankCardNo" type="bankCard" required />
         </Col>
         <Col {...twoColSpan}>
-          <ItemInput label="开户银行名称" name="bankName" required />
+          <BizFormItemInput label="开户银行名称" name="bankName" required />
         </Col>
         <Col {...oneColSpan}>
-          <ItemAddress
+          <BizFormItemAddress
             label="开户支行"
             names={['branchLocation', 'branchName']}
             labels={['省/市', '支行名称']}

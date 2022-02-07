@@ -1,9 +1,7 @@
 import * as React from 'react';
 import { Checkbox } from 'antd';
-import { BizForm } from 'antd-more';
+import { BizForm, BizFormItemTimeRange } from 'antd-more';
 import moment from 'moment';
-
-const { ItemTimeRange } = BizForm;
 
 const initialValues = {
   time5: ['14:59:45', '18:00:00'],
@@ -53,15 +51,15 @@ const Demo = () => {
         }
       }}
     >
-      <ItemTimeRange label="时间" name="time1" />
-      <ItemTimeRange
+      <BizFormItemTimeRange label="时间" name="time1" />
+      <BizFormItemTimeRange
         label="解构字段"
         name="time2"
         names={['startTime2', 'endTime2']}
         required
         tooltip="传入names会自动将值解构到当前层级"
       />
-      <ItemTimeRange
+      <BizFormItemTimeRange
         label="快速选择"
         name="time3"
         names={['startTime3', 'endTime3']}
@@ -75,9 +73,9 @@ const Demo = () => {
           </Checkbox>
         }
       />
-      <ItemTimeRange label="时分" name="time4" format="HH:mm" />
-      <ItemTimeRange label="默认值1" name="time5" tooltip="支持string格式" />
-      <ItemTimeRange label="默认值2" name="time6" tooltip="moment格式" />
+      <BizFormItemTimeRange label="时分" name="time4" format="HH:mm" />
+      <BizFormItemTimeRange label="默认值1" name="time5" tooltip="支持string格式" />
+      <BizFormItemTimeRange label="默认值2" name="time6" tooltip="moment格式" />
     </BizForm>
   );
 };

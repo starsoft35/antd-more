@@ -20,7 +20,7 @@ const DateRangePickerWrapper: React.FC<RangePickerProps> = ({ value, ...restProp
   return <DatePicker.RangePicker value={transformMomentValue(value)} {...restProps} />;
 };
 
-export interface FormItemDateRangeProps
+export interface BizFormItemDateRangeProps
   extends BizFormItemProps,
     Pick<RangePickerDateProps<Moment>, 'showTime'> {
   disabledDateBefore?: number;
@@ -35,7 +35,7 @@ export interface FormItemDateRangeProps
 
 const prefixCls = 'antd-more-form-item-date';
 
-const FormItemDateRange: React.FC<FormItemDateRangeProps> = ({
+const BizFormItemDateRange: React.FC<BizFormItemDateRangeProps> = ({
   disabledDateBefore,
   disabledDateAfter,
   maxRange,
@@ -76,9 +76,7 @@ const FormItemDateRange: React.FC<FormItemDateRangeProps> = ({
       }
 
       if (Array.isArray(names) && names.length === 2 && currentPathValues) {
-        // eslint-disable-next-line no-param-reassign
         currentPathValues[names[0]] = Array.isArray(transValue) ? transValue[0] : undefined;
-        // eslint-disable-next-line no-param-reassign
         currentPathValues[names[1]] = Array.isArray(transValue) ? transValue[1] : undefined;
         return invalidDateRangeNameValue;
       } else {
@@ -127,4 +125,4 @@ const FormItemDateRange: React.FC<FormItemDateRangeProps> = ({
   );
 };
 
-export default FormItemDateRange;
+export default BizFormItemDateRange;

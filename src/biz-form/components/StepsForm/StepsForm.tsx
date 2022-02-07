@@ -8,7 +8,7 @@ import StepsFormContext from './StepsFormContext';
 import type { BaseFormProps } from '../BaseForm';
 import type { StepFormProps } from './StepForm';
 import StepForm from './StepForm';
-import type { StepsSubmitterProps } from './StepsSubmitter';
+import type { StepsFormSubmitterProps } from './StepsSubmitter';
 import StepsSubmitter from './StepsSubmitter';
 import SyncMemoryStore from '../../../utils/SyncMemoryStore';
 
@@ -17,7 +17,7 @@ import './index.less';
 const prefixCls = 'antd-more-steps-form';
 const formItemHideLabelClass = 'antd-more-form-item-hide-label';
 
-export type ActionType = {
+export type StepsFormActionType = {
   prev: () => void; // 返回上一步
   next: (submitted: boolean) => void; // 触发当前表单校验（可选，部分中间步骤提交后，可直接进入下一步），校验成功则跳转下一步
   submit: () => void; // 触发当前表单校验，并提交所有表单值
@@ -31,8 +31,8 @@ export interface StepsFormProps {
   stepsProps?: Omit<StepsProps, 'current' | 'onChange'>;
   formProps?: Omit<BaseFormProps, 'title' | 'onReset' | 'contentRender'>;
   onFinish?: (values) => void | Promise<any>;
-  submitter?: Omit<StepsSubmitterProps, 'total' | 'current' | 'form'> | false;
-  actionRef?: React.MutableRefObject<ActionType | undefined>;
+  submitter?: Omit<StepsFormSubmitterProps, 'total' | 'current' | 'form'> | false;
+  actionRef?: React.MutableRefObject<StepsFormActionType | undefined>;
   // 自定义步骤条渲染
   stepsRender?: (stepsProps: StepProps[], stepsDom: React.ReactNode) => React.ReactNode;
   // 自定义单个表单渲染

@@ -1,8 +1,6 @@
 import * as React from 'react';
-import { BizForm } from 'antd-more';
+import { BizForm, BizFormItemRadio } from 'antd-more';
 import { Cycle, CycleOptions } from './constants';
-
-const { ItemRadio } = BizForm;
 
 const Demo = () => {
   return (
@@ -13,10 +11,15 @@ const Demo = () => {
       }}
       labelWidth={98}
     >
-      <ItemRadio label="单选框1" name="radio1" options={CycleOptions} />
-      <ItemRadio label="单选框2" name="radio2" options={CycleOptions} required />
-      <ItemRadio label="单选框按钮" name="radio3" options={CycleOptions} optionType="button" />
-      <ItemRadio
+      <BizFormItemRadio label="单选框1" name="radio1" options={CycleOptions} />
+      <BizFormItemRadio label="单选框2" name="radio2" options={CycleOptions} required />
+      <BizFormItemRadio
+        label="单选框按钮"
+        name="radio3"
+        options={CycleOptions}
+        optionType="button"
+      />
+      <BizFormItemRadio
         label="排除项"
         name="radio4"
         options={CycleOptions}

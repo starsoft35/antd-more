@@ -1,7 +1,5 @@
 import * as React from 'react';
-import { BizForm } from 'antd-more';
-
-const { ItemSlider } = BizForm;
+import { BizForm, BizFormItemSlider } from 'antd-more';
 
 const Demo = () => {
   return (
@@ -12,8 +10,8 @@ const Demo = () => {
       }}
       labelWidth={112}
     >
-      <ItemSlider label="滑块输入条1" name="slider1" />
-      <ItemSlider label="滑块输入条2" name="slider2" min={0} max={10} />
+      <BizFormItemSlider label="滑块输入条1" name="slider1" />
+      <BizFormItemSlider label="滑块输入条2" name="slider2" min={0} max={10} />
     </BizForm>
   );
 };

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { BizForm } from 'antd-more';
+import { BizForm, BizFormItem, BizFormItemInput, BizFormItemSelect } from 'antd-more';
 
 const options = [
   {
@@ -19,25 +19,25 @@ const options = [
 const Demo = () => {
   return (
     <BizForm>
-      <BizForm.ItemInput name="note" label="Note" required />
-      <BizForm.ItemSelect
+      <BizFormItemInput name="note" label="Note" required />
+      <BizFormItemSelect
         name="gender"
         label="Gender"
         options={options}
         required
         selectProps={{ allowClear: true }}
       />
-      <BizForm.Item
+      <BizFormItem
         noStyle
         shouldUpdate={(prevValues, currentValues) => prevValues.gender !== currentValues.gender}
       >
         {({ getFieldValue }) => {
           console.log('111');
           return getFieldValue('gender') === 'other' ? (
-            <BizForm.ItemInput name="customizeGender" label="Customize Gender" required />
+            <BizFormItemInput name="customizeGender" label="Customize Gender" required />
           ) : null;
         }}
-      </BizForm.Item>
+      </BizFormItem>
     </BizForm>
   );
 };

@@ -1,11 +1,16 @@
 import * as React from 'react';
 import { Modal, Button, message } from 'antd';
 import type { StepsFormActionType } from 'antd-more';
-import { BizForm } from 'antd-more';
+import {
+  StepsForm,
+  BizFormItemInput,
+  BizFormItemSelect,
+  BizFormItemNumber,
+  BizFormItemUpload,
+  BizFormItemTextArea
+} from 'antd-more';
 import { BillAccountOptions } from './constants';
 import waitTime from '../../utils/waitTime';
-
-const { StepsForm, ItemInput, ItemSelect, ItemNumber, ItemUpload, ItemTextArea } = BizForm;
 
 const Demo = () => {
   const [visible, setVisible] = React.useState(false);
@@ -50,8 +55,8 @@ const Demo = () => {
         )}
       >
         <StepsForm.StepForm title="选择收款方" labelWidth={112}>
-          <ItemInput label="收款账号" name="ban" required />
-          <ItemSelect
+          <BizFormItemInput label="收款账号" name="ban" required />
+          <BizFormItemSelect
             label="收款账号名称"
             name="accountName"
             options={BillAccountOptions}
@@ -59,15 +64,21 @@ const Demo = () => {
           />
         </StepsForm.StepForm>
         <StepsForm.StepForm title="填写付款信息" labelWidth={112}>
-          <ItemNumber label="付款金额" name="money" required precision={2} contentAfter="¥" />
-          <ItemUpload
+          <BizFormItemNumber
+            label="付款金额"
+            name="money"
+            required
+            precision={2}
+            contentAfter="¥"
+          />
+          <BizFormItemUpload
             label="材料文件"
             name="files"
             required
             title="上传文件"
             transform={(values) => values.map((val) => val.name)}
           />
-          <ItemTextArea
+          <BizFormItemTextArea
             label="备注（选填）"
             name="remark"
             disabledWhiteSpace

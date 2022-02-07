@@ -1,13 +1,11 @@
 import * as React from 'react';
 import { Row, Col } from 'antd';
-import { BizForm } from 'antd-more';
+import { BizForm, BizFormItemInput, BizFormItemAddress } from 'antd-more';
 import { isSocialCreditCode, isBusinessLicense } from 'util-helpers';
 import { getPCA } from 'lcn';
 import waitTime from '../../utils/waitTime';
 
 const pcaInlandData = getPCA({ inland: true, formatForm: true });
-
-const { ItemInput, ItemAddress } = BizForm;
 
 const oneColSpan = {
   span: 24
@@ -44,7 +42,7 @@ const CompanyInfo = () => {
     >
       <Row>
         <Col {...oneColSpan}>
-          <ItemInput
+          <BizFormItemInput
             label="公司名称"
             name="companyName"
             required
@@ -53,7 +51,7 @@ const CompanyInfo = () => {
           />
         </Col>
         <Col {...twoColSpan}>
-          <ItemInput
+          <BizFormItemInput
             label="营业执照号"
             name="businessRegno"
             required
@@ -79,16 +77,16 @@ const CompanyInfo = () => {
           />
         </Col>
         <Col {...twoColSpan}>
-          <ItemInput label="法人姓名" name="legalName" required />
+          <BizFormItemInput label="法人姓名" name="legalName" required />
         </Col>
         <Col {...twoColSpan}>
-          <ItemInput label="法人身份证号" name="legalIdCard" type="idCard" required />
+          <BizFormItemInput label="法人身份证号" name="legalIdCard" type="idCard" required />
         </Col>
         <Col {...twoColSpan}>
-          <ItemInput label="法人手机号码" name="legalMobile" type="mobile" required />
+          <BizFormItemInput label="法人手机号码" name="legalMobile" type="mobile" required />
         </Col>
         <Col {...oneColSpan}>
-          <ItemAddress
+          <BizFormItemAddress
             label="公司地址"
             names={['location', 'address']}
             labels={['省/市/区', '详细地址']}

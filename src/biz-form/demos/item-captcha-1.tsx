@@ -1,8 +1,6 @@
 import * as React from 'react';
-import { BizForm } from 'antd-more';
+import { BizForm, BizFormItemCaptcha } from 'antd-more';
 import waitTime from '../../utils/waitTime';
-
-const { ItemCaptcha } = BizForm;
 
 async function sendCode() {
   await waitTime();
@@ -18,10 +16,21 @@ const Demo = () => {
       }}
       labelWidth={98}
     >
-      <ItemCaptcha label="验证码1" name="captcha1" onGetCaptcha={sendCode} />
-      <ItemCaptcha label="内联验证码2" name="captcha2" type="inline" onGetCaptcha={sendCode} />
-      <ItemCaptcha label="验证码3" name="captcha3" second={120} onGetCaptcha={sendCode} required />
-      <ItemCaptcha
+      <BizFormItemCaptcha label="验证码1" name="captcha1" onGetCaptcha={sendCode} />
+      <BizFormItemCaptcha
+        label="内联验证码2"
+        name="captcha2"
+        type="inline"
+        onGetCaptcha={sendCode}
+      />
+      <BizFormItemCaptcha
+        label="验证码3"
+        name="captcha3"
+        second={120}
+        onGetCaptcha={sendCode}
+        required
+      />
+      <BizFormItemCaptcha
         label="自定义文本"
         name="captcha4"
         onGetCaptcha={async () => {

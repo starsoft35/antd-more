@@ -4,10 +4,8 @@
  *      可通过 `ready` 控制表单是否已准备好（如表单的初始值需要通过异步获取）。
  */
 import * as React from 'react';
-import { BizForm } from 'antd-more';
+import { BizForm, BizFormItemInput } from 'antd-more';
 import waitTime from '../../utils/waitTime';
-
-const { ItemInput } = BizForm;
 
 async function getNameApi() {
   await waitTime(2000);
@@ -35,7 +33,7 @@ const Demo = () => {
       ready={ready}
       initialValues={initialValues}
     >
-      <ItemInput label="姓名" name="name" />
+      <BizFormItemInput label="姓名" name="name" />
     </BizForm>
   );
 };
