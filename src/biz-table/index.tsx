@@ -1,5 +1,5 @@
 import * as React from 'react';
-import BizTable from './BizTable';
+import BizTableBase from './BizTable';
 import type { BizTableProps } from './BizTable';
 import EditableBizTable from './EditableBizTable';
 import type {
@@ -7,17 +7,13 @@ import type {
   EditableBizTableActionType,
   EditableBizTableEditable
 } from './EditableBizTable';
-import type {
-  BizTableActionType,
-  BizTableRequest,
-  BizTableColumnType
-} from './interface';
+import type { BizTableActionType, BizTableRequest, BizTableColumnType } from './interface';
 
-function BizTableWrap<RecordType extends object = any>(props: BizTableProps<RecordType>) {
-  return <BizTable<RecordType> {...props} />;
+function BizTable<RecordType extends object = any>(props: BizTableProps<RecordType>) {
+  return <BizTableBase<RecordType> {...props} />;
 }
 
-BizTableWrap.EditableBizTable = EditableBizTable;
+BizTable.EditableBizTable = EditableBizTable;
 
 export type {
   BizTableActionType,
@@ -29,4 +25,4 @@ export type {
   EditableBizTableEditable
 };
 
-export default BizTableWrap;
+export default BizTable;

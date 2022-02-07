@@ -22,16 +22,10 @@ export type {
   EnumData as BizFieldEnumData
 } from './biz-field';
 export { default as BizField } from './biz-field';
-export type {
-  BizTableActionType,
-  BizTableRequest,
-  BizTableColumnType,
-  BizTableProps,
-  EditableBizTableProps,
-  EditableBizTableActionType,
-  EditableBizTableEditable
-} from './biz-table';
+
 export { default as BizTable } from './biz-table';
+export * from './biz-table';
+
 export type {
   BizDescriptionsProps,
   BizDescriptionsItemProps,

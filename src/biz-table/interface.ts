@@ -49,7 +49,7 @@ export interface SearchProps<RecordType = any>
   ) => React.ReactElement;
 }
 
-export interface EditableProps<RecordType = any> extends Omit<SearchProps<RecordType>, 'order'> {}
+interface EditableProps<RecordType = any> extends Omit<SearchProps<RecordType>, 'order'> {}
 
 interface InternalColumnType<RecordType = any>
   extends Omit<TableColumnType<RecordType>, 'dataIndex'> {
