@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useUpdateEffect } from 'rc-hooks';
 import type { BizFormProps } from '../../biz-form';
 import type { TransformRecordActionType } from '../../biz-form/components/BaseForm';
-import BizForm from '../../biz-form';
+import { BizForm } from '../../biz-form';
 import { transformFormValues } from '../../biz-form/_util/transform';
 import ChildFormContext from '../../biz-form/ChildFormContext';
 import type { BizTableProps } from '../BizTable';
@@ -42,11 +42,6 @@ export interface EditableBizTableActionType<RecordType = any> {
   setDataSource: (records: RecordType[]) => void; // 手动设置数据源
 }
 
-/**
- * @deprecated Please use `EditableBizTableActionType` instead.
- */
-export type EditableActionType<RecordType = any> = EditableBizTableActionType<RecordType>;
-
 export interface EditableBizTableEditable<RecordType = any> {
   onSave?: (rowKey: Key, record: RecordType, isNewRecord: boolean) => Promise<any>;
   onDelete?: (rowKey: Key, record: RecordType, isNewRecord: boolean) => Promise<any>;
@@ -58,11 +53,6 @@ export interface EditableBizTableEditable<RecordType = any> {
     'form' | 'name' | 'onValuesChange' | 'transformRecordActionRef' | 'component'
   >;
 }
-
-/**
- * @deprecated Please use `EditableBizTableEditable` instead.
- */
-export type EditableOptions<RecordType = any> = EditableBizTableEditable<RecordType>;
 
 export interface EditableBizTableProps<RecordType extends object = any>
   extends Omit<BizTableProps<RecordType>, 'onChange'> {
@@ -343,21 +333,28 @@ const EditableBizTable = <RecordType extends object = any>({
     const currentIndex = getAddRecordIndex(index, value.length + newRecords.length);
     const currentRowKey = getCurentRowKey(record);
 
-    const tmpNewRecords = newRecords.map((item) => {
-      const newItem = { ...item };
-      if (item.index >= currentIndex) {
-        newItem.index += 1;
-      }
-      return newItem;
-    });
-    setNewRecords([
-      ...tmpNewRecords,
-      {
-        index: currentIndex,
-        rowKey: currentRowKey,
-        recordConfig: record
-      }
-    ]);
+    // 如果通过外部值实时变化，无需使用新增记录
+    if (outValue && typeof onValuesChange === 'function') {
+      const newValue = value.slice();
+      newValue.splice(currentIndex, 0, record as any);
+      setValue(newValue);
+    } else {
+      const tmpNewRecords = newRecords.map((item) => {
+        const newItem = { ...item };
+        if (item.index >= currentIndex) {
+          newItem.index += 1;
+        }
+        return newItem;
+      });
+      setNewRecords([
+        ...tmpNewRecords,
+        {
+          index: currentIndex,
+          rowKey: currentRowKey,
+          recordConfig: record
+        }
+      ]);
+    }
     editable?.onChange?.([...editable?.editableKeys, currentRowKey], record);
     setTimeout(() => triggerValuesChange(), 0); // dom渲染后再触发更新
   };

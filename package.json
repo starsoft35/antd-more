@@ -1,6 +1,6 @@
 {
   "name": "antd-more",
-  "version": "2.7.1",
+  "version": "2.7.2",
   "description": "基于 antd 扩展的业务场景组件。",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -55,6 +55,7 @@
     "@commitlint/config-conventional": "^11.0.0",
     "@types/classnames": "^2.2.11",
     "@types/estree": "^0.0.50",
+    "@types/lodash": "^4.14.178",
     "@types/mockjs": "^1.0.4",
     "@types/react": "^17.0.3",
     "@types/react-color": "^3.0.4",
