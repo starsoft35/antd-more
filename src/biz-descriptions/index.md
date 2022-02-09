@@ -55,6 +55,6 @@ import { BizDescriptions } from 'antd-more';
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | valueType | 值类型 | [ValueType](/components/biz-field#valuetype-值) | - |
-| valueEnum | 包含 `value` `label` 的数据字典。<br/>当 `valueType` 为 `enum` `enumTag` `enumBadge` 时生效。 | `EnumData` | - |
+| valueEnum | 数据字典。<br/>当 `valueType` 为 `enum` `enumTag` `enumBadge` 时生效。 | `EnumData` | - |
 | field | 展示字段的配置。同 BizField 的配置项，支持 object 和 function 方式。<br/>function 方式默认参数为当前值，需返回 BizField 的配置。 | `object \| (text: any, record?: DataType, index?: number)=>object` | - |
 | tooltip | 标签后面的补充提示，需有标签才生效 | `ReactNode` | - |

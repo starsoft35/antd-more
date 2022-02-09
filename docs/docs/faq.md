@@ -1,8 +1,5 @@
 ---
-title: 常见问题
 order: 1
-group:
-  path: /
 nav:
   title: 文档
   path: /docs

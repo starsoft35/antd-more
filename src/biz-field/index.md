@@ -75,26 +75,20 @@ import { BizField } from 'antd-more';
 建议在项目 `util/constants.ts` 中维护常量枚举配置。
 
 ```typescript
-interface EnumItem {
+import type { TagProps, BadgeProps, SpaceProps } from 'antd';
+
+type AliasType = { alias?: ReactNode };
+
+type EnumItem<ValueType = any> = {
   label?: ReactNode;
-  value?: any;
-  // 配置badge
-  badge?: {
-    status?: string;
-    color?: string;
-  };
-  // 配置tag
-  tag?: {
-    color?: string;
-  };
-  // 配置文本
-  text?: {
-    style?: {
-      color?: string;
-    };
-  };
-}
-type EnumData = EnumItem[];
+  value?: ValueType;
+  badge?: Omit<BadgeProps, 'status'> & AliasType & { status?: string };
+  tag?: TagProps & AliasType;
+  text?: HtmlHTMLAttributes<HTMLSpanElement> & AliasType;
+  [key: string]: any;
+};
+
+export type EnumData<ValueType = any> = EnumItem<ValueType>[];
 ```
 
 ### 个别 ValueType 的 API

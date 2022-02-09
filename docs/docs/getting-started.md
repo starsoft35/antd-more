@@ -1,8 +1,5 @@
 ---
-title: 快速上手
 order: 0
-group:
-  path: /
 nav:
   title: 文档
   path: /docs

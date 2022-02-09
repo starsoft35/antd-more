@@ -62,6 +62,10 @@ export interface DictionaryProps<ValueType = any> extends SpaceProps {
 ### EnumData
 
 ```
+import type { TagProps, BadgeProps, SpaceProps } from 'antd';
+
+type AliasType = { alias?: ReactNode };
+
 type EnumItem<ValueType = any> = {
   label?: ReactNode;
   value?: ValueType;
@@ -69,7 +73,7 @@ type EnumItem<ValueType = any> = {
   tag?: TagProps & AliasType;
   text?: HtmlHTMLAttributes<HTMLSpanElement> & AliasType;
   [key: string]: any;
-}
+};
 
 export type EnumData<ValueType = any> = EnumItem<ValueType>[];
 ```
