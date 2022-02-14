@@ -47,7 +47,8 @@ ReactDon.render(<BizField value="red" valueType="color" />, mountNode);
   - [EditableBizTable] - 可编辑业务表格
 - **数据录入**
   - [BizForm] - 业务表单
-  - [Item] - 表单项
+  - [BizFormItem] - 表单项
+  - [BizFormList] - 表单数组
   - [Modal/Drawer] - 浮层表单
   - [QueryForm] - 查询表单
   - [StepsForm] - 分步表单
@@ -72,7 +73,8 @@ ReactDon.render(<BizField value="red" valueType="color" />, mountNode);
 [biztable]: /components/biz-table
 [editablebiztable]: /components/editable-biz-table
 [bizform]: /components/biz-form
-[item]: /components/item
+[bizformitem]: /components/item
+[bizformlist]: /components/list
 [modal/drawer]: /components/modal-form
 [queryform]: /components/query-form
 [stepsform]: /components/steps-form

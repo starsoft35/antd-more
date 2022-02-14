@@ -49,7 +49,8 @@ ReactDon.render(<BizField value="red" valueType="color" />, mountNode);
   - [EditableBizTable] - 可编辑业务表格
 - **数据录入**
   - [BizForm] - 业务表单
-  - [Item] - 表单项
+  - [BizFormItem] - 表单项
+  - [BizFormList] - 表单数组
   - [Modal/Drawer] - 浮层表单
   - [QueryForm] - 查询表单
   - [StepsForm] - 分步表单
@@ -124,7 +125,8 @@ npm run commit
 [biztable]: https://doly-dev.github.io/antd-more/latest/index.html#/components/biz-table
 [editablebiztable]: https://doly-dev.github.io/antd-more/latest/index.html#/components/editable-biz-table
 [bizform]: https://doly-dev.github.io/antd-more/latest/index.html#/components/biz-form
-[item]: https://doly-dev.github.io/antd-more/latest/index.html#/components/item
+[bizformitem]: https://doly-dev.github.io/antd-more/latest/index.html#/components/item
+[bizformlist]: https://doly-dev.github.io/antd-more/latest/index.html#/components/list
 [modal/drawer]: https://doly-dev.github.io/antd-more/latest/index.html#/components/modal-form
 [queryform]: https://doly-dev.github.io/antd-more/latest/index.html#/components/query-form
 [stepsform]: https://doly-dev.github.io/antd-more/latest/index.html#/components/steps-form
