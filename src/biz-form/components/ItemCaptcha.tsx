@@ -140,14 +140,10 @@ const VerificateCodeInput: React.FC<VerificateCodeInputProps> = ({
 
 export interface BizFormItemCaptchaProps
   extends BizFormItemProps,
-    Pick<
-      VerificateCodeInputProps,
-      'check' | 'onGetCaptcha' | 'type' | 'inputProps' | 'buttonProps'
-    >,
+    Pick<VerificateCodeInputProps, 'onGetCaptcha' | 'type' | 'inputProps' | 'buttonProps'>,
     Pick<CaptchaButtonProps, 'initText' | 'runText' | 'resetText' | 'second'> {}
 
 const BizFormItemCaptcha: React.FC<BizFormItemCaptchaProps> = ({
-  check,
   type,
   onGetCaptcha,
   initText,
@@ -180,7 +176,6 @@ const BizFormItemCaptcha: React.FC<BizFormItemCaptchaProps> = ({
       {...restProps}
     >
       <VerificateCodeInput
-        check={check}
         type={type}
         onGetCaptcha={onGetCaptcha}
         inputProps={inputProps}
