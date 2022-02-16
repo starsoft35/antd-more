@@ -71,7 +71,7 @@
     "eslint": "^7.28.0",
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4.2.0",
-    "father-build": "^1.18.5",
+    "father-build": "^1.21.1",
     "husky": "^4.3.0",
     "invariant": "^2.2.4",
     "lcn": "3",

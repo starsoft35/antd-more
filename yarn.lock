@@ -5257,10 +5257,10 @@ fastq@^1.6.0:
   dependencies:
     reusify "^1.0.4"
 
-father-build@^1.18.5:
-  version "1.20.4"
-  resolved "https://registry.npmjs.org/father-build/-/father-build-1.20.4.tgz#f61dda79076a1cf2ef5bdd9ca59dc549d91290ec"
-  integrity sha512-TearRNSWBjTwXk/f+CD2GwpuUJoZyO/RH5MoTzXNUaQHupxmpegLDWUVx4Qz6U8ndedjP2cN2/fVmNsQ16QQZg==
+father-build@^1.21.1:
+  version "1.21.1"
+  resolved "https://registry.npmjs.org/father-build/-/father-build-1.21.1.tgz#67ead16b54a9b004e2f638b24aa1e84411ef51ea"
+  integrity sha512-muAaVmqjmkz1ekZT3wyTGjq6veGigmPHz7MdX8eK2dl3tCSFqYXWa2H35eCM5Iy6D+MN3bKFciKYZZ7yiQmn7w==
   dependencies:
     "@babel/core" "7.12.3"
     "@babel/plugin-proposal-class-properties" "7.12.1"
