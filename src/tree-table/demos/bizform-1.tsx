@@ -5,6 +5,7 @@ import jsonData from './data1';
 const Demo = () => {
   return (
     <BizForm
+      name="tree-table-bizform-1"
       initialValues={{
         roles: [
           'HOME',

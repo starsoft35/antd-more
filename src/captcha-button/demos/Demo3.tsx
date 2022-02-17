@@ -125,7 +125,13 @@ export default () => {
 
   return (
     <>
-      <Form {...formItemLayout} onFinish={onFinish} form={form} initialValues={initialValues}>
+      <Form
+        {...formItemLayout}
+        onFinish={onFinish}
+        form={form}
+        initialValues={initialValues}
+        name="captcha-button-demo3"
+      >
         <Form.Item
           label="手机号码"
           name="mobile"

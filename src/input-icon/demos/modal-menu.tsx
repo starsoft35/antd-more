@@ -95,6 +95,7 @@ const Demo = () => {
 
   return (
     <ModalForm
+      name="input-icon-modal-menu"
       title="菜单配置"
       form={form}
       trigger={<Button type="primary">菜单配置</Button>}

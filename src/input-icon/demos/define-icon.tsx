@@ -5,6 +5,7 @@ import icons from './icons';
 const Demo = () => {
   return (
     <BizForm
+      name="input-icon-define-icon"
       onFinish={(values) => {
         console.log(values);
       }}
