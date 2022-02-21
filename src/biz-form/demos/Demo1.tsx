@@ -23,7 +23,7 @@ import {
 } from 'antd-more';
 import { getPCA } from 'lcn';
 import { CycleOptions } from './constants';
-import waitTime from '../../utils/waitTime';
+import { waitTime } from 'util-helpers';
 
 const pcaInlandData = getPCA({ inland: true, formatForm: true });
 

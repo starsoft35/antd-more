@@ -3,7 +3,7 @@
  */
 import * as React from 'react';
 import { BizForm, BizFormItem, BizFormItemPassword } from 'antd-more';
-import waitTime from '../../utils/waitTime';
+import { waitTime } from 'util-helpers';
 
 const Demo = () => {
   const [form] = BizForm.useForm();

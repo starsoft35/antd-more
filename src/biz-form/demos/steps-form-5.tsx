@@ -7,7 +7,7 @@ import {
   BizFormItemCaptcha,
   BizFormItemPassword
 } from 'antd-more';
-import waitTime from '../../utils/waitTime';
+import { waitTime } from 'util-helpers';
 
 const Demo = () => {
   const [form1] = BizForm.useForm();

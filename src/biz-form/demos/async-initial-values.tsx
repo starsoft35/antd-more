@@ -5,7 +5,7 @@
  */
 import * as React from 'react';
 import { BizForm, BizFormItemInput } from 'antd-more';
-import waitTime from '../../utils/waitTime';
+import { waitTime } from 'util-helpers';
 
 async function getNameApi() {
   await waitTime(2000);

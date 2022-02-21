@@ -11,7 +11,7 @@ import {
 import { Button, Card, Space, Row, Col, Popconfirm } from 'antd';
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 import { getPCA } from 'lcn';
-import waitTime from '../../utils/waitTime';
+import { waitTime } from 'util-helpers';
 
 const pcaInlandData = getPCA({ inland: true, formatForm: true });
 

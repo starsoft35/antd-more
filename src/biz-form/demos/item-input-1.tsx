@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { BizForm, BizFormItemInput } from 'antd-more';
 import { useAsync } from 'rc-hooks';
+import { waitTime } from 'util-helpers';
 import IdentifyCode from './components/IdentifyCode';
-import waitTime from '../../utils/waitTime';
 
 async function getGraphValidateCode() {
   await waitTime();

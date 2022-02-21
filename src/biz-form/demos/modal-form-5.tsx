@@ -3,8 +3,8 @@ import { Button, ConfigProvider } from 'antd';
 import type { BizTableRequest, BizTableColumnType, BizTableActionType } from 'antd-more';
 import { BizTable } from 'antd-more';
 import Mock from 'mockjs';
+import { waitTime } from 'util-helpers';
 import UpdateModal from './components/UpdateModal';
-import waitTime from '../../utils/waitTime';
 
 type DataItem = {
   id: number;

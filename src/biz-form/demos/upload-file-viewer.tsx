@@ -6,9 +6,9 @@
 import * as React from 'react';
 import { BizForm, BizFormItemUpload } from 'antd-more';
 import type { UploadFile } from 'antd/lib/upload/interface';
+import { waitTime } from 'util-helpers';
 import PreviewFile from './components/PreviewFile';
 import { getThumbUrl } from './utils/utils';
-import waitTime from '../../utils/waitTime';
 
 // 上传文件
 async function upload(file: File): Promise<{ fssId: string }> {

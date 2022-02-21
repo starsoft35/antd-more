@@ -1,10 +1,9 @@
 import React, { useCallback, useState, useRef } from 'react';
 import type { FormInstance } from 'antd';
 import { Form, Input, Row, Col, Button } from 'antd';
-import { isMobile } from 'util-helpers';
+import { isMobile, waitTime } from 'util-helpers';
 import { useAsync } from 'rc-hooks';
 import { CaptchaButton } from 'antd-more';
-import waitTime from '../../utils/waitTime';
 
 // 接口：发送短信验证码
 async function asyncSendVerificationCode(mobile: string) {

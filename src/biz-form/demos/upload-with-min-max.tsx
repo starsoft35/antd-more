@@ -5,7 +5,7 @@
  */
 import * as React from 'react';
 import { BizForm, BizFormItemUpload } from 'antd-more';
-import waitTime from '../../utils/waitTime';
+import { waitTime } from 'util-helpers';
 
 // 通过fssId获取图片地址
 async function getStaticServerPath(fssId: string) {

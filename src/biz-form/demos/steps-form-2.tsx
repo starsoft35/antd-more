@@ -8,7 +8,7 @@ import {
   BizFormItemCaptcha,
   BizFormItemPassword
 } from 'antd-more';
-import waitTime from '../../utils/waitTime';
+import { waitTime } from 'util-helpers';
 
 const TipText = ({ children }) => {
   return <div style={{ textAlign: 'center', marginBottom: 24, fontSize: 16 }}>{children}</div>;

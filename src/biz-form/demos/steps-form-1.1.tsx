@@ -9,8 +9,8 @@ import {
   BizFormItemTextArea
 } from 'antd-more';
 import type { StepsFormActionType } from 'antd-more';
+import { waitTime } from 'util-helpers';
 import { BillAccountOptions } from './constants';
-import waitTime from '../../utils/waitTime';
 
 const Demo = () => {
   const actionRef = React.useRef<StepsFormActionType>();

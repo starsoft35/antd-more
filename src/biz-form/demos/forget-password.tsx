@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { message } from 'antd';
 import { BizForm, BizFormItemCaptcha, BizFormItemPassword, BizFormItemInput } from 'antd-more';
-import waitTime from '../../utils/waitTime';
+import { waitTime } from 'util-helpers';
 
 async function sendCaptcha(mobile: string) {
   await waitTime(2000);

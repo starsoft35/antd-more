@@ -10,7 +10,7 @@
 import * as React from 'react';
 import { BizForm, BizFormList, BizFormItemUpload } from 'antd-more';
 import type { UploadFile } from 'antd/lib/upload/interface';
-import waitTime from '../../utils/waitTime';
+import { waitTime } from 'util-helpers';
 
 // 上传图片
 async function uploadImage(file: File): Promise<{ fssId: string }> {

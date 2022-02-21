@@ -9,7 +9,7 @@ import {
   BizFormItemTextArea
 } from 'antd-more';
 import { BillAccountOptions } from './constants';
-import waitTime from '../../utils/waitTime';
+import { waitTime } from 'util-helpers';
 
 const Demo = () => {
   return (

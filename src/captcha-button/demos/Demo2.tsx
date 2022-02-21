@@ -4,7 +4,7 @@
 
 import React, { useCallback, useState } from 'react';
 import { CaptchaButton } from 'antd-more';
-import waitTime from '../../utils/waitTime';
+import { waitTime } from 'util-helpers';
 
 // 接口请求
 async function getValidateCode() {

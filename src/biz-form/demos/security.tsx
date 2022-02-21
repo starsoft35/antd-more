@@ -10,7 +10,7 @@
 import * as React from 'react';
 import { BizForm, BizFormItemInput } from 'antd-more';
 import { useAsync } from 'rc-hooks';
-import waitTime from '../../utils/waitTime';
+import { waitTime } from 'util-helpers';
 
 const getUserDataApi = async () => {
   await waitTime(2000);

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Table } from 'antd';
-import waitTime from '../../utils/waitTime';
+import { waitTime } from 'util-helpers';
 
 type DataType = {
   name: string;

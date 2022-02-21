@@ -1,6 +1,6 @@
 import Mock from 'mockjs';
+import { waitTime } from 'util-helpers';
 import type { ApproveStatus } from './constants';
-import waitTime from '../../utils/waitTime';
 
 export type DataItem = {
   applyCode: string;

@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Row, Col } from 'antd';
 import { BizForm, BizFormItem, BizFormItemRadio, BizFormItemNumber } from 'antd-more';
+import { waitTime } from 'util-helpers';
 import { RakebackeCycleOptions } from './constants';
-import waitTime from '../../utils/waitTime';
 
 const oneColSpan = {
   span: 24

@@ -3,7 +3,7 @@ import { BizForm, BizFormItemUpload } from 'antd-more';
 import type { UploadFile } from 'antd/lib/upload/interface';
 import ItemSpecialUpload from './components/ItemSpecialUpload';
 import ItemDefineUpload from './components/ItemDefineUpload';
-import waitTime from '../../utils/waitTime';
+import { waitTime } from 'util-helpers';
 
 // 上传图片
 async function uploadImage(file: File): Promise<{ fssId: string }> {

@@ -9,8 +9,8 @@ import {
   BizFormItemUpload,
   BizFormItemTextArea
 } from 'antd-more';
+import { waitTime } from 'util-helpers';
 import { BillAccountOptions } from './constants';
-import waitTime from '../../utils/waitTime';
 
 const Demo = () => {
   const [visibleModal, setVisibleModal] = React.useState(false);

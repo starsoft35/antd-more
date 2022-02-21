@@ -5,10 +5,10 @@
 import * as React from 'react';
 import type { BizTableRequest, BizTableColumnType } from 'antd-more';
 import { BizTable } from 'antd-more';
+import { waitTime } from 'util-helpers';
 import { getApplyList } from './service';
 import type { ApproveStatus } from './constants';
 import { ApproveStatusOptions } from './constants';
-import waitTime from '../../utils/waitTime';
 
 async function getAsyncInitialValues() {
   await waitTime(5000);

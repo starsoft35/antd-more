@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { QueryForm, BizFormItemInput, BizFormItemDate, BizFormItemDateRange } from 'antd-more';
-import waitTime from '../../utils/waitTime';
+import { waitTime } from 'util-helpers';
 
 const Demo = () => {
   return (

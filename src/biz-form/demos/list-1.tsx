@@ -2,7 +2,7 @@ import * as React from 'react';
 import { BizForm, BizFormList, BizFormItem, BizFormItemInput } from 'antd-more';
 import { Button } from 'antd';
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
-import waitTime from '../../utils/waitTime';
+import { waitTime } from 'util-helpers';
 
 const Demo = () => {
   return (

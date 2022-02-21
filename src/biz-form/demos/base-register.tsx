@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { BizForm, BizFormItemInput, BizFormItemAddress, BizFormItemPassword } from 'antd-more';
 import { getPCA } from 'lcn';
-import waitTime from '../../utils/waitTime';
+import { waitTime } from 'util-helpers';
 
 const pcaInlandData = getPCA({ inland: true, formatForm: true });
 

@@ -6,7 +6,7 @@ import type {
   BizTableColumnType
 } from 'antd-more';
 import { BizTable } from 'antd-more';
-import waitTime from '../../utils/waitTime';
+import { waitTime } from 'util-helpers';
 
 const mockData = [{ name: '' }, { name: '张三' }, { name: '李四' }];
 

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import type { ModalFormProps } from 'antd-more';
 import { BizForm, ModalForm, BizFormItemInput, BizFormItemTextArea } from 'antd-more';
-import waitTime from '../../../../utils/waitTime';
+import { waitTime } from 'util-helpers';
 
 export interface UpdateModalProps extends ModalFormProps {
   data?: any;
