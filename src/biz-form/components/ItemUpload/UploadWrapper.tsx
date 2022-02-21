@@ -1,15 +1,9 @@
 import * as React from 'react';
 import { Upload, message } from 'antd';
 import classNames from 'classnames';
+import { blobToDataURL, isPromiseLike, bytesToSize } from 'util-helpers';
 import type { UploadProps, UploadFile, UploadChangeParam, RcFile } from '../antd.interface';
-import {
-  getBase64,
-  bytesToSize,
-  checkFileSize,
-  checkFileType,
-  isPromiseLike,
-  getFileName
-} from './uploadUtil';
+import { checkFileSize, checkFileType, getFileName } from './uploadUtil';
 import Preview from './Preview';
 import UploadContext from './UploadContext';
 
@@ -264,7 +258,7 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
         if (onGetPreviewUrl) {
           file.preview = await onGetPreviewUrl((file?.originFileObj || file) as File);
         } else if (file.originFileObj || file) {
-          file.preview = await getBase64((file?.originFileObj || file) as File);
+          file.preview = await blobToDataURL((file?.originFileObj || file) as File);
         } else if (file.thumbUrl) {
           file.preview = file.thumbUrl;
         } else {

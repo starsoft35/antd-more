@@ -12895,10 +12895,10 @@ util-deprecate@^1.0.1, util-deprecate@^1.0.2, util-deprecate@~1.0.1:
   resolved "https://registry.npmjs.org/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
   integrity sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8=
 
-util-helpers@^4.0.1:
-  version "4.0.8"
-  resolved "https://registry.npmjs.org/util-helpers/-/util-helpers-4.0.8.tgz#d1f31fb893d2c76d09f55c097b4e5487a98fd680"
-  integrity sha512-t035aANkFgb44exz3bpVwrZkC1120F89gusvkc+vsit875+azhxqBAIFlTCHlHgA1EEkODewP9HS4Rp+++sUhw==
+util-helpers@^4.2.1:
+  version "4.2.1"
+  resolved "https://registry.npmjs.org/util-helpers/-/util-helpers-4.2.1.tgz#c9c2a63e665cfc169ef76ae79548522c8a9d596f"
+  integrity sha512-JQsaSx1MtXlQy2fnS995Pck0PG3WxmPwv63+8kvvzyWf/SSDmK7rIO96vkPtGj0R+dIZKe2LW1Plurf15UB0UA==
   dependencies:
     "@babel/runtime" "^7.14.0"
 

@@ -1,15 +1,3 @@
-export { isPromiseLike, bytesToSize } from 'util-helpers';
-
-// 获取base64文件
-export function getBase64(file: File) {
-  return new Promise<string>((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => resolve(reader.result as string);
-    reader.onerror = (error) => reject(error);
-  });
-}
-
 // 检查文件类型
 export function checkFileType(file: File, accept?: string) {
   if (!accept || !accept.trim() || accept === '*') {

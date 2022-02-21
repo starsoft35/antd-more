@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { divide, formatMoney } from 'util-helpers';
+import { divide, formatMoney, setDataURLPrefix } from 'util-helpers';
 import { BizField } from 'antd-more';
 
 // 日期时间换行
@@ -31,15 +31,10 @@ export const renderMoney = (num?: number | string) => {
   return '-';
 };
 
-// base64 buffer 处理
-const transformBase64Buffer = (buffer: string, imgType = 'jpg') => {
-  return `data:image/${imgType};base64,${buffer}`;
-};
-
 // 转换base64图片buffer
 export const renderBase64Buffer = (buffer?: string) => {
   if (buffer) {
-    const base64 = transformBase64Buffer(buffer);
+    const base64 = setDataURLPrefix(buffer);
     return <BizField valueType="image" value={base64} />;
   }
   return '-';

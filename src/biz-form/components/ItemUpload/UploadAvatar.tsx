@@ -2,12 +2,12 @@ import * as React from 'react';
 import { Tooltip } from 'antd';
 import { PictureOutlined } from '@ant-design/icons';
 import classNames from 'classnames';
+import { blobToDataURL } from 'util-helpers';
 import type { UploadFile } from '../antd.interface';
 import type { UploadWrapperProps } from './UploadWrapper';
 import UploadWrapper from './UploadWrapper';
 import UploadContext from './UploadContext';
 import UploadImageButton from './UploadImageButton';
-import { getBase64 } from './uploadUtil';
 
 const prefixCls = 'antd-more-form-upload-avatar';
 
@@ -25,7 +25,9 @@ const UploadAvatar: React.FC<{
   const transformBase64 = React.useCallback(async () => {
     if (currentFile) {
       if (!currentFile.url && !currentFile.preview) {
-        currentFile.preview = await getBase64(currentFile as any);
+        currentFile.preview = await blobToDataURL(
+          (currentFile?.originFileObj || currentFile) as File
+        );
       }
       setImgUrl(currentFile.url || currentFile.preview);
     }
