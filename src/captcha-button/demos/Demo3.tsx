@@ -157,7 +157,7 @@ export default () => {
             }
           ]}
         >
-          <Input placeholder="请输入手机号码" allowClear />
+          <Input placeholder="请输入手机号码" allowClear maxLength={11} />
         </Form.Item>
         <Form.Item
           name="code"

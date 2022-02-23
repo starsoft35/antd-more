@@ -8,6 +8,14 @@ async function sendCode() {
 }
 
 const Demo = () => {
+  // const buttonRef = React.useRef<HTMLButtonElement>(null);
+
+  // React.useEffect(() => {
+  //   if (buttonRef.current) {
+  //     buttonRef.current.click();
+  //   }
+  // }, []);
+
   return (
     <BizForm
       name="form-item-captcha-1"
@@ -30,6 +38,13 @@ const Demo = () => {
         onGetCaptcha={sendCode}
         required
       />
+      {/* <BizFormItemCaptcha
+        label="自动触发"
+        name="captcha4"
+        onGetCaptcha={sendCode}
+        buttonProps={{ ref: buttonRef }}
+        required
+      /> */}
       <BizFormItemCaptcha
         label="自定义文本"
         name="captcha4"
