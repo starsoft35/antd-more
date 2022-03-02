@@ -1,7 +1,7 @@
 import React from 'react';
 import type { FormProps, FormItemProps } from './components/antd.interface';
 
-export type TransformFn<T = any> = (value: T) => T | any;
+export type TransformFn<T = any> = (value: T) => T;
 
 export interface FiledContextProps extends Pick<FormProps, 'layout' | 'labelCol' | 'form'> {
   setFieldTransform?: (

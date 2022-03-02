@@ -52,9 +52,17 @@ nav:
 
 <code src='./demos/upload-file-viewer.tsx' />
 
-### 联动表单
+### 联动表单 1
 
-<code src='./demos/form-linkage.tsx' />
+通过 `shouldUpdate` 实现
+
+<code src='./demos/form-linkage-1.tsx' />
+
+### 联动表单 2
+
+通过 `onValuesChange` 实现
+
+<code src='./demos/form-linkage-2.tsx' />
 
 ### 企业信息
 
