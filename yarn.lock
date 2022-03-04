@@ -7306,10 +7306,10 @@ lazystream@^1.0.0:
   dependencies:
     readable-stream "^2.0.5"
 
-lcn@3:
-  version "3.0.4"
-  resolved "https://registry.npmjs.org/lcn/-/lcn-3.0.4.tgz#c548e018fedc5e6ccfc616670f4ac588d6034a59"
-  integrity sha512-8rSV6ae0wBNqbvIZq5apm4rWxrTnjGZ/xGlLNmFSgIIeg1a/iEgX4lHxlSidHQtsORDHSfcHMLX1w4bZwGUN/A==
+lcn@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.npmjs.org/lcn/-/lcn-4.1.0.tgz#6a5403ad0eb53ff78c06a36faacbe413ce4bd68d"
+  integrity sha512-bR3k3tibENGXg8ojEiuLfZVzlve7xxisOdHqlAUOMIs8+CXYPz1nv4GzX1mjPYbwXAy/Z9AE1VowNrtp7h65/Q==
 
 ldjson-stream@^1.2.1:
   version "1.2.1"

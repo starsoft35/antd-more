@@ -8,7 +8,7 @@ import { isBusinessLicense, isSocialCreditCode } from 'util-helpers';
 import { BizForm, BizFormItemRadio, BizFormItemInput, BizFormItemAddress } from 'antd-more';
 import { getPCA } from 'lcn';
 
-const pcaInlandData = getPCA({ inland: true, formatForm: true });
+const pca = getPCA({ inland: true, fieldNames: { code: 'value', name: 'label' } });
 
 // 机构类型
 // 1-公司 2-个人
@@ -156,7 +156,7 @@ const BaseInfo = () => {
             label="机构所在地址"
             labels={['省/市/区', '详细地址']}
             names={['location', 'address']}
-            options={pcaInlandData}
+            options={pca}
             required
           />
         </Col>

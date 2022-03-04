@@ -13,7 +13,7 @@ import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 import { getPCA } from 'lcn';
 import { waitTime } from 'util-helpers';
 
-const pcaInlandData = getPCA({ inland: true, formatForm: true });
+const pca = getPCA({ inland: true, fieldNames: { code: 'value', name: 'label' } });
 
 const colspan = {
   xxl: 6,
@@ -38,7 +38,7 @@ const Demo = () => {
         label="公司地址"
         labels={['省/市/区', '详细地址']}
         names={['locals', 'address']}
-        options={pcaInlandData}
+        options={pca}
       />
       <BizFormList name="contacts">
         {(fields, { add, remove, move }) => {

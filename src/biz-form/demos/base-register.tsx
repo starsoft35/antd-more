@@ -3,7 +3,7 @@ import { BizForm, BizFormItemInput, BizFormItemAddress, BizFormItemPassword } fr
 import { getPCA } from 'lcn';
 import { waitTime } from 'util-helpers';
 
-const pcaInlandData = getPCA({ inland: true, formatForm: true });
+const pca = getPCA({ inland: true, fieldNames: { code: 'value', name: 'label' } });
 
 const RegisterDemo = () => {
   return (
@@ -41,7 +41,7 @@ const RegisterDemo = () => {
         names={['location', 'address']}
         labels={['省/市/区', '详细地址']}
         required
-        options={pcaInlandData}
+        options={pca}
       />
     </BizForm>
   );

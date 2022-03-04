@@ -5,7 +5,7 @@ import { isSocialCreditCode, isBusinessLicense } from 'util-helpers';
 import { getPCA } from 'lcn';
 import { waitTime } from 'util-helpers';
 
-const pcaInlandData = getPCA({ inland: true, formatForm: true });
+const pc = getPCA({ inland: true, fieldNames: { code: 'value', name: 'label' } });
 
 const oneColSpan = {
   span: 24
@@ -90,7 +90,7 @@ const CompanyInfo = () => {
             label="公司地址"
             names={['location', 'address']}
             labels={['省/市/区', '详细地址']}
-            options={pcaInlandData}
+            options={pc}
             required
           />
         </Col>

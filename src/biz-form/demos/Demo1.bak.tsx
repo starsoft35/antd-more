@@ -11,7 +11,7 @@ import {
 } from 'antd-more';
 import { getPCA } from 'lcn';
 
-const pcaInlandData = getPCA({ inland: true, formatForm: true });
+const pca = getPCA({ inland: true, fieldNames: { code: 'value', name: 'label' } });
 
 const formLayout = {
   labelCol: {
@@ -64,7 +64,7 @@ const Demo = () => {
           label="地址"
           names={['location', 'address']}
           labels={['省/市/区', '详细地址']}
-          options={pcaInlandData}
+          options={pca}
         />
         <BizFormItemInput label="银行卡号" name="bankCardNo" type="bankCard" />
         {/* <BizFormList name="arr1">
@@ -85,7 +85,7 @@ const Demo = () => {
                     label="嵌套地址"
                     names={[[field.name, "location"], [field.name, "address"]]}
                     labels={["省/市/区", "详细地址"]}
-                    options={pcaInlandData}
+                    options={pca}
                   />
                 </div>
               )

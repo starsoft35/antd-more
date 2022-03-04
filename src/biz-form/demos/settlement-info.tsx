@@ -4,7 +4,7 @@ import { BizForm, BizFormItemInput, BizFormItemAddress, BizFormItemRadio } from 
 import { getPC } from 'lcn';
 import { waitTime } from 'util-helpers';
 
-const pcInlandData = getPC({ inland: true, formatForm: true });
+const pc = getPC({ inland: true, fieldNames: { code: 'value', name: 'label' } });
 
 const oneColSpan = {
   span: 24
@@ -93,7 +93,7 @@ const SettlementInfo = () => {
             names={['branchLocation', 'branchName']}
             labels={['省/市', '支行名称']}
             required
-            options={pcInlandData}
+            options={pc}
           />
         </Col>
       </Row>

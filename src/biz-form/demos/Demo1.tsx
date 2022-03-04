@@ -25,7 +25,7 @@ import { getPCA } from 'lcn';
 import { CycleOptions } from './constants';
 import { waitTime } from 'util-helpers';
 
-const pcaInlandData = getPCA({ inland: true, formatForm: true });
+const pca = getPCA({ inland: true, fieldNames: { code: 'value', name: 'label' } });
 
 const colSpan = {
   xs: 24,
@@ -104,7 +104,7 @@ const Demo = () => {
               tooltip="组合组件"
               names={['location', 'address']}
               labels={['省/市/区', '详细地址']}
-              options={pcaInlandData}
+              options={pca}
               // formItemProps={[
               //   {
               //     colProps: { lg: 6 }
