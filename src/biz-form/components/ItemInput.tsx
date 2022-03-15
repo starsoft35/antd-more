@@ -139,6 +139,7 @@ const BizFormItemInput: React.FC<BizFormItemInputProps> = ({
         allowClear
         autoComplete="off"
         normalize={!normalize || type ? handleNormalize : undefined}
+        adjustCursorPosition={!normalize && type === 'bankCard'}
         {...defaultInputProps}
         {...inputProps}
       />
