@@ -29,7 +29,7 @@ nav:
 
 <code src="./demos/forget-password.tsx" iframe="500" />
 
-### BizForm
+### API
 
 除了以下参数，其余和 dev 一样。
 
