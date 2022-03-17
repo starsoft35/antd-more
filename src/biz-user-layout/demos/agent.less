@@ -1,0 +1,25 @@
+.wrapper {
+  background: url('./images/login_bg.svg') 0 0 no-repeat #f4f7fb;
+  background-size: 100% auto;
+
+  :global {
+    .antd-more-user-layout-content {
+      margin: 64px 0;
+    }
+
+    .antd-more-user-layout-side {
+      max-width: 1200px;
+      margin: 0 auto;
+      overflow: hidden;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 10px 20px rgba(124, 138, 196, 0.15);
+    }
+
+    @media (max-width: 1200px) {
+      .antd-more-user-layout-side {
+        margin: 0 24px;
+      }
+    }
+  }
+}

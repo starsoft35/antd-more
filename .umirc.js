@@ -80,6 +80,10 @@ const umiConfig = {
         ]
       },
       {
+        title: '布局',
+        children: ['biz-user-layout']
+      },
+      {
         title: '通用',
         children: ['color', 'dictionary', 'captcha-button', 'input-icon', 'tree-table']
       }

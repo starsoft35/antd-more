@@ -21,7 +21,12 @@ const BizForm: React.FC<BizFormProps> & {
     typeof submitter === 'undefined' || submitter
       ? {
           render: (_, dom) => (
-            <Form.Item label=" " colon={false} className={formItemHideLabelClass}>
+            <Form.Item
+              label=" "
+              colon={false}
+              className={formItemHideLabelClass}
+              style={{ marginBottom: 0 }}
+            >
               {Array.isArray(dom) && dom.length > 1 ? <Space>{dom}</Space> : dom}
             </Form.Item>
           ),

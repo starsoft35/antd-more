@@ -24,3 +24,6 @@ export * from './biz-table';
 
 export { default as BizDescriptions } from './biz-descriptions';
 export * from './biz-descriptions';
+
+export { default as BizUserLayout } from './biz-user-layout';
+export * from './biz-user-layout';
