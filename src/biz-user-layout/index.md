@@ -70,6 +70,6 @@ type FooterLink = {
 | sideBannerCarouselProps | 侧边广告轮播配置 | [CarouselProps] | - |
 | sideContent | 侧边内容 | `ReactNode` | - |
 | features | 功能介绍 | `Feature[]` | - |
-| footer | 底部链接和版权配置 | `{ links?: FooterLink[]; copyright?: string; }'` | - |
+| footer | 底部链接和版权配置 | `{ links?: FooterLink[]; copyright?: ReactNode; }'` | - |
 
 [carouselprops]: https://ant-design.gitee.io/components/carousel-cn/#API
