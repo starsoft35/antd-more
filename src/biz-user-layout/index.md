@@ -60,7 +60,8 @@ type FooterLinkItem = {
 | --- | --- | --- | --- |
 | logo | 品牌图标 | `string` | - |
 | title | 项目名称 | `ReactNode` | - |
-| renderHeader | 自定义头部渲染 | `(props: BizUserLayoutProps) => React.ReactNode` | - |
+| headerRightContent | 头部右侧内容 | `ReactNode` | - |
+| renderHeader | 自定义头部渲染 | `(props: BizUserLayoutProps) => ReactNode` | - |
 | hideHeader | 隐藏头部 | `boolean` | - |
 | banner | 广告栏 | `BannerItem[]` | - |
 | bannerCarouselProps | 广告轮播配置 | [CarouselProps] | - |
