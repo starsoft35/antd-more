@@ -73,24 +73,26 @@ const BizUserLayout: React.FC<BizUserLayoutProps> = (props) => {
     <div className={classnames(prefixCls, className)} {...restProps}>
       {!hideHeader &&
         (typeof renderHeader === 'function' ? renderHeader(props) : <Header {...headerProps} />)}
-      <Row className={`${prefixCls}-content`} gutter={[0, 64]}>
-        {banner && banner.length > 0 && (
-          <Col span={24}>
-            <Banner {...bannerProps} />
-          </Col>
-        )}
-        {(sideBanner.length > 0 || sideContent) && (
-          <Col span={24}>
-            <Side {...sideProps} />
-          </Col>
-        )}
-        {children && <Col span={24}>{children}</Col>}
-        {features && features.length > 0 && (
-          <Col span={24}>
-            <Features data={features} />
-          </Col>
-        )}
-      </Row>
+      <main className={`${prefixCls}-content`}>
+        <Row gutter={[0, 64]}>
+          {banner && banner.length > 0 && (
+            <Col span={24}>
+              <Banner {...bannerProps} />
+            </Col>
+          )}
+          {(sideBanner.length > 0 || sideContent) && (
+            <Col span={24}>
+              <Side {...sideProps} />
+            </Col>
+          )}
+          {children && <Col span={24}>{children}</Col>}
+          {features && features.length > 0 && (
+            <Col span={24}>
+              <Features data={features} />
+            </Col>
+          )}
+        </Row>
+      </main>
       <Footer {...footer} />
     </div>
   );

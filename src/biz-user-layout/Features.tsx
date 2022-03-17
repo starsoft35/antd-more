@@ -29,27 +29,31 @@ const Features: React.FC<FeaturesProps> = ({ data = [] }) => {
   }
 
   return (
-    <Row className={prefixCls} gutter={[48, 48]}>
-      {data.map(({ icon, title, description, onClick }, index) => (
-        <Col
-          {...colSpan}
-          key={(typeof title === 'string' ? title : 'features-item-') + index}
-          onClick={onClick}
-        >
-          <div className={`${prefixCls}-item`}>
-            {icon && (
-              <div className={`${prefixCls}-item-icon`}>
-                {typeof icon === 'string' ? <img src={icon} alt="" /> : icon}
+    <div className={prefixCls}>
+      <Row gutter={[48, 48]}>
+        {data.map(({ icon, title, description, onClick }, index) => (
+          <Col
+            {...colSpan}
+            key={(typeof title === 'string' ? title : 'features-item-') + index}
+            onClick={onClick}
+          >
+            <div className={`${prefixCls}-item`}>
+              {icon && (
+                <div className={`${prefixCls}-item-icon`}>
+                  {typeof icon === 'string' ? <img src={icon} alt="" /> : icon}
+                </div>
+              )}
+              <div className={`${prefixCls}-item-content`}>
+                {title && <div className={`${prefixCls}-item-title`}>{title}</div>}
+                {description && (
+                  <div className={`${prefixCls}-item-description`}>{description}</div>
+                )}
               </div>
-            )}
-            <div className={`${prefixCls}-item-content`}>
-              {title && <div className={`${prefixCls}-item-title`}>{title}</div>}
-              {description && <div className={`${prefixCls}-item-description`}>{description}</div>}
             </div>
-          </div>
-        </Col>
-      ))}
-    </Row>
+          </Col>
+        ))}
+      </Row>
+    </div>
   );
 };
 
