@@ -29,7 +29,7 @@ nav:
 
 <code src="./demos/forget-password.tsx" iframe="500" />
 
-### API
+## API
 
 除了以下参数，其余和 dev 一样。
 
@@ -48,7 +48,7 @@ type Feature = {
   onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
 };
 
-type FooterLinkItem = {
+type FooterLink = {
   text?: React.ReactNode;
   icon?: React.ReactNode;
   link?: string;
@@ -70,6 +70,6 @@ type FooterLinkItem = {
 | sideBannerCarouselProps | 侧边广告轮播配置 | [CarouselProps] | - |
 | sideContent | 侧边内容 | `ReactNode` | - |
 | features | 功能介绍 | `Feature[]` | - |
-| footer | 底部链接和版权配置 | `{ links?: FooterLinkItem[]; copyright?: string; }'` | - |
+| footer | 底部链接和版权配置 | `{ links?: FooterLink[]; copyright?: string; }'` | - |
 
 [carouselprops]: https://ant-design.gitee.io/components/carousel-cn/#API

@@ -5,7 +5,7 @@ import './Footer.less';
 
 const prefixCls = `${prefixClass}-footer`;
 
-type FooterLinkItem = {
+type FooterLink = {
   text?: React.ReactNode;
   icon?: React.ReactNode;
   link?: string;
@@ -13,7 +13,7 @@ type FooterLinkItem = {
 };
 
 export interface FooterProps extends React.HTMLAttributes<HTMLDivElement> {
-  links?: FooterLinkItem[];
+  links?: FooterLink[];
   copyright?: React.ReactNode;
 }
 
