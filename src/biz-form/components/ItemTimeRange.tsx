@@ -26,9 +26,8 @@ const TimePickerRangeWrapper: React.FC<TimeRangePickerProps> = ({
   );
 };
 
-export interface BizFormItemTimeRangeProps
-  extends BizFormItemProps,
-    Pick<TimeRangePickerProps, 'format'> {
+export interface BizFormItemTimeRangeProps extends BizFormItemProps {
+  format?: string;
   pickerProps?: TimeRangePickerProps;
   names?: [string, string];
 }

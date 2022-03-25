@@ -1,27 +1,15 @@
 // 转换
 
+import type { Moment } from 'moment';
 import moment from 'moment';
 
 // 标识日期无效值的value
-const invalidDateRangeNameValue = `date_range_invalid_${Math.random()}`;
-
-// 转换银行卡号
-function transformBankCard(val: string, char = ' ') {
-  if (typeof val !== 'string') {
-    return val;
-  }
-
-  let ret = val.replace(/\s/g, '');
-
-  if (char) {
-    const reg = new RegExp(`\\${char}`, 'g');
-    ret = val.replace(reg, '');
-  }
-  return ret;
-}
+export const invalidDateRangeNameValue = `date_range_invalid_${Math.random()}`;
 
 // 转换日期
-function transformDate(date, format) {
+export function transformDate(date: Moment | string, format: string): string;
+export function transformDate(date: (Moment | string)[], format: string): string;
+export function transformDate(date: Moment | string | (Moment | string)[], format: string) {
   if (moment.isMoment(date)) {
     return date.format(format);
   }
@@ -35,7 +23,7 @@ function transformDate(date, format) {
 }
 
 // 转换表单值
-function transformFormValues(values: any, transforms: any, currentLevelValues?: any) {
+export function transformFormValues(values: any, transforms: any, currentLevelValues?: any) {
   if (
     (Array.isArray(values) && values.length <= 0) ||
     (Array.isArray(transforms) && transforms.length <= 0) ||
@@ -79,5 +67,3 @@ function transformFormValues(values: any, transforms: any, currentLevelValues?: 
 
   return ret;
 }
-
-export { transformBankCard, transformDate, transformFormValues, invalidDateRangeNameValue };

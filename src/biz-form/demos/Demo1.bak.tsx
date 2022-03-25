@@ -37,7 +37,7 @@ const formLayout = {
 //     {
 //       subArr2: [
 //         {
-//           bankCardNo: "2222****77***2"
+//           bankCardNo: "222287316613"
 //         }
 //       ]
 //     }
@@ -100,7 +100,7 @@ const Demo = () => {
                 <BizFormList {...field} name={[field.name, "subArr2"]}>
                   {(subFields) => {
                     return subFields.map(subField => (
-                      <BizFormItemInput type="bankCard" security initialValue={initialValues.arr2[field.name].subArr2[subField.name].bankCardNo} label="嵌套银行卡号3" {...subField} fieldKey={[subField.fieldKey, "bankCardNo"]} name={[subField.name, "bankCardNo"]} />
+                      <BizFormItemInput type="bankCard" initialValue={initialValues.arr2[field.name].subArr2[subField.name].bankCardNo} label="嵌套银行卡号3" {...subField} fieldKey={[subField.fieldKey, "bankCardNo"]} name={[subField.name, "bankCardNo"]} />
                     ))
                   }}
                 </BizFormList>

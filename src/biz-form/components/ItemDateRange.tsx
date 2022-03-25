@@ -59,7 +59,7 @@ const BizFormItemDateRange: React.FC<BizFormItemDateRangeProps> = ({
     return getDateFormat(
       pickerProps.format || format,
       currentPicker,
-      pickerProps.showTime || showTime
+      !!(pickerProps?.showTime || showTime)
     );
   }, [format, pickerProps.format, currentPicker, pickerProps.showTime, showTime]);
   const disabledDate = React.useMemo(

@@ -1,19 +1,11 @@
 import * as React from 'react';
 import { isBankCard, isEmail, isIdCard, isMobile } from 'util-helpers';
-import {
-  normalizeWhiteSpace,
-  normalizeBankCard,
-  normalizeIdCard,
-  normalizeMobile
-} from '../_util/normalize';
-import { transformBankCard } from '../_util/transform';
 import type { BizFormItemProps } from './Item';
 import BizFormItem from './Item';
+import type { InputWrapperProps } from './form/InputWrapper';
 import InputWrapper from './form/InputWrapper';
 import getLabel from '../_util/getLabel';
 import type { InputProps } from './antd.interface';
-
-type InputType = 'bankCard' | 'email' | 'idCard' | 'mobile' | 'userName';
 
 const validateUserName = (value, { label }) => {
   const ret = {
@@ -38,85 +30,53 @@ const validateMethod = {
   mobile: isMobile
 };
 
-const maxLengthConfig = {
-  idCard: 18,
-  mobile: 11
-};
-
 export interface BizFormItemInputProps extends BizFormItemProps {
-  security?: boolean; // 脱敏。 为 true 时，必须传入 initialValue
-  symbol?: string; // 脱敏符号
-  type?: InputType;
+  type?: InputWrapperProps['type'];
   disabledWhiteSpace?: boolean;
   inputProps?: InputProps;
 }
 
 const BizFormItemInput: React.FC<BizFormItemInputProps> = ({
   type,
-  security = false,
-  symbol = '*',
-  disabledWhiteSpace = false,
+  disabledWhiteSpace,
   inputProps = {},
   required = false,
   transform,
-  normalize,
   ...restProps
 }) => {
-  const handleNormalize = React.useCallback(
-    (value) => {
-      if (type === 'bankCard') {
-        return normalizeBankCard(value, { symbol: security ? symbol : '' });
-      }
-      if (type === 'idCard') {
-        return normalizeIdCard(value, { symbol: security ? symbol : '' });
-      }
-      if (type === 'mobile') {
-        return normalizeMobile(value, { symbol: security ? symbol : '' });
-      }
-      if (disabledWhiteSpace || type === 'email' || type === 'userName') {
-        return normalizeWhiteSpace(value);
-      }
-      return value;
-    },
-    [type, disabledWhiteSpace, security, symbol]
+  const hasSpecialType = React.useMemo(
+    () =>
+      type === 'bankCard' ||
+      type === 'idCard' ||
+      type === 'mobile' ||
+      type === 'userName' ||
+      type === 'email',
+    [type]
   );
   const handleTransform = React.useCallback(
     (val) => {
       if (transform) {
         return transform(val);
       }
-      if (type === 'bankCard') {
-        return transformBankCard(val);
+      if (type === 'bankCard' || type === 'mobile') {
+        return val?.replace(/\D/g, '');
       }
       return val;
     },
     [transform, type]
   );
 
-  const defaultInputProps = React.useMemo(() => {
-    if (maxLengthConfig[type]) {
-      return {
-        maxLength: maxLengthConfig[type]
-      };
-    }
-    return {};
-  }, [type]);
-
   const messageLabel = getLabel(restProps);
 
   return (
     <BizFormItem
       required={required}
-      normalize={normalize}
       rules={[
         {
           validator(rule, value) {
             let errMsg = '';
             if (!value) {
               errMsg = required ? `请输入${messageLabel}` : '';
-            } else if (security && restProps?.initialValue === value) {
-              // 脱敏校验
-              errMsg = '';
             } else if (type === 'userName') {
               errMsg = validateUserName(value, { label: messageLabel }).message;
             } else if (validateMethod[type] && !validateMethod[type](value)) {
@@ -131,16 +91,15 @@ const BizFormItemInput: React.FC<BizFormItemInputProps> = ({
         }
       ]}
       transform={handleTransform}
-      validateTrigger={type ? 'onBlur' : 'onChange'}
+      validateTrigger={hasSpecialType ? 'onBlur' : 'onChange'}
       {...restProps}
     >
       <InputWrapper
         placeholder="请输入"
         allowClear
         autoComplete="off"
-        normalize={!normalize || type ? handleNormalize : undefined}
-        adjustCursorPosition={!normalize && type === 'bankCard'}
-        {...defaultInputProps}
+        type={type}
+        disabledWhiteSpace={disabledWhiteSpace}
         {...inputProps}
       />
     </BizFormItem>

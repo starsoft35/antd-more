@@ -251,9 +251,7 @@ Input 输入框
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | type | 输入框类型。 | `'mobile' \| 'bankCard' \| 'idCard' \| 'email' \| 'userName'` | - |
-| disabledWhiteSpace | 禁止输入空白符。 `Password` 组件不支持该项。 | `boolean` | `false` |
-| security | 开启脱敏校验。为 `ture` 时，必须传入 `initialValue` 。 | `boolean` | `false` |
-| symbol | 脱敏符号 | `string` | `*` |
+| disabledWhiteSpace | 禁止输入空白符。 | `boolean` | - |
 | inputProps | 输入框的属性 | [InputProps](https://ant-design.gitee.io/components/input-cn/#API) | - |
 
 ### Number

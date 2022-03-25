@@ -76,10 +76,6 @@ nav:
 
 <code src='./demos/rakebacke-info.tsx' />
 
-### 脱敏校验
-
-<code src='./demos/security.tsx' />
-
 ### 异步初始值
 
 <code src='./demos/async-initial-values.tsx' />

@@ -34,7 +34,7 @@ export enum DateFormat {
 }
 
 // 获取日期格式
-export function getDateFormat(format, picker, showTime) {
+export function getDateFormat(format: any, picker?: string, showTime = false) {
   if (format) {
     return format;
   }
@@ -97,9 +97,11 @@ export function createDisabledDate(picker: Picker = 'date', opts?: CreateDisable
 }
 
 // 转换为moment值
-export function transformMomentValue(val) {
+export function transformMomentValue(val: string | Moment): Moment;
+export function transformMomentValue(val: (string | Moment)[]): [Moment, Moment];
+export function transformMomentValue(val: string | Moment | (string | Moment)[]) {
   if (Array.isArray(val)) {
-    return val.map(transformMomentValue);
+    return val.map((item) => transformMomentValue(item));
   }
   if (typeof val === 'string' && val) {
     return moment(val);
@@ -108,6 +110,8 @@ export function transformMomentValue(val) {
 }
 
 // 转换time为moment值
+export function transformMomentTime(time: string | Moment, format?: string): Moment;
+export function transformMomentTime(time: (string | Moment)[], format?: string): [Moment, Moment];
 export function transformMomentTime(time, format = 'HH:mm:ss') {
   if (Array.isArray(time)) {
     return time.map((timeItem) => transformMomentTime(timeItem, format));
