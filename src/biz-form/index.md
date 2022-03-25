@@ -52,13 +52,13 @@ nav:
 
 <code src='./demos/upload-file-viewer.tsx' />
 
-### 联动表单 1
+### 联动 1
 
 通过 `shouldUpdate` 实现
 
 <code src='./demos/form-linkage-1.tsx' />
 
-### 联动表单 2
+### 联动 2
 
 通过 `onValuesChange` 实现
 
