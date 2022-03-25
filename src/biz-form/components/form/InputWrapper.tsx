@@ -35,53 +35,59 @@ const InputWrapper: React.FC<InputWrapperProps> = ({
     }
     return type;
   }, [type]);
-  const hasNormalize = React.useMemo(
-    () => !!type || disabledWhiteSpace,
+  const needAdjustPos = React.useMemo(
+    () =>
+      type === 'bankCard' ||
+      type === 'mobile' ||
+      type === 'idCard' ||
+      type === 'email' ||
+      type === 'userName' ||
+      disabledWhiteSpace,
     [type, disabledWhiteSpace]
   );
 
+  const calcPosOpts = React.useMemo(() => {
+    const ret: Record<string, any> = {};
+    if (type === 'bankCard') {
+      ret.type = 'bankCard';
+    } else if (type === 'mobile') {
+      ret.type = 'mobile';
+    } else if (type === 'idCard') {
+      ret.maskReg = /[^\dx]/gi;
+      ret.placeholderChars = [];
+    } else if (type === 'email' || type === 'userName' || disabledWhiteSpace) {
+      ret.maskReg = /\s/g;
+      ret.placeholderChars = [];
+    }
+    return ret;
+  }, [disabledWhiteSpace, type]);
+
   const normalize = React.useCallback(
     (val: string) => {
-      if (!hasNormalize) {
-        return val;
-      }
-      let newVal = val;
       if (type === 'bankCard') {
-        newVal = normalizeBankCard(val);
+        return normalizeBankCard(val);
       } else if (type === 'mobile') {
-        newVal = normalizeMobile(val);
+        return normalizeMobile(val);
       } else if (type === 'idCard') {
-        newVal = normalizeIdCard(val);
+        return normalizeIdCard(val);
       } else if (type === 'email' || type === 'userName' || disabledWhiteSpace) {
-        newVal = normalizeWhiteSpace(val);
+        return normalizeWhiteSpace(val);
       }
-      return newVal;
+      return val;
     },
-    [disabledWhiteSpace, hasNormalize, type]
+    [disabledWhiteSpace, type]
   );
 
   const handleChange = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      // 数据格式化
-      if (hasNormalize) {
-        const el = e.target;
-        const prevPos = el.selectionEnd;
-        const rawValue = el.value;
-        const ctrlValue = normalize(rawValue);
+      const el = e.target;
+      const prevPos = el.selectionEnd;
+      const rawValue = el.value;
+      const ctrlValue = normalize(rawValue);
+      onChange?.(ctrlValue as any);
 
-        const calcPosOpts: any = {};
-        if (type === 'bankCard') {
-          calcPosOpts.type = 'bankCard';
-        } else if (type === 'mobile') {
-          calcPosOpts.type = 'mobile';
-        } else if (type === 'idCard') {
-          calcPosOpts.maskReg = /[^\dx]/gi;
-          calcPosOpts.placeholderChars = [];
-        } else if (type === 'email' || type === 'userName' || disabledWhiteSpace) {
-          calcPosOpts.maskReg = /\s/g;
-          calcPosOpts.placeholderChars = [];
-        }
-
+      // 调整光标位置
+      if (needAdjustPos) {
         const cursorPos = calculateCursorPosition(
           prevPos,
           value as string,
@@ -89,7 +95,6 @@ const InputWrapper: React.FC<InputWrapperProps> = ({
           ctrlValue,
           calcPosOpts
         );
-        onChange?.(ctrlValue as any);
 
         if (rawValue !== ctrlValue) {
           setTimeout(() => {
@@ -98,21 +103,19 @@ const InputWrapper: React.FC<InputWrapperProps> = ({
         } else {
           el.selectionStart = el.selectionEnd = cursorPos;
         }
-      } else {
-        onChange?.(e);
       }
     },
-    [disabledWhiteSpace, hasNormalize, normalize, onChange, type, value]
+    [calcPosOpts, needAdjustPos, normalize, onChange, value]
   );
 
   React.useEffect(() => {
-    if (value && hasNormalize) {
+    if (value && needAdjustPos) {
       const newValue = normalize(value as string);
       if (newValue !== value) {
         onChange?.(newValue as any);
       }
     }
-  }, [hasNormalize, normalize, onChange, value]);
+  }, [needAdjustPos, normalize, onChange, value]);
 
   return <Input value={value} onChange={handleChange} type={realType} {...restProps} />;
 };
