@@ -141,7 +141,7 @@ type BizTableRequest = (
 | tooltip | 表头标题后面的补充提示 | `ReactNode` | - |
 | valueType | 值类型。同 BizField 的 valueType，用于列展示 或 查询表单项 或 可编辑表格项。 | [ValueType](/components/biz-field#valuetype-值) | - |
 | valueEnum | 数据字典。<br/>当 `valueType` 为 `enum` `enumTag` `enumBadge` 时生效。 | `EnumData` | - |
-| field | 展示字段的配置。同 BizField 的配置项，支持 object 和 function 方式。<br/>function 方式默认参数和 render 一样，需返回 BizField 的配置。 | `object \| (text: any, record: RecordType, index: number)=>object` | - |
+| field | 展示字段的配置。同 BizField 的配置项，支持 object 和 function 方式。<br/>function 方式默认参数和 render 一样，需返回 BizField 的配置。 | `object \| (text: any, record: RecordType, index: number) => object` | - |
 | search | 配置查询表单项 | `SearchProps` | - |
 | order | 查询表单项排序，数值越小越靠前 | `number` | `0` |
 | table | 是否在表格中显示，适用于部分字段只有查询表单，但表格中不显示 | `boolean` | `true` |
@@ -153,7 +153,7 @@ valueType valueEnum 为以下几个配置共用字段，可以复写：
 
 - field - 展示字段的配置
 - search - 查询表单项的配置
-- editable - 可编辑表格项配置（[EditableBizTable](/components/biz-field#valuetype-值) 组件）
+- editable - 可编辑表格项配置（[EditableBizTable](/components/biz-field#valuetype-值) 组件）
 
 #### search 查询表单配置项
 

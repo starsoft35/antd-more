@@ -93,7 +93,7 @@ const umiConfig = {
 
 if (process.env.NODE_ENV === 'production') {
   umiConfig.headScripts = [
-    { src: 'https://www.googletagmanager.com/gtag/js?id=G-N328Y9JJTL', async: true },
+    { src: 'https://www.googletagmanager.com/gtag/js?id=G-N328Y9JJTL' },
     {
       content: `window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}

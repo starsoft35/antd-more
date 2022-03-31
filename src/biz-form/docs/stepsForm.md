@@ -51,16 +51,16 @@ import { StepsForm } from 'antd-more';
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | current | 当前表单的步骤数，从 `0` 开始 | `number` | `0` |
-| onCurrentChange | current 发生改变的事件 | `(current:number)=>void` | - |
+| onCurrentChange | current 发生改变的事件 | `(current:number) => void` | - |
 | ready | 为 `false` 时，禁止上一步、下一步、提交操作。 | `boolean` | `true` |
-| onFinish | 表单提交成功后调用 | `(values)=>void` | - |
+| onFinish | 表单提交成功后调用 | `(values) => void` | - |
 | stepsProps | `StepsForm` 自带的 `Steps` 的 `props`，使用方式与 antd 相同，但是去掉了 `current` 和 `onChange` | [StepsProps](https://ant.design/components/steps-cn/#API) | - |
 | formProps | `StepsForm.StepForm` 的属性，除了没有 `onReset` 和 `submitter` | `BizFormProps` | - |
 | submitter | 上一步、下一步、提交按钮的配置 | `StepsFormSubmitterProps` | - |
 | actionRef | 常用操作引用，便于自定义触发 | `MutableRefObject<StepsFormActionType \| undefined>` | - |
-| stepsRender | 自定义步骤器 | `(stepsProps: StepsProps,stepsDom: ReactNode)=>ReactNode` | - |
-| stepFormRender | 自定义每个表单 | `(formDom: ReactNode)=>ReactNode` | - |
-| stepsFormRender | 自定义整个表单 | `(stepsDom: ReactNode, formDom: ReactNode, submitterDom: ReactNode)=>ReactNode` | - |
+| stepsRender | 自定义步骤器 | `(stepsProps: StepsProps,stepsDom: ReactNode) => ReactNode` | - |
+| stepFormRender | 自定义每个表单 | `(formDom: ReactNode) => ReactNode` | - |
+| stepsFormRender | 自定义整个表单 | `(stepsDom: ReactNode, formDom: ReactNode, submitterDom: ReactNode) => ReactNode` | - |
 
 ### StepsForm.StepForm
 
@@ -79,21 +79,21 @@ import { StepsForm } from 'antd-more';
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| onPrev | 点击上一步按钮的回调 | `()=>void` | - |
+| onPrev | 点击上一步按钮的回调 | `() => void` | - |
 | prevText | 上一步按钮文本 | `ReactNode` | `上一步` |
 | prevButtonProps | 上一步按钮属性，和 antd [Button](https://ant-design.gitee.io/components/button-cn/#API) 一致 | [ButtonProps](https://ant-design.gitee.io/components/button-cn/#API) | - |
 | noPrev | 不显示上一步按钮 | `boolean` | - |
 | forceShowPrev | 强制显示上一步按钮，优先级比 noPrev 高 | `boolean` | - |
-| onNext | 点击下一步按钮的回调 | `()=>void` | - |
+| onNext | 点击下一步按钮的回调 | `() => void` | - |
 | nextText | 下一步按钮文本 | `ReactNode` | `下一步` |
 | nextButtonProps | 提交按钮属性，和 antd [Button](https://ant-design.gitee.io/components/button-cn/#API) 一致 | [ButtonProps](https://ant-design.gitee.io/components/button-cn/#API) | - |
 | noNext | 不显示下一步按钮 | `boolean` | - |
 | forceShowNext | 强制显示下一步按钮，优先级比 noNext 高 | `boolean` | - |
-| onSubmit | 点击提交按钮的回调 | `()=>void` | - |
+| onSubmit | 点击提交按钮的回调 | `() => void` | - |
 | submitText | 提交按钮文本 | `ReactNode` | `提交` |
 | submitButtonProps | 提交按钮属性，和 antd [Button](https://ant-design.gitee.io/components/button-cn/#API) 一致 | [ButtonProps](https://ant-design.gitee.io/components/button-cn/#API) | - |
 | forceShowSubmit | 强制显示提交按钮 | `boolean` | - |
-| render | 自定义操作的渲染 | `false \| (props,dom:ReactElement[])=>ReactNode[]` | - |
+| render | 自定义操作的渲染 | `false \| (props,dom:ReactElement[]) => ReactNode[]` | - |
 
 ### actionRef
 

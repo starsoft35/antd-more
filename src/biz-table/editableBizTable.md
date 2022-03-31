@@ -70,8 +70,8 @@ const { EditableBizTable } = BizTable;
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | value | 当前已存在的数据，同表格的 `dataSource` | `T[]` | - |
-| onChange | dataSource 修改时，已存在的数据保存和删除时触发。<br/>如果设置了`value`，并且没有`onValuesChange`，将变为一个受控组件。 | `(values: T[])=>void` | - |
-| onValuesChange | 新增和已存在数据编辑状态下有变动时触发，可用于实时数据 或 表单中。<br/>设置该方法后，已存在的数据将变成不可控。 | `(values: T[])=>void` | - |
+| onChange | dataSource 修改时，已存在的数据保存和删除时触发。<br/>如果设置了`value`，并且没有`onValuesChange`，将变为一个受控组件。 | `(values: T[]) => void` | - |
+| onValuesChange | 新增和已存在数据编辑状态下有变动时触发，可用于实时数据 或 表单中。<br/>设置该方法后，已存在的数据将变成不可控。 | `(values: T[]) => void` | - |
 | editable | 编辑表格的配置 | `EditableOptions` | - |
 
 ### editable 配置
@@ -178,7 +178,7 @@ valueEnum = options
 {
   dataIndex: "createTime",
   title: "创建时间",
-  editable: (originItem, dom, form)=>{
+  editable: (originItem, dom, form) => {
     return {
       itemType: "date", // 注意区分 valueType 和 itemType，valueType 只是用于映射 itemType，最终还是使用 itemType，而 itemType 没有 dateTime
       showTime: true,
@@ -193,7 +193,7 @@ valueEnum = options
 再如果以上都不符合要求，可以自定义表单项渲染 `editable.render` 。
 
 ```typescript
-editable: (_, record, index)=>{
+editable: (_, record, index) => {
   render: (originItem, dom: React.ReactElement, form: FormInstance): React.ReactElement{
     console.log(originItem, dom, form);
     // return dom;

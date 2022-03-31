@@ -123,7 +123,7 @@ const Demo = () => {
         disabled={!ready}
         required
         // uploadProps={{
-        //   onPreview: ()=>{
+        //   onPreview: () => {
 
         //   }
         // }}

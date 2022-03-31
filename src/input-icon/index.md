@@ -40,4 +40,4 @@ nav:
 | showSearch | 显示图标搜索框 | `boolean` | `true` |
 | column | 一行显示图标数量。<br/>如果不能被 24 整除，自动向下取整。 | `number` | `3` |
 | value | 图标名称 | `string` | - |
-| onChange | 图标修改时触发 | `(iconName: string)=>void` | - |
+| onChange | 图标修改时触发 | `(iconName: string) => void` | - |

@@ -32,7 +32,7 @@ import { BizFormItem } from 'antd-more';
 | --- | --- | --- | --- |
 | labelWidth | label 宽度。默认继承 `BizForm` 的 `labelWidth`。 | `number \| 'auto'` | - |
 | hideLabel | 隐藏 label 。默认继承 `BizForm` 的 `hideLabel`。 | `boolean` | - |
-| transform | 转换该字段值，表单提交时执行。 | `(value)=>any` | - |
+| transform | 转换该字段值，表单提交时执行。 | `(value) => any` | - |
 | extendRules | 扩展校验规则。如果需要覆盖，请使用 `rules` | [Rule[]](https://ant-design.gitee.io/components/form-cn/#Rule) | - |
 | renderField | 自定义内部表单渲染。要注意透传 `props` ，可参考 `ItemUpload` 的示例。 | `(dom: React.ReactElement) => React.ReactElement` | - |
 | colProps | 设置该表单项 Col 属性。部分场景下生效，如 QueryForm 下、ItemCaptcha、ItemAddress 等。 | [ColProps](https://ant-design.gitee.io/components/grid-cn/#Col) | - |
@@ -103,7 +103,7 @@ interface Option {
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | type | 显示类型 | `'default' \| 'inline'` | `'default'` |
-| onGetCaptcha | 点击按钮触发。用于验证手机号码或邮箱，请求获取验证码。如果返回 `false` 或 `Promise.reject()` 表示验证失败。 | `()=>boolean \| ()=>Promise<any>` | `()=>true` |
+| onGetCaptcha | 点击按钮触发。用于验证手机号码或邮箱，请求获取验证码。如果返回 `false` 或 `Promise.reject()` 表示验证失败。 | `() => boolean \| Promise<any>` | `() => true` |
 | initText | 按钮初始显示文本 | `string` | `获取验证码` |
 | runText | 按钮倒计时显示文本，包含 `%s` 会自动替换为秒数 | `string` | `%s秒后重新获取` |
 | resetText | 按钮倒计时结束显示文本 | `string` | `重新获取验证码` |
@@ -504,8 +504,8 @@ type UploadFile = {
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | type | 上传组件内建类型样式。 | `'default' \| 'image' \| 'avatar' \| 'dragger'` | `'default'` |
-| onUpload | 自定义上传，添加文件时触发。<br/>内部自动处理上传中和失败状态。<br/>如果返回 `object` 将添加到 `UploadFile` 对象中。 | `(file: File)=>Promise<object> \| undefined>` | - |
-| onGetPreviewUrl | 获取预览图片，点击预览时触发。<br/>（仅在没有 file.url 的情况下生效，执行成功后将预览图放在 file.preview，不再触发） | `(file: File)=>Promise<string>` | - |
+| onUpload | 自定义上传，添加文件时触发。<br/>内部自动处理上传中和失败状态。<br/>如果返回 `object` 将添加到 `UploadFile` 对象中。 | `(file: File) => Promise<object \| undefined>` | - |
+| onGetPreviewUrl | 获取预览图片，点击预览时触发。<br/>（仅在没有 file.url 的情况下生效，执行成功后将预览图放在 file.preview，不再触发） | `(file: File) => Promise<string>` | - |
 | maxSize | 单个文件限制大小，单位 `Byte`。 | `number` | `1024*1024*2` |
 | maxCount | 限制上传文件数量。<br/>当为 `1` 时，始终用最新上传的代替当前。 | `number` | - |
 | accept | 接受上传的文件类型。<br/>如果 `type` 为 `image` 或 `avatar` ，默认为 `.jpg, .jpeg, .png` | `string` | - |
