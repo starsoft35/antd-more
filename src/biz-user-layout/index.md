@@ -15,15 +15,19 @@ nav:
 
 <code src="./demos/basic.tsx" iframe="500" />
 
-### 登录页-1
+### 登录页-通栏
 
 内容向上偏移，无 logo
 
 <code src="./demos/coral.tsx" iframe="500" />
 
-### 登录页-2
+### 登录页-分栏
 
 <code src="./demos/agent.tsx" iframe="500" />
+
+### 登录页-全屏
+
+<code src="./demos/fullscreen.tsx" iframe="500" />
 
 ### 忘记密码
 
