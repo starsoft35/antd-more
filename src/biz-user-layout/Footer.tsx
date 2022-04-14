@@ -18,6 +18,10 @@ export interface FooterProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const Footer: React.FC<FooterProps> = ({ links = [], copyright, children }) => {
+  if (!children && links.length <= 0 && !copyright) {
+    return null;
+  }
+
   return (
     <div className={`${prefixCls}`}>
       {children}
