@@ -8,11 +8,12 @@
  *      如果设置 `transform` 可以帮助内置的规则进行校验。
  */
 import * as React from 'react';
-import { BizForm, BizFormList, BizFormItemUpload } from 'antd-more';
+import { BizForm, BizFormItemUpload } from 'antd-more';
 import type { UploadFile } from 'antd/lib/upload/interface';
 import { waitTime } from 'util-helpers';
 
 // 上传图片
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 async function uploadImage(file: File): Promise<{ fssId: string }> {
   await waitTime(2000);
   if (Math.random() > 0.3) {

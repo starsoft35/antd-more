@@ -6,6 +6,7 @@ import ItemDefineUpload from './components/ItemDefineUpload';
 import { waitTime } from 'util-helpers';
 
 // 上传图片
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 async function uploadImage(file: File): Promise<{ fssId: string }> {
   await waitTime(2000);
   if (Math.random() > 0.3) {

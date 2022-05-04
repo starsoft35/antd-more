@@ -10,6 +10,7 @@ import { waitTime } from 'util-helpers';
 
 const mockData = [{ name: '' }, { name: '张三' }, { name: '李四' }];
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const request: BizTableRequest = async (params) => {
   // const { current, pageSize, ...restParams } = params;
   await waitTime();

@@ -20,6 +20,7 @@ async function getStaticServerPath(fssId: string) {
 }
 
 // 上传图片
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 async function uploadImage(file: File) {
   await waitTime(2000);
   if (Math.random() > 0.5) {

@@ -9,6 +9,7 @@ import {
 import { waitTime } from 'util-helpers';
 import { message } from 'antd';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 async function sendCaptcha(mobile: string) {
   await waitTime(2000);
   return;

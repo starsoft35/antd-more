@@ -11,6 +11,7 @@ import PreviewFile from './components/PreviewFile';
 import { getThumbUrl } from './utils/utils';
 
 // 上传文件
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 async function upload(file: File): Promise<{ fssId: string }> {
   await waitTime(2000);
   if (Math.random() > 0.1) {
