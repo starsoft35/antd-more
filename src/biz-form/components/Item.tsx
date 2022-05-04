@@ -17,7 +17,7 @@ export interface BizFormItemProps extends FormItemProps {
   extendRules?: FormItemProps['rules'];
   labelWidth?: number | 'auto';
   hideLabel?: boolean;
-  renderField?: (dom: React.ReactElement) => React.ReactElement;
+  renderField?: (dom: React.ReactNode) => React.ReactNode;
   contentBefore?: React.ReactNode;
   contentAfter?: React.ReactNode;
   contentConfig?: {

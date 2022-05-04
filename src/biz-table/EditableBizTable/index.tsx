@@ -142,7 +142,10 @@ const EditableBizTable = <RecordType extends object = any>({
     }
   };
 
-  const getCurentRowKey = React.useCallback((record) => getRowKey(outRowKey)(record), [outRowKey]);
+  const getCurentRowKey = React.useCallback(
+    (record: any) => getRowKey(outRowKey)(record) as Key,
+    [outRowKey]
+  );
 
   // 验证行的表单项
   const validateFieldsByRowKey = async (rowKey: Key) => {
@@ -322,7 +325,7 @@ const EditableBizTable = <RecordType extends object = any>({
     }
 
     const fieldsValue = getFieldsByRowKey(rowKey);
-    editable?.onChange?.([...editable?.editableKeys, rowKey], fieldsValue);
+    editable?.onChange?.([...(editable?.editableKeys || []), rowKey], fieldsValue);
   };
 
   // 新增
@@ -355,7 +358,7 @@ const EditableBizTable = <RecordType extends object = any>({
         }
       ]);
     }
-    editable?.onChange?.([...editable?.editableKeys, currentRowKey], record);
+    editable?.onChange?.([...(editable?.editableKeys || []), currentRowKey], record);
     setTimeout(() => triggerValuesChange(), 0); // dom渲染后再触发更新
   };
 
