@@ -24,6 +24,8 @@ export interface BizUserLayoutProps
   banner?: BannerProps['data'];
   bannerCarouselProps?: BannerProps['carouselProps'];
   bannerRightContent?: BannerProps['rightContent'];
+  sideRowProps?: SideProps['rowProps'];
+  sideColProps?: SideProps['colProps'];
   sideBanner?: SideProps['banner'];
   sideBannerCarouselProps?: SideProps['carouselProps'];
   sideContent?: SideProps['content'];
@@ -44,6 +46,8 @@ const BizUserLayout: React.FC<BizUserLayoutProps> = (props) => {
     bannerCarouselProps,
     bannerRightContent,
 
+    sideRowProps,
+    sideColProps,
     sideBanner = [],
     sideBannerCarouselProps,
     sideContent,
@@ -64,6 +68,8 @@ const BizUserLayout: React.FC<BizUserLayoutProps> = (props) => {
     rightContent: bannerRightContent
   };
   const sideProps = {
+    rowProps: sideRowProps,
+    colProps: sideColProps,
     banner: sideBanner,
     carouselProps: sideBannerCarouselProps,
     content: sideContent

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import type { CarouselProps } from 'antd';
+import type { CarouselProps, ColProps, RowProps } from 'antd';
 import { Carousel, Row, Col } from 'antd';
 import type { BannerItem } from './Banner';
 import { prefixClass } from './config';
@@ -13,17 +13,19 @@ const colSpan = {
 };
 
 export interface SideProps {
+  rowProps?: RowProps;
+  colProps?: ColProps;
   banner?: BannerItem[];
   carouselProps?: CarouselProps;
   content?: React.ReactNode;
 }
 
-const Side: React.FC<SideProps> = ({ banner = [], carouselProps, content }) => {
+const Side: React.FC<SideProps> = ({ rowProps, colProps, banner = [], carouselProps, content }) => {
   return (
     <div className={prefixCls}>
-      <Row gutter={[24, 24]} align="middle">
-        <Col className={`${prefixCls}-banner`} {...colSpan}>
-          <Carousel autoplay {...carouselProps}>
+      <Row gutter={[24, 24]} align="middle" {...rowProps}>
+        <Col className={`${prefixCls}-banner`} {...colSpan} {...colProps}>
+          <Carousel autoplay={banner.length > 1} {...carouselProps}>
             {banner.map((itemBanner, index) => {
               const isReactElement = React.isValidElement(itemBanner);
 
@@ -60,7 +62,7 @@ const Side: React.FC<SideProps> = ({ banner = [], carouselProps, content }) => {
             })}
           </Carousel>
         </Col>
-        <Col className={`${prefixCls}-content`} {...colSpan}>
+        <Col className={`${prefixCls}-content`} {...colSpan} {...colProps}>
           {content}
         </Col>
       </Row>

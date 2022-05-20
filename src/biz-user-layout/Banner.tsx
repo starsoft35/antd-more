@@ -29,7 +29,7 @@ const Banner: React.FC<BannerProps> = ({ data = [], carouselProps, rightContent 
 
   return (
     <div className={prefixCls}>
-      <Carousel autoplay {...carouselProps}>
+      <Carousel autoplay={data.length > 1} {...carouselProps}>
         {data.map((itemBanner, index) => {
           const isReactElement = React.isValidElement(itemBanner);
 
