@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import './index.less';
 
-const prefixCls = 'antd-more-form-wrapper-form-el';
+const prefixCls = 'antd-more-form-item-wrapper';
 
 export interface WrapperFormElementProps extends Record<string, any> {
   before?: React.ReactNode;
@@ -65,9 +65,9 @@ const WrapperFormElement: React.FC<WrapperFormElementProps> = ({
 
   return (
     <div className={prefixCls} style={styles}>
-      {before && <div style={{ margin: '0 8px' }}>{before}</div>}
+      {before && <div className={`${prefixCls}-before`}>{before}</div>}
       {childrenView}
-      {after && <div style={{ margin: '0 8px' }}>{after}</div>}
+      {after && <div className={`${prefixCls}-after`}>{after}</div>}
     </div>
   );
 };

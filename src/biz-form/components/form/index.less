@@ -1,7 +1,15 @@
-@wrapperFormElPrefixCls: ~'antd-more-form-wrapper-form-el';
+@wrapperFormElPrefixCls: ~'antd-more-form-item-wrapper';
 
 .@{wrapperFormElPrefixCls} {
   display: flex;
   align-items: center;
   width: 100%;
+
+  &-before {
+    margin-right: 8px;
+  }
+
+  &-after {
+    margin-left: 8px;
+  }
 }
