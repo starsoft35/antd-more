@@ -25,7 +25,7 @@ const Demo = () => {
         options={CycleOptions}
         all
         allLabel="全全全部"
-        allValue={[Cycle.Month, Cycle.Quarter]}
+        allValue=""
         excludeValues={[Cycle.Day]}
         tooltip="包含全部，并且排除按日"
       />

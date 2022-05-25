@@ -1,4 +1,5 @@
 import * as React from 'react';
+import type { SelectProps } from '../components/antd.interface';
 
 type Params<T = any[]> = {
   options: T;
@@ -6,6 +7,7 @@ type Params<T = any[]> = {
   all?: boolean;
   allValue?: any;
   allName?: React.ReactNode;
+  fieldNames?: SelectProps['fieldNames'];
 };
 
 function useFilterOptions<T extends Record<string, any>[] = any[]>({
@@ -13,25 +15,32 @@ function useFilterOptions<T extends Record<string, any>[] = any[]>({
   excludeValues = [],
   all,
   allValue,
-  allName
+  allName,
+  fieldNames
 }: Params<T>) {
+  const { value: valueKey, label: labelKey } = {
+    value: 'value',
+    label: 'label',
+    ...fieldNames
+  };
+
   const result = React.useMemo(() => {
     const ret = [] as T;
     if (all) {
-      ret.push({ value: allValue, label: allName });
+      ret.push({ [valueKey]: allValue, [labelKey]: allName });
     }
     if (Array.isArray(options) && options.length > 0) {
       options.forEach((item) => {
-        if (!excludeValues.includes(item?.value)) {
+        if (!excludeValues.includes(item?.[valueKey])) {
           ret.push({
-            label: item?.name,
+            [labelKey]: item?.name,
             ...item
           });
         }
       });
     }
     return ret;
-  }, [options, excludeValues, all, allValue, allName]);
+  }, [all, options, valueKey, allValue, labelKey, allName, excludeValues]);
   return result;
 }
 

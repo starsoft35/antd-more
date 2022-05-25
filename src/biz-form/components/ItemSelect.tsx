@@ -30,7 +30,8 @@ const BizFormItemSelect: React.FC<BizFormItemSelectProps> = ({
     excludeValues,
     all,
     allValue,
-    allName: allLabel
+    allName: allLabel,
+    fieldNames: selectProps?.fieldNames
   });
 
   return (

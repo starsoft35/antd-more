@@ -18,7 +18,7 @@ const Demo = () => {
         name="select3"
         options={CycleOptions}
         all
-        allValue={[Cycle.Month, Cycle.Quarter]}
+        allValue=""
         excludeValues={[Cycle.Day]}
         tooltip="包含全部，并且排除按日"
       />
