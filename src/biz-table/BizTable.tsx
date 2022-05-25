@@ -183,15 +183,23 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
 
           // 处理查询表单
           if (search) {
-            ret.searchItems.push({
+            const searchItemConfig = {
               dataIndex,
               title,
               valueType,
               valueEnum,
-              order,
-              search,
-              originItem: item
-            });
+              originItem: item,
+              order
+            };
+
+            if (typeof search === 'boolean') {
+              ret.searchItems.push(searchItemConfig);
+            } else if (typeof search === 'object') {
+              ret.searchItems.push({
+                ...searchItemConfig,
+                ...search
+              });
+            }
           }
 
           // 处理列数据
