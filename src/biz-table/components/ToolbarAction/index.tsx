@@ -1,4 +1,5 @@
 import * as React from 'react';
+import type { SpaceProps } from 'antd';
 import { Space } from 'antd';
 import ReloadIcon from './ReloadIcon';
 import DensityIcon from './DensityIcon';
@@ -12,13 +13,13 @@ type ToolbarActionConfig = {
   fullScreen?: boolean;
 };
 
-export interface ToolbarActionProps {
+export interface ToolbarActionProps extends SpaceProps {
   config?: ToolbarActionConfig;
 }
 
-const ToolbarAction: React.FC<ToolbarActionProps> = ({ config }) => {
+const ToolbarAction: React.FC<ToolbarActionProps> = ({ config, ...restProps }) => {
   return (
-    <Space size="middle" style={{ fontSize: '16px' }}>
+    <Space size="middle" {...restProps} style={{ fontSize: '16px', ...restProps?.style }}>
       {config.reload && <ReloadIcon />}
       {config.density && <DensityIcon />}
       {config.columnSetting && <ColumnSetting />}

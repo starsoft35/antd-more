@@ -414,19 +414,11 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
 
   const toolbarDom =
     toolbar || hasToolbarAction ? (
-      <div style={{ padding: '0 0 16px' }}>
-        <Space
-          align="end"
-          size="middle"
-          style={{ display: 'flex', width: '100%', justifyContent: 'space-between' }}
-        >
-          <div style={{ wordBreak: 'break-all' }}>{toolbar}</div>
-          {hasToolbarAction && (
-            <div>
-              <ToolbarAction config={toolbarActionConfig} />
-            </div>
-          )}
-        </Space>
+      <div className={`${prefixCls}-toolbar`}>
+        <div className={`${prefixCls}-toolbar-content`}>{toolbar}</div>
+        {hasToolbarAction && (
+          <ToolbarAction config={toolbarActionConfig} className={`${prefixCls}-toolbar-action`} />
+        )}
       </div>
     ) : null;
 
