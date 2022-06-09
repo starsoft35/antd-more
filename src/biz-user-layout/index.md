@@ -39,8 +39,6 @@ nav:
 
 ## API
 
-除了以下参数，其余和 dev 一样。
-
 ```typescript
 type BannerItem = {
   src: string;
@@ -63,6 +61,8 @@ type FooterLink = {
   onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
 };
 ```
+
+除了以下参数，其余和 dev 一样。
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |

@@ -12,11 +12,6 @@ function Demo() {
       sideRowProps={{
         gutter: 0
       }}
-      sideColProps={
-        {
-          // xs: 12
-        }
-      }
       sideBanner={[BackgroundImage]}
       sideContent={
         <div className={styles.content}>
