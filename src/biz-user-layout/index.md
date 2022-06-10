@@ -25,6 +25,10 @@ nav:
 
 <code src="./demos/agent.tsx" iframe="500" />
 
+### 登录页-分栏翻转
+
+<code src="./demos/agent-reverse.tsx" iframe="500" />
+
 ### 登录页-全屏
 
 <code src="./demos/fullscreen.tsx" iframe="500" />
