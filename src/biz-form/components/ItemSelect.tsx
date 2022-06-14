@@ -4,6 +4,7 @@ import type { SelectProps } from './antd.interface';
 import useFilterOptions from '../_util/useFilterOptions';
 import type { BizFormItemProps } from './Item';
 import BizFormItem from './Item';
+import FieldContext from '../FieldContext';
 import getLabel from '../_util/getLabel';
 
 export interface BizFormItemSelectProps extends BizFormItemProps {
@@ -25,6 +26,7 @@ const BizFormItemSelect: React.FC<BizFormItemSelectProps> = ({
   required = false,
   ...restProps
 }) => {
+  const { getPopupContainer } = React.useContext(FieldContext);
   const opts = useFilterOptions<BizFormItemSelectProps['options']>({
     options,
     excludeValues,
@@ -54,7 +56,12 @@ const BizFormItemSelect: React.FC<BizFormItemSelectProps> = ({
       ]}
       {...restProps}
     >
-      <Select placeholder="请选择" options={opts} {...selectProps} />
+      <Select
+        placeholder="请选择"
+        options={opts}
+        getPopupContainer={getPopupContainer}
+        {...selectProps}
+      />
     </BizFormItem>
   );
 };

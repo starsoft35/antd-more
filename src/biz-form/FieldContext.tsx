@@ -10,6 +10,8 @@ export interface FiledContextProps extends Pick<FormProps, 'layout' | 'labelCol'
     parentList?: FormItemProps['name'][]
   ) => void;
   hideLabel?: boolean;
+  getPopupContainer?: (e: HTMLElement) => HTMLElement;
+  formComponentType?: 'DrawerForm' | 'ModalForm' | 'QueryForm';
 }
 
 const FieldContext = React.createContext<FiledContextProps>({

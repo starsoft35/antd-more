@@ -60,6 +60,7 @@ const ModalForm: React.FC<ModalFormProps> = ({
     <>
       <BaseForm
         {...restProps}
+        formComponentType="ModalForm"
         form={formProp || form}
         onFinish={async (values) => {
           let ret = typeof onFinish === 'function' ? onFinish(values) : true;

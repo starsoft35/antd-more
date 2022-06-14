@@ -7,7 +7,7 @@ import { useUpdateEffect, useUnmountedRef } from 'rc-hooks';
 import type { FormProps, FormInstance } from './antd.interface';
 import { transformFormValues } from '../_util/transform';
 import getNamePaths from '../_util/getNamePaths';
-import type { TransformFn } from '../FieldContext';
+import type { FiledContextProps, TransformFn } from '../FieldContext';
 import FieldContext from '../FieldContext';
 import ChildFormContext from '../ChildFormContext';
 import type { BizFormSubmitterProps } from './Submitter';
@@ -40,6 +40,7 @@ export interface BaseFormProps extends Omit<FormProps, 'onFinish'> {
   hideLabel?: boolean;
   onFinish?: (values) => any;
   transformRecordActionRef?: React.MutableRefObject<TransformRecordActionType | undefined>;
+  formComponentType?: FiledContextProps['formComponentType'];
 }
 
 const BaseForm: React.FC<BaseFormProps> = ({
@@ -61,6 +62,7 @@ const BaseForm: React.FC<BaseFormProps> = ({
   hideLabel = false,
   transformRecordActionRef,
   className,
+  formComponentType,
   ...restProps
 }) => {
   const [form] = Form.useForm();
@@ -172,6 +174,14 @@ const BaseForm: React.FC<BaseFormProps> = ({
     };
   }, [hideLabel, layout, labelWidth, labelCol]);
 
+  const getPopupContainer = React.useMemo(() => {
+    if (typeof window === 'undefined') return undefined;
+    if (formComponentType && ['DrawerForm'].includes(formComponentType)) {
+      return (e: HTMLElement) => (e.parentNode || document.body) as HTMLElement;
+    }
+    return undefined;
+  }, [formComponentType]);
+
   // 将转换记录传给外部
   // 这里不能直接将transformRecordRef.current传给外部ref，因为无法获取到最新的值，所以通过方法获取。
   React.useImperativeHandle(transformRecordActionRef, () => ({
@@ -202,7 +212,9 @@ const BaseForm: React.FC<BaseFormProps> = ({
           layout,
           hideLabel,
           labelCol: labelColProps,
-          form: formProp || form
+          form: formProp || form,
+          formComponentType,
+          getPopupContainer
         }}
       >
         <Form

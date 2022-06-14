@@ -60,6 +60,7 @@ const DrawerForm: React.FC<DrawerFormProps> = ({
     <>
       <BaseForm
         {...restProps}
+        formComponentType="DrawerForm"
         form={formProp || form}
         onFinish={async (values) => {
           let ret = typeof onFinish === 'function' ? onFinish(values) : true;

@@ -115,6 +115,7 @@ const QueryForm: React.FC<QueryFormProps> = (props) => {
         );
       }}
       {...restProps}
+      formComponentType="QueryForm"
     />
   );
 };
