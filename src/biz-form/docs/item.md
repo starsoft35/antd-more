@@ -108,6 +108,7 @@ interface Option {
 | runText | 按钮倒计时显示文本，包含 `%s` 会自动替换为秒数 | `string` | `%s秒后重新获取` |
 | resetText | 按钮倒计时结束显示文本 | `string` | `重新获取验证码` |
 | second | 按钮倒计时时长，单位秒 | `number` | `60` |
+| autoRun | 组件装载完成后，自动触发点击按钮。 | `boolean` | `false` |
 | inputProps | 输入框的属性 | [InputProps](https://ant-design.gitee.io/components/input-cn/#API) | - |
 | buttonProps | 按钮的属性 | [ButtonProps](https://ant.design/components/button-cn/#API) | - |
 

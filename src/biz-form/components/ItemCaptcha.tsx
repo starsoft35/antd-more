@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useMount } from 'rc-hooks';
 import { Input, Divider } from 'antd';
 import type { InputProps } from './antd.interface';
 import type { CaptchaButtonProps } from '../../captcha-button';
@@ -15,6 +16,7 @@ interface VerificateCodeInputProps extends Record<number | string, any> {
   inputProps?: InputProps;
   buttonProps?: CaptchaButtonProps;
   type?: 'default' | 'inline'; // 显示类型
+  autoRun?: boolean;
 }
 
 const checkResult = async (fn: () => boolean | Promise<boolean>) => {
@@ -36,33 +38,43 @@ const VerificateCodeInput: React.FC<VerificateCodeInputProps> = ({
   inputProps = {},
   buttonProps = {},
   type = 'default',
+  autoRun = false,
   ...restProps
 }) => {
   const inputRef = React.useRef(null);
+  const buttonRef = React.useRef(null);
 
   // 倒计时按钮状态
   const [start, setStart] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
 
   // 点击按钮
-  const onButtonClick = async () => {
-    setLoading(true);
-    try {
-      // 验证手机号码/邮箱是否正确
-      // 发送验证码
-      await checkResult(onGetCaptcha);
+  const onButtonClick = React.useCallback(
+    async (e: React.MouseEvent<HTMLElement>) => {
+      setLoading(true);
+      buttonProps?.onClick?.(e);
 
-      setStart(true);
-      setLoading(false);
-      inputRef.current.focus();
-    } catch (err) {
-      setLoading(false);
-    }
-  };
+      try {
+        // 验证手机号码/邮箱是否正确
+        // 发送验证码
+        await checkResult(onGetCaptcha);
+
+        setStart(true);
+        setLoading(false);
+        inputRef.current.focus();
+      } catch (err) {
+        setLoading(false);
+      }
+    },
+    [buttonProps, onGetCaptcha]
+  );
 
   const handleEnd = React.useCallback(() => {
     setStart(false);
-  }, []);
+    buttonProps?.onEnd?.();
+  }, [buttonProps]);
+
+  React.useImperativeHandle(buttonProps?.ref, () => buttonRef.current, [buttonRef]);
 
   const defaultStyle = React.useMemo(() => {
     let inputStyle: Record<string, any> = {
@@ -90,8 +102,6 @@ const VerificateCodeInput: React.FC<VerificateCodeInputProps> = ({
   const captchaButtonDom = (
     <CaptchaButton
       start={start}
-      onClick={onButtonClick}
-      onEnd={handleEnd}
       loading={loading}
       type={type === 'inline' ? 'link' : 'default'}
       {...buttonProps}
@@ -99,12 +109,21 @@ const VerificateCodeInput: React.FC<VerificateCodeInputProps> = ({
         e.stopPropagation();
         buttonProps?.onMouseUp?.(e);
       }}
+      onClick={onButtonClick}
+      onEnd={handleEnd}
+      ref={buttonRef}
       style={{
         ...defaultStyle.button,
         ...buttonProps?.style
       }}
     />
   );
+
+  useMount(() => {
+    if (autoRun) {
+      buttonRef.current.click();
+    }
+  });
 
   return (
     <div style={{ display: 'flex' }}>
@@ -140,7 +159,10 @@ const VerificateCodeInput: React.FC<VerificateCodeInputProps> = ({
 
 export interface BizFormItemCaptchaProps
   extends BizFormItemProps,
-    Pick<VerificateCodeInputProps, 'onGetCaptcha' | 'type' | 'inputProps' | 'buttonProps'>,
+    Pick<
+      VerificateCodeInputProps,
+      'onGetCaptcha' | 'type' | 'inputProps' | 'buttonProps' | 'autoRun'
+    >,
     Pick<CaptchaButtonProps, 'initText' | 'runText' | 'resetText' | 'second'> {}
 
 const BizFormItemCaptcha: React.FC<BizFormItemCaptchaProps> = ({
@@ -150,6 +172,7 @@ const BizFormItemCaptcha: React.FC<BizFormItemCaptchaProps> = ({
   runText,
   resetText,
   second,
+  autoRun,
   inputProps = {},
   buttonProps = {},
 
@@ -178,6 +201,7 @@ const BizFormItemCaptcha: React.FC<BizFormItemCaptchaProps> = ({
       <VerificateCodeInput
         type={type}
         onGetCaptcha={onGetCaptcha}
+        autoRun={autoRun}
         inputProps={inputProps}
         buttonProps={{
           initText,

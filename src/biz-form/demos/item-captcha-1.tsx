@@ -25,6 +25,7 @@ const Demo = () => {
       labelWidth={98}
     >
       <BizFormItemCaptcha label="验证码1" name="captcha1" onGetCaptcha={sendCode} />
+      {/* <BizFormItemCaptcha label="验证码auto" name="captcha-auto" autoRun onGetCaptcha={sendCode} /> */}
       <BizFormItemCaptcha
         label="内联验证码2"
         name="captcha2"
