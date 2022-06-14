@@ -47,12 +47,7 @@ const BizFormItemTextArea: React.FC<BizFormItemTextAreaProps> = ({
       ]}
       {...restProps}
     >
-      <Input.TextArea
-        placeholder="请输入"
-        autoComplete="off"
-        autoSize={{ minRows: 4, maxRows: 6 }}
-        {...inputProps}
-      />
+      <Input.TextArea placeholder="请输入" autoComplete="off" {...inputProps} />
     </BizFormItem>
   );
 };
