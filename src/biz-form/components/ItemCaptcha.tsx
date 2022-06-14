@@ -16,7 +16,11 @@ interface VerificateCodeInputProps extends Record<number | string, any> {
   inputProps?: InputProps;
   buttonProps?: CaptchaButtonProps;
   type?: 'default' | 'inline'; // 显示类型
+  /**
+   * @deprecated Please use 'autoClick'
+   */
   autoRun?: boolean;
+  autoClick?: boolean;
 }
 
 const checkResult = async (fn: () => boolean | Promise<boolean>) => {
@@ -39,10 +43,16 @@ const VerificateCodeInput: React.FC<VerificateCodeInputProps> = ({
   buttonProps = {},
   type = 'default',
   autoRun = false,
+  autoClick: outAutoClick,
   ...restProps
 }) => {
   const inputRef = React.useRef(null);
   const buttonRef = React.useRef(null);
+
+  const autoClick = React.useMemo(
+    () => (typeof outAutoClick !== 'undefined' ? outAutoClick : autoRun),
+    [outAutoClick, autoRun]
+  );
 
   // 倒计时按钮状态
   const [start, setStart] = React.useState(false);
@@ -120,7 +130,7 @@ const VerificateCodeInput: React.FC<VerificateCodeInputProps> = ({
   );
 
   useMount(() => {
-    if (autoRun) {
+    if (autoClick) {
       buttonRef.current.click();
     }
   });
@@ -161,9 +171,14 @@ export interface BizFormItemCaptchaProps
   extends BizFormItemProps,
     Pick<
       VerificateCodeInputProps,
-      'onGetCaptcha' | 'type' | 'inputProps' | 'buttonProps' | 'autoRun'
+      'onGetCaptcha' | 'type' | 'inputProps' | 'buttonProps' | 'autoClick'
     >,
-    Pick<CaptchaButtonProps, 'initText' | 'runText' | 'resetText' | 'second'> {}
+    Pick<CaptchaButtonProps, 'initText' | 'runText' | 'resetText' | 'second'> {
+  /**
+   * @deprecated Please use 'autoClick'
+   */
+  autoRun?: boolean;
+}
 
 const BizFormItemCaptcha: React.FC<BizFormItemCaptchaProps> = ({
   type,
@@ -173,6 +188,7 @@ const BizFormItemCaptcha: React.FC<BizFormItemCaptchaProps> = ({
   resetText,
   second,
   autoRun,
+  autoClick,
   inputProps = {},
   buttonProps = {},
 
@@ -202,6 +218,7 @@ const BizFormItemCaptcha: React.FC<BizFormItemCaptchaProps> = ({
         type={type}
         onGetCaptcha={onGetCaptcha}
         autoRun={autoRun}
+        autoClick={autoClick}
         inputProps={inputProps}
         buttonProps={{
           initText,
