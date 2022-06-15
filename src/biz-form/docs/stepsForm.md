@@ -50,7 +50,8 @@ import { StepsForm } from 'antd-more';
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| current | 当前表单的步骤数，从 `0` 开始 | `number` | `0` |
+| defaultCurrent | 默认步骤 | `number` | `0` |
+| current | 设置后变为受控模式。当前表单的步骤数。 | `number` | - |
 | onCurrentChange | current 发生改变的事件 | `(current:number) => void` | - |
 | ready | 为 `false` 时，禁止上一步、下一步、提交操作。 | `boolean` | `true` |
 | onFinish | 表单提交成功后调用 | `(values) => void` | - |

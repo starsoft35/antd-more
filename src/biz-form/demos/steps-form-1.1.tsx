@@ -95,7 +95,7 @@ const Demo = () => {
             </>
           }
           extra={[
-            <Button type="primary" key="back">
+            <Button type="primary" key="back" onClick={() => message.info('点击返回')}>
               返回
             </Button>,
             <Button key="reset" onClick={() => actionRef.current.reset()}>

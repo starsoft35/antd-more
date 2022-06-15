@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Steps, Form } from 'antd';
 import classNames from 'classnames';
 import { isPromiseLike } from 'util-helpers';
-import { useUnmountedRef, useUpdate } from 'rc-hooks';
+import { useUnmountedRef, useUpdate, useControllableValue } from 'rc-hooks';
 import type { StepsProps, StepProps, FormInstance } from '../antd.interface';
 import StepsFormContext from './StepsFormContext';
 import type { BaseFormProps } from '../BaseForm';
@@ -25,6 +25,7 @@ export type StepsFormActionType = {
 };
 
 export interface StepsFormProps {
+  defaultCurrent?: number;
   current?: number;
   onCurrentChange?: (current: number) => void;
   ready?: boolean;
@@ -48,21 +49,28 @@ export interface StepsFormProps {
 
 const StepsForm: React.FC<StepsFormProps> & {
   StepForm: typeof StepForm;
-} = ({
-  current = 0,
-  onCurrentChange,
-  ready = true,
-  stepsProps,
-  formProps,
-  submitter,
-  actionRef,
-  children,
-  onFinish,
-  stepsRender,
-  stepFormRender,
-  stepsFormRender
-}) => {
-  const [step, setStep] = React.useState(current);
+} = (props) => {
+  const {
+    defaultCurrent = 0,
+    // current = 0,
+    // onCurrentChange,
+    ready = true,
+    stepsProps,
+    formProps,
+    submitter,
+    actionRef,
+    children,
+    onFinish,
+    stepsRender,
+    stepFormRender,
+    stepsFormRender
+  } = props;
+  const [step, setStep] = useControllableValue(props, {
+    defaultValue: defaultCurrent,
+    defaultValuePropName: 'defaultCurrent',
+    valuePropName: 'current',
+    trigger: 'onCurrentChange'
+  });
   const [loading, setLoading] = React.useState(false);
   const unmountedRef = useUnmountedRef();
   // const [stepsConfig, setStepsConfig] = React.useState([]);
@@ -119,7 +127,6 @@ const StepsForm: React.FC<StepsFormProps> & {
     if (step < childs.length - 1) {
       const currStep = step + 1;
       setStep(currStep);
-      onCurrentChange?.(currStep);
     }
   };
   // 上一步
@@ -127,7 +134,6 @@ const StepsForm: React.FC<StepsFormProps> & {
     if (step > 0) {
       const currStep = step - 1;
       setStep(currStep);
-      onCurrentChange?.(currStep);
     }
   };
   // 提交
@@ -311,7 +317,7 @@ const StepsForm: React.FC<StepsFormProps> & {
         return;
       }
 
-      setStep(current);
+      setStep(defaultCurrent);
       formDataRef.current = {};
       formArrayRef.current.forEach((item) => {
         item?.resetFields();

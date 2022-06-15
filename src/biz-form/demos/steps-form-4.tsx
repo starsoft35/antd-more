@@ -4,7 +4,7 @@
  *      第二步即可提交，提交成功后，手动触发下一步，第三步仅用作显示
  */
 import * as React from 'react';
-import { Card, Result, Space, Button, Popconfirm } from 'antd';
+import { Card, Result, Space, Button, Popconfirm, message } from 'antd';
 import { PayCircleOutlined } from '@ant-design/icons';
 import { BasicLayout, FooterToolbar, PageContainer } from '@ant-design/pro-layout';
 import type { StepsFormActionType } from 'antd-more';
@@ -166,7 +166,7 @@ const Demo = () => {
                   </>
                 }
                 extra={[
-                  <Button type="primary" key="back">
+                  <Button type="primary" key="back" onClick={() => message.info('点击返回')}>
                     返回
                   </Button>,
                   <Button key="reset" onClick={() => actionRef.current.reset()}>
