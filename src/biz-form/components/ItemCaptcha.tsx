@@ -21,6 +21,7 @@ interface VerificateCodeInputProps extends Record<number | string, any> {
    */
   autoRun?: boolean;
   autoClick?: boolean;
+  autoFocusOnGetCaptcha?: true;
 }
 
 const checkResult = async (fn: () => boolean | Promise<boolean>) => {
@@ -44,6 +45,7 @@ const VerificateCodeInput: React.FC<VerificateCodeInputProps> = ({
   type = 'default',
   autoRun = false,
   autoClick: outAutoClick,
+  autoFocusOnGetCaptcha = true,
   ...restProps
 }) => {
   const inputRef = React.useRef(null);
@@ -71,12 +73,15 @@ const VerificateCodeInput: React.FC<VerificateCodeInputProps> = ({
 
         setStart(true);
         setLoading(false);
-        inputRef.current.focus();
+
+        if (autoFocusOnGetCaptcha) {
+          inputRef.current.focus();
+        }
       } catch (err) {
         setLoading(false);
       }
     },
-    [buttonProps, onGetCaptcha]
+    [autoFocusOnGetCaptcha, buttonProps, onGetCaptcha]
   );
 
   const handleEnd = React.useCallback(() => {
@@ -171,7 +176,7 @@ export interface BizFormItemCaptchaProps
   extends BizFormItemProps,
     Pick<
       VerificateCodeInputProps,
-      'onGetCaptcha' | 'type' | 'inputProps' | 'buttonProps' | 'autoClick'
+      'onGetCaptcha' | 'type' | 'inputProps' | 'buttonProps' | 'autoClick' | 'autoFocusOnGetCaptcha'
     >,
     Pick<CaptchaButtonProps, 'initText' | 'runText' | 'resetText' | 'second'> {
   /**
@@ -189,6 +194,7 @@ const BizFormItemCaptcha: React.FC<BizFormItemCaptchaProps> = ({
   second,
   autoRun,
   autoClick,
+  autoFocusOnGetCaptcha = true,
   inputProps = {},
   buttonProps = {},
 
@@ -219,6 +225,7 @@ const BizFormItemCaptcha: React.FC<BizFormItemCaptchaProps> = ({
         onGetCaptcha={onGetCaptcha}
         autoRun={autoRun}
         autoClick={autoClick}
+        autoFocusOnGetCaptcha={autoFocusOnGetCaptcha}
         inputProps={inputProps}
         buttonProps={{
           initText,
