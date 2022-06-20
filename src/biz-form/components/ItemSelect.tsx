@@ -11,7 +11,7 @@ export interface BizFormItemSelectProps extends BizFormItemProps {
   all?: boolean;
   allValue?: any;
   allLabel?: React.ReactNode;
-  excludeValues?: any[];
+  excludeValues?: ((options: SelectProps<any>['options']) => any[]) | any[];
   options?: SelectProps<any>['options'];
   selectProps?: SelectProps<any>;
 }
@@ -21,12 +21,16 @@ const BizFormItemSelect: React.FC<BizFormItemSelectProps> = ({
   allValue = '',
   allLabel = '全部',
   excludeValues = [],
-  options = [],
+  options: outOptions = [],
   selectProps = {},
   required = false,
   ...restProps
 }) => {
   const { getPopupContainer } = React.useContext(FieldContext);
+  const options = React.useMemo(
+    () => selectProps.options || outOptions || [],
+    [outOptions, selectProps.options]
+  );
   const opts = useFilterOptions<BizFormItemSelectProps['options']>({
     options,
     excludeValues,

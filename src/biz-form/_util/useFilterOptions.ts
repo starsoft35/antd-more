@@ -3,7 +3,7 @@ import type { SelectProps } from '../components/antd.interface';
 
 type Params<T = any[]> = {
   options: T;
-  excludeValues?: any[];
+  excludeValues?: ((options: T) => any[]) | any[];
   all?: boolean;
   allValue?: any;
   allName?: React.ReactNode;
@@ -12,17 +12,30 @@ type Params<T = any[]> = {
 
 function useFilterOptions<T extends Record<string, any>[] = any[]>({
   options,
-  excludeValues = [],
+  excludeValues: outExcludeValues = [],
   all,
   allValue,
   allName,
   fieldNames
 }: Params<T>) {
-  const { value: valueKey, label: labelKey } = {
-    value: 'value',
-    label: 'label',
-    ...fieldNames
-  };
+  const { value: valueKey, label: labelKey } = React.useMemo(
+    () => ({
+      value: 'value',
+      label: 'label',
+      ...fieldNames
+    }),
+    [fieldNames]
+  );
+
+  const outExcludeValuesRef = React.useRef(outExcludeValues);
+  outExcludeValuesRef.current = outExcludeValues;
+
+  const excludeValues = React.useMemo(() => {
+    if (typeof outExcludeValuesRef.current === 'function') {
+      return outExcludeValuesRef.current(options);
+    }
+    return outExcludeValuesRef.current;
+  }, [options]);
 
   const result = React.useMemo(() => {
     const ret = [] as T;

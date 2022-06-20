@@ -10,10 +10,10 @@ export interface BizFormItemRadioProps extends BizFormItemProps {
   all?: boolean;
   allValue?: any;
   allLabel?: React.ReactNode;
-  excludeValues?: any[];
+  excludeValues?: ((options: CheckboxOptionType[]) => any[]) | any[];
   options?: CheckboxOptionType[];
   optionType?: RadioGroupProps['optionType'];
-  radioGroupProps?: RadioGroupProps;
+  radioGroupProps?: Omit<RadioGroupProps, 'options'> & { options?: CheckboxOptionType[] };
 }
 
 const BizFormItemRadio: React.FC<BizFormItemRadioProps> = ({
@@ -21,13 +21,17 @@ const BizFormItemRadio: React.FC<BizFormItemRadioProps> = ({
   allValue = '',
   allLabel = '全部',
   excludeValues = [],
-  options = [],
+  options: outOptions = [],
   optionType = 'default',
   radioGroupProps = {},
   required = false,
   ...restProps
 }) => {
-  const opts = useFilterOptions<BizFormItemRadioProps['options']>({
+  const options = React.useMemo(
+    () => radioGroupProps.options || outOptions || [],
+    [outOptions, radioGroupProps.options]
+  );
+  const opts = useFilterOptions<CheckboxOptionType[]>({
     options,
     excludeValues,
     all,

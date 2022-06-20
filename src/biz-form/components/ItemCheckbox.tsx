@@ -11,9 +11,9 @@ export interface CheckboxWrapperProps {
   onChange?: (checkValue: any) => void;
   all?: boolean;
   allLabel?: React.ReactNode;
-  excludeValues?: any[];
+  excludeValues?: ((options: CheckboxOptionType[]) => any[]) | any[];
   options?: CheckboxOptionType[];
-  checkboxGroupProps?: CheckboxGroupProps;
+  checkboxGroupProps?: Omit<CheckboxGroupProps, 'options'> & { options?: CheckboxOptionType[] };
 }
 
 const CheckboxWrapper: React.FC<CheckboxWrapperProps> = ({
@@ -22,10 +22,14 @@ const CheckboxWrapper: React.FC<CheckboxWrapperProps> = ({
   all = false,
   allLabel = '全部',
   excludeValues = [],
-  options = [],
+  options: outOptions = [],
   checkboxGroupProps = {}
 }) => {
-  const opts = useFilterOptions<CheckboxWrapperProps['options']>({
+  const options = React.useMemo(
+    () => checkboxGroupProps.options || outOptions || [],
+    [checkboxGroupProps.options, outOptions]
+  );
+  const opts = useFilterOptions<CheckboxOptionType[]>({
     options,
     excludeValues,
     all: false

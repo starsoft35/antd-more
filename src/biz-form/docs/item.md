@@ -142,7 +142,7 @@ interface Option {
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | options | 配置子元素 | `Option[]` | `[]` |
-| excludeValues | 排除的值 | `any[]` | `[]` |
+| excludeValues | 排除的值 | `((options: Options) => any[]) \| any[]` | `[]` |
 | all | 是否显示全部 | `boolean` | `false` |
 | allLabel | 全部的名称 | `ReactNode` | `全部` |
 | checkboxGroupProps | 多选框 Group 的属性 | [CheckboxGroupProps](https://ant-design.gitee.io/components/checkbox-cn/#Checkbox-Group) | - |
@@ -347,7 +347,7 @@ interface Option {
 | all | 是否显示全部 | `boolean` | `false` |
 | allValue | 全部的值 | `any` | `""` |
 | allLabel | 全部的名称 | `ReactNode` | `全部` |
-| excludeValues | 排除的值 | `any[]` | `[]` |
+| excludeValues | 排除的值 | `((options: Options) => any[]) \| any[]` | `[]` |
 | radioGroupProps | 单选框组合配置参数 | [RadioGroupProps](https://ant-design.gitee.io/components/radio-cn/#RadioGroup) | - |
 
 ### Select
@@ -372,7 +372,7 @@ interface Option {
 | all | 是否显示全部 | `boolean` | `false` |
 | allValue | 全部的值 | `any` | `""` |
 | allLabel | 全部的名称 | `ReactNode` | `全部` |
-| excludeValues | 排除的值 | `any[]` | `[]` |
+| excludeValues | 排除的值 | `((options: Options) => any[]) \| any[]` | `[]` |
 | selectProps | 选择器配置参数 | [SelectProps](https://ant-design.gitee.io/components/select-cn/#Select-props) | - |
 
 ### Slider

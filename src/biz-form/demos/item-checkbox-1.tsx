@@ -20,6 +20,7 @@ const Demo = () => {
         all
         allLabel="全全全部"
         excludeValues={[Cycle.Month]}
+        // excludeValues={(options) => options.filter(item => item.value !== Cycle.Month).map(item => item.value)}
         required
       />
     </BizForm>
