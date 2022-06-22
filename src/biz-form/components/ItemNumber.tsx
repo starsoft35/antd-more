@@ -53,7 +53,14 @@ const BizFormItemNumber: React.FC<BizFormItemNumberProps> = ({
       ]}
       {...restProps}
     >
-      <InputNumber placeholder="请输入" precision={precision} {...inputProps} />
+      <InputNumber
+        placeholder="请输入"
+        precision={precision}
+        // 需要显式指定最大最小值，并且不设置 parser ，否则输入过大数值会转换为科学记数法，最终导致错误的结果。
+        max={Number.MAX_SAFE_INTEGER}
+        min={Number.MIN_SAFE_INTEGER}
+        {...inputProps}
+      />
     </BizFormItem>
   );
 };
