@@ -27,15 +27,12 @@ function useFilterOptions<T extends Record<string, any>[] = any[]>({
     [fieldNames]
   );
 
-  const outExcludeValuesRef = React.useRef(outExcludeValues);
-  outExcludeValuesRef.current = outExcludeValues;
-
   const excludeValues = React.useMemo(() => {
-    if (typeof outExcludeValuesRef.current === 'function') {
-      return outExcludeValuesRef.current(options);
+    if (typeof outExcludeValues === 'function') {
+      return outExcludeValues(options);
     }
-    return outExcludeValuesRef.current;
-  }, [options]);
+    return outExcludeValues;
+  }, [options, outExcludeValues]);
 
   const result = React.useMemo(() => {
     const ret = [] as T;

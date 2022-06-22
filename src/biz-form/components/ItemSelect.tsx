@@ -11,7 +11,7 @@ export interface BizFormItemSelectProps extends BizFormItemProps {
   all?: boolean;
   allValue?: any;
   allLabel?: React.ReactNode;
-  excludeValues?: ((options: SelectProps<any>['options']) => any[]) | any[];
+  excludeValues?: ((options: Required<SelectProps<any>>['options']) => any[]) | any[];
   options?: SelectProps<any>['options'];
   selectProps?: SelectProps<any>;
 }
