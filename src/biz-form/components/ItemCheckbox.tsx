@@ -26,7 +26,7 @@ const CheckboxWrapper: React.FC<CheckboxWrapperProps> = ({
   checkboxGroupProps = {}
 }) => {
   const options = React.useMemo(
-    () => checkboxGroupProps.options || outOptions || [],
+    () => checkboxGroupProps.options || outOptions,
     [checkboxGroupProps.options, outOptions]
   );
   const opts = useFilterOptions<CheckboxOptionType[]>({
@@ -64,8 +64,8 @@ const CheckboxWrapper: React.FC<CheckboxWrapperProps> = ({
       <Checkbox.Group
         value={value}
         onChange={onChangeValue}
-        options={opts}
         {...checkboxGroupProps}
+        options={opts}
       />
     </>
   );

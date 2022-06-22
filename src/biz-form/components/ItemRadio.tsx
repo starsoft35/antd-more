@@ -28,7 +28,7 @@ const BizFormItemRadio: React.FC<BizFormItemRadioProps> = ({
   ...restProps
 }) => {
   const options = React.useMemo(
-    () => radioGroupProps.options || outOptions || [],
+    () => radioGroupProps.options || outOptions,
     [outOptions, radioGroupProps.options]
   );
   const opts = useFilterOptions<CheckboxOptionType[]>({
@@ -59,7 +59,7 @@ const BizFormItemRadio: React.FC<BizFormItemRadioProps> = ({
       ]}
       {...restProps}
     >
-      <Radio.Group optionType={optionType} options={opts} {...radioGroupProps} />
+      <Radio.Group optionType={optionType} {...radioGroupProps} options={opts} />
     </BizFormItem>
   );
 };

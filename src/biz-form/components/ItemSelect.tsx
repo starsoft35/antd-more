@@ -28,7 +28,7 @@ const BizFormItemSelect: React.FC<BizFormItemSelectProps> = ({
 }) => {
   const { getPopupContainer } = React.useContext(FieldContext);
   const options = React.useMemo(
-    () => selectProps.options || outOptions || [],
+    () => selectProps.options || outOptions,
     [outOptions, selectProps.options]
   );
   const opts = useFilterOptions<BizFormItemSelectProps['options']>({
@@ -62,9 +62,9 @@ const BizFormItemSelect: React.FC<BizFormItemSelectProps> = ({
     >
       <Select
         placeholder="请选择"
-        options={opts}
         getPopupContainer={getPopupContainer}
         {...selectProps}
+        options={opts}
       />
     </BizFormItem>
   );
