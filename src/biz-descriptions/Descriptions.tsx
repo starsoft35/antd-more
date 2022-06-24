@@ -15,7 +15,7 @@ export interface BizDescriptionsItemProps<DataType extends object = any>
   field?:
     | Partial<BizFieldProps>
     | ((text: any, record?: DataType, index?: number) => Partial<BizFieldProps>);
-  key?: React.ReactText;
+  key?: string | number;
   dataSource?: DataType;
   index?: number;
 }
@@ -82,7 +82,7 @@ function BizDescriptions<DataType extends object = any>({
   );
 
   const currentDom = React.Children.map(children, (item: any) =>
-    createDescriptionsItem(item.props)
+    item?.props ? createDescriptionsItem(item?.props) : item
   );
 
   if (
