@@ -40,6 +40,14 @@ const BizFormItemSelect: React.FC<BizFormItemSelectProps> = ({
     fieldNames: selectProps?.fieldNames
   });
 
+  const { value: valueKey } = React.useMemo(
+    () => ({
+      value: 'value',
+      ...selectProps?.fieldNames
+    }),
+    [selectProps?.fieldNames]
+  );
+
   return (
     <BizFormItem
       required={required}
@@ -47,7 +55,7 @@ const BizFormItemSelect: React.FC<BizFormItemSelectProps> = ({
         {
           validator(rule, value) {
             let errMsg = '';
-            const hasOptValue = options.find((item) => item.value === value);
+            const hasOptValue = options.find((item) => item[valueKey] === value);
             if (!value && !hasOptValue && !(all && allValue === value)) {
               errMsg = required ? `请选择${getLabel(restProps)}` : '';
             }
