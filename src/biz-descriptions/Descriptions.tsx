@@ -82,7 +82,7 @@ function BizDescriptions<DataType extends object = any>({
   );
 
   const currentDom = React.Children.map(children, (item: any) =>
-    item?.props ? createDescriptionsItem(item?.props) : item
+    item?.props ? createDescriptionsItem(item.props) : item
   );
 
   if (
