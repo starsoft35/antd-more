@@ -19,6 +19,8 @@ export { default as BizFormItemAddress } from './components/ItemAddress';
 export * from './components/ItemAddress';
 export { default as BizFormItemCaptcha } from './components/ItemCaptcha';
 export * from './components/ItemCaptcha';
+export { default as BizFormItemCascader } from './components/ItemCascader';
+export * from './components/ItemCascader';
 export { default as BizFormItemCheckbox } from './components/ItemCheckbox';
 export * from './components/ItemCheckbox';
 export { default as BizFormItemColor } from './components/ItemColor';
