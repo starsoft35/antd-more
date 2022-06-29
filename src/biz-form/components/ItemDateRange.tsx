@@ -13,8 +13,9 @@ import {
 } from '../_util/dateUtil';
 import type { BizFormItemProps } from './Item';
 import BizFormItem from './Item';
-import { transformDate, invalidDateRangeNameValue } from '../_util/transform';
+import { transformDate, InvalidFieldValue } from '../_util/transform';
 import getLabel from '../_util/getLabel';
+import uniqueId from '../_util/uniqueId';
 
 const DateRangePickerWrapper: React.FC<RangePickerProps> = ({ value, ...restProps }) => {
   return <DatePicker.RangePicker value={transformMomentValue(value)} {...restProps} />;
@@ -50,7 +51,11 @@ const BizFormItemDateRange: React.FC<BizFormItemDateRangeProps> = ({
   transform,
   ...restProps
 }) => {
-  const currentName = React.useMemo(() => name || `${names[0]}_${names[1]}`, [name, names]);
+  const hasNames = React.useMemo(() => Array.isArray(names) && names.length > 0, [names]);
+  const currentName = React.useMemo(
+    () => name || (hasNames ? uniqueId('dateRange') : name),
+    [hasNames, name]
+  );
   const currentPicker = React.useMemo(
     () => pickerProps.picker || picker,
     [pickerProps.picker, picker]
@@ -78,7 +83,7 @@ const BizFormItemDateRange: React.FC<BizFormItemDateRangeProps> = ({
       if (Array.isArray(names) && names.length === 2 && currentPathValues) {
         currentPathValues[names[0]] = Array.isArray(transValue) ? transValue[0] : undefined;
         currentPathValues[names[1]] = Array.isArray(transValue) ? transValue[1] : undefined;
-        return invalidDateRangeNameValue;
+        return InvalidFieldValue;
       } else {
         return transValue;
       }

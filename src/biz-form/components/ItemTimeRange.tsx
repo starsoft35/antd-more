@@ -5,8 +5,9 @@ import type { TimeRangePickerProps } from './antd.interface';
 import type { BizFormItemProps } from './Item';
 import BizFormItem from './Item';
 import { transformMomentTime } from '../_util/dateUtil';
-import { transformDate, invalidDateRangeNameValue } from '../_util/transform';
+import { transformDate, InvalidFieldValue } from '../_util/transform';
 import getLabel from '../_util/getLabel';
+import uniqueId from '../_util/uniqueId';
 
 const prefixCls = 'antd-more-form-item-date';
 
@@ -43,7 +44,11 @@ const BizFormItemTimeRange: React.FC<BizFormItemTimeRangeProps> = ({
   transform,
   ...restProps
 }) => {
-  const currentName = React.useMemo(() => name || `${names[0]}_${names[1]}`, [name, names]);
+  const hasNames = React.useMemo(() => Array.isArray(names) && names.length > 0, [names]);
+  const currentName = React.useMemo(
+    () => name || (hasNames ? uniqueId('cascader') : name),
+    [hasNames, name]
+  );
   const currentFormat = React.useMemo(() => {
     if (format) {
       return format;
@@ -61,11 +66,9 @@ const BizFormItemTimeRange: React.FC<BizFormItemTimeRangeProps> = ({
       }
 
       if (Array.isArray(names) && names.length === 2 && currentPathValues) {
-        // eslint-disable-next-line no-param-reassign
         currentPathValues[names[0]] = Array.isArray(transValue) ? transValue[0] : undefined;
-        // eslint-disable-next-line no-param-reassign
         currentPathValues[names[1]] = Array.isArray(transValue) ? transValue[1] : undefined;
-        return invalidDateRangeNameValue;
+        return InvalidFieldValue;
       } else {
         return transValue;
       }

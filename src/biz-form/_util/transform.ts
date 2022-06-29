@@ -4,7 +4,7 @@ import type { Moment } from 'moment';
 import moment from 'moment';
 
 // 标识日期无效值的value
-export const invalidDateRangeNameValue = `date_range_invalid_${Math.random()}`;
+export const InvalidFieldValue = `date_range_invalid_${Math.random()}`;
 
 // 转换日期
 export function transformDate(date: Moment | string, format: string): string;
@@ -55,7 +55,7 @@ export function transformFormValues(values: any, transforms: any, currentLevelVa
       } else {
         ret[key] = values[key];
       }
-      if (ret[key] === invalidDateRangeNameValue) {
+      if (ret[key] === InvalidFieldValue) {
         delete ret[key];
       }
     }
