@@ -81,9 +81,19 @@ function BizDescriptions<DataType extends object = any>({
     [title, tooltip, column]
   );
 
-  const currentDom = React.Children.map(children, (item: any) =>
-    item?.props ? createDescriptionsItem(item.props) : item
-  );
+  const getChilds = (childs) => {
+    return React.Children.map(childs, (item: any) => {
+      if (item && item?.props) {
+        if (item.type === Symbol.for('react.fragment') && item.props.children) {
+          return getChilds(item.props.children);
+        }
+        return createDescriptionsItem(item.props);
+      }
+      return item;
+    });
+  };
+
+  const currentDom = getChilds(children);
 
   if (
     typeof dataSource === 'object' &&
