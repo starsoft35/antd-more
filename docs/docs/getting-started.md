@@ -52,6 +52,8 @@ ReactDon.render(<BizField value="red" valueType="color" />, mountNode);
   - [Modal/Drawer] - 浮层表单
   - [QueryForm] - 查询表单
   - [StepsForm] - 分步表单
+- **布局**
+  - [BizUserLayout] - 用户界面布局
 
 ## 精选第三方 react 组件
 
@@ -78,5 +80,6 @@ ReactDon.render(<BizField value="red" valueType="color" />, mountNode);
 [modal/drawer]: /components/modal-form
 [queryform]: /components/query-form
 [stepsform]: /components/steps-form
+[bizuserlayout]: /components/biz-user-layout
 [qrcode.react]: https://www.npmjs.com/package/qrcode.react
 [wangeditor]: https://www.npmjs.com/package/wangeditor
