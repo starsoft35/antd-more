@@ -15,6 +15,9 @@ const BizForm: React.FC<BizFormProps> & {
   List: typeof List;
   useForm: typeof Form.useForm;
   Provider: typeof Form.Provider;
+  ErrorList: typeof Form.ErrorList;
+  useFormInstance: typeof Form.useFormInstance;
+  useWatch: typeof Form.useWatch;
 } = ({ submitter, ...restProps }) => {
   const submitterProps = typeof submitter === 'boolean' || !submitter ? {} : submitter;
   const submitterConfig =
@@ -52,5 +55,8 @@ BizForm.Item = Item;
 BizForm.List = List;
 BizForm.useForm = Form.useForm;
 BizForm.Provider = Form.Provider;
+BizForm.ErrorList = Form.ErrorList;
+BizForm.useFormInstance = Form.useFormInstance;
+BizForm.useWatch = Form.useWatch;
 
 export default BizForm;

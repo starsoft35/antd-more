@@ -15,14 +15,24 @@ const DensityIcon = () => {
           onClick={({ key }) => {
             setSize?.(key as TableContextProps['size']);
           }}
+          items={[
+            {
+              label: '默认',
+              key: 'default'
+            },
+            {
+              label: '中等',
+              key: 'middle'
+            },
+            {
+              label: '紧凑',
+              key: 'small'
+            }
+          ]}
           style={{
             width: 80
           }}
-        >
-          <Menu.Item key="default">默认</Menu.Item>
-          <Menu.Item key="middle">中等</Menu.Item>
-          <Menu.Item key="small">紧凑</Menu.Item>
-        </Menu>
+        />
       }
       trigger={['click']}
     >
