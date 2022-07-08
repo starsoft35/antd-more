@@ -2,11 +2,10 @@ import * as React from 'react';
 import { Table, Card, Space, ConfigProvider } from 'antd';
 import type { TableProps, SpaceProps, CardProps, FormInstance } from 'antd';
 import classnames from 'classnames';
-import { useUpdateEffect } from 'rc-hooks';
+import { useUpdateEffect, usePagination } from 'rc-hooks';
 import type { SearchFormProps } from './SearchForm';
 import SearchForm from './SearchForm';
 import type { QueryFormProps } from '../biz-form';
-import usePagination from './usePagination';
 import BizField from '../biz-field';
 import WithTooltip from '../biz-descriptions/WithTooltip';
 import actionCache, { createActionCacheKey } from './_util/actionCache';
@@ -25,6 +24,9 @@ import omit from '../utils/omit';
 import './index.less';
 
 const prefixCls = 'antd-more-table';
+
+// 显示数据总量
+const showTotal = (total: number) => `共 ${total} 条数据`;
 
 export declare interface BizTableProps<RecordType = any>
   extends Omit<TableProps<RecordType>, 'columns'>,
@@ -89,7 +91,7 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
 
     rowKey,
     columns,
-    pagination,
+    pagination: paginationProp,
     onChange,
     size: defaultSize,
     ...restProps
@@ -305,30 +307,48 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
     );
   }, [searchItems, formItems]);
 
-  const {
-    data,
-    loading,
-    run,
-    onTableChange,
-    pagination: pageRet
-  } = usePagination<RecordType>(request, {
-    autoRun: false,
-    defaultPageSize: (pagination && pagination?.pageSize) || 10,
-    actionCacheKey
-  });
+  const { data, loading, run, refresh, tableProps, params, pagination } = usePagination<{
+    list: RecordType[];
+    total: number;
+  }>(
+    (arg) => {
+      const {
+        current,
+        pageSize,
+        search,
+        filters = {},
+        sorter = {},
+        extra: extraOut,
+        ...restArg
+      } = arg;
+      const param = { current, pageSize, ...search, ...restArg };
+      const extra = {
+        currentDataSource: tableProps.dataSource || [],
+        action: actionCache[actionCacheKey] || extraOut?.action || 'submit'
+      };
+      return request(param, filters, sorter, extra).then((res) => ({
+        list: res.data,
+        total: res.total
+      }));
+    },
+    {
+      autoRun: false,
+      defaultPageSize: (paginationProp && paginationProp.pageSize) || 10
+    }
+  );
 
   const handleChange = React.useCallback(
     (page, filters, sorter, extraInfo) => {
-      onTableChange(page, filters, sorter, extraInfo);
+      tableProps.onChange(page, filters, sorter, extraInfo);
       onChange?.(page, filters, sorter, extraInfo);
     },
-    [onChange, onTableChange]
+    [onChange, tableProps]
   );
 
   const handleReload = React.useCallback(() => {
     actionCache[actionCacheKey] = 'reload';
-    run();
-  }, [actionCacheKey, run]);
+    refresh();
+  }, [actionCacheKey, refresh]);
 
   const handleReset = React.useCallback(() => {
     actionCache[actionCacheKey] = 'reset';
@@ -338,19 +358,19 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
         innerFormRef.current?.submit();
       });
     } else {
-      run({}); // 触发修改分页
+      pagination.changeCurrent(1);
       actionCache[actionCacheKey] = '';
     }
-  }, [actionCacheKey, hasSearch, innerFormRef, run]);
+  }, [actionCacheKey, hasSearch, pagination]);
 
   const handleSubmit = React.useCallback(() => {
     actionCache[actionCacheKey] = 'submit';
     if (hasSearch) {
       innerFormRef.current?.submit();
     } else {
-      run({}); // 触发修改分页
+      pagination.changeCurrent(1);
     }
-  }, [actionCacheKey, hasSearch, innerFormRef, run]);
+  }, [actionCacheKey, hasSearch, pagination]);
 
   // 默认 onReset 中已经重置表单，这里只需触发请求
   const handleDefaultReset = React.useCallback(() => {
@@ -358,22 +378,31 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
     if (hasSearch) {
       innerFormRef.current?.submit();
     } else {
-      run({}); // 触发修改分页
+      pagination.changeCurrent(1);
       actionCache[actionCacheKey] = '';
     }
-  }, [actionCacheKey, hasSearch, innerFormRef, run]);
+  }, [actionCacheKey, hasSearch, pagination]);
 
   const handleFinish = React.useCallback(
     (values) => {
       if (actionCache[actionCacheKey] !== 'reset') {
         actionCache[actionCacheKey] = 'submit';
       }
-      run(values);
+      const [oldParams, ...restParams] = params;
+      run(
+        {
+          ...oldParams,
+          current: 1,
+          pageSize: pagination.pageSize,
+          search: values
+        },
+        ...restParams
+      );
       if (actionCache[actionCacheKey] === 'reset') {
         actionCache[actionCacheKey] = '';
       }
     },
-    [actionCacheKey, run]
+    [actionCacheKey, pagination.pageSize, params, run]
   );
 
   React.useImperativeHandle(actionRef, () => ({
@@ -389,11 +418,11 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
           innerFormRef.current?.submit();
         });
       } else {
-        run();
+        pagination.changeCurrent(1);
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [autoRequest, hasSearch, innerFormRef, ready]);
+  }, [autoRequest, hasSearch, ready]);
 
   // 删除缓存 action
   React.useEffect(() => {
@@ -409,7 +438,7 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
   }, [currentColumns, toolbarActionConfig]);
 
   useUpdateEffect(() => {
-    onDataSourceChange?.(data);
+    onDataSourceChange?.(data.list);
   }, [data]);
 
   const toolbarDom =
@@ -427,14 +456,14 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
       return {
         padding: 0
       };
-    } else if (pagination !== false) {
+    } else if (paginationProp !== false) {
       return {
         paddingBottom: 8
       };
     } else {
       return {};
     }
-  }, [hasSearch, extra, pagination]);
+  }, [hasSearch, extra, paginationProp]);
 
   const tableDom = (
     <Card
@@ -447,10 +476,16 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
         loading={loading}
         rowKey={rowKey}
         columns={newColumns}
-        dataSource={data}
+        dataSource={tableProps.dataSource}
         pagination={
-          pagination !== false
-            ? { ...pageRet, ...omit(pagination, ['current', 'pageSize', 'total']) }
+          paginationProp !== false
+            ? {
+                ...tableProps.pagination,
+                showTotal,
+                showSizeChanger: true,
+                showQuickJumper: true,
+                ...omit(paginationProp, ['current', 'pageSize', 'total'])
+              }
             : false
         }
         onChange={handleChange}
