@@ -3,6 +3,7 @@ import { BizForm, BizFormItemInput } from 'antd-more';
 import { useAsync } from 'rc-hooks';
 import { waitTime } from 'util-helpers';
 import IdentifyCode from './components/IdentifyCode';
+import ItemInputPopover from './components/ItemInputPopover';
 
 async function getGraphValidateCode() {
   await waitTime();
@@ -54,6 +55,14 @@ const Demo = () => {
             message: '用户名为6～32位'
           }
         ]}
+      />
+      <ItemInputPopover
+        label="结合popover"
+        name="with-popover"
+        popoverProps={{
+          content: 'test'
+          // trigger: ['focus', 'hover'],
+        }}
       />
     </BizForm>
   );
