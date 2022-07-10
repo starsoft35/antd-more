@@ -34,7 +34,7 @@ import { BizFormItem } from 'antd-more';
 | hideLabel | 隐藏 label 。默认继承 `BizForm` 的 `hideLabel`。 | `boolean` | - |
 | transform | 转换该字段值，表单提交时执行。 | `(value) => any` | - |
 | extendRules | 扩展校验规则。如果需要覆盖，请使用 `rules` | [Rule[]](https://ant-design.gitee.io/components/form-cn/#Rule) | - |
-| renderField | 自定义内部表单渲染。要注意透传 `props` ，可参考 `ItemUpload` 的示例。 | `(dom: React.ReactElement) => React.ReactElement` | - |
+| renderField | 自定义内部表单渲染。要注意透传 `props` ，可参考 `ItemUpload` 的示例。 | `(dom: React.ReactElement) => React.ReactNode` | - |
 | colProps | 设置该表单项 Col 属性。部分场景下生效，如 QueryForm 下、ItemCaptcha、ItemAddress 等。 | [ColProps](https://ant-design.gitee.io/components/grid-cn/#Col) | - |
 | contentBefore | 表单前面的内容 | `ReactNode` | - |
 | contentAfter | 表单后面的内容 | `ReactNode` | - |

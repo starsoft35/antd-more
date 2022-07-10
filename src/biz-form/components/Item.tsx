@@ -17,7 +17,7 @@ export interface BizFormItemProps extends FormItemProps {
   extendRules?: FormItemProps['rules'];
   labelWidth?: number | 'auto';
   hideLabel?: boolean;
-  renderField?: (dom: React.ReactNode) => React.ReactNode;
+  renderField?: (dom: React.ReactElement) => React.ReactElement;
   contentBefore?: React.ReactNode;
   contentAfter?: React.ReactNode;
   contentConfig?: {
@@ -100,7 +100,7 @@ const BizFormItem: React.FC<BizFormItemProps> = ({
               trigger={trigger}
               {...contentConfig}
             >
-              {renderField ? renderField(innerChildren) : innerChildren}
+              {renderField ? renderField(innerChildren as React.ReactElement) : innerChildren}
             </WrapperFormElement>
           );
         }
