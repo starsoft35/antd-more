@@ -60,8 +60,7 @@ const Demo = () => {
         label="结合popover"
         name="with-popover"
         popoverProps={{
-          content: 'test'
-          // trigger: ['focus', 'hover'],
+          content: '测试内容测试内容'
         }}
       />
     </BizForm>

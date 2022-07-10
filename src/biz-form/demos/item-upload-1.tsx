@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { BizForm, BizFormItemUpload } from 'antd-more';
 import type { UploadFile } from 'antd/lib/upload/interface';
-import ItemSpecialUpload from './components/ItemSpecialUpload';
-import ItemDefineUpload from './components/ItemDefineUpload';
+import ItemUploadSpecial from './components/ItemUploadSpecial';
+import ItemUploadDefine from './components/ItemUploadDefine';
 import { waitTime } from 'util-helpers';
 
 // 上传图片
@@ -108,7 +108,7 @@ const Demo = () => {
         // required
         multiple
       />
-      <ItemSpecialUpload
+      <ItemUploadSpecial
         name="special-upload-1"
         label="特殊自定义1"
         tooltip="自定义上传后的显示，将删除改为重新上传"
@@ -123,11 +123,11 @@ const Demo = () => {
           return files?.map((item) => item?.response?.url).filter((item) => !!item); // 实际项目中服务端可能没有返回url，而是返回文件id
         }}
       />
-      <ItemDefineUpload
+      <ItemUploadDefine
         name="special-upload-2"
         label="特殊自定义2"
         title="上传身份证件"
-        tooltip="自定义右侧内容"
+        tooltip="自定义右侧内容，这里使用写死的图片地址，实际应该使用上传文件地址"
         uploadProps={{
           action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
           name: 'file',

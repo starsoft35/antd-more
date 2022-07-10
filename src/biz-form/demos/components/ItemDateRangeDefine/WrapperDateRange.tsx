@@ -12,14 +12,14 @@ type ValueType = {
   infinite: boolean;
 };
 
-interface DefineDateRangeProps {
+interface WrapperDateRangeProps {
   defaultValue?: ValueType;
   value?: ValueType;
   internalTrigger?: () => void;
   onChange?: (value: ValueType) => void;
 }
 
-const DefineDateRange: React.FC<DefineDateRangeProps> = ({ internalTrigger, ...restProps }) => {
+const WrapperDateRange: React.FC<WrapperDateRangeProps> = ({ internalTrigger, ...restProps }) => {
   const [state, setState] = useControllableValue<ValueType>(restProps, {
     defaultValue: {
       date: [],
@@ -98,4 +98,4 @@ const DefineDateRange: React.FC<DefineDateRangeProps> = ({ internalTrigger, ...r
   );
 };
 
-export default DefineDateRange;
+export default WrapperDateRange;

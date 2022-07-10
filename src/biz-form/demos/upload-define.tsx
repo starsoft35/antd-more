@@ -2,7 +2,7 @@ import * as React from 'react';
 import { BizForm } from 'antd-more';
 // import { UploadFile } from "antd/lib/upload/interface";
 // import { waitTime } from 'util-helpers';
-import ItemSpecialUpload from './components/ItemSpecialUpload';
+import ItemUploadSpecial from './components/ItemUploadSpecial';
 
 // // 上传图片
 // async function uploadImage(file: File) {
@@ -36,7 +36,7 @@ const Demo = () => {
         console.log(values);
       }}
     >
-      <ItemSpecialUpload
+      <ItemUploadSpecial
         name="upload"
         label="材料文件"
         uploadProps={{

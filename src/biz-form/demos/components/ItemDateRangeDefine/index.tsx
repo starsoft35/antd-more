@@ -4,9 +4,9 @@ import { BizFormItem } from 'antd-more';
 import FieldContext from 'antd-more/es/biz-form/FieldContext';
 import ListFieldContext from 'antd-more/es/biz-form/ListFieldContext';
 import getNamePaths from 'antd-more/es/biz-form/_util/getNamePaths';
-import DefineDateRange from './DefineDateRange';
+import WrapperDateRange from './WrapperDateRange';
 
-const ItemDefineDateRange: React.FC<BizFormItemProps> = ({
+const ItemDateRangeDefine: React.FC<BizFormItemProps> = ({
   label,
   name,
   required,
@@ -62,9 +62,9 @@ const ItemDefineDateRange: React.FC<BizFormItemProps> = ({
       ]}
       {...restProps}
     >
-      <DefineDateRange internalTrigger={triggeValidate} />
+      <WrapperDateRange internalTrigger={triggeValidate} />
     </BizFormItem>
   );
 };
 
-export default ItemDefineDateRange;
+export default ItemDateRangeDefine;
