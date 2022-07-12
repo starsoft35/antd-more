@@ -51,6 +51,8 @@ const VerificateCodeInput: React.FC<VerificateCodeInputProps> = ({
   const inputRef = React.useRef(null);
   const buttonRef = React.useRef(null);
 
+  const { onClick, onEnd } = buttonProps;
+
   const autoClick = React.useMemo(
     () => (typeof outAutoClick !== 'undefined' ? outAutoClick : autoRun),
     [outAutoClick, autoRun]
@@ -64,7 +66,7 @@ const VerificateCodeInput: React.FC<VerificateCodeInputProps> = ({
   const onButtonClick = React.useCallback(
     async (e: React.MouseEvent<HTMLElement>) => {
       setLoading(true);
-      buttonProps?.onClick?.(e);
+      onClick?.(e);
 
       try {
         // 验证手机号码/邮箱是否正确
@@ -81,13 +83,21 @@ const VerificateCodeInput: React.FC<VerificateCodeInputProps> = ({
         setLoading(false);
       }
     },
-    [autoFocusOnGetCaptcha, buttonProps, onGetCaptcha]
+    [autoFocusOnGetCaptcha, onClick, onGetCaptcha]
   );
 
   const handleEnd = React.useCallback(() => {
     setStart(false);
-    buttonProps?.onEnd?.();
-  }, [buttonProps]);
+    onEnd?.();
+  }, [onEnd]);
+
+  const handleButtonMouseUp = React.useCallback(
+    (e: React.MouseEvent) => {
+      e.stopPropagation();
+      buttonProps?.onMouseUp?.(e);
+    },
+    [buttonProps]
+  );
 
   React.useImperativeHandle(buttonProps?.ref, () => buttonRef.current, [buttonRef]);
 
@@ -114,23 +124,25 @@ const VerificateCodeInput: React.FC<VerificateCodeInputProps> = ({
     };
   }, [type]);
 
+  const buttonStyle = React.useMemo(
+    () => ({
+      ...defaultStyle.button,
+      ...buttonProps?.style
+    }),
+    [buttonProps?.style, defaultStyle.button]
+  );
+
   const captchaButtonDom = (
     <CaptchaButton
       start={start}
       loading={loading}
       type={type === 'inline' ? 'link' : 'default'}
       {...buttonProps}
-      onMouseUp={(e) => {
-        e.stopPropagation();
-        buttonProps?.onMouseUp?.(e);
-      }}
+      onMouseUp={handleButtonMouseUp}
       onClick={onButtonClick}
       onEnd={handleEnd}
       ref={buttonRef}
-      style={{
-        ...defaultStyle.button,
-        ...buttonProps?.style
-      }}
+      style={buttonStyle}
     />
   );
 
