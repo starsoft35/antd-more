@@ -5,6 +5,7 @@ import { renderMoney, renderDateTime } from './utils/field';
 import { getApplyList } from './service';
 import type { DataItem } from './service';
 import { ApproveStatus, ApproveStatusOptions } from './constants';
+import { Typography } from 'antd';
 
 const columns: BizTableColumnType<DataItem> = [
   {
@@ -48,26 +49,21 @@ const columns: BizTableColumnType<DataItem> = [
     dataIndex: 'approveResult',
     title: '审核状态',
     render: (text, record) => {
-      const view = <BizField valueType="enumBadge" valueEnum={ApproveStatusOptions} value={text} />;
-
-      // 如果审核拒绝，加上失败原因
-      if (text === ApproveStatus.Refused) {
-        return (
-          <>
-            {view}
-            <div style={{ color: 'red' }}>失败原因: {record.applicantName}xxx</div>
-          </>
-        );
-      } else if (text === ApproveStatus.Approve) {
-        // 如果审核通过，加上备注描述
-        return (
-          <>
-            {view}
-            <div>备注描述xxx</div>
-          </>
-        );
-      }
-      return view;
+      return (
+        <div>
+          <BizField value={text} valueType="enumBadge" valueEnum={ApproveStatusOptions} />
+          {text === ApproveStatus.Refused && (
+            <div>
+              <Typography.Text
+                style={{ width: 140, color: 'red' }}
+                ellipsis={{ tooltip: record.remark }}
+              >
+                失败原因：{record.remark}
+              </Typography.Text>
+            </div>
+          )}
+        </div>
+      );
     }
   }
 ];

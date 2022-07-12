@@ -28,7 +28,9 @@ nav:
 
 ### 自定义渲染字段
 
-将 BizField 不支持的展示字段，抽象到 `utils/field.tsx` 文件。如：日期时间换行、金额分转元、base64 图片、超长省略展示
+日期时间换行、金额分转元、base64 图片、超长省略等字段展示。
+
+将 BizField 不支持的展示字段，抽象到 `utils/field.tsx` 文件。
 
 <code src="./demos/define-render.tsx" background="#f5f5f5" />
 
@@ -161,7 +163,7 @@ valueType valueEnum 为以下几个配置共用字段，可以复写：
 
 `columns` 部分配置跟查询表单项配置的映射：
 
-```
+```javacript
 dataIndex = name
 title = label
 valueType = itemType
