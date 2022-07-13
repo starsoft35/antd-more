@@ -52,13 +52,13 @@ const columns: BizTableColumnType<DataItem> = [
       return (
         <div>
           <BizField value={text} valueType="enumBadge" valueEnum={ApproveStatusOptions} />
-          {text === ApproveStatus.Refused && (
+          {text === ApproveStatus.Refused && record.remark && (
             <div>
               <Typography.Text
-                style={{ width: 140, color: 'red' }}
+                style={{ width: 140, color: 'gray' }}
                 ellipsis={{ tooltip: record.remark }}
               >
-                失败原因：{record.remark}
+                {record.remark}
               </Typography.Text>
             </div>
           )}
