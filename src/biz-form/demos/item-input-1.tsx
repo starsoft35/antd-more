@@ -3,7 +3,7 @@ import { BizForm, BizFormItemInput } from 'antd-more';
 import { useAsync } from 'rc-hooks';
 import { waitTime } from 'util-helpers';
 import IdentifyCode from './components/IdentifyCode';
-import ItemInputPopover from './components/ItemInputPopover';
+import renderFieldWithPopover from './utils/renderFieldWithPopover';
 
 async function getGraphValidateCode() {
   await waitTime();
@@ -56,12 +56,11 @@ const Demo = () => {
           }
         ]}
       />
-      <ItemInputPopover
+      <BizFormItemInput
         label="结合popover"
         name="with-popover"
-        popoverProps={{
-          content: '测试内容测试内容'
-        }}
+        tooltip="该方案可用于所有表单项"
+        renderField={renderFieldWithPopover({ content: '测试内容测试内容' })}
       />
     </BizForm>
   );
