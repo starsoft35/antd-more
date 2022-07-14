@@ -10226,10 +10226,10 @@ rc-field-form@~1.26.1:
     async-validator "^4.1.0"
     rc-util "^5.8.0"
 
-rc-hooks@^2.1.1:
-  version "2.1.1"
-  resolved "https://registry.npmjs.org/rc-hooks/-/rc-hooks-2.1.1.tgz#46b13b91ff8b0d8b70d3865a7907a39f811a3c40"
-  integrity sha512-ECvcy0BEnct3a2tFjPz9ddlUsNsSZ0E2BeoVQ3PJBII3TAJBKdwt9SmKZGpnA/rUn6j93ZENFT/4A4UrPd8RPA==
+rc-hooks@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.npmjs.org/rc-hooks/-/rc-hooks-2.1.2.tgz#f9da49a1ffe2997d372a4932e6e8f85a85255fef"
+  integrity sha512-sF7V4QR+9KIaYfs/WCKLJDg2FMxTqhTIWCPjJLO+99gStp4BgGpLm9Y7+2nkH5dM7bA/imMTmHZiXZvPg+iAIg==
   dependencies:
     "@types/lodash" "^4.14.178"
     lodash "^4.17.21"
