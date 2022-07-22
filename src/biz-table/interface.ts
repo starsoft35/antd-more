@@ -36,12 +36,12 @@ export type BizTableRequest<RecordType = any> = (
 
 export interface SearchProps<RecordType = any>
   extends Partial<Pick<TableColumnType<RecordType>, 'dataIndex' | 'title'>>,
-    Partial<BizFormItemProps>,
-    Record<string | number, any> {
+  Partial<BizFormItemProps>,
+  Record<string | number, any> {
   valueType?: BizFieldValueType;
   valueEnum?: EnumData;
   itemType?: keyof typeof ItemTypes;
-  order?: number; // 定义查询项的排列顺序，越小越靠前。参照flex的order，默认都为0
+  order?: number; // 定义查询表单项的排列顺序，越小越靠前。参照flex的order，默认都为0
   render?: (
     originItem: InternalColumnType<RecordType>,
     dom: React.ReactElement,
@@ -49,7 +49,7 @@ export interface SearchProps<RecordType = any>
   ) => React.ReactElement;
 }
 
-interface EditableProps<RecordType = any> extends Omit<SearchProps<RecordType>, 'order'> {}
+interface EditableProps<RecordType = any> extends Omit<SearchProps<RecordType>, 'order'> { }
 
 interface InternalColumnType<RecordType = any>
   extends Omit<TableColumnType<RecordType>, 'dataIndex'> {
@@ -59,14 +59,18 @@ interface InternalColumnType<RecordType = any>
   tooltip?: WithTooltipProps['tooltip'];
   nowrap?: boolean;
   field?:
-    | Omit<BizFieldProps, 'value'>
-    | ((text: any, record: RecordType, index: number) => Omit<BizFieldProps, 'value'>);
+  | Omit<BizFieldProps, 'value'>
+  | ((text: any, record: RecordType, index: number) => Omit<BizFieldProps, 'value'>);
   search?: boolean | SearchProps<RecordType>; // 显示搜索 或 搜索配置
   editable?:
-    | boolean
-    | EditableProps<RecordType>
-    | ((text: any, record: RecordType, index: number) => boolean | EditableProps<RecordType>); // 编辑模式下的配置
+  | boolean
+  | EditableProps<RecordType>
+  | ((text: any, record: RecordType, index: number) => boolean | EditableProps<RecordType>); // 编辑模式下的配置
   table?: boolean; // 是否显示在表格列中，部分设置列可能只为了设置 search
+
+  /**
+   * @deprecated Please set `order` in `search`
+   */
   order?: number; // 用于search表单排序，数字越小越靠前
 }
 
