@@ -3,9 +3,26 @@ import { Tooltip } from 'antd';
 import type { TooltipProps } from 'antd';
 import { InfoCircleOutlined } from '@ant-design/icons';
 
+type WrapperTooltipProps = TooltipProps & {
+  icon?: React.ReactNode;
+};
+
 export interface WithTooltipProps {
   label?: React.ReactNode;
-  tooltip?: TooltipProps['title'];
+  tooltip?: TooltipProps['title'] | WrapperTooltipProps;
+}
+
+function toTooltipProps(props: WithTooltipProps['tooltip']): WrapperTooltipProps | null {
+  if (!props) {
+    return null;
+  }
+  if (typeof props === 'object' && !React.isValidElement(props)) {
+    return props as WrapperTooltipProps;
+  }
+
+  return {
+    title: props
+  };
 }
 
 const WithTooltip: React.FC<WithTooltipProps> = ({ label, tooltip }) => {
@@ -13,12 +30,16 @@ const WithTooltip: React.FC<WithTooltipProps> = ({ label, tooltip }) => {
     return null;
   }
 
-  if (tooltip) {
+  const tooltipProps = toTooltipProps(tooltip);
+
+  if (tooltipProps) {
+    const { icon = <InfoCircleOutlined />, ...restTooltipProps } = tooltipProps;
+
     return (
       <div style={{ display: 'flex', alignItems: 'center' }}>
         {label}
-        <Tooltip title={tooltip}>
-          <InfoCircleOutlined style={{ marginLeft: 4 }} />
+        <Tooltip {...restTooltipProps}>
+          <div style={{ marginLeft: 4 }}>{icon}</div>
         </Tooltip>
       </div>
     );
