@@ -131,16 +131,9 @@ interface Option {
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| type | 显示类型 | `'default' \| 'inline'` | `'default'` |
-| onGetCaptcha | 点击按钮触发。用于验证手机号码或邮箱，并请求获取验证码。如果返回 `false` 或 `Promise.reject()` 表示验证失败或请求验证码失败。 | `() => boolean \| Promise<any>` | `() => true` |
-| initText | 按钮初始显示文本 | `string` | `获取验证码` |
-| runText | 按钮倒计时显示文本，包含 `%s` 会自动替换为秒数 | `string` | `%s秒后重新获取` |
-| resetText | 按钮倒计时结束显示文本 | `string` | `重新获取验证码` |
-| second | 按钮倒计时时长，单位秒 | `number` | `60` |
-| autoClick | 组件装载完成后，自动触发点击按钮。 | `boolean` | `false` |
-| autoFocusOnGetCaptcha | `onGetCaptcha` 请求获取验证成功后，自动获取输入框焦点 | `boolean` | `true` |
-| inputProps | 输入框的属性 | [InputProps](https://ant-design.gitee.io/components/input-cn/#API) | - |
-| buttonProps | 按钮的属性 | [ButtonProps](https://ant.design/components/button-cn/#API) | - |
+| names | 级联选项字段名解构，设置该字段后，`name` 将失效。 | `string[]` | - |
+| options | 级联选项数据，同 antd 的 [Cascader API 的 options](https://ant-design.gitee.io/components/cascader-cn/#API) | `Option[]` | - |
+| cascaderProps | 级联选项的属性 | [CascaderProps](https://ant-design.gitee.io/components/cascader-cn/#API) | - |
 
 ### Checkbox
 
