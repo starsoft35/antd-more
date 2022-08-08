@@ -42,12 +42,15 @@ const CheckboxWrapper: React.FC<CheckboxWrapperProps> = ({
 
   const onChangeValue = (list) => {
     onChange?.(list);
+    checkboxGroupProps?.onChange?.(list);
     setIndeterminate(!!list.length && list.length < opts.length);
     setCheckAll(list.length === opts.length);
   };
 
   const onCheckAllChange = (e) => {
-    onChange?.(e.target.checked ? opts.map((item) => item.value) : []);
+    const checkedValue = e.target.checked ? opts.map((item) => item.value) : [];
+    onChange?.(checkedValue);
+    checkboxGroupProps?.onChange?.(checkedValue);
     setIndeterminate(false);
     setCheckAll(e.target.checked);
   };
@@ -63,15 +66,15 @@ const CheckboxWrapper: React.FC<CheckboxWrapperProps> = ({
       {allDom}
       <Checkbox.Group
         value={value}
-        onChange={onChangeValue}
         {...checkboxGroupProps}
+        onChange={onChangeValue}
         options={opts}
       />
     </>
   );
 };
 
-export interface BizFormItemCheckboxProps extends BizFormItemProps, CheckboxWrapperProps {}
+export interface BizFormItemCheckboxProps extends BizFormItemProps, CheckboxWrapperProps { }
 
 const BizFormItemCheckbox: React.FC<BizFormItemCheckboxProps> = ({
   all = false,
