@@ -286,6 +286,7 @@ ref.current.submit();
 [bizformitemaddress]: /components/item#address
 [bizformitemautocomplete]: /components/item#autocomplete
 [bizformitemcaptcha]: /components/item#captcha
+[bizformitemcascader]: /components/item#cascader
 [bizformitemcheckbox]: /components/item#checkbox
 [bizformitemcolor]: /components/item#color
 [bizformitemdate]: /components/item#date
