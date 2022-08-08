@@ -183,6 +183,7 @@ valueEnum = options
 | `time` | `time` | [BizFormItemTime] |
 | `timeRange` | `timeRange` | [BizFormItemTimeRange] |
 | - | `address` | [BizFormItemAddress] |
+| - | `autoComplete` | [BizFormItemAutoComplete] |
 | - | `captcha` | [BizFormItemCaptcha] |
 | - | `checkbox` | [BizFormItemCheckbox] |
 | - | `textarea` | [BizFormItemTextArea] |
@@ -283,6 +284,7 @@ ref.current.submit();
 [queryformprops]: /components/query-form#queryform
 [queryform]: /components/query-form
 [bizformitemaddress]: /components/item#address
+[bizformitemautocomplete]: /components/item#autocomplete
 [bizformitemcaptcha]: /components/item#captcha
 [bizformitemcheckbox]: /components/item#checkbox
 [bizformitemcolor]: /components/item#color

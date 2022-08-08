@@ -17,6 +17,8 @@ export * from './components/DrawerForm';
 
 export { default as BizFormItemAddress } from './components/ItemAddress';
 export * from './components/ItemAddress';
+export { default as BizFormItemAutoComplete } from './components/ItemAutoComplete';
+export * from './components/ItemAutoComplete';
 export { default as BizFormItemCaptcha } from './components/ItemCaptcha';
 export * from './components/ItemCaptcha';
 export { default as BizFormItemCascader } from './components/ItemCascader';

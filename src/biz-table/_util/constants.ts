@@ -1,6 +1,7 @@
 import {
   BizFormItemUpload,
   BizFormItemAddress,
+  BizFormItemAutoComplete,
   BizFormItemCaptcha,
   BizFormItemCheckbox,
   BizFormItemColor,
@@ -21,6 +22,7 @@ import {
 export const ItemTypes = {
   upload: BizFormItemUpload,
   address: BizFormItemAddress,
+  autoComplete: BizFormItemAutoComplete,
   captcha: BizFormItemCaptcha,
   checkbox: BizFormItemCheckbox,
   color: BizFormItemColor,

@@ -84,6 +84,26 @@ interface Option {
 | inputProps | 输入框的属性 | [InputProps](https://ant-design.gitee.io/components/input-cn/#API) | - |
 | cascaderProps | 级联选项的属性 | [CascaderProps](https://ant-design.gitee.io/components/cascader-cn/#API) | - |
 
+### AutoComplete
+
+自动完成输入框。
+
+**校验顺序**
+
+- 必填时为空，提示：`请输入${label}`
+
+<code src="../demos/item-autoComplete-1.tsx" />
+
+<br/>
+
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| allowClear | 支持清除 | `boolean` | `true` |
+| options | 数据化配置选项内容。 | `{ label, value }[]` | - |
+| placeholder | 输入框提示 | `string` | - |
+| onSearch | 搜索补全项的时候调用 | `function(value)` | - |
+| autoCompleteProps | 自动完成输入框的属性 | [AutoCompleteProps](https://ant-design.gitee.io/components/auto-complete-cn/#API) | - |
+
 ### Captcha
 
 验证码输入框和按钮。
