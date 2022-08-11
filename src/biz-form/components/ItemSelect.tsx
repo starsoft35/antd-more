@@ -56,7 +56,10 @@ const BizFormItemSelect: React.FC<BizFormItemSelectProps> = ({
           validator(rule, value) {
             let errMsg = '';
             const hasOptValue = options.find((item) => item[valueKey] === value);
-            if (!value && !hasOptValue && !(all && allValue === value)) {
+            if (
+              (!value && !hasOptValue && !(all && allValue === value)) ||
+              ((selectProps?.mode === 'multiple' || selectProps?.mode === 'tags') && value && value.length <= 0)
+            ) {
               errMsg = required ? `请选择${getLabel(restProps)}` : '';
             }
             if (errMsg) {

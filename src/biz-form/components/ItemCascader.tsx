@@ -52,7 +52,7 @@ const BizFormItemCascader: React.FC<BizFormItemCascaderProps> = ({
         {
           validator(rule, value) {
             let errMsg = '';
-            if (!value) {
+            if (!value || (cascaderProps?.multiple && value.length <= 0)) {
               errMsg = required ? `请选择${getLabel(restProps)}` : '';
             }
             if (errMsg) {
