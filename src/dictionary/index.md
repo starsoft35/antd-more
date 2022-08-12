@@ -48,7 +48,7 @@ export interface DictionaryProps<ValueType = any> extends SpaceProps {
 }
 ```
 
-### Dictionary
+<br />
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
@@ -61,7 +61,7 @@ export interface DictionaryProps<ValueType = any> extends SpaceProps {
 
 ### EnumData
 
-```
+```typescript
 import type { TagProps, BadgeProps, SpaceProps } from 'antd';
 
 type AliasType = { alias?: ReactNode };

@@ -53,7 +53,14 @@ export default () => {
       <br />
       <Dictionary valueEnum={BiologyCategoryOtions} value={[2, 3]} type="tag" />
       <br />
-      <Dictionary valueEnum={BiologyCategoryOtions} value={[1, 2, 3]} type="tag" />
+      <Divider orientation="left">自动过滤未匹配的项</Divider>
+      <Dictionary valueEnum={BiologyCategoryOtions} value={[4, 5]} type="tag" />
+      <br />
+      <Dictionary valueEnum={BiologyCategoryOtions} value={[4, 5, 1, 2, 3]} type="tag" />
+      <br />
+      <Dictionary valueEnum={BiologyCategoryOtions} value={[1, 2, 3, 4, 5]} type="tag" />
+      <br />
+      <Dictionary valueEnum={BiologyCategoryOtions} value={[1, 2, 4, 5, 3, 2, 3, 4, 5]} type="tag" />
     </>
   );
 };

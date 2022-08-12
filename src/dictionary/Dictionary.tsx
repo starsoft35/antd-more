@@ -36,7 +36,7 @@ function Dictionary<ValueType = any>({
     [match]
   );
 
-  const ret = valueEnum.filter((item) => values.find((curr) => matchMethod(item[valueKey], curr)));
+  const ret = values.map(curr => valueEnum.find(item => matchMethod(item[valueKey], curr))).filter(item => !!item);
   let view: JSX.Element;
 
   if (!Array.isArray(ret) || ret.length <= 0) {
@@ -44,12 +44,12 @@ function Dictionary<ValueType = any>({
   } else {
     view = (
       <>
-        {ret.map((item) => {
+        {ret.map((item, index) => {
           const options = item[realOptionName] || {};
           const { alias, ...restOptions } = options;
           const label = alias || item[labelKey];
           const itemProps = {
-            key: item[valueKey],
+            key: `${item[valueKey]}${typeof label === 'string' ? label : ''}${index}`,
             ...restOptions
           };
 
