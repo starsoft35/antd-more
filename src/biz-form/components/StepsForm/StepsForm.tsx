@@ -19,7 +19,7 @@ const formItemHideLabelClass = 'antd-more-form-item-hide-label';
 
 export type StepsFormActionType = {
   prev: () => void; // 返回上一步
-  next: (submitted: boolean) => void; // 触发当前表单校验（可选，部分中间步骤提交后，可直接进入下一步），校验成功则跳转下一步
+  next: (submitted?: boolean) => void; // 触发当前表单校验（可选，部分中间步骤提交后，可直接进入下一步），校验成功则跳转下一步
   submit: () => void; // 触发当前表单校验，并提交所有表单值
   reset: () => void; // 重置所有表单和值，将步骤恢复初始步骤
 };

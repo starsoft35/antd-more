@@ -103,7 +103,7 @@ import { StepsForm } from 'antd-more';
 
 interface StepsFormActionType {
   prev: () => void; // 返回上一步
-  next: (submitted: boolean) => void; // 跳转下一步，当submitted为true时，触发当前表单校验，校验成功则跳转下一步；当submitted为false时，不触发当前表单校验直接进入下一步。默认submitted为true
+  next: (submitted?: boolean) => void; // 跳转下一步，当submitted为true时，触发当前表单校验，校验成功则跳转下一步；当submitted为false时，不触发当前表单校验直接进入下一步。默认submitted为true
   submit: () => void; // 触发当前表单校验，并提交所有表单值
   reset: () => void; // 重置所有表单和值，将步骤恢复初始步骤
 }
