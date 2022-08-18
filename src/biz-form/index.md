@@ -60,7 +60,7 @@ nav:
 
 ### 联动 2
 
-通过 `onValuesChange` 实现
+通过 `Form.useWatch` 实现
 
 <code src='./demos/form-linkage-2.tsx' />
 

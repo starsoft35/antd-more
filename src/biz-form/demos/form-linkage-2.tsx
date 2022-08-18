@@ -1,6 +1,6 @@
 /**
  * title: 基本信息
- * desc: 通过 `onValuesChange` 将联动表单值存储在 `state` ，如果有修改联动表单值就做一些联动的处理。
+ * desc: 通过 `useWatch` 实现。原先使用 `onValuesChange` 的方式，在 `form.setFieldsValue` 修改值时不会触发。
  */
 import * as React from 'react';
 import { Row, Col } from 'antd';
@@ -45,25 +45,21 @@ const BaseInfo = () => {
     }),
     []
   );
-
-  const [orgType, setOrgType] = React.useState(OrgType.Company);
-  const handleValuesChange = React.useCallback((changedFields, allFields) => {
-    setOrgType(allFields.orgType);
-  }, []);
+  const [form] = BizForm.useForm();
+  const orgType = BizForm.useWatch(['orgType'], form);
 
   const isCompany = orgType === OrgType.Company;
   const legalIdCardLabel = `${isCompany ? '法人' : ''}身份证号`;
   const legalMobileLabel = `${isCompany ? '法人' : ''}手机号码`;
-  const orgNamePlaceholder = `请输入${
-    isCompany ? '公司营业执照上的商户全称' : '机构代表人姓名'
-  }，将作为机构名称`;
+  const orgNamePlaceholder = `请输入${isCompany ? '公司营业执照上的商户全称' : '机构代表人姓名'
+    }，将作为机构名称`;
 
   return (
     <BizForm
-      name="form-linkage"
+      name="form-linkage2"
+      form={form}
       labelWidth={126}
       initialValues={initialValues}
-      onValuesChange={handleValuesChange}
       onFinish={(values) => {
         console.log(values);
       }}
