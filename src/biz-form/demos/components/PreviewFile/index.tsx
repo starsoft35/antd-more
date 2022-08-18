@@ -10,7 +10,7 @@ interface PreviewFileProps extends ModalProps {
   file: File;
 }
 
-const Demo: React.FC<PreviewFileProps> = ({ file, visible, ...restProps }) => {
+const PreviewFile: React.FC<PreviewFileProps> = ({ file, visible, ...restProps }) => {
   const previewUrl = React.useMemo(
     () => (file && visible ? URL.createObjectURL(file) : ''),
     [file, visible]
@@ -49,4 +49,4 @@ const Demo: React.FC<PreviewFileProps> = ({ file, visible, ...restProps }) => {
   );
 };
 
-export default Demo;
+export default PreviewFile;

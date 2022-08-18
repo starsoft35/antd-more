@@ -1,32 +1,15 @@
 import * as React from 'react';
 import { BizForm } from 'antd-more';
-// import { UploadFile } from "antd/lib/upload/interface";
+// import type { UploadFile } from "antd";
 // import { waitTime } from 'util-helpers';
 import ItemUploadSpecial from './components/ItemUploadSpecial';
-
-// // 上传图片
-// async function uploadImage(file: File) {
-//   await waitTime(2000);
-//   if (Math.random() > 0.3) {
-//     return {
-//       fssId: `${Math.random()}`
-//     };
-//   }
-//   throw new Error('error');
-// }
+// import { uploadFile } from './services';
 
 const Demo = () => {
-  // // 上传图片
-  // const handleUpload = React.useCallback((file: File) => {
-  //   return uploadImage(file).then(res => {
-  //     // 返回值自动添加到 file 中
-  //     return { value: res.fssId }
-  //   });
-  // }, []);
-
-  // // 提交时转换上传值
-  // const transformUploadValue = React.useCallback((uploadValues: (UploadFile & Record<string, any>)[]) => {
-  //   return uploadValues ? uploadValues.filter(valItem => valItem.status !== "error" && valItem.value).map(valItem => valItem.value) : undefined;
+  // // 提交和校验时自动转换上传文件的值
+  // const transformUploadValue = React.useCallback((files: UploadFile[]) => {
+  //   // 实际项目中服务端可能没有返回其他值
+  //   return files?.map((item) => item?.response?.fssId).filter((item) => !!item);
   // }, []);
 
   return (
@@ -47,7 +30,8 @@ const Demo = () => {
           }
         }}
         transform={(files) => {
-          return files.map((item) => item?.response?.url).filter((item) => !!item); // 项目中可能没有url，而是一个文件id
+          // 项目中可能没有url，而是一个文件id
+          return files.map((item) => item?.response?.url).filter((item) => !!item);
         }}
       />
     </BizForm>

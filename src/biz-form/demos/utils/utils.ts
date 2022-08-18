@@ -1,3 +1,4 @@
+import { blobToDataURL } from 'util-helpers';
 import IconAudio from '../assets/icon-audio.png';
 import IconExcel from '../assets/icon-excel.png';
 import IconFile from '../assets/icon-file.png';
@@ -54,10 +55,11 @@ export function getFileType(file?: File) {
   }
 }
 
-export function getThumbUrl(file?: File) {
+export async function getThumbUrl(file?: File) {
   // 图片类型内部会自动处理 thumbUrl
   if (isImageType(file)) {
-    return undefined;
+    const url = await blobToDataURL(file);
+    return url;
   }
   if (isAudioType(file)) {
     return IconAudio;

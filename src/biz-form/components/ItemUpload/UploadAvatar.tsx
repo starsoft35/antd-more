@@ -6,7 +6,6 @@ import { blobToDataURL } from 'util-helpers';
 import type { UploadFile } from '../antd.interface';
 import type { UploadWrapperProps } from './UploadWrapper';
 import UploadWrapper from './UploadWrapper';
-import UploadContext from './UploadContext';
 import UploadImageButton from './UploadImageButton';
 
 const prefixCls = 'antd-more-form-upload-avatar';
@@ -16,20 +15,20 @@ const UploadAvatar: React.FC<{
   title?: React.ReactNode;
   icon?: React.ReactNode;
 }> = ({ fileList, icon, title }) => {
-  const { uploading } = React.useContext(UploadContext);
   const [imgUrl, setImgUrl] = React.useState('');
   const currentFile = React.useMemo(() => {
     return Array.isArray(fileList) && fileList.length > 0 ? fileList[0] : null;
   }, [fileList]);
+  const uploading = currentFile?.status === 'uploading';
 
   const transformBase64 = React.useCallback(async () => {
     if (currentFile) {
-      if (!currentFile.url && !currentFile.preview) {
+      if (!currentFile.thumbUrl && !currentFile.url && !currentFile.preview) {
         currentFile.preview = await blobToDataURL(
           (currentFile?.originFileObj || currentFile) as File
         );
       }
-      setImgUrl(currentFile.url || currentFile.preview);
+      setImgUrl(currentFile.thumbUrl || currentFile.url || currentFile.preview);
     }
   }, [currentFile]);
 

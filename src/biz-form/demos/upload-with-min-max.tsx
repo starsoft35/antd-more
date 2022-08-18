@@ -1,11 +1,13 @@
 /**
  * title: 上传文件含大中小图
  * desc: |
- *      将默认值转换成 `UploadFile[]` 数据格式再传入，数据通过异步获取的情况下可用 `ready` 标识位。当然你也可以再外部添加一个 `Spin` 组件用于显示加载状态。
+ *      将默认值转换成 `UploadFile[]` 数据格式再传入，加载失败可以通过 `error.message` 设置提示。
  */
 import * as React from 'react';
 import { BizForm, BizFormItemUpload } from 'antd-more';
 import { waitTime } from 'util-helpers';
+import type { UploadFile } from 'antd';
+import { Spin } from 'antd';
 
 // 通过fssId获取图片地址
 async function getStaticServerPath(fssId: string) {
@@ -49,87 +51,82 @@ const defaultFssId = [
 ];
 
 // 将值转换为 UploadFile 对象
-const beforeTransformUploadValues = async (fssIds: Record<string, any>[]) => {
-  const ret = [];
+const beforeTransformUploadValues = async (fssIds: typeof defaultFssId) => {
+  const tasks: Promise<{ thumbImg: string; bigImg: string; }>[] = [];
+  const ret: UploadFile[] = [];
+
   for (let i = 0; i < fssIds.length; i += 1) {
-    const fileProp = {
-      uid: -i,
-      thumbImgId: fssIds[i].thumbImgId, // 用于在提交时获取真实的value
-      bigImgId: fssIds[i].bigImgId
-    };
-    try {
-      const { bigImg, thumbImg } = await getStaticServerPath(fssIds[i].thumbImgId); // eslint-disable-line
-      ret.push({
-        url: bigImg,
-        thumbUrl: thumbImg,
-        name: bigImg.substring(bigImg.lastIndexOf('/') + 1),
-        ...fileProp
-      });
-    } catch (err) {
-      ret.push({
-        status: 'error',
-        response: '加载失败',
-        ...fileProp
-      });
-    }
+    tasks.push(getStaticServerPath(fssIds[i].thumbImgId));
   }
+
+  await Promise.allSettled(tasks).then(results => {
+    results.forEach((item, index) => {
+      const fulfilled = item.status === 'fulfilled';
+
+      ret.push({
+        uid: `${-index}`,
+        status: fulfilled ? 'done' : 'error',
+        name: fulfilled ? item.value.bigImg.substring(item.value.bigImg.lastIndexOf('/') + 1) : '',
+        url: fulfilled ? item.value.bigImg : undefined,
+        thumbUrl: fulfilled ? item.value.thumbImg : undefined,
+        // 用于在提交时获取真实的value
+        response: {
+          ...fssIds[index]
+        },
+        error: fulfilled ? undefined : {
+          message: '图片加载失败'
+        }
+      });
+    });
+  });
+
   return ret;
 };
 
 const Demo = () => {
-  const [ready, setReady] = React.useState(false);
-  const [initialValues, setInitialValues] = React.useState({});
+  const [loading, setLoading] = React.useState(true);
   const [form] = BizForm.useForm();
 
   // 初次转换值
-  const transformInitialValues = React.useCallback(async () => {
-    setInitialValues({
-      ...initialValues,
-      images: await beforeTransformUploadValues(defaultFssId)
-    });
-    setReady(true);
-  }, [initialValues]);
-
-  // 上传图片
-  const handleUpload = React.useCallback((file: File) => {
-    return uploadImage(file).then((res) => {
-      return { thumbImgId: res.thumbImgId, bigImgId: res.thumbImgId };
-    });
-  }, []);
+  const init = React.useCallback(async () => {
+    const images = await beforeTransformUploadValues(defaultFssId);
+    form.setFieldsValue({ images });
+    setLoading(false);
+  }, [form]);
 
   React.useEffect(() => {
-    transformInitialValues();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    init();
+  }, [init]);
+
+  // 提交和校验时自动转换上传文件的值
+  const transformUploadValue = React.useCallback((files: UploadFile[]) => {
+    // 实际项目中服务端可能没有返回其他值
+    return files?.map((item) => item?.response).filter((item) => !!item);
   }, []);
 
   return (
-    <BizForm
-      name="upload-with-min-max"
-      form={form}
-      onFinish={async (values) => {
-        await waitTime();
-        console.log(values);
-      }}
-      ready={ready}
-      initialValues={initialValues}
-      labelWidth={98}
-    >
-      <BizFormItemUpload
-        name="images"
-        label="图片"
-        type="image"
-        onUpload={handleUpload}
-        // onGetPreviewUrl={async () => "https://www.caijinfeng.com/assets/images/logo-doly@3x.png"}
-        maxCount={9}
-        disabled={!ready}
-        required
-        // uploadProps={{
-        //   onPreview: () => {
-
-        //   }
-        // }}
-      />
-    </BizForm>
+    <Spin spinning={loading}>
+      <BizForm
+        name="upload-with-min-max"
+        form={form}
+        onFinish={async (values) => {
+          await waitTime();
+          console.log(values);
+        }}
+        labelWidth={98}
+      >
+        <BizFormItemUpload
+          name="images"
+          label="图片"
+          type="image"
+          onUpload={uploadImage}
+          // onGetPreviewUrl={async () => "https://www.caijinfeng.com/assets/images/logo-doly@3x.png"}
+          maxCount={9}
+          required
+          transform={transformUploadValue}
+        />
+      </BizForm>
+    </Spin>
   );
 };
 

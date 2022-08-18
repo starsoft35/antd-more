@@ -5,46 +5,21 @@
  */
 import * as React from 'react';
 import { BizForm, BizFormItemUpload } from 'antd-more';
-import type { UploadFile } from 'antd/lib/upload/interface';
+import type { UploadFile } from 'antd';
 import { waitTime } from 'util-helpers';
 import PreviewFile from './components/PreviewFile';
 import { getThumbUrl } from './utils/utils';
-
-// 上传文件
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-async function upload(file: File): Promise<{ fssId: string }> {
-  await waitTime(2000);
-  if (Math.random() > 0.1) {
-    return {
-      fssId: `${Math.random()}`
-    };
-  }
-  throw new Error('error');
-}
+import { uploadFile } from './services';
 
 const Demo = () => {
   const [file, setFile] = React.useState<File>();
   const [visible, setVisible] = React.useState(false);
 
-  // 上传
-  const handleUpload = React.useCallback((file) => {
-    return upload(file).then((res) => {
-      // 返回值自动添加到 file 中，thumbUrl 为自定义缩略图
-      return { value: res.fssId, thumbUrl: getThumbUrl(file) };
-    });
+  // 提交和校验时自动转换上传文件的值
+  const transformUploadValue = React.useCallback((files: UploadFile[]) => {
+    // 实际项目中服务端可能没有返回其他值
+    return files?.map((item) => item?.response?.fssId).filter((item) => !!item);
   }, []);
-
-  // 提交时转换上传值
-  const transformUploadValue = React.useCallback(
-    (uploadValues: (UploadFile & Record<string, any>)[]) => {
-      return uploadValues
-        ? uploadValues
-            .filter((valItem) => valItem.status !== 'error' && valItem.value)
-            .map((valItem) => valItem.value)
-        : undefined;
-    },
-    []
-  );
 
   return (
     <div>
@@ -65,14 +40,15 @@ const Demo = () => {
           maxSize={1024 * 1024 * 10}
           multiple
           required
-          onUpload={handleUpload}
+          onUpload={uploadFile}
           transform={transformUploadValue}
           uploadProps={{
             onPreview: async (file) => {
               // console.log(file);
               setFile((file?.originFileObj || file) as File);
               setVisible(true);
-            }
+            },
+            previewFile: getThumbUrl
           }}
         />
       </BizForm>

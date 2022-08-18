@@ -1,49 +1,22 @@
 /**
  * title: 实时上传文件图片
  * desc: |
- *      设置 `onUpload` 后，添加上传文件自动调用并处理上传中状态和失败状态。上传成功的返回值将自动添加到 `UploadFile` 对象。
- *
- *      这里通过 `value` 标识对应文件的 `fssId` ，提交时再获取该值。
+ *      设置 `onUpload` 后，添加上传文件自动调用并处理上传中状态和失败状态。上传成功的返回值将自动添加到 `UploadFile` 对象的 `response` 字段上。表单提交时再获取该值。
  *
  *      如果设置 `transform` 可以帮助内置的规则进行校验。
  */
 import * as React from 'react';
 import { BizForm, BizFormItemUpload } from 'antd-more';
-import type { UploadFile } from 'antd/lib/upload/interface';
+import type { UploadFile } from 'antd';
 import { waitTime } from 'util-helpers';
-
-// 上传图片
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-async function uploadImage(file: File): Promise<{ fssId: string }> {
-  await waitTime(2000);
-  if (Math.random() > 0.3) {
-    return {
-      fssId: `${Math.random()}`
-    };
-  }
-  throw new Error('errro');
-}
+import { uploadFile } from './services';
 
 const Demo = () => {
-  // 上传图片
-  const handleUpload = React.useCallback((file) => {
-    return uploadImage(file).then((res) => {
-      // 返回值自动添加到 file 中
-      return { value: res.fssId };
-    });
+  // 提交和校验时自动转换上传文件的值
+  const transformUploadValue = React.useCallback((files: UploadFile[]) => {
+    // 实际项目中服务端可能没有返回其他值
+    return files?.map((item) => item?.response?.fssId).filter((item) => !!item);
   }, []);
-
-  // 提交时转换上传值
-  const transformUploadValue = React.useCallback(
-    (uploadValues: (UploadFile & Record<string, any>)[]) => {
-      return uploadValues
-        ? uploadValues
-            .filter((valItem) => valItem.status !== 'error' && valItem.value)
-            .map((valItem) => valItem.value)
-        : undefined;
-    },
-    []
-  );
 
   return (
     <BizForm
@@ -60,43 +33,35 @@ const Demo = () => {
         maxCount={1}
         accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
         fileTypeMessage="不支持文件类型"
-        // 使用自定义上传
-        onUpload={handleUpload}
+        onUpload={uploadFile}
         transform={transformUploadValue}
-
-        // 使用 action 上传
-        // uploadProps={{
-        //   name: "file",
-        //   action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
-        //   headers: {
-        //     authorization: "authorization-text",
-        //   }
-        // }}
-        // transform={(files) => {
-        //   return files.map(item => item?.response?.fssId).filter(item=>!!item);
-        // }}
       />
       <BizFormItemUpload
-        name="xls"
-        label="xls文档"
+        name="xls1"
+        label="xls文档1"
         accept=".xls,.xlsx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
         required
         fileTypeMessage="不支持文件类型"
         // 使用自定义上传
-        onUpload={handleUpload}
+        onUpload={uploadFile}
         transform={transformUploadValue}
-
+      />
+      <BizFormItemUpload
+        name="xls2"
+        label="xls文档2"
+        accept=".xls,.xlsx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+        required
+        fileTypeMessage="不支持文件类型"
+        tooltip='使用action上传'
         // 使用 action 上传
-        // uploadProps={{
-        //   name: "file",
-        //   action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
-        //   headers: {
-        //     authorization: "authorization-text",
-        //   }
-        // }}
-        // transform={(files) => {
-        //   return files.map(item => item?.response?.fssId).filter(item=>!!item);
-        // }}
+        uploadProps={{
+          name: "file",
+          action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
+          headers: {
+            authorization: "authorization-text",
+          }
+        }}
+        transform={transformUploadValue}
       />
       <BizFormItemUpload
         name="images"
@@ -104,21 +69,8 @@ const Demo = () => {
         type="image"
         maxCount={9}
         required
-        // 使用自定义上传
-        onUpload={handleUpload}
+        onUpload={uploadFile}
         transform={transformUploadValue}
-
-        // 使用 action 上传
-        // uploadProps={{
-        //   name: "file",
-        //   action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
-        //   headers: {
-        //     authorization: "authorization-text",
-        //   }
-        // }}
-        // transform={(files) => {
-        //   return files.map(item => item?.response?.fssId).filter(item => !!item);
-        // }}
       />
       <BizFormItemUpload
         name="headpic01"
@@ -126,7 +78,7 @@ const Demo = () => {
         type="avatar"
         tooltip="点击图片区域上传替换，常用于头像或封面，不支持预览"
         required
-        onUpload={handleUpload}
+        onUpload={uploadFile}
         transform={transformUploadValue}
       />
       <BizFormItemUpload
@@ -136,7 +88,7 @@ const Demo = () => {
         maxCount={1}
         tooltip="使用image的方式，修改时需要先删除才能再上传"
         required
-        onUpload={handleUpload}
+        onUpload={uploadFile}
         transform={transformUploadValue}
       />
       {/* <BizFormList name='test' initialValue={[{ headpic03: [] }]}>
@@ -151,7 +103,7 @@ const Demo = () => {
               maxCount={1}
               tooltip="使用image的方式，修改时需要先删除才能再上传"
               required
-              onUpload={handleUpload}
+              onUpload={uploadFile}
               transform={transformUploadValue}
             />
           ))
@@ -163,7 +115,7 @@ const Demo = () => {
         type="dragger"
         required
         multiple
-        onUpload={handleUpload}
+        onUpload={uploadFile}
         transform={transformUploadValue}
       />
     </BizForm>

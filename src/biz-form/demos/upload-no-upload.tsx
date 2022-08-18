@@ -1,7 +1,7 @@
 /**
  * title: 提交时一次性上传所有文件
  * desc: |
- *      不设置 `onUpload` 即可
+ *      不设置 `onUpload` 或 `action` 的情况下，添加文件不会发起请求。
  */
 import * as React from 'react';
 import { BizForm, BizFormItemUpload } from 'antd-more';
@@ -55,7 +55,13 @@ const Demo = () => {
         tooltip="使用image的方式，修改时需要先删除才能再上传"
         required
       />
-      <BizFormItemUpload name="dragger" label="拖拽上传" type="dragger" required multiple />
+      <BizFormItemUpload
+        name="dragger"
+        label="拖拽上传"
+        type="dragger"
+        required
+        multiple
+      />
     </BizForm>
   );
 };

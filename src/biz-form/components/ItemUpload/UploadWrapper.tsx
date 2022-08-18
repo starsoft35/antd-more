@@ -5,7 +5,6 @@ import { blobToDataURL, isPromiseLike, bytesToSize } from 'util-helpers';
 import type { UploadProps, UploadFile, UploadChangeParam, RcFile } from '../antd.interface';
 import { checkFileSize, checkFileType, getFileName } from './uploadUtil';
 import Preview from './Preview';
-import UploadContext from './UploadContext';
 
 import './index.less';
 
@@ -18,11 +17,15 @@ export interface UploadWrapperProps extends UploadProps {
   onUpload?: (file: File) => Promise<object | undefined>; // 自定义文件上传
   maxSize?: number; // 单个文件最大尺寸，用于校验
   maxCount?: number; // 最多上传文件数量
+
+  /**
+   * @deprecated 即将废弃，请使用 onPreview
+   */
   onGetPreviewUrl?: (file: File) => Promise<string>; // 点击预览获取大图URL
   dragger?: boolean; // 支持拖拽
   internalTriggeValidate?: () => void; // 外部透传的校验表单，用于异步上传 或 删除后触发
 
-  // icon和title配置仅在 Dragger 和 Button 中生效
+  // icon和title配置图标和文本内容
   icon?: React.ReactNode;
   title?: React.ReactNode;
 }
@@ -41,25 +44,24 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   title,
 
-  multiple = false,
   onChange,
   accept,
   className,
   disabled,
   action,
   internalTriggeValidate,
+  beforeUpload,
   ...restProps
 }) => {
   const fileBeforeUploadActionRef = React.useRef<
     Record<string | number, 'normal' | 'error' | 'upload'>
   >({});
-  // const fileListRef = React.useRef(fileList);
+
   const [previewProps, setPreviewProps] = React.useState({
     visible: false,
     title: '',
     imgUrl: ''
   });
-  const [uploading, setUploading] = React.useState(false);
 
   // 上传前验证
   const handleBeforeUpload = React.useCallback(
@@ -107,18 +109,9 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
 
       fileBeforeUploadActionRef.current[file.uid] = 'upload';
 
-      return !!action;
+      return beforeUpload ? beforeUpload(file, fileList) : !!action;
     },
-    [
-      maxCount,
-      accept,
-      maxSize,
-      action,
-      maxCountMessage,
-      fileTypeMessage,
-      fileSizeMessage,
-      restProps?.fileList
-    ]
+    [restProps.fileList, accept, maxSize, maxCount, beforeUpload, action, fileTypeMessage, fileSizeMessage, maxCountMessage]
   );
 
   const handleValidate = React.useCallback(
@@ -138,7 +131,6 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
       // 支持逐个上传文件
       const uploadRet = onUpload((file.originFileObj || file) as File);
       if (isPromiseLike(uploadRet)) {
-        setUploading(true);
         uploadRet
           .then((res) => {
             const cloneFileList = fileList
@@ -147,16 +139,20 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
                 if (item.uid === uid) {
                   item.status = 'done';
                   item.percent = 100;
+
+                  // TODO 下个大版本废弃，目前保留是为了兼容
                   const resKeys = typeof res === 'object' ? Object.keys(res) : [];
                   if (resKeys.length > 0) {
                     resKeys.forEach((resKey) => {
                       item[resKey] = res[resKey];
                     });
                   }
+
+                  // 将响应数据挂载到 response 上
+                  item.response = res;
                 }
                 return item;
               });
-            setUploading(false);
 
             onChange({
               file,
@@ -175,7 +171,6 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
                 }
                 return item;
               });
-            setUploading(false);
 
             onChange({
               file,
@@ -204,6 +199,7 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
   // 处理修改
   const handleChange = React.useCallback(
     ({ file, fileList }: UploadChangeParam) => {
+      // 过滤文件格式错误 或 超过文件大小
       let cloneFileList = fileList.filter(
         (item) => fileBeforeUploadActionRef.current[item.uid] !== 'error'
       );
@@ -231,6 +227,7 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
         file,
         fileList: cloneFileList
       });
+
       handleValidate(file);
     },
     [onChange, handleValidate, action, onUpload, handleUpload]
@@ -254,22 +251,21 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
       if (!enabledShowPreview) {
         return;
       }
-      if (!file.url && !file.preview) {
-        if (onGetPreviewUrl) {
-          file.preview = await onGetPreviewUrl((file?.originFileObj || file) as File);
-        } else if (file.originFileObj || file) {
-          file.preview = await blobToDataURL((file?.originFileObj || file) as File);
-        } else if (file.thumbUrl) {
-          file.preview = file.thumbUrl;
-        } else {
-          message.error('当前文件不支持预览！');
-          return;
-        }
+
+      if (onGetPreviewUrl && !file.preview) {
+        file.preview = await onGetPreviewUrl((file?.originFileObj || file) as File);
+      } else if (!file.url) {
+        file.url = await blobToDataURL((file?.originFileObj || file) as File);
+      }
+
+      if (!file.url && !file.preview && !file.thumbUrl) {
+        message.error('当前文件不支持预览！');
+        return;
       }
 
       setPreviewProps({
         visible: true,
-        imgUrl: file.url || file.preview,
+        imgUrl: file.preview || file.url || file.thumbUrl,
         title: file.name || getFileName(file.url)
       });
     },
@@ -287,7 +283,7 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
   const Comp = React.useMemo(() => (dragger ? Upload.Dragger : Upload), [dragger]);
 
   return (
-    <UploadContext.Provider value={{ uploading }}>
+    <>
       <Comp
         accept={accept}
         beforeUpload={handleBeforeUpload}
@@ -299,13 +295,12 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
         onPreview={handlePreview}
         disabled={disabled}
         className={classNames(prefixCls, className)}
-        multiple={multiple}
         action={action}
         maxCount={maxCount}
         {...restProps}
       />
       {enabledShowPreview && <Preview {...previewProps} onCancel={handlePreviewCancel} />}
-    </UploadContext.Provider>
+    </>
   );
 };
 

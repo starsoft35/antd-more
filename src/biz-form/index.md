@@ -32,13 +32,13 @@ nav:
 
 ### 实时上传文件图片
 
-添加文件后，立即上传到文件服务器，获取 `fssId`，提交时取出该 `fssId` 。
+添加文件后，立即上传到文件服务器，异步返回值将挂载到 `file.response` 上，提交和校验时取出 `file.response.fssId` 。
 
 <code src='./demos/upload-real-time.tsx' />
 
 ### 实时上传文件含默认值
 
-修改页面中需要显示已有文件，并且支持实时上传
+修改页面中需要显示已有文件，并且支持实时上传。
 
 <code src='./demos/upload-with-default.tsx' />
 

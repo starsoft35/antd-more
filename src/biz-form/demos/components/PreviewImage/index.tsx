@@ -2,11 +2,11 @@ import React from 'react';
 import type { ModalProps } from 'antd';
 import { Modal } from 'antd';
 
-export interface PreviewProps extends ModalProps {
+interface PreviewImageProps extends ModalProps {
   imgUrl: string;
 }
 
-const Preview: React.FC<PreviewProps> = ({ imgUrl = '', style = {}, ...restProps }) => {
+const PreviewImage: React.FC<PreviewImageProps> = ({ imgUrl = '', style = {}, ...restProps }) => {
   return (
     <Modal
       footer={null}
@@ -23,4 +23,4 @@ const Preview: React.FC<PreviewProps> = ({ imgUrl = '', style = {}, ...restProps
   );
 };
 
-export default React.memo(Preview);
+export default React.memo(PreviewImage);
