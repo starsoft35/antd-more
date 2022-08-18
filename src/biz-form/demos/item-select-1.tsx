@@ -23,7 +23,6 @@ const Demo = () => {
         tooltip="包含全部，并且排除按日"
       />
       <BizFormItemSelect label="多选必填" name="select4" options={CycleOptions} required selectProps={{ mode: 'multiple' }} />
-      <BizFormItemSelect label="标签必填" name="select5" options={CycleOptions} required selectProps={{ mode: 'tags' }} />
     </BizForm>
   );
 };
