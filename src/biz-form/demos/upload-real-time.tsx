@@ -72,7 +72,7 @@ const Demo = () => {
         onUpload={uploadFile}
         transform={transformUploadValue}
       />
-      <BizFormItemUpload
+      {/* <BizFormItemUpload
         name="headpic01"
         label="头像1"
         type="avatar"
@@ -90,7 +90,7 @@ const Demo = () => {
         required
         onUpload={uploadFile}
         transform={transformUploadValue}
-      />
+      /> */}
       {/* <BizFormList name='test' initialValue={[{ headpic03: [] }]}>
         {
           fields => fields.map(field => (
@@ -109,7 +109,7 @@ const Demo = () => {
           ))
         }
       </BizFormList> */}
-      <BizFormItemUpload
+      {/* <BizFormItemUpload
         name="dragger"
         label="拖拽上传"
         type="dragger"
@@ -117,7 +117,7 @@ const Demo = () => {
         multiple
         onUpload={uploadFile}
         transform={transformUploadValue}
-      />
+      /> */}
     </BizForm>
   );
 };
