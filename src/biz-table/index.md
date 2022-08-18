@@ -185,6 +185,7 @@ valueEnum = options
 | - | `address` | [BizFormItemAddress] |
 | - | `autoComplete` | [BizFormItemAutoComplete] |
 | - | `captcha` | [BizFormItemCaptcha] |
+| - | `cascader` | [BizFormItemCascader] |
 | - | `checkbox` | [BizFormItemCheckbox] |
 | - | `textarea` | [BizFormItemTextArea] |
 | - | `password` | [BizFormItemPassword] |
