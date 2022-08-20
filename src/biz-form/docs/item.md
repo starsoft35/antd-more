@@ -538,7 +538,8 @@ type UploadFile = {
   name: string;
   thumbUrl?: string; // 缩略图
   url?: string; // 下载地址
-  response?: any; // 加载失败时，鼠标移入提示
+  response?: any; // onUpload 返回值
+  // error?: any; // 失败状态时，输入移入提示
   // ...
 };
 ```
@@ -558,6 +559,8 @@ type UploadFile = {
 | maxCountMessage | 上传文件超过限制数量时提示，包含 `%s` 会自动替换为 `maxCount`。 | `string \| false` | `最多上传%s个文件` |
 | disabled | 是否禁用 | `boolean` | `false` |
 | multiple | 是否支持多选文件，`ie10+` 支持。 | `boolean` | `false` |
+| icon | 选择提示图标，不同内建类型有不一样的默认值。 | `ReactNode` | - |
+| title | 选择提示文本 | `ReactNode` | `'点击上传'\|'单击或拖动文件到此区域进行上传'` |
 | uploadProps | 上传配置参数 | [UploadProps](https://ant-design.gitee.io/components/upload-cn/#API) | - |
 
 [ismobile]: https://doly-dev.github.io/util-helpers/module-Validator.html#.isMobile

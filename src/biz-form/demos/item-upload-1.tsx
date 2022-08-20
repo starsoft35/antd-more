@@ -2,8 +2,8 @@ import * as React from 'react';
 import { BizForm, BizFormItemUpload } from 'antd-more';
 import type { UploadFile } from 'antd';
 import { waitTime } from 'util-helpers';
-import ItemUploadSpecial from './components/ItemUploadSpecial';
-import ItemUploadDefine from './components/ItemUploadDefine';
+// import ItemUploadSpecial from './components/ItemUploadSpecial';
+// import ItemUploadDefine from './components/ItemUploadDefine';
 import { uploadFile } from './services';
 
 const Demo = () => {
@@ -85,7 +85,7 @@ const Demo = () => {
         type="dragger"
         multiple
       />
-      <ItemUploadSpecial
+      {/* <ItemUploadSpecial
         name="special-upload-1"
         label="特殊自定义1"
         tooltip="自定义上传后的显示，将删除改为重新上传"
@@ -111,7 +111,7 @@ const Demo = () => {
           }
         }}
         transform={transformUploadValue}
-      />
+      /> */}
     </BizForm>
   );
 };

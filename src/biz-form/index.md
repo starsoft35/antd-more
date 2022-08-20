@@ -52,6 +52,10 @@ nav:
 
 <code src='./demos/upload-file-viewer.tsx' />
 
+<!-- ### 自定义上传证件
+
+<code src='./demos/upload-certificate.tsx' /> -->
+
 ### 联动 1
 
 通过 `shouldUpdate` 实现
