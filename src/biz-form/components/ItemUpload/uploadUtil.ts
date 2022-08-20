@@ -48,3 +48,37 @@ export function getFileName(url: string): string {
   const pathArr = url.split(divider);
   return pathArr[pathArr.length - 1] || '';
 }
+
+// 缓存 URL.createObjectURL
+const urlCache: {
+  [ukey: string]: {
+    [uid: string]: string
+  }
+} = {};
+
+export const createFileUrl = (ukey: string, uid: string, file: File) => {
+  if (!urlCache[ukey]) {
+    urlCache[ukey] = {};
+  }
+  if (!urlCache[ukey][uid]) {
+    urlCache[ukey][uid] = URL.createObjectURL(file);
+  }
+  return urlCache[ukey][uid];
+}
+
+export const revokeFileUrl = (ukey: string, uid?: string) => {
+  if (urlCache[ukey]) {
+    if (uid) {
+      if (urlCache[ukey][uid]) {
+        URL.revokeObjectURL(urlCache[ukey][uid]);
+      }
+      delete urlCache[ukey][uid];
+    } else {
+      const uids = Object.keys(urlCache[ukey]);
+      uids.forEach(item => {
+        URL.revokeObjectURL(urlCache[ukey][item]);
+      });
+      delete urlCache[ukey];
+    }
+  }
+}

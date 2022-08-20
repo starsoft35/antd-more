@@ -39,7 +39,7 @@ const transformUploadFiles = async (fssIds: string[]) => {
           fssId: fssIds[index]
         },
         error: fulfilled ? undefined : {
-          message: '加载图片失败'
+          message: '图片加载失败'
         }
       });
     });

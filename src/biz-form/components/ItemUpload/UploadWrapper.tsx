@@ -1,12 +1,14 @@
 import * as React from 'react';
 import { Upload, message } from 'antd';
 import classNames from 'classnames';
-import { blobToDataURL, isPromiseLike, bytesToSize } from 'util-helpers';
+import { isPromiseLike, bytesToSize } from 'util-helpers';
 import type { UploadProps, UploadFile, UploadChangeParam, RcFile } from '../antd.interface';
-import { checkFileSize, checkFileType, getFileName } from './uploadUtil';
+import { checkFileSize, checkFileType, createFileUrl, getFileName, revokeFileUrl } from './uploadUtil';
 import Preview from './Preview';
 
 import './index.less';
+import uniqueId from '../../_util/uniqueId';
+import { useUnmount } from 'rc-hooks';
 
 const prefixCls = 'antd-more-form-upload';
 
@@ -17,10 +19,6 @@ export interface UploadWrapperProps extends UploadProps {
   onUpload?: (file: File) => Promise<object | undefined>; // 自定义文件上传
   maxSize?: number; // 单个文件最大尺寸，用于校验
   maxCount?: number; // 最多上传文件数量
-
-  /**
-   * @deprecated 即将废弃，请使用 onPreview
-   */
   onGetPreviewUrl?: (file: File) => Promise<string>; // 点击预览获取大图URL
   dragger?: boolean; // 支持拖拽
   internalTriggeValidate?: () => void; // 外部透传的校验表单，用于异步上传 或 删除后触发
@@ -53,6 +51,8 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
   beforeUpload,
   ...restProps
 }) => {
+  // 当前组件唯一标识，用于缓存和释放 URL.createObjectURL
+  const uniqueKey = React.useMemo(() => uniqueId('item-upload'), []);
   const fileBeforeUploadActionRef = React.useRef<
     Record<string | number, 'normal' | 'error' | 'upload'>
   >({});
@@ -165,9 +165,10 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
               .filter((item) => item.status !== 'removed')
               .map((item) => {
                 if (item.uid === uid) {
+                  const error = typeof err !== 'object' ? { message: err || '上传错误' } : err;
                   item.status = 'error';
                   item.percent = 100;
-                  item.response = err?.message || '上传错误';
+                  item.error = error;
                 }
                 return item;
               });
@@ -255,10 +256,11 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
       if (onGetPreviewUrl && !file.preview) {
         file.preview = await onGetPreviewUrl((file?.originFileObj || file) as File);
       } else if (!file.url) {
-        file.url = await blobToDataURL((file?.originFileObj || file) as File);
+        file.url = createFileUrl(uniqueKey, file.uid, (file?.originFileObj || file) as File);
+        // file.url = await blobToDataURL((file?.originFileObj || file) as File); // DataURL 路径太大，可能导致卡顿问题
       }
 
-      if (!file.url && !file.preview && !file.thumbUrl) {
+      if (!file.preview && !file.url && !file.thumbUrl) {
         message.error('当前文件不支持预览！');
         return;
       }
@@ -269,7 +271,7 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
         title: file.name || getFileName(file.url)
       });
     },
-    [enabledShowPreview, onGetPreviewUrl]
+    [enabledShowPreview, onGetPreviewUrl, uniqueKey]
   );
 
   // 关闭预览
@@ -281,6 +283,11 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
   }, [previewProps]);
 
   const Comp = React.useMemo(() => (dragger ? Upload.Dragger : Upload), [dragger]);
+
+  // 组件卸载时 删除文件引用
+  useUnmount(() => {
+    revokeFileUrl(uniqueKey);
+  });
 
   return (
     <>
