@@ -116,4 +116,21 @@ import { BizForm } from 'antd-more';
 | submitButtonProps | 提交按钮属性，和 antd [Button](https://ant-design.gitee.io/components/button-cn/#API) 一致 | [ButtonProps](https://ant-design.gitee.io/components/button-cn/#API) | - |
 | resetButtonProps | 重置按钮属性，和 antd [Button](https://ant-design.gitee.io/components/button-cn/#API) 一致 | [ButtonProps](https://ant-design.gitee.io/components/button-cn/#API) | - |
 | noReset | 不渲染重置按钮 | `boolean` | `false` |
-| render | 自定义操作的渲染 | `false \| (props,dom:ReactElement[]) => ReactNode[]` | - |
+| render | 自定义操作的渲染 | `false \| (props: BizFormSubmitterProps, dom: ReactElement[]) => ReactNode` | - |
+
+`submitButtonProps` `resetButtonProps` 额外支持 `preventDefault` 配置项，如果设置为 `true` ，则不触发预置行为。
+
+```typescript
+<BizForm
+  submitter={{
+    submitButtonProps: {
+      preventDefault: true // 点击提交按钮，不触发表单提交
+    },
+    resetButtonProps: {
+      preventDefault: true // 点击重置按钮，不触发表单重置
+    }
+  }}
+>
+  // ...
+</BizForm>
+```
