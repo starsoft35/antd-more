@@ -124,10 +124,12 @@ import { BizForm } from 'antd-more';
 <BizForm
   submitter={{
     submitButtonProps: {
-      preventDefault: true // 点击提交按钮，不触发表单提交
+      preventDefault: true, // 点击提交按钮，不触发表单提交
+      onClick() {} // 自定义点击回调
     },
     resetButtonProps: {
-      preventDefault: true // 点击重置按钮，不触发表单重置
+      preventDefault: true, // 点击重置按钮，不触发表单重置
+      onClick() {} // 自定义点击回调
     }
   }}
 >
