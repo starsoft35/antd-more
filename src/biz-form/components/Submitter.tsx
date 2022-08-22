@@ -15,17 +15,17 @@ export interface BizFormSubmitterProps {
 
   form?: FormInstance;
   render?:
-    | ((
-        props: BizFormSubmitterProps,
-        dom: React.ReactElement[]
-      ) => React.ReactNode[] | React.ReactNode | false)
-    | false;
+  | ((
+    props: BizFormSubmitterProps,
+    dom: React.ReactElement[]
+  ) => React.ReactNode[] | React.ReactNode | false)
+  | false;
 }
 
 const BizFormSubmitter: React.FC<BizFormSubmitterProps> = (props) => {
   const {
-    onSubmit = () => {},
-    onReset = () => {},
+    onSubmit = () => { },
+    onReset = () => { },
     submitText = '提交',
     resetText = '重置',
     submitButtonProps = {},
@@ -34,18 +34,20 @@ const BizFormSubmitter: React.FC<BizFormSubmitterProps> = (props) => {
     form,
     render
   } = props;
-  const handleReset = (e) => {
+
+  const handleReset = React.useCallback((e) => {
     form?.resetFields();
     // 由于刚重置表单，使用异步可防止立即触发提交操作，导致数据过时而提交失败。
     // refs: https://github.com/ant-design/ant-design/issues/26747
     Promise.resolve().then(() => {
       onReset?.(e);
     });
-  };
-  const handleSubmit = (e) => {
+  }, [form, onReset]);
+
+  const handleSubmit = React.useCallback((e) => {
     form?.submit();
     onSubmit?.(e);
-  };
+  }, [form, onSubmit]);
 
   const dom = React.useMemo(() => {
     const ret = [
@@ -75,14 +77,14 @@ const BizFormSubmitter: React.FC<BizFormSubmitterProps> = (props) => {
       return ret.slice(0, 1);
     }
     return ret;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [resetButtonProps, submitButtonProps, form, onSubmit, submitText, resetText, noReset]);
+  }, [submitButtonProps, submitText, resetButtonProps, resetText, noReset, handleSubmit, handleReset]);
 
   const renderDom = render ? render(props, dom) : dom;
 
   if (!renderDom) {
     return null;
   }
+
   if (Array.isArray(renderDom)) {
     if (renderDom?.length < 1) {
       return null;
