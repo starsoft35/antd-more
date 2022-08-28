@@ -259,7 +259,7 @@ interface Option {
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | maxRange | 最大可选范围值，用于校验，根据当前 picker 为单位。 | `number` | - |
-| names | 开始和结束的字段名，配置该值后，原来的 `name` 将失效。如 `['startDate', 'endDate']` | `[NamePath, NamePath]` | - |
+| names | 开始和结束的字段名，配置该值后，原来的 `name` 将失效。如 `['startDate', 'endDate']` | `[string, string]` | - |
 | disabledDateBefore | 配置不可选基于当天增加/减少之前的日期。 | `number` | - |
 | disabledDateAfter | 配置不可选基于当天增加/减少之后的日期。 | `number` | - |
 | showTime | 显示时间选择 | `boolean` | `false` |
@@ -510,7 +510,7 @@ TextArea 输入框
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| names | 开始和结束的字段名，配置该值后，原来的 `name` 将失效。如 `['startTime', 'endTime']` | `[NamePath, NamePath]` | - |
+| names | 开始和结束的字段名，配置该值后，原来的 `name` 将失效。如 `['startTime', 'endTime']` | `[string, string]` | - |
 | format | 设置日期格式 | `string` | `HH:mm:ss` |
 | pickerProps | 选择器的属性 | [TimeRangePickerProps](https://ant-design.gitee.io/components/time-picker-cn/#RangePicker) | - |
 
