@@ -10,7 +10,9 @@ import './index.less';
 
 const prefixCls = 'antd-more-input-icon';
 
-export interface InputIconProps extends Omit<InputProps, 'onChange'> {
+export interface InputIconProps extends Omit<InputProps, 'defaultValue' | 'value' | 'onChange'> {
+  defaultValue?: string;
+  value?: string;
   iconData: Map<IconProp[0], IconProp[1]>;
   showSearch?: boolean;
   column?: number;
