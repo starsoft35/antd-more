@@ -1946,10 +1946,10 @@
   resolved "https://registry.npmjs.org/@types/json-schema/-/json-schema-7.0.11.tgz#d421b6c527a3037f7c84433fd2c4229e016863d3"
   integrity sha512-wOuvG1SN4Us4rez+tylwwwCV1psiNVOkJeM3AUWUNWg/jDQY2+HE/444y5gc+jBmRqASOm2Oeh5c1axHobwRKQ==
 
-"@types/lodash@^4.14.178":
-  version "4.14.182"
-  resolved "https://registry.npmjs.org/@types/lodash/-/lodash-4.14.182.tgz#05301a4d5e62963227eaafe0ce04dd77c54ea5c2"
-  integrity sha512-/THyiqyQAP9AfARo4pF+aCGcyiQ94tX/Is2I7HofNRqoYLgN1PBoOWu2/zTA5zMxzP5EFutMtWtGAFRKUe961Q==
+"@types/lodash@^4.14.184":
+  version "4.14.184"
+  resolved "https://registry.npmjs.org/@types/lodash/-/lodash-4.14.184.tgz#23f96cd2a21a28e106dc24d825d4aa966de7a9fe"
+  integrity sha512-RoZphVtHbxPZizt4IcILciSWiC6dcn+eZ8oX9IWEYfDMcocdd42f7NPI6fQj+6zI8y4E0L7gu2pcZKLGTRaV9Q==
 
 "@types/mathjax@^0.0.36":
   version "0.0.36"
@@ -10227,14 +10227,14 @@ rc-field-form@~1.27.0:
     async-validator "^4.1.0"
     rc-util "^5.8.0"
 
-rc-hooks@^2.1.2:
-  version "2.1.2"
-  resolved "https://registry.npmjs.org/rc-hooks/-/rc-hooks-2.1.2.tgz#f9da49a1ffe2997d372a4932e6e8f85a85255fef"
-  integrity sha512-sF7V4QR+9KIaYfs/WCKLJDg2FMxTqhTIWCPjJLO+99gStp4BgGpLm9Y7+2nkH5dM7bA/imMTmHZiXZvPg+iAIg==
+rc-hooks@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.npmjs.org/rc-hooks/-/rc-hooks-2.2.1.tgz#42458684ea3fef6231eb23d2baf4ff9c7186d167"
+  integrity sha512-XpgWwsCcxJXqsjAtGy6DxLeRS818hN8W0h/vBo47oqdTJC0wegLGVn4vYB/+OAlk9883gZpVY9EIgibGTG006A==
   dependencies:
-    "@types/lodash" "^4.14.178"
+    "@types/lodash" "^4.14.184"
     lodash "^4.17.21"
-    tslib "^2.2.0"
+    tslib "^2.4.0"
 
 rc-image@~5.7.0:
   version "5.7.0"
@@ -12724,7 +12724,7 @@ tslib@^1.10.0, tslib@^1.8.1, tslib@^1.9.0:
   resolved "https://registry.npmjs.org/tslib/-/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
 
-tslib@^2.1.0, tslib@^2.2.0:
+tslib@^2.1.0, tslib@^2.4.0:
   version "2.4.0"
   resolved "https://registry.npmjs.org/tslib/-/tslib-2.4.0.tgz#7cecaa7f073ce680a05847aa77be941098f36dc3"
   integrity sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==
