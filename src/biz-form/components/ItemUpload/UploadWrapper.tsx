@@ -15,6 +15,8 @@ const prefixCls = 'antd-more-form-upload';
 export interface UploadWrapperProps extends UploadProps {
   fileTypeMessage?: string | false; // 文件类型错误提示
   fileSizeMessage?: string | false; // 文件超过最大尺寸提示
+
+  /** @deprecated */
   maxCountMessage?: string | false; // 上传文件超过限制数量时提示
   onUpload?: (file: File) => Promise<object | undefined>; // 自定义文件上传
   maxSize?: number; // 单个文件最大尺寸，用于校验
@@ -32,6 +34,7 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
   onUpload,
   fileTypeMessage = '只支持上传 %s 文件',
   fileSizeMessage = '必须小于 %s！',
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   maxCountMessage = '最多上传%s个文件',
   maxSize = 1024 * 1024 * 2,
   maxCount,
@@ -53,9 +56,6 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
 }) => {
   // 当前组件唯一标识，用于缓存和释放 URL.createObjectURL
   const uniqueKey = React.useMemo(() => uniqueId('item-upload'), []);
-  const fileBeforeUploadActionRef = React.useRef<
-    Record<string | number, 'normal' | 'error' | 'upload'>
-  >({});
 
   const [previewProps, setPreviewProps] = React.useState({
     visible: false,
@@ -66,20 +66,13 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
   // 上传前验证
   const handleBeforeUpload = React.useCallback(
     (file: RcFile, fileList: RcFile[]) => {
-      if (fileBeforeUploadActionRef.current[file.uid]) {
-        fileBeforeUploadActionRef.current[file.uid] = 'normal';
-      }
-
-      const mergeFileList = [...(restProps.fileList || []), ...fileList];
-
       // 检查是否支持文件类型
       const isSupportFileType = checkFileType(file, accept);
       if (!isSupportFileType) {
         if (fileTypeMessage !== false) {
           message.error(fileTypeMessage.replace(/%s/g, accept));
         }
-        fileBeforeUploadActionRef.current[file.uid] = 'error';
-        return false;
+        return Upload.LIST_IGNORE;
       }
 
       // 检查是否超过文件大小
@@ -89,29 +82,12 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
         if (fileSizeMessage !== false) {
           message.error(fileSizeMessage.replace(/%s/g, maxFileSizeStr));
         }
-        fileBeforeUploadActionRef.current[file.uid] = 'error';
-        return false;
+        return Upload.LIST_IGNORE;
       }
-
-      // 验证上传文件数量
-      if (
-        maxCount !== 1 &&
-        maxCount &&
-        mergeFileList.length > maxCount &&
-        mergeFileList.findIndex((item) => item.uid === file.uid) >= maxCount
-      ) {
-        if (maxCountMessage !== false) {
-          message.error(maxCountMessage.replace(/%s/g, maxCount + ''));
-        }
-        fileBeforeUploadActionRef.current[file.uid] = 'error';
-        return false;
-      }
-
-      fileBeforeUploadActionRef.current[file.uid] = 'upload';
 
       return beforeUpload ? beforeUpload(file, fileList) : !!action;
     },
-    [restProps.fileList, accept, maxSize, maxCount, beforeUpload, action, fileTypeMessage, fileSizeMessage, maxCountMessage]
+    [accept, maxSize, beforeUpload, action, fileTypeMessage, fileSizeMessage]
   );
 
   const handleValidate = React.useCallback(
@@ -200,28 +176,17 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
   // 处理修改
   const handleChange = React.useCallback(
     ({ file, fileList }: UploadChangeParam) => {
-      // 过滤文件格式错误 或 超过文件大小
-      let cloneFileList = fileList.filter(
-        (item) => fileBeforeUploadActionRef.current[item.uid] !== 'error'
-      );
+      let cloneFileList = fileList.slice();
 
-      if (fileBeforeUploadActionRef.current[file.uid] === 'upload') {
-        fileBeforeUploadActionRef.current[file.uid] = 'normal';
-
-        if (
-          !action &&
-          typeof onUpload === 'function' &&
-          cloneFileList.find((item) => item.uid === file.uid)
-        ) {
-          cloneFileList = cloneFileList.map((fileItem) => {
-            if (fileItem.uid === file.uid) {
-              fileItem.status = 'uploading';
-              fileItem.percent = 99.9;
-            }
-            return fileItem;
-          });
-          handleUpload(file, cloneFileList);
-        }
+      if (!action && typeof onUpload === 'function') {
+        cloneFileList = cloneFileList.map((fileItem) => {
+          if (fileItem.uid === file.uid) {
+            fileItem.status = 'uploading';
+            fileItem.percent = 99.9;
+          }
+          return fileItem;
+        });
+        handleUpload(file, cloneFileList);
       }
 
       onChange({

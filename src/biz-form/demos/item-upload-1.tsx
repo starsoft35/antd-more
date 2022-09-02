@@ -48,12 +48,13 @@ const Demo = () => {
         // 使用自定义上传
         onUpload={uploadFile}
         transform={transformUploadValue}
+        maxSize={1 * 1024 * 1024}
       />
       <BizFormItemUpload
         name="images2"
         label="图片2"
         type="image"
-        tooltip="使用action上传"
+        tooltip="使用action上传，同时选择多个文件会卡顿，建议使用 onUpload"
         maxCount={9}
         multiple
         // 使用 action 上传

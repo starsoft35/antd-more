@@ -536,10 +536,10 @@ TextArea 输入框
 type UploadFile = {
   uid: string | number;
   name: string;
-  thumbUrl?: string; // 缩略图
+  thumbUrl?: string; // 缩略图，可通过 uploadProps.previewFile 覆写获取缩略图
   url?: string; // 下载地址
-  response?: any; // onUpload 返回值
-  // error?: any; // 失败状态时，输入移入提示
+  response?: any; // onUpload 或 action 上传成功后的返回值
+  error?: any; // 失败状态时，输入移入提示 { message: string }
   // ...
 };
 ```
