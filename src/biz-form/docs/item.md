@@ -563,6 +563,21 @@ type UploadFile = {
 | title | 选择提示文本 | `ReactNode` | `'点击上传'\|'单击或拖动文件到此区域进行上传'` |
 | uploadProps | 上传配置参数 | [UploadProps](https://ant-design.gitee.io/components/upload-cn/#API) | - |
 
+<Alert type="info">
+  注意，如果上传的图片文件较大，缩略图默认使用的是 base64URL 可能会卡顿。可以设置 uploadProps.previewFile 自定义缩略图，参考如下。
+</Alert>
+
+```typescript
+<BizFormItemUpload
+  // ...
+  uploadProps={{
+    previewFile(file) {
+      return URL.createObjectURL(file);
+    }
+  }}
+/>
+```
+
 [ismobile]: https://doly-dev.github.io/util-helpers/module-Validator.html#.isMobile
 [isbankcard]: https://doly-dev.github.io/util-helpers/module-Validator.html#.isBankCard
 [isemail]: https://doly-dev.github.io/util-helpers/module-Validator.html#.isEmail
