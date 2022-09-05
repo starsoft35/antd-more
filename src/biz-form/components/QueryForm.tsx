@@ -1,9 +1,10 @@
 import * as React from 'react';
 import classnames from 'classnames';
-import { Form, Row, Col, Space } from 'antd';
+import { Row, Col, Space } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import type { BaseFormProps } from './BaseForm';
 import BaseForm from './BaseForm';
+import BizFormItem from './Item';
 
 const prefixCls = 'antd-more-form';
 
@@ -29,8 +30,6 @@ const Collapse: React.FC<CollapseProps> = React.memo(({ collapsed, onToggle }) =
     </a>
   );
 });
-
-const formItemHideLabelClass = 'antd-more-form-item-hide-label';
 
 export interface QueryFormProps extends BaseFormProps {
   submitText?: string;
@@ -94,22 +93,22 @@ const QueryForm: React.FC<QueryFormProps> = (props) => {
             <Col
               style={{
                 display: 'flex',
-                flex: 'auto',
+                flex: '1',
                 flexWrap: 'nowrap',
                 alignItems: 'flex-start',
                 justifyContent: 'flex-end'
               }}
             >
-              <Form.Item
+              <BizFormItem
                 label=" "
                 colon={false}
-                className={layout !== 'vertical' ? formItemHideLabelClass : ''}
+                hideLabel={layout !== 'vertical'}
               >
                 <Space>
                   {internalSubmitter}
                   {enabledCollapse && <Collapse collapsed={collapsed} onToggle={setCollapsed} />}
                 </Space>
-              </Form.Item>
+              </BizFormItem>
             </Col>
           </Row>
         );
