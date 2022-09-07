@@ -257,9 +257,9 @@ const StepsForm: React.FC<StepsFormProps> & {
         key={name}
       >
         {React.cloneElement(item, {
-          ...item.props,
-          ...formProps,
           ...config,
+          ...formProps,
+          ...item.props,
           step: index,
           name
         })}
