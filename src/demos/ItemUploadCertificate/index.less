@@ -1,0 +1,51 @@
+@imgHeight: 112px;
+
+.itemUploadCertificate {
+  :global {
+    .ant-form-item-control-input {
+      min-height: @imgHeight;
+    }
+  }
+
+  .uploadBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+
+    img {
+      display: block;
+      width: 66px;
+      max-width: 100%;
+    }
+
+    .text {
+      max-width: 100%;
+      margin-top: 5px;
+      overflow: hidden;
+      color: gray;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+
+  .uploadCertificateBlock {
+    :global {
+      .ant-upload-list-picture-card-container,
+      .ant-upload.ant-upload-select-picture-card {
+        width: 100%;
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+.popoverTip {
+  img {
+    max-width: 100%;
+    border: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+  }
+}

@@ -3,7 +3,10 @@ export const isPDFFile = (file: any) => {
   if (file.type === 'application/pdf') {
     return true;
   }
-  const ext = (file?.name || '').split('.').at(-1);
+
+  const arr = (file?.name || '').split('.');
+  const ext = arr[arr.length - 1];
+
   if (ext.toLowerCase() === 'pdf') {
     return true;
   }

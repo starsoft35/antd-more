@@ -48,7 +48,19 @@ const umiConfig = {
     '@s-site-menu-width': '258px'
   },
   navs: [
-    null, // null 值代表保留约定式生成的导航，只做增量配置
+    // null, // null 值代表保留约定式生成的导航，只做增量配置
+    {
+      title: '文档',
+      path: '/docs'
+    },
+    {
+      title: '组件',
+      path: '/components'
+    },
+    {
+      title: '更多场景',
+      path: '/scenes'
+    },
     {
       title: `v${preMajorVersionNumber}.x`,
       path: `https://doly-dev.github.io/antd-more/${preVersionSiteRoot}/index.html`

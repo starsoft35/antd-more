@@ -1,6 +1,5 @@
 import React from 'react';
 import classnames from 'classnames';
-import type { UploadProps } from 'antd';
 import type { BizFormItemProps } from 'antd-more';
 import { BizFormItem } from 'antd-more';
 import styles from './index.less';
@@ -15,15 +14,16 @@ const normFile = (e: any) => {
   return e?.fileList;
 };
 
-interface ItemUploadCertificateProps extends BizFormItemProps, Pick<UploadCertificateProps, 'idType' | 'icon' | 'title' | 'showPopover' | 'popoverProps' | 'onUpload'> {
-  uploadProps?: UploadProps;
+interface ItemUploadCertificateProps extends BizFormItemProps, Pick<UploadCertificateProps, 'idType' | 'icon' | 'title' | 'popoverProps' | 'onUpload' | 'maxCount' | 'block'> {
+  uploadProps?: UploadCertificateProps;
 }
 
 const ItemUploadCertificate: React.FC<ItemUploadCertificateProps> = ({
   idType,
   icon,
   title,
-  showPopover,
+  maxCount,
+  block,
   popoverProps,
   uploadProps,
   onUpload,
@@ -61,7 +61,8 @@ const ItemUploadCertificate: React.FC<ItemUploadCertificateProps> = ({
         idType={idType}
         icon={icon}
         title={title}
-        showPopover={showPopover}
+        maxCount={maxCount}
+        block={block}
         popoverProps={popoverProps}
         onUpload={onUpload}
         {...uploadProps}
