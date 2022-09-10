@@ -40,8 +40,9 @@ const CaptchaButton = React.forwardRef<HTMLElement, CaptchaButtonProps>(
       () =>
         new CountDown({
           time: second * 1000,
-          format: (ms) => ms / 1000,
-          onChange: setRunSecond,
+          onChange(currentTime) {
+            setRunSecond(currentTime / 1000);
+          },
           onEnd() {
             setStatus(2);
             onEnd?.();

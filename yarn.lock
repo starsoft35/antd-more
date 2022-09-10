@@ -4016,10 +4016,10 @@ cosmiconfig@^7, cosmiconfig@^7.0.0, cosmiconfig@^7.0.1:
     path-type "^4.0.0"
     yaml "^1.10.0"
 
-countdown-pro@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.npmjs.org/countdown-pro/-/countdown-pro-1.0.2.tgz#7b278496362d270586e3bf84466f486bd9d3697e"
-  integrity sha512-f+y1lAIfde356MlTd5x+Ri7PIZ5SsM6ldAO2v8wkl7dcjGZ5gMEsbW0b1Vg0Vfz++w7A50r+uxUauxXP3/uM4A==
+countdown-pro@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.npmjs.org/countdown-pro/-/countdown-pro-2.0.0.tgz#1cb930b684f80c49b1affdfd11fb20c016d31544"
+  integrity sha512-ZsF4EBUtf509ph/5O65QokE9aJqWwUaDb01lHGyA/qaUijtU/o7i+ii1AHtyuQi7Aei6EfzkJE7neWoXqX3atw==
 
 create-ecdh@^4.0.0:
   version "4.0.4"
