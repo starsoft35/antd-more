@@ -1,0 +1,19 @@
+.itemNumberMoney {
+  :global {
+    .ant-input-number-group-wrapper {
+      display: block;
+    }
+  }
+
+  &.inputPrefixReverse {
+    :global {
+      .ant-input-number-affix-wrapper {
+        flex-direction: row-reverse;
+      }
+
+      .ant-input-number-prefix {
+        pointer-events: auto;
+      }
+    }
+  }
+}
