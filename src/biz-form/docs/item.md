@@ -102,6 +102,8 @@ interface Option {
 | options | 数据化配置选项内容。 | `{ label, value }[]` | - |
 | placeholder | 输入框提示 | `string` | - |
 | onSearch | 搜索补全项的时候调用 | `function(value)` | - |
+| onFocus | 获得焦点时的回调 | `function(e)` | - |
+| onBlur | 失去焦点时的回调 | `function(e)` | - |
 | autoCompleteProps | 自动完成输入框的属性 | [AutoCompleteProps](https://ant-design.gitee.io/components/auto-complete-cn/#API) | - |
 
 ### Captcha

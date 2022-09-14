@@ -9,15 +9,17 @@ const EmailSuffix = ['@qq.com', '@126.com', '@163.com', '@sina.com', '@gmail.com
 
 const ItemAutoCompleteEmail: React.FC<BizFormItemAutoCompleteProps> = ({ extendRules = [], ...restProps }) => {
   const [options, setOptions] = useState<BizFormItemAutoCompleteProps['options']>([]);
-  const handleSearch = (searchText: string) => {
-    setOptions(EmailSuffix.map(suffix => {
-      const opt = searchText.split('@')[0] + suffix;
+
+  const updateOptions = (val?: string) => {
+    const opts = val ? EmailSuffix.map(suffix => {
+      const opt = val.split('@')[0] + suffix;
       return {
         label: opt,
         value: opt
       }
-    }));
-  };
+    }) : [];
+    setOptions(opts);
+  }
 
   return (
     <BizFormItemAutoComplete
@@ -34,7 +36,10 @@ const ItemAutoCompleteEmail: React.FC<BizFormItemAutoCompleteProps> = ({ extendR
         ...extendRules
       ]}
       options={options}
-      onSearch={handleSearch}
+      onSearch={updateOptions}
+      onFocus={(e) => {
+        updateOptions((e.target as HTMLInputElement).value);
+      }}
       {...restProps}
     />
   );
