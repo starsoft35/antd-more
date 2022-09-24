@@ -7,24 +7,31 @@ import './Side.less';
 
 const prefixCls = `${prefixClass}-side`;
 
-const colSpan = {
+const defaultColSpan = {
   xs: 24,
   sm: 12
 };
 
 export interface SideProps {
   rowProps?: RowProps;
-  colProps?: ColProps;
+  colProps?: ColProps | [ColProps, ColProps];
   banner?: BannerItem[];
   carouselProps?: CarouselProps;
   content?: React.ReactNode;
 }
 
 const Side: React.FC<SideProps> = ({ rowProps, colProps, banner = [], carouselProps, content }) => {
+  const calcColProps = React.useMemo(() => {
+    if (Array.isArray(colProps)) {
+      return colProps;
+    }
+    return [colProps, colProps];
+  }, [colProps]);
+
   return (
     <div className={prefixCls}>
       <Row gutter={[24, 24]} align="middle" {...rowProps}>
-        <Col className={`${prefixCls}-banner`} {...colSpan} {...colProps}>
+        <Col className={`${prefixCls}-banner`} {...defaultColSpan} {...calcColProps[0]}>
           <Carousel autoplay={banner.length > 1} {...carouselProps}>
             {banner.map((itemBanner, index) => {
               const isReactElement = React.isValidElement(itemBanner);
@@ -62,7 +69,7 @@ const Side: React.FC<SideProps> = ({ rowProps, colProps, banner = [], carouselPr
             })}
           </Carousel>
         </Col>
-        <Col className={`${prefixCls}-content`} {...colSpan} {...colProps}>
+        <Col className={`${prefixCls}-content`} {...defaultColSpan} {...calcColProps[1]}>
           {content}
         </Col>
       </Row>

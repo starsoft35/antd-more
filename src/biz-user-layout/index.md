@@ -79,7 +79,7 @@ type FooterLink = {
 | bannerCarouselProps | 广告轮播配置 | [CarouselProps] | - |
 | bannerRightContent | 广告栏右侧内容 | `ReactNode` | - |
 | sideRowProps | 侧边栏 Row 属性 | `RowProps` | - |
-| sideColProps | 侧边栏 Col 属性 | `ColProps` | - |
+| sideColProps | 侧边栏 Col 属性 | `ColProps \| [ColProps, ColProps]` | - |
 | sideBanner | 侧边广告栏 | `BannerItem[]` | - |
 | sideBannerCarouselProps | 侧边广告轮播配置 | [CarouselProps] | - |
 | sideContent | 侧边内容 | `ReactNode` | - |
