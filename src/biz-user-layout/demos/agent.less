@@ -1,5 +1,7 @@
 @import '~antd/es/style/themes/default.less';
 
+@screen-md-less: @screen-md - 1px;
+
 .wrapper {
   background: url('./images/login_bg.svg') 0 0 no-repeat #f4f7fb;
   background-size: 100% auto;
@@ -23,5 +25,11 @@
         margin: 0 24px;
       }
     }
+
+    // @media (max-width: @screen-md-less) {
+    //   .ant-carousel {
+    //     display: none;
+    //   }
+    // }
   }
 }
