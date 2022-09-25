@@ -12,7 +12,7 @@ function Demo() {
       title="antd-more"
       sideBanner={[ImageSideBanner]}
       sideContent={
-        <div style={{ maxWidth: 450 }}>
+        <div style={{ maxWidth: 450, margin: '0 auto' }}>
           <LoginBox />
         </div>
       }

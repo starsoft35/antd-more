@@ -9,7 +9,7 @@ const prefixCls = `${prefixClass}-side`;
 
 const defaultColSpan = {
   xs: 24,
-  sm: 12
+  md: 12
 };
 
 export interface SideProps {
