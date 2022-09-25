@@ -12,7 +12,7 @@
     }
 
     .antd-more-user-layout-side {
-      max-width: 1200px;
+      max-width: @screen-xl;
       margin: 0 auto;
       overflow: hidden;
       background-color: #fff;
@@ -20,12 +20,13 @@
       box-shadow: 0 10px 20px rgba(124, 138, 196, 0.15);
     }
 
-    @media (max-width: 1200px) {
+    @media (max-width: @screen-xl) {
       .antd-more-user-layout-side {
         margin: 0 24px;
       }
     }
 
+    // 如果小于 768px 的屏幕需要隐藏banner的话，请删除注释
     // @media (max-width: @screen-md-less) {
     //   .ant-carousel {
     //     display: none;
