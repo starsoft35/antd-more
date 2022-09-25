@@ -43,6 +43,26 @@ nav:
 
 ## API
 
+除了以下参数，其余和 div 一样。
+
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| logo | 品牌图标 | `string` | - |
+| title | 项目名称 | `ReactNode` | - |
+| headerRightContent | 头部右侧内容 | `ReactNode` | - |
+| renderHeader | 自定义头部渲染 | `(props: BizUserLayoutProps) => ReactNode` | - |
+| hideHeader | 隐藏头部 | `boolean` | - |
+| banner | 广告栏 | `BannerItem[]` | - |
+| bannerCarouselProps | 广告轮播配置 | [CarouselProps] | - |
+| bannerRightContent | 广告栏右侧内容 | `ReactNode` | - |
+| sideRowProps | 侧边栏 Row 属性 | `RowProps` | - |
+| sideColProps | 侧边栏 Col 属性 | `ColProps \| [ColProps, ColProps]` | - |
+| sideBanner | 侧边广告栏 | `BannerItem[]` | - |
+| sideBannerCarouselProps | 侧边广告轮播配置 | [CarouselProps] | - |
+| sideContent | 侧边内容 | `ReactNode` | - |
+| features | 功能介绍 | `Feature[]` | - |
+| footer | 底部链接和版权配置 | `{ links?: FooterLink[]; copyright?: ReactNode; }'` | - |
+
 ```typescript
 type BannerItem = {
   src: string;
@@ -65,25 +85,5 @@ type FooterLink = {
   onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
 };
 ```
-
-除了以下参数，其余和 dev 一样。
-
-| 参数 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- |
-| logo | 品牌图标 | `string` | - |
-| title | 项目名称 | `ReactNode` | - |
-| headerRightContent | 头部右侧内容 | `ReactNode` | - |
-| renderHeader | 自定义头部渲染 | `(props: BizUserLayoutProps) => ReactNode` | - |
-| hideHeader | 隐藏头部 | `boolean` | - |
-| banner | 广告栏 | `BannerItem[]` | - |
-| bannerCarouselProps | 广告轮播配置 | [CarouselProps] | - |
-| bannerRightContent | 广告栏右侧内容 | `ReactNode` | - |
-| sideRowProps | 侧边栏 Row 属性 | `RowProps` | - |
-| sideColProps | 侧边栏 Col 属性 | `ColProps \| [ColProps, ColProps]` | - |
-| sideBanner | 侧边广告栏 | `BannerItem[]` | - |
-| sideBannerCarouselProps | 侧边广告轮播配置 | [CarouselProps] | - |
-| sideContent | 侧边内容 | `ReactNode` | - |
-| features | 功能介绍 | `Feature[]` | - |
-| footer | 底部链接和版权配置 | `{ links?: FooterLink[]; copyright?: ReactNode; }'` | - |
 
 [carouselprops]: https://ant-design.gitee.io/components/carousel-cn/#API
