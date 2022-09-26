@@ -32,42 +32,46 @@ const Side: React.FC<SideProps> = ({ rowProps, colProps, banner = [], carouselPr
     <div className={prefixCls}>
       <Row gutter={[24, 24]} align="middle" {...rowProps}>
         <Col className={`${prefixCls}-banner`} {...defaultColSpan} {...calcColProps[0]}>
-          <Carousel autoplay={banner.length > 1} {...carouselProps}>
-            {banner.map((itemBanner, index) => {
-              const isReactElement = React.isValidElement(itemBanner);
+          {
+            banner && banner.length > 0 && (
+              <Carousel autoplay={banner.length > 1} {...carouselProps}>
+                {banner.map((itemBanner, index) => {
+                  const isReactElement = React.isValidElement(itemBanner);
 
-              let src = '';
-              let title = '';
-              let link, onClick;
+                  let src = '';
+                  let title = '';
+                  let link, onClick;
 
-              if (!isReactElement) {
-                if (typeof itemBanner === 'string') {
-                  src = itemBanner;
-                } else {
-                  src = itemBanner.src;
-                  link = itemBanner.link;
-                  title = itemBanner.title;
-                  onClick = itemBanner.onClick;
-                }
-              }
+                  if (!isReactElement) {
+                    if (typeof itemBanner === 'string') {
+                      src = itemBanner;
+                    } else {
+                      src = itemBanner.src;
+                      link = itemBanner.link;
+                      title = itemBanner.title;
+                      onClick = itemBanner.onClick;
+                    }
+                  }
 
-              const key = isReactElement ? itemBanner.key : src + index;
+                  const key = isReactElement ? itemBanner.key : src + index;
 
-              return (
-                <div className={`${prefixCls}-item`} key={key}>
-                  {isReactElement ? (
-                    itemBanner
-                  ) : link || onClick ? (
-                    <a href={link} title={title} onClick={onClick}>
-                      <img src={src} alt={title} />
-                    </a>
-                  ) : (
-                    <img src={src} alt={title} />
-                  )}
-                </div>
-              );
-            })}
-          </Carousel>
+                  return (
+                    <div className={`${prefixCls}-item`} key={key}>
+                      {isReactElement ? (
+                        itemBanner
+                      ) : link || onClick ? (
+                        <a href={link} title={title} onClick={onClick}>
+                          <img src={src} alt={title} />
+                        </a>
+                      ) : (
+                        <img src={src} alt={title} />
+                      )}
+                    </div>
+                  );
+                })}
+              </Carousel>
+            )
+          }
         </Col>
         <Col className={`${prefixCls}-content`} {...defaultColSpan} {...calcColProps[1]}>
           {content}
