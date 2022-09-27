@@ -42,7 +42,7 @@ export const renderBase64Buffer = (buffer?: string) => {
   return '-';
 };
 
-// 状态和错误原因
+// 状态和备注
 export const renderStatusWithRemark = (text: string, valueEnum: EnumData = [], remark = '') => {
   return (
     <div>
