@@ -33,7 +33,7 @@ const applyList = ({ page: { pageNum, pageSize }, data = {} }) =>
         approveTime: '@datetime',
         approveResult: '@pick(["1","2","3"])',
         'money|0-10000.0-2': 0,
-        remark: '@cword(5,20)'
+        remark: '@cword(10,20)'
       }
     ],
     pageInfo: {

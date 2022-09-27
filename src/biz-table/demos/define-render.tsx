@@ -1,11 +1,10 @@
 import * as React from 'react';
 import type { BizTableRequest, BizTableColumnType } from 'antd-more';
-import { BizTable, BizField } from 'antd-more';
-import { renderMoney, renderDateTime } from './utils/field';
+import { BizTable } from 'antd-more';
+import { renderMoney, renderDateTime, renderStatusWithRemark } from './utils/field';
 import { getApplyList } from './service';
 import type { DataItem } from './service';
 import { ApproveStatus, ApproveStatusOptions } from './constants';
-import { Typography } from 'antd';
 
 const columns: BizTableColumnType<DataItem> = [
   {
@@ -49,21 +48,7 @@ const columns: BizTableColumnType<DataItem> = [
     dataIndex: 'approveResult',
     title: '审核状态',
     render: (text, record) => {
-      return (
-        <div>
-          <BizField value={text} valueType="enumBadge" valueEnum={ApproveStatusOptions} />
-          {text === ApproveStatus.Refused && record.remark && (
-            <div>
-              <Typography.Text
-                style={{ width: 140, color: 'gray' }}
-                ellipsis={{ tooltip: record.remark }}
-              >
-                {record.remark}
-              </Typography.Text>
-            </div>
-          )}
-        </div>
-      );
+      return renderStatusWithRemark(text, ApproveStatusOptions, text === ApproveStatus.Refused && record.remark ? record.remark : '');
     }
   }
 ];

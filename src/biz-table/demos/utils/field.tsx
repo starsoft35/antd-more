@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { divide, formatMoney, setDataURLPrefix } from 'util-helpers';
+import type { EnumData } from 'antd-more';
 import { BizField } from 'antd-more';
+import { Typography } from 'antd';
 
 // 日期时间换行
 export const renderDateTime = (dateTimeStr?: string) => {
@@ -39,3 +41,22 @@ export const renderBase64Buffer = (buffer?: string) => {
   }
   return '-';
 };
+
+// 状态和错误原因
+export const renderStatusWithRemark = (text: string, valueEnum: EnumData = [], remark = '') => {
+  return (
+    <div>
+      <BizField value={text} valueType='enumBadge' valueEnum={valueEnum} />
+      {remark && (
+        <div>
+          <Typography.Text
+            style={{ width: 140, color: 'gray' }}
+            ellipsis={{ tooltip: remark }}
+          >
+            {remark}
+          </Typography.Text>
+        </div>
+      )}
+    </div>
+  )
+}
