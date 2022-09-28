@@ -5,7 +5,6 @@ import * as React from 'react';
 import { GithubOutlined } from '@ant-design/icons';
 import { BizUserLayout } from 'antd-more';
 import LoginBox from './LoginBox';
-import LoginBox2 from './LoginBox2';
 
 function Demo() {
   return (
@@ -23,7 +22,7 @@ function Demo() {
         'https://dummyimage.com/500x500',
         'https://dummyimage.com/500x500'
       ]}
-      sideContent={<LoginBox2 />}
+      sideContent={<div style={{ maxWidth: 450, margin: '0 auto' }}><LoginBox /></div>}
       features={[
         {
           icon: 'https://dummyimage.com/80x80',
@@ -56,7 +55,7 @@ function Demo() {
             link: 'https://doly-dev.github.io/doly-icons/latest/index.html#/icons'
           }
         ],
-        copyright: '©️ 2022 doly-dev'
+        copyright: `©️ ${new Date().getFullYear()} doly-dev`
       }}
     />
   );

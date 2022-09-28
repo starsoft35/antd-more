@@ -4,7 +4,7 @@ import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { waitTime } from 'util-helpers';
 import { BizForm, BizFormItem, BizFormItemInput, BizFormItemPassword } from 'antd-more';
 
-const LoginBox = () => {
+const LoginBox: React.FC<{ showRegisterEnter?: boolean; }> = ({ showRegisterEnter = false }) => {
   return (
     <Card
       title="账号密码登录"
@@ -55,6 +55,13 @@ const LoginBox = () => {
           <a style={{ float: 'right' }}>忘记密码</a>
         </BizFormItem>
       </BizForm>
+      {
+        showRegisterEnter && (
+          <div style={{ marginTop: 24, textAlign: 'center' }}>
+            还没注册，<a>免费注册</a>
+          </div>
+        )
+      }
     </Card>
   );
 };

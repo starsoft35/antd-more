@@ -19,23 +19,31 @@ nav:
 
 内容向上偏移，无 logo
 
-<code src="./demos/coral.tsx" />
+<code src="./demos/login-full.tsx" />
 
 ### 登录页-分栏
 
-<code src="./demos/agent.tsx" />
+<code src="./demos/login-side.tsx" />
 
 ### 登录页-分栏翻转
 
-<code src="./demos/agent-reverse.tsx" />
+<code src="./demos/login-side-reverse.tsx" />
+
+### 登录页-分栏背景
+
+<code src="./demos/login-side-bg.tsx" />
 
 ### 登录页-全屏
 
-<code src="./demos/fullscreen.tsx" />
+<code src="./demos/login-fullscreen.tsx" />
 
 ### 登录页-全屏分栏
 
-<code src="./demos/fullscreen-column.tsx" />
+<code src="./demos/login-fullscreen-column.tsx" />
+
+### 注册页
+
+<code src="./demos/register.tsx" />
 
 ### 忘记密码
 

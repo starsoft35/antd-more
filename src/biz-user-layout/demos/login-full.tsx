@@ -4,7 +4,7 @@
 import * as React from 'react';
 import { BizUserLayout } from 'antd-more';
 import LoginBox from './LoginBox';
-import styles from './coral.less';
+import styles from './login-full.less';
 
 function Demo() {
   return (
@@ -31,7 +31,7 @@ function Demo() {
         }
       ]}
       footer={{
-        copyright: '©️ 2022 doly-dev'
+        copyright: `©️ ${new Date().getFullYear()} doly-dev`
       }}
     />
   );
