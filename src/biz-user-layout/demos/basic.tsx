@@ -1,3 +1,6 @@
+/**
+ * compact: true
+ */
 import * as React from 'react';
 import { GithubOutlined } from '@ant-design/icons';
 import { BizUserLayout } from 'antd-more';

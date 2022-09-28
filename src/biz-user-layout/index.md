@@ -13,33 +13,33 @@ nav:
 
 ### 基础用法
 
-<code src="./demos/basic.tsx" iframe="500" />
+<code src="./demos/basic.tsx" />
 
 ### 登录页-通栏
 
 内容向上偏移，无 logo
 
-<code src="./demos/coral.tsx" iframe="500" />
+<code src="./demos/coral.tsx" />
 
 ### 登录页-分栏
 
-<code src="./demos/agent.tsx" iframe="500" />
+<code src="./demos/agent.tsx" />
 
 ### 登录页-分栏翻转
 
-<code src="./demos/agent-reverse.tsx" iframe="500" />
+<code src="./demos/agent-reverse.tsx" />
 
 ### 登录页-全屏
 
-<code src="./demos/fullscreen.tsx" iframe="500" />
+<code src="./demos/fullscreen.tsx" />
 
 ### 登录页-全屏分栏
 
-<code src="./demos/fullscreen-column.tsx" iframe="500" />
+<code src="./demos/fullscreen-column.tsx" />
 
 ### 忘记密码
 
-<code src="./demos/forget-password.tsx" iframe="500" />
+<code src="./demos/forget-password.tsx" />
 
 ## API
 

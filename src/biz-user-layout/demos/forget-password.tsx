@@ -1,3 +1,6 @@
+/**
+ * compact: true
+ */
 import * as React from 'react';
 import { BizUserLayout } from 'antd-more';
 import ForgetPasswordBox from './ForgetPasswordBox';

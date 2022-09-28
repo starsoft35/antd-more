@@ -1,3 +1,6 @@
+/**
+ * compact: true
+ */
 import * as React from 'react';
 import { message, Card } from 'antd';
 import { BizForm, BizFormItemCaptcha, BizFormItemPassword, BizFormItemInput } from 'antd-more';

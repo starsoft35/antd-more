@@ -1,7 +1,10 @@
+/**
+ * compact: true
+ */
 import * as React from 'react';
 import { BizUserLayout } from 'antd-more';
 import LoginBox from './LoginBox';
-import ImageSideBanner from './images/login_banner@2x.jpg';
+import ImageSideBanner from './images/login_banner.jpg';
 import styles from './agent.less';
 
 function Demo() {
