@@ -13,7 +13,6 @@ const Register = () => {
       }}
       className={styles.wrapper}
     >
-
       <Card className={styles.registerWrapper} bordered={false}>
         <Row align="middle" justify="space-between" style={{ padding: '0 24px' }}>
           <Col>

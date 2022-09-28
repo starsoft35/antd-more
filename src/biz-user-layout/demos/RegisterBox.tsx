@@ -42,7 +42,7 @@ const RegisterBox = () => {
       >
         <BizFormItemInput
           type="mobile"
-          name="loginId"
+          name="mobile"
           inputProps={{
             prefix: <MobileOutlined />,
             placeholder: '请输入手机号码'
@@ -82,18 +82,18 @@ const RegisterBox = () => {
           onGetCaptcha={async () => {
             try {
               // 验证手机号码或邮箱是否正确
-              await form.validateFields(['loginId']);
+              await form.validateFields(['mobile']);
             } catch (err) {
               message.error('请输入正确的手机号码');
               return false;
             }
 
             // 发送验证码
-            return sendCode(form.getFieldValue('loginId').replace(/\s/g, ''));
+            return sendCode(form.getFieldValue('mobile').replace(/\s/g, ''));
           }}
         />
         <BizFormItemPassword
-          name="loginPassword"
+          name="password"
           inputProps={{
             prefix: <LockOutlined />,
             placeholder: '设置密码'
@@ -110,7 +110,7 @@ const RegisterBox = () => {
             placeholder: '请再次输入您的密码'
           }}
           required
-          dependencies={['loginPassword']}
+          dependencies={['password']}
           validateTrigger="onBlur"
           rules={[
             {
@@ -118,7 +118,7 @@ const RegisterBox = () => {
                 let errMsg = '';
                 if (!value) {
                   errMsg = '请再次输入您的密码';
-                } else if (value !== form.getFieldValue('loginPassword')) {
+                } else if (value !== form.getFieldValue('password')) {
                   errMsg = '两次输入的密码不一致';
                 }
                 if (errMsg) {
