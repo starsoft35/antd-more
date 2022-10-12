@@ -30,9 +30,6 @@ function Demo() {
           <LoginBox showRegisterEnter />
         </Card>
       )}
-      footer={{
-        copyright: `©️ ${new Date().getFullYear()} doly-dev`
-      }}
     />
   );
 }
