@@ -1,4 +1,5 @@
 const pkg = require('./package.json');
+const isDev = process.env.NODE_ENV === 'development';
 
 const MajorVersionNumber = Number(pkg.version.split('.')[0]);
 const versionSiteRoot = `refs/heads/v${MajorVersionNumber}`;
@@ -9,7 +10,7 @@ const preVersionSiteRoot = `refs/heads/v${preMajorVersionNumber}`;
 const version = process.env.BUIDL_DOC_VERSION ? versionSiteRoot : 'latest';
 
 const serverRootDirect =
-  process.env.NODE_ENV === 'production' ? 'https://doly-dev.github.io/antd-more/' : '/';
+  !isDev ? 'https://doly-dev.github.io/antd-more/' : '/';
 const logo = 'https://www.caijinfeng.com/assets/images/logo-doly@3x.png';
 const favicon = 'https://www.caijinfeng.com/assets/images/doly-touch-icon_48x48.png';
 
@@ -46,6 +47,14 @@ const umiConfig = {
   },
   theme: {
     '@s-site-menu-width': '258px'
+  },
+
+  // esbuild: isDev,
+  nodeModulesTransform: {
+    type: isDev ? 'none' : 'all'
+  },
+  targets: {
+    ie: 11
   },
   navs: [
     // null, // null 值代表保留约定式生成的导航，只做增量配置
@@ -103,7 +112,7 @@ const umiConfig = {
   }
 };
 
-if (process.env.NODE_ENV === 'production') {
+if (!isDev) {
   umiConfig.headScripts = [
     { src: 'https://www.googletagmanager.com/gtag/js?id=G-N328Y9JJTL' },
     {
