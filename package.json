@@ -23,7 +23,8 @@
     "lint-staged": "lint-staged",
     "precommit": "lint-staged",
     "prepublishOnly": "npm run build",
-    "commit": "cz"
+    "commit": "cz",
+    "tsc": "tsc --noEmit"
   },
   "repository": {
     "type": "git",
@@ -67,6 +68,7 @@
     "cz-conventional-changelog": "^3.3.0",
     "dumi": "^1.1.42",
     "dumi-theme-default": "^1.1.21",
+    "element-remove": "^1.0.4",
     "eslint": "^8.18.0",
     "eslint-plugin-react": "^7.30.0",
     "eslint-plugin-react-hooks": "^4.6.0",

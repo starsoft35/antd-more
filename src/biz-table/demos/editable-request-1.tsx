@@ -49,9 +49,9 @@ const Demo = () => {
       title: '提交时间',
       valueType: 'dateTime',
       search: {
-        valueType: 'date'
-      },
-      order: 2
+        valueType: 'date',
+        order: 1
+      }
     },
     {
       dataIndex: 'applicantName',
@@ -66,9 +66,9 @@ const Demo = () => {
       search: {
         valueType: 'dateTimeRange',
         names: ['startTime', 'endTime'],
-        colProps: { lg: 12, md: 24 }
-      },
-      order: 10
+        colProps: { lg: 12, md: 24 },
+        order: 2
+      }
     },
     {
       dataIndex: 'approverName',

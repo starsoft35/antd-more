@@ -27,9 +27,9 @@ const columns: BizTableColumnType<DataItem> = [
     valueType: 'dateTime',
     render: renderDateTime,
     search: {
-      valueType: 'date'
-    },
-    order: 2
+      valueType: 'date',
+      order: 1
+    }
   },
   {
     dataIndex: 'applicantName',

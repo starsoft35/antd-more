@@ -25,17 +25,16 @@ const columns: BizTableColumnType<DataItem> = [
     field: {
       formatValue: (value) => divide(value, 100), // 分转元
       prefix: '¥'
-    },
-    order: 2
+    }
   },
   {
     dataIndex: 'createTime',
     title: '提交时间',
     valueType: 'dateTime',
     search: {
-      valueType: 'date'
-    },
-    order: 2
+      valueType: 'date',
+      order: 1
+    }
   },
   {
     dataIndex: 'applicantName',
@@ -50,9 +49,9 @@ const columns: BizTableColumnType<DataItem> = [
     search: {
       valueType: 'dateTimeRange',
       names: ['startTime', 'endTime'],
-      colProps: { lg: 12, md: 24 }
-    },
-    order: 10
+      colProps: { lg: 12, md: 24 },
+      order: 2
+    }
   },
   {
     dataIndex: 'approverName',

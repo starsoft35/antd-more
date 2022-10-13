@@ -4743,6 +4743,11 @@ electron-to-chromium@^1.4.164:
   resolved "https://registry.npmjs.org/electron-to-chromium/-/electron-to-chromium-1.4.165.tgz#a1ae079a4412b0c2d3bf6908e8db54511fb0bbac"
   integrity sha512-DKQW1lqUSAYQvn9dnpK7mWaDpWbNOXQLXhfCi7Iwx0BKxdZOxkKcCyKw1l3ihWWW5iWSxKKbhEUoNRoHvl/hbA==
 
+element-remove@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.npmjs.org/element-remove/-/element-remove-1.0.4.tgz#e587c53176bb196310bc99a75f45fe6eda016c21"
+  integrity sha512-01T/lcLW4gkT+5xVsHTheEigd5S3q2NBZsIf9Tqm2iXP8OjtWqGZW3axzgZqlAO8s4SqvQvG2kePAtHUCSsgrg==
+
 elliptic@^6.5.3:
   version "6.5.4"
   resolved "https://registry.npmjs.org/elliptic/-/elliptic-6.5.4.tgz#da37cebd31e79a1367e941b592ed1fbebd58abbb"

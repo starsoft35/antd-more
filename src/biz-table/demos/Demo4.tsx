@@ -33,10 +33,10 @@ const columns: BizTableColumnType<DataItem> = [
       valueType: 'dateTimeRange', // 日期范围，当valueType不满足时，使用 itemType 指定 formItem 类型
       names: ['startTime', 'endTime'],
       initialValue: ['2020-10-10 00:00:00', '2020-11-11 11:11:11'],
-      colProps: { lg: 12, md: 24 }
+      colProps: { lg: 12, md: 24 },
+      order: 9
     },
-    table: false,
-    order: 2
+    table: false
   },
   {
     dataIndex: 'approverName',
@@ -78,7 +78,7 @@ const columns: BizTableColumnType<DataItem> = [
       itemType: 'radio',
       all: true,
       initialValue: '',
-      colProps: { lg: 16, md: 24 }
+      colProps: { lg: 24, md: 24 }
     },
     table: false
   },
@@ -90,7 +90,7 @@ const columns: BizTableColumnType<DataItem> = [
     search: {
       itemType: 'checkbox',
       all: true,
-      colProps: { lg: 16, md: 24 }
+      colProps: { lg: 24, md: 24 }
     },
     table: false
   },
@@ -98,69 +98,75 @@ const columns: BizTableColumnType<DataItem> = [
     dataIndex: 'dateWeek',
     valueType: 'dateWeek',
     title: '周',
-    search: true,
-    table: false,
-    order: 1
+    search: {
+      order: 1
+    },
+    table: false
   },
   {
     dataIndex: 'dateMonth',
     valueType: 'dateMonth',
     title: '月',
-    search: true,
-    table: false,
-    order: 1
+    search: {
+      order: 2
+    },
+    table: false
   },
   {
     dataIndex: 'dateQuarter',
     valueType: 'dateQuarter',
     title: '季',
-    search: true,
-    table: false,
-    order: 1
+    search: {
+      order: 3
+    },
+    table: false
   },
   {
     dataIndex: 'dateYear',
     valueType: 'dateYear',
     title: '年',
-    search: true,
-    table: false,
-    order: 1
+    search: {
+      order: 4
+    },
+    table: false
   },
   {
     dataIndex: 'dateTime',
     valueType: 'dateTime',
     title: '日期时间',
-    search: true,
-    table: false,
-    order: 1
+    search: {
+      order: 5
+    },
+    table: false
   },
   {
     dataIndex: 'time',
     valueType: 'time',
     title: '时间',
-    search: true,
-    table: false,
-    order: 1
+    search: {
+      order: 6
+    },
+    table: false
   },
   {
     dataIndex: 'dateRange',
     valueType: 'dateRange',
     title: '日期区间',
     search: {
-      colProps: { lg: 12, md: 24 }
+      colProps: { lg: 12, md: 24 },
+      order: 7
     },
-    table: false,
-    order: 1
+    table: false
   },
   {
     dataIndex: 'timeRange',
     valueType: 'timeRange',
     title: '时间区间',
     search: {
-      colProps: { lg: 12, md: 24 }
+      colProps: { lg: 12, md: 24 },
+      order: 8
     },
-    table: false,
-    order: 1
+    table: false
   },
   {
     dataIndex: 'slider',
@@ -168,13 +174,13 @@ const columns: BizTableColumnType<DataItem> = [
     search: {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       render: ({ dataIndex, title }, dom, form) => (
-        <BizFormItem name={dataIndex} label={title} colProps={{ lg: 12, md: 24 }}>
+        <BizFormItem name={dataIndex} label={title as string} colProps={{ lg: 12, md: 24 }}>
           <Slider />
         </BizFormItem>
-      )
+      ),
+      order: 10
     },
-    table: false,
-    order: 3
+    table: false
   }
 ];
 

@@ -7,15 +7,14 @@ import type { BizTableRequest, BizTableColumnType } from 'antd-more';
 import { BizTable } from 'antd-more';
 import { waitTime } from 'util-helpers';
 import { getApplyList } from './service';
-import type { ApproveStatus } from './constants';
-import { ApproveStatusOptions } from './constants';
+import { ApproveStatus, ApproveStatusOptions } from './constants';
 
 async function getAsyncInitialValues() {
   await waitTime(5000);
   return {
     applyCode: '123456',
     createTime: '2020-10-10',
-    approveResult: 1 as ApproveStatus
+    approveResult: ApproveStatus.Processing
   };
 }
 

@@ -41,7 +41,7 @@ const columns: BizTableColumnType<DataItem> = [
     search: {
       valueType: 'date'
     },
-    order: 2
+    order: 1
   },
   {
     dataIndex: 'applicantName',
@@ -56,9 +56,9 @@ const columns: BizTableColumnType<DataItem> = [
     search: {
       valueType: 'dateTimeRange',
       names: ['startTime', 'endTime'],
-      colProps: { lg: 12, md: 24 }
-    },
-    order: 10
+      colProps: { lg: 12, md: 24 },
+      order: 2
+    }
   },
   {
     dataIndex: 'approverName',
