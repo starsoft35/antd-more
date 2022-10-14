@@ -12,7 +12,7 @@ const version = process.env.BUIDL_DOC_VERSION ? versionSiteRoot : 'latest';
 const serverRootDirect =
   !isDev ? 'https://doly-dev.github.io/antd-more/' : '/';
 const logo = 'https://doly-dev.github.io/logo.png';
-const favicon = 'https://doly-dev.github.io/favicon.ico';
+const favicon = 'https://doly-dev.github.io/favicon.png';
 
 const outputPath = 'site';
 const publicPath = serverRootDirect + version + '/';
