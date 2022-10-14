@@ -29,7 +29,7 @@ const Demo = () => {
       breakpoint={false}
       defaultCollapsed
       pageTitleRender={false}
-      logo="https://www.caijinfeng.com/assets/images/logo-doly@3x.png"
+      logo="https://doly-dev.github.io/logo.png"
       title="antd-more"
       menuDataRender={() => [
         {

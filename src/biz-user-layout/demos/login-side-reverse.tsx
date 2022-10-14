@@ -11,7 +11,7 @@ function Demo() {
   return (
     <BizUserLayout
       className={styles.wrapper}
-      logo="https://www.caijinfeng.com/assets/images/logo-doly@3x.png"
+      logo="https://doly-dev.github.io/logo.png"
       title="antd-more"
       sideBanner={[ImageSideBanner]}
       sideRowProps={{

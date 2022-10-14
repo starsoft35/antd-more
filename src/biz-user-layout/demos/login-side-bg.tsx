@@ -22,7 +22,7 @@ function Demo() {
           <Row align="middle" justify="space-between" style={{ padding: '0 24px', marginBottom: 24 }}>
             <Col>
               <Space>
-                <img src="https://www.caijinfeng.com/assets/images/logo-doly@3x.png" alt='logo' style={{ width: 40 }} />
+                <img src="https://doly-dev.github.io/logo.png" alt='logo' style={{ width: 40 }} />
                 <div style={{ fontSize: 24, fontWeight: 500 }}>antd-more</div>
               </Space>
             </Col>

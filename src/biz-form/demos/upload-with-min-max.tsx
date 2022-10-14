@@ -15,7 +15,7 @@ async function getStaticServerPath(fssId: string) {
   if (Math.random() > 0.3) {
     return {
       bigImg: `https://zos.alipayobjects.com/rmsportal/${fssId}.png`,
-      thumbImg: `https://www.caijinfeng.com/assets/images/logo-doly@3x.png`
+      thumbImg: `https://doly-dev.github.io/logo.png`
     };
   }
   throw new Error('error');
@@ -120,7 +120,7 @@ const Demo = () => {
           label="图片"
           type="image"
           onUpload={uploadImage}
-          // onGetPreviewUrl={async () => "https://www.caijinfeng.com/assets/images/logo-doly@3x.png"}
+          // onGetPreviewUrl={async () => "https://doly-dev.github.io/logo.png"}
           maxCount={9}
           required
           transform={transformUploadValue}
