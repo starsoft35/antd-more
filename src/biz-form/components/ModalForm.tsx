@@ -72,7 +72,7 @@ const ModalForm: React.FC<ModalFormProps> = ({
             formRef.current.resetFields();
           }
         }}
-        submitter={{
+        submitter={typeof submitter === 'undefined' || submitter ? {
           submitText: modalProps?.okText || '确认',
           resetText: modalProps?.cancelText || '取消',
           submitButtonProps: {
@@ -94,7 +94,7 @@ const ModalForm: React.FC<ModalFormProps> = ({
             }
             return submitterDom.reverse();
           }
-        }}
+        } : submitter}
         formRender={(formDom, submitterDom) => (
           <Modal
             title={title}

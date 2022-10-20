@@ -72,7 +72,7 @@ const DrawerForm: React.FC<DrawerFormProps> = ({
             formRef.current.resetFields();
           }
         }}
-        submitter={{
+        submitter={typeof submitter === 'undefined' || submitter ? {
           submitText: '确认',
           resetText: '取消',
           ...submitter,
@@ -91,7 +91,7 @@ const DrawerForm: React.FC<DrawerFormProps> = ({
             }
             return submitterDom.reverse();
           }
-        }}
+        } : submitter}
         formRender={(formDom, submitterDom) => (
           <Drawer
             title={title}
