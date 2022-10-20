@@ -33,34 +33,34 @@ const WrapperFormElement: React.FC<WrapperFormElementProps> = ({
     () =>
       trigger
         ? {
-            [trigger]: handleTrigger
-          }
+          [trigger]: handleTrigger
+        }
         : {},
     [handleTrigger, trigger]
   );
 
   const childrenView = React.isValidElement(children)
     ? React.cloneElement(
-        children as React.ReactElement<any, string | React.JSXElementConstructor<any>>,
-        {
-          ...restProps,
-          ...triggerProp,
-          style: {
-            flex: 1,
-            ...restProps?.style
-          }
+      children as React.ReactElement<any, string | React.JSXElementConstructor<any>>,
+      {
+        ...restProps,
+        ...triggerProp,
+        style: {
+          flex: 1,
+          ...restProps?.style
         }
-      )
+      }
+    )
     : (children as any);
 
   if (!after && !before) {
-    return childrenView;
+    return childrenView === void 0 ? null : childrenView;
   }
 
   const styles = align
     ? {
-        alignItems: align
-      }
+      alignItems: align
+    }
     : {};
 
   return (
