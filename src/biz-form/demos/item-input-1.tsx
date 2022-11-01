@@ -41,8 +41,11 @@ const Demo = () => {
         }
       />
       <BizFormItemInput label="银行卡号" name="bankCardNo" type="bankCard" />
+      {/* <BizFormItemInput label="无格式银行卡" name="bankCardNo2" type="bankCard" format={false} /> */}
       <BizFormItemInput label="手机号码" name="phone" type="mobile" />
+      <BizFormItemInput label="无格式手机号" name="phone2" type="mobile" format={false} />
       <BizFormItemInput label="身份证号" name="idc" type="idCard" />
+      {/* <BizFormItemInput label="无格式身份证" name="idc2" type="idCard" format={false} /> */}
       <BizFormItemInput label="邮箱" name="ema" type="email" />
       <BizFormItemInput
         label="用户名"

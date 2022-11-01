@@ -14,6 +14,7 @@ type InputType = InputProps['type'] | 'bankCard' | 'email' | 'idCard' | 'mobile'
 export interface InputWrapperProps extends InputProps {
   type?: InputType;
   disabledWhiteSpace?: boolean;
+  format?: boolean;
 }
 
 const InputWrapper: React.FC<InputWrapperProps> = ({
@@ -21,8 +22,19 @@ const InputWrapper: React.FC<InputWrapperProps> = ({
   onChange,
   type,
   disabledWhiteSpace,
+  format = true,
   ...restProps
 }) => {
+  const maxLen = React.useMemo(() => {
+    if (!format) {
+      if (type === 'mobile') {
+        return 11;
+      } else if (type === 'idCard') {
+        return 18;
+      }
+    }
+    return undefined;
+  }, [format, type]);
   const realType = React.useMemo(() => {
     if (
       type === 'bankCard' ||
@@ -37,13 +49,15 @@ const InputWrapper: React.FC<InputWrapperProps> = ({
   }, [type]);
   const needAdjustPos = React.useMemo(
     () =>
-      type === 'bankCard' ||
-      type === 'mobile' ||
-      type === 'idCard' ||
-      type === 'email' ||
-      type === 'userName' ||
-      disabledWhiteSpace,
-    [type, disabledWhiteSpace]
+      format && (
+        type === 'bankCard' ||
+        type === 'mobile' ||
+        type === 'idCard' ||
+        type === 'email' ||
+        type === 'userName' ||
+        disabledWhiteSpace
+      ),
+    [format, type, disabledWhiteSpace]
   );
 
   const calcPosOpts = React.useMemo(() => {
@@ -65,17 +79,17 @@ const InputWrapper: React.FC<InputWrapperProps> = ({
   const normalize = React.useCallback(
     (val: string) => {
       if (type === 'bankCard') {
-        return normalizeBankCard(val);
+        return normalizeBankCard(val, format);
       } else if (type === 'mobile') {
-        return normalizeMobile(val);
+        return normalizeMobile(val, format);
       } else if (type === 'idCard') {
-        return normalizeIdCard(val);
+        return normalizeIdCard(val, format);
       } else if (type === 'email' || type === 'userName' || disabledWhiteSpace) {
         return normalizeWhiteSpace(val);
       }
       return val;
     },
-    [disabledWhiteSpace, type]
+    [disabledWhiteSpace, format, type]
   );
 
   const handleChange = React.useCallback(
@@ -117,7 +131,7 @@ const InputWrapper: React.FC<InputWrapperProps> = ({
     }
   }, [needAdjustPos, normalize, onChange, value]);
 
-  return <Input value={value} onChange={handleChange} type={realType} {...restProps} />;
+  return <Input value={value} onChange={handleChange} type={realType} maxLength={maxLen} {...restProps} />;
 };
 
 export default InputWrapper;

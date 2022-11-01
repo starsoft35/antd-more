@@ -8,22 +8,25 @@ export const normalizeWhiteSpace = (value: string) => {
 };
 
 // 标准化输入银行卡号
-export const normalizeBankCard = (value: string, symbol = '') => {
+export const normalizeBankCard = (value: string, format = true) => {
   const valueStr = normalizeString(value);
-  const reg = symbol ? new RegExp(`[^\\d\\${symbol}]`, 'g') : /[^\d]/g;
-  return formatBankCard(valueStr.replace(reg, ''));
+  const reg = /[^\d]/g;
+  const ret = valueStr.replace(reg, '');
+  return format ? formatBankCard(ret) : ret;
 };
 
 // 标准化输入身份证号
-export const normalizeIdCard = (value, symbol = '') => {
+export const normalizeIdCard = (value, format = true) => {
   const valueStr = normalizeString(value);
-  const reg = symbol ? new RegExp(`[^\\dx\\${symbol}]`, 'gi') : /[^\dx]/gi;
-  return valueStr.replace(reg, '').substring(0, 18).toUpperCase();
+  const reg = /[^\dx]/gi;
+  const ret = valueStr.replace(reg, '').substring(0, 18);
+  return format ? ret.toUpperCase() : ret;
 };
 
 // 标准化输入手机号码
-export const normalizeMobile = (value, symbol = '') => {
+export const normalizeMobile = (value, format = true) => {
   const valueStr = normalizeString(value);
-  const reg = symbol ? new RegExp(`[^\\d\\${symbol}]`, 'g') : /[^\d]/g;
-  return formatMobile(valueStr.replace(reg, ''));
+  const reg = /[^\d]/g;
+  const ret = valueStr.replace(reg, '');
+  return format ? formatMobile(ret) : ret;
 };

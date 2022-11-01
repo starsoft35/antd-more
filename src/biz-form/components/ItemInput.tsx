@@ -34,6 +34,7 @@ export interface BizFormItemInputProps extends BizFormItemProps {
   type?: InputWrapperProps['type'];
   disabledWhiteSpace?: boolean;
   inputProps?: InputProps;
+  format?: InputWrapperProps['format'];
 }
 
 const BizFormItemInput: React.FC<BizFormItemInputProps> = ({
@@ -42,6 +43,7 @@ const BizFormItemInput: React.FC<BizFormItemInputProps> = ({
   inputProps = {},
   required = false,
   transform,
+  format = true,
   ...restProps
 }) => {
   const hasSpecialType = React.useMemo(
@@ -58,12 +60,12 @@ const BizFormItemInput: React.FC<BizFormItemInputProps> = ({
       if (transform) {
         return transform(val);
       }
-      if (type === 'bankCard' || type === 'mobile') {
+      if (format && (type === 'bankCard' || type === 'mobile')) {
         return val?.replace(/\D/g, '');
       }
       return val;
     },
-    [transform, type]
+    [format, transform, type]
   );
 
   const messageLabel = getLabel(restProps);
@@ -100,6 +102,7 @@ const BizFormItemInput: React.FC<BizFormItemInputProps> = ({
         autoComplete="off"
         type={type}
         disabledWhiteSpace={disabledWhiteSpace}
+        format={format}
         {...inputProps}
       />
     </BizFormItem>

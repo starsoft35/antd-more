@@ -298,6 +298,7 @@ Input 输入框
 | --- | --- | --- | --- |
 | type | 输入框类型。 | `'mobile' \| 'bankCard' \| 'idCard' \| 'email' \| 'userName'` | - |
 | disabledWhiteSpace | 禁止输入空白符。 | `boolean` | - |
+| format | 是否格式化。仅在设置为 `type=mobile \| bankCard \| idCard` 时生效。<br/>手机号码和银行卡号不格式化空格，身份证号`x`不强制大写。 | `boolean` | `true` |
 | inputProps | 输入框的属性 | [InputProps](https://ant-design.gitee.io/components/input-cn/#API) | - |
 
 ### Number
