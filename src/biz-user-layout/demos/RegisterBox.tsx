@@ -51,22 +51,19 @@ const RegisterBox = () => {
           required
         />
         <BizFormItem>
-          {/* 外面这层div是给FormItem默认设置 flex 样式用的 */}
-          <div>
-            <SliderCaptcha
-              request={getCaptcha}
-              onVerify={verifyCaptcha}
-              bgSize={{
-                width: 348,
-                height: 110
-              }}
-              puzzleSize={{
-                width: 62
-              }}
-              mode='float'
-              style={{ zIndex: 2 }}
-            />
-          </div>
+          <SliderCaptcha
+            request={getCaptcha}
+            onVerify={verifyCaptcha}
+            bgSize={{
+              width: 348,
+              height: 110
+            }}
+            puzzleSize={{
+              width: 62
+            }}
+            mode='float'
+            style={{ zIndex: 2 }}
+          />
         </BizFormItem>
         <BizFormItemCaptcha
           name="code"
