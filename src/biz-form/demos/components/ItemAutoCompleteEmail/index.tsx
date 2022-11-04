@@ -11,8 +11,14 @@ const ItemAutoCompleteEmail: React.FC<BizFormItemAutoCompleteProps> = ({ extendR
   const [options, setOptions] = useState<BizFormItemAutoCompleteProps['options']>([]);
 
   const updateOptions = (val?: string) => {
-    const opts = val ? EmailSuffix.map(suffix => {
-      const opt = val.split('@')[0] + suffix;
+    const [valPrefix, valSuffix] = val.split('@');
+    const opts = val ? EmailSuffix.filter(suffix => {
+      if (!valSuffix) {
+        return true;
+      }
+      return suffix.indexOf(valSuffix) > 0;
+    }).map(suffix => {
+      const opt = valPrefix + suffix;
       return {
         label: opt,
         value: opt
