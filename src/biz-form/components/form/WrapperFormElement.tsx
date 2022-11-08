@@ -44,11 +44,7 @@ const WrapperFormElement: React.FC<WrapperFormElementProps> = ({
       children as React.ReactElement<any, string | React.JSXElementConstructor<any>>,
       {
         ...restProps,
-        ...triggerProp,
-        style: {
-          flex: 1,
-          ...restProps?.style
-        }
+        ...triggerProp
       }
     )
     : (children as any);
@@ -66,7 +62,7 @@ const WrapperFormElement: React.FC<WrapperFormElementProps> = ({
   return (
     <div className={prefixCls} style={styles}>
       {before && <div className={`${prefixCls}-before`}>{before}</div>}
-      {childrenView}
+      <div className={`${prefixCls}-content`}>{childrenView}</div>
       {after && <div className={`${prefixCls}-after`}>{after}</div>}
     </div>
   );

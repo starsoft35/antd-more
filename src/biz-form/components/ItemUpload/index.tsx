@@ -22,17 +22,17 @@ const normFile = (e) => {
 
 export interface BizFormItemUploadProps
   extends BizFormItemProps,
-    Pick<
-      UploadWrapperProps,
-      | 'accept'
-      | 'onUpload'
-      | 'fileTypeMessage'
-      | 'fileSizeMessage'
-      | 'maxCountMessage'
-      | 'maxSize'
-      | 'maxCount'
-      | 'onGetPreviewUrl'
-    > {
+  Pick<
+    UploadWrapperProps,
+    | 'accept'
+    | 'onUpload'
+    | 'fileTypeMessage'
+    | 'fileSizeMessage'
+    | 'maxCountMessage'
+    | 'maxSize'
+    | 'maxCount'
+    | 'onGetPreviewUrl'
+  > {
   type?: 'default' | 'image' | 'avatar' | 'dragger';
   uploadProps?: UploadProps;
   disabled?: boolean;
@@ -64,85 +64,81 @@ const BizFormItemUpload: React.FC<BizFormItemUploadProps> & {
   transform,
   ...restProps
 }) => {
-  const { parentListName } = React.useContext(ListFieldContext);
-  const { form } = React.useContext(FieldContext);
+    const { parentListName } = React.useContext(ListFieldContext);
+    const { form } = React.useContext(FieldContext);
 
-  const Comp = React.useMemo(() => {
-    if (type === 'image') {
-      return UploadImage;
-    }
-    if (type === 'avatar') {
-      return UploadAvatar;
-    }
-    if (type === 'dragger') {
-      return UploadDragger;
-    }
-    return UploadButton;
-  }, [type]);
+    const Comp = React.useMemo(() => {
+      if (type === 'image') {
+        return UploadImage;
+      }
+      if (type === 'avatar') {
+        return UploadAvatar;
+      }
+      if (type === 'dragger') {
+        return UploadDragger;
+      }
+      return UploadButton;
+    }, [type]);
 
-  const validateTrigger =
-    (uploadProps?.action || onUpload) && !restProps.validateTrigger
-      ? false
-      : restProps.validateTrigger || 'onChange';
+    const validateTrigger =
+      (uploadProps?.action || onUpload) && !restProps.validateTrigger
+        ? false
+        : restProps.validateTrigger || 'onChange';
 
-  // 触发表单校验
-  const triggeValidate = React.useCallback(() => {
-    const namePath =
-      Array.isArray(parentListName) && parentListName.length > 0
-        ? getNamePaths(name, parentListName)
-        : name;
-    form.validateFields([namePath]);
-  }, [form, name, parentListName]);
+    // 触发表单校验
+    const triggeValidate = React.useCallback(() => {
+      const namePath =
+        Array.isArray(parentListName) && parentListName.length > 0
+          ? getNamePaths(name, parentListName)
+          : name;
+      form.validateFields([namePath]);
+    }, [form, name, parentListName]);
 
-  return (
-    <BizFormItem
-      required={required}
-      valuePropName="fileList"
-      getValueFromEvent={normFile}
-      transform={transform}
-      name={name}
-      validateTrigger={validateTrigger}
-      rules={[
-        {
-          validator(rules, value) {
-            let errMsg = '';
-            const realValue = value && typeof transform === 'function' ? transform(value) : value;
+    return (
+      <BizFormItem
+        required={required}
+        valuePropName="fileList"
+        getValueFromEvent={normFile}
+        transform={transform}
+        name={name}
+        validateTrigger={validateTrigger}
+        rules={[
+          {
+            validator(rules, value) {
+              let errMsg = '';
+              const realValue = value && typeof transform === 'function' ? transform(value) : value;
 
-            if (!realValue || (Array.isArray(realValue) && realValue.length <= 0)) {
-              errMsg = required ? `请上传${getLabel(restProps)}` : '';
+              if (!realValue || (Array.isArray(realValue) && realValue.length <= 0)) {
+                errMsg = required ? `请上传${getLabel(restProps)}` : '';
+              }
+              if (errMsg) {
+                return Promise.reject(errMsg);
+              }
+              return Promise.resolve();
             }
-            if (errMsg) {
-              return Promise.reject(errMsg);
-            }
-            return Promise.resolve();
           }
-        }
-      ]}
-      {...restProps}
-      contentConfig={{
-        align: 'flex-start',
-        ...restProps.contentConfig
-      }}
-    >
-      <Comp
-        accept={accept}
-        onUpload={onUpload}
-        onGetPreviewUrl={onGetPreviewUrl}
-        fileTypeMessage={fileTypeMessage}
-        fileSizeMessage={fileSizeMessage}
-        maxSize={maxSize}
-        maxCount={maxCount}
-        maxCountMessage={maxCountMessage}
-        disabled={disabled}
-        multiple={multiple}
-        icon={icon}
-        title={title}
-        internalTriggeValidate={!validateTrigger ? triggeValidate : undefined}
-        {...uploadProps}
-      />
-    </BizFormItem>
-  );
-};
+        ]}
+        {...restProps}
+      >
+        <Comp
+          accept={accept}
+          onUpload={onUpload}
+          onGetPreviewUrl={onGetPreviewUrl}
+          fileTypeMessage={fileTypeMessage}
+          fileSizeMessage={fileSizeMessage}
+          maxSize={maxSize}
+          maxCount={maxCount}
+          maxCountMessage={maxCountMessage}
+          disabled={disabled}
+          multiple={multiple}
+          icon={icon}
+          title={title}
+          internalTriggeValidate={!validateTrigger ? triggeValidate : undefined}
+          {...uploadProps}
+        />
+      </BizFormItem>
+    );
+  };
 
 BizFormItemUpload.Preview = Preview;
 
