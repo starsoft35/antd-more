@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { BizForm, BizFormItemDate } from 'antd-more';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import ItemDateRangeDefine from './components/ItemDateRangeDefine';
 
 const initialValues = {
   date7: '2020-10-10',
-  date8: moment('2020-10-10')
+  date8: dayjs('2020-10-10')
 };
 
 const Demo = () => {
@@ -42,12 +42,12 @@ const Demo = () => {
         tooltip="一年以前和明天以后日期不可选"
       />
       <BizFormItemDate label="默认值1" name="date7" tooltip="支持string格式" />
-      <BizFormItemDate label="默认值2" name="date8" tooltip="moment格式" />
+      <BizFormItemDate label="默认值2" name="date8" tooltip="dayjs格式" />
       <ItemDateRangeDefine
         label="自定义日期范围"
         name="date9"
         labelWidth={126}
-        // required
+      // required
       />
     </BizForm>
   );

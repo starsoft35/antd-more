@@ -1,9 +1,7 @@
 /**
  * title: 基础用法
  */
-
 import React from 'react';
-import 'moment/locale/zh-cn';
 import { Descriptions } from 'antd';
 import { BizField } from 'antd-more';
 import { ApproveStatusOptions } from './constants';

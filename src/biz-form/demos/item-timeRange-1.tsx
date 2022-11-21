@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { Checkbox } from 'antd';
 import { BizForm, BizFormItemTimeRange } from 'antd-more';
-import moment from 'moment';
+import dayjs from 'dayjs';
 
 const initialValues = {
   time5: ['14:59:45', '18:00:00'],
-  time6: [moment('14:59:45', 'HH:mm:ss'), moment('18:00:00', 'HH:mm:ss')]
+  time6: [dayjs('14:59:45', 'HH:mm:ss'), dayjs('18:00:00', 'HH:mm:ss')]
 };
 
 // 回显时判断是否选中24小时
@@ -75,7 +75,7 @@ const Demo = () => {
       />
       <BizFormItemTimeRange label="时分" name="time4" format="HH:mm" />
       <BizFormItemTimeRange label="默认值1" name="time5" tooltip="支持string格式" />
-      <BizFormItemTimeRange label="默认值2" name="time6" tooltip="moment格式" />
+      <BizFormItemTimeRange label="默认值2" name="time6" tooltip="dayjs格式" />
     </BizForm>
   );
 };

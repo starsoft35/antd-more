@@ -16,73 +16,73 @@ nav:
 
 ### 创建用户
 
-<code src='./demos/base-register.tsx' />
+<code src='./demos/base-register.tsx'></code>
 
 ### 登录
 
-<code src='./demos/base-login.tsx' />
+<code src='./demos/base-login.tsx'></code>
 
 ### 忘记密码
 
-<code src='./demos/forget-password.tsx' />
+<code src='./demos/forget-password.tsx'></code>
 
 ### 修改密码
 
-<code src='./demos/change-password.tsx' />
+<code src='./demos/change-password.tsx'></code>
 
 ### 实时上传文件图片
 
 添加文件后，立即上传到文件服务器，异步返回值将挂载到 `file.response` 上，提交和校验时取出 `file.response.fssId` 。
 
-<code src='./demos/upload-real-time.tsx' />
+<code src='./demos/upload-real-time.tsx'></code>
 
 ### 实时上传文件含默认值
 
 修改页面中需要显示已有文件，并且支持实时上传。
 
-<code src='./demos/upload-with-default.tsx' />
+<code src='./demos/upload-with-default.tsx'></code>
 
 ### 提交时一次性上传所有文件
 
 添加文件后不触发上传，在提交时获取所有文件一次性上传。
 
-<code src='./demos/upload-no-upload.tsx' />
+<code src='./demos/upload-no-upload.tsx'></code>
 
 ### 上传各种类型文件预览
 
-<code src='./demos/upload-file-viewer.tsx' />
+<code src='./demos/upload-file-viewer.tsx'></code>
 
 <!-- ### 自定义上传证件
 
-<code src='./demos/upload-certificate.tsx' /> -->
+<code src='./demos/upload-certificate.tsx'></code> -->
 
 ### 联动 1
 
 通过 `shouldUpdate` 实现
 
-<code src='./demos/form-linkage-1.tsx' />
+<code src='./demos/form-linkage-1.tsx'></code>
 
 ### 联动 2
 
 通过 `Form.useWatch` 实现
 
-<code src='./demos/form-linkage-2.tsx' />
+<code src='./demos/form-linkage-2.tsx'></code>
 
 ### 企业信息
 
-<code src='./demos/company-info.tsx' />
+<code src='./demos/company-info.tsx'></code>
 
 ### 结算信息
 
-<code src='./demos/settlement-info.tsx' />
+<code src='./demos/settlement-info.tsx'></code>
 
 ### 返佣信息
 
-<code src='./demos/rakebacke-info.tsx' />
+<code src='./demos/rakebacke-info.tsx'></code>
 
 ### 异步初始值
 
-<code src='./demos/async-initial-values.tsx' />
+<code src='./demos/async-initial-values.tsx'></code>
 
 ## API
 

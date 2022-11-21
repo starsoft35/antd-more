@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import type { TimeRangePickerProps } from './antd.interface';
 import type { BizFormItemProps } from './Item';
 import BizFormItem from './Item';
-import { transformMomentTime } from '../_util/dateUtil';
+import { transformDayjsTime } from '../_util/dateUtil';
 import { transformDate, InvalidFieldValue } from '../_util/transform';
 import getLabel from '../_util/getLabel';
 import uniqueId from '../_util/uniqueId';
@@ -20,7 +20,7 @@ const TimePickerRangeWrapper: React.FC<TimeRangePickerProps> = ({
 }) => {
   return (
     <RangePicker
-      value={transformMomentTime(value, format as string)}
+      value={transformDayjsTime(value, format as string)}
       format={format}
       {...restProps}
     />

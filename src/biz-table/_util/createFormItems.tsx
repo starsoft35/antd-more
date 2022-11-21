@@ -1,6 +1,6 @@
 import * as React from 'react';
 import type { FormInstance } from 'antd';
-import type { NamePath } from 'antd/lib/form/interface';
+import type { NamePath } from 'antd/es/form/interface';
 import type { SearchProps } from '../interface';
 import { DateFormat } from '../../biz-field/_util/dateUtil';
 import { ItemTypes, ValueTypeToItemType, DatePickerMap } from './constants';

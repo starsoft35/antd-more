@@ -26,12 +26,12 @@ export type {
   UploadFile
 } from 'antd';
 
-export type { CheckboxGroupProps } from 'antd/lib/checkbox';
-export type { MonthPickerProps, WeekPickerProps } from 'antd/lib/date-picker';
-export type { RangePickerProps } from 'antd/lib/date-picker';
-export type { RangePickerDateProps } from 'antd/lib/date-picker/generatePicker';
-export type { PasswordProps, TextAreaProps } from 'antd/lib/input';
-export type { SliderRangeProps } from 'antd/lib/slider';
-export type { FormListProps } from 'antd/lib/form';
+export type { CheckboxGroupProps } from 'antd/es/checkbox';
+export type { MonthPickerProps, WeekPickerProps } from 'antd/es/date-picker';
+export type { RangePickerProps } from 'antd/es/date-picker';
+export type { RangePickerDateProps } from 'antd/es/date-picker/generatePicker';
+export type { PasswordProps, TextAreaProps } from 'antd/es/input';
+export type { SliderRangeProps } from 'antd/es/slider';
+export type { FormListProps } from 'antd/es/form';
 
-export type { UploadChangeParam, RcFile } from 'antd/lib/upload/interface';
+export type { UploadChangeParam, RcFile } from 'antd/es/upload/interface';

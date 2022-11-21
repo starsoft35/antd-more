@@ -9,8 +9,6 @@ yarn-error.log*
 # production
 dist
 coverage
-.npmignore
-components/**/*.css
 
 # misc
 .DS_Store
@@ -18,7 +16,11 @@ components/**/*.css
 # editor
 .idea
 
+.dumi/tmp
+.dumi/tmp-test
+.dumi/tmp-production
 .umi
+.umi-test
 .umi-production
 package-lock.json
 .cache

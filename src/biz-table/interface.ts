@@ -1,5 +1,5 @@
 import type { TableColumnType, FormInstance } from 'antd';
-import type { SorterResult, TableCurrentDataSource } from 'antd/lib/table/interface';
+import type { SorterResult, TableCurrentDataSource } from 'antd/es/table/interface';
 import type { BizFieldValueType, EnumData, BizFieldProps } from '../biz-field';
 import type { BizFormItemProps } from '../biz-form';
 import type { ItemTypes } from './_util/constants';

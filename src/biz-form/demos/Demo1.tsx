@@ -1,5 +1,4 @@
 import * as React from 'react';
-import 'moment/locale/zh-cn';
 import { Switch, Row, Col } from 'antd';
 import {
   BizForm,

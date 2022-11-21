@@ -6,11 +6,16 @@
     "target": "esnext",
     "moduleResolution": "node",
     "jsx": "react",
+    "baseUrl": "./",
+    "paths": {
+      "@@/*": [
+        ".dumi/tmp/*"
+      ],
+      "antd-more": [
+        "src"
+      ]
+    },
   },
-  "include": [
-    "./src"
-  ],
-  "typings": "./src/typing.d.ts",
   "exclude": [
     "node_modules",
     "build",

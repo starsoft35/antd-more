@@ -1,23 +1,23 @@
 // 转换
 
-import type { Moment } from 'moment';
-import moment from 'moment';
+import type { Dayjs } from 'dayjs';
+import dayjs from '../../utils/dayjs-wrapper';
 
 // 标识日期无效值的value
 export const InvalidFieldValue = `date_range_invalid_${Math.random()}`;
 
 // 转换日期
-export function transformDate(date: Moment | string, format: string): string;
-export function transformDate(date: (Moment | string)[], format: string): string;
-export function transformDate(date: Moment | string | (Moment | string)[], format: string) {
-  if (moment.isMoment(date)) {
+export function transformDate(date: Dayjs | string, format: string): string;
+export function transformDate(date: (Dayjs | string)[], format: string): string;
+export function transformDate(date: Dayjs | string | (Dayjs | string)[], format: string) {
+  if (dayjs.isDayjs(date)) {
     return date.format(format);
   }
   if (Array.isArray(date) && date.length > 0) {
     return date.map((item) => transformDate(item, format));
   }
   if (date && typeof date === 'string') {
-    return moment(date, format).format(format);
+    return dayjs(date, format).format(format);
   }
   return date;
 }

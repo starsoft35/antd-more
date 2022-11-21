@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Popover } from 'antd';
-import type { PopoverProps } from 'antd/lib/popover';
+import type { PopoverProps } from 'antd/es/popover';
 import SelectPanel from '../SelectPanel';
 import type { SelectPanelProps } from '../SelectPanel';
 
@@ -8,7 +8,7 @@ import './index.less';
 
 export interface SelectPopoverProps
   extends PopoverProps,
-    Pick<SelectPanelProps, 'options' | 'onSelect' | 'showSearch' | 'column'> {}
+  Pick<SelectPanelProps, 'options' | 'onSelect' | 'showSearch' | 'column'> { }
 
 const SelectPopover: React.FC<SelectPopoverProps> = ({
   trigger = 'click',

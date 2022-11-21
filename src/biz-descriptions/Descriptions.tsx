@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Descriptions } from 'antd';
 import type { DescriptionsProps } from 'antd';
-import type { DescriptionsItemProps } from 'antd/lib/descriptions/Item';
+import type { DescriptionsItemProps } from 'antd/es/descriptions/Item';
 import BizField from '../biz-field';
 import type { BizFieldValueType, EnumData, BizFieldProps } from '../biz-field';
 import WithTooltip from './WithTooltip';
@@ -13,8 +13,8 @@ export interface BizDescriptionsItemProps<DataType extends object = any>
   valueEnum?: EnumData;
   tooltip?: WithTooltipProps['tooltip'];
   field?:
-    | Partial<BizFieldProps>
-    | ((text: any, record?: DataType, index?: number) => Partial<BizFieldProps>);
+  | Partial<BizFieldProps>
+  | ((text: any, record?: DataType, index?: number) => Partial<BizFieldProps>);
   key?: string | number;
   dataSource?: DataType;
   index?: number;
@@ -51,8 +51,8 @@ type DataIndex = string | number;
 export interface BizDescriptionsColumnItemProps<DataType extends object = any>
   extends Omit<BizDescriptionsItemProps<DataType>, 'children' | 'field'> {
   field?:
-    | Partial<BizFieldProps>
-    | ((text: any, record: DataType, index: number) => Partial<BizFieldProps>);
+  | Partial<BizFieldProps>
+  | ((text: any, record: DataType, index: number) => Partial<BizFieldProps>);
   dataIndex?: DataIndex | DataIndex[];
   title?: React.ReactNode;
   render?: (value: any, dataSource: DataType, index: number) => React.ReactNode;

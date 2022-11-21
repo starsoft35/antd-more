@@ -1,10 +1,10 @@
 import * as React from 'react';
-import type { Moment } from 'moment';
+import type { Dayjs } from 'dayjs';
 import { Checkbox, DatePicker } from 'antd';
 import { useControllableValue } from 'rc-hooks';
-import type { CheckboxChangeEvent } from 'antd/lib/checkbox';
+import type { CheckboxChangeEvent } from 'antd/es/checkbox';
 
-type DateValue = Moment | undefined;
+type DateValue = Dayjs | undefined;
 type DateValues = [DateValue, DateValue] | [] | undefined;
 
 type ValueType = {
@@ -31,21 +31,21 @@ const WrapperDateRange: React.FC<WrapperDateRangeProps> = ({ internalTrigger, ..
   const startDatePickerRef = React.useRef<any>();
   const endDatePickerRef = React.useRef<any>();
 
-  const disabledStartDate = (currentDate: Moment) => {
+  const disabledStartDate = (currentDate: Dayjs) => {
     if (state?.date[1]) {
       return currentDate >= state?.date[1];
     }
     return false;
   };
 
-  const disabledEndDate = (currentDate: Moment) => {
+  const disabledEndDate = (currentDate: Dayjs) => {
     if (state?.date[0]) {
       return currentDate <= state?.date[0];
     }
     return false;
   };
 
-  const changeStartDate = (date: Moment) => {
+  const changeStartDate = (date: Dayjs) => {
     setState({ ...state, date: [date, state?.date[1]] });
     if (!state?.infinite) {
       setStartDateOpened(false);
@@ -56,7 +56,7 @@ const WrapperDateRange: React.FC<WrapperDateRangeProps> = ({ internalTrigger, ..
     }
   };
 
-  const changeEndDate = (date: Moment) => {
+  const changeEndDate = (date: Dayjs) => {
     setState({ ...state, date: [state?.date[0], date] });
     if (!state?.date[0]) {
       setStartDateOpened(true);

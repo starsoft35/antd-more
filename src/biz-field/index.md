@@ -1,12 +1,8 @@
 ---
 title: BizField - 业务字段
 order: 0
-legacy: /field
-group:
-  path: /
 nav:
   title: 组件
-  path: /components
 ---
 
 # BizField - 业务字段
@@ -19,13 +15,13 @@ nav:
 
 ### 基础用法
 
-<code src="./demos/Demo1.tsx" />
+<code src="./demos/Demo1.tsx"></code>
 
 ### fieldNames
 
 枚举类型 `enum` `enumTag` `enumBadge` 可设置 `fieldNames` 自定义字段名。
 
-<code src="./demos/fieldNames.tsx" />
+<code src="./demos/fieldNames.tsx"></code>
 
 ## API
 
@@ -68,7 +64,7 @@ import { BizField } from 'antd-more';
 | dateTimeRange | 日期时间区间 `YYYY-MM-DD HH:mm:ss ~ YYYY-MM-DD HH:mm:ss` | 2020-10-10 00:00:00 ~ 2020-12-12 00:00:00 |
 | time | 时间 `HH:mm:ss` | 10:05:20 |
 | timeRange | 时间区间 `HH:mm:ss ~ HH:mm:ss` | 10:05:20 ~ 20:00:00 |
-| fromNow | 相对当前时间，使用 `moment` [fromNow](http://momentjs.cn/docs/#/displaying/fromnow/) 方法 | 5 个月前 |
+| fromNow | 相对当前时间，使用 `dayjs` [fromNow](https://dayjs.gitee.io/zh-CN/) 方法 | 5 个月前 |
 
 ### valueEnum 值
 

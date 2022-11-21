@@ -1,11 +1,11 @@
-import type { Moment } from 'moment';
-import moment from 'moment';
+import type { Dayjs } from 'dayjs';
+import dayjs from '../../utils/dayjs-wrapper';
 
 // DatePicker picker值
 export type Picker = 'time' | 'date' | 'week' | 'month' | 'quarter' | 'year';
 
-// moment 度量值
-export enum MomentScale {
+// 日期度量值
+export enum DateScale {
   time = 'hours',
   date = 'days',
   week = 'weeks',
@@ -55,13 +55,13 @@ export function createDisabledDate(picker: Picker = 'date', opts?: CreateDisable
     return () => false;
   }
 
-  const scale = MomentScale[picker];
+  const scale = DateScale[picker];
 
   if (!scale) {
     return () => false;
   }
 
-  return (current: Moment) => {
+  return (current: Dayjs) => {
     if (!current) {
       return false;
     }
@@ -84,40 +84,40 @@ export function createDisabledDate(picker: Picker = 'date', opts?: CreateDisable
 
     if (hasBefore && hasAfter) {
       return (
-        current <= moment().add(before, scale).endOf(scale) ||
-        current >= moment().add(after, scale).startOf(scale)
+        current <= dayjs().add(before, scale).endOf(scale) ||
+        current >= dayjs().add(after, scale).startOf(scale)
       );
     } else if (hasBefore) {
-      return current <= moment().add(before, scale).endOf(scale);
+      return current <= dayjs().add(before, scale).endOf(scale);
     } else if (hasAfter) {
-      return current >= moment().add(after, scale).startOf(scale);
+      return current >= dayjs().add(after, scale).startOf(scale);
     }
     return false;
   };
 }
 
-// 转换为moment值
-export function transformMomentValue(val: string | Moment): Moment;
-export function transformMomentValue(val: (string | Moment)[]): [Moment, Moment];
-export function transformMomentValue(val: string | Moment | (string | Moment)[]) {
+// 转换为dayjs值
+export function transformDayjsValue(val: string | Dayjs): Dayjs;
+export function transformDayjsValue(val: (string | Dayjs)[]): [Dayjs, Dayjs];
+export function transformDayjsValue(val: string | Dayjs | (string | Dayjs)[]) {
   if (Array.isArray(val)) {
-    return val.map((item) => transformMomentValue(item));
+    return val.map((item) => transformDayjsValue(item));
   }
   if (typeof val === 'string' && val) {
-    return moment(val);
+    return dayjs(val);
   }
   return val;
 }
 
-// 转换time为moment值
-export function transformMomentTime(time: string | Moment, format?: string): Moment;
-export function transformMomentTime(time: (string | Moment)[], format?: string): [Moment, Moment];
-export function transformMomentTime(time, format = 'HH:mm:ss') {
+// 转换time为dayjs值
+export function transformDayjsTime(time: string | Dayjs, format?: string): Dayjs;
+export function transformDayjsTime(time: (string | Dayjs)[], format?: string): [Dayjs, Dayjs];
+export function transformDayjsTime(time, format = 'HH:mm:ss') {
   if (Array.isArray(time)) {
-    return time.map((timeItem) => transformMomentTime(timeItem, format));
+    return time.map((timeItem) => transformDayjsTime(timeItem, format));
   }
   if (typeof time === 'string' && time) {
-    return moment(time, format);
+    return dayjs(time, format);
   }
   return time;
 }

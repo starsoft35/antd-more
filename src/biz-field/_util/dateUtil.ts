@@ -1,13 +1,13 @@
-import moment from 'moment';
+import dayjs from '../../utils/dayjs-wrapper';
 
-const MOMENT_INVALID_DATE = 'Invalid date';
+const INVALID_DATE = 'invalid date';
 
 export enum DateFormat {
   date = 'YYYY-MM-DD',
   dateRange = 'YYYY-MM-DD',
   dateWeek = 'YYYY-wo',
   dateMonth = 'YYYY-MM',
-  dateQuarter = 'YYYY-\\QQ',
+  dateQuarter = 'YYYY-qQ',
   dateYear = 'YYYY',
   dateTime = 'YYYY-MM-DD HH:mm:ss',
   dateTimeRange = 'YYYY-MM-DD HH:mm:ss',
@@ -19,18 +19,18 @@ function transformDateString(value, type, fmt) {
   let str: string;
 
   if (type === 'time' || type === 'timeRange') {
-    str = moment(value, fmt).format(fmt);
+    str = dayjs(value, fmt).format(fmt);
 
-    if (str === MOMENT_INVALID_DATE) {
-      return moment(value).format(fmt);
+    if (str.toLowerCase() === INVALID_DATE) {
+      return dayjs(value).format(fmt);
     }
     return str;
   }
 
-  str = moment(value).format(fmt);
+  str = dayjs(value).format(fmt);
 
-  if (str === MOMENT_INVALID_DATE) {
-    return moment(value, fmt).format(fmt);
+  if (str.toLowerCase() === INVALID_DATE) {
+    return dayjs(value, fmt).format(fmt);
   }
   return str;
 }
@@ -50,9 +50,12 @@ export function getDateStr(value, type, format) {
     const endText = endDate ? transformDateString(endDate, type, fmt) : '';
     str = `${startText} ~ ${endText}`;
   } else if (type === 'fromNow') {
-    str = moment(value).fromNow();
+    str = dayjs(value).fromNow();
   } else {
     str = transformDateString(value, type, fmt);
+    if (type === 'dateQuarter') {
+      str = str.toUpperCase();
+    }
   }
 
   return str;

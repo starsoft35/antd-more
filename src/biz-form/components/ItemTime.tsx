@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import type { TimePickerProps } from './antd.interface';
 import type { BizFormItemProps } from './Item';
 import BizFormItem from './Item';
-import { transformMomentTime } from '../_util/dateUtil';
+import { transformDayjsTime } from '../_util/dateUtil';
 import { transformDate } from '../_util/transform';
 import getLabel from '../_util/getLabel';
 
@@ -17,7 +17,7 @@ const TimePickerWrapper: React.FC<TimePickerProps> = ({
 }) => {
   return (
     <TimePicker
-      value={transformMomentTime(value, format as string)}
+      value={transformDayjsTime(value, format as string)}
       format={format}
       {...restProps}
     />

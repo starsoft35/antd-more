@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { BizForm, BizFormItemDateRange } from 'antd-more';
-import moment from 'moment';
+import dayjs from 'dayjs';
 
 const initialValues = {
-  date7: [moment().subtract(30, 'days').startOf('day'), moment().endOf('day')],
+  date7: [dayjs().subtract(30, 'days').startOf('day'), dayjs().endOf('day')],
   date8: ['2020-10-10', '2020-12-12']
 };
 

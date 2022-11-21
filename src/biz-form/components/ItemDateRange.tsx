@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { DatePicker } from 'antd';
 import classNames from 'classnames';
-import type { Moment } from 'moment';
+import type { Dayjs } from 'dayjs';
 import type { RangePickerProps, RangePickerDateProps } from './antd.interface';
 import type { Picker } from '../_util/dateUtil';
 import {
-  MomentScale,
+  DateScale,
   DateUnit,
   createDisabledDate,
-  transformMomentValue,
+  transformDayjsValue,
   getDateFormat
 } from '../_util/dateUtil';
 import type { BizFormItemProps } from './Item';
@@ -18,19 +18,19 @@ import getLabel from '../_util/getLabel';
 import uniqueId from '../_util/uniqueId';
 
 const DateRangePickerWrapper: React.FC<RangePickerProps> = ({ value, ...restProps }) => {
-  return <DatePicker.RangePicker value={transformMomentValue(value)} {...restProps} />;
+  return <DatePicker.RangePicker value={transformDayjsValue(value)} {...restProps} />;
 };
 
 export interface BizFormItemDateRangeProps
   extends BizFormItemProps,
-    Pick<RangePickerDateProps<Moment>, 'showTime'> {
+  Pick<RangePickerDateProps<Dayjs>, 'showTime'> {
   disabledDateBefore?: number;
   disabledDateAfter?: number;
   maxRange?: number; // 最大可选范围值，根据当前 picker 为单位。
-  // showTime?: Pick<RangePickerDateProps<Moment>, 'showTime'>;
+  // showTime?: Pick<RangePickerDateProps<Dayjs>, 'showTime'>;
   format?: string;
   picker?: Picker;
-  pickerProps?: RangePickerProps & Pick<RangePickerDateProps<Moment>, 'showTime'>;
+  pickerProps?: RangePickerProps & Pick<RangePickerDateProps<Dayjs>, 'showTime'>;
   names?: [string, string];
 }
 
@@ -105,7 +105,7 @@ const BizFormItemDateRange: React.FC<BizFormItemDateRangeProps> = ({
               const [t1, t2] = value;
               const range = currentPicker === 'quarter' ? maxRange * 3 : maxRange;
 
-              if (t2.diff(t1, MomentScale[currentPicker]) > range) {
+              if (t2.diff(t1, DateScale[currentPicker]) > range) {
                 errMsg = `时间跨度不能超过${maxRange}${DateUnit[currentPicker]}`;
               }
             }
