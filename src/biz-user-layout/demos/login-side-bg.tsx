@@ -18,7 +18,7 @@ function Demo() {
         }
       }}
       sideContent={(
-        <Card bordered={false} className={styles.loginWrapper}>
+        <Card bordered={false} className={styles.loginWrapper} style={{ boxShadow: 'none' }}>
           <Row align="middle" justify="space-between" style={{ padding: '0 24px', marginBottom: 24 }}>
             <Col>
               <Space>

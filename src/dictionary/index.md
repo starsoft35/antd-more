@@ -18,21 +18,21 @@ nav:
 
 ### 字典值
 
-<code src="./demos/Demo1.tsx" />
+<code src="./demos/Demo1.tsx"></code>
 
 ### 多种展示方式
 
-<code src="./demos/Demo2.tsx" />
+<code src="./demos/Demo2.tsx"></code>
 
 ### 多个枚举
 
-<code src="./demos/Demo3.tsx" />
+<code src="./demos/Demo3.tsx"></code>
 
 ### fieldNames
 
 自定义字段名
 
-<code src="./demos/fieldNames.tsx" />
+<code src="./demos/fieldNames.tsx"></code>
 
 ## API
 

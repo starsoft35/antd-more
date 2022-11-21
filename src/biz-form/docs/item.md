@@ -16,7 +16,7 @@ nav:
 
 ### 所有表单项
 
-<code src='../demos/Demo1.tsx' />
+<code src='../demos/Demo1.tsx'></code>
 
 ## API
 
@@ -58,7 +58,7 @@ import { BizFormItem } from 'antd-more';
 
 - 必填时为空，提示：`请选择${labels[0]}` `请输入${labels[1]}`
 
-<code src="../demos/item-address-1.tsx" />
+<code src="../demos/item-address-1.tsx"></code>
 
 <br/>
 
@@ -92,7 +92,7 @@ interface Option {
 
 - 必填时为空，提示：`请输入${label}`
 
-<code src="../demos/item-autoComplete-1.tsx" />
+<code src="../demos/item-autoComplete-1.tsx"></code>
 
 <br/>
 
@@ -118,7 +118,7 @@ interface Option {
 
 - 必填时为空，提示：`请输入${label}`
 
-<code src="../demos/item-captcha-1.tsx" />
+<code src="../demos/item-captcha-1.tsx"></code>
 
 <br/>
 
@@ -147,7 +147,7 @@ interface Option {
 
 - 必填时为空，提示：`请选择${label}`
 
-<code src="../demos/item-cascader-1.tsx" />
+<code src="../demos/item-cascader-1.tsx"></code>
 
 <br/>
 
@@ -169,7 +169,7 @@ interface Option {
 
 - 必填时为空，提示：`请选择${label}`
 
-<code src="../demos/item-checkbox-1.tsx" />
+<code src="../demos/item-checkbox-1.tsx"></code>
 
 <br/>
 
@@ -199,7 +199,7 @@ interface Option {
 
 - 必填时为空，提示：`请选择${label}`
 
-<code src="../demos/item-color-1.tsx" />
+<code src="../demos/item-color-1.tsx"></code>
 
 <br/>
 
@@ -224,7 +224,7 @@ interface Option {
 
 - 必填时为空，提示：`请选择${label}`
 
-<code src="../demos/item-date-1.tsx" />
+<code src="../demos/item-date-1.tsx"></code>
 
 <br/>
 
@@ -254,7 +254,7 @@ interface Option {
 - 必填时为空，提示：`请选择${label}`
 - 日期范围判断超过区间，提示：`时间跨度不能超过${maxRange}天/周/月/季/年`
 
-<code src="../demos/item-dateRange-1.tsx" />
+<code src="../demos/item-dateRange-1.tsx"></code>
 
 <br/>
 
@@ -290,7 +290,7 @@ Input 输入框
   - 验证非手机号码，提示：`${label}不能为手机号码`
   - 验证不包含@符号，提示：`${label}不能包含@符号`
 
-<code src="../demos/item-input-1.tsx" />
+<code src="../demos/item-input-1.tsx"></code>
 
 <br/>
 
@@ -318,7 +318,7 @@ Input 输入框
 - 大于 `lte` 时，提示：`不能大于${lte}`
 - 小于 `gte` 时，提示：`不能小于${gt}`
 
-<code src="../demos/item-number-1.tsx" />
+<code src="../demos/item-number-1.tsx"></code>
 
 <br/>
 
@@ -343,7 +343,7 @@ Input 输入框
   - 使用 `util-helpers` [validatePassword] 验证非法字符，提示：`${label}包含无法识别的字符`
   - 验证密码强度，提示：`${label}为大小写字母、数字或符号任意${numMap[level]}者组成`
 
-<code src="../demos/item-password-1.tsx" />
+<code src="../demos/item-password-1.tsx"></code>
 
 <br/>
 
@@ -371,7 +371,7 @@ Input 输入框
 
 - 必填时为空，提示：`请选择${label}`
 
-<code src="../demos/item-radio-1.tsx" />
+<code src="../demos/item-radio-1.tsx"></code>
 
 <br/>
 
@@ -407,7 +407,7 @@ interface Option {
 
 - 必填时为空，提示：`请选择${label}`
 
-<code src="../demos/item-select-1.tsx" />
+<code src="../demos/item-select-1.tsx"></code>
 
 <br/>
 
@@ -424,7 +424,7 @@ interface Option {
 
 滑块输入条
 
-<code src="../demos/item-slider-1.tsx" />
+<code src="../demos/item-slider-1.tsx"></code>
 
 <br/>
 
@@ -440,7 +440,7 @@ interface Option {
 
 开关
 
-<code src="../demos/item-switch-1.tsx" />
+<code src="../demos/item-switch-1.tsx"></code>
 
 <br/>
 
@@ -462,7 +462,7 @@ TextArea 输入框
 
 - 必填时为空，提示：`请输入${label}`
 
-<code src="../demos/item-textarea-1.tsx" />
+<code src="../demos/item-textarea-1.tsx"></code>
 
 <br/>
 
@@ -484,7 +484,7 @@ TextArea 输入框
 
 - 必填时为空，提示：`请选择${label}`
 
-<code src="../demos/item-time-1.tsx" />
+<code src="../demos/item-time-1.tsx"></code>
 
 <br/>
 
@@ -507,7 +507,7 @@ TextArea 输入框
 
 - 必填时为空，提示：`请选择${label}`
 
-<code src="../demos/item-timeRange-1.tsx" />
+<code src="../demos/item-timeRange-1.tsx"></code>
 
 <br/>
 
@@ -531,7 +531,7 @@ TextArea 输入框
 
 - 必填时为空，提示：`请上传${label}`
 
-<code src="../demos/item-upload-1.tsx" />
+<code src="../demos/item-upload-1.tsx"></code>
 
 <br/>
 

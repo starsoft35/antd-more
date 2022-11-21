@@ -9,17 +9,17 @@ group:
 
 ### 基础用法
 
-<code src='../../src/demos/ItemUploadCertificate/demos/basic.tsx' />
+<code src='../../src/demos/ItemUploadCertificate/demos/basic.tsx'></code>
 
 ### 内置类型
 
 默认设置了上传选择的图标和标题，浮层提示。
 
-<code src='../../src/demos/ItemUploadCertificate/demos/built-in.tsx' />
+<code src='../../src/demos/ItemUploadCertificate/demos/built-in.tsx'></code>
 
 ### 更多
 
-<code src='../../src/demos/ItemUploadCertificate/demos/more.tsx' />
+<code src='../../src/demos/ItemUploadCertificate/demos/more.tsx'></code>
 
 ## API
 

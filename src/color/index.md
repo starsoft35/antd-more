@@ -18,19 +18,17 @@ nav:
 
 ### 显示颜色
 
-<code src="./demos/Demo1.tsx" />
+<code src="./demos/Demo1.tsx"></code>
 
 ### 选择颜色
 
-<code src="./demos/Demo2.tsx" />
+<code src="./demos/Demo2.tsx"></code>
 
 ### Form 中使用
 
-<code src="./demos/Demo3.tsx" />
+<code src="./demos/Demo3.tsx"></code>
 
 ## API
-
-### Color
 
 | 参数     | 说明           | 类型                  | 默认值    |
 | -------- | -------------- | --------------------- | --------- |

@@ -16,19 +16,19 @@ nav:
 
 ### 基础用法
 
-<code src="./demos/Demo1.tsx" />
+<code src="./demos/Demo1.tsx"></code>
 
 ### 数据配置
 
 使用数据配置 dataSource 和 columns 。
 
-<code src="./demos/Demo2.tsx" />
+<code src="./demos/Demo2.tsx"></code>
 
 ### 混用
 
 支持数据配置和组件方式混合使用。
 
-<code src="./demos/Demo3.tsx" />
+<code src="./demos/Demo3.tsx"></code>
 
 ## API
 

@@ -16,15 +16,15 @@ nav:
 
 ### 查询表单
 
-<code src='../demos/query-form-1.tsx' />
+<code src='../demos/query-form-1.tsx'></code>
 
 ### 查询表单-展开收起
 
-<code src='../demos/query-form-2.tsx' />
+<code src='../demos/query-form-2.tsx'></code>
 
 ### 查询表单-垂直布局
 
-<code src='../demos/query-form-3.tsx' />
+<code src='../demos/query-form-3.tsx'></code>
 
 ## API
 

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Popover } from 'antd';
-import type { PopoverProps } from 'antd/es/popover';
+import type { PopoverProps } from 'antd';
 import SelectPanel from '../SelectPanel';
 import type { SelectPanelProps } from '../SelectPanel';
 

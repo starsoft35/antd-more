@@ -18,27 +18,27 @@ nav:
 
 ### 分步表单
 
-<code src="../demos/steps-form-1.tsx" />
+<code src="../demos/steps-form-1.tsx"></code>
 
 ### 分步表单 - 中间步骤提交
 
-<code src="../demos/steps-form-1.1.tsx" />
+<code src="../demos/steps-form-1.1.tsx"></code>
 
 ### 分步表单-忘记密码 1
 
-<code src="../demos/steps-form-2.tsx" />
+<code src="../demos/steps-form-2.tsx"></code>
 
 ### 分步表单-忘记密码 2
 
-<code src="../demos/steps-form-5.tsx" background="#f5f5f5" />
+<code src="../demos/steps-form-5.tsx" background="#f5f5f5"></code>
 
 ### 分步表单-与 Modal 配合使用
 
-<code src="../demos/steps-form-3.tsx" />
+<code src="../demos/steps-form-3.tsx"></code>
 
 ### 分步表单-固定页脚
 
-<code src="../demos/steps-form-4.tsx" iframe="550px" />
+<code src="../demos/steps-form-4.tsx" iframe="550px"></code>
 
 ## API
 

@@ -13,41 +13,41 @@ nav:
 
 ### 基础用法
 
-<code src="./demos/basic.tsx" />
+<code src="./demos/basic.tsx"></code>
 
 ### 登录页-通栏
 
 内容向上偏移，无 logo
 
-<code src="./demos/login-full.tsx" />
+<code src="./demos/login-full.tsx"></code>
 
 ### 登录页-分栏
 
-<code src="./demos/login-side.tsx" />
+<code src="./demos/login-side.tsx"></code>
 
 ### 登录页-分栏翻转
 
-<code src="./demos/login-side-reverse.tsx" />
+<code src="./demos/login-side-reverse.tsx"></code>
 
 ### 登录页-分栏背景
 
-<code src="./demos/login-side-bg.tsx" />
+<code src="./demos/login-side-bg.tsx"></code>
 
 ### 登录页-全屏
 
-<code src="./demos/login-fullscreen.tsx" />
+<code src="./demos/login-fullscreen.tsx"></code>
 
 ### 登录页-全屏分栏
 
-<code src="./demos/login-fullscreen-column.tsx" />
+<code src="./demos/login-fullscreen-column.tsx"></code>
 
 ### 注册页
 
-<code src="./demos/register.tsx" />
+<code src="./demos/register.tsx"></code>
 
 ### 忘记密码
 
-<code src="./demos/forget-password.tsx" />
+<code src="./demos/forget-password.tsx"></code>
 
 ## API
 

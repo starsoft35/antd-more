@@ -16,13 +16,13 @@ nav:
 
 ### 基础用法
 
-<code src='../demos/list-1.tsx' />
+<code src='../demos/list-1.tsx'></code>
 
 ### 更多操作
 
 新增、删除、嵌套、上移、下移...
 
-<code src='../demos/list-2.tsx' />
+<code src='../demos/list-2.tsx'></code>
 
 ## API
 

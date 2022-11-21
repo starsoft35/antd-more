@@ -9,6 +9,7 @@ export * from './dictionary';
 
 export { default as InputIcon } from './input-icon';
 export * from './input-icon';
+export { default as InputIconsMap } from './input-icon/icons';
 
 export { default as TreeTable } from './tree-table';
 export * from './tree-table';

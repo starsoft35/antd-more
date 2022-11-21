@@ -16,19 +16,19 @@ nav:
 
 ### 基础用法
 
-<code src="./demos/Demo1.tsx" />
+<code src="./demos/Demo1.tsx"></code>
 
 ### BizForm 中使用
 
-<code src="./demos/bizform-1.tsx" />
+<code src="./demos/bizform-1.tsx"></code>
 
 ### 自定义图标
 
-<code src="./demos/define-icon.tsx" />
+<code src="./demos/define-icon.tsx"></code>
 
 ### 菜单配置
 
-<code src="./demos/modal-menu.tsx" />
+<code src="./demos/modal-menu.tsx"></code>
 
 ## API
 

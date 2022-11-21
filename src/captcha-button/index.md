@@ -18,15 +18,15 @@ nav:
 
 ### 基础用法
 
-<code src="./demos/Demo1.tsx" />
+<code src="./demos/Demo1.tsx"></code>
 
 ### 自定义
 
-<code src="./demos/Demo2.tsx" />
+<code src="./demos/Demo2.tsx"></code>
 
 ### 获取手机验证码
 
-<code src="./demos/Demo3.tsx" />
+<code src="./demos/Demo3.tsx"></code>
 
 ## API
 

@@ -1,15 +1,6 @@
 import * as React from 'react';
 import { Button, Row, Col, TreeSelect } from 'antd';
-import {
-  BizForm,
-  ModalForm,
-  BizFormItem,
-  BizFormItemRadio,
-  BizFormItemInput,
-  BizFormItemNumber,
-  InputIcon
-} from 'antd-more';
-import icons from 'antd-more/es/input-icon/icons';
+import { BizForm, ModalForm, BizFormItem, BizFormItemRadio, BizFormItemInput, BizFormItemNumber, InputIcon, InputIconsMap } from 'antd-more';
 import { MenuType, HiddenMenu, CacheMenu } from './type';
 
 // 菜单列表
@@ -140,7 +131,7 @@ const Demo = () => {
       {currentMenuType === MenuType.Menu && (
         <>
           <BizFormItem label="菜单图标" name="icon">
-            <InputIcon iconData={icons} />
+            <InputIcon iconData={InputIconsMap} />
           </BizFormItem>
           <Row>
             <Col span={12}>

@@ -69,15 +69,16 @@ const PickerWrapper: React.FC<PickerWrapperProps> = ({
             defined
               ? children
               : cloneElement(children, {
-                  [changeMethod]: handleChange,
-                  color: value
-                })
+                [changeMethod]: handleChange,
+                color: value
+              })
           }
           trigger={trigger}
           visible={visible}
           onVisibleChange={setVisible}
           autoAdjustOverflow={false}
           placement={placement}
+          showArrow={false}
           overlayClassName={`${prefixCls}-overlay-normalize`}
           {...restProps}
         >

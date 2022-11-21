@@ -30,9 +30,10 @@ const publicPath = serverRootDirect + version + '/';
 
 export default defineConfig({
   hash: true,
-  history: {
-    type: 'hash'
-  },
+  // history: {
+  //   type: 'hash'
+  // },
+  base: isDev ? '/' : '/antd-more/',
   publicPath,
   outputPath,
   legacy: {
@@ -46,6 +47,7 @@ export default defineConfig({
   polyfill: {
     imports: ['element-remove', 'core-js']
   },
+  favicons,
   // lessLoader: {
   //   modifyVars: v4Token
   // },

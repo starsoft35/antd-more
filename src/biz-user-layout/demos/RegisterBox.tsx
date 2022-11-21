@@ -6,6 +6,12 @@ import SliderCaptcha from 'rc-slider-captcha';
 import { getCaptcha, verifyCaptcha } from './service';
 import { waitTime } from "util-helpers";
 
+let _id = 0;
+function uniqueId(prefix = 'unique') {
+  _id++;
+  return `${prefix}${_id}`;
+}
+
 async function sendCode(mobile: string) {
   console.log(mobile);
   await waitTime();
@@ -13,6 +19,7 @@ async function sendCode(mobile: string) {
 }
 
 const RegisterBox = () => {
+  const formName = React.useMemo(uniqueId, []);
   const [form] = BizForm.useForm();
 
   return (
@@ -21,9 +28,10 @@ const RegisterBox = () => {
       bordered={false}
       headStyle={{ border: '0 none', fontSize: 28, textAlign: 'center' }}
       bodyStyle={{ padding: 0 }}
-      style={{ width: 348, margin: '0 auto 48px' }}
+      style={{ width: 348, margin: '0 auto 48px', boxShadow: 'none' }}
     >
       <BizForm
+        name={formName}
         form={form}
         onFinish={async (values) => {
           await waitTime(2000);

@@ -1,12 +1,11 @@
 import * as React from 'react';
-import { InputIcon } from 'antd-more';
-import icons from 'antd-more/es/input-icon/icons';
+import { InputIcon, InputIconsMap } from 'antd-more';
 
 const Demo = () => {
   const [value, setValue] = React.useState<string>('');
 
-  const hasIcon = value && icons.has(value);
-  const IconComp = icons.get(value);
+  const hasIcon = value && InputIconsMap.has(value);
+  const IconComp = InputIconsMap.get(value);
 
   return (
     <>
@@ -14,7 +13,7 @@ const Demo = () => {
         当前选择的图标：
         {hasIcon ? <IconComp /> : '-'}
       </p>
-      <InputIcon iconData={icons} onChange={setValue} column={4} />
+      <InputIcon iconData={InputIconsMap} onChange={setValue} column={4} />
     </>
   );
 };

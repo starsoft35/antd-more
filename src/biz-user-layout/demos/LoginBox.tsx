@@ -4,16 +4,24 @@ import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { waitTime } from 'util-helpers';
 import { BizForm, BizFormItem, BizFormItemInput, BizFormItemPassword } from 'antd-more';
 
+let _id = 0;
+function uniqueId(prefix = 'unique') {
+  _id++;
+  return `${prefix}${_id}`;
+}
+
 const LoginBox: React.FC<{ showRegisterEnter?: boolean; }> = ({ showRegisterEnter = false }) => {
+  const formName = React.useMemo(uniqueId, []);
   return (
     <Card
       title="账号密码登录"
       bordered={false}
-      style={{ minWidth: 320 }}
+      style={{ minWidth: 320, boxShadow: 'none' }}
       headStyle={{ border: '0 none', fontSize: 24 }}
       bodyStyle={{ paddingTop: 0 }}
     >
       <BizForm
+        name={formName}
         onFinish={async (values) => {
           await waitTime(2000);
           console.log(values);

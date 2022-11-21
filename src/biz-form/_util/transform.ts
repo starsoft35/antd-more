@@ -4,7 +4,7 @@ import type { Dayjs } from 'dayjs';
 import dayjs from '../../utils/dayjs-wrapper';
 
 // 标识日期无效值的value
-export const InvalidFieldValue = `date_range_invalid_${Math.random()}`;
+export const InvalidFieldValue = `__invalid_random_value_${Math.random()}__`;
 
 // 转换日期
 export function transformDate(date: Dayjs | string, format: string): string;

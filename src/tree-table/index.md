@@ -16,27 +16,27 @@ nav:
 
 ### 基础用法
 
-<code src='./demos/basic.tsx' />
+<code src='./demos/basic.tsx'></code>
 
 ### BizForm 中使用
 
-<code src='./demos/bizform-1.tsx' />
+<code src='./demos/bizform-1.tsx'></code>
 
 ### 自定义节点 fieldNames
 
-<code src='./demos/fieldNames.tsx' />
+<code src='./demos/fieldNames.tsx'></code>
 
 ### 菜单权限配置
 
-<code src='./demos/menu-authorize.tsx' />
+<code src='./demos/menu-authorize.tsx'></code>
 
 ### 异步获取数据
 
-<code src='./demos/async.tsx' />
+<code src='./demos/async.tsx'></code>
 
 ### 不限数据层级
 
-<code src='./demos/multiple.tsx' />
+<code src='./demos/multiple.tsx'></code>
 
 ## API
 

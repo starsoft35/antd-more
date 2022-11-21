@@ -18,13 +18,13 @@ nav:
 
 只需定义 `request` `rowKey` `columns` 。
 
-<code src="./demos/Demo1.tsx" background="#f5f5f5" />
+<code src="./demos/Demo1.tsx" background="#f5f5f5"></code>
 
 ### 复杂列表页
 
 自定义查询表单操作，表单默认值，默认展示 1 个表单项，扩展区域，工具栏区域。
 
-<code src="./demos/Demo2.tsx" background="#f5f5f5" />
+<code src="./demos/Demo2.tsx" background="#f5f5f5"></code>
 
 ### 自定义渲染字段
 
@@ -32,11 +32,11 @@ nav:
 
 将 BizField 不支持的展示字段，抽象到 `utils/field.tsx` 文件。
 
-<code src="./demos/define-render.tsx" background="#f5f5f5" />
+<code src="./demos/define-render.tsx" background="#f5f5f5"></code>
 
 ### 普通表格
 
-<code src="./demos/Demo3.tsx" background="#f5f5f5" />
+<code src="./demos/Demo3.tsx" background="#f5f5f5"></code>
 
 ### formItems 配置
 
@@ -44,13 +44,13 @@ nav:
 
 当有 `formItems` 配置时， `columns` 配置的 `search` 将失效。
 
-<code src="./demos/formItems.tsx" background="#f5f5f5" />
+<code src="./demos/formItems.tsx" background="#f5f5f5"></code>
 
 ### 异步初始值查询表单
 
 5 秒后获取到初始值再发起请求。
 
-<code src="./demos/async-initial-values.tsx" background="#f5f5f5" />
+<code src="./demos/async-initial-values.tsx" background="#f5f5f5"></code>
 
 ### 手动设置查询表单
 
@@ -58,17 +58,17 @@ nav:
 
 > 如果需要自动获取 URL 的 search 并且支持 keep-alive 激活时调用，可参考 [未展示示例](https://github.com/doly-dev/antd-more/blob/master/src/biz-table/demos/search-form-ref-2.tsx#L107) 的 init 方法。
 
-<code src="./demos/search-form-ref-1.tsx" background="#f5f5f5" />
+<code src="./demos/search-form-ref-1.tsx" background="#f5f5f5"></code>
 
 ### 仅使用 field 转换功能
 
 仅使用表格的 `field` 转换功能，如果不使用 `request`，需将 `autoRequest` 设为 `false`。
 
-<code src="./demos/freight.tsx" background="#f5f5f5" />
+<code src="./demos/freight.tsx" background="#f5f5f5"></code>
 
 ### 更多查询表单项
 
-<code src="./demos/Demo4.tsx" background="#f5f5f5" />
+<code src="./demos/Demo4.tsx" background="#f5f5f5"></code>
 
 ## API
 
@@ -271,7 +271,7 @@ ref.current.submit();
 
 ### 在全屏下的 Modal 不会展示？
 
-> 问题参考: [proTable 在全屏下的 modal 不会展示]
+> 参考: [proTable 在全屏下的 modal 不会展示](https://github.com/ant-design/pro-components/issues/922)
 
 可查看具体示例：[修改和新增共用表单](/components/modal-form#修改和新增共用表单)
 
@@ -303,4 +303,3 @@ ref.current.submit();
 [bizformitemtime]: /components/item#time
 [bizformitemtimerange]: /components/item#timerange
 [bizformitemupload]: /components/item#upload
-[protable在全屏下的modal不会展示]: https://github.com/ant-design/pro-components/issues/922

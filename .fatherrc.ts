@@ -9,16 +9,16 @@ export default [{
     lazy: true
   },
   runtimeHelpers: true,
-  extraBabelPlugins: [
-    [
-      'import',
-      {
-        libraryName: 'antd',
-        libraryDirectory: 'lib',
-        style: true
-      }
-    ]
-  ]
+  // extraBabelPlugins: [
+  //   [
+  //     'import',
+  //     {
+  //       libraryName: 'antd',
+  //       libraryDirectory: 'lib',
+  //       style: true
+  //     }
+  //   ]
+  // ]
   // },
   // {
   // extraExternals: ["react", "react-dom", "antd", "@ant-design/icons"],
