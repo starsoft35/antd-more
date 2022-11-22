@@ -5,21 +5,7 @@
 
 import React from 'react';
 import { Dictionary } from 'antd-more';
-
-const ApproveStatusOptions = [
-  {
-    value: 1,
-    label: '审核中'
-  },
-  {
-    value: 2,
-    label: '审核通过'
-  },
-  {
-    value: 3,
-    label: '审核不通过'
-  }
-];
+import { ApproveStatusOptions } from './constants';
 
 export default () => {
   return <Dictionary valueEnum={ApproveStatusOptions} value={1} />;

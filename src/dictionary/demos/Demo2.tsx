@@ -18,7 +18,9 @@ export default () => {
   return (
     <>
       <Divider orientation="left">empty or noMatch</Divider>
-      <Dictionary valueEnum={ApproveStatusOptions} value={[5, 2, 3]} />
+      <Dictionary valueEnum={ApproveStatusOptions} value={[]} />
+      <br />
+      <Dictionary valueEnum={ApproveStatusOptions} value={[5, 2, 3]} defaultLabel="noMatch value" />
       <br />
       <Dictionary valueEnum={ApproveStatusOptions} value={5} defaultLabel="noMatch value" />
       <br />

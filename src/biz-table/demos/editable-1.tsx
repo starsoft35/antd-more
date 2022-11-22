@@ -11,7 +11,7 @@ const defaultData = Mock.mock({
       'id|+1': 1,
       'age|1-99': 20,
       name: '@cname',
-      birthday: '@DATE',
+      birthday: '@date',
       'status|1-3': 1
     }
   ]
