@@ -1,4 +1,4 @@
-import dayjs from '../../utils/dayjs-wrapper';
+import dayjs, { formatQuarter } from '../../utils/dayjs-wrapper';
 
 const INVALID_DATE = 'invalid date';
 
@@ -7,7 +7,7 @@ export enum DateFormat {
   dateRange = 'YYYY-MM-DD',
   dateWeek = 'YYYY-wo',
   dateMonth = 'YYYY-MM',
-  dateQuarter = 'YYYY-qQ',
+  dateQuarter = 'YYYY-\\QQ',
   dateYear = 'YYYY',
   dateTime = 'YYYY-MM-DD HH:mm:ss',
   dateTimeRange = 'YYYY-MM-DD HH:mm:ss',
@@ -51,11 +51,10 @@ export function getDateStr(value, type, format) {
     str = `${startText} ~ ${endText}`;
   } else if (type === 'fromNow') {
     str = dayjs(value).fromNow();
+  } else if (type === 'dateQuarter') {
+    str = formatQuarter(value);
   } else {
     str = transformDateString(value, type, fmt);
-    if (type === 'dateQuarter') {
-      str = str.toUpperCase();
-    }
   }
 
   return str;

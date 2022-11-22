@@ -9,9 +9,6 @@ import customParseFormat from 'dayjs/plugin/customParseFormat';
 import weekday from 'dayjs/plugin/weekday';
 import localeData from 'dayjs/plugin/localeData';
 
-// @ts-ignore
-window.dayjs = dayjs;
-
 dayjs.locale('zh-cn');
 
 dayjs.extend(relativeTime);
@@ -21,6 +18,21 @@ dayjs.extend(weekOfYear);
 dayjs.extend(customParseFormat);
 dayjs.extend(weekday);
 dayjs.extend(localeData);
+
+const InternalQuarterFormat = 'YYYY-qQ';
+
+// 格式化，年-季
+export function formatQuarter(value: string | Dayjs) {
+  return dayjs(value).format(InternalQuarterFormat).toUpperCase();
+}
+
+// 年-季字符串转换为Dayjs
+export function transformQuarter(value: string | Dayjs) {
+  if (dayjs.isDayjs(value)) {
+    return value;
+  }
+  return dayjs((value || '').replace('Q', ''), 'YYYY-Q');
+}
 
 export default dayjs;
 export type { Dayjs };

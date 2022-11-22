@@ -15,7 +15,7 @@ const { RangePicker } = TimePicker;
 
 const TimePickerRangeWrapper: React.FC<TimeRangePickerProps> = ({
   value,
-  format = 'HH:mm:ss',
+  format,
   ...restProps
 }) => {
   return (

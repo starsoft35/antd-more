@@ -9,7 +9,8 @@ import {
   DateUnit,
   createDisabledDate,
   transformDayjsValue,
-  getDateFormat
+  getDateFormat,
+  DateFormat
 } from '../_util/dateUtil';
 import type { BizFormItemProps } from './Item';
 import BizFormItem from './Item';
@@ -17,8 +18,8 @@ import { transformDate, InvalidFieldValue } from '../_util/transform';
 import getLabel from '../_util/getLabel';
 import uniqueId from '../_util/uniqueId';
 
-const DateRangePickerWrapper: React.FC<RangePickerProps> = ({ value, ...restProps }) => {
-  return <DatePicker.RangePicker value={transformDayjsValue(value)} {...restProps} />;
+const DateRangePickerWrapper: React.FC<RangePickerProps> = ({ value, format, ...restProps }) => {
+  return <DatePicker.RangePicker value={transformDayjsValue(value, format as string)} format={format === DateFormat['quarter'] ? undefined : format} {...restProps} />;
 };
 
 export interface BizFormItemDateRangeProps

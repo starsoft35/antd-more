@@ -8,7 +8,7 @@ import type {
   WeekPickerProps
 } from './antd.interface';
 import type { Picker } from '../_util/dateUtil';
-import { createDisabledDate, transformDayjsValue, getDateFormat } from '../_util/dateUtil';
+import { createDisabledDate, transformDayjsValue, getDateFormat, DateFormat } from '../_util/dateUtil';
 import { transformDate } from '../_util/transform';
 import type { BizFormItemProps } from './Item';
 import BizFormItem from './Item';
@@ -16,9 +16,10 @@ import getLabel from '../_util/getLabel';
 
 const DatePickerWrapper: React.FC<DatePickerProps | MonthPickerProps | WeekPickerProps | any> = ({
   value,
+  format,
   ...restProps
 }) => {
-  return <DatePicker value={transformDayjsValue(value)} {...restProps} />;
+  return <DatePicker value={transformDayjsValue(value, format)} format={format === DateFormat['quarter'] ? undefined : format} {...restProps} />;
 };
 
 export interface BizFormItemDateProps extends BizFormItemProps {

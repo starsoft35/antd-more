@@ -1,7 +1,8 @@
 // 转换
 
 import type { Dayjs } from 'dayjs';
-import dayjs from '../../utils/dayjs-wrapper';
+import dayjs, { formatQuarter } from '../../utils/dayjs-wrapper';
+import { DateFormat } from './dateUtil';
 
 // 标识日期无效值的value
 export const InvalidFieldValue = `__invalid_random_value_${Math.random()}__`;
@@ -11,13 +12,10 @@ export function transformDate(date: Dayjs | string, format: string): string;
 export function transformDate(date: (Dayjs | string)[], format: string): string;
 export function transformDate(date: Dayjs | string | (Dayjs | string)[], format: string) {
   if (dayjs.isDayjs(date)) {
-    return date.format(format);
+    return format === DateFormat.quarter ? formatQuarter(date) : date.format(format);
   }
   if (Array.isArray(date) && date.length > 0) {
     return date.map((item) => transformDate(item, format));
-  }
-  if (date && typeof date === 'string') {
-    return dayjs(date, format).format(format);
   }
   return date;
 }

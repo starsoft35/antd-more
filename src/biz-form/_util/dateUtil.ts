@@ -1,5 +1,5 @@
 import type { Dayjs } from 'dayjs';
-import dayjs from '../../utils/dayjs-wrapper';
+import dayjs, { transformQuarter } from '../../utils/dayjs-wrapper';
 
 // DatePicker picker值
 export type Picker = 'time' | 'date' | 'week' | 'month' | 'quarter' | 'year';
@@ -97,14 +97,15 @@ export function createDisabledDate(picker: Picker = 'date', opts?: CreateDisable
 }
 
 // 转换为dayjs值
-export function transformDayjsValue(val: string | Dayjs): Dayjs;
-export function transformDayjsValue(val: (string | Dayjs)[]): [Dayjs, Dayjs];
-export function transformDayjsValue(val: string | Dayjs | (string | Dayjs)[]) {
+export function transformDayjsValue(val: string | Dayjs, format?: string): Dayjs;
+export function transformDayjsValue(val: (string | Dayjs)[], format?: string): [Dayjs, Dayjs];
+export function transformDayjsValue(val: string | Dayjs | (string | Dayjs)[], format = 'YYYY-MM-DD') {
   if (Array.isArray(val)) {
-    return val.map((item) => transformDayjsValue(item));
+    return val.map((item) => transformDayjsValue(item, format));
   }
+
   if (typeof val === 'string' && val) {
-    return dayjs(val);
+    return format === DateFormat.quarter ? transformQuarter(val) : dayjs(val, format);
   }
   return val;
 }
