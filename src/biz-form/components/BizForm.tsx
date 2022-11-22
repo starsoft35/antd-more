@@ -23,18 +23,18 @@ const BizForm: React.FC<BizFormProps> & {
   const submitterConfig =
     typeof submitter === 'undefined' || submitter
       ? {
-          render: (_, dom) => (
-            <Form.Item
-              label=" "
-              colon={false}
-              className={formItemHideLabelClass}
-              style={{ marginBottom: 0 }}
-            >
-              {Array.isArray(dom) && dom.length > 1 ? <Space>{dom}</Space> : dom}
-            </Form.Item>
-          ),
-          ...submitterProps
-        }
+        render: (_, dom) => (
+          <Form.Item
+            label=" "
+            colon={false}
+            className={formItemHideLabelClass}
+            style={{ marginBottom: 0 }}
+          >
+            {Array.isArray(dom) && dom.length > 1 ? <Space>{dom}</Space> : dom}
+          </Form.Item>
+        ),
+        ...submitterProps
+      }
       : false;
 
   return (
@@ -53,9 +53,9 @@ const BizForm: React.FC<BizFormProps> & {
 
 BizForm.Item = Item;
 BizForm.List = List;
-BizForm.useForm = Form.useForm;
 BizForm.Provider = Form.Provider;
 BizForm.ErrorList = Form.ErrorList;
+BizForm.useForm = Form.useForm;
 BizForm.useFormInstance = Form.useFormInstance;
 BizForm.useWatch = Form.useWatch;
 

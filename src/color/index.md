@@ -2,7 +2,7 @@
 title: Color - 颜色
 order: 0
 group:
-  path: /
+  title: 通用
 nav:
   title: 组件
   path: /components

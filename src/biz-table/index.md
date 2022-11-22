@@ -2,7 +2,7 @@
 title: BizTable - 业务表格
 order: 2
 group:
-  path: /
+  title: 数据展示
 nav:
   title: 组件
   path: /components

@@ -11,7 +11,7 @@
   "scripts": {
     "start": "dumi dev",
     "doc": "dumi build",
-    "doc-version": "cross-env BUIDL_DOC_VERSION=version npm run doc",
+    "doc-version": "cross-env BUILD_DOC_VERSION=version npm run doc",
     "build": "father-build",
     "lint": "npm run lint:js && npm run lint:style",
     "lint:fix": "npm run lint-fix:js && npm run lint-fix:style",
@@ -99,7 +99,7 @@
     "dayjs": "^1.11.6",
     "rc-hooks": "^2.3.0",
     "react-color": "^2.19.3",
-    "util-helpers": "^4.10.0"
+    "util-helpers": "^4.13.1"
   },
   "lint-staged": {
     "**/*.less": "stylelint --fix",

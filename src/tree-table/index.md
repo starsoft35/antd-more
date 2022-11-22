@@ -2,7 +2,7 @@
 title: TreeTable - 树表格
 order: 3
 group:
-  path: /
+  title: 通用
 nav:
   title: 组件
   path: /components

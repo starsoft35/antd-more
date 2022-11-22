@@ -2,7 +2,7 @@
 title: Modal/Drawer - 浮层表单
 order: 4
 group:
-  path: /
+  title: 数据录入
 nav:
   title: 组件
   path: /components
@@ -16,27 +16,27 @@ nav:
 
 ### ModalForm 表单
 
-<code src="../demos/modal-form-1.tsx"></code>
+<code src="../../src/biz-form/demos/modal-form-1.tsx"></code>
 
 ### DrawerForm 表单
 
-<code src="../demos/drawer-form-1.tsx"></code>
+<code src="../../src/biz-form/demos/drawer-form-1.tsx"></code>
 
 ### 使用 visible 受控方式
 
-<code src="../demos/modal-form-2.tsx"></code>
+<code src="../../src/biz-form/demos/modal-form-2.tsx"></code>
 
 ### 自定义底部按钮
 
-<code src="../demos/modal-form-3.tsx"></code>
+<code src="../../src/biz-form/demos/modal-form-3.tsx"></code>
 
 ### 修改密码
 
-<code src="../demos/modal-form-4.tsx"></code>
+<code src="../../src/biz-form/demos/modal-form-4.tsx"></code>
 
 ### 修改和新增共用表单
 
-<code src="../demos/modal-form-5.tsx"></code>
+<code src="../../src/biz-form/demos/modal-form-5.tsx"></code>
 
 ## API
 

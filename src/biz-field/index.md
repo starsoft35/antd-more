@@ -1,6 +1,8 @@
 ---
 title: BizField - 业务字段
 order: 0
+group:
+  title: 数据展示
 nav:
   title: 组件
 ---

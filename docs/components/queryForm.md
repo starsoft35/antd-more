@@ -2,7 +2,7 @@
 title: QueryForm - 查询表单
 order: 5
 group:
-  path: /
+  title: 数据录入
 nav:
   title: 组件
   path: /components
@@ -16,15 +16,15 @@ nav:
 
 ### 查询表单
 
-<code src='../demos/query-form-1.tsx'></code>
+<code src='../../src/biz-form/demos/query-form-1.tsx'></code>
 
 ### 查询表单-展开收起
 
-<code src='../demos/query-form-2.tsx'></code>
+<code src='../../src/biz-form/demos/query-form-2.tsx'></code>
 
 ### 查询表单-垂直布局
 
-<code src='../demos/query-form-3.tsx'></code>
+<code src='../../src/biz-form/demos/query-form-3.tsx'></code>
 
 ## API
 

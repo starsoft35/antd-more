@@ -3,7 +3,7 @@ import { Space, Button } from 'antd';
 import type { EditableBizTableActionType, BizTableColumnType } from 'antd-more';
 import { BizTable } from 'antd-more';
 import Mock from 'mockjs';
-import { ApproveStatusOptions } from './constants';
+import { ApproveStatus, ApproveStatusOptions } from './constants';
 
 const defaultData = Mock.mock({
   'list|2-5': [
@@ -12,7 +12,7 @@ const defaultData = Mock.mock({
       'age|1-99': 20,
       name: '@cname',
       birthday: '@DATE',
-      'status|1-3': 1
+      'status|1': [ApproveStatus.Approve, ApproveStatus.Processing, ApproveStatus.Refused]
     }
   ]
 }).list;

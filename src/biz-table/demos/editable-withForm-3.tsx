@@ -13,7 +13,7 @@ import {
 } from 'antd-more';
 import { formatBankCard } from 'util-helpers';
 import Mock from 'mockjs';
-import { BankOptions, ApproveStatusOptions } from './constants';
+import { BankOptions, ApproveStatusOptions, ApproveStatus } from './constants';
 
 Mock.Random.extend({
   bank() {
@@ -31,7 +31,7 @@ const defaultData = Mock.mock({
       'money|0-10000.2': null,
       materials: [],
       remark: null, // '@cparagraph'
-      'status|1-3': null // 1
+      'status|1': [ApproveStatus.Approve, ApproveStatus.Processing, ApproveStatus.Refused]
     }
   ]
 }).list;

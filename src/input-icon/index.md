@@ -2,7 +2,7 @@
 title: InputIcon - 图标输入
 order: 3
 group:
-  path: /
+  title: 通用
 nav:
   title: 组件
   path: /components
@@ -36,7 +36,7 @@ nav:
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| iconData | 图标名称和组件的 Map 键值对。<br/>推荐使用内置图标：<br/>`import icons from 'antd-more/es/input-icon/icons';` | `Map<string, React.FC>` | `new Map([])` |
+| iconData | 图标名称和组件的 Map 键值对。<br/>推荐使用内置图标：<br/>`import { InputIconsMap } from 'antd-more';` | `Map<string, React.FC>` | `new Map([])` |
 | showSearch | 显示图标搜索框 | `boolean` | `true` |
 | column | 一行显示图标数量。<br/>如果不能被 24 整除，自动向下取整。 | `number` | `3` |
 | value | 图标名称 | `string` | - |

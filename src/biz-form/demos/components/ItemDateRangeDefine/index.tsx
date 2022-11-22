@@ -1,9 +1,6 @@
 import * as React from 'react';
 import type { BizFormItemProps } from 'antd-more';
-import { BizFormItem } from 'antd-more';
-import FieldContext from 'antd-more/es/biz-form/FieldContext';
-import ListFieldContext from 'antd-more/es/biz-form/ListFieldContext';
-import getNamePaths from 'antd-more/es/biz-form/_util/getNamePaths';
+import { BizFormItem, BizForm } from 'antd-more';
 import WrapperDateRange from './WrapperDateRange';
 
 const ItemDateRangeDefine: React.FC<BizFormItemProps> = ({
@@ -12,17 +9,12 @@ const ItemDateRangeDefine: React.FC<BizFormItemProps> = ({
   required,
   ...restProps
 }) => {
-  const { parentListName } = React.useContext(ListFieldContext);
-  const { form } = React.useContext(FieldContext);
+  const form = BizForm.useFormInstance();
 
   // 触发表单校验
   const triggeValidate = React.useCallback(() => {
-    const namePath =
-      Array.isArray(parentListName) && parentListName.length > 0
-        ? getNamePaths(name, parentListName)
-        : name;
-    form.validateFields([namePath]);
-  }, [form, name, parentListName]);
+    form.validateFields([name]);
+  }, [form, name]);
 
   return (
     <BizFormItem

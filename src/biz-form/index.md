@@ -2,7 +2,7 @@
 title: BizForm - 业务表单
 order: 0
 group:
-  path: /
+  title: 数据录入
 nav:
   title: 组件
   path: /components

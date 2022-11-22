@@ -2,7 +2,7 @@
 title: CaptchaButton - 验证码按钮
 order: 2
 group:
-  path: /
+  title: 通用
 nav:
   title: 组件
   path: /components

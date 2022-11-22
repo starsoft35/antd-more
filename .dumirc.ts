@@ -17,7 +17,7 @@ const versionSiteRoot = `refs/heads/v${MajorVersionNumber}`;
 const preMajorVersionNumber = MajorVersionNumber - 1;
 const preVersionSiteRoot = `refs/heads/v${preMajorVersionNumber}`;
 
-const version = process.env.BUIDL_DOC_VERSION ? versionSiteRoot : 'latest';
+const version = process.env.BUILD_DOC_VERSION ? versionSiteRoot : 'latest';
 
 const serverRootDirect =
   !isDev ? 'https://doly-dev.github.io/antd-more/' : '/';
@@ -52,7 +52,9 @@ export default defineConfig({
   //   modifyVars: v4Token
   // },
   themeConfig: {
+    name: 'antd-more',
     logo,
+    footer: 'Open-source MIT Licensed | Copyright © 2020-present',
     // sidebar: {
     //   '/components': [
     //     {

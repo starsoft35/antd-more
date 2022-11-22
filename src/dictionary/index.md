@@ -2,7 +2,7 @@
 title: Dictionary - 数据字典
 order: 1
 group:
-  path: /
+  title: 通用
 nav:
   title: 组件
   path: /components
