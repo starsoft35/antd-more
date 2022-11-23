@@ -1,11 +1,8 @@
 ---
-title: BizDescriptions - 业务描述
-order: 1
 group:
   title: 数据展示
-nav:
-  title: 组件
-  path: /components
+  order: 1
+toc: content
 ---
 
 # BizDescriptions - 业务描述

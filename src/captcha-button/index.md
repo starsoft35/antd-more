@@ -1,14 +1,11 @@
 ---
-title: CaptchaButton - 验证码按钮
-order: 2
 group:
   title: 通用
-nav:
-  title: 组件
-  path: /components
+  order: 4
+toc: content
 ---
 
-# CaptchaButton
+# CaptchaButton - 验证码按钮
 
 > 推荐使用 [BizFormItemCaptcha](/components/item#captcha)。
 

@@ -1,11 +1,8 @@
 ---
-title: InputIcon - 图标输入
-order: 3
 group:
   title: 通用
-nav:
-  title: 组件
-  path: /components
+  order: 4
+toc: content
 ---
 
 # InputIcon - 图标输入

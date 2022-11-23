@@ -55,60 +55,32 @@ export default defineConfig({
     name: 'antd-more',
     logo,
     footer: 'Open-source MIT Licensed | Copyright © 2020-present',
-    // sidebar: {
-    //   '/components': [
-    //     {
-    //       title: '数据展示',
-    //       children: ['biz-field', 'biz-descriptions', 'biz-table/index', 'biz-table']
-    //     },
-    //     {
-    //       title: '数据录入',
-    //       children: [
-    //         'biz-form',
-    //         'biz-form/docs/item',
-    //         'biz-form/docs/list',
-    //         'biz-form/docs/modalForm',
-    //         'biz-form/docs/queryForm',
-    //         'biz-form/docs/stepsForm'
-    //       ]
-    //     },
-    //     {
-    //       title: '布局',
-    //       children: ['biz-user-layout']
-    //     },
-    //     {
-    //       title: '通用',
-    //       children: ['color', 'dictionary', 'captcha-button', 'input-icon', 'tree-table']
-    //     }
-    //   ]
-    // },
-    // navs: [
-    //   // null, // null 值代表保留约定式生成的导航，只做增量配置
-    //   {
-    //     title: '文档',
-    //     path: '/docs'
-    //   },
-    //   {
-    //     title: '组件',
-    //     path: '/components'
-    //   },
-    //   {
-    //     title: '更多场景',
-    //     path: '/scenes'
-    //   },
-    //   {
-    //     title: `v${preMajorVersionNumber}.x`,
-    //     path: `https://doly-dev.github.io/antd-more/${preVersionSiteRoot}/index.html`
-    //   },
-    //   {
-    //     title: 'GitHub',
-    //     path: 'https://github.com/doly-dev/antd-more'
-    //   },
-    //   {
-    //     title: '更新日志',
-    //     path: 'https://github.com/doly-dev/antd-more/releases'
-    //   }
-    // ],
+    nav: [
+      {
+        title: '文档',
+        link: '/docs'
+      },
+      {
+        title: '组件',
+        link: '/components'
+      },
+      {
+        title: '更多场景',
+        link: '/scenes'
+      },
+      {
+        title: `v${preMajorVersionNumber}.x`,
+        link: `https://doly-dev.github.io/antd-more/${preVersionSiteRoot}/index.html`
+      },
+      {
+        title: 'GitHub',
+        link: 'https://github.com/doly-dev/antd-more'
+      },
+      {
+        title: '更新日志',
+        link: 'https://github.com/doly-dev/antd-more/releases'
+      }
+    ],
   },
 
   headScripts: isDev ? [] : [

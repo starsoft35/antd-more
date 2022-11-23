@@ -1,11 +1,8 @@
 ---
-title: StepsForm - 分步表单
-order: 6
 group:
   title: 数据录入
-nav:
-  title: 组件
-  path: /components
+  order: 2
+toc: content
 ---
 
 # StepsForm - 分步表单
@@ -65,7 +62,7 @@ import { StepsForm } from 'antd-more';
 
 ### StepsForm.StepForm
 
-基于 BizForm 扩展的表单，没有 `onReset` `resetText` `ready`， 除了以下参数，其余和 BizForm 一样。
+基于 BizForm 扩展的表单，没有 `onReset` `resetText` `ready`， 除了以下参数，其余和 [BizForm](/components/biz-form) 一样。
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |

@@ -1,11 +1,8 @@
 ---
-title: BizFormList - 表单数组
-order: 3
 group:
   title: 数据录入
-nav:
-  title: 组件
-  path: /components
+  order: 2
+toc: content
 ---
 
 # BizFormList - 表单数组

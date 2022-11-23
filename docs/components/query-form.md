@@ -1,11 +1,8 @@
 ---
-title: QueryForm - 查询表单
-order: 5
 group:
   title: 数据录入
-nav:
-  title: 组件
-  path: /components
+  order: 2
+toc: content
 ---
 
 # QueryForm - 查询表单
@@ -34,7 +31,7 @@ nav:
 import { QueryForm } from 'antd-more';
 ```
 
-除了以下参数，其余和 BizForm 一样。
+除了以下参数，其余和 [BizForm](/components/biz-form) 一样。
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |

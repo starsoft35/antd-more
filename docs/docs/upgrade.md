@@ -1,8 +1,5 @@
 ---
 order: 2
-nav:
-  title: 文档
-  path: /docs
 ---
 
 # 从 v2 到 v3

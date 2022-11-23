@@ -1,8 +1,5 @@
 ---
-order: 1
-nav:
-  title: 文档
-  path: /docs
+order: 3
 ---
 
 # 常见问题

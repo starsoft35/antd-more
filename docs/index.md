@@ -5,7 +5,7 @@ hero:
   description: 基于 antd 扩展的业务场景组件
   actions:
     - text: 快速上手
-      link: /docs/getting-started
+      link: /docs
     - text: GitHub
       link: https://github.com/doly-dev/antd-more
 

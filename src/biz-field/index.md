@@ -1,10 +1,8 @@
 ---
-title: BizField - 业务字段
-order: 0
 group:
   title: 数据展示
-nav:
-  title: 组件
+  order: 1
+toc: content
 ---
 
 # BizField - 业务字段
@@ -66,7 +64,7 @@ import { BizField } from 'antd-more';
 | dateTimeRange | 日期时间区间 `YYYY-MM-DD HH:mm:ss ~ YYYY-MM-DD HH:mm:ss` | 2020-10-10 00:00:00 ~ 2020-12-12 00:00:00 |
 | time | 时间 `HH:mm:ss` | 10:05:20 |
 | timeRange | 时间区间 `HH:mm:ss ~ HH:mm:ss` | 10:05:20 ~ 20:00:00 |
-| fromNow | 相对当前时间，使用 `dayjs` [fromNow](https://dayjs.gitee.io/zh-CN/) 方法 | 5 个月前 |
+| fromNow | 相对当前时间，使用 `dayjs` [relativeTime plugin 的 fromNow 方法](https://day.js.org/docs/zh-CN/plugin/relative-time) | 5 个月前 |
 
 ### valueEnum 值
 

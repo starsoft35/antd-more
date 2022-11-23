@@ -1,11 +1,8 @@
 ---
-title: EditableBizTable - 可编辑业务表格
-order: 3
 group:
   title: 数据展示
-nav:
-  title: 组件
-  path: /components
+  order: 1
+toc: content
 ---
 
 # EditableBizTable - 可编辑业务表格

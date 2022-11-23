@@ -1,11 +1,8 @@
 ---
-title: Modal/Drawer - 浮层表单
-order: 4
 group:
   title: 数据录入
-nav:
-  title: 组件
-  path: /components
+  order: 2
+toc: content
 ---
 
 # ModalForm/DrawerForm - 浮层表单
@@ -46,7 +43,7 @@ nav:
 import { ModalForm } from 'antd-more';
 ```
 
-除了以下参数，其余和 BizForm 一样。
+除了以下参数，其余和 [BizForm](/components/biz-form) 一样。
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
@@ -64,7 +61,7 @@ import { ModalForm } from 'antd-more';
 import { DrawerForm } from 'antd-more';
 ```
 
-除了以下参数，其余和 BizForm 一样。
+除了以下参数，其余和 [BizForm](/components/biz-form) 一样。
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |

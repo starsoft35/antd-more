@@ -1,10 +1,8 @@
 ---
-order: 0
 group:
   title: 页面布局
-nav:
-  title: 组件
-  path: /components
+  order: 3
+toc: content
 ---
 
 # BizUserLayout - 用户界面布局

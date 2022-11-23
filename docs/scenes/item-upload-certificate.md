@@ -1,6 +1,8 @@
 ---
 group:
   title: 表单组件
+  order: 2
+toc: content
 ---
 
 # 上传证件 - ItemUploadCertificate

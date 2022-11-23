@@ -1,11 +1,8 @@
 ---
-title: TreeTable - 树表格
-order: 3
 group:
   title: 通用
-nav:
-  title: 组件
-  path: /components
+  order: 4
+toc: content
 ---
 
 # TreeTable - 树表格
