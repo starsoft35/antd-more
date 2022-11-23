@@ -11,8 +11,8 @@ function Dictionary<ValueType = any>({
   value,
   defaultLabel = '-',
   type = 'text',
-  optionName = '',
-  fieldNames: outFieldNames,
+  propsName = '',
+  fieldNames,
   match,
   className,
   ...restProps
@@ -21,12 +21,12 @@ function Dictionary<ValueType = any>({
     () => ({
       label: 'label',
       value: 'value',
-      ...outFieldNames
+      ...fieldNames
     }),
-    [outFieldNames]
+    [fieldNames]
   );
   const values = Array.isArray(value) ? value : [value];
-  const realOptionName = optionName || type;
+  const realPropsName = propsName || type;
   const matchMethod = useCallback(
     (itemValue, currentValue) => {
       return typeof match === 'function'
@@ -40,29 +40,25 @@ function Dictionary<ValueType = any>({
   let view: JSX.Element;
 
   if (!Array.isArray(ret) || ret.length <= 0) {
-    view = <span>{defaultLabel}</span>;
+    view = <span className={`${prefixCls}-default`}>{defaultLabel}</span>;
   } else {
     view = (
       <>
         {ret.map((item, index) => {
-          const options = item[realOptionName] || {};
+          const options = item[realPropsName] || {};
           const { alias, ...restOptions } = options;
           const label = alias || item[labelKey];
-          const itemProps = {
-            key: `${item[valueKey]}${typeof label === 'string' ? label : ''}${index}`,
-            ...restOptions
-          };
+          const key = `${item[valueKey]}${typeof label === 'string' ? label : ''}${index}`;
 
           if (type === 'tag') {
-            return <Tag {...itemProps}>{label}</Tag>;
+            return <Tag key={key} {...restOptions}>{label}</Tag>;
           }
 
           if (type === 'badge') {
-            return <Badge text={label} {...itemProps} />;
+            return <Badge key={key} text={label} {...restOptions} />;
           }
 
-          // eslint-disable-next-line react/jsx-key
-          return <span {...itemProps}>{label}</span>;
+          return <span key={key} {...restOptions}>{label}</span>;
         })}
       </>
     );

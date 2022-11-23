@@ -25,7 +25,7 @@ export interface DictionaryProps<ValueType = any> extends SpaceProps {
   value?: ValueType | ValueType[];
   defaultLabel?: ReactNode;
   type?: 'text' | 'tag' | 'badge';
-  optionName?: string;
+  propsName?: string;
   fieldNames?: DictionaryFieldNames;
   match?: (itemValue: ValueType, currentValue: ValueType) => boolean;
 }
