@@ -31,7 +31,7 @@ const defaultData = Mock.mock({
       'money|0-10000.2': null,
       materials: [],
       remark: null, // '@cparagraph'
-      'status|1-3': 1
+      'status|1': ["1", "2", "3"]
     }
   ]
 }).list;

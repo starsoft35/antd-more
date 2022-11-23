@@ -13,7 +13,7 @@ import FreightRule, { FreightRuleType } from './components/FreightRule';
 
 type DataItem = {
   freight: number;
-  freightRule: number;
+  freightRule: string;
   id: number;
   name: string;
 };
@@ -25,7 +25,7 @@ const services = {
       'data|3-5': [
         {
           freight: '@float(0.01,999,0,2)',
-          freightRule: '@integer(0,2)',
+          'freightRule|1': ["0", "1", "2"],
           'id|+1': 0,
           name: '@city'
         }
@@ -33,7 +33,7 @@ const services = {
     }) as {
       data: {
         freight: number;
-        freightRule: number;
+        freightRule: string;
         id: number;
         name: string;
       }[];
@@ -41,7 +41,7 @@ const services = {
     return {
       success: true,
       data: data.map((item) => {
-        if ((item.freightRule as unknown as number) !== FreightRuleType.Need) {
+        if ((item.freightRule) !== FreightRuleType.Need) {
           return {
             ...item,
             freight: 0

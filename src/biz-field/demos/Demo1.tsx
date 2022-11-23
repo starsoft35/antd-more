@@ -141,22 +141,22 @@ export default () => {
       </Descriptions>
       <Descriptions title="枚举">
         <Descriptions.Item label="文本">
-          <BizField value={1} valueType="enum" valueEnum={ApproveStatusOptions} />
+          <BizField value="1" valueType="enum" valueEnum={ApproveStatusOptions} />
         </Descriptions.Item>
         <Descriptions.Item label="标签">
-          <BizField value={1} valueType="enumTag" valueEnum={ApproveStatusOptions} />
+          <BizField value="1" valueType="enumTag" valueEnum={ApproveStatusOptions} />
         </Descriptions.Item>
         <Descriptions.Item label="徽章">
-          <BizField value={1} valueType="enumBadge" valueEnum={ApproveStatusOptions} />
+          <BizField value="1" valueType="enumBadge" valueEnum={ApproveStatusOptions} />
         </Descriptions.Item>
         <Descriptions.Item label="多个文本">
-          <BizField value={[1, 2]} valueType="enum" valueEnum={ApproveStatusOptions} />
+          <BizField value={["1", "2"]} valueType="enum" valueEnum={ApproveStatusOptions} />
         </Descriptions.Item>
         <Descriptions.Item label="多个标签">
-          <BizField value={[1, 2]} valueType="enumTag" valueEnum={ApproveStatusOptions} />
+          <BizField value={["2", "3"]} valueType="enumTag" valueEnum={ApproveStatusOptions} />
         </Descriptions.Item>
         <Descriptions.Item label="多个徽章">
-          <BizField value={[1, 2]} valueType="enumBadge" valueEnum={ApproveStatusOptions} />
+          <BizField value={["1", "2"]} valueType="enumBadge" valueEnum={ApproveStatusOptions} />
         </Descriptions.Item>
       </Descriptions>
     </>
