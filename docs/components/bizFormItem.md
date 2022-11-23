@@ -1,11 +1,7 @@
 ---
-title: BizFormItem - 表单项
-order: 2
 group:
   title: 数据录入
-nav:
-  title: 组件
-  path: /components
+toc: content
 ---
 
 # BizFormItem - 表单项

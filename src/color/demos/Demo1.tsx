@@ -4,6 +4,8 @@ import { Color } from 'antd-more';
 export default () => {
   return (
     <>
+      <Color />
+      <br />
       <Color value="#e60000" />
       <br />
       <Color value="#e60000" showText />

@@ -1,39 +1,20 @@
 import React from 'react';
 import type { SketchPickerProps } from 'react-color';
 import { SketchPicker } from 'react-color';
-import type { PickerCommonProps } from './PickerWrapper';
+import type { PickerWrapperProps } from './PickerWrapper';
 import PickerWrapper from './PickerWrapper';
 
-export type ColorSketchPickerProps = Omit<SketchPickerProps, 'onChange' | 'onChangeComplete'> &
-  PickerCommonProps;
+export interface ColorSketchPickerProps extends PickerWrapperProps {
+  pickerProps?: Omit<SketchPickerProps, 'onChange' | 'onChangeComplete'>;
+}
 
 const ColorSketchPicker: React.FC<ColorSketchPickerProps> = ({
-  className,
-  value,
-  trigger,
-  showText,
-  onChange,
-  colorMode,
-  placement,
-  changeMethod,
-  size,
+  pickerProps,
   ...restProps
 }) => {
-  const wrapperProps = {
-    className,
-    value,
-    trigger,
-    showText,
-    onChange,
-    colorMode,
-    placement,
-    changeMethod,
-    size
-  };
-
   return (
-    <PickerWrapper {...wrapperProps}>
-      <SketchPicker {...restProps} disableAlpha={colorMode !== 'rgb'} />
+    <PickerWrapper {...restProps}>
+      <SketchPicker disableAlpha={restProps?.colorMode !== 'rgb'} {...pickerProps} />
     </PickerWrapper>
   );
 };

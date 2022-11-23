@@ -6,7 +6,7 @@ const prefixCls = 'antd-more-color';
 
 export interface ColorProps extends React.HTMLAttributes<HTMLSpanElement> {
   className?: string;
-  value: string;
+  value?: string;
   showText?: boolean;
   size?: 'small' | 'middle';
   renderColor?: (dom: JSX.Element, color: string) => React.ReactNode;

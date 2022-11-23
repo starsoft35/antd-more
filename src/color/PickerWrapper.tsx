@@ -21,10 +21,11 @@ export interface PickerCommonProps {
   placement?: TooltipProps['placement'];
   changeMethod?: 'onChange' | 'onChangeComplete';
   size?: 'small' | 'middle';
+  disabled?: boolean;
 }
 
 export interface PickerWrapperProps extends PickerCommonProps, PopoverProps {
-  children?: React.ReactElement | any;
+  children?: React.ReactElement;
   defined?: boolean;
   [key: string]: any;
 }
@@ -41,6 +42,7 @@ const PickerWrapper: React.FC<PickerWrapperProps> = ({
   changeMethod = 'onChange',
   size = 'small',
   defined = false,
+  disabled = false,
   ...restProps
 }) => {
   const [open, setOpen] = useControllableValue<boolean>(restProps, {
@@ -62,8 +64,8 @@ const PickerWrapper: React.FC<PickerWrapperProps> = ({
       value={value}
       showText={showText}
       size={size}
-      className={classNames(`${prefixCls}-picker`, className)}
-      renderColor={(dom) => (
+      className={classNames(`${prefixCls}-picker`, { [`${prefixCls}-picker-disabled`]: disabled }, className)}
+      renderColor={(dom) => disabled ? dom : (
         <Popover
           content={
             defined

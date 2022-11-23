@@ -1,39 +1,20 @@
 import React from 'react';
 import type { ChromePickerProps } from 'react-color';
 import { ChromePicker } from 'react-color';
-import type { PickerCommonProps } from './PickerWrapper';
+import type { PickerWrapperProps } from './PickerWrapper';
 import PickerWrapper from './PickerWrapper';
 
-export type ColorChromePickerProps = Omit<ChromePickerProps, 'onChange' | 'onChangeComplete'> &
-  PickerCommonProps;
+export interface ColorChromePickerProps extends PickerWrapperProps {
+  pickerProps?: Omit<ChromePickerProps, 'onChange' | 'onChangeComplete'>;
+}
 
 const ColorChromePicker: React.FC<ColorChromePickerProps> = ({
-  className,
-  value,
-  trigger,
-  showText,
-  onChange,
-  colorMode,
-  placement,
-  changeMethod,
-  size,
+  pickerProps,
   ...restProps
 }) => {
-  const wrapperProps = {
-    className,
-    value,
-    trigger,
-    showText,
-    onChange,
-    colorMode,
-    placement,
-    changeMethod,
-    size
-  };
-
   return (
-    <PickerWrapper {...wrapperProps}>
-      <ChromePicker {...restProps} disableAlpha={colorMode !== 'rgb'} />
+    <PickerWrapper {...restProps}>
+      <ChromePicker disableAlpha={restProps?.colorMode !== 'rgb'} {...pickerProps} />
     </PickerWrapper>
   );
 };

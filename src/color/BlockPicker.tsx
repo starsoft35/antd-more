@@ -1,39 +1,20 @@
 import React from 'react';
 import type { BlockPickerProps } from 'react-color';
 import { BlockPicker } from 'react-color';
-import type { PickerCommonProps } from './PickerWrapper';
+import type { PickerWrapperProps } from './PickerWrapper';
 import PickerWrapper from './PickerWrapper';
 
-export type ColorBlockPickerProps = Omit<BlockPickerProps, 'onChange' | 'onChangeComplete'> &
-  PickerCommonProps;
+export interface ColorBlockPickerProps extends PickerWrapperProps {
+  pickerProps?: Omit<BlockPickerProps, 'onChange' | 'onChangeComplete'>;
+}
 
 const ColorBlockPicker: React.FC<ColorBlockPickerProps> = ({
-  className,
-  value,
-  trigger,
-  showText,
-  onChange,
-  colorMode,
-  placement,
-  changeMethod,
-  size,
+  pickerProps,
   ...restProps
 }) => {
-  const wrapperProps = {
-    className,
-    value,
-    trigger,
-    showText,
-    onChange,
-    colorMode,
-    placement,
-    changeMethod,
-    size
-  };
-
   return (
-    <PickerWrapper {...wrapperProps}>
-      <BlockPicker {...restProps} triangle="hide" />
+    <PickerWrapper {...restProps}>
+      <BlockPicker triangle="hide" {...pickerProps} />
     </PickerWrapper>
   );
 };

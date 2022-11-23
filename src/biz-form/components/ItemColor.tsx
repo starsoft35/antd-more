@@ -6,14 +6,6 @@ import type { BizFormItemProps } from './Item';
 import BizFormItem from './Item';
 import getLabel from '../_util/getLabel';
 
-export enum ColorPicker {
-  block = 'BlockPicker',
-  chrome = 'ChromePicker',
-  compact = 'CompactPicker',
-  photoshop = 'PhotoshopPicker',
-  sketch = 'SketchPicker'
-}
-
 export interface BizFormItemColorProps extends BizFormItemProps {
   showText?: boolean;
   colorMode?: 'rgb' | 'hex';

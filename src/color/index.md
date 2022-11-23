@@ -6,7 +6,7 @@ toc: content
 
 # Color - 颜色
 
-> 推荐使用 [BizField](/components/biz-field)、[BizFormItemColor](/components/item#color)。
+> 推荐使用 [BizField](/components/biz-field) 、 [BizFormItemColor](/components/item#color) 。
 
 用于显示/选择颜色
 
@@ -14,7 +14,7 @@ toc: content
 
 ### 显示颜色
 
-设置 `showText` 显示颜色值
+设置 `showText` 显示颜色值文本。
 
 <code src="./demos/Demo1.tsx"></code>
 
@@ -56,14 +56,14 @@ import {
 } from 'antd-more';
 ```
 
-除了以下参数外，还支持各自的 API，更多信息可查阅 [react-color](http://casesandberg.github.io/react-color/) 。
-
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | value | 颜色值 | `string` | - |
-| showText | 显示颜色值文本 | `boolean` | `false` |
 | onChange | 当颜色值变动后触发。 | `(color: string) => void` | - |
-| trigger | 触发行为 | `'hover' \| 'click'` | `'click'` |
 | colorMode | 颜色模式 | `'hex' \| 'rgb'` | `'hex'` |
+| disabled | 禁止选择 | `boolean` | `false` |
 | placement | 颜色选择浮层位置 | `'top' \| 'left' \| 'right' \| 'bottom' \| 'topLeft' \| 'topRight' \| 'bottomLeft' \| 'bottomRight' \| 'leftTop' \| 'leftBottom' \| 'rightTop' \| 'rightBottom'` | `'bottomLeft'` |
 | size | 颜色块大小 | `'small' \| 'middle'` | `'small'` |
+| showText | 显示颜色值文本 | `boolean` | `false` |
+| trigger | 触发行为 | `'hover' \| 'click'` | `'click'` |
+| pickerProps | 不同选择器有不同的属性，更多信息可查阅 [react-color](http://casesandberg.github.io/react-color/#api-individual) 。 | `BlockPickerProps \| ChromePickerProps \| CompactPickerProps \| \| PhotoshopPickerProps \| SketchPickerProps` | - |

@@ -1,49 +1,29 @@
 import React, { useState, useCallback } from 'react';
 import type { PhotoshopPickerProps } from 'react-color';
 import { PhotoshopPicker } from 'react-color';
-import type { PickerCommonProps } from './PickerWrapper';
+import type { PickerWrapperProps } from './PickerWrapper';
 import PickerWrapper from './PickerWrapper';
 import { transformColor } from './utils';
 
-export type ColorPhotoshopPickerProps = Omit<
-  PhotoshopPickerProps,
-  'onChange' | 'onChangeComplete'
-> &
-  Omit<PickerCommonProps, 'changeMethod'> & {
-    changeMethod?: 'onChangeComplete' | 'onAccept';
-  };
+export interface ColorPhotoshopPickerProps extends Omit<PickerWrapperProps, 'changeMethod'> {
+  pickerProps?: Omit<PhotoshopPickerProps, 'onChange' | 'onChangeComplete'>;
+  changeMethod?: 'onChangeComplete' | 'onAccept';
+}
 
 const ColorPhotoshopPicker: React.FC<ColorPhotoshopPickerProps> = ({
-  className,
-  value,
-  trigger,
-  showText,
-  onChange,
-  colorMode,
-  placement,
-  size,
+  pickerProps,
   changeMethod = 'onAccept',
+  onChange,
   ...restProps
 }) => {
   const [open, setOpen] = useState(false);
-  const wrapperProps = {
-    className,
-    value,
-    trigger,
-    showText,
-    colorMode,
-    placement,
-    size,
-    open,
-    onOpenChange: setOpen
-  };
-  const [innerColor, setInnerColor] = useState(value);
+  const [innerColor, setInnerColor] = useState(restProps?.value);
 
   const handleChange = useCallback(
     (color) => {
-      setInnerColor(transformColor(color, colorMode));
+      setInnerColor(transformColor(color, restProps?.colorMode));
     },
-    [colorMode]
+    [restProps?.colorMode]
   );
 
   const handleAccept = useCallback(() => {
@@ -59,14 +39,19 @@ const ColorPhotoshopPicker: React.FC<ColorPhotoshopPickerProps> = ({
     [changeMethod]: handleAccept
   };
 
+  const wrapperProps = {
+    open,
+    onOpenChange: setOpen
+  };
+
   return (
-    <PickerWrapper {...wrapperProps} defined>
+    <PickerWrapper {...wrapperProps} {...restProps} defined>
       <PhotoshopPicker
         color={innerColor}
         onChange={handleChange}
         onCancel={handleCancel}
         {...changeMethodProps}
-        {...restProps}
+        {...pickerProps}
       />
     </PickerWrapper>
   );

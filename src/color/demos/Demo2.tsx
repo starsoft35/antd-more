@@ -28,6 +28,15 @@ export default () => {
         colorMode="rgb"
         placement="topLeft"
       />
+      <p style={{ fontSize: 13, color: 'gray' }}>禁止选择：</p>
+      <ColorChromePicker
+        value={color2}
+        onChange={setColor2}
+        showText
+        colorMode="rgb"
+        placement="topLeft"
+        disabled
+      />
       <br />
       <br />
       <h3>ColorCompactPicker</h3>
