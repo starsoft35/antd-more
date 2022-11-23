@@ -40,7 +40,7 @@ function Dictionary<ValueType = any>({
   let view: JSX.Element;
 
   if (!Array.isArray(ret) || ret.length <= 0) {
-    view = <span>{defaultLabel}</span>;
+    view = <span className={`${prefixCls}-default`}>{defaultLabel}</span>;
   } else {
     view = (
       <>
@@ -48,21 +48,17 @@ function Dictionary<ValueType = any>({
           const options = item[realOptionName] || {};
           const { alias, ...restOptions } = options;
           const label = alias || item[labelKey];
-          const itemProps = {
-            key: `${item[valueKey]}${typeof label === 'string' ? label : ''}${index}`,
-            ...restOptions
-          };
+          const key = `${item[valueKey]}${typeof label === 'string' ? label : ''}${index}`;
 
           if (type === 'tag') {
-            return <Tag {...itemProps}>{label}</Tag>;
+            return <Tag key={key} {...restOptions}>{label}</Tag>;
           }
 
           if (type === 'badge') {
-            return <Badge text={label} {...itemProps} />;
+            return <Badge key={key} text={label} {...restOptions} />;
           }
 
-          // eslint-disable-next-line react/jsx-key
-          return <span {...itemProps}>{label}</span>;
+          return <span key={key} {...restOptions}>{label}</span>;
         })}
       </>
     );
