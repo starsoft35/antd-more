@@ -9,7 +9,7 @@ export interface ColorProps extends React.HTMLAttributes<HTMLSpanElement> {
   value: string;
   showText?: boolean;
   size?: 'small' | 'middle';
-  renderColor?: (dom: JSX.Element) => React.ReactNode;
+  renderColor?: (dom: JSX.Element, color: string) => React.ReactNode;
 }
 
 const Color: React.FC<ColorProps> = ({
@@ -21,19 +21,20 @@ const Color: React.FC<ColorProps> = ({
   ...restProps
 }) => {
   const colorDom = useMemo(
-    () => (
-      <span className={`${prefixCls}-outer`} title={value}>
-        <span className={`${prefixCls}-inner`} style={{ backgroundColor: value }} />
-      </span>
-    ),
-    [value]
+    () => {
+      const dom = (
+        <span className={`${prefixCls}-outer`} title={value}>
+          <span className={`${prefixCls}-inner`} style={{ backgroundColor: value }} />
+        </span>
+      );
+      return renderColor ? renderColor(dom, value) : dom;
+    },
+    [value, renderColor]
   );
-
-  const colorView = renderColor ? renderColor(colorDom) : colorDom;
 
   return (
     <span className={classNames(className, prefixCls, `${prefixCls}-${size}`)} {...restProps}>
-      {colorView}
+      {colorDom}
       {showText && value && <span className={`${prefixCls}-text`}>{value}</span>}
     </span>
   );

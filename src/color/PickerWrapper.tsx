@@ -43,11 +43,11 @@ const PickerWrapper: React.FC<PickerWrapperProps> = ({
   defined = false,
   ...restProps
 }) => {
-  const [visible, setVisible] = useControllableValue<boolean>(restProps, {
-    valuePropName: 'visible',
-    defaultValuePropName: 'defaultVisible',
+  const [open, setOpen] = useControllableValue<boolean>(restProps, {
+    valuePropName: 'open',
+    defaultValuePropName: 'defaultOpen',
     defaultValue: false,
-    trigger: 'onVisibleChange'
+    trigger: 'onOpenChange'
   });
 
   const handleChange = useCallback(
@@ -74,13 +74,13 @@ const PickerWrapper: React.FC<PickerWrapperProps> = ({
               })
           }
           trigger={trigger}
-          visible={visible}
-          onVisibleChange={setVisible}
           autoAdjustOverflow={false}
           placement={placement}
           showArrow={false}
           overlayClassName={`${prefixCls}-overlay-normalize`}
           {...restProps}
+          open={open}
+          onOpenChange={setOpen}
         >
           {dom}
         </Popover>

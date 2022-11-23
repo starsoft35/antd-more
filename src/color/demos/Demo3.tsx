@@ -1,7 +1,3 @@
-/**
- * title: antd Form 中使用
- */
-
 import React, { useState, useCallback } from 'react';
 import { Form, Button } from 'antd';
 import { ColorBlockPicker, ColorSketchPicker } from 'antd-more';

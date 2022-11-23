@@ -1,8 +1,3 @@
-/**
- * title: 显示颜色
- * desc: 设置 `showText` 显示颜色值
- */
-
 import React from 'react';
 import { Color } from 'antd-more';
 

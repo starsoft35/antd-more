@@ -1,11 +1,3 @@
-/**
- * title: 选择颜色
- * desc: |
- *  支持设置颜色选择器位置、颜色模式（`rgb`、`hex`）。
- *
- *  其中 `ColorChromePicker` `ColorSketchPicker` 在颜色模式为 `rgb` 时，支持设置透明度。
- */
-
 import React, { useState } from 'react';
 import {
   ColorBlockPicker,

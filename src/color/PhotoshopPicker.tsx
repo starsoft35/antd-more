@@ -25,7 +25,7 @@ const ColorPhotoshopPicker: React.FC<ColorPhotoshopPickerProps> = ({
   changeMethod = 'onAccept',
   ...restProps
 }) => {
-  const [visible, setVisible] = useState(false);
+  const [open, setOpen] = useState(false);
   const wrapperProps = {
     className,
     value,
@@ -34,8 +34,8 @@ const ColorPhotoshopPicker: React.FC<ColorPhotoshopPickerProps> = ({
     colorMode,
     placement,
     size,
-    visible,
-    onVisibleChange: setVisible
+    open,
+    onOpenChange: setOpen
   };
   const [innerColor, setInnerColor] = useState(value);
 
@@ -48,11 +48,11 @@ const ColorPhotoshopPicker: React.FC<ColorPhotoshopPickerProps> = ({
 
   const handleAccept = useCallback(() => {
     onChange?.(innerColor as string);
-    setVisible(false);
+    setOpen(false);
   }, [onChange, innerColor]);
 
   const handleCancel = useCallback(() => {
-    setVisible(false);
+    setOpen(false);
   }, []);
 
   const changeMethodProps = {
