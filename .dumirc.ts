@@ -19,24 +19,25 @@ const favicons = ['https://doly-dev.github.io/favicon.ico'];
 const outputPath = 'site';
 const publicPath = serverRootDirect + version + '/';
 
-
 export default defineConfig({
   hash: true,
   // history: {
   //   type: 'hash'
   // },
-  base: isDev ? '/' : '/antd-more/',
+  base: isDev ? '/' : '/antd-more/latest/',
   publicPath,
   outputPath,
   legacy: {
     buildOnly: true,
     nodeModulesTransform: true,
   },
-  mfsu: false,
-  targets: {
-    ie: 11
+  // fastRefresh: false,
+  // mfsu: false,
+  targets: isDev ? undefined : {
+    ie: 11,
+    chrome: 80
   },
-  polyfill: {
+  polyfill: isDev ? undefined : {
     imports: ['element-remove', 'core-js']
   },
   favicons,

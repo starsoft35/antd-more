@@ -20,6 +20,7 @@ module.exports = {
     'color-function-notation': 'legacy',
     'selector-class-pattern': null,
     'selector-id-pattern': null,
+    'import-notation': null,
     'font-family-no-missing-generic-family-keyword': null,
     'rule-empty-line-before': null,
     'selector-no-vendor-prefix': [
