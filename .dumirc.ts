@@ -1,13 +1,5 @@
 import { defineConfig } from 'dumi';
 import pkg from './package.json';
-// import { theme } from 'antd';
-// import { convertLegacyToken } from '@ant-design/compatible';
-
-// // ref: https://ant.design/docs/react/migration-v5-cn
-// // 开始升级
-// const { defaultAlgorithm, defaultSeed } = theme;
-// const mapToken = defaultAlgorithm(defaultSeed);
-// const v4Token = convertLegacyToken(mapToken);
 
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -48,9 +40,6 @@ export default defineConfig({
     imports: ['element-remove', 'core-js']
   },
   favicons,
-  // lessLoader: {
-  //   modifyVars: v4Token
-  // },
   themeConfig: {
     name: 'antd-more',
     logo,

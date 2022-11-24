@@ -6,7 +6,7 @@
 import * as React from 'react';
 import { Card, Result, Space, Button, Popconfirm, message } from 'antd';
 import { PayCircleOutlined } from '@ant-design/icons';
-import { BasicLayout, FooterToolbar, PageContainer } from '@ant-design/pro-layout';
+import { ProLayout, FooterToolbar, PageContainer } from '@ant-design/pro-components';
 import type { StepsFormActionType } from 'antd-more';
 import {
   StepsForm,
@@ -23,7 +23,7 @@ const Demo = () => {
   const actionRef = React.useRef<StepsFormActionType>();
 
   return (
-    <BasicLayout
+    <ProLayout
       fixSiderbar
       navTheme="light"
       breakpoint={false}
@@ -178,7 +178,7 @@ const Demo = () => {
           </StepsForm>
         </Card>
       </PageContainer>
-    </BasicLayout>
+    </ProLayout>
   );
 };
 

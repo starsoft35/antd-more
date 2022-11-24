@@ -29,7 +29,7 @@ jobs:
         run: yarn build
       - name: Build latest docs
         if: ${{github.ref == 'refs/heads/master'}}
-        run: yarn doc
+        run: yarn docs
       - name: Deploy latest docs
         if: ${{github.ref == 'refs/heads/master'}}
         uses: JamesIves/github-pages-deploy-action@releases/v3
@@ -40,7 +40,7 @@ jobs:
           TARGET_FOLDER: latest
       - name: Build version docs
         if: ${{github.ref != 'refs/heads/master'}}
-        run: yarn doc-version
+        run: yarn docs-version
       - name: Deploy version docs
         if: ${{github.ref != 'refs/heads/master'}}
         uses: JamesIves/github-pages-deploy-action@releases/v3
