@@ -35,7 +35,7 @@ toc: content
 
 ### 分步表单-固定页脚
 
-<code src="../../src/biz-form/demos/steps-form-4.tsx" iframe="550px"></code>
+<code src="../../src/biz-form/demos/steps-form-4.tsx" iframe></code>
 
 ## API
 

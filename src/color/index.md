@@ -7,7 +7,7 @@ toc: content
 
 # Color - 颜色
 
-> 推荐使用 [BizField](/components/biz-field) 、 [BizFormItemColor](/components/item#color) 。
+> 推荐使用 [BizField](/components/biz-field) 、 [BizFormItemColor](/components/biz-form-item#color) 。
 
 用于显示/选择颜色
 

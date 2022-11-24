@@ -75,8 +75,8 @@ ReactDon.render(<BizField value="red" valueType="color" />, mountNode);
 [biztable]: https://doly-dev.github.io/antd-more/latest/index.html#/components/biz-table
 [editablebiztable]: https://doly-dev.github.io/antd-more/latest/index.html#/components/editable-biz-table
 [bizform]: https://doly-dev.github.io/antd-more/latest/index.html#/components/biz-form
-[bizformitem]: https://doly-dev.github.io/antd-more/latest/index.html#/components/item
-[bizformlist]: https://doly-dev.github.io/antd-more/latest/index.html#/components/list
+[bizformitem]: https://doly-dev.github.io/antd-more/latest/index.html#/components/biz-form-item
+[bizformlist]: https://doly-dev.github.io/antd-more/latest/index.html#/components/biz-form-list
 [modal/drawer]: https://doly-dev.github.io/antd-more/latest/index.html#/components/modal-form
 [queryform]: https://doly-dev.github.io/antd-more/latest/index.html#/components/query-form
 [stepsform]: https://doly-dev.github.io/antd-more/latest/index.html#/components/steps-form

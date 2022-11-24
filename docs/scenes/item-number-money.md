@@ -21,7 +21,7 @@ toc: content
 
 ## API
 
-除以下参数，其余同 [BizFormItemNumber](/components/item#number) 。
+除以下参数，其余同 [BizFormItemNumber](/components/biz-form-item#number) 。
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |

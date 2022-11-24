@@ -205,20 +205,20 @@ editable: (_, record, index) => {
 }
 ```
 
-[bizformitemaddress]: /components/item#address
-[bizformitemcaptcha]: /components/item#captcha
-[bizformitemcheckbox]: /components/item#checkbox
-[bizformitemcolor]: /components/item#color
-[bizformitemdate]: /components/item#date
-[bizformitemdaterange]: /components/item#daterange
-[bizformiteminput]: /components/item#input
-[bizformitemnumber]: /components/item#number
-[bizformitempassword]: /components/item#password
-[bizformitemradio]: /components/item#radio
-[bizformitemselect]: /components/item#select
-[bizformitemslider]: /components/item#slider
-[bizformitemswitch]: /components/item#switch
-[bizformitemtextarea]: /components/item#textarea
-[bizformitemtime]: /components/item#time
-[bizformitemtimerange]: /components/item#timerange
-[bizformitemupload]: /components/item#upload
+[bizformitemaddress]: /components/biz-form-item#address
+[bizformitemcaptcha]: /components/biz-form-item#captcha
+[bizformitemcheckbox]: /components/biz-form-item#checkbox
+[bizformitemcolor]: /components/biz-form-item#color
+[bizformitemdate]: /components/biz-form-item#date
+[bizformitemdaterange]: /components/biz-form-item#daterange
+[bizformiteminput]: /components/biz-form-item#input
+[bizformitemnumber]: /components/biz-form-item#number
+[bizformitempassword]: /components/biz-form-item#password
+[bizformitemradio]: /components/biz-form-item#radio
+[bizformitemselect]: /components/biz-form-item#select
+[bizformitemslider]: /components/biz-form-item#slider
+[bizformitemswitch]: /components/biz-form-item#switch
+[bizformitemtextarea]: /components/biz-form-item#textarea
+[bizformitemtime]: /components/biz-form-item#time
+[bizformitemtimerange]: /components/biz-form-item#timerange
+[bizformitemupload]: /components/biz-form-item#upload

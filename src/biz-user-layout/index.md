@@ -72,12 +72,15 @@ toc: content
 | footer | 底部链接和版权配置 | `{ links?: FooterLink[]; copyright?: ReactNode; }'` | - |
 
 ```typescript
-type BannerItem = {
-  src: string;
-  link?: string;
-  title?: string;
-  onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
-};
+type BannerItem =
+  | {
+      src: string;
+      link?: string;
+      title?: string;
+      onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
+    }
+  | React.ReactElement
+  | string;
 
 type Feature = {
   title: React.ReactNode;

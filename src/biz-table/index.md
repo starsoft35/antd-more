@@ -95,7 +95,7 @@ toc: content
 只需按照提供的参数发起请求，并处理成相应的返回值格式即可。
 
 ```typescript
-type BizTableRequest = (
+type BizTableRequest<RecordType = any> = (
   params: {
     pageSize?: number;
     current?: number;
@@ -104,10 +104,10 @@ type BizTableRequest = (
   filters: Record<string, (string | number)[] | null>,
   sorter: SorterResult<RecordType> | SorterResult<RecordType>[],
   extra: {
-    currentDataSource;
+    currentDataSource: RecordType[];
     action: 'paginate' | 'sort' | 'filter' | 'reload' | 'reset' | 'submit';
   }
-) => Promise<{ data: object[]; total?: number }>;
+) => Promise<{ data: RecordType[]; total?: number }>;
 ```
 
 **参数**
@@ -281,22 +281,22 @@ ref.current.submit();
 [bizfield]: /components/biz-field#api
 [queryformprops]: /components/query-form#queryform
 [queryform]: /components/query-form
-[bizformitemaddress]: /components/item#address
-[bizformitemautocomplete]: /components/item#autocomplete
-[bizformitemcaptcha]: /components/item#captcha
-[bizformitemcascader]: /components/item#cascader
-[bizformitemcheckbox]: /components/item#checkbox
-[bizformitemcolor]: /components/item#color
-[bizformitemdate]: /components/item#date
-[bizformitemdaterange]: /components/item#daterange
-[bizformiteminput]: /components/item#input
-[bizformitemnumber]: /components/item#number
-[bizformitempassword]: /components/item#password
-[bizformitemradio]: /components/item#radio
-[bizformitemselect]: /components/item#select
-[bizformitemslider]: /components/item#slider
-[bizformitemswitch]: /components/item#switch
-[bizformitemtextarea]: /components/item#textarea
-[bizformitemtime]: /components/item#time
-[bizformitemtimerange]: /components/item#timerange
-[bizformitemupload]: /components/item#upload
+[bizformitemaddress]: /components/biz-form-item#address
+[bizformitemautocomplete]: /components/biz-form-item#autocomplete
+[bizformitemcaptcha]: /components/biz-form-item#captcha
+[bizformitemcascader]: /components/biz-form-item#cascader
+[bizformitemcheckbox]: /components/biz-form-item#checkbox
+[bizformitemcolor]: /components/biz-form-item#color
+[bizformitemdate]: /components/biz-form-item#date
+[bizformitemdaterange]: /components/biz-form-item#daterange
+[bizformiteminput]: /components/biz-form-item#input
+[bizformitemnumber]: /components/biz-form-item#number
+[bizformitempassword]: /components/biz-form-item#password
+[bizformitemradio]: /components/biz-form-item#radio
+[bizformitemselect]: /components/biz-form-item#select
+[bizformitemslider]: /components/biz-form-item#slider
+[bizformitemswitch]: /components/biz-form-item#switch
+[bizformitemtextarea]: /components/biz-form-item#textarea
+[bizformitemtime]: /components/biz-form-item#time
+[bizformitemtimerange]: /components/biz-form-item#timerange
+[bizformitemupload]: /components/biz-form-item#upload
