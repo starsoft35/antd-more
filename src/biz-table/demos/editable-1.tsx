@@ -99,12 +99,12 @@ const Demo = () => {
           onChange: setEditableKeys,
           editableActionRef,
           onSave: async (rowKey, record, isNewRecord) => {
-            console.log(`保存${isNewRecord ? '新增' : '已保存'}的数据`, rowKey, record);
+            console.log(`保存${isNewRecord ? '新增' : '已有'}的数据`, rowKey, record);
             // return Promise.reject(); // 如果返回Project.reject即保存失败，自动保留当前的状态
           },
           onDelete: async (rowKey, record, isNewRecord) => {
             // 新增的数据如果没有保存过，取消时会触发删除
-            console.log(`删除${isNewRecord ? '新增' : '已保存'}的数据`, rowKey, record);
+            console.log(`删除${isNewRecord ? '新增' : '已有'}的数据`, rowKey, record);
             // return Promise.reject(); // 如果返回Project.reject即删除失败，自动保留当前的状态
           }
         }}
