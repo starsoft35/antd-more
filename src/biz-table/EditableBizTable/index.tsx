@@ -266,7 +266,7 @@ const EditableBizTable = <RecordType extends object = any>({
       editable?.editableKeys.filter((item) => item !== rowKey),
       fieldsValue
     );
-    handleReset(rowKey);
+    setTimeout(() => handleReset(rowKey), 0);
   };
 
   // 删除时，触发onDelete，onDelete执行成功后更新数据
@@ -325,6 +325,7 @@ const EditableBizTable = <RecordType extends object = any>({
     }
 
     const fieldsValue = getFieldsByRowKey(rowKey);
+    // TODO 去重，防止重复触发
     editable?.onChange?.([...(editable?.editableKeys || []), rowKey], fieldsValue);
   };
 

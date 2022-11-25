@@ -30,10 +30,11 @@ const showTotal = (total: number) => `共 ${total} 条数据`;
 
 export declare interface BizTableProps<RecordType = any>
   extends Omit<TableProps<RecordType>, 'columns'>,
-    Pick<SearchFormProps, 'formItems'> {
+  Pick<SearchFormProps, 'formItems'> {
   formRef?: React.MutableRefObject<FormInstance | undefined> | ((ref: FormInstance) => void);
   actionRef?: React.MutableRefObject<BizTableActionType | undefined>;
   columns?: BizTableColumnType<RecordType>;
+  /** @deprecated */
   ready?: boolean;
   autoRequest?: boolean;
   nowrap?: boolean;
@@ -480,12 +481,12 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
         pagination={
           paginationProp !== false
             ? {
-                ...tableProps.pagination,
-                showTotal,
-                showSizeChanger: true,
-                showQuickJumper: true,
-                ...omit(paginationProp, ['current', 'pageSize', 'total'])
-              }
+              ...tableProps.pagination,
+              showTotal,
+              showSizeChanger: true,
+              showQuickJumper: true,
+              ...omit(paginationProp, ['current', 'pageSize', 'total'])
+            }
             : false
         }
         onChange={handleChange}
@@ -502,10 +503,10 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
 
   const wrapperDefaultStyle = isFullScreen
     ? {
-        background: fullScreenBackgroundColor,
-        overflow: 'auto',
-        padding: !hasSearch && !extra ? 24 : 0
-      }
+      background: fullScreenBackgroundColor,
+      overflow: 'auto',
+      padding: !hasSearch && !extra ? 24 : 0
+    }
     : {};
 
   const finallyDom = (

@@ -21,16 +21,19 @@ export type TransformRecordActionType = {
   get: () => Record<string, TransformFn | undefined>;
 };
 
-export interface BaseFormProps extends Omit<FormProps, 'onFinish'> {
+export interface BaseFormProps<Values = any> extends Omit<FormProps<Values>, 'onFinish'> {
   contentRender?: (
     items: React.ReactNode[],
-    submitter?: React.ReactElement<Omit<BizFormSubmitterProps, 'form'>>
+    submitter: React.ReactElement<BizFormSubmitterProps> | undefined,
+    form: FormInstance<Values>
   ) => React.ReactNode;
   formRender?: (
     formDom: React.ReactElement,
-    submitter?: React.ReactElement<Omit<BizFormSubmitterProps, 'form'>>
+    submitter: React.ReactElement<BizFormSubmitterProps> | undefined
   ) => React.ReactElement | undefined;
+  /** @deprecated */
   ready?: boolean; // false 时，禁止触发 submit 。 true 时，会对表单初始值重新赋值。
+  /** @deprecated */
   loading?: boolean;
   submitter?: false | Omit<BizFormSubmitterProps, 'form'>;
   onReset?: (event: React.FormEvent<HTMLFormElement>) => void;
@@ -38,33 +41,34 @@ export interface BaseFormProps extends Omit<FormProps, 'onFinish'> {
   children?: React.ReactNode;
   labelWidth?: number | 'auto';
   hideLabel?: boolean;
-  onFinish?: (values) => any;
+  onFinish?: (values: Values) => any;
   transformRecordActionRef?: React.MutableRefObject<TransformRecordActionType | undefined>;
   formComponentType?: FiledContextProps['formComponentType'];
 }
 
-const BaseForm: React.FC<BaseFormProps> = ({
-  contentRender,
-  formRender,
-  form: formProp,
-  pressEnterSubmit = true,
-  ready = true,
-  loading: outLoading = false,
-  submitter = {},
-  onFinish,
-  onFinishFailed,
-  onReset,
-  children,
-  initialValues,
-  labelWidth = 84,
-  layout = 'horizontal',
-  labelCol,
-  hideLabel = false,
-  transformRecordActionRef,
-  className,
-  formComponentType,
-  ...restProps
-}) => {
+function BaseForm<Values = any>(props: BaseFormProps<Values>) {
+  const {
+    contentRender,
+    formRender,
+    pressEnterSubmit = true,
+    ready = true,
+    loading: outLoading = false,
+    submitter = {},
+    onFinish,
+    onFinishFailed,
+    onReset,
+    children,
+    initialValues,
+    labelWidth = 84,
+    layout = 'horizontal',
+    labelCol,
+    hideLabel = false,
+    transformRecordActionRef,
+    className,
+    formComponentType,
+    form: formProp,
+    ...restProps
+  } = props;
   const [form] = Form.useForm();
   const formRef = React.useRef<FormInstance>(formProp || form);
   const [loading, setLoading] = React.useState(outLoading);
@@ -145,7 +149,7 @@ const BaseForm: React.FC<BaseFormProps> = ({
     <Submitter
       onReset={onReset}
       {...submitterProps}
-      form={formProp || form}
+      form={formRef.current}
       submitButtonProps={{
         loading,
         disabled: !ready,
@@ -159,7 +163,7 @@ const BaseForm: React.FC<BaseFormProps> = ({
   ) : null;
 
   const items = React.Children.toArray(children);
-  const content = contentRender ? contentRender(items, submitterDom) : items;
+  const content = contentRender ? contentRender(items, submitterDom, formRef.current) : items;
 
   const labelColProps = React.useMemo(() => {
     const labelFlex =
@@ -183,7 +187,7 @@ const BaseForm: React.FC<BaseFormProps> = ({
   }, [formComponentType]);
 
   // 将转换记录传给外部
-  // 这里不能直接将transformRecordRef.current传给外部ref，因为无法获取到最新的值，所以通过方法获取。
+  // 这里不能直接将transformRecordRef.current传给外部ref，因为无法获取到最新的值，所以通过方法获取 或也可以使用getter获取。
   React.useImperativeHandle(transformRecordActionRef, () => ({
     get: () => transformRecordRef.current
   }));
@@ -212,19 +216,19 @@ const BaseForm: React.FC<BaseFormProps> = ({
           layout,
           hideLabel,
           labelCol: labelColProps,
-          form: formProp || form,
+          form: formRef.current,
           formComponentType,
           getPopupContainer
         }}
       >
         <Form
+          form={formRef.current}
           onKeyPress={(event) => {
             const buttonHtmlType = submitterProps?.submitButtonProps?.htmlType;
             if (pressEnterSubmit && buttonHtmlType !== 'submit' && event.key === 'Enter' && ready) {
               formRef.current?.submit();
             }
           }}
-          form={formProp || form}
           onFinish={async (values) => {
             if (typeof onFinish !== 'function') {
               return;
@@ -272,12 +276,16 @@ const BaseForm: React.FC<BaseFormProps> = ({
           className={classnames(prefixCls, className)}
           {...restProps}
         >
-          <input
-            type="text"
-            style={{
-              display: 'none'
-            }}
-          />
+          {
+            restProps?.component !== false && (
+              <input
+                type="text"
+                style={{
+                  display: 'none'
+                }}
+              />
+            )
+          }
           <Form.Item noStyle shouldUpdate>
             {(formInstance) => {
               if (!isUpdate) forgetUpdate();
@@ -292,6 +300,6 @@ const BaseForm: React.FC<BaseFormProps> = ({
     </ChildFormContext.Provider>
   );
   return formRender ? formRender(formDom, submitterDom) : formDom;
-};
+}
 
 export default BaseForm;
