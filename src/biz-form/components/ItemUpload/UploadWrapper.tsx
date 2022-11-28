@@ -2,13 +2,14 @@ import * as React from 'react';
 import { Upload, message } from 'antd';
 import classNames from 'classnames';
 import { isPromiseLike, bytesToSize } from 'util-helpers';
+import { useUnmount } from 'rc-hooks';
 import type { UploadProps, UploadFile, UploadChangeParam, RcFile } from '../antd.interface';
 import { checkFileSize, checkFileType, createFileUrl, getFileName, revokeFileUrl } from './uploadUtil';
+import type { PreviewProps } from './Preview';
 import Preview from './Preview';
 
 import './index.less';
 import uniqueId from '../../_util/uniqueId';
-import { useUnmount } from 'rc-hooks';
 
 const prefixCls = 'antd-more-form-upload';
 
@@ -20,7 +21,6 @@ export interface UploadWrapperProps extends UploadProps {
   maxCountMessage?: string | false; // 上传文件超过限制数量时提示
   onUpload?: (file: File) => Promise<object | undefined>; // 自定义文件上传
   maxSize?: number; // 单个文件最大尺寸，用于校验
-  maxCount?: number; // 最多上传文件数量
   onGetPreviewUrl?: (file: File) => Promise<string>; // 点击预览获取大图URL
   dragger?: boolean; // 支持拖拽
   internalTriggeValidate?: () => void; // 外部透传的校验表单，用于异步上传 或 删除后触发
@@ -28,6 +28,9 @@ export interface UploadWrapperProps extends UploadProps {
   // icon和title配置图标和文本内容
   icon?: React.ReactNode;
   title?: React.ReactNode;
+
+  // 内置预览modal props
+  previewModalProps?: PreviewProps;
 }
 
 const UploadWrapper: React.FC<UploadWrapperProps> = ({
@@ -44,6 +47,8 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
   icon,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   title,
+
+  previewModalProps,
 
   onChange,
   accept,
@@ -271,7 +276,7 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
         maxCount={maxCount}
         {...restProps}
       />
-      {enabledShowPreview && <Preview {...previewProps} onCancel={handlePreviewCancel} />}
+      {enabledShowPreview && !restProps.onPreview && <Preview {...previewProps} {...previewModalProps} onCancel={handlePreviewCancel} />}
     </>
   );
 };
