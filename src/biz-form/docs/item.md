@@ -564,6 +564,7 @@ type UploadFile = {
 | multiple | 是否支持多选文件，`ie10+` 支持。 | `boolean` | `false` |
 | icon | 选择提示图标，不同内建类型有不一样的默认值。 | `ReactNode` | - |
 | title | 选择提示文本 | `ReactNode` | `'点击上传'\|'单击或拖动文件到此区域进行上传'` |
+| previewModalProps | 内置预览弹窗的属性 | [ModalProps](https://ant-design.gitee.io/components/modal-cn/#API) | - |
 | uploadProps | 上传配置参数 | [UploadProps](https://ant-design.gitee.io/components/upload-cn/#API) | - |
 
 <Alert type="info">
