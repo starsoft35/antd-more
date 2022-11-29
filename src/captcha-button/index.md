@@ -17,7 +17,7 @@ toc: content
 
 <code src="./demos/Demo1.tsx"></code>
 
-### 自定义
+### 自定义文本
 
 <code src="./demos/Demo2.tsx"></code>
 

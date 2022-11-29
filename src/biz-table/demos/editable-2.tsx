@@ -48,6 +48,7 @@ const Demo = () => {
               name={[record.id, 'name']}
               initialValue={record.name}
               label="名字"
+              style={{ margin: '-5px 0' }}
             />
           )
         };

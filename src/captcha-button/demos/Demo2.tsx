@@ -1,7 +1,3 @@
-/**
- * title: 自定义文本
- */
-
 import React, { useCallback, useState } from 'react';
 import { CaptchaButton } from 'antd-more';
 import { waitTime } from 'util-helpers';

@@ -5,7 +5,7 @@ import { waitTime } from 'util-helpers';
 import { BizForm, BizFormItem, BizFormItemInput, BizFormItemPassword } from 'antd-more';
 
 let _id = 0;
-function uniqueId(prefix = 'unique') {
+function uniqueId(prefix = 'login') {
   _id++;
   return `${prefix}${_id}`;
 }

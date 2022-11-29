@@ -21,6 +21,8 @@ toc: content
 
 ### 自定义节点 fieldNames
 
+通过 `fieldNames` 将 label、value、children 分别标识为 name、code、childs 。也支持单独设置某个字段。
+
 <code src='./demos/fieldNames.tsx'></code>
 
 ### 菜单权限配置

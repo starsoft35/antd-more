@@ -1,8 +1,3 @@
-/**
- * title: 上传各种类型文件预览
- * desc: |
- *      上传图片、pdf、audio、video等类型的文件自定义缩略图及预览。关于文件预览可以参考 [react-file-viewer](https://www.npmjs.com/package/react-file-viewer) 。
- */
 import * as React from 'react';
 import { BizForm, BizFormItemUpload } from 'antd-more';
 import type { UploadFile } from 'antd';

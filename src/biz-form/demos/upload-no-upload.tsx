@@ -1,8 +1,3 @@
-/**
- * title: 提交时一次性上传所有文件
- * desc: |
- *      不设置 `onUpload` 或 `action` 的情况下，添加文件不会发起请求。
- */
 import * as React from 'react';
 import { BizForm, BizFormItemUpload } from 'antd-more';
 import { waitTime } from 'util-helpers';

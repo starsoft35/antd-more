@@ -1,7 +1,3 @@
-/**
- * title: 基础用法
- */
-
 import React, { useCallback, useState } from 'react';
 import { CaptchaButton } from 'antd-more';
 

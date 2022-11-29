@@ -1,7 +1,3 @@
-/**
- * title: 基本信息
- * desc: 通过 `useWatch` 实现。原先使用 `onValuesChange` 的方式，在 `form.setFieldsValue` 修改值时不会触发。
- */
 import * as React from 'react';
 import { Row, Col } from 'antd';
 import { isBusinessLicense, isSocialCreditCode } from 'util-helpers';

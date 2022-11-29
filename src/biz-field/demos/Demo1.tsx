@@ -1,6 +1,3 @@
-/**
- * title: 基础用法
- */
 import React from 'react';
 import { Descriptions } from 'antd';
 import { BizField } from 'antd-more';

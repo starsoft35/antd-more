@@ -7,7 +7,7 @@ import { getCaptcha, verifyCaptcha } from './service';
 import { waitTime } from "util-helpers";
 
 let _id = 0;
-function uniqueId(prefix = 'unique') {
+function uniqueId(prefix = 'register') {
   _id++;
   return `${prefix}${_id}`;
 }

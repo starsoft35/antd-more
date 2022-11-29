@@ -1,10 +1,3 @@
-/**
- * title: 实时上传文件图片
- * desc: |
- *      设置 `onUpload` 后，添加上传文件自动调用并处理上传中状态和失败状态。上传成功的返回值将自动添加到 `UploadFile` 对象的 `response` 字段上。表单提交时再获取该值。
- *
- *      如果设置 `transform` 可以帮助内置的规则进行校验。
- */
 import * as React from 'react';
 import { BizForm, BizFormItemUpload } from 'antd-more';
 import type { UploadFile } from 'antd';

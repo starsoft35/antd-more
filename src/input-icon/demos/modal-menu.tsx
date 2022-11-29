@@ -77,8 +77,8 @@ const Demo = () => {
   const onValuesChange = (_, { menuType }: { menuType: MenuType }) => {
     setCurrentMenuType(menuType);
   };
-  const onVisibleChange = (visibility) => {
-    if (!visibility) {
+  const onOpenChange = (open: boolean) => {
+    if (!open) {
       form.resetFields();
       setCurrentMenuType(MenuType.Menu);
     }
@@ -101,7 +101,7 @@ const Demo = () => {
         console.log(values);
       }}
       onValuesChange={onValuesChange}
-      onVisibleChange={onVisibleChange}
+      onOpenChange={onOpenChange}
       modalProps={{
         centered: false
       }}

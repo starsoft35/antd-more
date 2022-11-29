@@ -1,8 +1,3 @@
-/**
- * title: 异步初始值
- * desc: |
- *      可通过 `ready` 控制表单是否已准备好（如表单的初始值需要通过异步获取）。
- */
 import * as React from 'react';
 import { BizForm, BizFormItemInput } from 'antd-more';
 import { waitTime } from 'util-helpers';

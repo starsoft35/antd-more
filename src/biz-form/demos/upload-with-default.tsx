@@ -1,8 +1,3 @@
-/**
- * title: 实时上传文件含默认值
- * desc: |
- *      将默认值转换成 `UploadFile[]` 数据格式再传入，加载失败可以通过 `error.message` 设置提示。
- */
 import * as React from 'react';
 import { BizForm, BizFormItemUpload } from 'antd-more';
 import { waitTime } from 'util-helpers';

@@ -31,11 +31,17 @@ toc: content
 
 添加文件后，立即上传到文件服务器，异步返回值将挂载到 `file.response` 上，提交和校验时取出 `file.response.fssId` 。
 
+设置 `onUpload` 后，添加上传文件自动调用并处理上传中状态和失败状态。上传成功的返回值将自动添加到 `UploadFile` 对象的 `response` 字段上。表单提交时再获取该值。
+
+如果设置 `transform` 可以帮助内置的规则进行校验。
+
 <code src='./demos/upload-real-time.tsx'></code>
 
 ### 实时上传文件含默认值
 
 修改页面中需要显示已有文件，并且支持实时上传。
+
+将默认值转换成 `UploadFile[]` 数据格式再传入，加载失败可以通过 `error.message` 设置提示。
 
 <code src='./demos/upload-with-default.tsx'></code>
 
@@ -43,25 +49,25 @@ toc: content
 
 添加文件后不触发上传，在提交时获取所有文件一次性上传。
 
+不设置 `onUpload` 或 `action` 的情况下，添加文件不会发起请求。
+
 <code src='./demos/upload-no-upload.tsx'></code>
 
 ### 上传各种类型文件预览
 
+上传图片、pdf、audio、video 等类型的文件自定义缩略图及预览。关于文件预览可以参考 [react-file-viewer](https://www.npmjs.com/package/react-file-viewer) 。
+
 <code src='./demos/upload-file-viewer.tsx'></code>
-
-<!-- ### 自定义上传证件
-
-<code src='./demos/upload-certificate.tsx'></code> -->
 
 ### 联动 1
 
-通过 `shouldUpdate` 实现
+通过 `shouldUpdate` 实现。
 
 <code src='./demos/form-linkage-1.tsx'></code>
 
 ### 联动 2
 
-通过 `Form.useWatch` 实现
+通过 `useWatch` 实现。如果使用 `onValuesChange` 的方式，在 `form.setFieldsValue` 修改值时不会触发。
 
 <code src='./demos/form-linkage-2.tsx'></code>
 
@@ -78,6 +84,8 @@ toc: content
 <code src='./demos/rakebacke-info.tsx'></code>
 
 ### 异步初始值
+
+通过 `ready` 控制表单是否已准备好（如表单的初始值需要通过异步获取）。
 
 <code src='./demos/async-initial-values.tsx'></code>
 
