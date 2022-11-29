@@ -8,18 +8,13 @@ import type { BizFormItemProps } from './Item';
 import BizFormItem from './Item';
 import getLabel from '../_util/getLabel';
 
-interface VerificateCodeInputProps extends Record<number | string, any> {
+interface VerificateCodeInputProps extends Omit<React.HTMLAttributes<HTMLInputElement>, 'value' | 'onChange' | 'type'> {
   value?: any;
   onChange?: (value: any) => void;
-  // 发送验证码
-  onGetCaptcha?: () => boolean | Promise<any>;
+  onGetCaptcha?: () => boolean | Promise<any>; // 发送验证码
   inputProps?: InputProps;
   buttonProps?: CaptchaButtonProps;
   type?: 'default' | 'inline'; // 显示类型
-  /**
-   * @deprecated Please use 'autoClick'
-   */
-  autoRun?: boolean;
   autoClick?: boolean;
   autoFocusOnGetCaptcha?: true;
 }
@@ -43,8 +38,7 @@ const VerificateCodeInput: React.FC<VerificateCodeInputProps> = ({
   inputProps = {},
   buttonProps = {},
   type = 'default',
-  autoRun = false,
-  autoClick: outAutoClick,
+  autoClick,
   autoFocusOnGetCaptcha = true,
   ...restProps
 }) => {
@@ -52,11 +46,6 @@ const VerificateCodeInput: React.FC<VerificateCodeInputProps> = ({
   const buttonRef = React.useRef(null);
 
   const { onClick, onEnd } = buttonProps;
-
-  const autoClick = React.useMemo(
-    () => (typeof outAutoClick !== 'undefined' ? outAutoClick : autoRun),
-    [outAutoClick, autoRun]
-  );
 
   // 倒计时按钮状态
   const [start, setStart] = React.useState(false);
@@ -186,16 +175,11 @@ const VerificateCodeInput: React.FC<VerificateCodeInputProps> = ({
 
 export interface BizFormItemCaptchaProps
   extends BizFormItemProps,
-    Pick<
-      VerificateCodeInputProps,
-      'onGetCaptcha' | 'type' | 'inputProps' | 'buttonProps' | 'autoClick' | 'autoFocusOnGetCaptcha'
-    >,
-    Pick<CaptchaButtonProps, 'initText' | 'runText' | 'resetText' | 'second'> {
-  /**
-   * @deprecated Please use 'autoClick'
-   */
-  autoRun?: boolean;
-}
+  Pick<
+    VerificateCodeInputProps,
+    'onGetCaptcha' | 'type' | 'inputProps' | 'buttonProps' | 'autoClick' | 'autoFocusOnGetCaptcha'
+  >,
+  Pick<CaptchaButtonProps, 'initText' | 'runText' | 'resetText' | 'second'> { }
 
 const BizFormItemCaptcha: React.FC<BizFormItemCaptchaProps> = ({
   type,
@@ -204,7 +188,6 @@ const BizFormItemCaptcha: React.FC<BizFormItemCaptchaProps> = ({
   runText,
   resetText,
   second,
-  autoRun,
   autoClick,
   autoFocusOnGetCaptcha = true,
   inputProps = {},
@@ -235,7 +218,6 @@ const BizFormItemCaptcha: React.FC<BizFormItemCaptchaProps> = ({
       <VerificateCodeInput
         type={type}
         onGetCaptcha={onGetCaptcha}
-        autoRun={autoRun}
         autoClick={autoClick}
         autoFocusOnGetCaptcha={autoFocusOnGetCaptcha}
         inputProps={inputProps}
