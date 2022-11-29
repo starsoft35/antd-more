@@ -556,7 +556,6 @@ type UploadFile = {
 | accept | 接受上传的文件类型。<br/>如果 `type` 为 `image` 或 `avatar` ，默认为 `.jpg, .jpeg, .png` | `string` | - |
 | fileTypeMessage | 文件类型错误时提示，包含 `%s` 会自动替换为 `accept`。 | `string \| false` | `只支持上传 ${accept} 文件` |
 | fileSizeMessage | 文件超过最大尺寸时提示，包含 `%s` 会自动替换为 `maxFileSizeStr`。 | `string \| false` | `必须小于 %s！` |
-| maxCountMessage | 上传文件超过限制数量时提示，包含 `%s` 会自动替换为 `maxCount`。 | `string \| false` | `最多上传%s个文件` |
 | disabled | 是否禁用 | `boolean` | `false` |
 | multiple | 是否支持多选文件，`ie10+` 支持。 | `boolean` | `false` |
 | icon | 选择提示图标，不同内建类型有不一样的默认值。 | `ReactNode` | - |

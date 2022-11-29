@@ -17,8 +17,6 @@ export interface UploadWrapperProps extends UploadProps {
   fileTypeMessage?: string | false; // 文件类型错误提示
   fileSizeMessage?: string | false; // 文件超过最大尺寸提示
 
-  /** @deprecated */
-  maxCountMessage?: string | false; // 上传文件超过限制数量时提示
   onUpload?: (file: File) => Promise<object | undefined>; // 自定义文件上传
   maxSize?: number; // 单个文件最大尺寸，用于校验
   onGetPreviewUrl?: (file: File) => Promise<string>; // 点击预览获取大图URL
@@ -37,8 +35,6 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
   onUpload,
   fileTypeMessage = '只支持上传 %s 文件',
   fileSizeMessage = '必须小于 %s！',
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  maxCountMessage = '最多上传%s个文件',
   maxSize = 1024 * 1024 * 2,
   maxCount,
   onGetPreviewUrl,

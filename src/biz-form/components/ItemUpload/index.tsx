@@ -28,7 +28,6 @@ export interface BizFormItemUploadProps
     | 'onUpload'
     | 'fileTypeMessage'
     | 'fileSizeMessage'
-    | 'maxCountMessage'
     | 'maxSize'
     | 'maxCount'
     | 'onGetPreviewUrl'
@@ -51,7 +50,6 @@ const BizFormItemUpload: React.FC<BizFormItemUploadProps> & {
   onGetPreviewUrl,
   fileTypeMessage,
   fileSizeMessage,
-  maxCountMessage,
   maxSize,
   maxCount,
   type = 'default',
@@ -128,7 +126,6 @@ const BizFormItemUpload: React.FC<BizFormItemUploadProps> & {
           fileSizeMessage={fileSizeMessage}
           maxSize={maxSize}
           maxCount={maxCount}
-          maxCountMessage={maxCountMessage}
           disabled={disabled}
           multiple={multiple}
           icon={icon}
