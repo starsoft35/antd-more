@@ -39,9 +39,9 @@ const columns: BizTableColumnType<DataItem> = [
     title: '提交时间',
     valueType: 'dateTime',
     search: {
-      valueType: 'date'
-    },
-    order: 1
+      valueType: 'date',
+      order: 1
+    }
   },
   {
     dataIndex: 'applicantName',

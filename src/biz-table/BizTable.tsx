@@ -179,7 +179,6 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
             field,
             search,
             editable,
-            order,
             render,
             ...restItem
           } = item;
@@ -191,8 +190,7 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
               title,
               valueType,
               valueEnum,
-              originItem: item,
-              order
+              originItem: item
             };
 
             if (typeof search === 'boolean') {

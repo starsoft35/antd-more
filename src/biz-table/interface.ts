@@ -67,11 +67,6 @@ interface InternalColumnType<RecordType = any>
   | EditableProps<RecordType>
   | ((text: any, record: RecordType, index: number) => boolean | EditableProps<RecordType>); // 编辑模式下的配置
   table?: boolean; // 是否显示在表格列中，部分设置列可能只为了设置 search
-
-  /**
-   * @deprecated Please set `order` in `search`
-   */
-  order?: number; // 用于search表单排序，数字越小越靠前
 }
 
 interface ColumnGroupType<RecordType> extends Omit<InternalColumnType<RecordType>, 'dataIndex'> {

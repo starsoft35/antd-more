@@ -142,7 +142,6 @@ type BizTableRequest<RecordType = any> = (
 | valueEnum | 数据字典。<br/>当 `valueType` 为 `enum` `enumTag` `enumBadge` 时生效。 | `EnumData` | - |
 | field | 展示字段的配置。同 BizField 的配置项，支持 object 和 function 方式。<br/>function 方式默认参数和 render 一样，需返回 BizField 的配置。 | `object \| (text: any, record: RecordType, index: number) => object` | - |
 | search | 配置查询表单项 | `SearchProps` | - |
-| order | 查询表单项排序，数值越小越靠前 | `number` | `0` |
 | table | 是否在表格中显示，适用于部分字段只有查询表单，但表格中不显示 | `boolean` | `true` |
 
 - `valueType` 用于字段展示时，如果没有 `render`，将使用 [BizField] 渲染。
@@ -236,6 +235,14 @@ search: {
       </BizFormItem>
     )
   }
+}
+```
+
+此外，你还可以通过 `order` 来设置查询表单项排序，数值越小越靠前。
+
+```typescript
+search: {
+  order: 1;
 }
 ```
 
