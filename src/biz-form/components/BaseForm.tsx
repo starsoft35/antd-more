@@ -3,7 +3,7 @@ import { Form } from 'antd';
 import namePathSet from 'rc-util/es/utils/set';
 import classnames from 'classnames';
 import { isPromiseLike } from 'util-helpers';
-import { useUpdateEffect, useUnmountedRef } from 'rc-hooks';
+import { useUpdateEffect, useUnmountedRef, useMountedRef } from 'rc-hooks';
 import type { FormProps, FormInstance } from './antd.interface';
 import { transformFormValues } from '../_util/transform';
 import getNamePaths from '../_util/getNamePaths';
@@ -71,11 +71,12 @@ function BaseForm<Values = any>(props: BaseFormProps<Values>) {
   const formRef = React.useRef<FormInstance>(formProp || form);
   const [loading, setLoading] = React.useState(outLoading);
   const unmountedRef = useUnmountedRef();
+  const mountedRef = useMountedRef();
 
   const [isUpdate, updateState] = React.useState(false);
   const forgetUpdate = () => {
     setTimeout(() => {
-      !unmountedRef.current && updateState(true);
+      mountedRef.current && !unmountedRef.current && updateState(true);
     });
   };
 
