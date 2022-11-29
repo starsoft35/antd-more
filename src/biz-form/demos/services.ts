@@ -7,12 +7,11 @@ export async function uploadFile(file: File): Promise<{ fssId: string }> {
   await waitTime(2000);
   if (Math.random() > 0.3) {
     return {
-      fssId: `${Math.random()}`
+      fssId: `${Math.random().toString(16).substring(2)}`
     };
   }
   throw new Error('error');
 }
-
 
 // 下载文件
 export async function downloadFile(fssId: string) {

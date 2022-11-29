@@ -117,14 +117,6 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
                   item.status = 'done';
                   item.percent = 100;
 
-                  // TODO 下个大版本废弃，目前保留是为了兼容
-                  const resKeys = typeof res === 'object' ? Object.keys(res) : [];
-                  if (resKeys.length > 0) {
-                    resKeys.forEach((resKey) => {
-                      item[resKey] = res[resKey];
-                    });
-                  }
-
                   // 将响应数据挂载到 response 上
                   item.response = res;
                 }

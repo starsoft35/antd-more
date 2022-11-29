@@ -1,6 +1,3 @@
-/**
- * title: 修改密码
- */
 import * as React from 'react';
 import { BizForm, BizFormItem, BizFormItemPassword } from 'antd-more';
 import { waitTime } from 'util-helpers';
