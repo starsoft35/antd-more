@@ -13,16 +13,16 @@ import { waitTime } from 'util-helpers';
 import { BillAccountOptions } from './constants';
 
 const Demo = () => {
-  const [visibleModal, setVisibleModal] = React.useState(false);
-  const [visibleDrawer, setVisibleDrawer] = React.useState(false);
+  const [openModal, setOpenModal] = React.useState(false);
+  const [openDrawer, setOpenDrawer] = React.useState(false);
 
   return (
     <>
       <Space>
-        <Button type="primary" onClick={() => setVisibleModal(true)}>
+        <Button type="primary" onClick={() => setOpenModal(true)}>
           Modal表单
         </Button>
-        <Button type="primary" onClick={() => setVisibleDrawer(true)}>
+        <Button type="primary" onClick={() => setOpenDrawer(true)}>
           Drawer表单
         </Button>
       </Space>
@@ -34,8 +34,8 @@ const Demo = () => {
           message.success('提交成功');
         }}
         labelWidth={112}
-        visible={visibleModal}
-        onVisibleChange={setVisibleModal}
+        open={openModal}
+        onOpenChange={setOpenModal}
       >
         <BizFormItemInput label="收款账号" name="ban" required />
         <BizFormItemSelect
@@ -66,8 +66,8 @@ const Demo = () => {
           console.log(values);
         }}
         labelWidth={112}
-        visible={visibleDrawer}
-        onVisibleChange={setVisibleDrawer}
+        open={openDrawer}
+        onOpenChange={setOpenDrawer}
       >
         <BizFormItemInput label="收款账号" name="ban" required />
         <BizFormItemSelect

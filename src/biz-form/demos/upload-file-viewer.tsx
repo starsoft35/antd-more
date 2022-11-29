@@ -13,7 +13,7 @@ import { uploadFile } from './services';
 
 const Demo = () => {
   const [file, setFile] = React.useState<File>();
-  const [visible, setVisible] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
 
   // 提交和校验时自动转换上传文件的值
   const transformUploadValue = React.useCallback((files: UploadFile[]) => {
@@ -46,13 +46,13 @@ const Demo = () => {
             onPreview: async (file) => {
               // console.log(file);
               setFile((file?.originFileObj || file) as File);
-              setVisible(true);
+              setOpen(true);
             },
             previewFile: getThumbUrl
           }}
         />
       </BizForm>
-      <PreviewFile visible={visible} onCancel={() => setVisible(false)} file={file} />
+      <PreviewFile open={open} onCancel={() => setOpen(false)} file={file} />
     </div>
   );
 };

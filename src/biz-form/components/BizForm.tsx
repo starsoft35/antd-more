@@ -8,7 +8,7 @@ import type { BaseFormProps } from './BaseForm';
 
 const formItemHideLabelClass = 'antd-more-form-item-hide-label';
 
-export type BizFormProps = BaseFormProps;
+export type BizFormProps<Values = any> = BaseFormProps<Values>;
 
 const BizForm: React.FC<BizFormProps> & {
   Item: typeof Item;

@@ -1,74 +1,62 @@
 import * as React from 'react';
 import { Modal, Form } from 'antd';
-import { useUpdateEffect } from 'rc-hooks';
+import { useControllableValue } from 'rc-hooks';
 import { isPromiseLike } from 'util-helpers';
 import type { ModalProps } from './antd.interface';
 import type { BaseFormProps } from './BaseForm';
 import BaseForm from './BaseForm';
 
-export interface ModalFormProps extends Omit<BaseFormProps, 'title'> {
+export interface ModalFormProps<Values = any> extends Omit<BaseFormProps<Values>, 'title' | 'defaultValue'>, Pick<ModalProps, 'open'> {
   title?: React.ReactNode;
   width?: ModalProps['width'];
   trigger?: React.ReactElement;
-  modalProps?: Omit<ModalProps, 'visible' | 'footer'>;
-  visible?: boolean;
-  onVisibleChange?: (visible: boolean) => void;
+  modalProps?: Omit<ModalProps, 'open' | 'visible' | 'footer'>;
+  onOpenChange?: (open: boolean) => void;
 }
 
-const ModalForm: React.FC<ModalFormProps> = ({
-  title,
-  width,
-  trigger,
-  modalProps,
-  visible: outVisible,
-  onVisibleChange,
-  children,
-  submitter,
-  onFinish,
-  form: formProp,
-  ...restProps
-}) => {
-  const [visible, setVisible] = React.useState(outVisible || false);
-  const [form] = Form.useForm();
+function ModalForm<Values = any>(props: ModalFormProps<Values>) {
+  const {
+    title,
+    width,
+    trigger,
+    modalProps,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    open: outOpen,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    onOpenChange,
+    children,
+    submitter,
+    onFinish,
+    form: formProp,
+    ...restProps
+  } = props;
+  const [open, setOpen] = useControllableValue(props, {
+    defaultValue: false,
+    valuePropName: 'open',
+    trigger: 'onOpenChange'
+  });
+  const [form] = Form.useForm<Values>();
   const formRef = React.useRef(formProp || form);
 
-  // 受控时，外部的visible改变后，内部改变visible值
-  // 非受控时，内部的visible改变后，执行onVisibleChange
-  useUpdateEffect(() => {
-    if (typeof outVisible === 'undefined') {
-      onVisibleChange?.(visible);
-    } else {
-      setVisible(outVisible);
-    }
-  }, [visible, outVisible]);
-
   React.useEffect(() => {
-    if (!visible && modalProps?.destroyOnClose) {
+    if (!open && modalProps?.destroyOnClose) {
       formRef.current.resetFields();
     }
-  }, [visible, modalProps?.destroyOnClose]);
-
-  const changeVisible = (isVisible) => {
-    if (typeof outVisible !== 'undefined') {
-      onVisibleChange?.(isVisible);
-    } else {
-      setVisible(isVisible);
-    }
-  };
+  }, [open, modalProps?.destroyOnClose]);
 
   return (
     <>
-      <BaseForm
+      <BaseForm<Values>
         {...restProps}
         formComponentType="ModalForm"
-        form={formProp || form}
+        form={formRef.current}
         onFinish={async (values) => {
           let ret = typeof onFinish === 'function' ? onFinish(values) : true;
           if (isPromiseLike(ret)) {
             ret = await ret;
           }
           if (ret !== false) {
-            changeVisible(false);
+            setOpen(false);
             formRef.current.resetFields();
           }
         }}
@@ -84,7 +72,7 @@ const ModalForm: React.FC<ModalFormProps> = ({
             ...(submitter ? submitter?.resetButtonProps : {}),
             onClick: (e) => {
               modalProps?.onCancel?.(e);
-              changeVisible(false);
+              setOpen(false);
               submitter && submitter?.resetButtonProps?.onClick?.(e);
             }
           },
@@ -101,10 +89,10 @@ const ModalForm: React.FC<ModalFormProps> = ({
             width={width || 600}
             centered
             {...modalProps}
-            visible={visible}
+            open={open}
             footer={submitterDom}
             onCancel={(e) => {
-              changeVisible(false);
+              setOpen(false);
               modalProps?.onCancel?.(e);
             }}
           >
@@ -118,13 +106,13 @@ const ModalForm: React.FC<ModalFormProps> = ({
       {trigger &&
         React.cloneElement(trigger, {
           ...trigger.props,
-          onClick: (e) => {
-            changeVisible(true);
+          onClick(e) {
+            setOpen(true);
             trigger.props?.onClick?.(e);
           }
         })}
     </>
   );
-};
+}
 
 export default ModalForm;

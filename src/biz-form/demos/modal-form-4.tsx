@@ -3,14 +3,14 @@ import { Button } from 'antd';
 import ChangePasswordModal from './components/ChangePasswordModal';
 
 const Demo = () => {
-  const [visible, setVisible] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
 
   return (
     <>
-      <Button type="primary" onClick={() => setVisible(true)}>
+      <Button type="primary" onClick={() => setOpen(true)}>
         修改密码
       </Button>
-      <ChangePasswordModal visible={visible} onVisibleChange={setVisible} />
+      <ChangePasswordModal open={open} onOpenChange={setOpen} />
     </>
   );
 };

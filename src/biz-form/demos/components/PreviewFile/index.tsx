@@ -5,15 +5,14 @@ import { getFileType } from '../../utils/utils';
 import FileViewer from '../FileViewer';
 
 interface PreviewFileProps extends ModalProps {
-  visible?: boolean;
   onCancel?: () => void;
   file: File;
 }
 
-const PreviewFile: React.FC<PreviewFileProps> = ({ file, visible, ...restProps }) => {
+const PreviewFile: React.FC<PreviewFileProps> = ({ file, open, ...restProps }) => {
   const previewUrl = React.useMemo(
-    () => (file && visible ? URL.createObjectURL(file) : ''),
-    [file, visible]
+    () => (file && open ? URL.createObjectURL(file) : ''),
+    [file, open]
   );
   const fileType = React.useMemo(() => getFileType(file), [file]);
 
@@ -26,17 +25,17 @@ const PreviewFile: React.FC<PreviewFileProps> = ({ file, visible, ...restProps }
   }, [previewUrl]);
 
   React.useEffect(() => {
-    if (!visible) {
+    if (!open) {
       revokeObjectURL();
     }
     return () => {
       revokeObjectURL();
     };
-  }, [revokeObjectURL, visible]);
+  }, [revokeObjectURL, open]);
 
   return (
     <Modal
-      visible={visible}
+      open={open}
       title={file?.name}
       centered
       width={fileType === 'pdf' ? 850 : undefined}

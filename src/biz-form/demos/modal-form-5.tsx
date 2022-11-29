@@ -31,7 +31,7 @@ const getDataApi = async ({ pageSize, pageNum }) => {
 };
 
 const Demo = () => {
-  const [visible, setVisible] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
   const [editableRecord, setEditablRecord] = React.useState<DataItem>();
 
   const actionRef = React.useRef<BizTableActionType>();
@@ -54,7 +54,7 @@ const Demo = () => {
           <a
             onClick={() => {
               setEditablRecord(record);
-              setVisible(true);
+              setOpen(true);
             }}
           >
             修改
@@ -86,7 +86,7 @@ const Demo = () => {
             type="primary"
             onClick={() => {
               setEditablRecord(undefined);
-              setVisible(true);
+              setOpen(true);
             }}
           >
             新增
@@ -98,8 +98,8 @@ const Demo = () => {
       {/* 如果没有使用表格的全屏 toolbarAction.fullScreen ，就不用包裹 ConfigProvider */}
       <ConfigProvider getPopupContainer={() => document.querySelector('.antd-more-table')}>
         <UpdateModal
-          visible={visible}
-          onVisibleChange={setVisible}
+          open={open}
+          onOpenChange={setOpen}
           data={editableRecord}
           onChange={() => {
             // 数据变动后，重新加载数据

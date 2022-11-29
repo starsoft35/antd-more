@@ -3,7 +3,7 @@ import type { BizFormItemUploadProps } from 'antd-more';
 import { BizFormItemUpload } from 'antd-more';
 
 const ItemUploadDefine: React.FC<BizFormItemUploadProps> = (props) => {
-  const [visible, setVisible] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
   const imgUrl = 'https://gw.alipayobjects.com/zos/antfincdn/aPkFc8Sj7n/method-draw-image.svg';
 
   return (
@@ -18,7 +18,7 @@ const ItemUploadDefine: React.FC<BizFormItemUploadProps> = (props) => {
                   ...internalProps
                 })}
               </div>
-              <a style={{ marginLeft: 10, lineHeight: '32px' }} onClick={() => setVisible(true)}>
+              <a style={{ marginLeft: 10, lineHeight: '32px' }} onClick={() => setOpen(true)}>
                 查看示例图
               </a>
             </div>
@@ -28,10 +28,10 @@ const ItemUploadDefine: React.FC<BizFormItemUploadProps> = (props) => {
         {...props}
       />
       <BizFormItemUpload.Preview
-        visible={visible}
+        open={open}
         title="示例图"
         imgUrl={imgUrl}
-        onCancel={() => setVisible(false)}
+        onCancel={() => setOpen(false)}
       />
     </>
   );

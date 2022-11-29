@@ -31,7 +31,7 @@ const Collapse: React.FC<CollapseProps> = React.memo(({ collapsed, onToggle }) =
   );
 });
 
-export interface QueryFormProps extends BaseFormProps {
+export interface QueryFormProps<Values = any> extends BaseFormProps<Values> {
   submitText?: string;
   resetText?: string;
   defaultCollapsed?: boolean;
@@ -45,7 +45,7 @@ const colSpan = {
   xxl: 6
 };
 
-const QueryForm: React.FC<QueryFormProps> = (props) => {
+function QueryForm<Values = any>(props: QueryFormProps<Values>) {
   const {
     layout = 'horizontal',
     submitter,
@@ -117,6 +117,6 @@ const QueryForm: React.FC<QueryFormProps> = (props) => {
       formComponentType="QueryForm"
     />
   );
-};
+}
 
 export default QueryForm;

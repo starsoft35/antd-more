@@ -8,15 +8,15 @@ import BaseForm from '../BaseForm';
 import StepsFormContext from './StepsFormContext';
 import type { StepsFormSubmitterProps } from './StepsSubmitter';
 
-export interface StepFormProps
-  extends Omit<BaseFormProps, 'title' | 'onReset' | 'contentRender' | 'submitter' | 'ready'>,
-    Pick<StepProps, 'title' | 'icon' | 'subTitle' | 'description'> {
+export interface StepFormProps<Values = any>
+  extends Omit<BaseFormProps<Values>, 'title' | 'onReset' | 'contentRender' | 'submitter' | 'ready'>,
+  Pick<StepProps, 'title' | 'icon' | 'subTitle' | 'description'> {
   stepProps?: StepProps;
   submitter?: Omit<StepsFormSubmitterProps, 'total' | 'current' | 'form'> | false;
   readonly step?: number;
 }
 
-const StepForm: React.FC<StepFormProps> = ({
+function StepForm<Values = any>({
   name,
   onFinish,
   form: formProp,
@@ -31,7 +31,7 @@ const StepForm: React.FC<StepFormProps> = ({
   stepProps,
 
   ...restProps
-}) => {
+}: StepFormProps<Values>) {
   const ctx = React.useContext(StepsFormContext);
   const [form] = Form.useForm();
 
@@ -45,7 +45,7 @@ const StepForm: React.FC<StepFormProps> = ({
   }, []);
 
   return (
-    <BaseForm
+    <BaseForm<Values>
       name={name}
       form={formProp || form}
       onFinish={async (values) => {
@@ -73,6 +73,6 @@ const StepForm: React.FC<StepFormProps> = ({
       {...restProps}
     />
   );
-};
+}
 
 export default StepForm;

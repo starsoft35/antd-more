@@ -13,19 +13,19 @@ import { waitTime } from 'util-helpers';
 import { BillAccountOptions } from './constants';
 
 const Demo = () => {
-  const [visible, setVisible] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
   const actionRef = React.useRef<StepsFormActionType>();
 
   // 关闭时重置表单
   React.useEffect(() => {
-    if (!visible) {
+    if (!open) {
       actionRef.current.reset();
     }
-  }, [visible]);
+  }, [open]);
 
   return (
     <>
-      <Button type="primary" onClick={() => setVisible(true)}>
+      <Button type="primary" onClick={() => setOpen(true)}>
         创建付款单
       </Button>
       <StepsForm
@@ -33,7 +33,7 @@ const Demo = () => {
         onFinish={async (values) => {
           await waitTime(2000);
           console.log(values);
-          setVisible(false);
+          setOpen(false);
           message.success('提交成功');
 
           // 提交成功再重置表单
@@ -42,10 +42,10 @@ const Demo = () => {
         stepsFormRender={(stepsDom, formDom, submitterDom) => (
           <Modal
             title="分步表单"
-            visible={visible}
+            open={open}
             footer={submitterDom}
             width={600}
-            onCancel={() => setVisible(false)}
+            onCancel={() => setOpen(false)}
             centered
             destroyOnClose
           >

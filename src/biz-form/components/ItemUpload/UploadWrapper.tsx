@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Upload, message } from 'antd';
 import classNames from 'classnames';
 import { isPromiseLike, bytesToSize } from 'util-helpers';
-import { useUnmount } from 'rc-hooks';
+import { useUnmount, useSetState } from 'rc-hooks';
 import type { UploadProps, UploadFile, UploadChangeParam, RcFile } from '../antd.interface';
 import { checkFileSize, checkFileType, createFileUrl, getFileName, revokeFileUrl } from './uploadUtil';
 import type { PreviewProps } from './Preview';
@@ -62,8 +62,8 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
   // 当前组件唯一标识，用于缓存和释放 URL.createObjectURL
   const uniqueKey = React.useMemo(() => uniqueId('item-upload'), []);
 
-  const [previewProps, setPreviewProps] = React.useState({
-    visible: false,
+  const [previewProps, setPreviewProps] = useSetState({
+    open: false,
     title: '',
     imgUrl: ''
   });
@@ -236,21 +236,20 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
       }
 
       setPreviewProps({
-        visible: true,
+        open: true,
         imgUrl: file.preview || file.url || file.thumbUrl,
         title: file.name || getFileName(file.url)
       });
     },
-    [enabledShowPreview, onGetPreviewUrl, uniqueKey]
+    [enabledShowPreview, onGetPreviewUrl, setPreviewProps, uniqueKey]
   );
 
   // 关闭预览
   const handlePreviewCancel = React.useCallback(() => {
     setPreviewProps({
-      ...previewProps,
-      visible: false
+      open: false
     });
-  }, [previewProps]);
+  }, [setPreviewProps]);
 
   const Comp = React.useMemo(() => (dragger ? Upload.Dragger : Upload), [dragger]);
 

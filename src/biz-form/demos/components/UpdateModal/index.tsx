@@ -8,21 +8,21 @@ export interface UpdateModalProps extends ModalFormProps {
   onChange?: () => void;
 }
 
-const UpdateModal: React.FC<UpdateModalProps> = ({ data, onChange, visible, ...restProps }) => {
+const UpdateModal: React.FC<UpdateModalProps> = ({ data, onChange, open, ...restProps }) => {
   const [form] = BizForm.useForm();
 
   React.useEffect(() => {
-    if (visible && data) {
+    if (open && data) {
       form.setFieldsValue(data);
       // } else {
       //   form.resetFields(); // 和 modalProps.destroyOnClose=true 效果一样
     }
-  }, [visible, data, form]);
+  }, [open, data, form]);
 
   return (
     <ModalForm
       title={data ? '修改' : '新增'}
-      visible={visible}
+      open={open}
       form={form}
       pressEnterSubmit={false} // 回车建不触发提交
       onFinish={async (values) => {

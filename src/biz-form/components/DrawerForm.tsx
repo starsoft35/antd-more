@@ -1,74 +1,62 @@
 import * as React from 'react';
 import { Drawer, Form } from 'antd';
-import { useUpdateEffect } from 'rc-hooks';
+import { useControllableValue } from 'rc-hooks';
 import { isPromiseLike } from 'util-helpers';
 import type { DrawerProps } from './antd.interface';
 import type { BaseFormProps } from './BaseForm';
 import BaseForm from './BaseForm';
 
-export interface DrawerFormProps extends Omit<BaseFormProps, 'title'> {
+export interface DrawerFormProps<Values = any> extends Omit<BaseFormProps<Values>, 'title' | 'defaultValue'>, Pick<DrawerProps, 'open'> {
   title?: React.ReactNode;
   width?: DrawerProps['width'];
   trigger?: React.ReactElement;
-  drawerProps?: Omit<DrawerProps, 'visible' | 'footer'>;
-  visible?: boolean;
-  onVisibleChange?: (visible: boolean) => void;
+  drawerProps?: Omit<DrawerProps, 'open' | 'visible' | 'footer'>;
+  onOpenChange?: (open: boolean) => void;
 }
 
-const DrawerForm: React.FC<DrawerFormProps> = ({
-  title,
-  width,
-  trigger,
-  drawerProps,
-  visible: outVisible,
-  onVisibleChange,
-  children,
-  submitter,
-  onFinish,
-  form: formProp,
-  ...restProps
-}) => {
-  const [visible, setVisible] = React.useState(outVisible || false);
-  const [form] = Form.useForm();
+function DrawerForm<Values = any>(props: DrawerFormProps<Values>) {
+  const {
+    title,
+    width,
+    trigger,
+    drawerProps,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    open: outOpen,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    onOpenChange,
+    children,
+    submitter,
+    onFinish,
+    form: formProp,
+    ...restProps
+  } = props;
+  const [open, setOpen] = useControllableValue(props, {
+    defaultValue: false,
+    valuePropName: 'open',
+    trigger: 'onOpenChange'
+  });
+  const [form] = Form.useForm<Values>();
   const formRef = React.useRef(formProp || form);
 
-  // 受控时，外部的visible改变后，内部改变visible值
-  // 非受控时，内部的visible改变后，执行onVisibleChange
-  useUpdateEffect(() => {
-    if (typeof outVisible === 'undefined') {
-      onVisibleChange?.(visible);
-    } else {
-      setVisible(outVisible);
-    }
-  }, [visible, outVisible]);
-
   React.useEffect(() => {
-    if (!visible && drawerProps?.destroyOnClose) {
+    if (!open && drawerProps?.destroyOnClose) {
       formRef.current.resetFields();
     }
-  }, [visible, drawerProps?.destroyOnClose]);
-
-  const changeVisible = (isVisible) => {
-    if (typeof outVisible !== 'undefined') {
-      onVisibleChange?.(isVisible);
-    } else {
-      setVisible(isVisible);
-    }
-  };
+  }, [open, drawerProps?.destroyOnClose]);
 
   return (
     <>
-      <BaseForm
+      <BaseForm<Values>
         {...restProps}
         formComponentType="DrawerForm"
-        form={formProp || form}
+        form={formRef.current}
         onFinish={async (values) => {
           let ret = typeof onFinish === 'function' ? onFinish(values) : true;
           if (isPromiseLike(ret)) {
             ret = await ret;
           }
           if (ret !== false) {
-            changeVisible(false);
+            setOpen(false);
             formRef.current.resetFields();
           }
         }}
@@ -81,7 +69,7 @@ const DrawerForm: React.FC<DrawerFormProps> = ({
             ...(submitter ? submitter?.resetButtonProps : {}),
             onClick: (e: any) => {
               drawerProps?.onClose?.(e);
-              changeVisible(false);
+              setOpen(false);
               submitter && submitter?.resetButtonProps?.onClick?.(e);
             }
           },
@@ -97,7 +85,7 @@ const DrawerForm: React.FC<DrawerFormProps> = ({
             title={title}
             width={width || 600}
             {...drawerProps}
-            visible={visible}
+            open={open}
             footer={
               <div
                 style={{
@@ -109,7 +97,7 @@ const DrawerForm: React.FC<DrawerFormProps> = ({
               </div>
             }
             onClose={(e) => {
-              changeVisible(false);
+              setOpen(false);
               drawerProps?.onClose?.(e);
             }}
           >
@@ -123,13 +111,13 @@ const DrawerForm: React.FC<DrawerFormProps> = ({
       {trigger &&
         React.cloneElement(trigger, {
           ...trigger.props,
-          onClick: (e) => {
-            changeVisible(true);
+          onClick(e) {
+            setOpen(true);
             trigger.props?.onClick?.(e);
           }
         })}
     </>
   );
-};
+}
 
 export default DrawerForm;

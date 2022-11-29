@@ -20,37 +20,37 @@ const SelectPopover: React.FC<SelectPopoverProps> = ({
   column,
   ...restProps
 }) => {
-  const [visible, setVisible] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
   const [rect, setRect] = React.useState<Record<string, any>>();
   const ref = React.useRef(null);
 
   const handleSelect = React.useCallback(
     (val) => {
-      setVisible(false);
+      setOpen(false);
       onSelect?.(val);
     },
     [onSelect]
   );
 
   React.useEffect(() => {
-    if (visible) {
+    if (open) {
       setRect(ref.current.getBoundingClientRect());
     }
-  }, [visible]);
+  }, [open]);
 
   return (
     <Popover
       trigger={trigger}
       placement={placement}
-      visible={visible}
-      onVisibleChange={setVisible}
+      open={open}
+      onOpenChange={setOpen}
       content={
         <SelectPanel
           onSelect={handleSelect}
           options={options}
           showSearch={showSearch}
           column={column}
-          visible={visible}
+          visible={open}
           style={{ width: typeof rect?.width === 'number' ? rect.width - 32 : 'auto' }}
         />
       }

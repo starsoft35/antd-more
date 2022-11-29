@@ -7,7 +7,7 @@ export interface StepsFormContextProps {
   next: () => void; // 下一步
   prev: () => void; // 上一步
   submit: () => void; // 提交
-  onFormFinish: (name: string, value: object) => void; // 每个步骤表单提交时，用于存储值
+  onFormFinish: (name: string, value: any) => void; // 每个步骤表单提交时，用于存储值
 
   // 单个表单可能有异步校验
   loading: boolean;
