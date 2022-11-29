@@ -8,7 +8,6 @@ import SearchForm from './SearchForm';
 import type { QueryFormProps } from '../biz-form';
 import BizField from '../biz-field';
 import WithTooltip from '../biz-descriptions/WithTooltip';
-import actionCache, { createActionCacheKey } from './_util/actionCache';
 import type {
   BizTableRequest,
   BizTableActionType,
@@ -98,7 +97,6 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
     ...restProps
   } = props;
 
-  const actionCacheKey = React.useMemo(() => createActionCacheKey(), []);
   const editableKeyMap = React.useRef({}); // 可编辑项的namePath映射
   const [size, setSize] = React.useState(defaultSize);
   const rootRef = React.useRef<HTMLDivElement>(null);
@@ -317,13 +315,13 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
         search,
         filters = {},
         sorter = {},
-        extra: extraOut,
+        extra: outExtra = {},
         ...restArg
       } = arg;
       const param = { current, pageSize, ...search, ...restArg };
       const extra = {
         currentDataSource: tableProps.dataSource || [],
-        action: actionCache[actionCacheKey] || extraOut?.action || 'submit'
+        action: outExtra?.action || 'paginate'
       };
       return request(param, filters, sorter, extra).then((res) => ({
         list: res.data,
@@ -344,13 +342,7 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
     [onChange, tableProps]
   );
 
-  const handleReload = React.useCallback(() => {
-    actionCache[actionCacheKey] = 'reload';
-    refresh();
-  }, [actionCacheKey, refresh]);
-
   const handleReset = React.useCallback(() => {
-    actionCache[actionCacheKey] = 'reset';
     if (hasSearch) {
       innerFormRef.current?.resetFields();
       Promise.resolve().then(() => {
@@ -358,37 +350,30 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
       });
     } else {
       pagination.changeCurrent(1);
-      actionCache[actionCacheKey] = '';
     }
-  }, [actionCacheKey, hasSearch, pagination]);
+  }, [hasSearch, pagination]);
 
   const handleSubmit = React.useCallback(() => {
-    actionCache[actionCacheKey] = 'submit';
     if (hasSearch) {
       innerFormRef.current?.submit();
     } else {
       pagination.changeCurrent(1);
     }
-  }, [actionCacheKey, hasSearch, pagination]);
+  }, [hasSearch, pagination]);
 
   // 默认 onReset 中已经重置表单，这里只需触发请求
   const handleDefaultReset = React.useCallback(() => {
-    actionCache[actionCacheKey] = 'reset';
     if (hasSearch) {
       innerFormRef.current?.submit();
     } else {
       pagination.changeCurrent(1);
-      actionCache[actionCacheKey] = '';
     }
-  }, [actionCacheKey, hasSearch, pagination]);
+  }, [hasSearch, pagination]);
 
   const handleFinish = React.useCallback(
     (values) => {
-      if (actionCache[actionCacheKey] !== 'reset') {
-        actionCache[actionCacheKey] = 'submit';
-      }
       const [oldParams, ...restParams] = params;
-      run(
+      return run(
         {
           ...oldParams,
           current: 1,
@@ -397,15 +382,12 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
         },
         ...restParams
       );
-      if (actionCache[actionCacheKey] === 'reset') {
-        actionCache[actionCacheKey] = '';
-      }
     },
-    [actionCacheKey, pagination.pageSize, params, run]
+    [pagination.pageSize, params, run]
   );
 
   React.useImperativeHandle(actionRef, () => ({
-    reload: handleReload,
+    reload: refresh,
     reset: handleReset,
     submit: handleSubmit
   }));
@@ -422,13 +404,6 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [autoRequest, hasSearch, ready]);
-
-  // 删除缓存 action
-  React.useEffect(() => {
-    return () => {
-      delete actionCache[actionCacheKey];
-    };
-  }, [actionCacheKey]);
 
   React.useEffect(() => {
     if (!toolbarActionConfig.columnSetting) {
@@ -512,7 +487,7 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
       value={{
         size,
         setSize,
-        reload: handleReload,
+        reload: refresh,
         rootRef,
         isFullScreen,
         setFullScreen,
@@ -539,10 +514,10 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
             formItems={formItems}
             searchItems={searchItems}
             ref={handleInnerFormRef}
-            loading={loading}
             onFinish={handleFinish}
             onReset={handleDefaultReset}
             cardProps={formCardProps}
+            loading={loading}
             ready={ready}
             {...form}
           />

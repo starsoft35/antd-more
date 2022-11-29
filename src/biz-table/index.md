@@ -94,42 +94,21 @@ toc: content
 
 只需按照提供的参数发起请求，并处理成相应的返回值格式即可。
 
+返回的 `data` 用于设置 Table 的 dataSource ，`total` 用于设置分页。
+
 ```typescript
 type BizTableRequest<RecordType = any> = (
   params: {
+    // 分页和查询表单项的值
     pageSize?: number;
     current?: number;
     [key: string]: any;
   },
-  filters: Record<string, (string | number)[] | null>,
-  sorter: SorterResult<RecordType> | SorterResult<RecordType>[],
-  extra: {
-    currentDataSource: RecordType[];
-    action: 'paginate' | 'sort' | 'filter' | 'reload' | 'reset' | 'submit';
-  }
+  filters: Record<string, (string | number)[] | null>, // 过滤筛选
+  sorter: SorterResult<RecordType> | SorterResult<RecordType>[], // 排序
+  extra: TableCurrentDataSource<RecordType> // 扩展数据
 ) => Promise<{ data: RecordType[]; total?: number }>;
 ```
-
-**参数**
-
-第一个参数是查询表单值和分页，第二个是筛选，第三个是排序，第四个扩展数据。
-
-**返回值**
-
-`data` 用于设置 Table 的 dataSource ，`total` 用于设置分页。
-
-**第四个参数中的 action 说明**
-
-| 值       | 说明                                        |
-| -------- | ------------------------------------------- |
-| paginate | 点击分页                                    |
-| sort     | 点击排序                                    |
-| filter   | 点击筛选                                    |
-| reload   | 调用 `actionRef.current.reload`             |
-| reset    | 点击重置 或 调用 `actionRef.current.reset`  |
-| submit   | 点击查询 或 调用 `actionRef.current.submit` |
-
-如果手动使用 `formRef.current.submit()` 触发表单提交，会导致 `action` 不准确，`formRef` 一般在处理赋值时使用。常用操作推荐使用 `actionRef` 。
 
 ### Columns 列定义
 
@@ -153,7 +132,24 @@ valueType valueEnum 为以下几个配置共用字段，可以复写：
 - search - 查询表单项的配置
 - editable - 可编辑表格项配置（[EditableBizTable](/components/biz-field#valuetype-值) 组件）
 
-#### search 查询表单配置项
+### SearchProps
+
+```typescript
+interface SearchProps<RecordType = any>
+  extends Partial<Pick<TableColumnType<RecordType>, 'dataIndex' | 'title'>>,
+    Partial<BizFormItemProps>,
+    Record<string | number, any> {
+  valueType?: BizFieldValueType;
+  valueEnum?: EnumData;
+  itemType?: keyof typeof ItemTypes;
+  order?: number; // 定义查询表单项的排列顺序，越小越靠前。参照flex的order，默认都为0
+  render?: (
+    originItem: InternalColumnType<RecordType>,
+    dom: React.ReactElement,
+    form: FormInstance
+  ) => React.ReactElement;
+}
+```
 
 当值为 `true` 或 `object` 时，自动添加查询表单项。除了以下映射值的配置，其余项皆透传给表单项。
 

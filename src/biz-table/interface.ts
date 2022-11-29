@@ -16,13 +16,9 @@ export type BizTableActionType = {
   submit: () => void;
 };
 
-export interface RequestParams extends Record<string | number, any> {
+export interface RequestParams extends Record<string, any> {
   pageSize: number;
   current: number;
-}
-export interface RequestExtra<RecordType = any>
-  extends Pick<TableCurrentDataSource<RecordType>, 'currentDataSource'> {
-  action: 'paginate' | 'sort' | 'filter' | 'reload' | 'reset' | 'submit';
 }
 export type RequestFilters = Record<string, (string | number | boolean)[] | null>;
 export type RequestSorter<RecordType> = SorterResult<RecordType> | SorterResult<RecordType>[];
@@ -31,7 +27,7 @@ export type BizTableRequest<RecordType = any> = (
   params: RequestParams,
   filters: RequestFilters,
   sorter: RequestSorter<RecordType>,
-  extra: RequestExtra<RecordType>
+  extra: TableCurrentDataSource<RecordType>
 ) => Promise<AsyncFnReturn<RecordType>>;
 
 export interface SearchProps<RecordType = any>
