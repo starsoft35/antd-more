@@ -8,14 +8,16 @@
 
 ## 特性
 
-- 🌈 支持 [antd] 主题定制
-- 📦 面向业务场景封装
+- 💎 简单易用 - 基于 Ant Design 进行封装
+- 📦 场景丰富 - 面向业务场景封装
+- 💡 TypeScript - 提供 TypeScript 类型定义
 
 ## 对应版本
 
 | antd-more                   | antd   |
 | --------------------------- | ------ |
 | `v0.x` `v1.x` `v2.x` `v3.x` | `v4.x` |
+| `v4.x`                      | `v5.x` |
 
 ## 使用
 
@@ -40,46 +42,61 @@ import { BizField } from 'antd-more';
 ReactDon.render(<BizField value="red" valueType="color" />, mountNode);
 ```
 
-## API
+## 组件列表
 
-- **数据展示**
-  - [BizField] - 业务字段
-  - [BizDescriptions] - 业务描述
-  - [BizTable] - 业务表格
-  - [EditableBizTable] - 可编辑业务表格
-- **数据录入**
-  - [BizForm] - 业务表单
-  - [BizFormItem] - 表单项
-  - [BizFormList] - 表单数组
-  - [Modal/Drawer] - 浮层表单
-  - [QueryForm] - 查询表单
-  - [StepsForm] - 分步表单
+### 数据展示
+
+- [BizDescriptions] - 业务描述
+- [BizField] - 业务字段
+- [BizTable] - 业务表格
+- [EditableBizTable] - 可编辑业务表格
+
+### 数据录入
+
+- [BizForm] - 业务表单
+- [BizFormItem] - 表单项
+- [BizFormList] - 表单数组
+- [Modal/Drawer] - 浮层表单
+- [QueryForm] - 查询表单
+- [StepsForm] - 分步表单
+
+### 页面布局
+
+- [BizUserLayout] - 用户界面布局
+
+### 通用
+
+- [CaptchaButton] - 验证码按钮
+- [Color] - 颜色
+- [Dictionary] - 数据字典
+- [InputIcon] - 图标输入
+- [TreeTable] - 树表格
 
 ## 精选第三方 react 组件
 
 - [qrcode.react] - 生成二维码
 - [wangeditor] - 轻量级 web 富文本编辑器
+- [rc-slider-captcha] - 滑块验证码
 
 [npm]: https://img.shields.io/npm/v/antd-more.svg
 [npm-url]: https://npmjs.com/package/antd-more
 [site]: https://doly-dev.github.io/antd-more/latest/index.html
-[babel-plugin-import]: https://www.npmjs.com/package/babel-plugin-import
-[doly]: https://www.npmjs.com/package/doly-cli
-[umi]: https://umijs.org/zh-CN
-[antd]: https://ant-design.gitee.io
-[captchabutton]: https://doly-dev.github.io/antd-more/latest/index.html#/components/captcha-button
-[color]: https://doly-dev.github.io/antd-more/latest/index.html#/components/color
-[dictionary]: https://doly-dev.github.io/antd-more/latest/index.html#/components/dictionary
-[bizdescriptions]: https://doly-dev.github.io/antd-more/latest/index.html#/components/biz-descriptions
-[bizfield]: https://doly-dev.github.io/antd-more/latest/index.html#/components/biz-field
-[biztable]: https://doly-dev.github.io/antd-more/latest/index.html#/components/biz-table
-[editablebiztable]: https://doly-dev.github.io/antd-more/latest/index.html#/components/editable-biz-table
-[bizform]: https://doly-dev.github.io/antd-more/latest/index.html#/components/biz-form
-[bizformitem]: https://doly-dev.github.io/antd-more/latest/index.html#/components/biz-form-item
-[bizformlist]: https://doly-dev.github.io/antd-more/latest/index.html#/components/biz-form-list
-[modal/drawer]: https://doly-dev.github.io/antd-more/latest/index.html#/components/modal-form
-[queryform]: https://doly-dev.github.io/antd-more/latest/index.html#/components/query-form
-[stepsform]: https://doly-dev.github.io/antd-more/latest/index.html#/components/steps-form
-[what is commitlint]: https://github.com/conventional-changelog/commitlint#what-is-commitlint
+[captchabutton]: /components/captcha-button
+[color]: /components/color
+[dictionary]: /components/dictionary
+[bizdescriptions]: /components/biz-descriptions
+[bizfield]: /components/biz-field
+[biztable]: /components/biz-table
+[editablebiztable]: /components/editable-biz-table
+[bizform]: /components/biz-form
+[bizformitem]: /components/biz-form-item
+[bizformlist]: /components/biz-form-list
+[modal/drawer]: /components/modal-form
+[queryform]: /components/query-form
+[stepsform]: /components/steps-form
+[bizuserlayout]: /components/biz-user-layout
+[inputicon]: /components/input-icon
+[treetable]: /components/tree-table
 [qrcode.react]: https://www.npmjs.com/package/qrcode.react
 [wangeditor]: https://www.npmjs.com/package/wangeditor
+[rc-slider-captcha]: https://www.npmjs.com/package/rc-slider-captcha
