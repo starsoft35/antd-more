@@ -21,6 +21,7 @@ const UpdateModal: React.FC<UpdateModalProps> = ({ data, onChange, open, ...rest
 
   return (
     <ModalForm
+      name='update-modal-form'
       title={data ? '修改' : '新增'}
       open={open}
       form={form}

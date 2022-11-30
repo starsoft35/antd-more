@@ -27,6 +27,7 @@ const Demo = () => {
         </Button>
       </Space>
       <ModalForm
+        name='modal-form-2'
         title="创建付款单"
         onFinish={async (values) => {
           await waitTime(2000);
@@ -60,6 +61,7 @@ const Demo = () => {
         />
       </ModalForm>
       <DrawerForm
+        name='drawer-form-2'
         title="创建付款单"
         onFinish={async (values) => {
           await waitTime(2000);

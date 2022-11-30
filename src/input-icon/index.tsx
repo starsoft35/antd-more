@@ -24,7 +24,6 @@ const InputIcon: React.FC<InputIconProps> = (props) => {
     iconData: icons = new Map([]),
     showSearch = true,
     column,
-    onChange,
     ...restProps
   } = props;
   const [state, setState] = useControllableValue(props);
@@ -34,10 +33,9 @@ const InputIcon: React.FC<InputIconProps> = (props) => {
       const hasChange = icon?.[0] !== state;
       if (hasChange) {
         setState(icon[0]);
-        onChange(icon[0]);
       }
     },
-    [onChange, setState, state]
+    [setState, state]
   );
 
   const handleChange = React.useCallback(
@@ -46,9 +44,8 @@ const InputIcon: React.FC<InputIconProps> = (props) => {
       if (!e.target.value || (!state && !icons.has(e.target.value))) {
         setState('');
       }
-      onChange();
     },
-    [icons, onChange, setState, state]
+    [icons, setState, state]
   );
 
   const IconComp = state && icons.has(state) ? icons.get(state) : null;
@@ -71,9 +68,9 @@ const InputIcon: React.FC<InputIconProps> = (props) => {
           value={state}
           placeholder="点击选择图标"
           allowClear
-          onChange={handleChange}
           autoComplete="off"
           {...restProps}
+          onChange={handleChange}
         />
       </div>
     </SelectPopover>

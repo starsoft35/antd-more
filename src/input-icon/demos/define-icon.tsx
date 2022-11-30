@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { InputIcon, InputIconsMap, BizForm, BizFormItem } from 'antd-more';
+import { InputIcon, BizForm, BizFormItem } from 'antd-more';
+import icons from './icons';
 
 const Demo = () => {
   return (
@@ -10,7 +11,7 @@ const Demo = () => {
       }}
     >
       <BizFormItem label="图标" name="icon">
-        <InputIcon iconData={InputIconsMap} />
+        <InputIcon iconData={icons} />
       </BizFormItem>
     </BizForm>
   );

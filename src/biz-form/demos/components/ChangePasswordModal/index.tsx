@@ -12,6 +12,7 @@ const ChangePasswordModal: React.FC<ChangePasswordModalProps> = (props) => {
 
   return (
     <ModalForm
+      name='change-password-modal-form'
       title="修改密码"
       width={520}
       labelWidth={112}
