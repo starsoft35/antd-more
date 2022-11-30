@@ -220,13 +220,7 @@ const StepsForm: React.FC<StepsFormProps> & {
       return null;
     }
 
-    const dom = (
-      <Steps {...stepsProps} current={step}>
-        {stepsConfigRef.current.map((item, index) => (
-          <Steps.Step key={item?.name + index} {...item} />
-        ))}
-      </Steps>
-    );
+    const dom = (<Steps {...stepsProps} items={stepsConfigRef.current} current={step} />);
 
     return stepsRender ? stepsRender(stepsConfigRef.current, dom) : dom;
   };
