@@ -1,7 +1,3 @@
-/**
- * title: 运费配置
- * desc: 设置 `autoRequest=false` 仅使用 `BizTable` 的 field 能力。
- */
 import * as React from 'react';
 import { Card, Button, message } from 'antd';
 import type { BizTableColumnType } from 'antd-more';

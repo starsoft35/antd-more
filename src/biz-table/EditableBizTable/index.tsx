@@ -325,7 +325,6 @@ const EditableBizTable = <RecordType extends object = any>({
     }
 
     const fieldsValue = getFieldsByRowKey(rowKey);
-    // TODO 去重，防止重复触发
     editable?.onChange?.([...(editable?.editableKeys || []), rowKey], fieldsValue);
   };
 
