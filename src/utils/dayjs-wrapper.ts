@@ -1,4 +1,4 @@
-import 'dayjs/locale/zh-cn';
+// import 'dayjs/locale/zh-cn';
 import type { Dayjs } from 'dayjs';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
@@ -9,7 +9,7 @@ import customParseFormat from 'dayjs/plugin/customParseFormat';
 import weekday from 'dayjs/plugin/weekday';
 import localeData from 'dayjs/plugin/localeData';
 
-dayjs.locale('zh-cn');
+// dayjs.locale('zh-cn');
 
 dayjs.extend(relativeTime);
 dayjs.extend(quarterOfYear);
