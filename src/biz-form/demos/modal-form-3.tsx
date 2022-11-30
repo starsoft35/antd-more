@@ -18,6 +18,7 @@ const Demo = () => {
   return (
     <Space>
       <ModalForm
+        name='modal-form-3.1'
         title="test提交按钮"
         trigger={<Button type="primary">自定义test按钮</Button>}
         onFinish={async (values) => {
@@ -58,6 +59,7 @@ const Demo = () => {
         />
       </ModalForm>
       <ModalForm
+        name='modal-form-3.2'
         title="创建付款单"
         trigger={<Button type="primary">自定义文字</Button>}
         onFinish={async (values) => {

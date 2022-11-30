@@ -21,6 +21,7 @@ const UpdateModal: React.FC<UpdateModalProps> = ({ data, onChange, visible, ...r
 
   return (
     <ModalForm
+      name='update-modal-form'
       title={data ? '修改' : '新增'}
       visible={visible}
       form={form}

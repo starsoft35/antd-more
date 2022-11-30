@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { Modal, Form } from 'antd';
-import { useUpdateEffect } from 'rc-hooks';
+import { useControllableValue } from 'rc-hooks';
 import { isPromiseLike } from 'util-helpers';
 import type { ModalProps } from './antd.interface';
 import type { BaseFormProps } from './BaseForm';
 import BaseForm from './BaseForm';
 
-export interface ModalFormProps extends Omit<BaseFormProps, 'title'> {
+export interface ModalFormProps extends Omit<BaseFormProps, 'title' | 'defaultValue'> {
   title?: React.ReactNode;
   width?: ModalProps['width'];
   trigger?: React.ReactElement;
@@ -15,46 +15,35 @@ export interface ModalFormProps extends Omit<BaseFormProps, 'title'> {
   onVisibleChange?: (visible: boolean) => void;
 }
 
-const ModalForm: React.FC<ModalFormProps> = ({
-  title,
-  width,
-  trigger,
-  modalProps,
-  visible: outVisible,
-  onVisibleChange,
-  children,
-  submitter,
-  onFinish,
-  form: formProp,
-  ...restProps
-}) => {
-  const [visible, setVisible] = React.useState(outVisible || false);
+const ModalForm: React.FC<ModalFormProps> = (props) => {
+  const {
+    title,
+    width,
+    trigger,
+    modalProps,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    visible: outVisible,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    onVisibleChange,
+    children,
+    submitter,
+    onFinish,
+    form: formProp,
+    ...restProps
+  } = props;
+  const [visible, setVisible] = useControllableValue(props, {
+    valuePropName: 'visible',
+    trigger: 'onVisibleChange'
+  });
+
   const [form] = Form.useForm();
   const formRef = React.useRef(formProp || form);
-
-  // 受控时，外部的visible改变后，内部改变visible值
-  // 非受控时，内部的visible改变后，执行onVisibleChange
-  useUpdateEffect(() => {
-    if (typeof outVisible === 'undefined') {
-      onVisibleChange?.(visible);
-    } else {
-      setVisible(outVisible);
-    }
-  }, [visible, outVisible]);
 
   React.useEffect(() => {
     if (!visible && modalProps?.destroyOnClose) {
       formRef.current.resetFields();
     }
   }, [visible, modalProps?.destroyOnClose]);
-
-  const changeVisible = (isVisible) => {
-    if (typeof outVisible !== 'undefined') {
-      onVisibleChange?.(isVisible);
-    } else {
-      setVisible(isVisible);
-    }
-  };
 
   return (
     <>
@@ -68,7 +57,7 @@ const ModalForm: React.FC<ModalFormProps> = ({
             ret = await ret;
           }
           if (ret !== false) {
-            changeVisible(false);
+            setVisible(false);
             formRef.current.resetFields();
           }
         }}
@@ -84,7 +73,7 @@ const ModalForm: React.FC<ModalFormProps> = ({
             ...(submitter ? submitter?.resetButtonProps : {}),
             onClick: (e) => {
               modalProps?.onCancel?.(e);
-              changeVisible(false);
+              setVisible(false);
               submitter && submitter?.resetButtonProps?.onClick?.(e);
             }
           },
@@ -104,7 +93,7 @@ const ModalForm: React.FC<ModalFormProps> = ({
             visible={visible}
             footer={submitterDom}
             onCancel={(e) => {
-              changeVisible(false);
+              setVisible(false);
               modalProps?.onCancel?.(e);
             }}
           >
@@ -118,8 +107,8 @@ const ModalForm: React.FC<ModalFormProps> = ({
       {trigger &&
         React.cloneElement(trigger, {
           ...trigger.props,
-          onClick: (e) => {
-            changeVisible(true);
+          onClick(e) {
+            setVisible(true);
             trigger.props?.onClick?.(e);
           }
         })}

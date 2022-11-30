@@ -14,6 +14,7 @@ import { BillAccountOptions } from './constants';
 const Demo = () => {
   return (
     <ModalForm
+      name='modal-form-1'
       title="创建付款单"
       trigger={<Button type="primary">创建付款单</Button>}
       onFinish={async (values) => {
