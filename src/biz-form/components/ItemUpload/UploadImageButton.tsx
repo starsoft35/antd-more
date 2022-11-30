@@ -13,7 +13,7 @@ const UploadImageButton: React.FC<{
   return (
     <div>
       {loading || uploading ? <LoadingOutlined /> : icon}
-      <div style={{ marginTop: 8 }}>{text}</div>
+      <div style={{ marginTop: 8, lineHeight: 1.5 }}>{text}</div>
     </div>
   );
 };

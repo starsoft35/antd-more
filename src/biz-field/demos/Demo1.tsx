@@ -11,32 +11,25 @@ export default () => {
           <BizField value="" valueType="text" />
         </Descriptions.Item>
         <Descriptions.Item label="文本">
-          <BizField value="这是一段文本" valueType="text" />
-          、
+          <BizField value="这是一段文本" valueType="text" />,
           <BizField value="颜色和文字大小" valueType="text" color="red" size={16} />
         </Descriptions.Item>
         <Descriptions.Item label="金额">
-          <BizField value={100} valueType="money" />
-          、
-          <BizField value={100} valueType="money" prefix="¥" />
-          、
+          <BizField value={100} valueType="money" />,
+          <BizField value={100} valueType="money" prefix="¥" />,
           <BizField value={100} valueType="money" prefix="¥" color="red" />
         </Descriptions.Item>
         <Descriptions.Item label="进度条">
           <BizField value={40} valueType="progress" />
         </Descriptions.Item>
         <Descriptions.Item label="百分比">
-          <BizField value={-10} valueType="percent" />
-          、
-          <BizField value={0} valueType="percent" />
-          、
+          <BizField value={-10} valueType="percent" />,
+          <BizField value={0} valueType="percent" />,
           <BizField value={10} valueType="percent" />
         </Descriptions.Item>
         <Descriptions.Item label="百分比样式">
-          <BizField value={-10} valueType="percent" showSymbol showColor />
-          、
-          <BizField value={0} valueType="percent" showSymbol showColor />
-          、
+          <BizField value={-10} valueType="percent" showSymbol showColor />,
+          <BizField value={0} valueType="percent" showSymbol showColor />,
           <BizField value={10} valueType="percent" showSymbol showColor />
         </Descriptions.Item>
         <Descriptions.Item label="序列号">
@@ -65,7 +58,7 @@ export default () => {
             valueType="image"
           />
         </Descriptions.Item>
-        <Descriptions.Item label="图片（名称）">
+        <Descriptions.Item label="图片(名称)">
           <BizField
             value={{
               src: 'https://gw.alipayobjects.com/zos/antfincdn/aPkFc8Sj7n/method-draw-image.svg',
