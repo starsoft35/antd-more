@@ -39,8 +39,10 @@ const FiledImage: React.FC<FiledImageProps> = ({
                 <Image src={src} width={width} {...defaultProps} {...restProps} />
               </div>
               {name && (
-                <div className={`${prefixCls}-item-name`} style={{ width }} title={name}>
-                  {name}
+                <div className={`${prefixCls}-item-name`}>
+                  <div className={`${prefixCls}-item-name-inner`} title={name}>
+                    {name}
+                  </div>
                 </div>
               )}
             </div>
