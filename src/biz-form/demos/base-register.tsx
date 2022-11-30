@@ -33,7 +33,6 @@ const RegisterDemo = () => {
         label="邮箱"
         name="email"
         type="email"
-        inputProps={{ placeholder: '请输入（选填）' }}
       />
       <BizFormItemPassword label="密码" name="password" required />
       <BizFormItemAddress

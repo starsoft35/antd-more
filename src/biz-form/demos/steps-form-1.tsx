@@ -53,7 +53,7 @@ const Demo = () => {
           transform={(values) => values.map((val) => val.name)}
         />
         <BizFormItemTextArea
-          label="备注（选填）"
+          label="备注"
           name="remark"
           disabledWhiteSpace
           inputProps={{ showCount: true, maxLength: 140 }}

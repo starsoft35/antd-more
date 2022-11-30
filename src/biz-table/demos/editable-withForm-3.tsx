@@ -113,7 +113,7 @@ const Demo = () => {
     },
     {
       dataIndex: 'remark',
-      title: '备注（选填）',
+      title: '备注',
       valueType: 'text',
       editable: {
         itemType: 'textarea',
