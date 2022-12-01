@@ -35,9 +35,7 @@ const ChangePasswordModal: React.FC<ChangePasswordModalProps> = (props) => {
       <BizFormItemPassword
         name="oldPassword"
         label="旧密码"
-        inputProps={{
-          placeholder: '请输入旧密码'
-        }}
+        placeholder="请输入旧密码"
         required
         validated={false}
       />
@@ -46,18 +44,14 @@ const ChangePasswordModal: React.FC<ChangePasswordModalProps> = (props) => {
         label="新密码"
         min={6}
         max={16}
-        inputProps={{
-          placeholder: '请输入6-16位新密码'
-        }}
+        placeholder="请输入6-16位新密码"
         required
         validateTrigger="onChange"
       />
       <BizFormItemPassword
         name="repeatPassword"
         label="新密码确认"
-        inputProps={{
-          placeholder: '请再次输入新密码'
-        }}
+        placeholder="请再次输入新密码"
         required
         validateTrigger="onChange"
         dependencies={['password']}

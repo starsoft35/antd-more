@@ -25,7 +25,7 @@ const Demo = () => {
         label="Gender"
         options={options}
         required
-        selectProps={{ allowClear: true }}
+        allowClear
       />
       <BizFormItem
         noStyle

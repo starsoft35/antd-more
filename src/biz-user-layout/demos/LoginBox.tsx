@@ -39,18 +39,18 @@ const LoginBox: React.FC<{ showRegisterEnter?: boolean; }> = ({ showRegisterEnte
       >
         <BizFormItemInput
           name="userName"
+          placeholder="请输入用户名"
           inputProps={{
-            prefix: <UserOutlined />,
-            placeholder: '请输入用户名'
+            prefix: <UserOutlined />
           }}
           label="用户名"
           required
         />
         <BizFormItemPassword
           name="password"
+          placeholder="请输入密码"
           inputProps={{
-            prefix: <LockOutlined />,
-            placeholder: '请输入密码'
+            prefix: <LockOutlined />
           }}
           label="密码"
           required

@@ -50,9 +50,7 @@ const Demo = () => {
           <BizFormItemInput
             name="mobile"
             type="mobile"
-            inputProps={{
-              placeholder: '请输入11位手机号'
-            }}
+            placeholder="请输入11位手机号"
             label="手机号"
             required
           />
@@ -73,7 +71,7 @@ const Demo = () => {
             validateTrigger="onBlur"
             label="验证码"
             normalize={(val) => val.replace(/[^\d]/g, '')}
-            inputProps={{ maxLength: 6 }}
+            maxLength={6}
             onGetCaptcha={async () => {
               try {
                 await form1.validateFields(['mobile', 'code']);
@@ -112,18 +110,14 @@ const Demo = () => {
             name="password"
             min={6}
             max={16}
-            inputProps={{
-              placeholder: '6-16位密码，区分大小写'
-            }}
+            placeholder="6-16位密码，区分大小写"
             label="新密码"
             validateTrigger="onBlur"
             required
           />
           <BizFormItemPassword
             name="oldPassword"
-            inputProps={{
-              placeholder: '再次输入新密码'
-            }}
+            placeholder="再次输入新密码"
             dependencies={['password']}
             validateTrigger="onBlur"
             label="确定密码"

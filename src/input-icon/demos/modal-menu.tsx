@@ -125,7 +125,7 @@ const Demo = () => {
           <BizFormItemInput name="code" label={`${menuTypeName}编号`} required />
         </Col>
         <Col span={12}>
-          <BizFormItemNumber name="sort" label="排序" precision={0} inputProps={{ min: 0 }} />
+          <BizFormItemNumber name="sort" label="排序" precision={0} min={0} />
         </Col>
       </Row>
       {currentMenuType === MenuType.Menu && (

@@ -91,7 +91,7 @@ function Demo() {
                   label="账户"
                   name="account"
                   disabledWhiteSpace
-                  inputProps={{ placeholder: '请输入手机号码或邮箱' }}
+                  placeholder="请输入手机号码或邮箱"
                   required
                 />
                 <BizFormItemPassword label="密码" name="password" validated={false} required />

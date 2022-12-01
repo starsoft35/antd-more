@@ -43,7 +43,8 @@ const UpdateModal: React.FC<UpdateModalProps> = ({ data, onChange, open, ...rest
         label="简介"
         name="resume"
         required
-        inputProps={{ showCount: true, maxLength: 100 }}
+        maxLength={100}
+        showCount
       />
     </ModalForm>
   );
