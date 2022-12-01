@@ -2,30 +2,39 @@
 order: 2
 ---
 
-# 从 v2 到 v3
+# 从 v3 到 v4
 
-## v3 有哪些变化
+## v4 有哪些变化
 
-### Color
+主要变化是更新 `antd` 版本 [从 v4 到 v5](https://ant.design/docs/react/migration-v5-cn)。
 
-- 单独导出颜色展示和各个颜色选择器组件
+### visible/onVisibleChange 改为 open/onOpenChange
 
-### Dictionary
+- DrawerForm
+- ModalForm
+- Color 颜色选择器
 
-- 移除 `List` `Radio` `Seelct`
-- 枚举数据属性 `data` 改为 `valueEnum`，去掉枚举数据中的 `name`
-- 去掉属性 `defaultName`
-- 新增属性 `match` 支持自定义值匹配方法
+### 移除和重构
 
-### BizForm
+- BizFormItemCaptcha
+  - 移除 `autoRun` 属性，请使用 `autoClick` 替换。
+- BizTable
+  - 移除 `columns` 配置项中的 `order` 属性，请使用 `search.order` 替换。
+  - 移除 `request` 第四个参数中的 `action` 自定义值（submit、reset、reload），同步 `antd Table onChange` 第四个参数值。
+- BizFormItemUpload
+  - 移除 `maxCountMessage` 属性。
+- Dictionary
+  - 移除 `optionName` 属性，请使用 `propsName` 替换。
+  - `onUpload` 返回值不再挂载到 `rcFile` 上，而是放入 `response` 。
+- Color
+  - 重构颜色选择器组件，支持 `disabled` `pickerProps` 属性。
 
-- 单独导出各个 `Item` 组件，不再挂载到 `BizForm` 上（原使用 `BizForm.ItemXXX` 改为 `BizFormItemXXX`）
-- 移除 `BizFormItem` 属性 `before` `after`，请使用 `contentBefore` `contentAfter`
-- 移除 `BizFormItemCaptcha` 属性 `check`
-- 移除 `BizFormItemUpload` 属性 `max`
-- 移除 `BizFormItemSelect` `BizFormItemRadio` `BizFormCheckbox` 属性 `allName`，请使用 `allLabel`
+### moment 改为 dayjs
 
-### BizTable
+内部没有引入语言包，请在项目入口文件中引入：
 
-- 移除类型 `ActionType` `Request` `BizColumnType`，请使用 `BizTableActionType` `BizTableRequest` `BizTableColumnType`
-- 移除类型 `EditableActionType` `EditableOptions` ，请使用 `EditableBizTableActionType` `EditableBizTableEditable`
+```typescript
+import 'dayjs/locale/zh-cn';
+
+dayjs.locale('zh-cn');
+```
