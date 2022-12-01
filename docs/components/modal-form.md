@@ -53,7 +53,7 @@ import { ModalForm } from 'antd-more';
 | open | 是否打开。<br/>设置后表示为 `受控组件`，可结合 `onOpenChange` 进行控制。 | `boolean` | - |
 | onOpenChange | `open` 改变时触发 | `(open: boolean) => void` | - |
 | modalProps | `Modal` 的 `props`，使用方式与 antd 相同。 | [ModalProps](https://ant.design/components/modal-cn/#API) | - |
-| onFinish | 提交数据时触发。如果返回 `false` 或 `Promise.reject()` 表示提交失败。否则会关掉弹框并且重置表单 | `async (values: any) => any` | - |
+| onFinish | 提交数据时触发。如果返回 `false` 或 `Promise.reject()` 表示提交失败。否则会关掉弹框，如果配置了 `destroyOnClose` 还会重置表单。 | `async (values: any) => any` | - |
 
 ### DrawerForm
 
@@ -71,4 +71,4 @@ import { DrawerForm } from 'antd-more';
 | open | 是否打开。<br/>设置后表示为 `受控组件`，可结合 `onOpenChange` 进行控制。 | `boolean` | - |
 | onOpenChange | `open` 改变时触发 | `(open: boolean) => void` | - |
 | drawerProps | `Drawer` 的 `props`，使用方式与 antd 相同。 | [DrawerProps](https://ant.design/components/drawer-cn/#API) | - |
-| onFinish | 提交数据时触发。如果返回 `false` 或 `Promise.reject()` 表示提交失败。否则会关掉弹框并且重置表单 | `async (values) => any` | - |
+| onFinish | 提交数据时触发。如果返回 `false` 或 `Promise.reject()` 表示提交失败。否则会关掉弹框，如果配置了 `destroyOnClose` 还会重置表单。 | `async (values) => any` | - |
