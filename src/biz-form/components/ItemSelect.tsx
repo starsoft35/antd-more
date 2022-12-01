@@ -15,7 +15,7 @@ export interface BizFormItemSelectProps<ValueType = any> extends BizFormItemProp
   selectProps?: SelectProps<ValueType>;
 }
 
-const BizFormItemSelect: React.FC<BizFormItemSelectProps> = ({
+function BizFormItemSelect<Values = any>({
   placeholder = "请选择",
   allowClear = false,
   fieldNames,
@@ -29,7 +29,7 @@ const BizFormItemSelect: React.FC<BizFormItemSelectProps> = ({
   selectProps = {},
   required = false,
   ...restProps
-}) => {
+}: BizFormItemSelectProps<Values>) {
   const { getPopupContainer } = React.useContext(FieldContext);
   const options = React.useMemo(
     () => selectProps.options || outOptions,
@@ -86,6 +86,6 @@ const BizFormItemSelect: React.FC<BizFormItemSelectProps> = ({
       />
     </BizFormItem>
   );
-};
+}
 
 export default BizFormItemSelect;

@@ -6,7 +6,7 @@ import type { ModalProps } from './antd.interface';
 import type { BaseFormProps } from './BaseForm';
 import BaseForm from './BaseForm';
 
-export interface ModalFormProps extends Omit<BaseFormProps, 'title' | 'defaultValue'> {
+export interface ModalFormProps<Values = any> extends Omit<BaseFormProps<Values>, 'title' | 'defaultValue'> {
   title?: React.ReactNode;
   width?: ModalProps['width'];
   trigger?: React.ReactElement;
@@ -15,7 +15,7 @@ export interface ModalFormProps extends Omit<BaseFormProps, 'title' | 'defaultVa
   onVisibleChange?: (visible: boolean) => void;
 }
 
-const ModalForm: React.FC<ModalFormProps> = (props) => {
+function ModalForm<Values = any>(props: ModalFormProps<Values>) {
   const {
     title,
     width,
@@ -39,12 +39,6 @@ const ModalForm: React.FC<ModalFormProps> = (props) => {
   const [form] = Form.useForm();
   const formRef = React.useRef(formProp || form);
 
-  React.useEffect(() => {
-    if (!visible && modalProps?.destroyOnClose) {
-      formRef.current.resetFields();
-    }
-  }, [visible, modalProps?.destroyOnClose]);
-
   return (
     <>
       <BaseForm
@@ -58,7 +52,6 @@ const ModalForm: React.FC<ModalFormProps> = (props) => {
           }
           if (ret !== false) {
             setVisible(false);
-            formRef.current.resetFields();
           }
         }}
         submitter={typeof submitter === 'undefined' || submitter ? {
@@ -96,6 +89,12 @@ const ModalForm: React.FC<ModalFormProps> = (props) => {
               setVisible(false);
               modalProps?.onCancel?.(e);
             }}
+            afterClose={() => {
+              if (modalProps?.destroyOnClose) {
+                formRef.current.resetFields();
+              }
+              modalProps?.afterClose?.();
+            }}
           >
             {formDom}
           </Modal>
@@ -114,6 +113,6 @@ const ModalForm: React.FC<ModalFormProps> = (props) => {
         })}
     </>
   );
-};
+}
 
 export default ModalForm;

@@ -13,7 +13,8 @@ import { waitTime } from 'util-helpers';
 import { BillAccountOptions } from './constants';
 
 const Demo = () => {
-  const [form] = BizForm.useForm();
+  const [form1] = BizForm.useForm();
+  const [form2] = BizForm.useForm();
 
   return (
     <Space>
@@ -26,14 +27,17 @@ const Demo = () => {
           console.log(values);
         }}
         labelWidth={112}
-        form={form}
+        form={form1}
         submitter={{
           render: (submitterProps, dom) => [
             ...dom,
-            <Button {...submitterProps.submitButtonProps} onClick={() => form.submit()} key="test">
+            <Button {...submitterProps.submitButtonProps} onClick={() => form1.submit()} key="test">
               test
             </Button>
           ]
+        }}
+        modalProps={{
+          destroyOnClose: true
         }}
       >
         <BizFormItemInput label="收款账号" name="ban" required />
@@ -67,7 +71,7 @@ const Demo = () => {
           console.log(values);
         }}
         labelWidth={112}
-        form={form}
+        form={form2}
         submitter={{
           submitText: '提交',
           noReset: true

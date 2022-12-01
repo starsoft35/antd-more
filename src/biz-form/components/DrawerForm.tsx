@@ -6,7 +6,7 @@ import type { DrawerProps } from './antd.interface';
 import type { BaseFormProps } from './BaseForm';
 import BaseForm from './BaseForm';
 
-export interface DrawerFormProps extends Omit<BaseFormProps, 'title' | 'defaultValue'> {
+export interface DrawerFormProps<Values = any> extends Omit<BaseFormProps<Values>, 'title' | 'defaultValue'> {
   title?: React.ReactNode;
   width?: DrawerProps['width'];
   trigger?: React.ReactElement;
@@ -15,7 +15,7 @@ export interface DrawerFormProps extends Omit<BaseFormProps, 'title' | 'defaultV
   onVisibleChange?: (visible: boolean) => void;
 }
 
-const DrawerForm: React.FC<DrawerFormProps> = (props) => {
+function DrawerForm<Values = any>(props: DrawerFormProps<Values>) {
   const {
     title,
     width,
@@ -39,12 +39,6 @@ const DrawerForm: React.FC<DrawerFormProps> = (props) => {
   const [form] = Form.useForm();
   const formRef = React.useRef(formProp || form);
 
-  React.useEffect(() => {
-    if (!visible && drawerProps?.destroyOnClose) {
-      formRef.current.resetFields();
-    }
-  }, [visible, drawerProps?.destroyOnClose]);
-
   return (
     <>
       <BaseForm
@@ -58,7 +52,6 @@ const DrawerForm: React.FC<DrawerFormProps> = (props) => {
           }
           if (ret !== false) {
             setVisible(false);
-            formRef.current.resetFields();
           }
         }}
         submitter={typeof submitter === 'undefined' || submitter ? {
@@ -101,6 +94,13 @@ const DrawerForm: React.FC<DrawerFormProps> = (props) => {
               setVisible(false);
               drawerProps?.onClose?.(e);
             }}
+            afterVisibleChange={v => {
+              if (!v && drawerProps?.destroyOnClose) {
+                formRef.current.resetFields();
+              }
+              drawerProps?.afterVisibleChange?.(v);
+
+            }}
           >
             {formDom}
           </Drawer>
@@ -119,6 +119,6 @@ const DrawerForm: React.FC<DrawerFormProps> = (props) => {
         })}
     </>
   );
-};
+}
 
 export default DrawerForm;
