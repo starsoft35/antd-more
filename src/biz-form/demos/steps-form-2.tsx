@@ -60,9 +60,9 @@ const Demo = () => {
           label="手机号码"
           name="mobile"
           type="mobile"
+          placeholder="请输入手机号码"
           inputProps={{
-            prefix: <MobileOutlined />,
-            placeholder: '请输入手机号码'
+            prefix: <MobileOutlined />
           }}
           validateTrigger="onChange"
           required
@@ -70,9 +70,9 @@ const Demo = () => {
         <BizFormItemInput
           label="图片验证码"
           name="verifyCode"
+          placeholder="请输入图片验证码"
           inputProps={{
-            prefix: <SafetyCertificateOutlined />,
-            placeholder: '请输入图片验证码'
+            prefix: <SafetyCertificateOutlined />
           }}
           contentAfter={
             <img
@@ -113,10 +113,10 @@ const Demo = () => {
             await waitTime(2000);
             setSent(true);
           }}
+          placeholder="短信验证码"
+          maxLength={6}
           inputProps={{
-            prefix: <SafetyCertificateOutlined />,
-            placeholder: '短信验证码',
-            maxLength: 6
+            prefix: <SafetyCertificateOutlined />
           }}
           required
         />
@@ -138,9 +138,9 @@ const Demo = () => {
         <BizFormItemPassword
           label="新密码"
           name="password"
+          placeholder="请输入新密码"
           inputProps={{
-            prefix: <LockOutlined />,
-            placeholder: '请输入新密码'
+            prefix: <LockOutlined />
           }}
           required
         />
@@ -148,9 +148,9 @@ const Demo = () => {
           label="确认密码"
           name="repeatPassword"
           dependencies={['password']}
+          placeholder="请再次输入新密码"
           inputProps={{
-            prefix: <LockOutlined />,
-            placeholder: '请再次输入新密码'
+            prefix: <LockOutlined />
           }}
           rules={[
             {

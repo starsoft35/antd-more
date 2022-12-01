@@ -91,7 +91,7 @@ const BaseInfo = () => {
           <BizFormItemInput
             label="机构名称"
             name="orgName"
-            inputProps={{ placeholder: orgNamePlaceholder }}
+            placeholder={orgNamePlaceholder}
             disabledWhiteSpace
             required
           />
@@ -102,7 +102,8 @@ const BaseInfo = () => {
               <BizFormItemInput
                 label="营业执照号"
                 name="businessRegno"
-                inputProps={{ placeholder: '请输入统一社会信用代码或营业执照号', maxLength: 18 }}
+                placeholder="请输入统一社会信用代码或营业执照号"
+                maxLength={18}
                 required
                 rules={[
                   {

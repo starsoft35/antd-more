@@ -18,17 +18,17 @@ const ItemNumberMoney: React.FC<ItemNumberMoneyProps> = ({
   return (
     <BizFormItemNumber
       {...restProps}
+      formatter={value => {
+        if (value || value === 0) {
+          const numValue = Number(value);
+          const floorValue = divide(Math.floor(times(numValue, 100)), 100);
+          return `${floorValue}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+        }
+        return String(value) || '';
+      }}
+      precision={2}
+      min={0}
       inputProps={{
-        formatter: value => {
-          if (value || value === 0) {
-            const numValue = Number(value);
-            const floorValue = divide(Math.floor(times(numValue, 100)), 100);
-            return `${floorValue}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-          }
-          return String(value) || '';
-        },
-        precision: 2,
-        min: 0,
         controls: !inputPrefixReverse,
         ...inputProps
       }}

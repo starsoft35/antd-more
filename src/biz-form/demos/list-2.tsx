@@ -75,7 +75,7 @@ const Demo = () => {
                         label="年龄"
                         name={[field.name, 'age']}
                         precision={0}
-                        inputProps={{ min: 1 }}
+                        min={1}
                       />
                     </Col>
                     <Col {...colspan}>

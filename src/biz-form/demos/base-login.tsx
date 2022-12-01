@@ -56,18 +56,18 @@ const LoginDemo = () => {
       >
         <BizFormItemInput
           name="userName"
+          placeholder="请输入用户名"
           inputProps={{
-            prefix: <UserOutlined />,
-            placeholder: '请输入用户名'
+            prefix: <UserOutlined />
           }}
           label="用户名"
           required
         />
         <BizFormItemPassword
           name="password"
+          placeholder="请输入密码"
           inputProps={{
-            prefix: <LockOutlined />,
-            placeholder: '请输入密码'
+            prefix: <LockOutlined />
           }}
           label="密码"
           required
@@ -76,9 +76,9 @@ const LoginDemo = () => {
         <BizFormItemInput
           name="email"
           type="email"
+          placeholder="请输入邮箱"
           inputProps={{
-            prefix: <MailOutlined />,
-            placeholder: '请输入邮箱'
+            prefix: <MailOutlined />
           }}
           validateTrigger="onChange"
           label="邮箱"
@@ -87,21 +87,22 @@ const LoginDemo = () => {
         <BizFormItemInput
           name="mobile"
           type="mobile"
+          placeholder="请输入手机号码"
           inputProps={{
-            prefix: <MobileOutlined />,
-            placeholder: '请输入手机号码'
+            prefix: <MobileOutlined />
           }}
           validateTrigger="onChange"
           label="手机号码"
+          format={false}
           required
         />
         <BizFormItemCaptcha
           name="captcha"
           normalize={(val) => val.replace(/[^\d]/g, '')}
+          placeholder="请输入验证码"
+          maxLength={6}
           inputProps={{
-            prefix: <SafetyCertificateOutlined />,
-            placeholder: '请输入验证码',
-            maxLength: 6
+            prefix: <SafetyCertificateOutlined />
           }}
           required
           label="验证码"
@@ -120,9 +121,9 @@ const LoginDemo = () => {
         />
         <BizFormItemInput
           name="verifyCode"
+          placeholder="请输入图片验证码"
           inputProps={{
-            prefix: <SafetyCertificateOutlined />,
-            placeholder: '请输入图片验证码'
+            prefix: <SafetyCertificateOutlined />
           }}
           contentAfter={
             <IdentifyCode loading={loading} src={src} onClick={refreshGraphValidateCode} />

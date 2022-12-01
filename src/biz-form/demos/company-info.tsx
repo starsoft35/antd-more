@@ -47,7 +47,7 @@ const CompanyInfo = () => {
             name="companyName"
             required
             disabledWhiteSpace
-            inputProps={{ placeholder: '请输入公司营业执照上的商户全称' }}
+            placeholder="请输入公司营业执照上的商户全称"
           />
         </Col>
         <Col {...twoColSpan}>
@@ -55,9 +55,7 @@ const CompanyInfo = () => {
             label="营业执照号"
             name="businessRegno"
             required
-            inputProps={{
-              placeholder: '请输入统一社会信用代码或营业执照号'
-            }}
+            placeholder="请输入统一社会信用代码或营业执照号"
             rules={[
               {
                 validator(rules, value) {

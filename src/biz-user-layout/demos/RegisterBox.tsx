@@ -43,9 +43,9 @@ const RegisterBox = () => {
         <BizFormItemInput
           type="mobile"
           name="mobile"
+          placeholder="请输入手机号码"
           inputProps={{
-            prefix: <MobileOutlined />,
-            placeholder: '请输入手机号码'
+            prefix: <MobileOutlined />
           }}
           label="手机号码"
           required
@@ -68,10 +68,10 @@ const RegisterBox = () => {
         <BizFormItemCaptcha
           name="code"
           normalize={(val) => val.replace(/[^\d]/g, '')}
+          placeholder="短信验证码"
+          maxLength={6}
           inputProps={{
-            prefix: <SafetyCertificateOutlined />,
-            placeholder: '短信验证码',
-            maxLength: 6
+            prefix: <SafetyCertificateOutlined />
           }}
           required
           label="验证码"
@@ -91,9 +91,9 @@ const RegisterBox = () => {
         />
         <BizFormItemPassword
           name="password"
+          placeholder="设置密码"
           inputProps={{
-            prefix: <LockOutlined />,
-            placeholder: '设置密码'
+            prefix: <LockOutlined />
           }}
           label="密码"
           required
@@ -102,9 +102,9 @@ const RegisterBox = () => {
         <BizFormItemPassword
           label="重复新密码"
           name="repeatPassword"
+          placeholder="请再次输入您的密码"
           inputProps={{
-            prefix: <LockOutlined />,
-            placeholder: '请再次输入您的密码'
+            prefix: <LockOutlined />
           }}
           required
           dependencies={['password']}

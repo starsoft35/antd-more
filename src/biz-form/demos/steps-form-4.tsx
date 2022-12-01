@@ -146,7 +146,8 @@ const Demo = () => {
                 label="备注（选填）"
                 name="remark"
                 disabledWhiteSpace
-                inputProps={{ showCount: true, maxLength: 140 }}
+                maxLength={140}
+                showCount
               />
             </StepsForm.StepForm>
             <StepsForm.StepForm title="创建结果" submitter={false}>

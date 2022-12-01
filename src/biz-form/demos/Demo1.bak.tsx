@@ -110,16 +110,12 @@ const Demo = () => {
         </BizFormList>
         <BizFormItemInput label="银行卡号4" name={["test", "bankCardNo"]} type="bankCard" /> */}
         <BizFormItemDate label="日期" name="date" />
-        <BizFormItemDate label="周" name="week" pickerProps={{ picker: 'week' }} />
-        <BizFormItemDate label="月" name="month" pickerProps={{ picker: 'month' }} />
-        <BizFormItemDate label="年" name="year" pickerProps={{ picker: 'year' }} />
-        <BizFormItemDate label="日期时间" name="dateTime" pickerProps={{ showTime: true }} />
+        <BizFormItemDate label="周" name="week" picker="week" />
+        <BizFormItemDate label="月" name="month" picker="month" />
+        <BizFormItemDate label="年" name="year" picker="year" />
+        <BizFormItemDate label="日期时间" name="dateTime" showTime />
         <BizFormItemDateRange label="日期区间" name="dateRange" />
-        <BizFormItemDateRange
-          label="日期时间区间"
-          name="dateTimeRange"
-          pickerProps={{ showTime: true }}
-        />
+        <BizFormItemDateRange label="日期时间区间" name="dateTimeRange" showTime />
         <BizFormItemInput label="身份证号" name="idCard" type="idCard" />
         <BizFormItemInput label="Input" name="input" />
         <BizFormItemPassword label="Input.Password" name="inputPassword" validated={false} />

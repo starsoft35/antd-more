@@ -36,7 +36,7 @@ const ForgetPassword = () => {
           name="captcha"
           required
           normalize={(val) => val.replace(/[^\d]/g, '')}
-          inputProps={{ maxLength: 6 }}
+          maxLength={6}
           onGetCaptcha={async () => {
             try {
               // 验证手机号码或邮箱是否正确
@@ -54,7 +54,7 @@ const ForgetPassword = () => {
           label="新密码"
           name="password"
           required
-          inputProps={{ allowClear: false }}
+          allowClear={false}
         />
         <BizFormItemPassword
           label="重复新密码"
