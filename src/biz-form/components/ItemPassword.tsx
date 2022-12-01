@@ -12,7 +12,7 @@ type Validated = {
   special?: boolean;
 };
 
-export interface BizFormItemPasswordProps extends BizFormItemProps {
+export interface BizFormItemPasswordProps extends BizFormItemProps, Pick<PasswordProps, 'placeholder' | 'allowClear' | 'visibilityToggle' | 'maxLength'> {
   level?: 1 | 2 | 3;
   min?: number;
   max?: number;
@@ -34,6 +34,10 @@ export interface BizFormItemPasswordProps extends BizFormItemProps {
 const numMap = ['零', '一', '两', '三'];
 
 const BizFormItemPassword: React.FC<BizFormItemPasswordProps> = ({
+  placeholder = "请输入",
+  allowClear,
+  visibilityToggle = true,
+  maxLength,
   level = 2,
   min = 8,
   max = 16,
@@ -123,9 +127,11 @@ const BizFormItemPassword: React.FC<BizFormItemPasswordProps> = ({
       {...restProps}
     >
       <Input.Password
-        placeholder="请输入"
+        placeholder={placeholder}
         autoComplete="off"
-        allowClear
+        allowClear={allowClear}
+        visibilityToggle={visibilityToggle}
+        maxLength={maxLength}
         {...inputProps}
         onPaste={handlePaste}
         onCopy={handleCopy}

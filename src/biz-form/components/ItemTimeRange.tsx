@@ -27,13 +27,15 @@ const TimePickerRangeWrapper: React.FC<TimeRangePickerProps> = ({
   );
 };
 
-export interface BizFormItemTimeRangeProps extends BizFormItemProps {
+export interface BizFormItemTimeRangeProps extends BizFormItemProps, Pick<TimeRangePickerProps, 'placeholder' | 'allowClear'> {
   format?: string;
   pickerProps?: TimeRangePickerProps;
   names?: [string, string];
 }
 
 const BizFormItemTimeRange: React.FC<BizFormItemTimeRangeProps> = ({
+  placeholder,
+  allowClear = true,
   format,
   pickerProps,
   names = [],
@@ -76,6 +78,15 @@ const BizFormItemTimeRange: React.FC<BizFormItemTimeRangeProps> = ({
     [currentFormat, names, transform]
   );
 
+  // 由于 placeholder 为 undefined 时也生效，所以做了额外处理
+  const defaultTimePickerProps = React.useMemo(() => {
+    const ret: any = { allowClear };
+    if (typeof placeholder !== 'undefined') {
+      ret.placeholder = placeholder;
+    }
+    return ret;
+  }, [allowClear, placeholder]);
+
   return (
     <BizFormItem
       name={currentName}
@@ -98,7 +109,11 @@ const BizFormItemTimeRange: React.FC<BizFormItemTimeRangeProps> = ({
       transform={handleTransform}
       {...restProps}
     >
-      <TimePickerRangeWrapper format={currentFormat} {...pickerProps} />
+      <TimePickerRangeWrapper
+        {...defaultTimePickerProps}
+        format={currentFormat}
+        {...pickerProps}
+      />
     </BizFormItem>
   );
 };

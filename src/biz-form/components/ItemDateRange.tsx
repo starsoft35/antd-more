@@ -24,11 +24,10 @@ const DateRangePickerWrapper: React.FC<RangePickerProps> = ({ value, format, ...
 
 export interface BizFormItemDateRangeProps
   extends BizFormItemProps,
-  Pick<RangePickerDateProps<Dayjs>, 'showTime'> {
+  Pick<RangePickerDateProps<Dayjs>, 'showTime' | 'placeholder' | 'allowClear'> {
   disabledDateBefore?: number;
   disabledDateAfter?: number;
   maxRange?: number; // 最大可选范围值，根据当前 picker 为单位。
-  // showTime?: Pick<RangePickerDateProps<Dayjs>, 'showTime'>;
   format?: string;
   picker?: Picker;
   pickerProps?: RangePickerProps & Pick<RangePickerDateProps<Dayjs>, 'showTime'>;
@@ -42,6 +41,8 @@ const BizFormItemDateRange: React.FC<BizFormItemDateRangeProps> = ({
   disabledDateAfter,
   maxRange,
   showTime = false,
+  placeholder,
+  allowClear = true,
   format,
   picker = 'date',
   names = [],
@@ -125,6 +126,8 @@ const BizFormItemDateRange: React.FC<BizFormItemDateRangeProps> = ({
         disabledDate={disabledDate}
         format={currentFormat}
         showTime={showTime}
+        placeholder={placeholder}
+        allowClear={allowClear}
         {...pickerProps}
       />
     </BizFormItem>

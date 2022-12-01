@@ -8,7 +8,7 @@ import type { BizFormItemProps } from './Item';
 import BizFormItem from './Item';
 import getLabel from '../_util/getLabel';
 
-interface VerificateCodeInputProps extends Omit<React.HTMLAttributes<HTMLInputElement>, 'value' | 'onChange' | 'type'> {
+interface VerificateCodeInputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange' | 'type' | 'size'>, Pick<InputProps, 'size' | 'allowClear' | 'placeholder'> {
   value?: any;
   onChange?: (value: any) => void;
   onGetCaptcha?: () => boolean | Promise<any>; // 发送验证码
@@ -144,7 +144,6 @@ const VerificateCodeInput: React.FC<VerificateCodeInputProps> = ({
   return (
     <div style={{ display: 'flex' }}>
       <Input
-        placeholder="请输入"
         onChange={onChange}
         value={value}
         allowClear
@@ -177,12 +176,15 @@ export interface BizFormItemCaptchaProps
   extends BizFormItemProps,
   Pick<
     VerificateCodeInputProps,
-    'onGetCaptcha' | 'type' | 'inputProps' | 'buttonProps' | 'autoClick' | 'autoFocusOnGetCaptcha'
+    'onGetCaptcha' | 'type' | 'inputProps' | 'buttonProps' | 'autoClick' | 'autoFocusOnGetCaptcha' | 'placeholder' | 'allowClear' | 'maxLength'
   >,
   Pick<CaptchaButtonProps, 'initText' | 'runText' | 'resetText' | 'second'> { }
 
 const BizFormItemCaptcha: React.FC<BizFormItemCaptchaProps> = ({
   type,
+  placeholder = '请输入',
+  maxLength,
+  allowClear,
   onGetCaptcha,
   initText,
   runText,
@@ -221,6 +223,9 @@ const BizFormItemCaptcha: React.FC<BizFormItemCaptchaProps> = ({
         autoClick={autoClick}
         autoFocusOnGetCaptcha={autoFocusOnGetCaptcha}
         inputProps={inputProps}
+        placeholder={placeholder}
+        maxLength={maxLength}
+        allowClear={allowClear}
         buttonProps={{
           initText,
           runText,

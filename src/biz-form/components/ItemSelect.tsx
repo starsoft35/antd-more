@@ -7,16 +7,20 @@ import BizFormItem from './Item';
 import FieldContext from '../FieldContext';
 import getLabel from '../_util/getLabel';
 
-export interface BizFormItemSelectProps extends BizFormItemProps {
+export interface BizFormItemSelectProps<ValueType = any> extends BizFormItemProps, Pick<SelectProps<ValueType>, 'allowClear' | 'placeholder' | 'options' | 'fieldNames' | 'filterOption'> {
   all?: boolean;
   allValue?: any;
   allLabel?: React.ReactNode;
-  excludeValues?: ((options: Required<SelectProps<any>>['options']) => any[]) | any[];
-  options?: SelectProps<any>['options'];
-  selectProps?: SelectProps<any>;
+  excludeValues?: ((options: Required<SelectProps<ValueType>>['options']) => any[]) | any[];
+  selectProps?: SelectProps<ValueType>;
 }
 
 const BizFormItemSelect: React.FC<BizFormItemSelectProps> = ({
+  placeholder = "请选择",
+  allowClear = false,
+  fieldNames,
+  filterOption = true,
+
   all = false,
   allValue = '',
   allLabel = '全部',
@@ -72,7 +76,10 @@ const BizFormItemSelect: React.FC<BizFormItemSelectProps> = ({
       {...restProps}
     >
       <Select
-        placeholder="请选择"
+        placeholder={placeholder}
+        allowClear={allowClear}
+        fieldNames={fieldNames}
+        filterOption={filterOption}
         getPopupContainer={getPopupContainer}
         {...selectProps}
         options={opts}

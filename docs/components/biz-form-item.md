@@ -59,24 +59,12 @@ import { BizFormItem } from 'antd-more';
 
 <br/>
 
-```typescript
-type CascaderValue = string[] | number[];
-
-interface Option {
-  value?: string | number;
-  label?: ReactNode;
-  disabled?: boolean;
-  children?: Option[];
-}
-```
-
-<br/>
-
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | names | 级联选项和输入框的字段名 | `[NamePath, NamePath]` | - |
 | labels | 级联选项和输入框的标签名，仅用于提示 | `[string, string]` | - |
 | options | 级联选项数据，同 antd 的 [Cascader API 的 options](https://ant-design.gitee.io/components/cascader-cn/#API) | `Option[]` | - |
+| fieldNames | 自定义 `options` 中 `label` `value` `children` 的字段 | `{ label?: string, value?: string, children?: string }` | - |
 | formItemProps | 级联选项和输入框的 Item 属性。如果要修改宽度，可以分别传入 `colProps` 进行设置。 | `[BizFormItemProps, BizFormItemProps]` | `[]` |
 | inputProps | 输入框的属性 | [InputProps](https://ant-design.gitee.io/components/input-cn/#API) | - |
 | cascaderProps | 级联选项的属性 | [CascaderProps](https://ant-design.gitee.io/components/cascader-cn/#API) | - |
@@ -95,9 +83,10 @@ interface Option {
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| allowClear | 支持清除 | `boolean` | `true` |
 | options | 数据化配置选项内容。 | `{ label, value }[]` | - |
-| placeholder | 输入框提示 | `string` | - |
+| placeholder | 输入框提示 | `string` | `请输入` |
+| allowClear | 支持清除 | `boolean` | `true` |
+| maxLength | 最大长度 | `number` | - |
 | onSearch | 搜索补全项的时候调用 | `function(value)` | - |
 | onFocus | 获得焦点时的回调 | `function(e)` | - |
 | onBlur | 失去焦点时的回调 | `function(e)` | - |
@@ -123,6 +112,9 @@ interface Option {
 | --- | --- | --- | --- |
 | type | 显示类型 | `'default' \| 'inline'` | `'default'` |
 | onGetCaptcha | 点击按钮触发。用于验证手机号码或邮箱，并请求获取验证码。如果返回 `false` 或 `Promise.reject()` 表示验证失败或请求验证码失败。 | `() => boolean \| Promise<any>` | `() => true` |
+| placeholder | 输入框提示 | `string` | `请输入` |
+| allowClear | 支持清除 | `boolean \| {clearIcon?: React.ReactNode;}` | - |
+| maxLength | 最大长度 | `number` | - |
 | initText | 按钮初始显示文本 | `string` | `获取验证码` |
 | runText | 按钮倒计时显示文本，包含 `%s` 会自动替换为秒数 | `string` | `%s秒后重新获取` |
 | resetText | 按钮倒计时结束显示文本 | `string` | `重新获取验证码` |
@@ -152,6 +144,9 @@ interface Option {
 | --- | --- | --- | --- |
 | names | 级联选项字段名解构，设置该字段后，`name` 将失效。 | `string[]` | - |
 | options | 级联选项数据，同 antd 的 [Cascader API 的 options](https://ant-design.gitee.io/components/cascader-cn/#API) | `Option[]` | - |
+| fieldNames | 自定义 `options` 中 `label` `value` `children` 的字段 | `{ label?: string, value?: string, children?: string }` | - |
+| placeholder | 输入框提示 | `string` | `请选择` |
+| allowClear | 支持清除 | `boolean` | `true` |
 | cascaderProps | 级联选项的属性 | [CascaderProps](https://ant-design.gitee.io/components/cascader-cn/#API) | - |
 
 ### Checkbox
@@ -170,20 +165,10 @@ interface Option {
 
 <br/>
 
-```typescript
-interface Option {
-  label: ReactNode;
-  value: string | number | boolean;
-  disabled?: boolean;
-}
-```
-
-<br/>
-
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | options | 配置子元素 | `Option[]` | `[]` |
-| excludeValues | 排除的值 | `((options: Options) => any[]) \| any[]` | `[]` |
+| excludeValues | 排除的值 | `((options: Option[]) => Value[]) \| Value[]` | `[]` |
 | all | 是否显示全部 | `boolean` | `false` |
 | allLabel | 全部的名称 | `ReactNode` | `全部` |
 | checkboxGroupProps | 多选框 Group 的属性 | [CheckboxGroupProps](https://ant-design.gitee.io/components/checkbox-cn/#Checkbox-Group) | - |
@@ -203,8 +188,9 @@ interface Option {
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | showText | 显示颜色值文本 | `boolean` | `false` |
-| colorMode | 颜色模式 | `hex` `rgb` | `hex` |
-| placement | 颜色选择浮层位置 | `top` `left` `right` `bottom` `topLeft` `topRight` `bottomLeft` `bottomRight` `leftTop` `leftBottom` `rightTop` `rightBottom` | `bottomLeft` |
+| colorMode | 颜色模式 | `'hex' \| 'rgb'` | `hex` |
+| placement | 颜色选择浮层位置 | `'top' \| 'left' \| 'right' \| 'bottom' \| 'topLeft' \| 'topRight' \| 'bottomLeft' \| 'bottomRight' \| 'leftTop' \| 'leftBottom' \| 'rightTop' \| 'rightBottom'` | `bottomLeft` |
+| size | 颜色块大小 | `'small' \| 'middle'` | `'small'` |
 | colorProps | 其他颜色选择器配置，不同 picker 有不同的配置项 | [`ColorSketchPickerProps`](/components/color#picker-共同的-api) | - |
 
 ### Date
@@ -230,6 +216,8 @@ interface Option {
 | disabledDateBefore | 配置不可选基于当天增加/减少之前的日期。 | `number` | - |
 | disabledDateAfter | 配置不可选基于当天增加/减少之后的日期。 | `number` | - |
 | showTime | 显示时间选择 | `boolean` | `false` |
+| placeholder | 输入框提示 | `string` | - |
+| allowClear | 支持清除 | `boolean` | `true` |
 | format | 设置日期格式，默认值会根据 `picker` 调整。 | `string` | `YYYY-MM-DD` |
 | picker | 设置选择器类型 | `date` `week` `month` `quarter` `year` | `date` |
 | pickerProps | 选择器的属性 | [DatePickerProps](https://ant-design.gitee.io/components/date-picker-cn/#API) | - |
@@ -262,6 +250,8 @@ interface Option {
 | disabledDateBefore | 配置不可选基于当天增加/减少之前的日期。 | `number` | - |
 | disabledDateAfter | 配置不可选基于当天增加/减少之后的日期。 | `number` | - |
 | showTime | 显示时间选择 | `boolean` | `false` |
+| placeholder | 输入框提示 | `[string, string]` | - |
+| allowClear | 支持清除 | `boolean` | `true` |
 | format | 设置日期格式，默认值会根据 `picker` 调整。 | `string` | `YYYY-MM-DD` |
 | picker | 设置选择器类型 | `date` `week` `month` `quarter` `year` | `date` |
 | pickerProps | 选择器的属性 | [DateRangePickerProps](https://ant-design.gitee.io/components/date-picker-cn/#RangePicker) | - |
@@ -296,6 +286,9 @@ Input 输入框
 | type | 输入框类型。 | `'mobile' \| 'bankCard' \| 'idCard' \| 'email' \| 'userName'` | - |
 | disabledWhiteSpace | 禁止输入空白符。 | `boolean` | - |
 | format | 是否格式化。仅在设置为 `type=mobile \| bankCard \| idCard` 时生效。<br/>手机号码和银行卡号不格式化空格，身份证号`x`不强制大写。 | `boolean` | `true` |
+| placeholder | 输入框提示 | `string` | `请输入` |
+| allowClear | 支持清除 | `boolean \| {clearIcon?: React.ReactNode;}` | - |
+| maxLength | 最大长度 | `number` | - |
 | inputProps | 输入框的属性 | [InputProps](https://ant-design.gitee.io/components/input-cn/#API) | - |
 
 ### Number
@@ -321,11 +314,16 @@ Input 输入框
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
+| lt | 最大值，用于校验 | `number` | - |
+| lte | 最大值（允许等于），用于校验 | `number` | - |
+| gt | 最小值，用于校验 | `number` | - |
+| gte | 最小值（允许等于），用于校验 | `number` | - |
 | precision | 数值精度 | `number` | - |
-| lt | 最大值 | `number` | - |
-| lte | 最大值（允许等于） | `number` | - |
-| gt | 最小值 | `number` | - |
-| gte | 最小值（允许等于） | `number` | - |
+| placeholder | 输入框提示 | `string` | `请输入` |
+| step | 每次改变步数，可以为小数 | `number \| string` | - |
+| max | 最大值 | `number` | Number.MAX_SAFE_INTEGER |
+| min | 最小值 | `number` | Number.MIN_SAFE_INTEGER |
+| formatter | 指定输入框展示值的格式 | `function(value: number \| string, info: { userTyping: boolean, input: string }): string` | - |
 | inputProps | 数字输入框的属性 | [InputNumberProps](https://ant-design.gitee.io/components/input-number-cn/#API) | - |
 
 ### Password
@@ -354,6 +352,10 @@ Input 输入框
 | special | 支持的特殊字符 | `string` | `!@#$%^&*()-=_+[]\|{},./?<>~` |
 | disabledPaste | 禁止粘贴 | `boolean` | `false` |
 | disabledCopy | 禁止复制 | `boolean` | `true` |
+| placeholder | 输入框提示 | `string` | `请输入` |
+| allowClear | 支持清除 | `boolean \| {clearIcon?: React.ReactNode;}` | - |
+| maxLength | 最大长度 | `number` | - |
+| visibilityToggle | 是否显示切换按钮或者控制密码显隐 | `boolean \| VisibilityToggle` | `true` |
 | inputProps | 密码框配置参数 | [PasswordProps](https://ant.design/components/input-cn/#Input.Password) | - |
 
 ### Radio
@@ -372,16 +374,6 @@ Input 输入框
 
 <br/>
 
-```typescript
-interface Option {
-  label: ReactNode;
-  value: string | number | boolean;
-  disabled?: boolean;
-}
-```
-
-<br/>
-
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | options | 配置子元素 | `Option[]` | `[]` |
@@ -389,7 +381,7 @@ interface Option {
 | all | 是否显示全部 | `boolean` | `false` |
 | allValue | 全部的值 | `any` | `""` |
 | allLabel | 全部的名称 | `ReactNode` | `全部` |
-| excludeValues | 排除的值 | `((options: Options) => any[]) \| any[]` | `[]` |
+| excludeValues | 排除的值 | `((options: Option[]) => Value[]) \| Value[]` | `[]` |
 | radioGroupProps | 单选框组合配置参数 | [RadioGroupProps](https://ant-design.gitee.io/components/radio-cn/#RadioGroup) | - |
 
 ### Select
@@ -414,7 +406,11 @@ interface Option {
 | all | 是否显示全部 | `boolean` | `false` |
 | allValue | 全部的值 | `any` | `""` |
 | allLabel | 全部的名称 | `ReactNode` | `全部` |
-| excludeValues | 排除的值 | `((options: Options) => any[]) \| any[]` | `[]` |
+| excludeValues | 排除的值 | `((options: Option[]) => Value[]) \| Value[]` | `[]` |
+| placeholder | 输入框提示 | `string` | `请选择` |
+| allowClear | 支持清除 | `boolean` | `false` |
+| fieldNames | 自定义 `options` 中 `label` `value` `options` 的字段 | `{ label?: string, value?: string, options?: string }` | - |
+| filterOption | 是否根据输入项进行筛选。当其为一个函数时，会接收 `inputValue` `option` 两个参数，当 `option` 符合筛选条件时，应返回 true，反之则返回 false | `boolean \| function(inputValue, option)` | `true` |
 | selectProps | 选择器配置参数 | [SelectProps](https://ant-design.gitee.io/components/select-cn/#Select-props) | - |
 
 ### Slider
@@ -466,6 +462,10 @@ TextArea 输入框
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | disabledWhiteSpace | 禁止输入空白符 | `boolean` | `false` |
+| placeholder | 输入框提示 | `string` | `请输入` |
+| allowClear | 支持清除 | `boolean` | `false` |
+| maxLength | 最大长度 | `number` | - |
+| showCount | 是否展示字数 | `boolean \| { formatter: (info: { value: string, count: number, maxLength?: number }) => string }` | `false` |
 | inputProps | 输入框的属性 | [TextAreaProps](https://ant-design.gitee.io/components/input-cn/#Input.TextArea) | - |
 
 ### Time
@@ -487,6 +487,8 @@ TextArea 输入框
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
+| placeholder | 输入框提示 | `string` | - |
+| allowClear | 支持清除 | `boolean` | `true` |
 | format | 设置时间格式 | `string` | `HH:mm:ss` |
 | pickerProps | 选择器的属性 | [TimePickerProps](https://ant-design.gitee.io/components/time-picker-cn/#API) | - |
 
@@ -511,6 +513,8 @@ TextArea 输入框
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | names | 开始和结束的字段名，配置该值后，原来的 `name` 将失效。如 `['startTime', 'endTime']` | `[string, string]` | - |
+| placeholder | 输入框提示 | `[string, string]` | - |
+| allowClear | 支持清除 | `boolean` | `true` |
 | format | 设置日期格式 | `string` | `HH:mm:ss` |
 | pickerProps | 选择器的属性 | [TimeRangePickerProps](https://ant-design.gitee.io/components/time-picker-cn/#RangePicker) | - |
 

@@ -6,8 +6,7 @@ import type { BizFormItemProps } from './Item';
 import BizFormItem from './Item';
 
 export interface BizFormItemAddressProps<DataNodeType = any>
-  extends Omit<BizFormItemProps, 'name' | 'transform'> {
-  options?: CascaderProps<DataNodeType>['options'];
+  extends Omit<BizFormItemProps, 'name' | 'transform'>, Pick<CascaderProps<DataNodeType>, 'options' | 'fieldNames'> {
   names: [FormItemProps['name'], FormItemProps['name']]; // 如 ['location', 'address']
   labels: [string, string]; // 如 ['省/市/区', '详细地址']
   formItemProps?: [BizFormItemProps, BizFormItemProps];
@@ -15,10 +14,11 @@ export interface BizFormItemAddressProps<DataNodeType = any>
   cascaderProps?: CascaderProps<DataNodeType>;
 }
 
-const BizFormItemAddress: React.FC<BizFormItemAddressProps> = ({
+function BizFormItemAddress<DataNodeType = any>({
   names,
   labels,
   options = [],
+  fieldNames,
   formItemProps = [{}, {}],
   inputProps = {},
   cascaderProps = {},
@@ -26,7 +26,7 @@ const BizFormItemAddress: React.FC<BizFormItemAddressProps> = ({
   style = {},
   required = false,
   ...restProps
-}) => {
+}: BizFormItemAddressProps<DataNodeType>) {
   const [
     { colProps: cascaderColProps, ...cascaderFormItemProps },
     { colProps: inputColProps, ...inputFormItemProps }
@@ -54,7 +54,7 @@ const BizFormItemAddress: React.FC<BizFormItemAddressProps> = ({
             ]}
             {...cascaderFormItemProps}
           >
-            <Cascader placeholder={`请选择${labels[0]}`} options={options} {...cascaderProps} />
+            <Cascader placeholder={`请选择${labels[0]}`} options={options} fieldNames={fieldNames} {...cascaderProps} />
           </BizFormItem>
         </Col>
         <Col span={24} md={12} lg={16} {...inputColProps}>
@@ -88,6 +88,6 @@ const BizFormItemAddress: React.FC<BizFormItemAddressProps> = ({
       </Row>
     </BizFormItem>
   );
-};
+}
 
 export default BizFormItemAddress;

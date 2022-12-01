@@ -16,7 +16,8 @@ const Demo = () => {
         label="自定义"
         name="textarea4"
         disabledWhiteSpace
-        inputProps={{ maxLength: 100, showCount: true }}
+        maxLength={100}
+        showCount
       />
     </BizForm>
   );

@@ -30,7 +30,7 @@ const validateMethod = {
   mobile: isMobile
 };
 
-export interface BizFormItemInputProps extends BizFormItemProps {
+export interface BizFormItemInputProps extends BizFormItemProps, Pick<InputProps, 'placeholder' | 'allowClear' | 'maxLength'> {
   type?: InputWrapperProps['type'];
   disabledWhiteSpace?: boolean;
   inputProps?: InputProps;
@@ -38,6 +38,9 @@ export interface BizFormItemInputProps extends BizFormItemProps {
 }
 
 const BizFormItemInput: React.FC<BizFormItemInputProps> = ({
+  placeholder = '请输入',
+  allowClear,
+  maxLength,
   type,
   disabledWhiteSpace,
   inputProps = {},
@@ -97,8 +100,9 @@ const BizFormItemInput: React.FC<BizFormItemInputProps> = ({
       {...restProps}
     >
       <InputWrapper
-        placeholder="请输入"
-        allowClear
+        placeholder={placeholder}
+        allowClear={allowClear}
+        maxLength={maxLength}
         autoComplete="off"
         type={type}
         disabledWhiteSpace={disabledWhiteSpace}

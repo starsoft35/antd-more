@@ -6,13 +6,14 @@ import BizFormItem from "./Item";
 import getLabel from '../_util/getLabel';
 
 
-export interface BizFormItemAutoCompleteProps extends BizFormItemProps, Pick<AutoCompleteProps, 'allowClear' | 'placeholder' | 'onSearch' | 'onFocus' | 'onBlur' | 'options'> {
+export interface BizFormItemAutoCompleteProps extends BizFormItemProps, Pick<AutoCompleteProps, 'allowClear' | 'placeholder' | 'maxLength' | 'onSearch' | 'onFocus' | 'onBlur' | 'options'> {
   autoCompleteProps?: AutoCompleteProps;
 }
 
 const ItemAutoComplete: React.FC<BizFormItemAutoCompleteProps> = ({
   allowClear = true,
   placeholder = '请输入',
+  maxLength,
   onSearch,
   onFocus,
   onBlur,
@@ -45,6 +46,7 @@ const ItemAutoComplete: React.FC<BizFormItemAutoCompleteProps> = ({
       <AutoComplete
         allowClear={allowClear}
         placeholder={placeholder}
+        maxLength={maxLength}
         onSearch={onSearch}
         onFocus={onFocus}
         onBlur={onBlur}
