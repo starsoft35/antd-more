@@ -38,12 +38,6 @@ function DrawerForm<Values = any>(props: DrawerFormProps<Values>) {
   const [form] = Form.useForm<Values>();
   const formRef = React.useRef(formProp || form);
 
-  React.useEffect(() => {
-    if (!open && drawerProps?.destroyOnClose) {
-      formRef.current.resetFields();
-    }
-  }, [open, drawerProps?.destroyOnClose]);
-
   return (
     <>
       <BaseForm<Values>
@@ -57,7 +51,6 @@ function DrawerForm<Values = any>(props: DrawerFormProps<Values>) {
           }
           if (ret !== false) {
             setOpen(false);
-            formRef.current.resetFields();
           }
         }}
         submitter={typeof submitter === 'undefined' || submitter ? {
@@ -99,6 +92,13 @@ function DrawerForm<Values = any>(props: DrawerFormProps<Values>) {
             onClose={(e) => {
               setOpen(false);
               drawerProps?.onClose?.(e);
+            }}
+            afterOpenChange={v => {
+              if (!v && drawerProps?.destroyOnClose) {
+                formRef.current.resetFields();
+              }
+              drawerProps?.afterOpenChange?.(v);
+
             }}
           >
             {formDom}

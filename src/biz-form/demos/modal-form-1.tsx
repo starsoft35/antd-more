@@ -23,6 +23,9 @@ const Demo = () => {
         message.success('提交成功');
       }}
       labelWidth={112}
+      modalProps={{
+        destroyOnClose: true
+      }}
     >
       <BizFormItemInput label="收款账号" name="ban" required />
       <BizFormItemSelect

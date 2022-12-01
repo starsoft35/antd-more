@@ -38,12 +38,6 @@ function ModalForm<Values = any>(props: ModalFormProps<Values>) {
   const [form] = Form.useForm<Values>();
   const formRef = React.useRef(formProp || form);
 
-  React.useEffect(() => {
-    if (!open && modalProps?.destroyOnClose) {
-      formRef.current.resetFields();
-    }
-  }, [open, modalProps?.destroyOnClose]);
-
   return (
     <>
       <BaseForm<Values>
@@ -57,7 +51,6 @@ function ModalForm<Values = any>(props: ModalFormProps<Values>) {
           }
           if (ret !== false) {
             setOpen(false);
-            formRef.current.resetFields();
           }
         }}
         submitter={typeof submitter === 'undefined' || submitter ? {
@@ -94,6 +87,12 @@ function ModalForm<Values = any>(props: ModalFormProps<Values>) {
             onCancel={(e) => {
               setOpen(false);
               modalProps?.onCancel?.(e);
+            }}
+            afterClose={() => {
+              if (modalProps?.destroyOnClose) {
+                formRef.current.resetFields();
+              }
+              modalProps?.afterClose?.();
             }}
           >
             {formDom}

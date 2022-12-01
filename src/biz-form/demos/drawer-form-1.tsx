@@ -16,6 +16,9 @@ const Demo = () => {
     <DrawerForm
       title="创建付款单"
       trigger={<Button type="primary">创建付款单</Button>}
+      drawerProps={{
+        destroyOnClose: true
+      }}
       onFinish={async (values) => {
         await waitTime(2000);
         console.log(values);
