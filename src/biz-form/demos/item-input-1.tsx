@@ -28,9 +28,7 @@ const Demo = () => {
         label="图片验证码"
         name="code"
         required
-        inputProps={{
-          placeholder: '请输入验证码'
-        }}
+        placeholder="请输入验证码"
         contentAfter={
           <IdentifyCode
             loading={loading}

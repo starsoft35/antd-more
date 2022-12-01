@@ -6,12 +6,16 @@ import type { BizFormItemProps } from './Item';
 import BizFormItem from './Item';
 import getLabel from '../_util/getLabel';
 
-export interface BizFormItemTextAreaProps extends BizFormItemProps {
+export interface BizFormItemTextAreaProps extends BizFormItemProps, Pick<TextAreaProps, 'placeholder' | 'allowClear' | 'maxLength' | 'showCount'> {
   disabledWhiteSpace?: boolean;
   inputProps?: TextAreaProps;
 }
 
 const BizFormItemTextArea: React.FC<BizFormItemTextAreaProps> = ({
+  placeholder = "请输入",
+  allowClear = false,
+  maxLength,
+  showCount = false,
   disabledWhiteSpace = false,
   inputProps = {},
   required = false,
@@ -47,7 +51,14 @@ const BizFormItemTextArea: React.FC<BizFormItemTextAreaProps> = ({
       ]}
       {...restProps}
     >
-      <Input.TextArea placeholder="请输入" autoComplete="off" {...inputProps} />
+      <Input.TextArea
+        placeholder={placeholder}
+        allowClear={allowClear}
+        maxLength={maxLength}
+        showCount={showCount}
+        autoComplete="off"
+        {...inputProps}
+      />
     </BizFormItem>
   );
 };

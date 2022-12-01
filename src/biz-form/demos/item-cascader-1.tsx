@@ -54,11 +54,9 @@ function Demo() {
         names={['province', 'city']}
         tooltip="通过设置names自动拆分转化字段名"
         options={pc}
-        cascaderProps={{
-          fieldNames: {
-            value: 'code',
-            label: 'name'
-          }
+        fieldNames={{
+          value: 'code',
+          label: 'name'
         }}
       />
     </BizForm>

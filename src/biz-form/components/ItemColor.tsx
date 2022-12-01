@@ -1,5 +1,4 @@
 import * as React from 'react';
-import type { TooltipProps } from './antd.interface';
 import type { ColorSketchPickerProps } from '../../color';
 import { ColorSketchPicker } from '../../color';
 import type { BizFormItemProps } from './Item';
@@ -14,15 +13,13 @@ export enum ColorPicker {
   sketch = 'SketchPicker'
 }
 
-export interface BizFormItemColorProps extends BizFormItemProps {
-  showText?: boolean;
-  colorMode?: 'rgb' | 'hex';
-  placement?: TooltipProps['placement'];
+export interface BizFormItemColorProps extends BizFormItemProps, Pick<ColorSketchPickerProps, 'showText' | 'colorMode' | 'placement' | 'size'> {
   colorProps?: ColorSketchPickerProps;
 }
 
 const BizFormItemColor: React.FC<BizFormItemColorProps> = ({
   required = false,
+  size,
   showText,
   colorMode,
   placement,
@@ -52,6 +49,7 @@ const BizFormItemColor: React.FC<BizFormItemColorProps> = ({
         showText={showText}
         colorMode={colorMode}
         placement={placement}
+        size={size}
         {...colorProps}
       />
     </BizFormItem>

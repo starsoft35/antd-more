@@ -27,6 +27,8 @@ export interface BizFormItemDateProps extends BizFormItemProps {
   showTime?: TimePickerProps | boolean;
   format?: string;
   picker?: Picker;
+  placeholder?: string;
+  allowClear?: boolean;
   pickerProps?: DatePickerProps | MonthPickerProps | WeekPickerProps | any;
 }
 
@@ -36,6 +38,8 @@ const BizFormItemDate: React.FC<BizFormItemDateProps> = ({
   disabledDateBefore,
   disabledDateAfter,
   showTime = false,
+  placeholder,
+  allowClear = true,
   format,
   picker = 'date',
   pickerProps = {},
@@ -95,6 +99,8 @@ const BizFormItemDate: React.FC<BizFormItemDateProps> = ({
         showTime={showTime}
         format={currentFormat}
         picker={picker}
+        placeholder={placeholder}
+        allowClear={allowClear}
         {...pickerProps}
       />
     </BizFormItem>

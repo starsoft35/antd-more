@@ -8,21 +8,23 @@ import getLabel from '../_util/getLabel';
 import { InvalidFieldValue } from '../_util/transform';
 import uniqueId from '../_util/uniqueId';
 
-export interface BizFormItemCascaderProps extends BizFormItemProps {
-  options?: CascaderProps<any>['options'];
+export interface BizFormItemCascaderProps<DataNodeType = any> extends BizFormItemProps, Pick<CascaderProps<DataNodeType>, 'options' | 'placeholder' | 'fieldNames' | 'allowClear'> {
   names?: string[];
-  cascaderProps?: CascaderProps<any>;
+  cascaderProps?: CascaderProps<DataNodeType>;
 }
 
-const BizFormItemCascader: React.FC<BizFormItemCascaderProps> = ({
+function BizFormItemCascader<DataNodeType = any>({
+  placeholder = '请选择',
   options = [],
+  fieldNames,
+  allowClear = true,
   names,
   name,
   cascaderProps = {},
   required = false,
   transform,
   ...restProps
-}) => {
+}: BizFormItemCascaderProps<DataNodeType>) {
   const hasNames = React.useMemo(() => Array.isArray(names) && names.length > 0, [names]);
   const currentName = React.useMemo(
     () => name || (hasNames ? uniqueId('cascader') : name),
@@ -67,13 +69,15 @@ const BizFormItemCascader: React.FC<BizFormItemCascaderProps> = ({
       {...restProps}
     >
       <Cascader
-        placeholder="请选择"
+        placeholder={placeholder}
         getPopupContainer={getPopupContainer}
+        fieldNames={fieldNames}
+        allowClear={allowClear}
         {...cascaderProps}
         options={options}
       />
     </BizFormItem>
   );
-};
+}
 
 export default BizFormItemCascader;

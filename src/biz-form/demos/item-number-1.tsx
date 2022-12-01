@@ -21,9 +21,7 @@ const Demo = () => {
         lte={10000}
         tooltip="大于等于0，小于等于10000"
         required
-        inputProps={{
-          formatter: (value) => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-        }}
+        formatter={(value) => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
       />
       <BizFormItemNumber
         label="费率"
