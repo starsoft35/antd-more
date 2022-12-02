@@ -2,12 +2,11 @@
 group:
   title: 页面布局
   order: 3
-toc: content
 ---
 
 # BizUserLayout - 用户界面布局
 
-常见的用户登录和忘记密码界面布局。
+常见的用户登录页、注册页和忘记密码页界面布局。
 
 ## 代码演示
 

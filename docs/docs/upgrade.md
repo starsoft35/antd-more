@@ -6,9 +6,11 @@ order: 2
 
 ## v4 有哪些变化
 
-主要变化是更新 `antd` 版本 [从 v4 到 v5](https://ant.design/docs/react/migration-v5-cn)。
+主要是兼容 `antd` `v4` 和 `v5` 版本。
 
 ### visible/onVisibleChange 改为 open/onOpenChange
+
+涉及以下组件：
 
 - DrawerForm
 - ModalForm
@@ -18,18 +20,18 @@ order: 2
 
 - BizFormItemCaptcha
   - 移除 `autoRun` 属性，请使用 `autoClick` 替换。
+- BizFormItemUpload
+  - 移除 `maxCountMessage` 属性。
 - BizTable
   - 移除 `columns` 配置项中的 `order` 属性，请使用 `search.order` 替换。
   - 移除 `request` 第四个参数中的 `action` 自定义值（submit、reset、reload），同步 `antd Table onChange` 第四个参数值。
-- BizFormItemUpload
-  - 移除 `maxCountMessage` 属性。
 - Dictionary
   - 移除 `optionName` 属性，请使用 `propsName` 替换。
   - `onUpload` 返回值不再挂载到 `rcFile` 上，而是放入 `response` 。
 - Color
   - 重构颜色选择器组件，支持 `disabled` `pickerProps` 属性。
 
-### moment 改为 dayjs
+### 日期库改用 dayjs
 
 内部没有引入语言包，请在项目入口文件中引入：
 

@@ -14,10 +14,10 @@
 
 ## 对应版本
 
-| antd-more                   | antd   |
-| --------------------------- | ------ |
-| `v0.x` `v1.x` `v2.x` `v3.x` | `v4.x` |
-| `v4.x`                      | `v5.x` |
+| antd-more                   | antd          |
+| --------------------------- | ------------- |
+| `v0.x` `v1.x` `v2.x` `v3.x` | `v4.x`        |
+| `v4.x`                      | `v4.x` `v5.x` |
 
 ## 使用
 
@@ -79,6 +79,7 @@ ReactDon.render(<BizField value="red" valueType="color" />, mountNode);
 - [rc-slider-captcha] - 滑块验证码
 
 [npm]: https://img.shields.io/npm/v/antd-more.svg
+[antd]: https://ant.design/
 [npm-url]: https://npmjs.com/package/antd-more
 [site]: https://doly-dev.github.io/antd-more/latest/index.html
 [captchabutton]: /components/captcha-button
