@@ -6,6 +6,12 @@ import TableContext from '../../TableContext';
 
 import './index.less';
 
+// 兼容 antd v4
+import 'antd/es/tooltip/style';
+import 'antd/es/popover/style';
+import 'antd/es/tree/style';
+import 'antd/es/checkbox/style';
+
 const prefixCls = 'antd-more-table';
 
 function getColumnKey(column: TableColumnType<any>, index: number) {

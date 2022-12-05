@@ -6,6 +6,12 @@ import type { BaseFormProps } from './BaseForm';
 import BaseForm from './BaseForm';
 import BizFormItem from './Item';
 
+// 兼容 antd v4
+import 'antd/es/grid/style';
+import 'antd/es/row/style';
+import 'antd/es/col/style';
+import 'antd/es/space/style';
+
 const prefixCls = 'antd-more-form';
 
 export interface CollapseProps {

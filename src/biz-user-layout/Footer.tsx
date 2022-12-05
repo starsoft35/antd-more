@@ -3,6 +3,9 @@ import { Space } from 'antd';
 import { prefixClass } from './config';
 import './Footer.less';
 
+// 兼容 antd v4
+import 'antd/es/space/style';
+
 const prefixCls = `${prefixClass}-footer`;
 
 type FooterLink = {

@@ -5,6 +5,12 @@ import type { BannerItem } from './Banner';
 import { prefixClass } from './config';
 import './Side.less';
 
+// 兼容 antd v4
+import 'antd/es/carousel/style';
+import 'antd/es/grid/style';
+import 'antd/es/row/style';
+import 'antd/es/col/style';
+
 const prefixCls = `${prefixClass}-side`;
 
 const defaultColSpan = {

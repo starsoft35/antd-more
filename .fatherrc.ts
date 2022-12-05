@@ -2,7 +2,11 @@ import { defineConfig } from 'father';
 
 export default defineConfig({
   esm: {},
-  cjs: {},
+  cjs: {
+    alias: {
+      'antd/es': 'antd/lib'
+    }
+  },
   // umd: {
   //   name: 'antdMore',
   //   externals: {

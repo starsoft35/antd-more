@@ -5,6 +5,9 @@ import classNames from 'classnames';
 
 import './Image.less';
 
+// 兼容 antd v4
+import 'antd/es/image/style';
+
 const prefixCls = 'antd-more-field-image';
 
 type ImageValue = {

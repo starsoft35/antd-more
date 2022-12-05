@@ -3,6 +3,10 @@ import { Button, Space } from 'antd';
 import type { ButtonProps, FormInstance } from './antd.interface';
 import omit from '../../utils/omit';
 
+// 兼容 antd v4
+import 'antd/es/button/style';
+import 'antd/es/space/style';
+
 export interface BizFormSubmitterProps {
   resetText?: React.ReactNode;
   resetButtonProps?: ButtonProps & { preventDefault?: boolean };

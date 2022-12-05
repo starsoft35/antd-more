@@ -22,6 +22,11 @@ import omit from '../utils/omit';
 
 import './index.less';
 
+// 兼容 antd v4
+import 'antd/es/table/style';
+import 'antd/es/card/style';
+import 'antd/es/space/style';
+
 const prefixCls = 'antd-more-table';
 
 // 显示数据总量

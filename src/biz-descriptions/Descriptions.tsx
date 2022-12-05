@@ -7,6 +7,9 @@ import type { BizFieldValueType, EnumData, BizFieldProps } from '../biz-field';
 import WithTooltip from './WithTooltip';
 import type { WithTooltipProps } from './WithTooltip';
 
+// 兼容 antd v4
+import 'antd/es/descriptions/style';
+
 export interface BizDescriptionsItemProps<DataType extends object = any>
   extends DescriptionsItemProps {
   valueType?: BizFieldValueType;

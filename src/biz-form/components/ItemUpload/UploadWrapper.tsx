@@ -11,6 +11,10 @@ import Preview from './Preview';
 import './index.less';
 import uniqueId from '../../_util/uniqueId';
 
+// 兼容 antd v4
+import 'antd/es/upload/style';
+import 'antd/es/message/style';
+
 const prefixCls = 'antd-more-form-upload';
 
 export interface UploadWrapperProps extends UploadProps {

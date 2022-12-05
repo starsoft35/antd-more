@@ -18,6 +18,9 @@ import { transformDate, InvalidFieldValue } from '../_util/transform';
 import getLabel from '../_util/getLabel';
 import uniqueId from '../_util/uniqueId';
 
+// 兼容 antd v4
+import 'antd/es/date-picker/style';
+
 const DateRangePickerWrapper: React.FC<RangePickerProps> = ({ value, format, ...restProps }) => {
   return <DatePicker.RangePicker value={transformDayjsValue(value, format as string)} format={format === DateFormat['quarter'] ? undefined : format} {...restProps} />;
 };

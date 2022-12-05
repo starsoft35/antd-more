@@ -4,6 +4,10 @@ import { ColumnHeightOutlined } from '@ant-design/icons';
 import TableContext from '../../TableContext';
 import type { TableContextProps } from '../../TableContext';
 
+// 兼容 antd v4
+import 'antd/es/dropdown/style';
+import 'antd/es/tooltip/style';
+
 const DensityIcon = () => {
   const { size, setSize } = React.useContext(TableContext);
 

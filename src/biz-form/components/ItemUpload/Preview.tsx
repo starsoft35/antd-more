@@ -2,6 +2,9 @@ import React from 'react';
 import type { ModalProps } from 'antd';
 import { Modal } from 'antd';
 
+// 兼容 antd v4
+import 'antd/es/modal/style';
+
 export interface PreviewProps extends ModalProps {
   imgUrl: string;
 }

@@ -14,6 +14,10 @@ import SyncMemoryStore from '../../../utils/SyncMemoryStore';
 
 import './index.less';
 
+// 兼容 antd v4
+import 'antd/es/form/style';
+import 'antd/es/steps/style';
+
 const prefixCls = 'antd-more-steps-form';
 const formItemHideLabelClass = 'antd-more-form-item-hide-label';
 

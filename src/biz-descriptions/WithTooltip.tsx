@@ -3,6 +3,9 @@ import { Tooltip } from 'antd';
 import type { TooltipProps } from 'antd';
 import { InfoCircleOutlined } from '@ant-design/icons';
 
+// 兼容 antd v4
+import 'antd/es/tooltip/style';
+
 type WrapperTooltipProps = TooltipProps & {
   icon?: React.ReactNode;
 };

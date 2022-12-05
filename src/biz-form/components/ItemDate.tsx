@@ -14,6 +14,9 @@ import type { BizFormItemProps } from './Item';
 import BizFormItem from './Item';
 import getLabel from '../_util/getLabel';
 
+// 兼容 antd v4
+import 'antd/es/date-picker/style';
+
 const DatePickerWrapper: React.FC<DatePickerProps | MonthPickerProps | WeekPickerProps | any> = ({
   value,
   format,

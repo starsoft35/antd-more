@@ -6,6 +6,10 @@ import List from './List';
 import BaseForm from './BaseForm';
 import type { BaseFormProps } from './BaseForm';
 
+// 兼容 antd v4
+import 'antd/es/space/style';
+import 'antd/es/form/style';
+
 const formItemHideLabelClass = 'antd-more-form-item-hide-label';
 
 export type BizFormProps<Values = any> = BaseFormProps<Values>;

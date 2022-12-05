@@ -3,6 +3,10 @@ import { Space, Button } from 'antd';
 import type { ButtonProps } from '../antd.interface';
 import type { BizFormSubmitterProps } from '../Submitter';
 
+// 兼容 antd v4
+import 'antd/es/space/style';
+import 'antd/es/button/style';
+
 export interface StepsFormSubmitterProps
   extends Omit<
     BizFormSubmitterProps,
@@ -28,11 +32,11 @@ export interface StepsFormSubmitterProps
   forceShowSubmit?: boolean;
 
   render?:
-    | ((
-        props: StepsFormSubmitterProps,
-        dom: React.ReactElement[]
-      ) => React.ReactNode[] | React.ReactNode | false)
-    | false;
+  | ((
+    props: StepsFormSubmitterProps,
+    dom: React.ReactElement[]
+  ) => React.ReactNode[] | React.ReactNode | false)
+  | false;
 }
 
 const StepsFormSubmitter: React.FC<StepsFormSubmitterProps> = (props) => {
@@ -42,17 +46,17 @@ const StepsFormSubmitter: React.FC<StepsFormSubmitterProps> = (props) => {
 
     prevText = '上一步',
     prevButtonProps = {},
-    onPrev = () => {},
+    onPrev = () => { },
     noPrev = false,
 
     nextText = '下一步',
     nextButtonProps = {},
-    onNext = () => {},
+    onNext = () => { },
     noNext = false,
 
     submitText = '提交',
     submitButtonProps = {},
-    onSubmit = () => {},
+    onSubmit = () => { },
 
     forceShowPrev = false,
     forceShowNext = false,

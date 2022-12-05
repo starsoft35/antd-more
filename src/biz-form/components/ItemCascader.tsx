@@ -8,6 +8,9 @@ import getLabel from '../_util/getLabel';
 import { InvalidFieldValue } from '../_util/transform';
 import uniqueId from '../_util/uniqueId';
 
+// 兼容 antd v4
+import 'antd/es/cascader/style';
+
 export interface BizFormItemCascaderProps<DataNodeType = any> extends BizFormItemProps, Pick<CascaderProps<DataNodeType>, 'options' | 'placeholder' | 'fieldNames' | 'allowClear'> {
   names?: string[];
   cascaderProps?: CascaderProps<DataNodeType>;

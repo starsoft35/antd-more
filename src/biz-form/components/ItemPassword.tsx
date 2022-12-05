@@ -6,6 +6,9 @@ import type { BizFormItemProps } from './Item';
 import BizFormItem from './Item';
 import getLabel from '../_util/getLabel';
 
+// 兼容 antd v4
+import 'antd/es/input/style';
+
 type Validated = {
   len?: boolean;
   level?: boolean;

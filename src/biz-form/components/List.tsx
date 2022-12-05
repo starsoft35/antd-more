@@ -3,7 +3,10 @@ import { Form } from 'antd';
 import type { FormListProps } from './antd.interface';
 import ListFieldContext from '../ListFieldContext';
 
-export interface BizFormListProps extends FormListProps {}
+// 兼容 antd v4
+import 'antd/es/form/style';
+
+export interface BizFormListProps extends FormListProps { }
 
 const BizFormList: React.FC<BizFormListProps> = ({ children, name, ...restProps }) => {
   const { parentListName = [] } = React.useContext(ListFieldContext); // FormList嵌套FormList的情况

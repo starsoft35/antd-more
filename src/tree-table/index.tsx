@@ -6,6 +6,10 @@ import omit from '../utils/omit';
 import uniqueArray from '../utils/uniqueArray';
 import type { ValueType, TreeTableDataItem, TreeTableData, TreeTableFieldNames } from './type';
 
+// 兼容 antd v4
+import 'antd/es/checkbox/style';
+import 'antd/es/table/style';
+
 export type { TreeTableDataItem, TreeTableData, TreeTableFieldNames };
 
 function hasLength(childs: any[]) {
@@ -471,21 +475,21 @@ const TreeTable: React.FC<TreeTableProps> = (props) => {
 
         return col[valueKey]
           ? col.data.map((subItem) => (
-              <Checkbox
-                checked={
-                  checkList.includes(subItem[valueKey]) ||
-                  extraCheckListRef.current.includes(subItem[valueKey])
-                }
-                indeterminate={indeterminateListRef.current.includes(subItem[valueKey])}
-                onChange={() => {
-                  handleChange(subItem);
-                }}
-                disabled={subItem.disabled}
-                key={subItem[valueKey]}
-              >
-                {labelRender ? labelRender(subItem) : subItem[labelKey] || subItem[valueKey]}
-              </Checkbox>
-            ))
+            <Checkbox
+              checked={
+                checkList.includes(subItem[valueKey]) ||
+                extraCheckListRef.current.includes(subItem[valueKey])
+              }
+              indeterminate={indeterminateListRef.current.includes(subItem[valueKey])}
+              onChange={() => {
+                handleChange(subItem);
+              }}
+              disabled={subItem.disabled}
+              key={subItem[valueKey]}
+            >
+              {labelRender ? labelRender(subItem) : subItem[labelKey] || subItem[valueKey]}
+            </Checkbox>
+          ))
           : '-';
       }
     }));

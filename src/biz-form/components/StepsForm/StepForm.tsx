@@ -8,6 +8,9 @@ import BaseForm from '../BaseForm';
 import StepsFormContext from './StepsFormContext';
 import type { StepsFormSubmitterProps } from './StepsSubmitter';
 
+// 兼容 antd v4
+import 'antd/es/form/style';
+
 export interface StepFormProps<Values = any>
   extends Omit<BaseFormProps<Values>, 'title' | 'onReset' | 'contentRender' | 'submitter' | 'ready'>,
   Pick<StepProps, 'title' | 'icon' | 'subTitle' | 'description'> {

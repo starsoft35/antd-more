@@ -9,6 +9,9 @@ import Color from './Color';
 
 import './index.less';
 
+// 兼容 antd v4
+import 'antd/es/popover/style';
+
 const prefixCls = 'antd-more-color';
 
 export interface PickerCommonProps {

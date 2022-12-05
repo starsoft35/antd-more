@@ -9,6 +9,9 @@ import { transformDate, InvalidFieldValue } from '../_util/transform';
 import getLabel from '../_util/getLabel';
 import uniqueId from '../_util/uniqueId';
 
+// 兼容 antd v4
+import 'antd/es/date-picker/style';
+
 const prefixCls = 'antd-more-form-item-date';
 
 const { RangePicker } = TimePicker;

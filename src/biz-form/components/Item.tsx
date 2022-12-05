@@ -5,6 +5,9 @@ import FieldContext from '../FieldContext';
 import ListFieldContext from '../ListFieldContext';
 import WrapperFormElement from './form/WrapperFormElement';
 
+// 兼容 antd v4
+import 'antd/es/form/style';
+
 // 初始值（可能脱敏）->格式化->验证（转换再验证）
 // 输入->格式化->验证（转换再验证）
 // 提交->验证（转换再验证）->转换后的值

@@ -4,9 +4,12 @@ import type { SliderSingleProps, SliderRangeProps } from './antd.interface';
 import type { BizFormItemProps } from './Item';
 import BizFormItem from './Item';
 
+// 兼容 antd v4
+import 'antd/es/slider/style';
+
 export interface BizFormItemSliderProps
   extends BizFormItemProps,
-    Pick<SliderSingleProps, 'min' | 'max' | 'step' | 'marks'> {
+  Pick<SliderSingleProps, 'min' | 'max' | 'step' | 'marks'> {
   sliderProps?: SliderSingleProps | SliderRangeProps;
 }
 

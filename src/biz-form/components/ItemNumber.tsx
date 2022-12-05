@@ -5,6 +5,9 @@ import BizFormItem from './Item';
 import type { InputNumberProps } from './antd.interface';
 import getLabel from '../_util/getLabel';
 
+// 兼容 antd v4
+import 'antd/es/input-number/style';
+
 export interface BizFormItemNumberProps
   extends BizFormItemProps,
   Pick<InputNumberProps, 'precision' | 'placeholder' | 'step' | 'min' | 'max' | 'formatter'> {
