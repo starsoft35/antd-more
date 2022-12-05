@@ -7,9 +7,6 @@ import createFormItems from './_util/createFormItems';
 import createUniqueId from './_util/createUniqueId';
 import type { SearchProps } from './interface';
 
-// 兼容 antd v4
-import 'antd/es/card/style';
-
 export declare interface SearchFormProps extends QueryFormProps {
   formItems?: Exclude<React.ReactNode, string | number | boolean | null | undefined>[];
   searchItems?: SearchProps[];

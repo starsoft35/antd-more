@@ -5,9 +5,6 @@ import type { BizFormItemProps } from "./Item";
 import BizFormItem from "./Item";
 import getLabel from '../_util/getLabel';
 
-// 兼容 antd v4
-import 'antd/es/select/style';
-
 export interface BizFormItemAutoCompleteProps extends BizFormItemProps, Pick<AutoCompleteProps, 'allowClear' | 'placeholder' | 'maxLength' | 'onSearch' | 'onFocus' | 'onBlur' | 'options'> {
   autoCompleteProps?: AutoCompleteProps;
 }

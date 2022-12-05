@@ -4,11 +4,6 @@ import classnames from 'classnames';
 import type { DictionaryProps } from './interface';
 import './index.less';
 
-// 兼容 antd v4
-import 'antd/es/badge/style';
-import 'antd/es/tag/style';
-import 'antd/es/space/style';
-
 const prefixCls = 'antd-more-dictionary';
 
 function Dictionary<ValueType = any>({

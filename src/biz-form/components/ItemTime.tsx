@@ -8,9 +8,6 @@ import { transformDayjsTime } from '../_util/dateUtil';
 import { transformDate } from '../_util/transform';
 import getLabel from '../_util/getLabel';
 
-// 兼容 antd v4
-import 'antd/es/date-picker/style';
-
 const prefixCls = 'antd-more-form-item-date';
 
 const TimePickerWrapper: React.FC<TimePickerProps> = ({

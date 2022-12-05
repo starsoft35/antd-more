@@ -8,9 +8,6 @@ import type { UploadWrapperProps } from './UploadWrapper';
 import UploadWrapper from './UploadWrapper';
 import UploadImageButton from './UploadImageButton';
 
-// 兼容 antd v4
-import 'antd/es/tooltip/style';
-
 const prefixCls = 'antd-more-form-upload-avatar';
 
 const UploadAvatar: React.FC<{

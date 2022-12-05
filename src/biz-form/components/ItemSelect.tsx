@@ -7,9 +7,6 @@ import BizFormItem from './Item';
 import FieldContext from '../FieldContext';
 import getLabel from '../_util/getLabel';
 
-// 兼容 antd v4
-import 'antd/es/select/style';
-
 export interface BizFormItemSelectProps<ValueType = any> extends BizFormItemProps, Pick<SelectProps<ValueType>, 'allowClear' | 'placeholder' | 'options' | 'fieldNames' | 'filterOption'> {
   all?: boolean;
   allValue?: any;

@@ -6,9 +6,6 @@ import type { BizFormItemProps } from './Item';
 import BizFormItem from './Item';
 import getLabel from '../_util/getLabel';
 
-// 兼容 antd v4
-import 'antd/es/checkbox/style';
-
 export interface CheckboxWrapperProps {
   value?: any;
   onChange?: (checkValue: any) => void;

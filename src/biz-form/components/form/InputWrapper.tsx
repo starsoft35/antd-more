@@ -9,9 +9,6 @@ import {
 } from '../../_util/normalize';
 import type { InputProps } from '../antd.interface';
 
-// 兼容 antd v4
-import 'antd/es/input/style';
-
 type InputType = InputProps['type'] | 'bankCard' | 'email' | 'idCard' | 'mobile' | 'userName';
 
 export interface InputWrapperProps extends InputProps {

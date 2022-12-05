@@ -6,10 +6,6 @@ import type { ModalProps } from './antd.interface';
 import type { BaseFormProps } from './BaseForm';
 import BaseForm from './BaseForm';
 
-// 兼容 antd v4
-import 'antd/es/modal/style';
-import 'antd/es/form/style';
-
 export interface ModalFormProps<Values = any> extends Omit<BaseFormProps<Values>, 'title' | 'defaultValue'>, Pick<ModalProps, 'open'> {
   title?: React.ReactNode;
   width?: ModalProps['width'];

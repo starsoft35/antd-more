@@ -3,10 +3,6 @@ import { Space, Button } from 'antd';
 import type { ButtonProps } from '../antd.interface';
 import type { BizFormSubmitterProps } from '../Submitter';
 
-// 兼容 antd v4
-import 'antd/es/space/style';
-import 'antd/es/button/style';
-
 export interface StepsFormSubmitterProps
   extends Omit<
     BizFormSubmitterProps,

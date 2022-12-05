@@ -4,9 +4,6 @@ import { UploadOutlined } from '@ant-design/icons';
 import type { UploadWrapperProps } from './UploadWrapper';
 import UploadWrapper from './UploadWrapper';
 
-// 兼容 antd v4
-import 'antd/es/button/style';
-
 const defaultShowUploadList = {
   showPreviewIcon: false
 };

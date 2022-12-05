@@ -3,11 +3,6 @@ import { Row, Col } from 'antd';
 import { prefixClass } from './config';
 import './Features.less';
 
-// 兼容 antd v4
-import 'antd/es/grid/style';
-import 'antd/es/row/style';
-import 'antd/es/col/style';
-
 const prefixCls = `${prefixClass}-features`;
 
 const colSpan = {

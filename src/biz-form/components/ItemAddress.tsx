@@ -5,13 +5,6 @@ import { normalizeWhiteSpace } from '../_util/normalize';
 import type { BizFormItemProps } from './Item';
 import BizFormItem from './Item';
 
-// 兼容 antd v4
-import 'antd/es/cascader/style';
-import 'antd/es/input/style';
-import 'antd/es/grid/style';
-import 'antd/es/row/style';
-import 'antd/es/col/style';
-
 export interface BizFormItemAddressProps<DataNodeType = any>
   extends Omit<BizFormItemProps, 'name' | 'transform'>, Pick<CascaderProps<DataNodeType>, 'options' | 'fieldNames'> {
   names: [FormItemProps['name'], FormItemProps['name']]; // 如 ['location', 'address']

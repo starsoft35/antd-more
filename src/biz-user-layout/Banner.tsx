@@ -4,9 +4,6 @@ import { Carousel } from 'antd';
 import { prefixClass } from './config';
 import './Banner.less';
 
-// 兼容 antd v4
-import 'antd/es/carousel/style';
-
 const prefixCls = `${prefixClass}-banner`;
 
 export type BannerItem =

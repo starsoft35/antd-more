@@ -3,10 +3,6 @@ import { FullscreenExitOutlined, FullscreenOutlined } from '@ant-design/icons';
 import { message, Tooltip } from 'antd';
 import TableContext from '../../TableContext';
 
-// 兼容 antd v4
-import 'antd/es/message/style';
-import 'antd/es/tooltip/style';
-
 const FullScreenIcon = () => {
   const { rootRef, isFullScreen, setFullScreen } = React.useContext(TableContext);
 

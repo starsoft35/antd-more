@@ -15,9 +15,6 @@ import Submitter from './Submitter';
 
 import '../index.less';
 
-// 兼容 antd v4
-import 'antd/es/form/style';
-
 const prefixCls = 'antd-more-form';
 
 export type TransformRecordActionType = {

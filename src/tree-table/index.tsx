@@ -6,10 +6,6 @@ import omit from '../utils/omit';
 import uniqueArray from '../utils/uniqueArray';
 import type { ValueType, TreeTableDataItem, TreeTableData, TreeTableFieldNames } from './type';
 
-// 兼容 antd v4
-import 'antd/es/checkbox/style';
-import 'antd/es/table/style';
-
 export type { TreeTableDataItem, TreeTableData, TreeTableFieldNames };
 
 function hasLength(childs: any[]) {

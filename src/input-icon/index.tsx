@@ -8,9 +8,6 @@ import SelectPopover from './components/SelectPopover';
 
 import './index.less';
 
-// 兼容 antd v4
-import 'antd/es/input/style';
-
 const prefixCls = 'antd-more-input-icon';
 
 export interface InputIconProps extends Omit<InputProps, 'defaultValue' | 'value' | 'onChange'> {

@@ -6,9 +6,6 @@ import type { SelectPanelProps } from '../SelectPanel';
 
 import './index.less';
 
-// 兼容 antd v4
-import 'antd/es/popover/style';
-
 export interface SelectPopoverProps
   extends PopoverProps,
   Pick<SelectPanelProps, 'options' | 'onSelect' | 'showSearch' | 'column'> { }

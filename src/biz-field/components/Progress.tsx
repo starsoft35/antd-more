@@ -2,9 +2,6 @@ import * as React from 'react';
 import type { ProgressProps } from 'antd';
 import { Progress } from 'antd';
 
-// 兼容 antd v4
-import 'antd/es/progress/style';
-
 function getProgressStatus(text: number): 'success' | 'exception' | 'normal' | 'active' {
   if (typeof text !== 'number') {
     return 'exception';

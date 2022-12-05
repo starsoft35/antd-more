@@ -6,9 +6,6 @@ import DensityIcon from './DensityIcon';
 import ColumnSetting from './ColumnSetting';
 import FullScreenIcon from './FullScreenIcon';
 
-// 兼容 antd v4
-import 'antd/es/space/style';
-
 type ToolbarActionConfig = {
   reload?: boolean;
   density?: boolean;

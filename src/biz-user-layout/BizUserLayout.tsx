@@ -14,11 +14,6 @@ import Footer from './Footer';
 import { prefixClass } from './config';
 import './index.less';
 
-// 兼容 antd v4
-import 'antd/es/grid/style';
-import 'antd/es/row/style';
-import 'antd/es/col/style';
-
 const prefixCls = prefixClass;
 
 export interface BizUserLayoutProps

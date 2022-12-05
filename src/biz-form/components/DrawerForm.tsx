@@ -6,10 +6,6 @@ import type { DrawerProps } from './antd.interface';
 import type { BaseFormProps } from './BaseForm';
 import BaseForm from './BaseForm';
 
-// 兼容 antd v4
-import 'antd/es/drawer/style';
-import 'antd/es/form/style';
-
 export interface DrawerFormProps<Values = any> extends Omit<BaseFormProps<Values>, 'title' | 'defaultValue'>, Pick<DrawerProps, 'open'> {
   title?: React.ReactNode;
   width?: DrawerProps['width'];

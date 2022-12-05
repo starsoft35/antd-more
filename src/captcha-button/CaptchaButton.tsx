@@ -3,9 +3,6 @@ import type { ButtonProps } from 'antd';
 import { Button } from 'antd';
 import CountDown from 'countdown-pro';
 
-// 兼容 antd v4
-import 'antd/es/button/style';
-
 export interface CaptchaButtonProps extends ButtonProps {
   start?: boolean;
   second?: number;

@@ -7,13 +7,6 @@ import type { IconProp } from '../../icons';
 
 import './index.less';
 
-// 兼容 antd v4
-import 'antd/es/input/style';
-import 'antd/es/grid/style';
-import 'antd/es/row/style';
-import 'antd/es/col/style';
-import 'antd/es/empty/style';
-
 const prefixCls = 'antd-more-input-icon';
 
 export interface SelectPanelProps
