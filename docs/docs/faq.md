@@ -6,9 +6,9 @@ order: 3
 
 ## 如何关闭表单自动填充
 
-> 参考：
+> 参考：[如何关闭表单自动填充](https://developer.mozilla.org/zh-CN/docs/Web/Security/Securing_your_site/Turning_off_form_autocompletion)
 >
-> - [如何关闭表单自动填充](https://developer.mozilla.org/zh-CN/docs/Web/Security/Securing_your_site/Turning_off_form_autocompletion)
+> 适用场景：注册、修改密码、新建表单等
 
 通常设置 `autocomplete="off"` 并不能阻止 Chrome 中的自动填充，需要设置成 `autocomplete="new-password"` 才生效。
 
