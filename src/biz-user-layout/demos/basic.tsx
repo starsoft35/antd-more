@@ -55,7 +55,7 @@ function Demo() {
             link: 'https://doly-dev.github.io/doly-icons/latest/index.html#/icons'
           }
         ],
-        copyright: `©️ ${new Date().getFullYear()} doly-dev`
+        copyright: `©️ 2020-${new Date().getFullYear()} doly-dev`
       }}
     />
   );

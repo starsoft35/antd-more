@@ -11,7 +11,7 @@ function Demo() {
       logo="https://doly-dev.github.io/logo.png"
       title="antd-more"
       footer={{
-        copyright: `©️ ${new Date().getFullYear()} doly-dev`
+        copyright: `©️ 2020-${new Date().getFullYear()} doly-dev`
       }}
     >
       <ForgetPasswordBox />

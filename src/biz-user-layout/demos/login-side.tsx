@@ -20,7 +20,7 @@ function Demo() {
         </div>
       }
       footer={{
-        copyright: `©️ ${new Date().getFullYear()} doly-dev`
+        copyright: `©️ 2020-${new Date().getFullYear()} doly-dev`
       }}
     />
   );
