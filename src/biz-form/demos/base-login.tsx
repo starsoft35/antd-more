@@ -91,9 +91,9 @@ const LoginDemo = () => {
           inputProps={{
             prefix: <MobileOutlined />
           }}
-          validateTrigger="onChange"
           label="手机号码"
           format={false}
+          maxLength={11}
           required
         />
         <BizFormItemCaptcha
