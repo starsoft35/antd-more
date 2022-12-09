@@ -10,7 +10,7 @@ import {
 } from 'antd-more';
 import { waitTime } from 'util-helpers';
 
-const TipText = ({ children }) => {
+const TipText: React.FC<{ children: React.ReactNode; }> = ({ children }) => {
   return <div style={{ textAlign: 'center', marginBottom: 24, fontSize: 16 }}>{children}</div>;
 };
 
