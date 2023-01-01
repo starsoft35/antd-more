@@ -6,7 +6,7 @@ order: 2
 
 ## v4 有哪些变化
 
-主要是兼容 `antd` `v4` 和 `v5` 版本。
+主要升级了 `antd` `v5` 版本。
 
 ### visible/onVisibleChange 改为 open/onOpenChange
 
