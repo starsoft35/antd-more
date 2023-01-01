@@ -139,6 +139,9 @@ const Demo = () => {
       onFinish={(values) => {
         console.log('onFinish ', values);
       }}
+      initialValues={{
+        list: defaultData
+      }}
       submitter={{
         noReset: true,
         render: (_, dom) => dom
@@ -158,7 +161,6 @@ const Demo = () => {
       <BizFormItem
         label="付款列表"
         name="list"
-        initialValue={defaultData}
         trigger="onValuesChange"
         hideLabel
       >

@@ -4,11 +4,12 @@ import Item from './Item';
 import List from './List';
 
 import BaseForm from './BaseForm';
-import type { BaseFormProps } from './BaseForm';
+import type { BaseFormProps, FormExtraInstance } from './BaseForm';
 
 const formItemHideLabelClass = 'antd-more-form-item-hide-label';
 
 export type BizFormProps<Values = any> = BaseFormProps<Values>;
+export type BizFormExtraInstance<Values = any> = FormExtraInstance<Values>;
 
 const BizForm: React.FC<BizFormProps> & {
   Item: typeof Item;
