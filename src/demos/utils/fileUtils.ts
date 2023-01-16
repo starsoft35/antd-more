@@ -45,7 +45,7 @@ async function getFileByFssid(fssid: string): Promise<UploadFile> {
     name: cache?.data,
     status: 'done',
     response: {
-      fssId: fssid
+      fssid
     },
     thumbUrl: cache?.data,
     url: cache?.data
@@ -83,9 +83,9 @@ export function uploadFileToFssid(fileList: any, nil = true) {
   if (Array.isArray(fileList)) {
     fileList.forEach(item => {
       if (item && typeof item === 'object' && item.response) {
-        const id = item.response.fssId || item.response.fssid; // 部分项目中没有严格区分 fssId 和 fssid
-        if (!nil || id) {
-          result.push(id);
+        const fssid = item.response.fssid || item.response.fssId; // 部分项目中没有严格区分 fssId 和 fssid
+        if (!nil || fssid) {
+          result.push(fssid);
         }
       }
     });

@@ -29,7 +29,7 @@ toc: content
 
 ### 实时上传文件图片
 
-添加文件后，立即上传到文件服务器，异步返回值将挂载到 `file.response` 上，提交和校验时取出 `file.response.fssId` 。
+添加文件后，立即上传到文件服务器，异步返回值将挂载到 `file.response` 上，提交和校验时取出 `file.response.fssid` 。
 
 设置 `onUpload` 后，添加上传文件自动调用并处理上传中状态和失败状态。上传成功的返回值将自动添加到 `UploadFile` 对象的 `response` 字段上。表单提交时再获取该值。
 
