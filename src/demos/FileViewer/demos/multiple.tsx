@@ -32,12 +32,12 @@ const data = {
   word: {
     url: TestWord,
     fileName: 'test.docx',
-    fileType: 'word'
+    fileType: ''
   },
   excel: {
     url: TestExcel,
     fileName: 'test.xlsx',
-    fileType: 'excel'
+    fileType: ''
   },
 }
 
