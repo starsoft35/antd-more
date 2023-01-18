@@ -2,12 +2,16 @@ import * as React from 'react';
 import { BizForm, BizFormItemUpload } from 'antd-more';
 import type { UploadFile } from 'antd';
 import { waitTime } from 'util-helpers';
-import PreviewFile from './components/PreviewFile';
-import { getThumbUrl } from './utils/utils';
+import FileViewer from './components/FileViewer';
 import { uploadFile } from './services';
+import { getFileThumbUrl, getFileType, getFileUrl, removeFile } from './utils/utils';
 
 const Demo = () => {
-  const [file, setFile] = React.useState<File>();
+  const [previewInfo, setPreviewInfo] = React.useState({
+    url: '',
+    fileType: '',
+    fileName: ''
+  });
   const [open, setOpen] = React.useState(false);
 
   // 提交和校验时自动转换上传文件的值
@@ -38,16 +42,22 @@ const Demo = () => {
           onUpload={uploadFile}
           transform={transformUploadValue}
           uploadProps={{
-            onPreview: async (file) => {
+            onPreview(file) {
               // console.log(file);
-              setFile((file?.originFileObj || file) as File);
+              const originFile = (file?.originFileObj || file) as File;
+              setPreviewInfo({
+                url: getFileUrl(file),
+                fileType: getFileType(originFile),
+                fileName: originFile.name
+              });
               setOpen(true);
             },
-            previewFile: getThumbUrl
+            onRemove: removeFile,
+            previewFile: getFileThumbUrl
           }}
         />
       </BizForm>
-      <PreviewFile open={open} onCancel={() => setOpen(false)} file={file} />
+      <FileViewer open={open} onCancel={() => setOpen(false)} {...previewInfo} />
     </div>
   );
 };
