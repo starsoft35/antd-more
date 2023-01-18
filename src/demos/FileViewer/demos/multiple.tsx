@@ -21,7 +21,7 @@ const data = {
   },
   video: {
     url: TestVideo,
-    fileName: 'test.mp3',
+    fileName: 'test.mp4',
     fileType: 'video'
   },
   pdf: {
