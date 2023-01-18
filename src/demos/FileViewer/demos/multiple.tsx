@@ -37,7 +37,7 @@ const data = {
   excel: {
     url: TestExcel,
     fileName: 'test.xlsx',
-    fileType: 'word'
+    fileType: 'excel'
   },
 }
 
