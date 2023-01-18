@@ -33,4 +33,4 @@ toc: content
 | --- | --- | --- | --- |
 | url | 文件地址。 | `string` | - |
 | fileName | 文件名称，自动设置为 Modal 的标题，可以通过设置 `title` 自定义标题。 | `string` | - |
-| fileType | 文件类型，目前仅支持 `image` `audoi` `video` `pdf` 等文件类型的预览。 | `string` | - |
+| fileType | 文件类型，目前仅支持 `image` `audio` `video` `pdf` 等文件类型的预览。 | `string` | - |
