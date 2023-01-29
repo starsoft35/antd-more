@@ -20,10 +20,10 @@ const AsyncImage: React.FC<AsyncImageProps> = ({ fssid, enabledDownload = false,
     const fssidArr = Array.isArray(fssid) ? fssid : [fssid];
 
     fssidArr.forEach(item => {
-      if (typeof item === 'string') {
+      if (typeof item === 'string' && item) {
         ids.push(item);
         names.push('');
-      } else if (item && typeof item === 'object') {
+      } else if (item && typeof item === 'object' && item.fileId) {
         ids.push(item.fileId);
         names.push(item.fileName);
       }
