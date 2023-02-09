@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Card, Button, message } from 'antd';
+import { Button, message } from 'antd';
 import type { BizTableColumnType } from 'antd-more';
 import { BizTable } from 'antd-more';
 import { useAsync } from 'rc-hooks';
@@ -138,31 +138,30 @@ const Freight = () => {
   };
 
   return (
-    <Card>
-      <BizTable<DataItem>
-        autoRequest={false}
-        dataSource={data}
-        columns={columns}
-        pagination={false}
-        rowKey="id"
-        loading={loading || updating}
-        toolbarAction={{
-          // fullScreen: true,
-          // density: true,
-          reload: false // 没有请求
-          // columnSetting: true,
-        }}
-      />
-      <Button
-        type="primary"
-        onClick={handleUpdate}
-        disabled={loading}
-        loading={updating}
-        style={{ marginTop: 24 }}
-      >
-        更新
-      </Button>
-    </Card>
+    <BizTable<DataItem>
+      autoRequest={false}
+      dataSource={data}
+      columns={columns}
+      pagination={false}
+      rowKey="id"
+      loading={loading || updating}
+      toolbar={(
+        <Button
+          type="primary"
+          onClick={handleUpdate}
+          disabled={loading}
+          loading={updating}
+        >
+          更新
+        </Button>
+      )}
+      toolbarAction={{
+        // fullScreen: true,
+        // density: true,
+        reload: false // 没有请求
+        // columnSetting: true,
+      }}
+    />
   );
 };
 
