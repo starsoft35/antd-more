@@ -437,18 +437,10 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
     ) : null;
 
   const tableCardStyle = React.useMemo(() => {
-    if (!hasSearch && !extra) {
-      return {
-        padding: 0
-      };
-    } else if (paginationProp !== false) {
-      return {
-        paddingBottom: 8
-      };
-    } else {
-      return {};
-    }
-  }, [hasSearch, extra, paginationProp]);
+    return paginationProp !== false ? {
+      paddingBottom: 8
+    } : {};
+  }, [paginationProp]);
 
   const tableDom = (
     <Card
