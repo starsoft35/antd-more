@@ -82,7 +82,7 @@ export function uploadFileToFssid(fileList: any, nil = true) {
   const result: any[] = [];
   if (Array.isArray(fileList)) {
     fileList.forEach(item => {
-      if (item && typeof item === 'object' && item.response) {
+      if (item && typeof item === 'object' && typeof item.response === 'object') {
         const fssid = item.response.fssid || item.response.fssId; // 部分项目中没有严格区分 fssId 和 fssid
         if (!nil || fssid) {
           result.push(fssid);
