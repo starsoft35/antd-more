@@ -2,8 +2,6 @@ import * as React from 'react';
 import type { UploadProps } from '../antd.interface';
 import type { BizFormItemProps } from '../Item';
 import BizFormItem from '../Item';
-import ListFieldContext from '../../ListFieldContext';
-import FieldContext from '../../FieldContext';
 import type { UploadWrapperProps } from './UploadWrapper';
 import UploadButton from './UploadButton';
 import UploadImage from './UploadImage';
@@ -11,7 +9,6 @@ import UploadAvatar from './UploadAvatar';
 import UploadDragger from './UploadDragger';
 import getLabel from '../../_util/getLabel';
 import Preview from './Preview';
-import getNamePaths from '../../_util/getNamePaths';
 
 const normFile = (e) => {
   if (Array.isArray(e)) {
@@ -62,9 +59,6 @@ const BizFormItemUpload: React.FC<BizFormItemUploadProps> & {
   transform,
   ...restProps
 }) => {
-    const { parentListName } = React.useContext(ListFieldContext);
-    const { form } = React.useContext(FieldContext);
-
     const Comp = React.useMemo(() => {
       if (type === 'image') {
         return UploadImage;
@@ -78,20 +72,6 @@ const BizFormItemUpload: React.FC<BizFormItemUploadProps> & {
       return UploadButton;
     }, [type]);
 
-    const validateTrigger =
-      (uploadProps?.action || onUpload) && !restProps.validateTrigger
-        ? false
-        : restProps.validateTrigger || 'onChange';
-
-    // 触发表单校验
-    const triggeValidate = React.useCallback(() => {
-      const namePath =
-        Array.isArray(parentListName) && parentListName.length > 0
-          ? getNamePaths(name, parentListName)
-          : name;
-      form.validateFields([namePath]);
-    }, [form, name, parentListName]);
-
     return (
       <BizFormItem
         required={required}
@@ -99,7 +79,6 @@ const BizFormItemUpload: React.FC<BizFormItemUploadProps> & {
         getValueFromEvent={normFile}
         transform={transform}
         name={name}
-        validateTrigger={validateTrigger}
         rules={[
           {
             validator(rules, value) {
@@ -130,7 +109,6 @@ const BizFormItemUpload: React.FC<BizFormItemUploadProps> & {
           multiple={multiple}
           icon={icon}
           title={title}
-          internalTriggeValidate={!validateTrigger ? triggeValidate : undefined}
           {...uploadProps}
         />
       </BizFormItem>
