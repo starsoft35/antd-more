@@ -6,12 +6,6 @@ import ItemUploadSpecial from './components/ItemUploadSpecial';
 // import { uploadFile } from './services';
 
 const Demo = () => {
-  // // 提交和校验时自动转换上传文件的值
-  // const transformUploadValue = React.useCallback((files: UploadFile[]) => {
-  //   // 实际项目中服务端可能没有返回其他值
-  //   return files?.map((item) => item?.response?.fssid).filter((item) => !!item);
-  // }, []);
-
   return (
     <BizForm
       name="upload-define"

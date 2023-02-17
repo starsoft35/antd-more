@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { BizForm, BizFormItemUpload } from 'antd-more';
-import type { UploadFile } from 'antd';
 import { waitTime } from 'util-helpers';
 import FileViewer from './components/FileViewer';
 import { uploadFile } from './services';
 import { getFileThumbUrl, getFileType, getFileUrl, removeFile } from './utils/utils';
+import { uploadFileToFssid } from './utils/fileUtils';
 
 const Demo = () => {
   const [previewInfo, setPreviewInfo] = React.useState({
@@ -13,12 +13,6 @@ const Demo = () => {
     fileName: ''
   });
   const [open, setOpen] = React.useState(false);
-
-  // 提交和校验时自动转换上传文件的值
-  const transformUploadValue = React.useCallback((files: UploadFile[]) => {
-    // 实际项目中服务端可能没有返回其他值
-    return files?.map((item) => item?.response?.fssid).filter((item) => !!item);
-  }, []);
 
   return (
     <div>
@@ -40,7 +34,7 @@ const Demo = () => {
           multiple
           required
           onUpload={uploadFile}
-          transform={transformUploadValue}
+          transform={uploadFileToFssid}
           uploadProps={{
             onPreview(file) {
               // console.log(file);

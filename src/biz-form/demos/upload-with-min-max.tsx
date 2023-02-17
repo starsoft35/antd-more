@@ -87,16 +87,13 @@ const Demo = () => {
   const [loading, setLoading] = React.useState(true);
   const [form] = BizForm.useForm();
 
-  // 初次转换值
-  const init = React.useCallback(async () => {
-    const images = await beforeTransformUploadValues(defaultFssid);
-    form.setFieldsValue({ images });
-    setLoading(false);
-  }, [form]);
-
+  // 初次加载完成转换文件
   React.useEffect(() => {
-    init();
-  }, [init]);
+    beforeTransformUploadValues(defaultFssid).then(res => {
+      form.setFieldsValue({ images: res });
+      setLoading(false);
+    })
+  }, [form]);
 
   // 提交和校验时自动转换上传文件的值
   const transformUploadValue = React.useCallback((files: UploadFile[]) => {
