@@ -4,7 +4,7 @@ import type { BizFieldProps } from 'antd-more';
 import { BizField } from 'antd-more';
 import { Spin } from 'antd';
 import { useMemo } from 'react';
-import { fssidToUploadFile } from '../utils/fileUtils';
+import { fssidToUploadFile } from '../../biz-form/demos/utils/fileUtils';
 import FallbackImage from './fallback.png';
 
 interface AsyncImageProps extends Omit<BizFieldProps, 'value' | 'valueType'> {

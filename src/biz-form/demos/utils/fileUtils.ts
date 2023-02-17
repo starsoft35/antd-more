@@ -1,6 +1,6 @@
 import Cache2 from 'cache2';
 import type { UploadFile } from 'antd';
-import { downloadFile } from '../../biz-form/demos/services';
+import { downloadFile } from '../services';
 
 let count = 0;
 

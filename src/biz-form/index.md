@@ -83,6 +83,10 @@ toc: content
 
 <code src='./demos/rakebacke-info.tsx'></code>
 
+### 业务信息
+
+<code src='./demos/business-info.tsx'></code>
+
 ### 异步初始值
 
 通过 `ready` 控制表单是否已准备好（如表单的初始值需要通过异步获取）。
