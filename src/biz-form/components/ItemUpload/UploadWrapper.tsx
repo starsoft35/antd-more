@@ -50,7 +50,6 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
   disabled,
   action,
   beforeUpload,
-  customRequest,
   ...restProps
 }) => {
   // 当前组件唯一标识，用于缓存和释放 URL.createObjectURL
@@ -87,17 +86,13 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
         return Upload.LIST_IGNORE;
       }
 
-      return beforeUpload ? beforeUpload(file, fileList) : (!!action || !!onUpload || !!customRequest);
+      return beforeUpload ? beforeUpload(file, fileList) : (!!action || !!onUpload || !!restProps?.customRequest);
     },
-    [accept, maxSize, beforeUpload, action, onUpload, customRequest, fileTypeMessage, fileSizeMessage]
+    [accept, maxSize, beforeUpload, action, onUpload, restProps?.customRequest, fileTypeMessage, fileSizeMessage]
   );
 
   // 自定义上传
   const internalCustomRequest = React.useCallback((obj: any) => {
-    if (customRequest) {
-      return customRequest(obj);
-    }
-
     let timer: any = null;
 
     function queueUpload() {
@@ -117,7 +112,7 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
     }
 
     queueUpload();
-  }, [customRequest, onUpload]);
+  }, [onUpload]);
 
   // 是否支持预览
   const enabledShowPreview = React.useMemo(() => {
