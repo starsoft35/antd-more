@@ -1,9 +1,6 @@
 import * as React from 'react';
 import { BizForm } from 'antd-more';
-// import type { UploadFile } from "antd";
-// import { waitTime } from 'util-helpers';
 import ItemUploadSpecial from './components/ItemUploadSpecial';
-// import { uploadFile } from './services';
 
 const Demo = () => {
   return (
