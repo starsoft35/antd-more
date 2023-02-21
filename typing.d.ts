@@ -9,5 +9,8 @@ declare module '*.bmp';
 declare module '*.mp3';
 declare module '*.mp4';
 declare module '*.pdf';
+declare module '*.xls';
 declare module '*.xlsx';
+declare module '*.doc';
 declare module '*.docx';
+declare module '*.zip';

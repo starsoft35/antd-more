@@ -1,17 +1,12 @@
 import * as React from 'react';
-import { BizForm, BizFormItemUpload } from 'antd-more';
+import type { UploadFile } from 'antd';
+import { BizForm, BizFormItemUpload, FileViewer } from 'antd-more';
 import { waitTime } from 'util-helpers';
-import FileViewer from './components/FileViewer';
 import { uploadFile } from './services';
-import { previewFile, getFileType, getFileUrl, removeFile } from './utils/utils';
 import { uploadFileToFssid } from './utils/fileUtils';
 
 const Demo = () => {
-  const [previewInfo, setPreviewInfo] = React.useState({
-    url: '',
-    fileType: '',
-    fileName: ''
-  });
+  const [fileInfo, setFileInfo] = React.useState<UploadFile>();
   const [open, setOpen] = React.useState(false);
 
   return (
@@ -37,21 +32,15 @@ const Demo = () => {
           transform={uploadFileToFssid}
           uploadProps={{
             onPreview(file) {
-              // console.log(file);
-              const originFile = (file?.originFileObj || file) as File;
-              setPreviewInfo({
-                url: getFileUrl(file),
-                fileType: getFileType(originFile),
-                fileName: originFile.name
-              });
+              setFileInfo(file);
               setOpen(true);
             },
-            onRemove: removeFile,
-            previewFile
+            onRemove: FileViewer.removeFile,
+            previewFile: FileViewer.previewFile
           }}
         />
       </BizForm>
-      <FileViewer open={open} onCancel={() => setOpen(false)} {...previewInfo} />
+      <FileViewer open={open} onCancel={() => setOpen(false)} file={fileInfo} />
     </div>
   );
 };

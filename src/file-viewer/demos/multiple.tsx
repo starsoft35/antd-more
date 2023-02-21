@@ -1,51 +1,58 @@
 import * as React from 'react';
+import type { UploadFile } from 'antd';
 import { Button } from 'antd';
-import FileViewer from '../../../biz-form/demos/components/FileViewer';
-import TestImage from '../../../biz-form/demos/assets/test.jpg';
-import TestAudio from '../../../biz-form/demos/assets/test.mp3';
-import TestVideo from '../../../biz-form/demos/assets/test.mp4';
-import TestPdf from '../../../biz-form/demos/assets/test.pdf';
-import TestWord from '../../../biz-form/demos/assets/test.docx';
-import TestExcel from '../../../biz-form/demos/assets/test.xlsx';
+import { FileViewer } from 'antd-more';
+import TestImage from './assets/test.jpg';
+import TestAudio from './assets/test.mp3';
+import TestVideo from './assets/test.mp4';
+import TestPdf from './assets/test.pdf';
+import TestWord from './assets/test.docx';
+import TestExcel from './assets/test.xlsx';
+import TestZip from './assets/test.zip';
 
 const data = {
   image: {
+    uid: '-1',
     url: TestImage,
-    fileName: 'test.jpg',
-    fileType: 'image'
+    name: 'test.jpg',
   },
   audio: {
+    uid: '-2',
     url: TestAudio,
-    fileName: 'test.mp3',
-    fileType: 'audio'
+    name: 'test.mp3',
   },
   video: {
+    uid: '-3',
     url: TestVideo,
-    fileName: 'test.mp4',
-    fileType: 'video'
+    name: 'test.mp4',
   },
   pdf: {
+    uid: '-4',
     url: TestPdf,
-    fileName: 'test.pdf',
-    fileType: 'pdf'
+    name: 'test.pdf',
   },
   word: {
+    uid: '-5',
     url: TestWord,
-    fileName: 'test.docx',
-    fileType: ''
+    name: 'test.docx',
   },
   excel: {
+    uid: '-6',
     url: TestExcel,
-    fileName: 'test.xlsx',
-    fileType: ''
+    name: 'test.xlsx',
+  },
+  zip: {
+    uid: '-7',
+    url: TestZip,
+    name: 'test.zip',
   },
 }
 
 function Demo() {
   const [open, setOpen] = React.useState(false);
-  const [previewInfo, setPreviewInfo] = React.useState<{ url: string, fileName: string, fileType: string }>();
+  const [fileInfo, setFileInfo] = React.useState<UploadFile>();
   const preview = (type) => {
-    setPreviewInfo(data[type]);
+    setFileInfo(data[type]);
     setOpen(true);
   }
 
@@ -57,8 +64,9 @@ function Demo() {
       <Button onClick={() => preview('pdf')}>预览pdf</Button>
       <Button onClick={() => preview('word')}>预览word</Button>
       <Button onClick={() => preview('excel')}>预览excel</Button>
+      <Button onClick={() => preview('zip')}>预览zip</Button>
       <FileViewer
-        {...previewInfo}
+        file={fileInfo}
         open={open}
         onCancel={() => setOpen(false)}
       />

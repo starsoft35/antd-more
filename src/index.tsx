@@ -28,3 +28,6 @@ export * from './biz-descriptions';
 
 export { default as BizUserLayout } from './biz-user-layout';
 export * from './biz-user-layout';
+
+export { default as FileViewer } from './file-viewer';
+export * from './file-viewer';
