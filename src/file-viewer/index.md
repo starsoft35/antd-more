@@ -25,7 +25,7 @@ toc: content
 
 ### PictureCard 预览
 
-适用于上传各种类型文件的详情页展示。
+适用于详情页展示。
 
 <code src='./demos/upload.tsx'></code>
 

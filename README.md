@@ -69,6 +69,7 @@ ReactDon.render(<BizField value="red" valueType="color" />, mountNode);
 - [CaptchaButton] - 验证码按钮
 - [Color] - 颜色
 - [Dictionary] - 数据字典
+- [FileViewer] - 文件预览
 - [InputIcon] - 图标输入
 - [TreeTable] - 树表格
 
@@ -97,6 +98,7 @@ ReactDon.render(<BizField value="red" valueType="color" />, mountNode);
 [stepsform]: https://doly-dev.github.io/antd-more/latest/components/steps-form
 [bizuserlayout]: https://doly-dev.github.io/antd-more/latest/components/biz-user-layout
 [inputicon]: https://doly-dev.github.io/antd-more/latest/components/input-icon
+[fileviewer]: https://doly-dev.github.io/antd-more/latest/components/file-viewer
 [treetable]: https://doly-dev.github.io/antd-more/latest/components/tree-table
 [qrcode.react]: https://www.npmjs.com/package/qrcode.react
 [wangeditor]: https://www.npmjs.com/package/wangeditor
