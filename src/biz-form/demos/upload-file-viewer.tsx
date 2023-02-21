@@ -3,7 +3,7 @@ import { BizForm, BizFormItemUpload } from 'antd-more';
 import { waitTime } from 'util-helpers';
 import FileViewer from './components/FileViewer';
 import { uploadFile } from './services';
-import { getFileThumbUrl, getFileType, getFileUrl, removeFile } from './utils/utils';
+import { previewFile, getFileType, getFileUrl, removeFile } from './utils/utils';
 import { uploadFileToFssid } from './utils/fileUtils';
 
 const Demo = () => {
@@ -47,7 +47,7 @@ const Demo = () => {
               setOpen(true);
             },
             onRemove: removeFile,
-            previewFile: getFileThumbUrl
+            previewFile
           }}
         />
       </BizForm>

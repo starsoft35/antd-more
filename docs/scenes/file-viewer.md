@@ -23,6 +23,10 @@ toc: content
 
 <code src='../../src/biz-form/demos/upload-file-viewer.tsx'></code>
 
+### 使用 Upload 预览
+
+<code src='../../src/demos/FileViewer/demos/upload.tsx'></code>
+
 ## API
 
 ### FileViewer
