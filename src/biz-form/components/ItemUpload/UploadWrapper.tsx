@@ -95,6 +95,10 @@ const UploadWrapper: React.FC<UploadWrapperProps> = ({
   const internalCustomRequest = React.useCallback((obj: any) => {
     let timer: any = null;
 
+    // react 18之前，在事件处理程序期间会触发批量更新。（promise、setTimeout、原生事件处理等不会触发）
+    // react 18 的 createRoot 开始，所有更新都将自动批处理。
+
+    // 批量更新可能导致显示异常，所以采用队列上传。
     function queueUpload() {
       if (!uploadingFlagRef.current) {
         uploadingFlagRef.current = true;
