@@ -13512,10 +13512,10 @@ util-deprecate@^1.0.1, util-deprecate@^1.0.2, util-deprecate@~1.0.1:
   resolved "https://registry.npmmirror.com/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
   integrity sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==
 
-util-helpers@^4.13.1:
-  version "4.13.1"
-  resolved "https://registry.npmmirror.com/util-helpers/-/util-helpers-4.13.1.tgz#4c0f47869d9ebec3cfb2d992dd58571e0e6f9b59"
-  integrity sha512-497N/nBQZVghVrTkoZ0etz+cyTTi0zo1QS2XWbD5qetPYI0nOm2hUTPsI+ddLKR8Y9n55yoi6jsLSAbgxZmz/A==
+util-helpers@^4.15.2:
+  version "4.15.2"
+  resolved "https://registry.npmjs.org/util-helpers/-/util-helpers-4.15.2.tgz#c6e7e1f56ba479a018cce448a3fe4f77f7cccb8f"
+  integrity sha512-YlcSIuAtuUY3BEFMcqSxru9kMGipS9UT8OSWXkKxs0CfxDcPATMlfT+8OeN8ekKVwvPv8kC3b4MlT0mAJRSWIA==
   dependencies:
     "@babel/runtime" "^7.14.0"
 
