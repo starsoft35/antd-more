@@ -29,6 +29,7 @@ toc: content
 - [CaptchaButton] - 验证码按钮
 - [Color] - 颜色
 - [Dictionary] - 数据字典
+- [FileViewer] - 文件预览
 - [InputIcon] - 图标输入
 - [TreeTable] - 树表格
 
@@ -48,3 +49,4 @@ toc: content
 [bizuserlayout]: /components/biz-user-layout
 [inputicon]: /components/input-icon
 [treetable]: /components/tree-table
+[fileviewer]: /components/file-viewer
