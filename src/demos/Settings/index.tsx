@@ -17,8 +17,6 @@ const pages = [
   },
 ];
 
-console.log(styles);
-
 const Settings = () => {
   const { token: { colorBgContainer } } = theme.useToken();
   const [selectedKey, setSelectedKey] = useState(pages[0].key);
@@ -26,7 +24,7 @@ const Settings = () => {
 
   // 如果要支持跳转某个菜单页
   // const search = parse(history.location.search.substring(1)) || {};
-  // const searchKey = search.tab as string;
+  // const searchKey = (search.tab || pages[0].key) as string;
   // const currentPage = pages.find(item => item.key === searchKey)!;
 
   const Comp = lazy(currentPage.component);
