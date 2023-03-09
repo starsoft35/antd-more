@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useMemo, useState } from 'react';
+import React, { lazy, Suspense, useState } from 'react';
 import { Card, Layout, Menu, Spin, theme } from 'antd';
 import styles from './index.module.less';
 
@@ -22,7 +22,12 @@ console.log(styles);
 const Settings = () => {
   const { token: { colorBgContainer } } = theme.useToken();
   const [selectedKey, setSelectedKey] = useState(pages[0].key);
-  const currentPage = useMemo(() => pages.find(item => item.key === selectedKey)!, [selectedKey]);
+  const currentPage = pages.find(item => item.key === selectedKey)!;
+
+  // 如果要支持跳转某个菜单页
+  // const search = parse(history.location.search.substring(1)) || {};
+  // const searchKey = search.tab as string;
+  // const currentPage = pages.find(item => item.key === searchKey)!;
 
   const Comp = lazy(currentPage.component);
 
@@ -36,6 +41,14 @@ const Settings = () => {
             selectedKeys={[selectedKey]}
             onSelect={(item) => {
               setSelectedKey(item.key);
+
+              // 如果要支持跳转某个菜单页
+              // history.push({
+              //   pathname: '/settings',
+              //   search: stringify({
+              //     tab: item.key
+              //   })
+              // });
             }}
           />
         </Sider>
