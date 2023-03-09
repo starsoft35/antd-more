@@ -26,6 +26,7 @@ const Demo = () => {
         label="原密码"
         name="password"
         required
+        allowClear
         validated={false}
         validateTrigger='onBlur'
         visibilityToggle={false}
@@ -34,6 +35,7 @@ const Demo = () => {
         label="新密码"
         name="newPassword"
         required
+        allowClear
         validateTrigger='onBlur'
         visibilityToggle={false}
         dependencies={['password']}
@@ -47,6 +49,7 @@ const Demo = () => {
         label="重复新密码"
         name="repeatNewPassword"
         required
+        allowClear
         validateTrigger='onBlur'
         visibilityToggle={false}
         dependencies={['newPassword']}
