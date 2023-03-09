@@ -37,6 +37,10 @@ toc: content
 
 <code src='./demos/multiple.tsx'></code>
 
+### 详情展示
+
+<code src='./demos/detail.tsx'></code>
+
 ## API
 
 ```typescript

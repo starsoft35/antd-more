@@ -19,6 +19,7 @@ const pages = [
 
 const Settings = () => {
   const { token: { colorBgContainer } } = theme.useToken();
+
   const [selectedKey, setSelectedKey] = useState(pages[0].key);
   const currentPage = pages.find(item => item.key === selectedKey)!;
 
