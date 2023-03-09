@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { BizForm, BizFormItem, BizFormItemPassword } from 'antd-more';
 import { waitTime } from 'util-helpers';
+import { wrapperValidateNewPassword, wrapperValidateRepeatPassword } from '../../../biz-form/demos/utils/passwordUtils';
 
 const Demo = () => {
   const [form] = BizForm.useForm();
@@ -21,26 +22,22 @@ const Demo = () => {
     >
       <BizFormItem label="手机号码">13000000000</BizFormItem>
       <BizFormItem label="用户名">guest</BizFormItem>
-      <BizFormItemPassword label="原密码" name="password" required validated={false} />
+      <BizFormItemPassword
+        label="原密码"
+        name="password"
+        required
+        validated={false}
+        validateTrigger='onBlur'
+      />
       <BizFormItemPassword
         label="新密码"
         name="newPassword"
         required
+        validateTrigger='onBlur'
         dependencies={['password']}
         extendRules={[
           {
-            validator(rules, value) {
-              let errMsg = '';
-              const oldPwd = form.getFieldValue('password');
-              if (oldPwd && oldPwd === value) {
-                errMsg = '新密码不能与原密码一致';
-              }
-              if (errMsg) {
-                return Promise.reject(errMsg);
-              }
-
-              return Promise.resolve();
-            }
+            validator: wrapperValidateNewPassword(form)
           }
         ]}
       />
@@ -48,21 +45,11 @@ const Demo = () => {
         label="重复新密码"
         name="repeatNewPassword"
         required
+        validateTrigger='onBlur'
         dependencies={['newPassword']}
         rules={[
           {
-            validator(rules, value) {
-              let errMsg = '';
-              if (!value) {
-                errMsg = '请再次输入新密码';
-              } else if (value !== form.getFieldValue('newPassword')) {
-                errMsg = '两次输入的密码不一致';
-              }
-              if (errMsg) {
-                return Promise.reject(errMsg);
-              }
-              return Promise.resolve();
-            }
+            validator: wrapperValidateRepeatPassword(form, 'newPassword')
           }
         ]}
       />
