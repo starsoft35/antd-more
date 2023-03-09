@@ -28,12 +28,14 @@ const Demo = () => {
         required
         validated={false}
         validateTrigger='onBlur'
+        visibilityToggle={false}
       />
       <BizFormItemPassword
         label="新密码"
         name="newPassword"
         required
         validateTrigger='onBlur'
+        visibilityToggle={false}
         dependencies={['password']}
         extendRules={[
           {
@@ -46,6 +48,7 @@ const Demo = () => {
         name="repeatNewPassword"
         required
         validateTrigger='onBlur'
+        visibilityToggle={false}
         dependencies={['newPassword']}
         rules={[
           {
