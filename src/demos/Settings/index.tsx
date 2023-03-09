@@ -27,7 +27,7 @@ const Settings = () => {
   const Comp = lazy(currentPage.component);
 
   return (
-    <div className={styles?.page}>
+    <div className={styles.page}>
       <Layout>
         <Sider style={{ background: colorBgContainer }} width={200}>
           <Menu
@@ -42,7 +42,7 @@ const Settings = () => {
         <Content>
           <Header style={{ background: colorBgContainer }}>{currentPage.label}</Header>
           <Card bordered={false} style={{ boxShadow: 'none' }}>
-            <Suspense fallback={<div className={styles?.lazyload}><Spin /></div>}>
+            <Suspense fallback={<div className={styles.lazyload}><Spin /></div>}>
               <Comp />
             </Suspense>
           </Card>

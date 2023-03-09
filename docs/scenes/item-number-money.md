@@ -13,11 +13,11 @@ toc: content
 
 ### 基础用法
 
-<code src='../../src/demos/ItemNumberMoney/demos/basic.tsx'></code>
+<code src='../../src/demos/ItemNumberMoney/basic.tsx'></code>
 
 ### 更多
 
-<code src='../../src/demos/ItemNumberMoney/demos/exchange.tsx'></code>
+<code src='../../src/demos/ItemNumberMoney/exchange.tsx'></code>
 
 ## API
 

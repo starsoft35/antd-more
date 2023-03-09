@@ -1,5 +1,5 @@
 import * as React from 'react';
-import AsyncImage from '..';
+import AsyncImage from '../components/AsyncImage';
 
 function Demo() {
   return (

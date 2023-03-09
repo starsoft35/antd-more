@@ -11,13 +11,13 @@ toc: content
 
 ### 基础用法
 
-<code src='../../src/demos/AsyncImage/demos/basic.tsx'></code>
+<code src='../../src/demos/AsyncImage/basic.tsx'></code>
 
 ### 多张且支持下载图片
 
 示例中的图片是静态地址，所以点击会新开窗口打开。如果是 `bolb` 地址会触发下载。
 
-<code src='../../src/demos/AsyncImage/demos/multiple.tsx'></code>
+<code src='../../src/demos/AsyncImage/multiple.tsx'></code>
 
 ## API
 

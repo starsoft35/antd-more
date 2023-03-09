@@ -11,17 +11,17 @@ toc: content
 
 ### 基础用法
 
-<code src='../../src/demos/ItemUploadCertificate/demos/basic.tsx'></code>
+<code src='../../src/demos/ItemUploadCertificate/basic.tsx'></code>
 
 ### 内置类型
 
 默认设置了上传选择的图标和标题，浮层提示。
 
-<code src='../../src/demos/ItemUploadCertificate/demos/built-in.tsx'></code>
+<code src='../../src/demos/ItemUploadCertificate/built-in.tsx'></code>
 
 ### 更多用法
 
-<code src='../../src/demos/ItemUploadCertificate/demos/more.tsx'></code>
+<code src='../../src/demos/ItemUploadCertificate/more.tsx'></code>
 
 ### 验证文件上传中
 
@@ -29,7 +29,7 @@ toc: content
 
 这样可以保障文件都上传完成才能进行提交操作。
 
-<code src='../../src/demos/ItemUploadCertificate/demos/check-loading.tsx'></code>
+<code src='../../src/demos/ItemUploadCertificate/check-loading.tsx'></code>
 
 ## API
 
