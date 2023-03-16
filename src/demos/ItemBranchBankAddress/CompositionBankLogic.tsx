@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { BizForm, BizFormItem } from 'antd-more';
+import { BizForm } from 'antd-more';
 import { useAsync } from 'rc-hooks';
 import { getPC } from 'lcn';
 import ItemSelectBank from './ItemSelectBank';
@@ -42,66 +42,63 @@ function CompositionBankLogic() {
           },
         }}
       />
-      <BizFormItem shouldUpdate noStyle>
-        {() => {
-          const isDisabled = !hasBranchBankAddressCode || !bankName;
-
-          return (
-            <ItemBranchBankAddress
-              label="开户支行"
-              labels={['省/市', '支行名称']}
-              names={['branchBankAddressCode', 'branchBankName']}
-              options={pc}
-              required
-              selectProps={{
-                disabled: isDisabled,
-                loading: queryBranchBanksLoading,
-                options: branchBanks,
-              }}
-              cascaderProps={{
-                onChange(value) {
-                  const hasValue = Array.isArray(value) && value.length > 0;
-                  // 注意这里可能清空银行支行省市，也可能选择上一次的省市
-                  const currBranchBankAddressCode = hasValue ? value.join('') : '';
-                  if (bankName && currBranchBankAddressCode && prevBranchBankAddressCodeRef.current !== currBranchBankAddressCode) {
-                    prevBranchBankAddressCodeRef.current = currBranchBankAddressCode;
-                    form.setFieldValue('branchBankName', undefined);
-                    runQueryBranchBanks({
-                      bankName,
-                      province: value[0],
-                      city: value[1]
-                    });
-                  } else if (!hasValue) {
-                    prevBranchBankAddressCodeRef.current = '';
-                    form.setFieldValue('branchBankName', undefined);
-                  }
-                }
-              }}
-              formItemProps={[
-                {},
-                {
-                  rules: [
-                    {
-                      validator(rule, value) {
-                        let errMsg = '';
-                        if (isDisabled) {
-                          errMsg = '请先选择开户银行和开户支行';
-                        } else if (!value) {
-                          errMsg = '请选择支行名称';
-                        }
-                        if (errMsg) {
-                          return Promise.reject(errMsg);
-                        }
-                        return Promise.resolve();
-                      },
-                    },
-                  ],
-                },
-              ]}
-            />
-          );
+      <ItemBranchBankAddress
+        label="开户支行"
+        labels={['省/市', '支行名称']}
+        names={['branchBankAddressCode', 'branchBankName']}
+        options={pc}
+        required
+        selectProps={{
+          disabled: !hasBranchBankAddressCode || !bankName,
+          loading: queryBranchBanksLoading,
+          options: branchBanks,
         }}
-      </BizFormItem>
+        cascaderProps={{
+          onChange(value) {
+            const hasValue = Array.isArray(value) && value.length > 0;
+            // 注意这里可能清空银行支行省市，也可能选择上一次的省市
+            const currBranchBankAddressCode = hasValue ? value.join('') : '';
+            if (bankName && currBranchBankAddressCode && prevBranchBankAddressCodeRef.current !== currBranchBankAddressCode) {
+              prevBranchBankAddressCodeRef.current = currBranchBankAddressCode;
+              form.setFieldValue('branchBankName', undefined);
+              runQueryBranchBanks({
+                bankName,
+                province: value[0],
+                city: value[1]
+              });
+            } else if (!hasValue) {
+              prevBranchBankAddressCodeRef.current = '';
+              form.setFieldValue('branchBankName', undefined);
+            }
+          }
+        }}
+        formItemProps={[
+          {},
+          {
+            dependencies: ['bankName', 'branchBankAddressCode'],
+            rules: [
+              {
+                validator(rule, value) {
+                  let errMsg = '';
+                  if (!hasBranchBankAddressCode && !bankName) {
+                    errMsg = '请先选择开户银行和开户支行';
+                  } else if (!hasBranchBankAddressCode) {
+                    errMsg = '请先选择开户支行';
+                  } else if (!bankName) {
+                    errMsg = '请先选择开户银行';
+                  } else if (!value) {
+                    errMsg = '请选择支行名称';
+                  }
+                  if (errMsg) {
+                    return Promise.reject(errMsg);
+                  }
+                  return Promise.resolve();
+                },
+              },
+            ],
+          },
+        ]}
+      />
     </>
   );
 }
