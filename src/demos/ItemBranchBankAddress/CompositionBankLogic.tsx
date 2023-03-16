@@ -23,6 +23,20 @@ function CompositionBankLogic() {
     autoRun: false
   });
 
+  React.useEffect(() => {
+    // 初始化数据，如果有值，加载支行列表
+    if (!branchBanks && !queryBranchBanksLoading) {
+      if (bankName && Array.isArray(branchBankAddressCode) && branchBankAddressCode.length > 0) {
+        runQueryBranchBanks({
+          bankName,
+          province: branchBankAddressCode[0]!,
+          city: branchBankAddressCode[1]!,
+        });
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [bankName, branchBankAddressCode]);
+
   return (
     <>
       <ItemSelectBank
