@@ -95,9 +95,9 @@ function CompositionBankLogic() {
                 validator(rule, value) {
                   let errMsg = '';
                   if (!hasBranchBankAddressCode && !bankName) {
-                    errMsg = '请先选择开户银行和开户支行';
+                    errMsg = '请先选择开户银行和开户支行省/市';
                   } else if (!hasBranchBankAddressCode) {
-                    errMsg = '请先选择开户支行';
+                    errMsg = '请先选择开户支行省/市';
                   } else if (!bankName) {
                     errMsg = '请先选择开户银行';
                   } else if (!value) {
