@@ -5,7 +5,7 @@ import classnames from 'classnames';
 import { useUpdateEffect, usePagination } from 'rc-hooks';
 import type { SearchFormProps } from './SearchForm';
 import SearchForm from './SearchForm';
-import type { QueryFormProps } from '../biz-form';
+import type { BizFormExtraInstance, QueryFormProps } from '../biz-form';
 import BizField from '../biz-field';
 import WithTooltip from '../biz-descriptions/WithTooltip';
 import type {
@@ -149,6 +149,22 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
       }
     },
     [formRef]
+  );
+
+  const innerFormExtraRef = React.useRef<BizFormExtraInstance>();
+  const handleInnerFormExtraRef = React.useCallback(
+    (refValue: BizFormExtraInstance) => {
+      innerFormExtraRef.current = refValue;
+
+      if (form?.formExtraRef) {
+        if (typeof form.formExtraRef === 'function') {
+          form.formExtraRef(refValue);
+        } else {
+          form.formExtraRef.current = refValue;
+        }
+      }
+    },
+    [form]
   );
 
   const columnsWithKey = React.useMemo(() => {
@@ -405,6 +421,17 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
     }
   }, [hasSearch, pagination]);
 
+  const handleSubmitAndCurrent = React.useCallback((current: number) => {
+    const [oldParams, ...restParams] = params;
+    const formValues = innerFormExtraRef.current.getTransformFieldsValue();
+    return run({
+      ...oldParams,
+      current,
+      pageSize: pagination.pageSize,
+      search: formValues
+    }, ...restParams);
+  }, [pagination.pageSize, params, run]);
+
   // 默认 onReset 中已经重置表单，这里只需触发请求
   const handleDefaultReset = React.useCallback(() => {
     if (hasSearch) {
@@ -433,7 +460,8 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
   React.useImperativeHandle(actionRef, () => ({
     reload: refresh,
     reset: handleReset,
-    submit: handleSubmit
+    submit: handleSubmit,
+    submitAndCurrent: handleSubmitAndCurrent
   }));
 
   React.useEffect(() => {
@@ -551,6 +579,7 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
             loading={loading}
             ready={ready}
             {...form}
+            formExtraRef={handleInnerFormExtraRef}
           />
           {extra}
           {renderTable()}
