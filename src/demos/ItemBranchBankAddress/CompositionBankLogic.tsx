@@ -16,7 +16,7 @@ function CompositionBankLogic() {
 
   const prevBranchBankAddressCodeRef = React.useRef<string>(); // 记录上一次选择开户支行省市区的值，用于下次变动对比。因为 cascade 组件即使选择同一个值也会触发 onChange 。
 
-  const { run: runQueryBranchBanks, data: branchBanks, loading: queryBranchBanksLoading } = useAsync((...args: Parameters<typeof queryBranchBanks>) => queryBranchBanks(...args).then(res => res.map(item => ({
+  const { run: runQueryBranchBanks, mutate: mutateBranchData, data: branchBanks, loading: queryBranchBanksLoading } = useAsync((...args: Parameters<typeof queryBranchBanks>) => queryBranchBanks(...args).then(res => res.map(item => ({
     label: item.fullBranchName,
     value: item.fullBranchName
   }))), {
@@ -47,6 +47,7 @@ function CompositionBankLogic() {
           onChange(value) {
             if (hasBranchBankAddressCode) {
               form.setFieldValue('branchBankName', undefined);
+              mutateBranchData([]);
               runQueryBranchBanks({
                 bankName: value,
                 province: branchBankAddressCode[0],
@@ -74,6 +75,7 @@ function CompositionBankLogic() {
             if (bankName && currBranchBankAddressCode && prevBranchBankAddressCodeRef.current !== currBranchBankAddressCode) {
               prevBranchBankAddressCodeRef.current = currBranchBankAddressCode;
               form.setFieldValue('branchBankName', undefined);
+              mutateBranchData([]);
               runQueryBranchBanks({
                 bankName,
                 province: value[0],
