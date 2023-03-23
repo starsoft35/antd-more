@@ -17,10 +17,11 @@ const BizTableWithCache: React.FC<BizTableWithCacheProps> = ({
   request,
   pagination,
   autoRequest,
+  actionRef,
   ...restProps
 }) => {
   const formRef = useRef<FormInstance>();
-  const actionRef = useRef<BizTableActionType>();
+  const innerActionRef = useRef<BizTableActionType>();
   const cache = memoryCache.get(cacheKey);
   const internalRequest: BizTableRequest = async (params, ...args) => {
     memoryCache.set(cacheKey, params);
@@ -42,18 +43,19 @@ const BizTableWithCache: React.FC<BizTableWithCacheProps> = ({
         });
       }
       formRef.current?.setFieldsValue({ ...omit(formValues, ['current', 'pageSize']) });
-      actionRef.current?.submitAndCurrent(formValues?.current || 1);
+      innerActionRef.current?.submitAndCurrent(formValues?.current || 1);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [autoRequest]);
+  }, [autoRequest, cacheKey, cacheTransformNames]);
+
+  React.useImperativeHandle(actionRef, () => innerActionRef.current, []);
 
   return (
     <BizTable
       request={internalRequest}
       autoRequest={false}
-      pagination={{ pageSize: cache?.pageSize, ...pagination }}
+      pagination={pagination !== false ? { pageSize: cache?.pageSize, ...pagination } : false}
       formRef={formRef}
-      actionRef={actionRef}
+      actionRef={innerActionRef}
       {...restProps}
     />
   );
