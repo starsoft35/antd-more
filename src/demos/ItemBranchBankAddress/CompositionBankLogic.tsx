@@ -62,9 +62,8 @@ function CompositionBankLogic() {
         names={['branchBankAddressCode', 'branchBankName']}
         options={pc}
         required
-        selectProps={{
+        autoCompleteProps={{
           disabled: !hasBranchBankAddressCode || !bankName,
-          loading: queryBranchBanksLoading,
           options: branchBanks,
         }}
         cascaderProps={{
@@ -101,7 +100,7 @@ function CompositionBankLogic() {
                   } else if (!bankName) {
                     errMsg = '请先选择开户银行';
                   } else if (!value) {
-                    errMsg = '请选择支行名称';
+                    errMsg = '请输入支行名称';
                   }
                   if (errMsg) {
                     return Promise.reject(errMsg);

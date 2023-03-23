@@ -1,6 +1,6 @@
 import * as React from 'react';
-import type { CascaderProps, FormItemProps, SelectProps } from 'antd';
-import { Cascader, Col, Row, Select } from 'antd';
+import type { AutoCompleteProps, CascaderProps, FormItemProps } from 'antd';
+import { Cascader, Col, Row, AutoComplete } from 'antd';
 import type { BizFormItemProps } from 'antd-more';
 import { BizFormItem } from 'antd-more';
 
@@ -10,7 +10,7 @@ interface ItemBranchBankAddressProps<DataNodeType = any>
   names: [FormItemProps['name'], FormItemProps['name']]; // 如 ['location', 'address']
   labels: [string, string]; // 如 ['省/市/区', '详细地址']
   formItemProps?: [BizFormItemProps, BizFormItemProps];
-  selectProps?: SelectProps;
+  autoCompleteProps?: AutoCompleteProps;
   cascaderProps?: CascaderProps<DataNodeType>;
 }
 
@@ -20,7 +20,7 @@ const ItemBranchBankAddress: React.FC<ItemBranchBankAddressProps> = ({
   options = [],
   fieldNames,
   formItemProps = [{}, {}],
-  selectProps = {},
+  autoCompleteProps = {},
   cascaderProps = {},
 
   style = {},
@@ -65,12 +65,13 @@ const ItemBranchBankAddress: React.FC<ItemBranchBankAddressProps> = ({
         <Col span={24} md={12} lg={16} {...selectColProps}>
           <BizFormItem
             name={names[1]}
+            normalize={value => value ? value.trim() : value}
             rules={[
               {
                 validator(rule, value) {
                   let errMsg = '';
                   if (!value) {
-                    errMsg = required ? `请选择${labels[1]}` : '';
+                    errMsg = required ? `请输入${labels[1]}` : '';
                   }
                   if (errMsg) {
                     return Promise.reject(errMsg);
@@ -81,13 +82,11 @@ const ItemBranchBankAddress: React.FC<ItemBranchBankAddressProps> = ({
             ]}
             {...selectFormItemProps}
           >
-            <Select
-              placeholder={`请选择${labels[1]}`}
+            <AutoComplete
+              placeholder={`请输入${labels[1]}`}
               allowClear
-              filterOption={false}
-              defaultActiveFirstOption={false}
-              showSearch
-              {...selectProps}
+              filterOption={(inputValue, option) => (option!.value as string).indexOf(inputValue) > -1}
+              {...autoCompleteProps}
             />
           </BizFormItem>
         </Col>
