@@ -30,4 +30,4 @@ memoryCache.clear();
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | cacheKey | 查询项和页面缓存键值。 | `string` | - |
-| cacheTransformNames | 缓存值逆向转换为表单项的值，目前仅支持 `string` 值。<br/>主要用于日期范围逆向转换赋值。 | `Record<string, [string, string]>` | - |
+| cacheTransformNames | 缓存值逆向转换为表单项的字段。<br/>主要用于日期范围逆向转换赋值。 | `Record<string, [string, string]>` | - |
