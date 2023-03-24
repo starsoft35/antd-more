@@ -45,7 +45,8 @@ const BizTableWithCache: React.FC<BizTableWithCacheProps> = ({
       formRef.current?.setFieldsValue({ ...omit(formValues, ['current', 'pageSize']) });
       innerActionRef.current?.submitAndCurrent(formValues?.current || 1);
     }
-  }, [autoRequest, cacheKey, cacheTransformNames]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [autoRequest]);
 
   React.useImperativeHandle(actionRef, () => innerActionRef.current, []);
 
