@@ -4,7 +4,7 @@ import type { BizFormItemSelectProps } from 'antd-more';
 import { BizFormItemSelect } from 'antd-more';
 import { useAsync } from 'rc-hooks';
 
-const ItemSelectBank: React.FC<BizFormItemSelectProps> = ({ ...restProps }) => {
+const ItemSelectBank: React.FC<BizFormItemSelectProps> = ({ selectProps, ...restProps }) => {
   const { data, loading } = useAsync(
     () =>
       queryBanks().then((res) =>
@@ -36,6 +36,7 @@ const ItemSelectBank: React.FC<BizFormItemSelectProps> = ({ ...restProps }) => {
           }
           return false;
         },
+        ...selectProps
       }}
       {...restProps}
     />
