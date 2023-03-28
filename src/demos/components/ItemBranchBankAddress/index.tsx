@@ -58,6 +58,7 @@ const ItemBranchBankAddress: React.FC<ItemBranchBankAddressProps> = ({
               placeholder={`请选择${labels[0]}`}
               options={options}
               fieldNames={fieldNames}
+              allowClear={false}
               {...cascaderProps}
             />
           </BizFormItem>
