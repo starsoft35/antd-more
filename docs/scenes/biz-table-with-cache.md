@@ -11,9 +11,10 @@ toc: content
 
 由于 [umi-plugin-keep-alive](https://www.npmjs.com/package/umi-plugin-keep-alive) 在 `umi v4` 版本中兼容不是很好，临时使用该方案解决列表页缓存问题。
 
-**注意在重新登录或进入系统时，清空该缓存：**
+**注意：**
 
 ```javascript
+// 在重新登录或进入系统时，清空该缓存。
 memoryCache.clear();
 ```
 
@@ -31,3 +32,5 @@ memoryCache.clear();
 | --- | --- | --- | --- |
 | cacheKey | 查询项和页面缓存键值。 | `string` | - |
 | cacheTransformNames | 缓存值逆向转换为表单项的字段。<br/>主要用于日期范围逆向转换赋值。 | `Record<string, [string, string]>` | - |
+
+建议关注 React 18.x 中的官方实现 [`<Offscreen />`](https://github.com/reactwg/react-18/discussions/19) 。
