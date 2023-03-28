@@ -68,17 +68,13 @@ function BizDescriptions<DataType extends object = any>({
   dataSource,
   columns,
   children,
-  title,
+  title: outTitle,
   tooltip,
-  column,
   ...restProps
 }: BizDescriptionsProps<DataType>) {
-  const defaultProps = React.useMemo(
-    () => ({
-      title: title && tooltip ? <WithTooltip label={title} tooltip={tooltip} /> : title,
-      column: column || { xs: 1, md: 2, lg: 3, xxl: 4 }
-    }),
-    [title, tooltip, column]
+  const title = React.useMemo(
+    () => outTitle && tooltip ? <WithTooltip label={outTitle} tooltip={tooltip} /> : outTitle,
+    [outTitle, tooltip]
   );
 
   const getChilds = (childs) => {
@@ -102,7 +98,7 @@ function BizDescriptions<DataType extends object = any>({
     columns.length > 0
   ) {
     return (
-      <Descriptions {...defaultProps} {...restProps}>
+      <Descriptions title={title} {...restProps}>
         {currentDom}
         {columns.map(
           (
@@ -138,7 +134,7 @@ function BizDescriptions<DataType extends object = any>({
   }
 
   return (
-    <Descriptions {...defaultProps} {...restProps}>
+    <Descriptions title={title} {...restProps}>
       {currentDom}
     </Descriptions>
   );
