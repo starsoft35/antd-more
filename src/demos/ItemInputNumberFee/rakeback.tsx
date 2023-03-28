@@ -51,8 +51,7 @@ function Demo() {
                     </Col>
                     <Col>
                       <BizFormItemNumber
-                        label="封顶"
-                        messageVariables={{ label: '封顶金额' }}
+                        label="借记卡封顶"
                         name='standardMaxValue'
                         contentAfter="元"
                         precision={2}
