@@ -18,7 +18,7 @@ export const normalizeBankCard = (value: string, format = true) => {
 };
 
 // 标准化输入身份证号
-export const normalizeIdCard = (value, format = true) => {
+export const normalizeIdCard = (value: string, format = true) => {
   const valueStr = normalizeString(value);
   const reg = /[^\dx]/gi;
   const ret = valueStr.replace(reg, '').substring(0, 18);
@@ -26,7 +26,7 @@ export const normalizeIdCard = (value, format = true) => {
 };
 
 // 标准化输入手机号码
-export const normalizeMobile = (value, format = true) => {
+export const normalizeMobile = (value: string, format = true) => {
   const valueStr = normalizeString(value);
   const reg = /[^\d]/g;
   const ret = valueStr.replace(reg, '');

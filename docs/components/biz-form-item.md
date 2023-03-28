@@ -285,7 +285,7 @@ Input 输入框
 | --- | --- | --- | --- |
 | type | 输入框类型。 | `'mobile' \| 'bankCard' \| 'idCard' \| 'email' \| 'userName'` | - |
 | disabledWhiteSpace | 去除头尾空格 | `boolean` | - |
-| format | 是否格式化。仅在设置为 `type=mobile \| bankCard \| idCard` 时生效。<br/>手机号码和银行卡号不格式化空格，身份证号`x`不强制大写。 | `boolean` | `true` |
+| format | 是否格式化。仅在设置为 `type=mobile \| bankCard \| idCard` 时生效。<br/>手机号码和银行卡号格式化，身份证号`x`强制大写。 | `boolean` | `true` |
 | placeholder | 输入框提示 | `string` | `请输入` |
 | allowClear | 支持清除 | `boolean \| {clearIcon?: React.ReactNode;}` | - |
 | maxLength | 最大长度 | `number` | - |
