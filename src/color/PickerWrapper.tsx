@@ -78,6 +78,7 @@ const PickerWrapper: React.FC<PickerWrapperProps> = ({
           autoAdjustOverflow={false}
           placement={placement}
           showArrow={false}
+          arrow={false}
           overlayClassName={`${prefixCls}-overlay-normalize`}
           {...restProps}
           open={open}
