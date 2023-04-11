@@ -66,5 +66,5 @@ import {
 | placement | 颜色选择浮层位置 | `'top' \| 'left' \| 'right' \| 'bottom' \| 'topLeft' \| 'topRight' \| 'bottomLeft' \| 'bottomRight' \| 'leftTop' \| 'leftBottom' \| 'rightTop' \| 'rightBottom'` | `'bottomLeft'` |
 | size | 颜色块大小 | `'small' \| 'middle'` | `'small'` |
 | showText | 显示颜色值文本 | `boolean` | `false` |
-| trigger | 触发行为 | `'hover' \| 'click'` | `'click'` |
+| trigger | 触发行为 | `string \| string[]` | `'click'` |
 | pickerProps | 不同选择器有不同的属性，更多信息可查阅 [react-color](http://casesandberg.github.io/react-color/#api-individual) 。 | `BlockPickerProps \| ChromePickerProps \| CompactPickerProps \| \| PhotoshopPickerProps \| SketchPickerProps` | - |

@@ -15,7 +15,6 @@ export interface PickerCommonProps {
   className?: string;
   value?: string;
   showText?: boolean;
-  trigger?: 'click' | 'hover' | string | string[];
   onChange?: (colorStr: string) => void;
   colorMode?: 'hex' | 'rgb';
   placement?: TooltipProps['placement'];
