@@ -48,7 +48,8 @@ const BizTableWithCache: React.FC<BizTableWithCacheProps> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [autoRequest]);
 
-  React.useImperativeHandle(actionRef, () => innerActionRef.current, []);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  React.useImperativeHandle(actionRef, () => innerActionRef.current, [innerActionRef.current]);
 
   return (
     <BizTable
