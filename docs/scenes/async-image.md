@@ -7,6 +7,8 @@ toc: content
 
 # 异步图片 - AsyncImage
 
+> 建议使用 [FileViewer](/components/file-viewer) 组件展示
+
 ## 代码演示
 
 ### 基础用法

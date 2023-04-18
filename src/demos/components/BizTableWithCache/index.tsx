@@ -9,6 +9,7 @@ import { memoryCache } from './storage';
 interface BizTableWithCacheProps extends Omit<BizTableProps, 'formRef'> {
   cacheKey: string;
   cacheTransformNames?: Record<string, [string, string]>;
+  formRef?: React.MutableRefObject<FormInstance | undefined>;
 }
 
 const BizTableWithCache: React.FC<BizTableWithCacheProps> = ({
@@ -18,12 +19,14 @@ const BizTableWithCache: React.FC<BizTableWithCacheProps> = ({
   pagination,
   autoRequest,
   actionRef: outerActionRef,
+  formRef: outerFormRef,
   ...restProps
 }) => {
-  const formRef = useRef<FormInstance>();
+  const cache = memoryCache.get(cacheKey);
+  const innerFormRef = useRef<FormInstance>();
+  const formRef = outerFormRef ? outerFormRef : innerFormRef;
   const innerActionRef = useRef<BizTableActionType>();
   const actionRef = outerActionRef ? outerActionRef : innerActionRef;
-  const cache = memoryCache.get(cacheKey);
   const internalRequest: BizTableRequest = async (params, ...args) => {
     memoryCache.set(cacheKey, params);
     return request?.(params, ...args);
