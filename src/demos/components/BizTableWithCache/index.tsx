@@ -40,7 +40,7 @@ const BizTableWithCache: React.FC<BizTableWithCacheProps> = ({
         Object.keys(cacheTransformNames).forEach((key) => {
           if (Array.isArray(cacheTransformNames[key]) && cacheTransformNames[key].length > 0) {
             formValues[key] = cacheTransformNames[key].map((field) => {
-              const val = dayjs(formValues[field]);
+              const val = formValues[field] ? dayjs(formValues[field]) : formValues[field];
               delete formValues[field];
               return val;
             });
