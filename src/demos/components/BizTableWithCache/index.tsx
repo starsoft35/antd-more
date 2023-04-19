@@ -4,6 +4,7 @@ import type { BizTableActionType, BizTableProps, BizTableRequest } from 'antd-mo
 import { BizTable } from 'antd-more';
 import { omit } from 'lodash';
 import { useEffect, useRef } from 'react';
+import dayjs from 'dayjs';
 import { memoryCache } from './storage';
 
 interface BizTableWithCacheProps extends Omit<BizTableProps, 'formRef'> {
@@ -39,7 +40,7 @@ const BizTableWithCache: React.FC<BizTableWithCacheProps> = ({
         Object.keys(cacheTransformNames).forEach((key) => {
           if (Array.isArray(cacheTransformNames[key]) && cacheTransformNames[key].length > 0) {
             formValues[key] = cacheTransformNames[key].map((field) => {
-              const val = formValues[field];
+              const val = dayjs(formValues[field]);
               delete formValues[field];
               return val;
             });
