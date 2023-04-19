@@ -9,7 +9,7 @@ import { memoryCache } from './storage';
 
 interface BizTableWithCacheProps extends Omit<BizTableProps, 'formRef'> {
   cacheKey: string;
-  cacheTransformNames?: Record<string, [string, string]>;
+  cacheTransformNames?: Record<string, [string, string]>; // 主要用于日期析构
   formRef?: React.MutableRefObject<FormInstance | undefined>;
 }
 
