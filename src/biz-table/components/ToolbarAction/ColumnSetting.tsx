@@ -123,7 +123,7 @@ const ColumnSetting = () => {
           indeterminate={indeterminate}
           onChange={onCheckAllChange}
           checked={checkAll}
-          style={{ height: '32px', lineHeight: '32px' }}
+          style={{ padding: '1px 0 5px' }}
         >
           全选
         </Checkbox>
