@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import type { InputNumberProps } from 'antd';
 import { InputNumber } from 'antd';
+import { isValidNumber } from 'util-helpers';
 import { plus } from 'util-helpers';
-import isValidNumber from '../../../utils/isValidNumber';
 import styles from './index.module.less';
 
 export interface InputNumberFeeProps extends InputNumberProps {
@@ -35,8 +35,8 @@ const InputNumberFee: React.FC<InputNumberFeeProps> = ({
     if (
       forceRenderInitialValue &&
       !inputValue &&
-      isValidNumber(value) &&
-      isValidNumber(beforeValue)
+      isValidNumber(value, true) &&
+      isValidNumber(beforeValue, true)
     ) {
       setInputValue(Number(value) - Number(beforeValue));
     }

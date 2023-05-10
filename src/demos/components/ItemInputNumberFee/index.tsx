@@ -1,9 +1,9 @@
 import * as React from 'react';
+import { isValidNumber } from 'util-helpers';
 import type { BizFormItemProps } from 'antd-more';
 import { BizFormItem } from 'antd-more';
 import type { InputNumberFeeProps } from './InputNumberFee';
 import InputNumberFee from './InputNumberFee';
-import isValidNumber from '../../../utils/isValidNumber';
 
 interface ItemInputNumberFeeProps
   extends BizFormItemProps,
@@ -34,7 +34,7 @@ const ItemInputNumberFee: React.FC<ItemInputNumberFeeProps> = ({
         {
           validator(rule, value) {
             let errMsg = '';
-            if (!isValidNumber(value)) {
+            if (!isValidNumber(value, true)) {
               errMsg = required ? `请输入${messageVariables?.label || label}` : '';
             } else if (isValidNumber(gte) && value < gte) {
               errMsg = `不能小于${gte}`;
