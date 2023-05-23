@@ -128,6 +128,7 @@ const BizFormItemDateRange: React.FC<BizFormItemDateRangeProps> = ({
         showTime={showTime}
         placeholder={placeholder}
         allowClear={allowClear}
+        picker={picker}
         {...pickerProps}
       />
     </BizFormItem>
