@@ -64,10 +64,7 @@ function Demo() {
 
   return (
     <BizTableWithCache
-      cacheKey='basicList'
-      cacheTransformNames={{
-        approveTime: ['startTime', 'endTime']
-      }}
+      cacheKey='uniqueCacheKey'
       request={request}
       columns={columns}
       rowKey='applyCode'

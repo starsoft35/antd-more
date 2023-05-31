@@ -1,26 +1,25 @@
 import * as React from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import type { FormInstance } from 'antd';
 import type { BizTableActionType, BizTableProps, BizTableRequest } from 'antd-more';
 import { BizTable } from 'antd-more';
 import { omit } from 'lodash';
-import { useEffect, useRef } from 'react';
 import dayjs from 'dayjs';
 import { memoryCache } from './storage';
 
 interface BizTableWithCacheProps extends Omit<BizTableProps, 'formRef'> {
   cacheKey: string;
-  cacheTransformNames?: Record<string, [string, string]>; // 主要用于日期析构
   formRef?: React.MutableRefObject<FormInstance | undefined>;
 }
 
 const BizTableWithCache: React.FC<BizTableWithCacheProps> = ({
   cacheKey,
-  cacheTransformNames,
   request,
   pagination,
   autoRequest,
   actionRef: outerActionRef,
   formRef: outerFormRef,
+  columns = [],
   ...restProps
 }) => {
   const cache = memoryCache.get(cacheKey);
@@ -32,6 +31,17 @@ const BizTableWithCache: React.FC<BizTableWithCacheProps> = ({
     memoryCache.set(cacheKey, params);
     return request?.(params, ...args);
   };
+
+  const cacheTransformNames = useMemo(() => {
+    const result: Record<string, any[]> = {};
+    columns.forEach(item => {
+      if (typeof item.search === 'object' && Array.isArray(item.search.names)) {
+        const name = item.search.name || item.search.dataIndex || (item as any).dataIndex;
+        result[name] = item.search.names;
+      }
+    })
+    return result;
+  }, [columns]);
 
   useEffect(() => {
     const formValues = memoryCache.get(cacheKey);
@@ -60,6 +70,7 @@ const BizTableWithCache: React.FC<BizTableWithCacheProps> = ({
       pagination={pagination !== false ? { pageSize: cache?.pageSize, ...pagination } : false}
       formRef={formRef}
       actionRef={actionRef}
+      columns={columns}
       {...restProps}
     />
   );
