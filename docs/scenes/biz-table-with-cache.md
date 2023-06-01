@@ -22,15 +22,16 @@ memoryCache.clear();
 
 ### 基础用法
 
+如果有用到 `names` 解构字段名，需要在 `columns` 的 `search` 写入对应的 `names` 字段配置。
+
 <code src='../../src/demos/BizTableWithCache/basic.tsx'></code>
 
 ## API
 
 ### BizTableWithCache
 
-| 参数 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- |
-| cacheKey | 查询项和页面缓存键值。 | `string` | - |
-| cacheTransformNames | 缓存值逆向转换为表单项的字段。<br/>主要用于日期范围逆向转换赋值。 | `Record<string, [string, string]>` | - |
+| 参数     | 说明                   | 类型     | 默认值 |
+| -------- | ---------------------- | -------- | ------ |
+| cacheKey | 查询项和页面缓存键值。 | `string` | -      |
 
 建议关注 React 18.x 中的官方实现 [`<Offscreen />`](https://github.com/reactwg/react-18/discussions/19) 。
