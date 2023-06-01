@@ -345,9 +345,6 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
     return tmpColumns;
   }, [currentColumns, columnConfigKeys]);
 
-  console.log('finalColumns, ', finalColumns);
-  console.log('columnConfigKeys, ', columnConfigKeys);
-
   React.useEffect(() => {
     if (Array.isArray(editableKeys)) {
       const delKeys = Object.keys(editableKeyMap.current).filter(item => !editableKeys.find(k => k === item));
