@@ -30,14 +30,19 @@
 
   &-toolbar {
     display: flex;
+    align-items: center;
     justify-content: space-between;
     padding-bottom: 16px;
 
     &-content {
       flex: 1;
+      overflow: hidden;
+      word-wrap: break-word;
+      word-break: break-all;
     }
 
     &-action {
+      align-self: flex-end;
       margin-left: 16px;
     }
   }
