@@ -22,7 +22,7 @@ memoryCache.clear();
 
 ### 基础用法
 
-如果有用到 `names` 解构字段名，需要在 `columns` 的 `search` 写入对应的 `names` 字段配置。
+如果有用到 `names` 解构字段名，需要在 `columns` 的 `search` 写入对应的 `names` 字段配置。注意，`dataIndex` 或 `name` 不要和 `names` 中的名称重复，否则可能会被删除。
 
 <code src='../../src/demos/BizTableWithCache/basic.tsx'></code>
 
