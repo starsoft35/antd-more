@@ -7,9 +7,12 @@ import { omit } from 'lodash';
 import dayjs from 'dayjs';
 import { memoryCache } from './storage';
 
+const dateTypes = ['dateRange', 'timeRange'];
+
 interface BizTableWithCacheProps extends Omit<BizTableProps, 'formRef'> {
   cacheKey: string;
   formRef?: React.MutableRefObject<FormInstance | undefined>;
+  pageParamsField?: string[];
 }
 
 const BizTableWithCache: React.FC<BizTableWithCacheProps> = ({
@@ -20,6 +23,7 @@ const BizTableWithCache: React.FC<BizTableWithCacheProps> = ({
   actionRef: outerActionRef,
   formRef: outerFormRef,
   columns = [],
+  pageParamsField = ['current', 'pageSize'],
   ...restProps
 }) => {
   const cache = memoryCache.get(cacheKey);
@@ -32,32 +36,40 @@ const BizTableWithCache: React.FC<BizTableWithCacheProps> = ({
     return request?.(params, ...args);
   };
 
-  const cacheTransformNames = useMemo(() => {
-    const result: Record<string, any[]> = {};
-    columns.forEach(item => {
+  const cacheTransformInfo = useMemo(() => {
+    const result: Record<string, { type: string; names: any[]; }> = {};
+    columns.forEach((item) => {
       if (typeof item.search === 'object' && Array.isArray(item.search.names)) {
+        const type = item.search.itemType || item.search.valueType || item.valueType || '';
         const name = item.search.name || item.search.dataIndex || (item as any).dataIndex;
-        result[name] = item.search.names;
+        result[name] = {
+          type,
+          names: item.search.names
+        };
       }
-    })
+    });
     return result;
   }, [columns]);
 
   useEffect(() => {
     const formValues = memoryCache.get(cacheKey);
     if (autoRequest !== false || formValues) {
-      if (typeof cacheTransformNames === 'object' && formValues) {
-        Object.keys(cacheTransformNames).forEach((key) => {
-          if (Array.isArray(cacheTransformNames[key]) && cacheTransformNames[key].length > 0) {
-            formValues[key] = cacheTransformNames[key].map((field) => {
-              const val = formValues[field] ? dayjs(formValues[field]) : formValues[field];
+      if (typeof cacheTransformInfo === 'object' && formValues) {
+        Object.keys(cacheTransformInfo).forEach((key) => {
+          const { type, names } = cacheTransformInfo[key];
+          if (Array.isArray(names) && names.length > 0) {
+            formValues[key] = names.map((field) => {
+              let val = formValues[field];
+              if (dateTypes.includes(type)) {
+                val = dayjs(val);
+              }
               delete formValues[field];
               return val;
-            });
+            }).filter(item => item !== null && item !== undefined);
           }
         });
       }
-      formRef.current?.setFieldsValue({ ...omit(formValues, ['current', 'pageSize']) });
+      formRef.current?.setFieldsValue({ ...omit(formValues, pageParamsField) });
       actionRef.current?.submitAndCurrent(formValues?.current || 1);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
