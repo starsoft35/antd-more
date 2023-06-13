@@ -68,8 +68,8 @@ const BizTableWithCache: React.FC<BizTableWithCacheProps> = ({
             }).filter(item => item !== null && item !== undefined);
           }
         });
+        formRef.current?.setFieldsValue({ ...omit(formValues, pageParamsField) });
       }
-      formRef.current?.setFieldsValue({ ...omit(formValues, pageParamsField) });
       actionRef.current?.submitAndCurrent(formValues?.current || 1);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
