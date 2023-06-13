@@ -3,7 +3,7 @@ import { useEffect, useMemo, useRef } from 'react';
 import type { FormInstance } from 'antd';
 import type { BizTableActionType, BizTableProps, BizTableRequest } from 'antd-more';
 import { BizTable } from 'antd-more';
-import { omit } from 'lodash';
+import { omit } from 'ut2';
 import dayjs from 'dayjs';
 import { memoryCache } from './storage';
 

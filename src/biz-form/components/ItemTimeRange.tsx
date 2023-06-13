@@ -2,12 +2,13 @@ import * as React from 'react';
 import { TimePicker } from 'antd';
 import classNames from 'classnames';
 import type { TimeRangePickerProps } from './antd.interface';
+import type { Dayjs } from 'dayjs';
+import { uniqueId } from 'ut2';
 import type { BizFormItemProps } from './Item';
 import BizFormItem from './Item';
 import { transformDayjsTime } from '../_util/dateUtil';
 import { transformDate, InvalidFieldValue } from '../_util/transform';
 import getLabel from '../_util/getLabel';
-import uniqueId from '../_util/uniqueId';
 
 const prefixCls = 'antd-more-form-item-date';
 
@@ -20,7 +21,7 @@ const TimePickerRangeWrapper: React.FC<TimeRangePickerProps> = ({
 }) => {
   return (
     <RangePicker
-      value={transformDayjsTime(value, format as string)}
+      value={transformDayjsTime(value as [Dayjs, Dayjs], format as string)}
       format={format}
       {...restProps}
     />

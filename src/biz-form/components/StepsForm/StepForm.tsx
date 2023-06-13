@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import * as React from 'react';
-import { isPromiseLike } from 'util-helpers';
+import { isPromiseLike } from 'ut2';
 import { Form } from 'antd';
 import type { StepProps } from '../antd.interface';
 import type { BaseFormProps } from '../BaseForm';

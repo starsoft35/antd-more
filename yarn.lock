@@ -2371,17 +2371,26 @@
     "@types/react" "*"
     "@types/reactcss" "*"
 
-"@types/react-dom@^18":
-  version "18.0.11"
-  resolved "https://registry.npmjs.org/@types/react-dom/-/react-dom-18.0.11.tgz#321351c1459bc9ca3d216aefc8a167beec334e33"
-  integrity sha512-O38bPbI2CWtgw/OoQoY+BRelw7uysmXbWvw3nLWO21H1HSh+GOlqPuXshJfjmpNlKiiSDG9cc1JZAaMmVdcTlw==
+"@types/react-dom@^18.2.5":
+  version "18.2.5"
+  resolved "https://registry.npmjs.org/@types/react-dom/-/react-dom-18.2.5.tgz#5c5f13548bda23cd98f50ca4a59107238bfe18f3"
+  integrity sha512-sRQsOS/sCLnpQhR4DSKGTtWFE3FZjpQa86KPVbhUqdYMRZ9FEFcfAytKhR/vUG2rH1oFbOOej6cuD7MFSobDRQ==
   dependencies:
     "@types/react" "*"
 
-"@types/react@*", "@types/react@16 || 17 || 18", "@types/react@^18":
+"@types/react@*", "@types/react@16 || 17 || 18":
   version "18.0.28"
   resolved "https://registry.npmjs.org/@types/react/-/react-18.0.28.tgz#accaeb8b86f4908057ad629a26635fe641480065"
   integrity sha512-RD0ivG1kEztNBdoAK7lekI9M+azSnitIn85h4iOiaLjaTrMjzslhaqCGaI4IyCJ1RljWiLCEu4jyrLLgqxBTew==
+  dependencies:
+    "@types/prop-types" "*"
+    "@types/scheduler" "*"
+    csstype "^3.0.2"
+
+"@types/react@^18.2.12":
+  version "18.2.12"
+  resolved "https://registry.npmjs.org/@types/react/-/react-18.2.12.tgz#95d584338610b78bb9ba0415e3180fb03debdf97"
+  integrity sha512-ndmBMLCgn38v3SntMeoJaIrO6tGHYKMEBohCUmw8HoLLQdRMOIGXfeYaBTLe2lsFaSB3MOK1VXscYFnmLtTSmw==
   dependencies:
     "@types/prop-types" "*"
     "@types/scheduler" "*"
@@ -14420,6 +14429,13 @@ ut2@^1.0.0, ut2@^1.0.1:
   version "1.0.1"
   resolved "https://registry.npmjs.org/ut2/-/ut2-1.0.1.tgz#c7b5561197a93130dee5e9531fae3337a695575c"
   integrity sha512-QgXswmATRt1xmygOo5gorTOIKFDwheEAGe1+0jwYv2BFsvJc6PzGh/RSVaph/YzkcQOuMW0TKWROML9NSKVZSw==
+  dependencies:
+    tslib "^2.5.3"
+
+ut2@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.npmjs.org/ut2/-/ut2-1.0.2.tgz#1e93a878782802218ea7cd4a8a3ff55edc56742d"
+  integrity sha512-AXhD8LbjkN20BT9nXhKTa1ImBaOVhqyOHxaqpzNTfEcVhB8Abt+VXF30zyjNUxLvjBR/Fv3Wisal+TB0icKGqw==
   dependencies:
     tslib "^2.5.3"
 

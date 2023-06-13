@@ -1,10 +1,10 @@
 import React, { useCallback, useState } from 'react';
 import { CaptchaButton } from 'antd-more';
-import { waitTime } from 'util-helpers';
+import { sleep } from 'ut2';
 
 // 接口请求
 async function getValidateCode() {
-  await waitTime();
+  await sleep();
   return;
 }
 

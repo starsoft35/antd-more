@@ -2,6 +2,7 @@ import * as React from 'react';
 import { DatePicker } from 'antd';
 import classNames from 'classnames';
 import type { Dayjs } from 'dayjs';
+import { uniqueId } from 'ut2';
 import type { RangePickerProps, RangePickerDateProps } from './antd.interface';
 import type { Picker } from '../_util/dateUtil';
 import {
@@ -16,10 +17,9 @@ import type { BizFormItemProps } from './Item';
 import BizFormItem from './Item';
 import { transformDate, InvalidFieldValue } from '../_util/transform';
 import getLabel from '../_util/getLabel';
-import uniqueId from '../_util/uniqueId';
 
 const DateRangePickerWrapper: React.FC<RangePickerProps> = ({ value, format, ...restProps }) => {
-  return <DatePicker.RangePicker value={transformDayjsValue(value, format as string)} format={format === DateFormat['quarter'] ? undefined : format} {...restProps} />;
+  return <DatePicker.RangePicker value={transformDayjsValue(value as [Dayjs, Dayjs], format as string)} format={format === DateFormat['quarter'] ? undefined : format} {...restProps} />;
 };
 
 export interface BizFormItemDateRangeProps

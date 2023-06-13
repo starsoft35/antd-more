@@ -1,8 +1,8 @@
-import { waitTime } from "util-helpers";
+import { sleep } from "ut2";
 
 // 获取银行列表
 export async function queryBanks() {
-  await waitTime();
+  await sleep();
   return [
     { "bankShortIndex": "esx", "bankName": "交通银行", "bankIndex": "ocxpf" },
     { "bankShortIndex": "mpqkmgyd", "bankName": "华侨银行（中国）", "bankIndex": "esrawy" },
@@ -17,7 +17,7 @@ export async function queryBranchBanks(data: {
   bankName: string;
 }) {
   console.log(data);
-  await waitTime();
+  await sleep();
   return [
     { "fullBranchName": "中国农业银行", "bankName": "中国民生银行", "city": "九龙", "province": "山西省", "bankPaymentCode": "CMBC" },
     { "fullBranchName": "平安银行", "bankName": "中国银行", "city": "鞍山市", "province": "山东省", "bankPaymentCode": "ZYB" },

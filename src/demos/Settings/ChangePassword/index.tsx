@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { BizForm, BizFormItem, BizFormItemPassword } from 'antd-more';
-import { waitTime } from 'util-helpers';
+import { sleep } from 'ut2';
 import { wrapperValidateNewPassword, wrapperValidateRepeatPassword } from '../../../biz-form/demos/utils/passwordUtils';
 
 const Demo = () => {
@@ -13,7 +13,7 @@ const Demo = () => {
         noReset: true
       }}
       onFinish={async (values) => {
-        await waitTime(2000);
+        await sleep(2000);
         console.log(values);
       }}
       form={form}

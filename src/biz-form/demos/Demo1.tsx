@@ -22,7 +22,7 @@ import {
 } from 'antd-more';
 import { getPCA } from 'lcn';
 import { CycleOptions } from './constants';
-import { waitTime } from 'util-helpers';
+import { sleep } from 'ut2';
 
 const pca = getPCA({ inland: true, fieldNames: { code: 'value', name: 'label' } });
 
@@ -51,7 +51,7 @@ const Demo = () => {
       <BizForm
         name="biz-form-demo1"
         onFinish={async (values) => {
-          await waitTime();
+          await sleep();
           console.log(values);
         }}
         labelWidth={110}
@@ -92,7 +92,7 @@ const Demo = () => {
               label="验证码"
               name="code"
               onGetCaptcha={async () => {
-                await waitTime(2000);
+                await sleep(2000);
               }}
               required={required}
             />

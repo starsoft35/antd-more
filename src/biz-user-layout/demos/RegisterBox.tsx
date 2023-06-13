@@ -4,22 +4,16 @@ import { Card, message } from "antd";
 import { BizForm, BizFormItemInput, BizFormItem, BizFormItemCaptcha, BizFormItemPassword } from "antd-more";
 import SliderCaptcha from 'rc-slider-captcha';
 import { getCaptcha, verifyCaptcha } from './service';
-import { waitTime } from "util-helpers";
-
-let _id = 0;
-function uniqueId(prefix = 'register') {
-  _id++;
-  return `${prefix}${_id}`;
-}
+import { uniqueId, sleep } from 'ut2';
 
 async function sendCode(mobile: string) {
   console.log(mobile);
-  await waitTime();
+  await sleep();
   return true;
 }
 
 const RegisterBox = () => {
-  const formName = React.useMemo(uniqueId, []);
+  const formName = React.useMemo(() => uniqueId('register'), []);
   const [form] = BizForm.useForm();
 
   return (
@@ -34,7 +28,7 @@ const RegisterBox = () => {
         name={formName}
         form={form}
         onFinish={async (values) => {
-          await waitTime(2000);
+          await sleep(2000);
           console.log(values);
         }}
         submitter={{
