@@ -12,7 +12,8 @@ const dateTypes = ['dateRange', 'timeRange'];
 interface BizTableWithCacheProps extends Omit<BizTableProps, 'formRef'> {
   cacheKey: string;
   formRef?: React.MutableRefObject<FormInstance | undefined>;
-  pageParamsField?: string[];
+  pageParamsField?: string[]; // 分页参数，用于设置缓存表单参数时排除
+  useQuerySearch?: boolean; // 如果外部使用query自定义查询和请求，可以设为true
 }
 
 const BizTableWithCache: React.FC<BizTableWithCacheProps> = ({
@@ -24,6 +25,7 @@ const BizTableWithCache: React.FC<BizTableWithCacheProps> = ({
   formRef: outerFormRef,
   columns = [],
   pageParamsField = ['current', 'pageSize'],
+  useQuerySearch = false,
   ...restProps
 }) => {
   const cache = memoryCache.get(cacheKey);
@@ -53,7 +55,7 @@ const BizTableWithCache: React.FC<BizTableWithCacheProps> = ({
 
   useEffect(() => {
     const formValues = memoryCache.get(cacheKey);
-    if (autoRequest !== false || formValues) {
+    if (!useQuerySearch && (autoRequest !== false || formValues)) {
       if (typeof cacheTransformInfo === 'object' && formValues) {
         Object.keys(cacheTransformInfo).forEach((key) => {
           const { type, names } = cacheTransformInfo[key];
