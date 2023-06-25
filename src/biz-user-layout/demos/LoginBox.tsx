@@ -5,7 +5,7 @@ import { uniqueId, sleep } from 'ut2';
 import { BizForm, BizFormItem, BizFormItemInput, BizFormItemPassword } from 'antd-more';
 
 const LoginBox: React.FC<{ showRegisterEnter?: boolean; }> = ({ showRegisterEnter = false }) => {
-  const formName = React.useMemo(() => uniqueId('login'), []);
+  const formName = React.useMemo(() => uniqueId('loginForm_'), []);
   return (
     <Card
       title="账号密码登录"

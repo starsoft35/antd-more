@@ -13,7 +13,7 @@ async function sendCode(mobile: string) {
 }
 
 const RegisterBox = () => {
-  const formName = React.useMemo(() => uniqueId('register'), []);
+  const formName = React.useMemo(() => uniqueId('registerForm_'), []);
   const [form] = BizForm.useForm();
 
   return (
