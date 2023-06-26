@@ -1,8 +1,8 @@
 import * as React from 'react';
 import type { AutoCompleteProps, CascaderProps, FormItemProps } from 'antd';
-import { Cascader, Col, Row, AutoComplete } from 'antd';
+import { Col, Row, AutoComplete } from 'antd';
 import type { BizFormItemProps } from 'antd-more';
-import { BizFormItem } from 'antd-more';
+import { BizFormItem, BizFormItemCascader } from 'antd-more';
 
 interface ItemBranchBankAddressProps<DataNodeType = any>
   extends Omit<BizFormItemProps, 'name' | 'transform'>,
@@ -36,7 +36,7 @@ const ItemBranchBankAddress: React.FC<ItemBranchBankAddressProps> = ({
     <BizFormItem required={required} style={{ marginBottom: 0, ...style }} {...restProps}>
       <Row gutter={10}>
         <Col span={24} md={12} lg={8} {...cascaderColProps}>
-          <BizFormItem
+          <BizFormItemCascader
             name={names[0]}
             rules={[
               {
@@ -52,16 +52,13 @@ const ItemBranchBankAddress: React.FC<ItemBranchBankAddressProps> = ({
                 },
               },
             ]}
+            placeholder={`请选择${labels[0]}`}
+            options={options}
+            fieldNames={fieldNames}
+            allowClear={false}
+            cascaderProps={cascaderProps}
             {...cascaderFormItemProps}
-          >
-            <Cascader
-              placeholder={`请选择${labels[0]}`}
-              options={options}
-              fieldNames={fieldNames}
-              allowClear={false}
-              {...cascaderProps}
-            />
-          </BizFormItem>
+          />
         </Col>
         <Col span={24} md={12} lg={16} {...selectColProps}>
           <BizFormItem
