@@ -5,7 +5,7 @@ group:
 toc: content
 ---
 
-# 银行支行地址 - ItemBranchBankAddress
+# 银行支行地址
 
 银行支行地址列表与`银行列表`和`银行支行省市`联动。
 
@@ -14,3 +14,7 @@ toc: content
 ### 基础用法
 
 <code src='../../src/demos/ItemBranchBankAddress/basic.tsx'></code>
+
+### 拆分
+
+<code src='../../src/demos/ItemBranchBankAddress/split.tsx'></code>
