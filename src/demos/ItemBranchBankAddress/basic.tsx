@@ -86,7 +86,7 @@ function Demo() {
         }}
         required
       />
-      <BizFormItem label='开户支行' required>
+      <BizFormItem label='开户支行' required style={{ marginBottom: 0 }}>
         <Row gutter={10}>
           <Col span={24} md={12} lg={8}>
             <BizFormItemCascader
