@@ -62,10 +62,12 @@ const BizTableWithCache: React.FC<BizTableWithCacheProps> = ({
           if (Array.isArray(names) && names.length > 0) {
             formValues[key] = names.map((field) => {
               let val = formValues[field];
-              if (dateTypes.includes(type)) {
-                val = dayjs(val);
+              if (val) {
+                if (dateTypes.includes(type)) {
+                  val = dayjs(val);
+                }
+                delete formValues[field];
               }
-              delete formValues[field];
               return val;
             }).filter(item => item !== null && item !== undefined);
           }
