@@ -41,7 +41,6 @@ function Demo() {
 
   React.useEffect(() => {
     mutateBranchData([]);
-
     if (bankName && Array.isArray(branchBankAddressCode) && branchBankAddressCode.length > 0) {
       runQueryBranchBanks({
         bankName,
