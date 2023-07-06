@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import type { InputNumberProps } from 'antd';
 import { InputNumber } from 'antd';
-import { isValidNumber } from 'util-helpers';
-import { plus } from 'util-helpers';
+import { isValidNumber, plus, minus } from 'util-helpers';
 import styles from './index.module.less';
 
 export interface InputNumberFeeProps extends InputNumberProps {
   beforeValue: string | number;
-  forceRenderInitialValue?: boolean;
 }
 
 const InputNumberFee: React.FC<InputNumberFeeProps> = ({
@@ -16,7 +14,7 @@ const InputNumberFee: React.FC<InputNumberFeeProps> = ({
   onChange,
   precision = 4,
   step = 0.1,
-  forceRenderInitialValue = false,
+  onBlur,
   ...restProps
 }) => {
   const [inputValue, setInputValue] = useState<string | number | null>();
@@ -25,22 +23,25 @@ const InputNumberFee: React.FC<InputNumberFeeProps> = ({
     step,
   };
   const handleChange = (val: string | number | null) => {
-    // console.log(val);
-    setInputValue(val);
     const realVal = val ? val : 0;
     onChange?.(plus(beforeValue, realVal));
   };
 
+  const handleBlur = (e: any) => {
+    onBlur?.(e);
+    if (inputValue === '' || inputValue === void 0) {
+      onChange?.(beforeValue);
+    }
+  }
+
   useEffect(() => {
     if (
-      forceRenderInitialValue &&
-      !inputValue &&
       isValidNumber(value, true) &&
       isValidNumber(beforeValue, true)
     ) {
-      setInputValue(Number(value) - Number(beforeValue));
+      setInputValue(minus(value!, beforeValue));
     }
-  }, [inputValue, value, forceRenderInitialValue, beforeValue]);
+  }, [value, beforeValue]);
 
   return (
     <div className={styles.inputNumberFee}>
@@ -50,6 +51,7 @@ const InputNumberFee: React.FC<InputNumberFeeProps> = ({
         onChange={handleChange}
         value={inputValue}
         min={0}
+        onBlur={handleBlur}
         {...commonProps}
         {...restProps}
       />

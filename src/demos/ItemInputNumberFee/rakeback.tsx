@@ -94,7 +94,6 @@ function Demo() {
                         gte={0.21}
                         lte={0.42}
                         required
-                        forceRenderInitialValue
                       />
                     </Col>
                     <Col xl={12} xs={24}>
@@ -113,7 +112,6 @@ function Demo() {
                         gte={0.21}
                         lte={0.42}
                         required
-                        forceRenderInitialValue
                       />
                     </Col>
                     <Col xl={12} xs={24}>
@@ -124,7 +122,6 @@ function Demo() {
                         gte={0.21}
                         lte={0.42}
                         required
-                        forceRenderInitialValue
                         style={{ marginBottom: 0 }}
                       />
                     </Col>
