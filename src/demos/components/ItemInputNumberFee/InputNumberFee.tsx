@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import type { InputNumberProps } from 'antd';
 import { InputNumber } from 'antd';
+import { floor } from 'ut2';
 import { isValidNumber, plus, minus } from 'util-helpers';
 import styles from './index.module.less';
 
@@ -23,7 +24,7 @@ const InputNumberFee: React.FC<InputNumberFeeProps> = ({
     step,
   };
   const handleChange = (val: string | number | null) => {
-    const realVal = val ? val : 0;
+    const realVal = val ? floor(val as number, precision) : 0;
     onChange?.(plus(beforeValue, realVal));
   };
 
