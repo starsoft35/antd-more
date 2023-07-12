@@ -33,7 +33,12 @@ const Settings = () => {
   return (
     <div className={styles.page}>
       <Layout>
-        <Sider style={{ background: colorBgContainer }} width={200}>
+        <Sider
+          breakpoint="lg"
+          collapsedWidth="0"
+          style={{ background: colorBgContainer }}
+          width={200}
+        >
           <Menu
             items={pages}
             style={{ height: '100%' }}
