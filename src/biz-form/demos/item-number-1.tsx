@@ -36,11 +36,13 @@ const Demo = () => {
       <BizFormItemNumber
         label="费率向下舍入"
         name="number5"
-        precision={2}
+        precision={1}
         useFloor
         contentAfter="%"
         gt={0}
         lt={6}
+        step={0.1}
+        initialValue={0}
         tooltip="数字精度向下舍入"
         required
       />
