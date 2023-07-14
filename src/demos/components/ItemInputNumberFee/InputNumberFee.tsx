@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import type { InputNumberProps } from 'antd';
 import { InputNumber } from 'antd';
 import { floor } from 'ut2';
@@ -35,6 +35,13 @@ const InputNumberFee: React.FC<InputNumberFeeProps> = ({
     }
   }
 
+  const handleParser = useCallback((displayValue: any) => {
+    if (displayValue && typeof precision === 'number') {
+      return floor(displayValue, precision);
+    }
+    return displayValue;
+  }, [precision]);
+
   useEffect(() => {
     if (
       isValidNumber(value, true) &&
@@ -53,6 +60,7 @@ const InputNumberFee: React.FC<InputNumberFeeProps> = ({
         value={inputValue}
         min={0}
         onBlur={handleBlur}
+        parser={handleParser}
         {...commonProps}
         {...restProps}
       />

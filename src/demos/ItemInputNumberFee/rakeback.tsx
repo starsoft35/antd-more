@@ -42,6 +42,7 @@ function Demo() {
                         name='standardCreditRate'
                         contentAfter="%"
                         precision={4}
+                        useFloor
                         step={0.1}
                         min={0}
                         gte={0.21}
@@ -55,6 +56,7 @@ function Demo() {
                         name='standardMaxValue'
                         contentAfter="元"
                         precision={2}
+                        useFloor
                         min={0}
                         gte={6}
                         lte={18}
@@ -67,6 +69,7 @@ function Demo() {
                         name='standardDebitRate'
                         contentAfter="%"
                         precision={4}
+                        useFloor
                         step={0.1}
                         min={0}
                         gte={0.21}
