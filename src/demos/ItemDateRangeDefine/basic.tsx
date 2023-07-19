@@ -31,6 +31,9 @@ function Demo() {
         longTermLabel='永久'
         longTermValue='2099-12-31'
         hideOnLongTerm
+      // formItemProps={[{}, {
+      //   contentAfter: <Button icon={<UploadOutlined />}>上传国徽面识别</Button>
+      // }]}
       />
     </BizForm>
   );
