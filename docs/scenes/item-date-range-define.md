@@ -27,6 +27,9 @@ toc: content
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| format | 日期格式，参考 [dayjs](https://day.js.org/docs/en/display/format) | `string` | `'YYYY-MM-DD'` |
+| labels | 开始日期和结束日期的标签，主要用于验证 | `[string, string]` | - |
+| names | 开始日期和结束日期的字段名 | `[string, string]` | - |
 | longTermValue | 长期日期值 | `string` | `'9999-12-31'` |
 | longTermLabel | 长期显示标签 | `ReactNode` | `'长期'` |
+| hideOnLongTerm | 值为长期时隐藏结束日期选择框 | `boolean` | `false` |
+| format | 日期格式，参考 [dayjs](https://day.js.org/docs/en/display/format) | `string` | `'YYYY-MM-DD'` |

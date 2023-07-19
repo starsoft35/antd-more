@@ -1,46 +1,101 @@
-import * as React from 'react';
-import type { BizFormItemProps } from 'antd-more';
-import { BizFormItem } from 'antd-more';
-import type { WrapperDateRangeProps } from './WrapperDateRange';
-import WrapperDateRange from './WrapperDateRange';
+import React, { useMemo } from 'react';
+import { Space } from "antd";
+import type { BizFormItemProps } from "antd-more";
+import { BizForm, BizFormItem, BizFormItemDate } from "antd-more";
+import type { Dayjs } from "dayjs";
+import dayjs from "dayjs";
+import type { DatePickerEndProps } from "./DatePickerEnd";
+import DatePickerEnd from "./DatePickerEnd";
 
-export interface ItemDateRangeDefineProps extends BizFormItemProps, Pick<WrapperDateRangeProps, 'longTermValue' | 'longTermLabel' | 'format'> { }
+type ItemDateRangeDefineProps = Omit<BizFormItemProps, 'name'> & Pick<DatePickerEndProps, 'longTermLabel' | 'longTermValue' | 'hideOnLongTerm' | 'format'> & {
+  labels: [BizFormItemProps['label'], BizFormItemProps['label']],
+  names: [BizFormItemProps['name'], BizFormItemProps['name']],
+  formItemProps?: [BizFormItemProps, BizFormItemProps]
+};
 
 const ItemDateRangeDefine: React.FC<ItemDateRangeDefineProps> = ({
-  longTermValue,
-  longTermLabel,
-  format,
+  longTermValue = '9999-12-31',
+  longTermLabel = '长期',
+  hideOnLongTerm = false,
+  format = 'YYYY-MM-DD',
+  labels,
+  names,
+  formItemProps = [],
+  required = true,
 
-  label,
-  name,
-  required,
+  style,
   ...restProps
 }) => {
-  return (
-    <BizFormItem
-      label={label}
-      name={name}
-      required={required}
-      rules={[
-        {
-          validator(rule, value) {
-            let errMsg = '';
-            if (required && (!Array.isArray(value) || value.length !== 2 || value[0] === void 0 || value[1] === void 0)) {
-              errMsg = `请选择${label}`;
-            }
+  const form = BizForm.useFormInstance();
+  const startDate = BizForm.useWatch(names[0]!, form);
+  const endDate = BizForm.useWatch(names[1]!, form);
 
-            if (errMsg) {
-              return Promise.reject(errMsg);
+  const endDateIsLongTerm = useMemo(() => {
+    const fmtEndDate = dayjs.isDayjs(endDate) ? endDate.format(format as string) : endDate;
+    return fmtEndDate === longTermValue;
+  }, [endDate, format, longTermValue])
+
+  const disabledStartDate = (currentDate: Dayjs) => {
+    if (endDate && !endDateIsLongTerm) {
+      return currentDate > dayjs(endDate);
+    }
+    return false;
+  };
+
+  const disabledEndDate = (currentDate: Dayjs) => {
+    if (startDate) {
+      return currentDate < dayjs(startDate);
+    }
+    return false;
+  };
+
+  return (
+    <BizFormItem required={required} style={{ marginBottom: 0, ...style }} {...restProps}>
+      <Space align="start">
+        <BizFormItemDate
+          label={labels[0]}
+          name={names[0]}
+          required={required}
+          hideLabel
+          pickerProps={{
+            disabledDate: disabledStartDate
+          }}
+          {...formItemProps[0]}
+        />
+        <span style={{ display: 'inline-block', lineHeight: '32px' }}>-</span>
+        <BizFormItem
+          label={labels[1]}
+          name={names[1]}
+          required={required}
+          hideLabel
+          transform={value => dayjs.isDayjs(value) ? value.format(format as string) : value}
+          rules={[
+            {
+              validator(rule, value) {
+                let errMsg = '';
+                if (!value) {
+                  errMsg = required ? `请选择${labels[1]}` : '';
+                }
+                if (errMsg) {
+                  return Promise.reject(errMsg);
+                }
+                return Promise.resolve();
+              }
             }
-            return Promise.resolve();
-          }
-        }
-      ]}
-      {...restProps}
-    >
-      <WrapperDateRange format={format} longTermValue={longTermValue} longTermLabel={longTermLabel} />
+          ]}
+          {...formItemProps[1]}
+        >
+          <DatePickerEnd
+            longTermLabel={longTermLabel}
+            longTermValue={longTermValue}
+            hideOnLongTerm={hideOnLongTerm}
+            format={format}
+            disabledDate={disabledEndDate}
+          />
+        </BizFormItem>
+      </Space>
     </BizFormItem>
   );
-};
+}
 
 export default ItemDateRangeDefine;
