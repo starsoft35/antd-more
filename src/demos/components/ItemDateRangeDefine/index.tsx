@@ -37,17 +37,17 @@ const ItemDateRangeDefine: React.FC<ItemDateRangeDefineProps> = ({
 
   const disabledStartDate = (currentDate: Dayjs) => {
     if (endDate && !endDateIsLongTerm) {
-      return currentDate > dayjs(endDate);
+      return currentDate > dayjs(endDate).endOf('days');
     }
     return false;
-  };
+  }
 
   const disabledEndDate = (currentDate: Dayjs) => {
     if (startDate) {
-      return currentDate < dayjs(startDate);
+      return currentDate < dayjs(startDate).startOf('days');
     }
     return false;
-  };
+  }
 
   return (
     <BizFormItem required={required} style={{ marginBottom: 0, ...style }} {...restProps}>
