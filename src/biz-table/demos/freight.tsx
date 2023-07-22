@@ -83,7 +83,7 @@ function reducer(state, action) {
 const Freight = () => {
   const [state, dispatch] = React.useReducer(reducer, []);
 
-  const columns: BizTableColumnType = [
+  const columns: BizTableColumnType<DataItem> = [
     {
       valueType: 'indexBorder'
     },
@@ -138,7 +138,7 @@ const Freight = () => {
   };
 
   return (
-    <BizTable<DataItem>
+    <BizTable
       autoRequest={false}
       dataSource={data}
       columns={columns}
