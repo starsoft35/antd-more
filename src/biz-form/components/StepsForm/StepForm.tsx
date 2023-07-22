@@ -40,7 +40,7 @@ function StepForm<Values = any>({
       ctx.formArrayRef.current[step] = formProp || form;
     }
     // modal 可能未加载时拿不到 form
-    ctx?.forgetUpdate();
+    ctx?.forceUpdate();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
