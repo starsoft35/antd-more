@@ -14,10 +14,11 @@ export type DatePickerEndProps = DatePickerProps & {
 const DatePickerEnd: React.FC<DatePickerEndProps> = ({
   longTermValue = '9999-12-31',
   longTermLabel = '长期',
-  hideOnLongTerm = false,
+  hideOnLongTerm = true,
   format = 'YYYY-MM-DD',
   value,
   onChange,
+  disabled,
   ...restProps
 }) => {
   const datePickerRef = useRef<any>();
@@ -43,14 +44,19 @@ const DatePickerEnd: React.FC<DatePickerEndProps> = ({
         (!hideOnLongTerm || !valueIsLongTerm) && (
           <DatePicker
             value={!valueIsLongTerm ? (value && !dayjs.isDayjs(value) ? dayjs(value) : value) : undefined}
-            disabled={valueIsLongTerm}
+            disabled={valueIsLongTerm || disabled}
             onChange={onChange}
             ref={datePickerRef}
             {...restProps}
           />
         )
       }
-      <Checkbox style={{ marginTop: 5, marginBottom: 5, whiteSpace: 'nowrap' }} checked={valueIsLongTerm} onChange={handleChangeChecked}>
+      <Checkbox
+        style={{ marginTop: 5, marginBottom: 5, whiteSpace: 'nowrap' }}
+        checked={valueIsLongTerm}
+        onChange={handleChangeChecked}
+        disabled={disabled}
+      >
         {longTermLabel}
       </Checkbox>
     </Space>

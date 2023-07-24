@@ -7,21 +7,22 @@ import dayjs from "dayjs";
 import type { DatePickerEndProps } from "./DatePickerEnd";
 import DatePickerEnd from "./DatePickerEnd";
 
-type ItemDateRangeDefineProps = Omit<BizFormItemProps, 'name'> & Pick<DatePickerEndProps, 'longTermLabel' | 'longTermValue' | 'hideOnLongTerm' | 'format'> & {
+type ItemDateRangeDefineProps = Omit<BizFormItemProps, 'name'> & Pick<DatePickerEndProps, 'longTermLabel' | 'longTermValue' | 'hideOnLongTerm' | 'format' | 'disabled'> & {
   labels: [BizFormItemProps['label'], BizFormItemProps['label']],
   names: [BizFormItemProps['name'], BizFormItemProps['name']],
   formItemProps?: [BizFormItemProps, BizFormItemProps]
 };
 
 const ItemDateRangeDefine: React.FC<ItemDateRangeDefineProps> = ({
-  longTermValue = '9999-12-31',
-  longTermLabel = '长期',
-  hideOnLongTerm = false,
-  format = 'YYYY-MM-DD',
+  longTermValue,
+  longTermLabel,
+  hideOnLongTerm,
+  format,
   labels,
   names,
   formItemProps = [],
   required = true,
+  disabled,
 
   style,
   ...restProps
@@ -58,7 +59,8 @@ const ItemDateRangeDefine: React.FC<ItemDateRangeDefineProps> = ({
           required={required}
           hideLabel
           pickerProps={{
-            disabledDate: disabledStartDate
+            disabledDate: disabledStartDate,
+            disabled
           }}
           {...formItemProps[0]}
         />
@@ -91,6 +93,7 @@ const ItemDateRangeDefine: React.FC<ItemDateRangeDefineProps> = ({
             hideOnLongTerm={hideOnLongTerm}
             format={format}
             disabledDate={disabledEndDate}
+            disabled={disabled}
           />
         </BizFormItem>
       </Space>

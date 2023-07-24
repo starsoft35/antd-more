@@ -8,7 +8,10 @@ function Demo() {
       labelWidth={98}
       initialValues={{
         startDate1: '2022-10-10',
-        endDate1: '9999-12-31'
+        endDate1: '9999-12-31',
+
+        startDate3: '2022-10-10',
+        endDate3: '9999-12-31'
       }}
       onFinish={values => {
         console.log(values);
@@ -30,10 +33,17 @@ function Demo() {
         names={['startDate2', 'endDate2']}
         longTermLabel='永久'
         longTermValue='2099-12-31'
-        hideOnLongTerm
+        hideOnLongTerm={false}
       // formItemProps={[{}, {
       //   contentAfter: <Button icon={<UploadOutlined />}>上传国徽面识别</Button>
       // }]}
+      />
+      <ItemDateRangeDefine
+        label='禁选'
+        labels={['证件有效期始', '证件有效期止']}
+        names={['startDate3', 'endDate3']}
+        hideOnLongTerm
+        disabled
       />
     </BizForm>
   );

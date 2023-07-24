@@ -31,5 +31,6 @@ toc: content
 | names | 开始日期和结束日期的字段名 | `[string, string]` | - |
 | longTermValue | 长期日期值 | `string` | `'9999-12-31'` |
 | longTermLabel | 长期显示标签 | `ReactNode` | `'长期'` |
-| hideOnLongTerm | 值为长期时隐藏结束日期选择框 | `boolean` | `false` |
+| hideOnLongTerm | 值为长期时隐藏结束日期选择框 | `boolean` | `true` |
+| disabled | 禁止选择 | `boolean` | - |
 | format | 日期格式，参考 [dayjs](https://day.js.org/docs/en/display/format) | `string` | `'YYYY-MM-DD'` |
