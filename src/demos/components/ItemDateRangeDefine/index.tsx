@@ -14,10 +14,10 @@ type ItemDateRangeDefineProps = Omit<BizFormItemProps, 'name'> & Pick<DatePicker
 };
 
 const ItemDateRangeDefine: React.FC<ItemDateRangeDefineProps> = ({
-  longTermValue,
-  longTermLabel,
-  hideOnLongTerm,
-  format,
+  longTermValue = '9999-12-31',
+  longTermLabel = '长期',
+  hideOnLongTerm = true,
+  format = 'YYYY-MM-DD',
   labels,
   names,
   formItemProps = [],
