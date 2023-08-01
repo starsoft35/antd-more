@@ -33,4 +33,5 @@ toc: content
 | longTermLabel | 长期显示标签 | `ReactNode` | `'长期'` |
 | hideOnLongTerm | 值为长期时隐藏结束日期选择框 | `boolean` | `true` |
 | disabled | 禁止选择 | `boolean` | - |
+| strict | 严格模式。开启后，开始日期不能大于今天，结束日期不能小于今天。 | `boolean` | `false` |
 | format | 日期格式，参考 [dayjs](https://day.js.org/docs/en/display/format) | `string` | `'YYYY-MM-DD'` |

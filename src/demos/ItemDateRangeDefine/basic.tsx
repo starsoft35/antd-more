@@ -45,6 +45,12 @@ function Demo() {
         hideOnLongTerm
         disabled
       />
+      <ItemDateRangeDefine
+        label='严格模式'
+        labels={['证件有效期始', '证件有效期止']}
+        names={['startDate4', 'endDate4']}
+        strict
+      />
     </BizForm>
   );
 }

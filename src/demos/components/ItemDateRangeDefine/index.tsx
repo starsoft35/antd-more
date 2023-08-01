@@ -10,7 +10,8 @@ import DatePickerEnd from "./DatePickerEnd";
 type ItemDateRangeDefineProps = Omit<BizFormItemProps, 'name'> & Pick<DatePickerEndProps, 'longTermLabel' | 'longTermValue' | 'hideOnLongTerm' | 'format' | 'disabled'> & {
   labels: [BizFormItemProps['label'], BizFormItemProps['label']],
   names: [BizFormItemProps['name'], BizFormItemProps['name']],
-  formItemProps?: [BizFormItemProps, BizFormItemProps]
+  formItemProps?: [BizFormItemProps, BizFormItemProps];
+  strict?: boolean;
 };
 
 const ItemDateRangeDefine: React.FC<ItemDateRangeDefineProps> = ({
@@ -18,6 +19,7 @@ const ItemDateRangeDefine: React.FC<ItemDateRangeDefineProps> = ({
   longTermLabel = '长期',
   hideOnLongTerm = true,
   format = 'YYYY-MM-DD',
+  strict = false,
   labels,
   names,
   formItemProps = [],
@@ -37,15 +39,21 @@ const ItemDateRangeDefine: React.FC<ItemDateRangeDefineProps> = ({
   }, [endDate, format, longTermValue])
 
   const disabledStartDate = (currentDate: Dayjs) => {
+    if (strict && currentDate > dayjs().endOf('day')) {
+      return true;
+    }
     if (endDate && !endDateIsLongTerm) {
-      return currentDate > dayjs(endDate).endOf('days');
+      return currentDate > dayjs(endDate).endOf('day');
     }
     return false;
   }
 
   const disabledEndDate = (currentDate: Dayjs) => {
+    if (strict && currentDate < dayjs().startOf('day')) {
+      return true;
+    }
     if (startDate) {
-      return currentDate < dayjs(startDate).startOf('days');
+      return currentDate < dayjs(startDate).startOf('day');
     }
     return false;
   }
