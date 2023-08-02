@@ -58,6 +58,13 @@ const ItemDateRangeDefine: React.FC<ItemDateRangeDefineProps> = ({
     return false;
   }
 
+  const transform = (val: any) => {
+    if (val) {
+      return dayjs(val).format(format as string);
+    }
+    return val;
+  }
+
   return (
     <BizFormItem required={required} style={{ marginBottom: 0, ...style }} {...restProps}>
       <Space align="start">
@@ -70,6 +77,7 @@ const ItemDateRangeDefine: React.FC<ItemDateRangeDefineProps> = ({
             disabledDate: disabledStartDate,
             disabled
           }}
+          transform={transform}
           {...formItemProps[0]}
         />
         <span style={{ display: 'inline-block', lineHeight: '32px' }}>-</span>
@@ -78,7 +86,7 @@ const ItemDateRangeDefine: React.FC<ItemDateRangeDefineProps> = ({
           name={names[1]}
           required={required}
           hideLabel
-          transform={value => dayjs.isDayjs(value) ? value.format(format as string) : value}
+          transform={transform}
           rules={[
             {
               validator(rule, value) {
