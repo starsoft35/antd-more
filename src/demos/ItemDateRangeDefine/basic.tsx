@@ -50,6 +50,7 @@ function Demo() {
         labels={['证件有效期始', '证件有效期止']}
         names={['startDate4', 'endDate4']}
         strict
+        tooltip='开启后，开始日期不能大于今天，结束日期不能小于今天。'
       />
     </BizForm>
   );

@@ -7,6 +7,8 @@ import dayjs from "dayjs";
 import type { DatePickerEndProps } from "./DatePickerEnd";
 import DatePickerEnd from "./DatePickerEnd";
 
+const unit = 'day';
+
 type ItemDateRangeDefineProps = Omit<BizFormItemProps, 'name'> & Pick<DatePickerEndProps, 'longTermLabel' | 'longTermValue' | 'hideOnLongTerm' | 'format' | 'disabled'> & {
   labels: [BizFormItemProps['label'], BizFormItemProps['label']],
   names: [BizFormItemProps['name'], BizFormItemProps['name']],
@@ -39,21 +41,21 @@ const ItemDateRangeDefine: React.FC<ItemDateRangeDefineProps> = ({
   }, [endDate, format, longTermValue])
 
   const disabledStartDate = (currentDate: Dayjs) => {
-    if (strict && currentDate > dayjs().endOf('day')) {
+    if (strict && currentDate > dayjs().endOf(unit)) {
       return true;
     }
     if (endDate && !endDateIsLongTerm) {
-      return currentDate > dayjs(endDate).endOf('day');
+      return currentDate > dayjs(endDate).endOf(unit);
     }
     return false;
   }
 
   const disabledEndDate = (currentDate: Dayjs) => {
-    if (strict && currentDate < dayjs().startOf('day')) {
+    if (strict && currentDate < dayjs().startOf(unit)) {
       return true;
     }
     if (startDate) {
-      return currentDate < dayjs(startDate).startOf('day');
+      return currentDate < dayjs(startDate).startOf(unit);
     }
     return false;
   }
@@ -84,6 +86,7 @@ const ItemDateRangeDefine: React.FC<ItemDateRangeDefineProps> = ({
         <BizFormItem
           label={labels[1]}
           name={names[1]}
+          dependencies={[names[0]]}
           required={required}
           hideLabel
           transform={transform}
@@ -93,6 +96,12 @@ const ItemDateRangeDefine: React.FC<ItemDateRangeDefineProps> = ({
                 let errMsg = '';
                 if (!value) {
                   errMsg = required ? `请选择${labels[1]}` : '';
+                } else {
+                  // 避免通过 setFieldValue 赋值导致结束日期小雨开始日期
+                  const startDate = form.getFieldValue(names[0]);
+                  if (startDate && dayjs(value).startOf(unit).diff(dayjs(startDate).startOf(unit), unit) < 0) {
+                    errMsg = '不能小于开始日期';
+                  }
                 }
                 if (errMsg) {
                   return Promise.reject(errMsg);
