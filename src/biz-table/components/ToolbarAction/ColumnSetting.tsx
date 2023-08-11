@@ -149,7 +149,9 @@ const ColumnSetting = () => {
           onDrop={onDrop}
         />
       }
-      arrowPointAtCenter
+      arrow={{
+        pointAtCenter: true
+      }}
       placement="bottomRight"
       trigger={['click']}
     >
