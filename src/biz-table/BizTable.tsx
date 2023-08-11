@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Table, Card, Space, ConfigProvider } from 'antd';
 import type { TableProps, SpaceProps, CardProps, FormInstance } from 'antd';
 import classnames from 'classnames';
+import type { AsyncOptions } from 'rc-hooks';
 import { useUpdateEffect, usePagination } from 'rc-hooks';
 import { isEmpty, omit } from 'ut2';
 import type { SearchFormProps } from './SearchForm';
@@ -51,6 +52,7 @@ export declare interface BizTableProps<RecordType = any>
   tableClassName?: string;
   tableStyle?: React.CSSProperties;
   fullScreenBackgroundColor?: string; // 全屏时的背景颜色
+  asyncOptions?: Pick<AsyncOptions, 'cacheKey' | 'cacheTime' | 'pollingInterval' | 'pollingWhenHidden' | 'refreshOnWindowFocus' | 'focusTimespan'>;
 
   // 以下供 EditableBizTable 使用
   editableKeys?: (string | number)[];
@@ -80,6 +82,7 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
     tableClassName,
     tableStyle,
     fullScreenBackgroundColor = '#fff',
+    asyncOptions,
 
     request,
     ready = true,
@@ -392,8 +395,9 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
       }));
     },
     {
+      ...asyncOptions,
       autoRun: false,
-      defaultPageSize: (paginationProp && paginationProp.pageSize) || 10
+      defaultPageSize: (paginationProp && paginationProp.pageSize) || 10,
     }
   );
 

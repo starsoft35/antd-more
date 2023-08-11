@@ -26,6 +26,7 @@ const BizTableWithCache: React.FC<BizTableWithCacheProps> = ({
   columns = [],
   pageParamsField = ['current', 'pageSize'],
   useQuerySearch = false,
+  asyncOptions,
   ...restProps
 }) => {
   const cache = memoryCache.get(cacheKey);
@@ -87,6 +88,10 @@ const BizTableWithCache: React.FC<BizTableWithCacheProps> = ({
       formRef={formRef}
       actionRef={actionRef}
       columns={columns}
+      asyncOptions={{
+        cacheKey,
+        ...asyncOptions
+      }}
       {...restProps}
     />
   );
