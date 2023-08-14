@@ -9,7 +9,7 @@ import DatePickerEnd from "./DatePickerEnd";
 
 const unit = 'day';
 
-type ItemDateRangeDefineProps = Omit<BizFormItemProps, 'name'> & Pick<DatePickerEndProps, 'longTermLabel' | 'longTermValue' | 'hideOnLongTerm' | 'format' | 'disabled'> & {
+type ItemDateRangeDefineProps = Omit<BizFormItemProps, 'name'> & Pick<DatePickerEndProps, 'infinityLabel' | 'infinityValue' | 'hideOnInfinity' | 'format' | 'disabled'> & {
   labels: [BizFormItemProps['label'], BizFormItemProps['label']],
   names: [BizFormItemProps['name'], BizFormItemProps['name']],
   formItemProps?: [BizFormItemProps, BizFormItemProps];
@@ -17,9 +17,9 @@ type ItemDateRangeDefineProps = Omit<BizFormItemProps, 'name'> & Pick<DatePicker
 };
 
 const ItemDateRangeDefine: React.FC<ItemDateRangeDefineProps> = ({
-  longTermValue = '9999-12-31',
-  longTermLabel = '长期',
-  hideOnLongTerm = true,
+  infinityValue = '9999-12-31',
+  infinityLabel = '长期',
+  hideOnInfinity = true,
   format = 'YYYY-MM-DD',
   strict = false,
   labels,
@@ -35,16 +35,16 @@ const ItemDateRangeDefine: React.FC<ItemDateRangeDefineProps> = ({
   const startDate = BizForm.useWatch(names[0]!, form);
   const endDate = BizForm.useWatch(names[1]!, form);
 
-  const endDateIsLongTerm = useMemo(() => {
+  const endDateIsInfinity = useMemo(() => {
     const fmtEndDate = dayjs.isDayjs(endDate) ? endDate.format(format as string) : endDate;
-    return fmtEndDate === longTermValue;
-  }, [endDate, format, longTermValue])
+    return fmtEndDate === infinityValue;
+  }, [endDate, format, infinityValue])
 
   const disabledStartDate = (currentDate: Dayjs) => {
     if (strict && currentDate > dayjs().endOf(unit)) {
       return true;
     }
-    if (endDate && !endDateIsLongTerm) {
+    if (endDate && !endDateIsInfinity) {
       return currentDate > dayjs(endDate).endOf(unit);
     }
     return false;
@@ -113,9 +113,9 @@ const ItemDateRangeDefine: React.FC<ItemDateRangeDefineProps> = ({
           {...formItemProps[1]}
         >
           <DatePickerEnd
-            longTermLabel={longTermLabel}
-            longTermValue={longTermValue}
-            hideOnLongTerm={hideOnLongTerm}
+            infinityLabel={infinityLabel}
+            infinityValue={infinityValue}
+            hideOnInfinity={hideOnInfinity}
             format={format}
             disabledDate={disabledEndDate}
             disabled={disabled}

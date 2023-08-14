@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { BizForm } from 'antd-more';
-import ItemDateRangeDefine from '../components/ItemDateRangeDefine';
+import ItemDateRangeWithInfinity from '../components/ItemDateRangeWithInfinity';
 
 function Demo() {
   return (
@@ -17,35 +17,35 @@ function Demo() {
         console.log(values);
       }}
     >
-      <ItemDateRangeDefine
+      <ItemDateRangeWithInfinity
         label='证件有效期'
         labels={['证件有效期始', '证件有效期止']}
         names={['startDate', 'endDate']}
       />
-      <ItemDateRangeDefine
+      <ItemDateRangeWithInfinity
         label='初始值'
         labels={['证件有效期始', '证件有效期止']}
         names={['startDate1', 'endDate1']}
       />
-      <ItemDateRangeDefine
+      <ItemDateRangeWithInfinity
         label='自定义'
         labels={['证件有效期始', '证件有效期止']}
         names={['startDate2', 'endDate2']}
-        longTermLabel='永久'
-        longTermValue='2099-12-31'
-        hideOnLongTerm={false}
+        infinityLabel='永久'
+        infinityValue='2099-12-31'
+        hideOnInfinity={false}
       // formItemProps={[{}, {
       //   contentAfter: <Button icon={<UploadOutlined />}>上传国徽面识别</Button>
       // }]}
       />
-      <ItemDateRangeDefine
+      <ItemDateRangeWithInfinity
         label='禁选'
         labels={['证件有效期始', '证件有效期止']}
         names={['startDate3', 'endDate3']}
-        hideOnLongTerm
+        hideOnInfinity
         disabled
       />
-      <ItemDateRangeDefine
+      <ItemDateRangeWithInfinity
         label='严格模式'
         labels={['证件有效期始', '证件有效期止']}
         names={['startDate4', 'endDate4']}

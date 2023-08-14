@@ -28,7 +28,7 @@ toc: content
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | fssid | 静态文件图片的 fssid 。<br/>支持单张/多张配置。 | `string \| string[] \| { fileId: string; fileName: string } \| { fileId: string; fileName: string }[]` | - |
-| enabledDownload | 是否开启点击名称下载。<br/>需要有 `name` ，并且 `url` 使用的是 `blob` 才生效。 | `boolean` | - |
+| enabledDownload | 是否开启点击名称下载。<br/>需要有 `name` ，并且 `url` 使用的是 `blob` 才生效。 | `boolean` | `false` |
 
 ### 文件上传、下载工具方法
 

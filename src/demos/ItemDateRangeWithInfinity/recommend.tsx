@@ -7,7 +7,7 @@ enum IdCardExpireDate {
   Five = 5,
   Ten = 10,
   Twenty = 20,
-  LongTerm = 9999
+  Infinity = 9999
 }
 const IdCardExpireDateOptions = [
   {
@@ -24,7 +24,7 @@ const IdCardExpireDateOptions = [
   },
   {
     label: '长期',
-    value: IdCardExpireDate.LongTerm
+    value: IdCardExpireDate.Infinity
   },
 ];
 

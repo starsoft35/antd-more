@@ -6,15 +6,15 @@ import type { CheckboxChangeEvent } from "antd/es/checkbox";
 
 
 export type DatePickerEndProps = DatePickerProps & {
-  longTermValue?: string;
-  longTermLabel?: string;
-  hideOnLongTerm?: boolean;
+  infinityValue?: string;
+  infinityLabel?: string;
+  hideOnInfinity?: boolean;
 }
 
 const DatePickerEnd: React.FC<DatePickerEndProps> = ({
-  longTermValue = '9999-12-31',
-  longTermLabel = '长期',
-  hideOnLongTerm = true,
+  infinityValue = '9999-12-31',
+  infinityLabel = '长期',
+  hideOnInfinity = true,
   format = 'YYYY-MM-DD',
   value,
   onChange,
@@ -22,14 +22,14 @@ const DatePickerEnd: React.FC<DatePickerEndProps> = ({
   ...restProps
 }) => {
   const datePickerRef = useRef<any>();
-  const valueIsLongTerm = useMemo(() => {
+  const valueIsInfinity = useMemo(() => {
     const fmtValue = dayjs.isDayjs(value) ? value.format(format as string) : value;
-    return fmtValue === longTermValue;
-  }, [value, format, longTermValue]);
+    return fmtValue === infinityValue;
+  }, [value, format, infinityValue]);
 
   const handleChangeChecked = (e: CheckboxChangeEvent) => {
     if (e.target.checked) {
-      onChange?.(dayjs(longTermValue), longTermValue);
+      onChange?.(dayjs(infinityValue), infinityValue);
     } else {
       onChange?.(null, '');
       setTimeout(() => {
@@ -41,10 +41,10 @@ const DatePickerEnd: React.FC<DatePickerEndProps> = ({
   return (
     <Space>
       {
-        (!hideOnLongTerm || !valueIsLongTerm) && (
+        (!hideOnInfinity || !valueIsInfinity) && (
           <DatePicker
-            value={!valueIsLongTerm ? (value && !dayjs.isDayjs(value) ? dayjs(value) : value) : undefined}
-            disabled={valueIsLongTerm || disabled}
+            value={!valueIsInfinity ? (value && !dayjs.isDayjs(value) ? dayjs(value) : value) : undefined}
+            disabled={valueIsInfinity || disabled}
             onChange={onChange}
             ref={datePickerRef}
             {...restProps}
@@ -53,11 +53,11 @@ const DatePickerEnd: React.FC<DatePickerEndProps> = ({
       }
       <Checkbox
         style={{ marginTop: 5, marginBottom: 5, whiteSpace: 'nowrap' }}
-        checked={valueIsLongTerm}
+        checked={valueIsInfinity}
         onChange={handleChangeChecked}
         disabled={disabled}
       >
-        {longTermLabel}
+        {infinityLabel}
       </Checkbox>
     </Space>
   );
