@@ -23,3 +23,9 @@ toc: content
 | --- | --- | --- | --- |
 | name | 字段名，同时配置 `names` 时，该值将会失效。 | `string` | - |
 | names | 开始和结束的字段名，配置该值后，原来的 `name` 将失效。如 `['startDate', 'endDate']` 。 | `[string, string]` | - |
+
+## 常见问题
+
+### 手动修改日期范围后，再切换月份，日期的选择面板不会动态跟随
+
+参考 [日期组件时间范围动态跟随（can rangepicker component provied prop to achieve paneltime dynamically followed pre chosen time）](https://github.com/ant-design/ant-design/issues/40680)，官方还未解决。
