@@ -55,6 +55,7 @@ const Demo = () => {
       pagination={{
         pageSize: 5
       }}
+      compact
     />
   );
 };

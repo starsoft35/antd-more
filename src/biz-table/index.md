@@ -33,6 +33,8 @@ toc: content
 
 ### 普通表格
 
+设置 `compact` 将去掉表格容器的内间距和阴影，一般用于纯表格，详情页展示。
+
 <code src="./demos/Demo3.tsx" background="#f5f5f5"></code>
 
 ### formItems 配置
@@ -98,6 +100,7 @@ toc: content
 | actionRef | 常用操作引用，便于自定义触发 | `MutableRefObject<ActionType \| undefined>` | - |
 | tableRender | 自定义表格渲染 | `(props: BizTableProps<RecordType>, dom: ReactElement) => ReactNode` | - |
 | asyncOptions | 异步请求配置，同 [useAsync](https://doly-dev.github.io/rc-hooks/latest/index.html#/async/use-async#params) 部分参数。 | `{ cacheKey?: string; cacheTime?: number; pollingInterval?: number; pollingWhenHidden?: boolean; refreshOnWindowFocus?: boolean; focusTimespan?: number; }` | - |
+| compact | 表格容器去掉内间距和阴影。一般纯表格情况下使用。 | `boolean` | `false` |
 
 ### Request 请求方法
 

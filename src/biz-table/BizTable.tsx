@@ -53,6 +53,7 @@ export declare interface BizTableProps<RecordType = any>
   tableStyle?: React.CSSProperties;
   fullScreenBackgroundColor?: string; // 全屏时的背景颜色
   asyncOptions?: Pick<AsyncOptions, 'cacheKey' | 'cacheTime' | 'pollingInterval' | 'pollingWhenHidden' | 'refreshOnWindowFocus' | 'focusTimespan'>;
+  compact?: boolean; // 去掉表格容器的阴影、内间距，一般只有纯表格的情况下使用。
 
   // 以下供 EditableBizTable 使用
   editableKeys?: (string | number)[];
@@ -83,6 +84,7 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
     tableStyle,
     fullScreenBackgroundColor = '#fff',
     asyncOptions,
+    compact = false,
 
     request,
     ready = true,
@@ -508,6 +510,7 @@ function BizTable<RecordType extends object = any>(props: BizTableProps<RecordTy
     <Card
       bordered={false}
       {...tableCardProps}
+      className={classnames({ [`${prefixCls}-compact`]: compact }, tableCardProps?.className)}
       bodyStyle={{ ...tableCardStyle, ...tableCardProps?.bodyStyle }}
     >
       {toolbarRender ? toolbarRender(toolbarDom) : toolbarDom}
