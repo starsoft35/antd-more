@@ -2,7 +2,7 @@ import { CreditCardOutlined, MobileOutlined } from '@ant-design/icons';
 import { Col, ConfigProvider, Row, Space } from 'antd';
 import * as React from 'react';
 import { BizForm, BizFormItem, BizFormItemNumber } from 'antd-more';
-import ItemInputNumberFee from '../components/ItemInputNumberFee';
+import ItemNumberFee from '../components/ItemNumberFee';
 import styles from './rakeback.module.less';
 
 function Demo() {
@@ -90,7 +90,7 @@ function Demo() {
                 <td>
                   <Row style={{ marginTop: 24 }}>
                     <Col xl={12} xs={24}>
-                      <ItemInputNumberFee
+                      <ItemNumberFee
                         label="微信扫码"
                         name='wxScanPaymentRate'
                         beforeValue={0.21}
@@ -100,7 +100,7 @@ function Demo() {
                       />
                     </Col>
                     <Col xl={12} xs={24}>
-                      <ItemInputNumberFee
+                      <ItemNumberFee
                         label={
                           <div>
                             银联二维码小额
@@ -118,7 +118,7 @@ function Demo() {
                       />
                     </Col>
                     <Col xl={12} xs={24}>
-                      <ItemInputNumberFee
+                      <ItemNumberFee
                         label="支付宝扫码"
                         name='zfbScanPaymentRate'
                         beforeValue={0.21}

@@ -2,7 +2,6 @@ import React from 'react';
 import type { BizFormItemNumberProps } from 'antd-more';
 import { BizFormItemNumber } from 'antd-more';
 import classnames from 'classnames';
-import { divide, times } from 'util-helpers';
 import styles from './index.module.less';
 
 export interface ItemNumberMoneyProps extends BizFormItemNumberProps {
@@ -18,14 +17,7 @@ const ItemNumberMoney: React.FC<ItemNumberMoneyProps> = ({
   return (
     <BizFormItemNumber
       {...restProps}
-      formatter={value => {
-        if (value || value === 0) {
-          const numValue = Number(value);
-          const floorValue = divide(Math.floor(times(numValue, 100)), 100);
-          return `${floorValue}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-        }
-        return String(value) || '';
-      }}
+      useFloor
       precision={2}
       min={0}
       inputProps={{

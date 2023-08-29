@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { BizForm } from 'antd-more';
-import ItemInputNumberFee from '../components/ItemInputNumberFee';
+import ItemNumberFee from '../components/ItemNumberFee';
 
 function Demo() {
   return (
@@ -10,7 +10,7 @@ function Demo() {
         console.log(values);
       }}
     >
-      <ItemInputNumberFee
+      <ItemNumberFee
         label='微信扫码'
         name='wxscanRate'
         beforeValue={0.21}

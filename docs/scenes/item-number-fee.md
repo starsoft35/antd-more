@@ -4,7 +4,7 @@ group:
   order: 2
 ---
 
-# 费率输入 - ItemInputNumberFee
+# 费率输入 - ItemNumberFee
 
 前置值+输入值=当前值。
 
@@ -12,11 +12,11 @@ group:
 
 ### 基础用法
 
-<code src='../../src/demos/ItemInputNumberFee/basic.tsx'></code>
+<code src='../../src/demos/ItemNumberFee/basic.tsx'></code>
 
 ### 结算信息
 
-<code src='../../src/demos/ItemInputNumberFee/rakeback.tsx'></code>
+<code src='../../src/demos/ItemNumberFee/rakeback.tsx'></code>
 
 ## API
 

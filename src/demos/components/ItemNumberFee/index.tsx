@@ -5,7 +5,7 @@ import { BizFormItem } from 'antd-more';
 import type { InputNumberFeeProps } from './InputNumberFee';
 import InputNumberFee from './InputNumberFee';
 
-interface ItemInputNumberFeeProps
+interface ItemNumberFeeProps
   extends BizFormItemProps,
   Pick<InputNumberFeeProps, 'beforeValue'> {
   inputProps?: InputNumberFeeProps;
@@ -13,7 +13,7 @@ interface ItemInputNumberFeeProps
   lte?: number;
 }
 
-const ItemInputNumberFee: React.FC<ItemInputNumberFeeProps> = ({
+const ItemNumberFee: React.FC<ItemNumberFeeProps> = ({
   beforeValue,
   lte,
   gte,
@@ -57,4 +57,4 @@ const ItemInputNumberFee: React.FC<ItemInputNumberFeeProps> = ({
   );
 };
 
-export default ItemInputNumberFee;
+export default ItemNumberFee;
