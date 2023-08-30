@@ -24,7 +24,7 @@ export default defineConfig({
   // history: {
   //   type: 'hash'
   // },
-  base: isDev ? '/' : '/antd-more/latest/',
+  base: isDev ? '/' : `/antd-more/${version}/`,
   publicPath,
   outputPath,
   legacy: {
