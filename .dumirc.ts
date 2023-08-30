@@ -14,19 +14,15 @@ const preVersionSiteRoot = `refs/heads/v${preMajorVersionNumber}`;
 
 const versionPath = process.env.BUILD_DOC_VERSION ? versionSiteRoot : 'latest';
 
-const serverRootDirect = !isDev ? `${baseUrl}/${name}/` : '/';
 const logo = `${baseUrl}/logo.png`;
 const favicons = [`${baseUrl}/favicon.ico`];
-
 const outputPath = 'site';
-const publicPath = serverRootDirect + versionPath + '/';
+const base = isDev ? '/' : `/${name}/${versionPath}/`;
+const publicPath = isDev ? '/' : `${baseUrl}${base}/`;
 
 export default defineConfig({
   hash: true,
-  // history: {
-  //   type: 'hash'
-  // },
-  base: isDev ? '/' : `/${name}/${versionPath}/`,
+  base,
   publicPath,
   outputPath,
   legacy: {
