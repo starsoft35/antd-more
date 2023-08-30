@@ -1,30 +1,32 @@
 import { defineConfig } from 'dumi';
 import pkg from './package.json';
 
+const { name, version } = pkg;
+const baseUrl = 'https://doly-dev.github.io';
+
 const isDev = process.env.NODE_ENV === 'development';
 
-const MajorVersionNumber = Number(pkg.version.split('.')[0]);
+const MajorVersionNumber = Number(version.split('.')[0]);
 const versionSiteRoot = `refs/heads/v${MajorVersionNumber}`;
 
 const preMajorVersionNumber = MajorVersionNumber - 1;
 const preVersionSiteRoot = `refs/heads/v${preMajorVersionNumber}`;
 
-const version = process.env.BUILD_DOC_VERSION ? versionSiteRoot : 'latest';
+const versionPath = process.env.BUILD_DOC_VERSION ? versionSiteRoot : 'latest';
 
-const serverRootDirect =
-  !isDev ? 'https://doly-dev.github.io/antd-more/' : '/';
-const logo = 'https://doly-dev.github.io/logo.png';
-const favicons = ['https://doly-dev.github.io/favicon.ico'];
+const serverRootDirect = !isDev ? `${baseUrl}/${name}/` : '/';
+const logo = `${baseUrl}/logo.png`;
+const favicons = [`${baseUrl}/favicon.ico`];
 
 const outputPath = 'site';
-const publicPath = serverRootDirect + version + '/';
+const publicPath = serverRootDirect + versionPath + '/';
 
 export default defineConfig({
   hash: true,
   // history: {
   //   type: 'hash'
   // },
-  base: isDev ? '/' : `/antd-more/${version}/`,
+  base: isDev ? '/' : `/${name}/${versionPath}/`,
   publicPath,
   outputPath,
   legacy: {
@@ -42,7 +44,7 @@ export default defineConfig({
   },
   favicons,
   themeConfig: {
-    name: 'antd-more',
+    name,
     logo,
     footer: 'Open-source MIT Licensed | Copyright © 2020-present',
     nav: [
@@ -60,27 +62,19 @@ export default defineConfig({
       },
       {
         title: `v${preMajorVersionNumber}.x`,
-        link: `https://doly-dev.github.io/antd-more/${preVersionSiteRoot}/index.html`
+        link: `${baseUrl}/${name}/${preVersionSiteRoot}/index.html`
       },
       {
         title: 'GitHub',
-        link: 'https://github.com/doly-dev/antd-more'
+        link: `https://github.com/doly-dev/${name}`
       },
       {
         title: '更新日志',
-        link: 'https://github.com/doly-dev/antd-more/releases'
+        link: `https://github.com/doly-dev/${name}/releases`
       }
     ],
   },
-
-  headScripts: isDev ? [] : [
-    { src: 'https://www.googletagmanager.com/gtag/js?id=G-N328Y9JJTL' },
-    {
-      content: `window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-N328Y9JJTL');
-    `
-    }
-  ]
+  analytics: {
+    ga_v2: 'G-N328Y9JJTL'
+  },
 });

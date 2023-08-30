@@ -11,7 +11,7 @@ on:
       - docs/**
       - src/**
       - .fatherrc.ts
-      - .umirc.js
+      - .dumirc.js
       - .github/**
       - package.json
 
