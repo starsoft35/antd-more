@@ -21,16 +21,19 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
       - uses: actions/setup-node@v3
         with:
           node-version: 16
       - name: Install
-        run: yarn install
+        run: pnpm install
       - name: Build package
-        run: yarn build
+        run: pnpm build
       - name: Build latest docs
         if: ${{github.ref == 'refs/heads/master'}}
-        run: yarn docs
+        run: pnpm docs
       - name: Deploy latest docs
         if: ${{github.ref == 'refs/heads/master'}}
         uses: JamesIves/github-pages-deploy-action@releases/v4
@@ -41,7 +44,7 @@ jobs:
           target-folder: latest
       - name: Build version docs
         if: ${{github.ref != 'refs/heads/master'}}
-        run: yarn docs-version
+        run: pnpm docs-version
       - name: Deploy version docs
         if: ${{github.ref != 'refs/heads/master'}}
         uses: JamesIves/github-pages-deploy-action@releases/v4

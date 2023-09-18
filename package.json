@@ -21,10 +21,10 @@
     "lint-fix:style": "npm run lint:style -- --fix",
     "prettier": "prettier --write **/*",
     "lint-staged": "lint-staged",
-    "precommit": "lint-staged",
     "prepublishOnly": "npm run build",
     "commit": "cz",
-    "tsc": "tsc --noEmit"
+    "tsc": "tsc --noEmit",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -69,7 +69,7 @@
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "father": "^4.2.3",
-    "husky": "^4.3.0",
+    "husky": "^8.0.0",
     "lcn": "^5.0.5",
     "lint-staged": "^13.2.2",
     "mockjs": "^1.1.0",

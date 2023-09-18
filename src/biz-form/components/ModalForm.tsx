@@ -6,7 +6,9 @@ import type { ModalProps } from './antd.interface';
 import type { BaseFormProps } from './BaseForm';
 import BaseForm from './BaseForm';
 
-export interface ModalFormProps<Values = any> extends Omit<BaseFormProps<Values>, 'title' | 'defaultValue'>, Pick<ModalProps, 'open'> {
+export interface ModalFormProps<Values = any>
+  extends Omit<BaseFormProps<Values>, 'title' | 'defaultValue'>,
+    Pick<ModalProps, 'open'> {
   title?: React.ReactNode;
   width?: ModalProps['width'];
   trigger?: React.ReactElement;
@@ -53,29 +55,33 @@ function ModalForm<Values = any>(props: ModalFormProps<Values>) {
             setOpen(false);
           }
         }}
-        submitter={typeof submitter === 'undefined' || submitter ? {
-          submitText: modalProps?.okText || '确认',
-          resetText: modalProps?.cancelText || '取消',
-          submitButtonProps: {
-            type: (modalProps?.okType as 'text') || 'primary'
-          },
-          ...submitter,
-          resetButtonProps: {
-            preventDefault: true,
-            ...(submitter ? submitter?.resetButtonProps : {}),
-            onClick: (e) => {
-              modalProps?.onCancel?.(e);
-              setOpen(false);
-              submitter && submitter?.resetButtonProps?.onClick?.(e);
-            }
-          },
-          render: (submitterProps, submitterDom) => {
-            if (submitter && typeof submitter?.render === 'function') {
-              return submitter.render(submitterProps, submitterDom.reverse());
-            }
-            return submitterDom.reverse();
-          }
-        } : submitter}
+        submitter={
+          typeof submitter === 'undefined' || submitter
+            ? {
+                submitText: modalProps?.okText || '确认',
+                resetText: modalProps?.cancelText || '取消',
+                submitButtonProps: {
+                  type: (modalProps?.okType as 'text') || 'primary'
+                },
+                ...submitter,
+                resetButtonProps: {
+                  preventDefault: true,
+                  ...(submitter ? submitter?.resetButtonProps : {}),
+                  onClick: (e) => {
+                    modalProps?.onCancel?.(e as any);
+                    setOpen(false);
+                    submitter && submitter?.resetButtonProps?.onClick?.(e);
+                  }
+                },
+                render: (submitterProps, submitterDom) => {
+                  if (submitter && typeof submitter?.render === 'function') {
+                    return submitter.render(submitterProps, submitterDom.reverse());
+                  }
+                  return submitterDom.reverse();
+                }
+              }
+            : submitter
+        }
         formRender={(formDom, submitterDom) => (
           <Modal
             title={title}

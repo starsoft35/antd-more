@@ -21,16 +21,18 @@
 
 ## 使用
 
-### npm 或 yarn 安装
+### 安装
 
 ```shell
 npm install antd-more
 ```
 
-<br />
-
 ```shell
 yarn add antd-more
+```
+
+```shell
+pnpm add antd-more
 ```
 
 ### 示例

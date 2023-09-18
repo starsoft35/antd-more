@@ -6,15 +6,14 @@ import './Banner.less';
 
 const prefixCls = `${prefixClass}-banner`;
 
-export type BannerItem =
-  | {
-    src: string;
-    link?: string;
-    title?: string;
-    onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
-  }
-  | React.ReactElement
-  | string;
+export type BannerItemObject = {
+  src: string;
+  link?: string;
+  title?: string;
+  onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
+};
+
+export type BannerItem = BannerItemObject | React.ReactElement | string;
 
 export interface BannerProps {
   data?: BannerItem[]; // 支持单张和多张，配置链接
@@ -41,10 +40,10 @@ const Banner: React.FC<BannerProps> = ({ data = [], carouselProps, rightContent 
             if (typeof itemBanner === 'string') {
               src = itemBanner;
             } else {
-              src = itemBanner.src;
-              link = itemBanner.link;
-              title = itemBanner.title;
-              onClick = itemBanner.onClick;
+              src = (itemBanner as BannerItemObject).src;
+              link = (itemBanner as BannerItemObject).link;
+              title = (itemBanner as BannerItemObject).title;
+              onClick = (itemBanner as BannerItemObject).onClick;
             }
           }
 
