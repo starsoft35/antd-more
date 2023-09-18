@@ -33,7 +33,7 @@ jobs:
         run: pnpm build
       - name: Build latest docs
         if: ${{github.ref == 'refs/heads/master'}}
-        run: pnpm docs
+        run: pnpm run docs
       - name: Deploy latest docs
         if: ${{github.ref == 'refs/heads/master'}}
         uses: JamesIves/github-pages-deploy-action@releases/v4
