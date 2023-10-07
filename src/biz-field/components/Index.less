@@ -1,6 +1,10 @@
 @prefix-index-cls: ~'antd-more-field-index';
 
 .@{prefix-index-cls} {
+  --font-size: 12px;
+  --background-color: #314659;
+  --top-background-color: #979797;
+
   display: inline-flex;
   align-items: center;
   align-self: center;
@@ -12,13 +16,13 @@
 
   &-border {
     color: #fff;
-    font-size: 12px;
-    line-height: 12px;
-    background-color: #314659;
+    font-size: var(--font-size);
+    line-height: 1;
+    background-color: var(--background-color);
     border-radius: 10px;
 
     &.top-three {
-      background-color: #979797;
+      background-color: var(--top-background-color);
     }
   }
 }

@@ -1,6 +1,12 @@
 @prefix-upload-cls: ~'antd-more-form-upload';
 
 .@{prefix-upload-cls} {
+  --size: 100px;
+  --gap: 8px;
+  --avatar-size: 120px;
+  --avatar-hover-color: #1890ff;
+  --error-color: #ff4d4f;
+
   &-avatar {
     display: block !important;
     line-height: 0;
@@ -12,8 +18,8 @@
     }
 
     &.ant-upload-wrapper.ant-upload-picture-card-wrapper .ant-upload.ant-upload-select {
-      width: 122px;
-      height: 122px;
+      width: calc(var(--avatar-size) + 2px);
+      height: calc(var(--avatar-size) + 2px);
       margin: 0;
       overflow: hidden;
     }
@@ -22,11 +28,11 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 120px;
-      height: 120px;
+      width: var(--avatar-size);
+      height: var(--avatar-size);
 
       &:hover {
-        border-color: #1890ff;
+        border-color: var(--avatar-hover-color);
         cursor: pointer;
       }
 
@@ -41,18 +47,18 @@
       }
 
       &-error {
-        color: #ff4d4f;
-        border-color: #ff4d4f;
+        color: var(--error-color);
+        border-color: var(--error-color);
 
         &:hover {
-          border-color: #ff4d4f;
+          border-color: var(--error-color);
         }
       }
     }
   }
 
   .ant-upload-list-picture-card {
-    min-height: 112px;
+    min-height: calc(var(--size) + var(--gap) + 2px);
   }
 }
 

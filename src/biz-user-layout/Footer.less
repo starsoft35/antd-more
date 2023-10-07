@@ -3,19 +3,22 @@
 @prefixCls: ~'@{prefixClass}-footer';
 
 .@{prefixCls} {
+  --color: rgba(0, 0, 0, 0.45);
+  --hover-color: rgba(0, 0, 0, 0.85);
+
   margin: 64px 16px 24px;
-  color: rgba(0, 0, 0, 0.45);
+  color: var(--color);
   text-align: center;
 
   &-links {
     margin-bottom: 8px;
 
     a {
-      color: rgba(0, 0, 0, 0.45);
+      color: var(--color);
       transition: color 0.3s;
 
       &:hover {
-        color: rgba(0, 0, 0, 0.85);
+        color: var(--hover-color);
       }
     }
   }

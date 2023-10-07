@@ -1,13 +1,18 @@
 @prefix-image-cls: ~'antd-more-field-image';
 
 .@{prefix-image-cls} {
+  --gap: 8px;
+  --padding: var(--gap);
+  --border-color: rgb(217, 217, 217);
+  --border-radius: 5px;
+
   display: inline-flex;
   flex-wrap: wrap;
-  margin-bottom: -8px;
-  margin-left: -8px;
+  margin-bottom: calc(0px - var(--gap));
+  margin-left: calc(0px - var(--gap));
 
   &-item {
-    margin: 0 0 8px 8px;
+    margin: 0 0 var(--gap) var(--gap);
 
     .ant-image {
       vertical-align: top;
@@ -35,9 +40,9 @@
     .@{prefix-image-cls} {
       &-item {
         &-image {
-          padding: 8px;
-          border: 1px solid rgb(217, 217, 217);
-          border-radius: 5px;
+          padding: var(--padding);
+          border: 1px solid var(--border-color);
+          border-radius: var(--border-radius);
 
           .ant-image {
             display: flex;
