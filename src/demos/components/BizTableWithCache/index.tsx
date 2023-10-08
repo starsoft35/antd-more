@@ -3,7 +3,7 @@ import { useEffect, useMemo, useRef } from 'react';
 import type { FormInstance } from 'antd';
 import type { BizTableActionType, BizTableProps, BizTableRequest } from 'antd-more';
 import { BizTable } from 'antd-more';
-import { omit } from 'ut2';
+import { isNil, negate, omit } from 'ut2';
 import dayjs from 'dayjs';
 import { memoryCache } from './storage';
 
@@ -40,7 +40,7 @@ const BizTableWithCache: React.FC<BizTableWithCacheProps> = ({
   };
 
   const cacheTransformInfo = useMemo(() => {
-    const result: Record<string, { type: string; names: any[]; }> = {};
+    const result: Record<string, { type: string; names: any[] }> = {};
     columns.forEach((item) => {
       if (typeof item.search === 'object' && Array.isArray(item.search.names)) {
         const type = item.search.itemType || item.search.valueType || item.valueType || '';
@@ -61,16 +61,18 @@ const BizTableWithCache: React.FC<BizTableWithCacheProps> = ({
         Object.keys(cacheTransformInfo).forEach((key) => {
           const { type, names } = cacheTransformInfo[key];
           if (Array.isArray(names) && names.length > 0) {
-            formValues[key] = names.map((field) => {
-              let val = formValues[field];
-              if (val) {
-                if (dateTypes.includes(type)) {
-                  val = dayjs(val);
+            formValues[key] = names
+              .map((field) => {
+                let val = formValues[field];
+                if (val) {
+                  if (dateTypes.includes(type)) {
+                    val = dayjs(val);
+                  }
+                  delete formValues[field];
                 }
-                delete formValues[field];
-              }
-              return val;
-            }).filter(item => item !== null && item !== undefined);
+                return val;
+              })
+              .filter(negate(isNil));
           }
         });
         formRef.current?.setFieldsValue({ ...omit(formValues, pageParamsField) });
