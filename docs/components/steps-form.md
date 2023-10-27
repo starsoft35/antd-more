@@ -13,29 +13,31 @@ toc: content
 
 ## 代码演示
 
-### 分步表单
+### 基础用法
 
 <code src="../../src/biz-form/demos/steps-form-1.tsx"></code>
 
-### 分步表单 - 中间步骤提交
+### 中间步骤提交
 
 <code src="../../src/biz-form/demos/steps-form-1.1.tsx"></code>
 
-### 分步表单-忘记密码 1
+### 忘记密码 1
 
 <code src="../../src/biz-form/demos/steps-form-2.tsx"></code>
 
-### 分步表单-忘记密码 2
+### 忘记密码 2
 
 <code src="../../src/biz-form/demos/steps-form-5.tsx" background="#f5f5f5"></code>
 
-### 分步表单-与 Modal 配合使用
+### 与 Modal 配合使用
 
 <code src="../../src/biz-form/demos/steps-form-3.tsx"></code>
 
-<!-- ### 分步表单-固定页脚
+### 固定页脚
 
-<code src="../../src/biz-form/demos/steps-form-4.tsx" iframe></code> -->
+第二步即可提交，提交成功后，手动触发下一步，第三步仅用作显示
+
+<code src="../../src/biz-form/demos/steps-form-4.tsx" iframe></code>
 
 ## API
 

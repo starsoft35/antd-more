@@ -11,15 +11,15 @@ toc: content
 
 ## 代码演示
 
-### 查询表单
+### 基础用法
 
 <code src='../../src/biz-form/demos/query-form-1.tsx'></code>
 
-### 查询表单-展开收起
+### 展开收起
 
 <code src='../../src/biz-form/demos/query-form-2.tsx'></code>
 
-### 查询表单-垂直布局
+### 垂直布局
 
 <code src='../../src/biz-form/demos/query-form-3.tsx'></code>
 
