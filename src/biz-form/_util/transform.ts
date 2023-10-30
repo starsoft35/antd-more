@@ -23,7 +23,7 @@ export function transformDate(date: Dayjs | string | (Dayjs | string)[], format:
 // 转换表单值
 export function transformFormValues(values: any, transforms: any, currentLevelValues?: any) {
   if (
-    (Array.isArray(values) && values.length <= 0) ||
+    (Array.isArray(values) && values.length <= 0 && !currentLevelValues) ||
     (Array.isArray(transforms) && transforms.length <= 0) ||
     !transforms
   ) {
